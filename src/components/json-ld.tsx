@@ -157,7 +157,9 @@ export function demoVideoJsonLd(demo: ShowcaseDemo) {
     name: demo.title,
     description: demo.funnyBlurb,
     thumbnailUrl: absoluteUrl(demo.posterUrl),
-    contentUrl: absoluteUrl(demo.videoUrl),
+    contentUrl: demo.hasLocalVideo
+      ? absoluteUrl(demo.videoUrl)
+      : absoluteUrl(demo.posterUrl),
     embedUrl: demo.tweetUrl,
     uploadDate: "2026-09-19",
     author: {

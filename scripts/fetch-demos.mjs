@@ -6,21 +6,40 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-/** Keep in sync with src/data/showcase-demos.ts */
-const DEMO_SPECS = [
-  { id: "json-render-ctatedev", tweetId: "2101022101750571357", prefer1080: true },
-  { id: "zillow-venturetwins", tweetId: "2101341075684434245", prefer1080: false },
-  { id: "designer-heystefan", tweetId: "2101369117496521042", prefer1080: false },
-  { id: "canada-measure-plan", tweetId: "2101315424247820309", prefer1080: false },
-  { id: "lurk-mxfp4", tweetId: "2101070906852298910", prefer1080: false },
-  { id: "ryze-irabukht", tweetId: "2101375295152652372", prefer1080: false },
-  { id: "seo-cost-hamonpaulm", tweetId: "2101265909826609278", prefer1080: false },
-];
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "public", "demos");
 const force = process.argv.includes("--force");
+
+/** Keep in sync with src/data/showcase-demos.ts showcaseDemoFetchHints */
+const DEMO_SPECS = [
+  { id: "browser-ultrafast-gregpr07", tweetId: "2100411066966749359", prefer1080: false },
+  { id: "json-render-ctatedev", tweetId: "2101022101750571357", prefer1080: true },
+  { id: "spreadsheets-intent-dabit3", tweetId: "2100780008193020049", prefer1080: false },
+  { id: "zillow-venturetwins", tweetId: "2101341075684434245", prefer1080: false },
+  { id: "magic-jev-ball-acharyaagamya", tweetId: "2101129105676861621", prefer1080: false },
+  { id: "canada-measure-plan", tweetId: "2101315424247820309", prefer1080: false },
+  { id: "find-in-page-jiayao", tweetId: "2101108866713063804", prefer1080: false },
+  { id: "typeahead-ui-mikegee", tweetId: "2101098282655338995", prefer1080: false },
+  { id: "jevform-tamirspiritt", tweetId: "2101079101997982037", prefer1080: false },
+  { id: "jargon-pigeon-prkeshari", tweetId: "2101048015720951975", prefer1080: false },
+  { id: "ask-jev-waynesutton", tweetId: "2100487878992388279", prefer1080: false },
+  { id: "gmail-intent-dabit3", tweetId: "2100960281769738433", prefer1080: false },
+  { id: "traffic-guard-gnumanth", tweetId: "2100963107552280754", prefer1080: false },
+  { id: "higgsfield-routing", tweetId: "2101022133753430365", prefer1080: false },
+  { id: "opencode-tetris-tanaysoni", tweetId: "2101020844092756072", prefer1080: false },
+  { id: "snack-scoring-nikunj", tweetId: "2101006585481073093", prefer1080: false },
+  { id: "designer-heystefan", tweetId: "2101369117496521042", prefer1080: false },
+  { id: "context-compaction-tamarajtran", tweetId: "2100694549362553153", prefer1080: false },
+  { id: "jev-chess-qibinlou", tweetId: "2100676619815862464", prefer1080: false },
+  { id: "ad-blocker-iam-zachi", tweetId: "2100529273186472318", prefer1080: false },
+  { id: "pkg-gate-gnumanth", tweetId: "2100405456187564201", prefer1080: false },
+  { id: "code-review-gate-kunal", tweetId: "2101027586587738151", prefer1080: false, posterOnly: true },
+  { id: "lurk-mxfp4", tweetId: "2101070906852298910", prefer1080: false },
+  { id: "ryze-irabukht", tweetId: "2101375295152652372", prefer1080: false },
+  { id: "seo-cost-hamonpaulm", tweetId: "2101265909826609278", prefer1080: false },
+];
 
 function pickMp4Url(formats, prefer1080 = false) {
   const mp4s = (formats ?? [])
@@ -32,7 +51,11 @@ function pickMp4Url(formats, prefer1080 = false) {
     return best?.url;
   }
 
-  const with720 = mp4s.filter((f) => /[^0-9]720x|x720[^0-9]|1280x720|1206x720|1252x720|722x720|1126x720/.test(f.url));
+  const with720 = mp4s.filter((f) =>
+    /[^0-9]720x|x720[^0-9]|1280x720|1206x720|1252x720|722x720|1126x720|1104x720|890x720/.test(
+      f.url,
+    ),
+  );
   if (with720.length) {
     return with720.sort((a, b) => (b.bitrate ?? 0) - (a.bitrate ?? 0))[0].url;
   }
@@ -57,8 +80,13 @@ async function main() {
 
     if (!force) {
       try {
-        const [p, v] = await Promise.all([fs.stat(posterPath), fs.stat(videoPath)]);
-        if (p.size > 0 && v.size > 0) {
+        const posterStat = await fs.stat(posterPath);
+        if (demo.posterOnly && posterStat.size > 0) {
+          console.log(`skip ${demo.id} (poster already present)`);
+          continue;
+        }
+        const videoStat = await fs.stat(videoPath);
+        if (posterStat.size > 0 && videoStat.size > 0) {
           console.log(`skip ${demo.id} (already present)`);
           continue;
         }
@@ -70,21 +98,36 @@ async function main() {
     console.log(`fetch ${demo.id} (${tweetId})…`);
     const api = await fetch(`https://api.fxtwitter.com/status/${tweetId}`);
     const json = await api.json();
-    const media = json.tweet?.media?.all?.[0];
-    if (!media) {
+    const allMedia = json.tweet?.media?.all ?? [];
+    const videoMedia = allMedia.find((m) => m.type === "video" || m.formats?.length);
+    const imageMedia = allMedia.find((m) => m.type === "photo" || m.type === "image");
+
+    if (!videoMedia && !imageMedia) {
       console.warn(`  no media on tweet ${tweetId}`);
       continue;
     }
 
-    const prefer1080 = demo.prefer1080;
-    const videoUrl = pickMp4Url(media.formats, prefer1080) ?? media.url;
-    const posterUrl = media.thumbnail_url;
+    const posterUrl =
+      videoMedia?.thumbnail_url ?? imageMedia?.url ?? imageMedia?.thumbnail_url;
+    if (posterUrl) {
+      const posterBytes = await download(posterUrl, posterPath);
+      console.log(`  poster ${(posterBytes / 1024).toFixed(0)} KiB`);
+    }
 
-    const posterBytes = await download(posterUrl, posterPath);
+    if (demo.posterOnly) {
+      console.log(`  poster-only demo`);
+      continue;
+    }
+
+    const videoUrl =
+      pickMp4Url(videoMedia?.formats, demo.prefer1080) ?? videoMedia?.url;
+    if (!videoUrl) {
+      console.warn(`  no video URL for ${tweetId}`);
+      continue;
+    }
+
     const videoBytes = await download(videoUrl, videoPath);
-    console.log(
-      `  poster ${(posterBytes / 1024).toFixed(0)} KiB, video ${(videoBytes / 1024 / 1024).toFixed(1)} MiB`,
-    );
+    console.log(`  video ${(videoBytes / 1024 / 1024).toFixed(1)} MiB`);
   }
   console.log("Done.");
 }
