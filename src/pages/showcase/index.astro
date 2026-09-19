@@ -1,5 +1,5 @@
 ---
-import { DemoVideoCard } from "@/components/demo-video-card";
+import { ShowcaseDemoGrid } from "@/components/demo-card";
 import { demoVideoJsonLd } from "@/components/json-ld";
 import { showcaseDemos } from "@/data/showcase-demos";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -7,6 +7,7 @@ import { showcasePageSeo } from "@/lib/seo";
 
 const seo = showcasePageSeo();
 const jsonLd = showcaseDemos.map((d) => demoVideoJsonLd(d));
+const count = showcaseDemos.length;
 ---
 
 <BaseLayout
@@ -22,18 +23,14 @@ const jsonLd = showcaseDemos.map((d) => demoVideoJsonLd(d));
         Showcase
       </p>
       <h1 class="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
-        Seven demos, zero cope
+        {count} demos, zero cope
       </h1>
       <p class="mt-4 text-base leading-relaxed text-muted-foreground">
-        Real posts from builders using Jev on production problems. Each clip links back to the original thread. Steal the vibe, then steal the SDK.
+        Real posts from builders using Jev on production problems. Tap a card for the full clip, then steal the SDK.
       </p>
     </header>
-    <div class="mt-12 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-      {
-        showcaseDemos.map((demo) => (
-          <DemoVideoCard client:visible demo={demo} />
-        ))
-      }
+    <div class="mt-12">
+      <ShowcaseDemoGrid client:visible demos={showcaseDemos} />
     </div>
   </div>
 </BaseLayout>
