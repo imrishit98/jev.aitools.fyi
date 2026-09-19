@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import ExploreApp from "@/components/explore-app";
+import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
+import { getAllItems, getDirectoryStats } from "@/lib/items";
+import { pageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+const stats = getDirectoryStats();
+const seo = pageSeo({
+  title: `Explore ${stats.total} Jev listings`,
+  description:
+    "Filter TypeSafe Jev and System One projects by category, language, Jev MCP, demos, and GitHub. Faceted directory search for SDKs, agents, and integrations.",
+  path: "/explore",
+});
+const all = getAllItems();
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path="/explore"
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Explore", path: "/explore" },
+    ]),
+    itemListJsonLd(all, {
+      name: "Jev Directory explore results",
+      url: `${siteConfig.url}/explore`,
+    }),
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-14">
+    <header class="mb-10 max-w-2xl">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Directory</p>
+      <h1 class="mt-2 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">Explore Jev listings</h1>
+      <p class="mt-3 text-base leading-relaxed text-muted-foreground">
+        Faceted search across the public TypeSafe Jev ecosystem: System One SDKs, Vercel gateway integrations, Jev MCP servers, and demos. No chatbot filler, just links that work.
+      </p>
+    </header>
+    <ExploreApp client:load />
+  </div>
+</BaseLayout>

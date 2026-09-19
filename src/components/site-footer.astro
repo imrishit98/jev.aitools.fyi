@@ -1,0 +1,94 @@
+---
+import { siteConfig } from "@/lib/site";
+import { categories } from "@/data/categories";
+const year = new Date().getFullYear();
+---
+<footer class="mt-auto border-t border-border bg-muted/40">
+  <div class="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-12">
+    <div class="space-y-4 md:col-span-5">
+      <p class="font-heading text-xl font-semibold tracking-tight">
+        {siteConfig.name}
+      </p>
+      <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
+        {siteConfig.description}
+      </p>
+      <p class="text-xs leading-relaxed text-muted-foreground">
+        Curated by{" "}
+        <a
+          href={siteConfig.parentBrand.url}
+          class="font-medium text-primary underline-offset-4 hover:underline"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          {siteConfig.parentBrand.name}
+        </a>
+        . Not affiliated with TypeSafe AI unless a listing says otherwise.
+      </p>
+    </div>
+    <div class="md:col-span-4">
+      <p class="mb-4 text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+        Categories
+      </p>
+      <ul class="grid grid-cols-2 gap-x-4 gap-y-2.5 text-sm">
+        {
+          categories.map((c) => (
+            <li>
+              <a
+                href={`/categories/${c.slug}`}
+                class="text-muted-foreground transition-colors hover:text-primary focus-visible:text-primary"
+              >
+                {c.title}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+    <div class="space-y-4 md:col-span-3">
+      <p class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+        Links
+      </p>
+      <ul class="space-y-2.5 text-sm">
+        <li>
+          <a
+            href={siteConfig.typesafe.home}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-primary"
+          >
+            TypeSafe AI
+          </a>
+        </li>
+        <li>
+          <a
+            href={siteConfig.vercelGateway}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="text-muted-foreground hover:text-primary"
+          >
+            Vercel AI Gateway (Jev)
+          </a>
+        </li>
+        <li>
+          <a href="/submit" class="text-muted-foreground hover:text-primary">
+            Submit a listing
+          </a>
+        </li>
+        <li>
+          <a href="/llms.txt" class="text-muted-foreground hover:text-primary">
+            llms.txt
+          </a>
+        </li>
+        <li>
+          <a href="/about" class="text-muted-foreground hover:text-primary">
+            About this directory
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+  <div class="border-t border-border/80 py-5 text-center text-xs text-muted-foreground">
+    © {year} Southern East Inc. ·{" "}
+    <span class="font-mono text-foreground/90">jev.aitools.fyi</span>
+  </div>
+</footer>

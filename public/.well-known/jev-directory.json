@@ -1,0 +1,16 @@
+{
+  "name": "Jev Directory",
+  "url": "https://jev.aitools.fyi",
+  "description": "Independent curated directory of the TypeSafe Jev and System One ecosystem, published by aitools.fyi (Southern East Inc.).",
+  "curator": {
+    "name": "Rishit Patel",
+    "url": "https://twitter.com/imrishit98"
+  },
+  "publisher": {
+    "organization": "Southern East Inc.",
+    "brand": "https://aitools.fyi"
+  },
+  "affiliation": "Not affiliated with TypeSafe AI unless an individual listing explicitly represents an official TypeSafe property.",
+  "llms_txt": "https://jev.aitools.fyi/llms.txt",
+  "sitemap": "https://jev.aitools.fyi/sitemap.xml"
+}

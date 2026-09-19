@@ -1,0 +1,81 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ButtonLink } from "@/components/button-link";
+import { CategoryGrid } from "@/components/category-grid";
+import { CollectionsGrid } from "@/components/collections-grid";
+import { FeaturedRail } from "@/components/featured-rail";
+import { HomeFaq } from "@/components/home-faq";
+import { JevSpecSheet } from "@/components/jev-spec-sheet";
+import { StatsBar } from "@/components/stats-bar";
+import { faqPageJsonLd, itemListJsonLd } from "@/components/json-ld";
+import { homeFaq } from "@/data/faq";
+import { getAllItems, getDirectoryStats } from "@/lib/items";
+import { pageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+const stats = getDirectoryStats();
+const items = getAllItems();
+const seo = pageSeo({
+  title: `${siteConfig.tagline} | TypeSafe Jev directory`,
+  description: `Browse ${stats.total} Jev listings: TypeSafe System One SDKs, Vercel AI Gateway Jev, Jev MCP servers, agent tooling, demos, and use cases. Curated by aitools.fyi.`,
+  path: "/",
+});
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path="/"
+  jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq)]}
+>
+  <section class="hero-mesh relative overflow-hidden border-b border-border">
+    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
+      <div class="max-w-3xl">
+        <p class="mb-5 inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground shadow-sm backdrop-blur-sm">
+          <span class="size-1.5 rounded-full bg-primary" aria-hidden="true"></span>
+          {siteConfig.parentBrand.name} · {stats.total} listings indexed
+        </p>
+        <h1 class="text-balance font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
+          Everything useful with{" "}
+          <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Jev</span>
+        </h1>
+        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+          The scannable directory for TypeSafe&apos;s System One ecosystem. SDKs, Vercel AI Gateway hooks, Jev MCP servers, agent routers, demos, and games. Pulled from the public index, not hallucinated.
+        </p>
+        <div class="mt-9 flex flex-wrap gap-3">
+          <ButtonLink href="/explore" size="lg">Explore {stats.total} listings</ButtonLink>
+          <ButtonLink href="/learn" size="lg" variant="outline">Start learning</ButtonLink>
+          <ButtonLink href={siteConfig.typesafe.playground} size="lg" variant="ghost" external>Official playground</ButtonLink>
+        </div>
+      </div>
+      <div class="mt-12 lg:mt-14"><StatsBar /></div>
+    </div>
+  </section>
+  <div class="mx-auto max-w-6xl space-y-20 px-4 py-16 sm:px-6 sm:py-20">
+    <JevSpecSheet />
+    <FeaturedRail />
+    <CollectionsGrid />
+    <CategoryGrid />
+    <section class="surface-card p-8 md:p-10 lg:p-12">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Primer</p>
+      <h2 class="mt-2 font-heading text-2xl font-semibold sm:text-3xl">Why Jev?</h2>
+      <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
+        Jev is a <strong class="font-medium text-foreground">System One</strong> model from TypeSafe AI. You send structured state and typed questions (Choice, Score, Noul). You get probabilities back, not a chatty paragraph. Your code owns thresholds. Side effects stay yours.
+      </p>
+      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
+        <a href="/learn/jev-typesafe" class="text-primary hover:underline">Jev and TypeSafe</a>
+        <a href="/learn/jev-vs-llm-classification" class="text-primary hover:underline">Jev vs LLM labels</a>
+        <a href="/learn/vercel-ai-gateway" class="text-primary hover:underline">Vercel AI Gateway Jev</a>
+        <a href="/explore?mcp=1" class="text-primary hover:underline">Jev MCP directory</a>
+      </div>
+    </section>
+    <HomeFaq />
+    <section class="relative overflow-hidden rounded-md border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-card p-8 shadow-sm md:flex md:items-center md:justify-between md:gap-8 md:p-10">
+      <div class="relative max-w-xl">
+        <h2 class="font-heading text-xl font-semibold sm:text-2xl">Built something with Jev?</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Submit your repo or demo. We read every link. No fake star counts, ever.</p>
+      </div>
+      <ButtonLink href="/submit" class="relative mt-6 shrink-0 md:mt-0">Submit a listing</ButtonLink>
+    </section>
+  </div>
+</BaseLayout>

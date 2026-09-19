@@ -1,0 +1,9 @@
+---
+import { organizationJsonLd, websiteJsonLd } from "@/components/json-ld";
+const blocks = [websiteJsonLd(), organizationJsonLd()];
+---
+{
+  blocks.map((block) => (
+    <script type="application/ld+json" set:html={JSON.stringify(block)} />
+  ))
+}

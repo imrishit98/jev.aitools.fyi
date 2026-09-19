@@ -1,0 +1,77 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ItemCard } from "@/components/item-card";
+import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
+import { getCategory } from "@/data/categories";
+import { CATEGORY_SLUGS } from "@/data/types";
+import { getItemsByCategory } from "@/lib/items";
+import { pageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+export function getStaticPaths() {
+  return CATEGORY_SLUGS.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const cat = getCategory(slug!);
+if (!cat) throw new Error(`Unknown category ${slug}`);
+
+const items = getItemsByCategory(cat.slug);
+const seo = pageSeo({
+  title: cat.seoTitle,
+  description: cat.seoDescription,
+  path: `/categories/${slug}`,
+});
+const categoryUrl = `/categories/${slug}`;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={categoryUrl}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Explore", path: "/explore" },
+      { name: cat.title, path: categoryUrl },
+    ]),
+    itemListJsonLd(items, {
+      name: `${cat.title} · Jev Directory`,
+      url: `${siteConfig.url}${categoryUrl}`,
+    }),
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <nav class="mb-6 text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent">Home</a>
+      <span class="mx-2">/</span>
+      <a href="/explore" class="hover:text-accent">Explore</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">{cat.title}</span>
+    </nav>
+    <header class="mb-10 max-w-2xl">
+      <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{cat.title}</h1>
+      <p class="mt-3 text-muted-foreground">{cat.description}</p>
+      {cat.intro && <p class="mt-4 text-base leading-relaxed text-foreground/85">{cat.intro}</p>}
+      <p class="mt-3 text-sm text-muted-foreground">
+        {items.length} listings in this bucket · <a href="/learn" class="text-primary hover:underline">Learn Jev</a>
+      </p>
+    </header>
+    {
+      items.length === 0 ? (
+        <div class="surface-card rounded-md border-dashed px-6 py-12 text-center">
+          <p class="font-heading text-lg">Empty shelf</p>
+          <p class="mt-2 text-sm text-muted-foreground">
+            Nothing filed here yet. <a href="/submit" class="text-primary hover:underline">Submit the first one</a>.
+          </p>
+        </div>
+      ) : (
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {items.map((item) => (
+            <ItemCard item={item} />
+          ))}
+        </div>
+      )
+    }
+  </div>
+</BaseLayout>

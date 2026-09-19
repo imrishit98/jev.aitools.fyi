@@ -1,0 +1,13 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" style="stop-color:#0a0f14"/>
+      <stop offset="50%" style="stop-color:#0d1a1f"/>
+      <stop offset="100%" style="stop-color:#0a1218"/>
+    </linearGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <text x="80" y="120" fill="#5eead4" font-family="system-ui,sans-serif" font-size="28" letter-spacing="6">AITOOLS.FYI</text>
+  <text x="80" y="220" fill="#e8f4f8" font-family="Georgia,serif" font-size="72" font-weight="700">Jev Directory</text>
+  <text x="80" y="300" fill="#94a3b8" font-family="system-ui,sans-serif" font-size="32">Everything useful with Jev. System One SDKs, agents, demos.</text>
+</svg>
