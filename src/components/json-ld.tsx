@@ -2,6 +2,8 @@ import type { DirectoryItem } from "@/data/types";
 import type { FaqEntry } from "@/data/faq";
 import { siteConfig } from "@/lib/site";
 import { absoluteUrl } from "@/lib/seo";
+import { getItemPath, hrefForListing } from "@/lib/item-paths";
+import { itemHasDetailPage } from "@/lib/content-policy";
 
 const publisherOrg = {
   "@type": "Organization" as const,
@@ -77,12 +79,15 @@ export function itemListJsonLd(
       "@type": "ListItem",
       position: index + 1,
       name: item.title,
-      url: `${siteConfig.url}/items/${item.slug}`,
+      url: itemHasDetailPage(item)
+        ? absoluteUrl(getItemPath(item))
+        : item.url,
     })),
   };
 }
 
 export function softwareApplicationJsonLd(item: DirectoryItem) {
+  const detailUrl = absoluteUrl(getItemPath(item));
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -90,6 +95,12 @@ export function softwareApplicationJsonLd(item: DirectoryItem) {
     description: item.description,
     applicationCategory: "DeveloperApplication",
     url: item.url,
+    mainEntityOfPage: detailUrl,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
     ...(item.repoUrl ? { codeRepository: item.repoUrl } : {}),
     author: item.creatorName
       ? { "@type": "Person", name: item.creatorName }
@@ -103,8 +114,8 @@ export function creativeWorkJsonLd(item: DirectoryItem) {
     "@type": "CreativeWork",
     name: item.title,
     description: item.description,
-    url: absoluteUrl(`/items/${item.slug}`),
-    mainEntityOfPage: absoluteUrl(`/items/${item.slug}`),
+    url: absoluteUrl(getItemPath(item)),
+    mainEntityOfPage: absoluteUrl(getItemPath(item)),
   };
 }
 

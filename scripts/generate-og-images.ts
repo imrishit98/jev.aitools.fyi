@@ -5,8 +5,7 @@ import satori from "satori";
 import sharp from "sharp";
 import { categories } from "../src/data/categories-data.ts";
 import { learnGuides } from "../src/data/learn-guides.ts";
-import catalog from "../src/data/catalog.json";
-import type { DirectoryItem } from "../src/data/types.ts";
+import { getItemsWithDetailPages } from "../src/lib/items.ts";
 import { loadOgFonts } from "./og/fonts.mjs";
 import { OgImage, OG_HEIGHT, OG_WIDTH } from "./og/template.mjs";
 
@@ -138,7 +137,7 @@ async function main() {
     );
   }
 
-  const items = catalog as DirectoryItem[];
+  const items = getItemsWithDetailPages();
   const catBySlug = new Map(categories.map((c) => [c.slug, c]));
 
   let done = 0;

@@ -43,6 +43,12 @@ export type DirectoryItem = {
   creatorHandle?: string;
   creatorName?: string;
   sourcePlatform?: SourcePlatform;
+  /** Catalog override: keep in explore but do not emit a detail page route. */
+  indexOnly?: boolean;
+  /** Catalog override: always emit a detail page (editorial added if body is short). */
+  detailPage?: boolean;
+  /** Optional unique copy merged into detail page body (see content policy). */
+  editorialBlurb?: string;
 };
 
 export type CategoryMeta = {

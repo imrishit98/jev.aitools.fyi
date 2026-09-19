@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { siteConfig } from "@/lib/site";
-import { absoluteUrl, ogImagePaths, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "@/lib/seo";
+import { absoluteUrl, formatDocumentTitle, ogImagePaths, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "@/lib/seo";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer.astro";
 import SiteCredit from "@/components/site-credit.astro";
@@ -26,9 +26,7 @@ const {
 } = Astro.props;
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl(ogImagePath);
-const fullTitle = title.includes(siteConfig.name)
-  ? title
-  : `${title} · ${siteConfig.name}`;
+const fullTitle = formatDocumentTitle(title);
 ---
 
 <!doctype html>

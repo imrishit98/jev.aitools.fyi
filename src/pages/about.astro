@@ -1,31 +1,26 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { pageSeo } from "@/lib/seo";
+import { aboutPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
-const seo = pageSeo({
-  title: "About Jev Directory",
-  description:
-    "Mission, affiliation disclaimer, and curation policy for jev.aitools.fyi. Published by aitools.fyi (Southern East Inc.), curated by Rishit Patel.",
-  path: "/about",
-});
+const seo = aboutPageSeo();
 ---
 
 <BaseLayout title={seo.title} description={seo.description} path="/about">
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-    <h1 class="font-heading text-3xl font-semibold">About</h1>
+    <h1 class="font-heading text-3xl font-semibold">About this directory</h1>
     <div class="mt-8 space-y-6 leading-relaxed text-muted-foreground">
       <p>
-        <strong class="text-foreground">{siteConfig.name}</strong> is a productized public directory of the TypeSafe Jev ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides. It is published by <a href={siteConfig.parentBrand.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">{siteConfig.parentBrand.name}</a> (Southern East Inc.) as part of the aitools.fyi family, with production hostname target <span class="font-mono text-foreground">jev.aitools.fyi</span>.
+        <strong class="text-foreground">{siteConfig.name}</strong> is the public index of the TypeSafe Jev ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides. Published by <a href={siteConfig.parentBrand.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">{siteConfig.parentBrand.name}</a> (Southern East Inc.) as part of the aitools.fyi family. Production hostname: <span class="font-mono text-foreground">jev.aitools.fyi</span>.
       </p>
-      <p><strong class="text-foreground">Disclaimer:</strong> This site is not affiliated with TypeSafe AI unless a listing explicitly represents an official TypeSafe property (docs, SDKs, playground, etc.). Community projects remain the work of their authors.</p>
+      <p><strong class="text-foreground">Disclaimer:</strong> We are not TypeSafe AI unless a listing is an official TypeSafe property (docs, SDKs, playground, and similar). Community projects belong to their authors.</p>
       <p>
-        Listings are curated from public sources including <a href="https://awesomejev.com" class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">awesomejev.com</a>, official TypeSafe documentation, and GitHub. Star counts are included only when publicly known; we do not invent metrics or URLs.
+        Listings come from public sources including <a href="https://awesomejev.com" class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">awesomejev.com</a>, TypeSafe documentation, and GitHub. We show star counts only when they are public. We do not invent metrics or URLs.
       </p>
       <p>
-        Machine-readable site map for LLM crawlers: <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>. Publisher metadata: <a href="/.well-known/jev-directory.json" class="text-accent hover:underline">/.well-known/jev-directory.json</a>.
+        For LLM crawlers: <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>. Publisher metadata: <a href="/.well-known/jev-directory.json" class="text-accent hover:underline">/.well-known/jev-directory.json</a>.
       </p>
-      <p>Want to add something? Use the <a href="/submit" class="text-accent hover:underline">submit form</a> to open a GitHub issue with structured JSON.</p>
+      <p>Missing something good? <a href="/submit" class="text-accent hover:underline">Submit a listing</a> and open a structured GitHub issue.</p>
     </div>
   </div>
 </BaseLayout>

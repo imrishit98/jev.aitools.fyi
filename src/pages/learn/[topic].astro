@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
 import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
-import { ogImagePaths, pageSeo } from "@/lib/seo";
+import { learnTopicPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export function getStaticPaths() {
@@ -14,13 +14,7 @@ const { topic } = Astro.params;
 const guide = getLearnGuide(topic!);
 if (!guide) throw new Error(`Unknown topic ${topic}`);
 
-const seo = pageSeo({
-  title: guide.title,
-  description: guide.description,
-  path: `/learn/${topic}`,
-  type: "article",
-  imagePath: ogImagePaths.learnTopic(topic!),
-});
+const seo = learnTopicPageSeo(guide);
 ---
 
 <BaseLayout
@@ -59,7 +53,7 @@ const seo = pageSeo({
       ))}
     </div>
     <div class="mt-12 flex flex-wrap gap-3">
-      {guide.exploreHref && <ButtonLink href={guide.exploreHref}>Matching listings</ButtonLink>}
+      {guide.exploreHref && <ButtonLink href={guide.exploreHref}>See matching listings</ButtonLink>}
       <ButtonLink href="/explore" variant="outline">Full directory</ButtonLink>
       <ButtonLink href={siteConfig.vercelGateway} variant="ghost" external>Vercel AI Gateway docs</ButtonLink>
     </div>

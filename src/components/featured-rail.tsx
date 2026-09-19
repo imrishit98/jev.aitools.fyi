@@ -11,20 +11,20 @@ export function FeaturedRail() {
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-            Editor&apos;s picks
+            Staff picks
           </p>
           <h2
             id="featured-heading"
             className="mt-1 font-heading text-2xl font-semibold sm:text-3xl"
           >
-            Featured listings
+            Featured this week
           </h2>
         </div>
         <AppLink
           href="/explore?sort=featured"
           className="inline-flex items-center gap-1 text-sm font-medium text-muted-foreground transition-colors hover:text-primary focus-visible:text-primary"
         >
-          View all
+          See all featured
           <ArrowRight className="size-4" />
         </AppLink>
       </div>

@@ -10,7 +10,7 @@ export function CollectionsGrid() {
           Collections
         </p>
         <h2 id="collections-heading" className="mt-1 font-heading text-2xl font-semibold sm:text-3xl">
-          Start somewhere useful
+          Shortcuts that actually save time
         </h2>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">

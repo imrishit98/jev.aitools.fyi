@@ -46,7 +46,7 @@ export default function SiteHeader() {
           <ThemeToggle />
           <SearchCommand />
           <ButtonLink href="/explore" size="sm" className="hidden sm:inline-flex">
-            Browse all
+            Explore all
           </ButtonLink>
           <ButtonLink
             href={siteConfig.typesafe.docs}

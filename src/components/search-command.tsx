@@ -10,11 +10,14 @@ import {
   CommandList,
   CommandSeparator,
 } from "@/components/ui/command";
-import { searchItems } from "@/lib/items";
+import { getDirectoryStats, searchItems } from "@/lib/items";
+import { itemHasDetailPage } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
 
 export default function SearchCommand() {
   const [open, setOpen] = React.useState(false);
   const [query, setQuery] = React.useState("");
+  const stats = React.useMemo(() => getDirectoryStats(), []);
   const results = React.useMemo(
     () => searchItems(query.trim(), 12),
     [query],
@@ -53,18 +56,18 @@ export default function SearchCommand() {
       </Button>
       <CommandDialog open={open} onOpenChange={setOpen}>
         <CommandInput
-          placeholder="Search 488 listings..."
+          placeholder={`Search ${stats.total} listings...`}
           value={query}
           onValueChange={setQuery}
         />
         <CommandList>
-          <CommandEmpty>No listings found.</CommandEmpty>
+          <CommandEmpty>Nothing matched. Try Explore filters or a shorter query.</CommandEmpty>
           <CommandGroup heading="Listings">
             {results.map((item) => (
               <CommandItem
                 key={item.slug}
                 value={item.title}
-                onSelect={() => go(`/items/${item.slug}`)}
+                onSelect={() => go(hrefForListing(item))}
               >
                 <span className="font-medium">{item.title}</span>
                 <span className="ml-2 truncate text-xs text-muted-foreground">

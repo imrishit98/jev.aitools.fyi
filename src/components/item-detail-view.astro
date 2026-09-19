@@ -8,40 +8,35 @@ import { ButtonLink } from "@/components/button-link";
 import { Badge } from "@/components/ui/badge";
 import { breadcrumbJsonLd, listingJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
-import { items } from "@/data/items/index";
 import { getItemBySlug, getRelatedItems } from "@/lib/items";
-import { ogImagePaths, pageSeo } from "@/lib/seo";
+import { getItemPath } from "@/lib/item-paths";
+import { itemListingSeo } from "@/lib/seo";
 
-export function getStaticPaths() {
-  return items.map((item) => ({ params: { slug: item.slug } }));
+interface Props {
+  slug: string;
 }
 
-const { slug } = Astro.params;
-const item = getItemBySlug(slug!);
+const { slug } = Astro.props;
+const item = getItemBySlug(slug);
 if (!item) throw new Error(`Unknown item ${slug}`);
 
 const cat = getCategory(item.category);
 const related = getRelatedItems(item);
-const seo = pageSeo({
-  title: item.title,
-  description: item.oneLiner,
-  path: `/items/${slug}`,
-  type: "article",
-  imagePath: ogImagePaths.item(slug!),
-});
+const itemPath = getItemPath(item);
+const seo = itemListingSeo(item);
 ---
 
 <BaseLayout
   title={seo.title}
   description={seo.description}
-  path={`/items/${slug}`}
+  path={itemPath}
   type="article"
   ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
       { name: cat?.title ?? item.category, path: `/categories/${item.category}` },
-      { name: item.title, path: `/items/${slug}` },
+      { name: item.title, path: itemPath },
     ]),
     listingJsonLd(item),
   ]}
@@ -70,8 +65,11 @@ const seo = pageSeo({
           <CreatorCredit item={item} className="mt-3" />
         </div>
         <div class="surface-card p-6 sm:p-8">
-          <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Overview</h2>
+          <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">What it does</h2>
           <p class="mt-4 text-base leading-relaxed text-foreground/90">{item.description}</p>
+          {item.editorialBlurb && (
+            <p class="mt-4 border-l-2 border-primary/30 pl-4 text-base leading-relaxed text-foreground/90">{item.editorialBlurb}</p>
+          )}
           {(item.verifiedNote || item.sourceNote) && (
             <p class="mt-4 text-sm text-muted-foreground">{item.verifiedNote ?? item.sourceNote}</p>
           )}
@@ -90,34 +88,34 @@ const seo = pageSeo({
           <p class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Links</p>
           <div class="mt-4 flex flex-col gap-2">
             <ButtonLink href={item.url} className="w-full justify-start" external>
-              <ExternalLink className="size-4" /> Primary link
+              <ExternalLink className="size-4" /> Open project
             </ButtonLink>
             {item.repoUrl && item.repoUrl !== item.url && (
               <ButtonLink href={item.repoUrl} variant="outline" className="w-full justify-start" external>
-                <Code2 className="size-4" /> GitHub
+                <Code2 className="size-4" /> View repo
               </ButtonLink>
             )}
             {item.demoUrl && (
               <ButtonLink href={item.demoUrl} variant="secondary" className="w-full justify-start" external>
-                <ExternalLink className="size-4" /> Live demo
+                <ExternalLink className="size-4" /> Open demo
               </ButtonLink>
             )}
             {item.postUrl && (
               <ButtonLink href={item.postUrl} variant="outline" className="w-full justify-start" external>
-                <Megaphone className="size-4" /> Announcement post
+                <Megaphone className="size-4" /> Read launch post
               </ButtonLink>
             )}
           </div>
           <p class="mt-6 text-xs leading-relaxed text-muted-foreground">
-            Wrong link or outdated stars? <a href="/submit" class="text-primary hover:underline">Tell us</a>.
+            Stale link or wrong stars? <a href="/submit" class="text-primary hover:underline">Ping us on Submit</a>.
           </p>
         </div>
       </aside>
     </div>
     {related.length > 0 && (
       <section class="mt-16 border-t border-border pt-14">
-        <h2 class="font-heading text-2xl font-semibold">Related listings</h2>
-        <p class="mt-1 text-sm text-muted-foreground">Same category, similar tags. No algorithm mystique.</p>
+        <h2 class="font-heading text-2xl font-semibold">More in this orbit</h2>
+        <p class="mt-1 text-sm text-muted-foreground">Same category, overlapping tags. Hand-picked neighbors, not a black box.</p>
         <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
           {related.map((r) => (
             <ItemCard item={r} />

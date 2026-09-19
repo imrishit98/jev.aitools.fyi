@@ -5,7 +5,7 @@ import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
 import { CATEGORY_SLUGS } from "@/data/types";
 import { getItemsByCategory } from "@/lib/items";
-import { ogImagePaths, pageSeo } from "@/lib/seo";
+import { categoryPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export function getStaticPaths() {
@@ -17,12 +17,7 @@ const cat = getCategory(slug!);
 if (!cat) throw new Error(`Unknown category ${slug}`);
 
 const items = getItemsByCategory(cat.slug);
-const seo = pageSeo({
-  title: cat.seoTitle,
-  description: cat.seoDescription,
-  path: `/categories/${slug}`,
-  imagePath: ogImagePaths.category(slug!),
-});
+const seo = categoryPageSeo(cat);
 const categoryUrl = `/categories/${slug}`;
 ---
 
@@ -62,9 +57,9 @@ const categoryUrl = `/categories/${slug}`;
     {
       items.length === 0 ? (
         <div class="surface-card rounded-md border-dashed px-6 py-12 text-center">
-          <p class="font-heading text-lg">Empty shelf</p>
+          <p class="font-heading text-lg">Nothing here yet</p>
           <p class="mt-2 text-sm text-muted-foreground">
-            Nothing filed here yet. <a href="/submit" class="text-primary hover:underline">Submit the first one</a>.
+            Be the first in this category. <a href="/submit" class="text-primary hover:underline">Submit a listing</a>.
           </p>
         </div>
       ) : (

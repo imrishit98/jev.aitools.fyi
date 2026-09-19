@@ -124,12 +124,11 @@ export function SubmitForm() {
       </div>
 
       <p className="text-sm text-muted-foreground">
-        MVP flow: submissions open a prefilled GitHub issue. Maintainers add approved
-        entries to{" "}
+        Opens a prefilled GitHub issue on this repo. Maintainers merge approved entries into{" "}
         <code className="rounded bg-muted px-1 py-0.5 text-xs">src/data/catalog.json</code>{" "}
         via{" "}
         <code className="rounded bg-muted px-1 py-0.5 text-xs">scripts/generate-catalog.mjs</code>.
-        No backend required.
+        No backend, no spam funnel.
       </p>
     </form>
   );
@@ -140,8 +139,7 @@ export function SubmitPageContent() {
     <div className="mx-auto max-w-2xl px-4 py-12 sm:px-6">
       <h1 className="font-heading text-3xl font-semibold">Submit a listing</h1>
       <p className="mt-3 text-muted-foreground">
-        Share a repo, product, integration, demo, or guide built with Jev. We verify
-        links manually before publishing.
+        Built with Jev? Share the repo, product, MCP server, or guide. We verify links by hand before anything goes live.
       </p>
       <div className="mt-10">
         <SubmitForm />

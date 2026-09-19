@@ -2,6 +2,8 @@ export type LearnGuide = {
   slug: string;
   title: string;
   description: string;
+  seoTitle: string;
+  seoDescription: string;
   definition: string;
   headings: { h: string; body: string }[];
   exploreHref?: string;
@@ -22,7 +24,10 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "jev-typesafe",
     title: "Jev & TypeSafe",
     description:
-      "TypeSafe AI builds System One models like Jev: machine-native intelligence for software, not chat.",
+      "What Jev is, how System One fits your stack, and where this directory ends and TypeSafe docs begin.",
+    seoTitle: "What is TypeSafe Jev? System One primer for builders",
+    seoDescription:
+      "Learn what Jev is, how System One returns typed probabilities, and where official TypeSafe docs beat this directory. A short primer before you browse SDKs and tools.",
     definition:
       "Jev is TypeSafe's System One decision model for software: structured state in, typed parallel questions, probability-backed answers out.",
     exploreHref: "/explore?category=official",
@@ -33,11 +38,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       },
       {
         h: "Where to start",
-        body: "Read the official introduction at typesafe.ai, follow the quick start in docs.typesafe.ai, and try the browser playground. Install @typesafe-ai/sdk or typesafe-sdk on Python for production calls to POST /v1/systemone.",
+        body: "Read the introduction at typesafe.ai, follow the quick start on docs.typesafe.ai, and poke the browser playground. For production, install @typesafe-ai/sdk or typesafe-sdk on Python and call POST /v1/systemone.",
       },
       {
         h: "Relationship to this directory",
         body: "jev.aitools.fyi is an independent curated directory by aitools.fyi. Listings link to third-party projects; only official TypeSafe properties are authored by TypeSafe AI.",
+      },
+      {
+        h: "Choice, Score, and Noul",
+        body: "Choice picks one label from a fixed set with explicit probabilities. Score returns a numeric rating with uncertainty you can map to bands. Noul answers structured true or false style questions with confidence. Compose these primitives instead of prompting for free text and regex-parsing the reply.",
+      },
+      {
+        h: "Request shape in practice",
+        body: "Production clients send JSON state plus an array of typed questions in one POST to /v1/systemone. The response carries aligned answers with per-question confidence. Your service layer applies thresholds, logs decisions, and triggers side effects. There is no hidden chain-of-thought stream to consume.",
+      },
+      {
+        h: "When Jev is the wrong tool",
+        body: "Skip Jev when you need long-form copy, open-ended brainstorming, or narrative reasoning. Reach for an LLM or a template engine there. Many teams pair both: Jev for gates and routing, generative models for user-visible language.",
       },
     ],
   },
@@ -45,7 +62,10 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "system-one",
     title: "System One model",
     description:
-      "System One models evaluate parallel typed questions over shared context in one forward pass.",
+      "The model family behind Jev: parallel typed questions, one forward pass, probabilities you can threshold.",
+    seoTitle: "System One model: parallel typed Jev questions explained",
+    seoDescription:
+      "Understand System One: batch typed questions in one forward pass, threshold calibrated probabilities, and patterns like routing and composite scoring. Not a chat LLM.",
     definition:
       "System One is TypeSafe's model family for parallel typed evaluation: many questions, one forward pass, calibrated probabilities.",
     exploreHref: "/learn/jev-typesafe",
@@ -62,13 +82,28 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "Patterns",
         body: "Official docs describe speculative fan-out, confidence-gated routing, composite scoring, and hierarchical classification. All of that maps cleanly to Choice, Score, and Noul primitives.",
       },
+      {
+        h: "Batching questions",
+        body: "System One shines when you ask many small questions about the same snapshot of state. One forward pass amortizes context loading and keeps latencies predictable compared with serial chat calls that repeat the same preamble.",
+      },
+      {
+        h: "Calibration matters",
+        body: "Probabilities are meant to be thresholded. If your pipeline needs a 0.95 bar for auto-approval, you can tune policies in code and measure drift over time. That is harder when a classifier returns unstructured text.",
+      },
+      {
+        h: "Operational footprint",
+        body: "Because outputs are discrete, logging and replay are straightforward: store the state hash, questions, and probability vector. Incident review does not require reading pages of generated prose.",
+      },
     ],
   },
   "jev-vs-llm-classification": {
     slug: "jev-vs-llm-classification",
     title: "Jev vs LLM classification",
     description:
-      "Compare generative classification with structured System One decisions.",
+      "When to gate with System One probabilities instead of asking a chat model to label things.",
+    seoTitle: "Jev vs LLM classification: when to gate with probabilities",
+    seoDescription:
+      "Compare Jev and chat classifiers for moderation, fraud, and routing. See when fixed option sets and thresholdable scores beat parsing YES/NO from generated text.",
     definition:
       "Use Jev when you need thresholdable probabilities over a fixed option set; use LLMs when you need open-ended language generation.",
     exploreHref: "/explore?q=moderation",
@@ -85,13 +120,28 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "When LLMs still win",
         body: "Open-ended drafting, long reasoning chains, and novel text generation remain LLM territory. Many production stacks use Jev for discrete decisions and LLMs for language-heavy steps. Browser Use Ultrafast is a well-known hybrid.",
       },
+      {
+        h: "Cost and token math",
+        body: "Generative classifiers often resend long instructions and examples on every call. System One calls keep prompts compact because questions are typed fields, not paragraphs of rubric text. For high-volume gates that difference shows up in both latency and spend.",
+      },
+      {
+        h: "Evaluation and testing",
+        body: "Fixed option sets make golden tests easier: feed recorded state, expect option B above 0.8. LLM label parsing tests brittle string contains checks. Teams migrating often keep LLM baselines while they calibrate Jev thresholds on production logs.",
+      },
+      {
+        h: "Directory examples",
+        body: "Browse moderation and routing listings in this directory for repos that publish benchmarks against chat baselines. Treat them as patterns, not endorsements. Always read the linked source for maintenance status.",
+      },
     ],
   },
   "vercel-ai-gateway": {
     slug: "vercel-ai-gateway",
     title: "Vercel AI Gateway Jev",
     description:
-      "Access typesafe-ai/jev through Vercel for AI SDK evaluate flows.",
+      "Try typesafe-ai/jev through Vercel's gateway and the AI SDK evaluate path.",
+    seoTitle: "Vercel AI Gateway Jev: AI SDK evaluate path setup",
+    seoDescription:
+      "Run typesafe-ai/jev through Vercel AI Gateway and eve's experimental evaluate APIs. Learn model ids, secrets hygiene, and when to move to direct TypeSafe credentials.",
     definition:
       "Vercel AI Gateway exposes typesafe-ai/jev so AI SDK apps can run System One evaluate paths without wiring a separate TypeSafe stack first.",
     exploreHref: "/explore?category=integrations",
@@ -108,13 +158,28 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "Learn more",
         body: "See the official gateway docs and explore eve on GitHub for production-shaped examples.",
       },
+      {
+        h: "AI SDK evaluate path",
+        body: "The experimental evaluate APIs in the AI SDK expect structured inputs and return typed results. Gateway-hosted Jev fits that shape without standing up a separate inference stack on day one. You still own application thresholds and audit logs.",
+      },
+      {
+        h: "Model identifier",
+        body: "Configure the gateway model id documented for TypeSafe Jev in your provider settings. Keep environment secrets in Vercel or your CI vault, not in client bundles. Rotate keys the same way you would for any hosted model route.",
+      },
+      {
+        h: "Migration path",
+        body: "Teams often prototype on the gateway, then move to direct TypeSafe credentials when they need private networking or custom quotas. SDK listings in this directory show both styles so you can compare wiring.",
+      },
     ],
   },
   "use-cases": {
     slug: "use-cases",
     title: "Jev use cases",
     description:
-      "Popular patterns people search for in the Jev ecosystem.",
+      "The patterns builders actually search for: moderation, routing, triage, RAG verify, and agent gates.",
+    seoTitle: "Jev use cases: moderation, routing, triage, and agent gates",
+    seoDescription:
+      "Explore real Jev patterns: trust and safety gates, model routers, support triage, RAG verify, compaction, and browser automation. Jump to matching directory listings next.",
     definition:
       "Common Jev use cases include moderation gates, model routing, support triage, RAG verify, and agent tool approval.",
     exploreHref: "/explore?category=applications",
@@ -138,6 +203,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Agent auto-mode & compaction",
         body: "fast-jev-compaction and pi-jev-auto-mode score tool results and approvals so agents keep verbatim context or auto-approve safe tool calls.",
+      },
+      {
+        h: "Browser and desktop automation",
+        body: "Computer-use demos treat the next click or keypress as a Choice over a finite action catalog. Jev scores candidate nodes quickly enough for interactive loops. Pair with vision or DOM snapshots as your state payload.",
+      },
+      {
+        h: "Games and simulations",
+        body: "Arcade demos prove System One latency in public. They are useful sandboxes before you wire the same primitives into billing or safety code paths.",
+      },
+      {
+        h: "How to explore further",
+        body: "Use category filters on Explore to narrow listings by pattern. Favor repos with demos or recent commits when you are evaluating fit. Submit your own project if you ship something missing here.",
       },
     ],
   },

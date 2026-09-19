@@ -1,0 +1,15 @@
+---
+import ItemDetailView from "@/components/item-detail-view.astro";
+import { getItemsWithDetailPages } from "@/lib/items";
+import { itemBelongsOnSegment } from "@/lib/item-paths";
+
+export function getStaticPaths() {
+  return getItemsWithDetailPages()
+    .filter((item) => itemBelongsOnSegment(item, "games"))
+    .map((item) => ({ params: { slug: item.slug } }));
+}
+
+const { slug } = Astro.params;
+---
+
+<ItemDetailView slug={slug!} />

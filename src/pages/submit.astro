@@ -1,14 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { SubmitPageContent } from "@/components/submit-form";
-import { pageSeo } from "@/lib/seo";
+import { submitPageSeo } from "@/lib/seo";
 
-const seo = pageSeo({
-  title: "Submit a Jev listing",
-  description:
-    "Suggest a Jev project, integration, MCP server, or guide for the public directory. Opens a structured GitHub issue.",
-  path: "/submit",
-});
+const seo = submitPageSeo();
 ---
 
 <BaseLayout title={seo.title} description={seo.description} path="/submit">

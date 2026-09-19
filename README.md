@@ -34,13 +34,20 @@ pnpm preview
 
 Static output lives in `dist/` (all routes pre-rendered).
 
-## Cloudflare Pages (free plan)
+## Deploy (Cloudflare)
 
-1. Connect the GitHub repo **imrishit98/jev.aitools.fyi** in Cloudflare Pages.
-2. **Build command:** `pnpm install && pnpm build`
-3. **Build output directory:** `dist`
-4. **Environment variable:** `PUBLIC_SITE_URL=https://jev.aitools.fyi`
-5. Add custom domain **jev.aitools.fyi** in Pages → Custom domains.
+**Preferred:** Cloudflare **Pages** project connected to this repo ([imrishit98/jev.aitools.fyi](https://github.com/imrishit98/jev.aitools.fyi)).
+
+| Setting | Value |
+| --- | --- |
+| Build command | `pnpm install && pnpm build` |
+| Build output directory | `dist` |
+| Deploy command | *(leave empty — do not use `npx wrangler deploy`)* |
+| Environment variable | `PUBLIC_SITE_URL=https://jev.aitools.fyi` |
+
+Add custom domain **jev.aitools.fyi** in Pages → Custom domains.
+
+If you deploy with **Workers static assets** (`pnpm deploy` / `npx wrangler deploy`), `wrangler.toml` sets `[assets].directory` to `./dist` so the same build output is used.
 
 Local Pages simulation:
 
@@ -55,7 +62,7 @@ Or preview the static build:
 pnpm preview
 ```
 
-`wrangler.toml` is included for `wrangler pages dev dist`.
+Manual Pages upload: `pnpm pages:deploy` (after `pnpm build`).
 
 ## Data
 
@@ -67,6 +74,8 @@ node scripts/generate-catalog.mjs
 ```
 
 Output: `src/data/catalog.json` (488 entries at last ingest).
+
+**SEO content policy:** see [docs/seo-content-policy.md](./docs/seo-content-policy.md). Most listings stay on Explore without a thin detail page; kept entries use category paths (`/tools/`, `/sdks/`, `/apps/`, and similar) in the sitemap. Legacy `/items/*` URLs 301 via `dist/_redirects`.
 
 ## SEO / LLM discovery
 
@@ -81,7 +90,7 @@ Output: `src/data/catalog.json` (488 entries at last ingest).
 
 ## Routes
 
-Home, faceted **Explore**, **488** item pages, category hubs, learn guides, submit, about.
+Home, faceted **Explore**, **131** item detail pages (488 catalog entries), category hubs, learn guides, submit, about.
 
 ## Affiliation
 

@@ -2,6 +2,8 @@ import { AppLink } from "@/components/app-link";
 import { Code2, ExternalLink, Star } from "lucide-react";
 import type { DirectoryItem } from "@/data/types";
 import { getCategory } from "@/data/categories";
+import { itemHasDetailPage } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
 import { CreatorCredit } from "@/components/creator-credit";
 import { ItemBadges } from "@/components/item-badges";
 import { ButtonLink } from "@/components/button-link";
@@ -24,6 +26,8 @@ export function ItemCard({
   className?: string;
 }) {
   const cat = getCategory(item.category);
+  const detailHref = hrefForListing(item);
+  const detailIsExternal = !itemHasDetailPage(item);
 
   return (
     <Card
@@ -55,8 +59,11 @@ export function ItemCard({
         <ItemBadges item={item} />
         <CardTitle className="text-base font-semibold leading-snug tracking-tight">
           <AppLink
-            href={`/items/${item.slug}`}
+            href={detailHref}
             className="after:absolute after:inset-0 hover:text-primary focus-visible:text-primary"
+            {...(detailIsExternal
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
           >
             {item.title}
           </AppLink>
@@ -77,9 +84,15 @@ export function ItemCard({
         ))}
       </CardContent>
       <CardFooter className="relative z-10 mt-auto flex gap-2 border-t border-border/60 bg-muted/20 pt-3">
-        <ButtonLink href={`/items/${item.slug}`} size="sm" variant="secondary">
-          Details
-        </ButtonLink>
+        {itemHasDetailPage(item) ? (
+          <ButtonLink href={hrefForListing(item)} size="sm" variant="secondary">
+            Details
+          </ButtonLink>
+        ) : (
+          <ButtonLink href={item.url} size="sm" variant="secondary" external>
+            Open link
+          </ButtonLink>
+        )}
         {item.demoUrl && (
           <ButtonLink href={item.demoUrl} size="sm" variant="outline" external>
             <ExternalLink className="size-3.5" />
