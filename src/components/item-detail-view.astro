@@ -10,7 +10,7 @@ import { breadcrumbJsonLd, listingJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
 import { getItemBySlug, getRelatedItems } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
-import { pageSeo } from "@/lib/seo";
+import { itemListingSeo } from "@/lib/seo";
 
 interface Props {
   slug: string;
@@ -23,12 +23,7 @@ if (!item) throw new Error(`Unknown item ${slug}`);
 const cat = getCategory(item.category);
 const related = getRelatedItems(item);
 const itemPath = getItemPath(item);
-const seo = pageSeo({
-  title: item.title,
-  description: item.oneLiner,
-  path: itemPath,
-  type: "article",
-});
+const seo = itemListingSeo(item);
 ---
 
 <BaseLayout

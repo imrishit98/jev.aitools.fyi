@@ -1,14 +1,9 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import { pageSeo } from "@/lib/seo";
+import { aboutPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
-const seo = pageSeo({
-  title: "About Jev Directory",
-  description:
-    "Mission, affiliation disclaimer, and curation policy for jev.aitools.fyi. Published by aitools.fyi (Southern East Inc.), curated by Rishit Patel.",
-  path: "/about",
-});
+const seo = aboutPageSeo();
 ---
 
 <BaseLayout title={seo.title} description={seo.description} path="/about">
