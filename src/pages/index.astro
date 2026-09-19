@@ -22,6 +22,7 @@ const seo = homePageSeo();
   title={seo.title}
   description={seo.description}
   path="/"
+  ogImagePath={seo.imagePath}
   jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq)]}
 >
   <section class="hero-mesh relative overflow-hidden border-b border-border">

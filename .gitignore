@@ -44,3 +44,8 @@ yarn-error.log*
 *.tsbuildinfo
 next-env.d.ts
 agent-tools/
+
+# generated OG PNGs (rebuilt via pnpm generate:og / prebuild)
+/public/og/*
+!/public/og/.gitkeep
+/scripts/og/fonts/

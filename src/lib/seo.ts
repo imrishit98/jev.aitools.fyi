@@ -10,9 +10,21 @@ export type PageSeo = {
   description: string;
   path: string;
   type?: "website" | "article";
+  imagePath?: string;
 };
 
-const ogImage = "/og.svg";
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+export const ogImagePaths = {
+  home: "/og/home.png",
+  default: "/og/default.png",
+  explore: "/og/explore.png",
+  learnHub: "/og/learn/index.png",
+  learnTopic: (slug: string) => `/og/learn/${slug}.png`,
+  category: (slug: string) => `/og/categories/${slug}.png`,
+  item: (slug: string) => `/og/items/${slug}.png`,
+} as const;
 
 /** Document title suffix (also used in Open Graph / Twitter titles). */
 export function withBrand(title: string): string {
@@ -54,20 +66,25 @@ export function pageSeo({
   description,
   path,
   type = "website",
+  imagePath = ogImagePaths.default,
 }: PageSeo) {
   const url = absoluteUrl(path);
   const fullTitle = withBrand(title);
   const metaDescription = trimMetaDescription(description);
+  const image = absoluteUrl(imagePath);
   return {
     title: fullTitle,
     description: metaDescription,
     canonical: url,
+    imagePath,
     og: {
       title: fullTitle,
       description: metaDescription,
       url,
       type,
-      image: absoluteUrl(ogImage),
+      image,
+      width: OG_IMAGE_WIDTH,
+      height: OG_IMAGE_HEIGHT,
     },
   };
 }
@@ -245,6 +262,7 @@ export function itemListingSeo(item: DirectoryItem) {
     description,
     path,
     type: "article",
+    imagePath: ogImagePaths.item(item.slug),
   });
 }
 
@@ -254,6 +272,7 @@ export function homePageSeo() {
     title: "TypeSafe Jev tools and System One SDKs",
     description: `Discover ${stats.total} curated Jev listings: TypeSafe SDKs, Vercel AI Gateway routes, MCP servers, browser agents, and benchmarks. Find System One tooling you can ship today.`,
     path: "/",
+    imagePath: ogImagePaths.home,
   });
 }
 
@@ -264,6 +283,7 @@ export function explorePageSeo() {
     description:
       "Filter TypeSafe Jev projects by category, language, demos, MCP, and GitHub stars. Search SDKs, agent routers, integrations, and live demos in one directory.",
     path: "/explore",
+    imagePath: ogImagePaths.explore,
   });
 }
 
@@ -290,6 +310,7 @@ export function categoryPageSeo(cat: CategoryMeta) {
     title: cat.seoTitle,
     description: cat.seoDescription,
     path: `/categories/${cat.slug}`,
+    imagePath: ogImagePaths.category(cat.slug),
   });
 }
 
@@ -299,6 +320,7 @@ export function learnIndexPageSeo() {
     description:
       "Free guides on Choice, Score, and Noul, System One architecture, Jev vs LLM classification, Vercel AI Gateway Jev, and real production use cases. Start learning Jev here.",
     path: "/learn",
+    imagePath: ogImagePaths.learnHub,
   });
 }
 
@@ -312,6 +334,7 @@ export function learnTopicPageSeo(guide: {
     description: guide.seoDescription,
     path: `/learn/${guide.slug}`,
     type: "article",
+    imagePath: ogImagePaths.learnTopic(guide.slug),
   });
 }
 

@@ -22,6 +22,7 @@ const seo = learnTopicPageSeo(guide);
   description={seo.description}
   path={`/learn/${topic}`}
   type="article"
+  ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },

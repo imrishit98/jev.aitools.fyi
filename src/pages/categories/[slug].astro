@@ -25,6 +25,7 @@ const categoryUrl = `/categories/${slug}`;
   title={seo.title}
   description={seo.description}
   path={categoryUrl}
+  ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },

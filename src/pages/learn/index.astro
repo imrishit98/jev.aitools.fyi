@@ -18,6 +18,7 @@ const topics = learnGuideSlugs.map((slug) => {
   title={seo.title}
   description={seo.description}
   path="/learn"
+  ogImagePath={seo.imagePath}
   jsonLd={breadcrumbJsonLd([
     { name: "Home", path: "/" },
     { name: "Learn", path: "/learn" },
