@@ -14,16 +14,16 @@ export function HomeFaq() {
         id="home-faq-heading"
         className="mt-2 font-heading text-2xl font-semibold sm:text-3xl"
       >
-        Jev questions, answered fast
+        Quick answers
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        Short, quotable facts for humans and search crawlers. Go deeper on{" "}
+        The TL;DR on Jev and this site. More depth on{" "}
         <AppLink href="/learn" className="text-primary hover:underline">
           Learn
         </AppLink>
         .
       </p>
-      <dl className="mt-8 space-y-6">
+      <dl className="mt-8 space-y-5">
         {homeFaq.map((entry) => (
           <div key={entry.question}>
             <dt className="font-heading text-base font-semibold text-foreground">

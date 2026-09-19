@@ -20,6 +20,7 @@ export const ogImagePaths = {
   home: "/og/home.png",
   default: "/og/default.png",
   explore: "/og/explore.png",
+  showcase: "/og/showcase.png",
   learnHub: "/og/learn/index.png",
   learnTopic: (slug: string) => `/og/learn/${slug}.png`,
   category: (slug: string) => `/og/categories/${slug}.png`,
@@ -267,12 +268,22 @@ export function itemListingSeo(item: DirectoryItem) {
 }
 
 export function homePageSeo() {
-  const stats = getDirectoryStats();
   return pageSeo({
-    title: "TypeSafe Jev tools and System One SDKs",
-    description: `Discover ${stats.total} curated Jev listings: TypeSafe SDKs, Vercel AI Gateway routes, MCP servers, browser agents, and benchmarks. Find System One tooling you can ship today.`,
+    title: "Jev demos, tools, and System One vibes",
+    description:
+      "A social landing page for TypeSafe Jev: watch real builder demos, then explore SDKs, MCP servers, apps, and benchmarks. Structured decisions, not chat filler.",
     path: "/",
     imagePath: ogImagePaths.home,
+  });
+}
+
+export function showcasePageSeo() {
+  return pageSeo({
+    title: "Jev demo showcase: seven real builder clips",
+    description:
+      "Watch curated X demos of Jev in the wild: generative UI, Zillow search, design experiments, geo maps, lurk.so, and SEO workflows. Clips hosted for fast playback.",
+    path: "/showcase",
+    imagePath: ogImagePaths.showcase,
   });
 }
 
@@ -362,6 +373,8 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
   push("/about", about.title, about.description);
   const submit = submitPageSeo();
   push("/submit", submit.title, submit.description);
+  const showcase = showcasePageSeo();
+  push("/showcase", showcase.title, showcase.description);
 
   for (const cat of categories) {
     const seo = categoryPageSeo(cat);

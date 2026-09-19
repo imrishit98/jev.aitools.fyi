@@ -5,6 +5,7 @@
   "type": "module",
   "scripts": {
     "dev": "astro dev --port 4321",
+    "fetch:demos": "node scripts/fetch-demos.mjs",
     "generate:og": "tsx scripts/generate-og-images.ts",
     "prebuild": "pnpm run generate:og",
     "build": "astro build && node scripts/write-redirects.mjs && node scripts/check-meta-uniqueness.mjs && node scripts/verify-seo-artifacts.mjs",

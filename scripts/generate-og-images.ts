@@ -70,9 +70,9 @@ async function main() {
     "home.png",
     OgImage({
       variant: "home",
-      title: "Everything useful with Jev",
+      title: "Jev is having a moment",
       subtitle:
-        "SDKs, agents, demos, and integrations on TypeSafe System One.",
+        "Watch builder demos. Explore SDKs, tools, and apps on System One.",
     }),
     fonts,
   );
@@ -93,6 +93,16 @@ async function main() {
       variant: "hub",
       title: "Explore the directory",
       subtitle: "Filter by category, collection, and tags.",
+    }),
+    fonts,
+  );
+
+  await writeOg(
+    "showcase.png",
+    OgImage({
+      variant: "hub",
+      title: "Jev demo showcase",
+      subtitle: "Seven real clips from builders shipping with System One.",
     }),
     fonts,
   );

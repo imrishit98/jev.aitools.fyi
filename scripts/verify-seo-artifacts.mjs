@@ -49,7 +49,7 @@ if (detailInSitemap !== expectedDetail) {
 }
 
 const staticExpected =
-  5 + 10 + 5; /* home, explore, learn, submit, about + categories + learn topics */
+  6 + 10 + 5; /* home, explore, learn, submit, about, showcase + categories + learn topics */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,

@@ -4,7 +4,7 @@ import { getFeaturedItems } from "@/lib/items";
 import { ItemCard } from "@/components/item-card";
 
 export function FeaturedRail() {
-  const featured = getFeaturedItems(6);
+  const featured = getFeaturedItems(4);
 
   return (
     <section aria-labelledby="featured-heading" className="space-y-8">
@@ -15,9 +15,9 @@ export function FeaturedRail() {
           </p>
           <h2
             id="featured-heading"
-            className="mt-1 font-heading text-2xl font-semibold sm:text-3xl"
+            className="mt-1 font-heading text-xl font-semibold sm:text-2xl"
           >
-            Featured this week
+            Featured listings
           </h2>
         </div>
         <AppLink
@@ -28,7 +28,7 @@ export function FeaturedRail() {
           <ArrowRight className="size-4" />
         </AppLink>
       </div>
-      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-5">
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4 lg:gap-5">
         {featured.map((item) => (
           <ItemCard key={item.slug} item={item} />
         ))}

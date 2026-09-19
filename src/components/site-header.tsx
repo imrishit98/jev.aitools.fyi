@@ -2,13 +2,21 @@ import { AppLink } from "@/components/app-link";
 import ThemeToggle from "@/components/theme-toggle";
 import SearchCommand from "@/components/search-command";
 import { ButtonLink } from "@/components/button-link";
+import { categories } from "@/data/categories";
 import { siteConfig } from "@/lib/site";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+import { ChevronDown } from "lucide-react";
 
 const nav = [
   { href: "/explore", label: "Explore" },
+  { href: "/showcase", label: "Showcase" },
   { href: "/learn", label: "Learn" },
   { href: "/submit", label: "Submit" },
-  { href: "/about", label: "About" },
 ];
 
 export default function SiteHeader() {
@@ -25,9 +33,6 @@ export default function SiteHeader() {
           <span className="hidden text-muted-foreground sm:inline">
             Directory
           </span>
-          <span className="ml-1 hidden rounded-md border border-primary/20 bg-primary/10 px-2 py-0.5 text-[10px] font-medium uppercase tracking-widest text-primary sm:inline">
-            System One
-          </span>
         </AppLink>
 
         <nav className="hidden items-center gap-0.5 md:flex" aria-label="Main">
@@ -40,6 +45,24 @@ export default function SiteHeader() {
               {item.label}
             </AppLink>
           ))}
+          <DropdownMenu>
+            <DropdownMenuTrigger className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50">
+              Categories
+              <ChevronDown className="size-3.5 opacity-70" aria-hidden />
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="start" className="max-h-80 w-56">
+              {categories.map((cat) => (
+                <DropdownMenuItem key={cat.slug} className="p-0">
+                  <AppLink
+                    href={`/categories/${cat.slug}`}
+                    className="block w-full px-2 py-1.5 text-sm"
+                  >
+                    {cat.title}
+                  </AppLink>
+                </DropdownMenuItem>
+              ))}
+            </DropdownMenuContent>
+          </DropdownMenu>
         </nav>
 
         <div className="ml-auto flex items-center gap-2">
