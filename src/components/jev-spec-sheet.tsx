@@ -12,6 +12,7 @@ export function JevSpecSheet() {
       <div className="grid gap-px bg-border md:grid-cols-2">
         {[
           ["Model", jevSpecSheet.model],
+          ["AI Gateway", "typesafe-ai/jev"],
           ["Endpoint", jevSpecSheet.endpoint],
           ["Input", jevSpecSheet.input],
           ["Output", jevSpecSheet.output],

@@ -5,7 +5,14 @@ import { HomeDemoStrip } from "@/components/demo-card";
 import { FeaturedRail } from "@/components/featured-rail";
 import { HomeFaq } from "@/components/home-faq";
 import { HomeQuickJump } from "@/components/home-quick-jump";
-import { HomeHero, HomeWhyJev } from "@/components/home-sections";
+import { JevSpecSheet } from "@/components/jev-spec-sheet";
+import {
+  HomeGetStarted,
+  HomeHangout,
+  HomeHero,
+  HomeWhatIsJev,
+  HomeWhyJev,
+} from "@/components/home-sections";
 import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd } from "@/components/json-ld";
 import { homeFaq } from "@/data/faq";
 import { getHomepageDemos } from "@/data/showcase-demos";
@@ -27,8 +34,12 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
 >
   <HomeHero client:load />
   <div class="mx-auto max-w-6xl space-y-20 px-4 py-16 sm:px-6 sm:py-20">
+    <HomeWhatIsJev client:load />
+    <HomeGetStarted client:load />
     <HomeDemoStrip client:visible demos={homepageDemos} />
     <HomeQuickJump client:load />
+    <JevSpecSheet client:load />
+    <HomeHangout client:load />
     <FeaturedRail client:load />
     <HomeWhyJev client:load />
     <HomeFaq client:load />
