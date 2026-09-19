@@ -22,7 +22,6 @@ export function generateSitemapXml(): string {
     { path: "", priority: 1, changefreq: "daily" },
     { path: "/explore", priority: 0.9, changefreq: "daily" },
     { path: "/learn", priority: 0.85, changefreq: "weekly" },
-    { path: "/llms.txt", priority: 0.5, changefreq: "weekly" },
     { path: "/submit", priority: 0.6, changefreq: "monthly" },
     { path: "/about", priority: 0.55, changefreq: "monthly" },
   ];

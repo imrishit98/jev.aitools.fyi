@@ -87,6 +87,7 @@ export function itemListJsonLd(
 }
 
 export function softwareApplicationJsonLd(item: DirectoryItem) {
+  const detailUrl = absoluteUrl(getItemPath(item));
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
@@ -94,6 +95,12 @@ export function softwareApplicationJsonLd(item: DirectoryItem) {
     description: item.description,
     applicationCategory: "DeveloperApplication",
     url: item.url,
+    mainEntityOfPage: detailUrl,
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.name,
+      url: siteConfig.url,
+    },
     ...(item.repoUrl ? { codeRepository: item.repoUrl } : {}),
     author: item.creatorName
       ? { "@type": "Person", name: item.creatorName }

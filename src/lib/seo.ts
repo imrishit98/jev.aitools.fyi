@@ -2,7 +2,7 @@ import { categories } from "@/data/categories-data";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
-import { getAllItems, getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
+import { getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
 import { siteConfig } from "@/lib/site";
 
 export type PageSeo = {
@@ -353,8 +353,7 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
     push(`/learn/${slug}`, seo.title, seo.description);
   }
 
-  for (const item of getAllItems()) {
-    if (item.indexOnly) continue;
+  for (const item of getItemsWithDetailPages()) {
     const seo = itemListingSeo(item);
     push(getItemPath(item), seo.title, seo.description);
   }

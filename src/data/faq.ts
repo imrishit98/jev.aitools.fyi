@@ -19,6 +19,6 @@ export const homeFaq: FaqEntry[] = [
   {
     question: "What is this directory?",
     answer:
-      "Jev Directory at jev.aitools.fyi is an independent index of SDKs, integrations, Jev MCP servers, demos, and apps. Published by aitools.fyi. Not affiliated with TypeSafe AI unless a listing is official.",
+      "Jev Directory at jev.aitools.fyi is an independent index of SDKs, integrations, Jev MCP servers, demos, and apps. The explore index lists the full public catalog; only stronger listings get on-site detail pages under paths like /sdks/ and /tools/. Published by aitools.fyi. Not affiliated with TypeSafe AI unless a listing is official.",
   },
 ];
