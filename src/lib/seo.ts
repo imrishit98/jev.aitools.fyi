@@ -269,9 +269,9 @@ export function itemListingSeo(item: DirectoryItem) {
 
 export function homePageSeo() {
   return pageSeo({
-    title: "Jev demos, tools, and System One vibes",
+    title: "The homepage for Jev: learn, demos, and tools",
     description:
-      "A social landing page for TypeSafe Jev: watch real builder demos, then explore SDKs, MCP servers, apps, and benchmarks. Structured decisions, not chat filler.",
+      "Learn TypeSafe Jev in 30 seconds: System One, Choice, Score, and Noul. Watch builder demos, browse SDKs and integrations, read free guides, and submit your project.",
     path: "/",
     imagePath: ogImagePaths.home,
   });

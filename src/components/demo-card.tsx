@@ -168,23 +168,32 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
   return (
     <section aria-labelledby="demos-heading" className="space-y-8">
       <div className="flex flex-col gap-4 sm:flex-row sm:items-end sm:justify-between">
-        <div>
+        <div className="max-w-2xl">
           <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
-            Proof, not promises
+            Cool builds
           </p>
           <h2
             id="demos-heading"
             className="mt-1 font-heading text-2xl font-semibold sm:text-3xl"
           >
-            Watch people ship with Jev
+            Press play on the timeline
           </h2>
+          <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+            Real clips from builders. Hover for a sneak peek, click for the full lightbox. Then steal ideas from{" "}
+            <AppLink href="/explore" className="text-primary hover:underline">
+              Explore
+            </AppLink>
+            .
+          </p>
         </div>
-        <AppLink
-          href="/showcase"
-          className="text-sm font-medium text-primary hover:underline"
-        >
-          See all demos →
-        </AppLink>
+        <div className="flex shrink-0 flex-wrap gap-3 text-sm font-medium">
+          <AppLink href="/showcase" className="text-primary hover:underline">
+            Full showcase →
+          </AppLink>
+          <AppLink href="/submit" className="text-muted-foreground hover:text-primary hover:underline">
+            Yours could be here
+          </AppLink>
+        </div>
       </div>
       <div className="grid gap-4 lg:grid-cols-12 lg:gap-5">
         {hero && (
