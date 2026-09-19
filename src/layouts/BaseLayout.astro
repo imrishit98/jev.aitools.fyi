@@ -27,6 +27,8 @@ const {
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl(ogImagePath);
 const fullTitle = formatDocumentTitle(title);
+const cloudflareWebAnalyticsToken =
+  import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim() ?? "";
 ---
 
 <!doctype html>
@@ -91,5 +93,14 @@ const fullTitle = formatDocumentTitle(title);
     </main>
     <SiteFooter />
     <SiteCredit />
+    {
+      cloudflareWebAnalyticsToken && (
+        <script
+          defer
+          src="https://static.cloudflareinsights.com/beacon.min.js"
+          data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
+        />
+      )
+    }
   </body>
 </html>

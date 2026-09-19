@@ -11,3 +11,4 @@ not_found_handling = "404-page"
 
 [vars]
 PUBLIC_SITE_URL = "https://jev.aitools.fyi"
+# PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN = "" # Set in Cloudflare Pages project env vars, not here

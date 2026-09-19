@@ -44,8 +44,20 @@ Static output lives in `dist/` (all routes pre-rendered).
 | Build output directory | `dist` |
 | Deploy command | *(leave empty — do not use `npx wrangler deploy`)* |
 | Environment variable | `PUBLIC_SITE_URL=https://jev.aitools.fyi` |
+| Web Analytics (optional) | `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` — see below |
 
 Add custom domain **jev.aitools.fyi** in Pages → Custom domains.
+
+### Cloudflare Web Analytics
+
+Cookieless page-view analytics via Cloudflare (not Google Analytics).
+
+1. Cloudflare Dashboard → **Analytics & Logs** → **Web Analytics** → **Add site** (hostname **jev.aitools.fyi**).
+2. Copy the site **token**.
+3. In your Cloudflare **Pages** project → **Settings** → **Environment variables**, set `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` to that token (Production, and Preview if desired).
+4. Trigger a new deployment (rebuild). The beacon is injected site-wide only when this variable is non-empty; local `pnpm dev` / builds without the token omit the script.
+
+`wrangler.toml` `[vars]` may document the name as a commented placeholder — do not commit a real token in the repo.
 
 If you deploy with **Workers static assets** (`pnpm deploy` / `npx wrangler deploy`), `wrangler.toml` sets `[assets].directory` to `./dist` so the same build output is used.
 
