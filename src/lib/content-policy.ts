@@ -1,4 +1,5 @@
 import { getCategory } from "@/data/categories";
+import { getHandwrittenEditorialBlurb } from "@/data/editorial-blurbs";
 import type { DirectoryItem } from "@/data/types";
 
 /** Target unique body length on kept detail pages (description + notes + editorial). */
@@ -122,49 +123,51 @@ export function measureDetailBodyChars(item: DirectoryItem): number {
 }
 
 function categoryEditorialTail(item: DirectoryItem): string {
-  const cat = getCategory(item.category);
   const tagHint =
     item.tags.length > 0
-      ? ` Tags here skew toward ${item.tags.slice(0, 3).join(", ")}.`
+      ? ` Common tags: ${item.tags.slice(0, 3).join(", ")}.`
       : "";
   const repoHint = item.repoUrl
-    ? " Clone the repository for install steps, env vars, and issue history."
-    : " Use the primary link for the author's current setup notes.";
+    ? " Grab the repo for install steps, env vars, and recent commits."
+    : " Follow the primary link for the author's latest setup notes.";
   const demoHint = item.demoUrl
-    ? " Try the live demo when you want to validate behavior before wiring Jev yourself."
+    ? " Open the demo when you want proof before you npm install anything."
     : "";
 
   switch (item.category) {
     case "official":
-      return `${repoHint}${demoHint} Official TypeSafe surfaces document System One primitives (Choice, Score, Noul) and the POST /v1/systemone contract.`;
+      return `${repoHint}${demoHint} Canonical TypeSafe docs for Choice, Score, Noul, and POST /v1/systemone.`;
     case "sdks":
-      return `${repoHint}${demoHint} Community SDKs wrap the same typed question API: structured state in, calibrated probabilities out.${tagHint}`;
+      return `${repoHint}${demoHint} Same System One API, idiomatic wrappers in your language.${tagHint}`;
     case "integrations":
-      return `${repoHint}${demoHint} Integrations embed Jev into gateways, agents, or platforms so evaluate paths stay typed instead of free-form chat.${tagHint}`;
+      return `${repoHint}${demoHint} Glue for gateways, agents, and platforms that should stay typed, not chatty.${tagHint}`;
     case "agent-tooling":
-      return `${repoHint}${demoHint} Agent tooling uses Jev for routing, compaction, MCP gates, or review loops where thresholds beat prose parsing.${tagHint}`;
+      return `${repoHint}${demoHint} Routers, MCP, compaction, and review gates where probabilities beat regex on LLM output.${tagHint}`;
     case "browser-computer-use":
-      return `${repoHint}${demoHint} Browser and desktop automation listings pick actions with discrete Jev choices rather than open-ended generation.${tagHint}`;
+      return `${repoHint}${demoHint} Next click or keypress as a Choice over a finite action list.${tagHint}`;
     case "applications":
-      return `${repoHint}${demoHint} Application listings ship user-facing flows where Jev handles moderation, triage, trading gates, or verification.${tagHint}`;
+      return `${repoHint}${demoHint} Shipped flows: moderation, triage, trading, verification, and other real traffic.${tagHint}`;
     case "games":
-      return `${repoHint}${demoHint} Game and sim listings treat Jev as a move picker: parallel questions, fast turns, visible confidence.${tagHint}`;
+      return `${repoHint}${demoHint} Moves picked by Jev, confidence visible every turn. Great teaching demos.${tagHint}`;
     case "playgrounds":
-      return `${repoHint}${demoHint} Playgrounds expose Choice, Score, and Noul in the browser so you can sanity-check probabilities quickly.${tagHint}`;
+      return `${repoHint}${demoHint} Click through Choice, Score, and Noul in the browser before you wire billing code.${tagHint}`;
     case "benchmarks":
-      return `${repoHint}${demoHint} Benchmark entries compare latency, calibration, or accuracy against other decision baselines.${tagHint}`;
+      return `${repoHint}${demoHint} Harnesses and replicas for latency, calibration, and head-to-head baselines.${tagHint}`;
     case "guides":
-      return `${repoHint} Guides and essays add context around launches, comparisons, or workflows. They are link-first write-ups, not TypeSafe-authored docs.${tagHint}`;
+      return `${repoHint} Essays and lists from builders. Link-first reading, not a substitute for docs.typesafe.ai.${tagHint}`;
     default:
-      return `${repoHint}${demoHint} Jev is TypeSafe's System One model for software decisions, not a conversational LLM.${tagHint}`;
+      return `${repoHint}${demoHint} Jev is TypeSafe's System One decision model: structured state in, thresholdable probabilities out.${tagHint}`;
   }
 }
 
 export function buildEditorialBlurb(item: DirectoryItem): string {
   if (item.editorialBlurb?.trim()) return item.editorialBlurb.trim();
 
+  const handwritten = getHandwrittenEditorialBlurb(item.slug);
+  if (handwritten) return handwritten;
+
   const catTitle = getCategory(item.category)?.title ?? item.category;
-  const lead = `"${item.title}" is catalogued under ${catTitle} on jev.aitools.fyi. ${item.oneLiner}`;
+  const lead = `${item.oneLiner} Listed under ${catTitle} in Jev Directory so you can compare repos, demos, and maintenance signals fast.`;
   return `${lead} ${categoryEditorialTail(item)}`.replace(/\s+/g, " ").trim();
 }
 

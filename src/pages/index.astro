@@ -33,19 +33,20 @@ const seo = pageSeo({
       <div class="max-w-3xl">
         <p class="mb-5 inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground shadow-sm backdrop-blur-sm">
           <span class="size-1.5 rounded-full bg-primary" aria-hidden="true"></span>
-          {siteConfig.parentBrand.name} · {stats.total} listings · {stats.detailPages} detail pages
+          {siteConfig.parentBrand.name} picks · {stats.total} listings · {stats.detailPages} deep dives
         </p>
         <h1 class="text-balance font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
-          Everything useful with{" "}
-          <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Jev</span>
+          The sharpest map of{" "}
+          <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Jev</span>{" "}
+          tools
         </h1>
         <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          The scannable directory for TypeSafe&apos;s System One ecosystem. SDKs, Vercel AI Gateway hooks, Jev MCP servers, agent routers, demos, and games. Pulled from the public index, not hallucinated.
+          Find SDKs, gateway hooks, MCP servers, agent routers, demos, and weird games built on TypeSafe&apos;s System One model. Real links, real repos, zero chatbot filler.
         </p>
         <div class="mt-9 flex flex-wrap gap-3">
-          <ButtonLink href="/explore" size="lg">Explore {stats.total} listings</ButtonLink>
-          <ButtonLink href="/learn" size="lg" variant="outline">Start learning</ButtonLink>
-          <ButtonLink href={siteConfig.typesafe.playground} size="lg" variant="ghost" external>Official playground</ButtonLink>
+          <ButtonLink href="/explore" size="lg">Browse {stats.total} listings</ButtonLink>
+          <ButtonLink href="/learn" size="lg" variant="outline">Learn Jev in 5 minutes</ButtonLink>
+          <ButtonLink href={siteConfig.typesafe.playground} size="lg" variant="ghost" external>TypeSafe playground</ButtonLink>
         </div>
       </div>
       <div class="mt-12 lg:mt-14"><StatsBar /></div>
@@ -58,9 +59,9 @@ const seo = pageSeo({
     <CategoryGrid />
     <section class="surface-card p-8 md:p-10 lg:p-12">
       <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Primer</p>
-      <h2 class="mt-2 font-heading text-2xl font-semibold sm:text-3xl">Why Jev?</h2>
+      <h2 class="mt-2 font-heading text-2xl font-semibold sm:text-3xl">Why Jev beats another LLM call</h2>
       <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-        Jev is a <strong class="font-medium text-foreground">System One</strong> model from TypeSafe AI. You send structured state and typed questions (Choice, Score, Noul). You get probabilities back, not a chatty paragraph. Your code owns thresholds. Side effects stay yours.
+        Jev is TypeSafe&apos;s <strong class="font-medium text-foreground">System One</strong> decision model. You send structured state plus typed questions (Choice, Score, Noul). You get calibrated probabilities, not a motivational essay. Your code sets thresholds. Your app runs the side effects.
       </p>
       <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
         <a href="/learn/jev-typesafe" class="text-primary hover:underline">Jev and TypeSafe</a>
@@ -72,10 +73,10 @@ const seo = pageSeo({
     <HomeFaq />
     <section class="relative overflow-hidden rounded-md border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-card p-8 shadow-sm md:flex md:items-center md:justify-between md:gap-8 md:p-10">
       <div class="relative max-w-xl">
-        <h2 class="font-heading text-xl font-semibold sm:text-2xl">Built something with Jev?</h2>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Submit your repo or demo. We read every link. No fake star counts, ever.</p>
+        <h2 class="font-heading text-xl font-semibold sm:text-2xl">Shipping with Jev?</h2>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Send the repo or demo. We actually click the links. Star counts stay honest or they stay blank.</p>
       </div>
-      <ButtonLink href="/submit" class="relative mt-6 shrink-0 md:mt-0">Submit a listing</ButtonLink>
+      <ButtonLink href="/submit" class="relative mt-6 shrink-0 md:mt-0">Add your project</ButtonLink>
     </section>
   </div>
 </BaseLayout>

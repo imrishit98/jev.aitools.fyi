@@ -74,12 +74,11 @@ export default function ExploreApp() {
       <div className="surface-card space-y-4 p-5 sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <p className="text-sm text-muted-foreground">
-            Showing{" "}
-            <span className="font-medium text-foreground">{filtered.length}</span> of{" "}
+            <span className="font-medium text-foreground">{filtered.length}</span> matches of{" "}
             <span className="font-medium text-foreground">{stats.total}</span> listings
           </p>
           <AppLink href="/explore" className="text-sm text-primary hover:underline">
-            Reset filters
+            Clear filters
           </AppLink>
         </div>
         <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
@@ -87,7 +86,7 @@ export default function ExploreApp() {
             <Label htmlFor="search">Search</Label>
             <Input
               id="search"
-              placeholder="Name, tag, creator..."
+              placeholder="Search name, tag, or creator..."
               defaultValue={params.get("q") ?? ""}
               onKeyDown={(e) => {
                 if (e.key === "Enter") {
@@ -126,9 +125,9 @@ export default function ExploreApp() {
               </SelectTrigger>
               <SelectContent>
                 <SelectItem value="featured">Featured first</SelectItem>
-                <SelectItem value="stars">Stars</SelectItem>
-                <SelectItem value="newest">Newest</SelectItem>
-                <SelectItem value="title">Title A-Z</SelectItem>
+                <SelectItem value="stars">Most stars</SelectItem>
+                <SelectItem value="newest">Recently updated</SelectItem>
+                <SelectItem value="title">A to Z</SelectItem>
               </SelectContent>
             </Select>
           </div>
@@ -136,11 +135,11 @@ export default function ExploreApp() {
         <div className="flex flex-wrap gap-4 text-sm">
           {(
             [
-              ["demo", "Has demo"],
-              ["repo", "Has GitHub"],
-              ["mcp", "MCP"],
-              ["official", "Official"],
-              ["featured", "Featured"],
+              ["demo", "Live demo"],
+              ["repo", "GitHub repo"],
+              ["mcp", "Jev MCP"],
+              ["official", "Official TypeSafe"],
+              ["featured", "Featured only"],
             ] as const
           ).map(([key, label]) => (
             <label key={key} className="flex cursor-pointer items-center gap-2">
@@ -159,13 +158,13 @@ export default function ExploreApp() {
       <div className="mt-8">
         {slice.length === 0 ? (
           <div className="surface-card rounded-md border-dashed px-6 py-16 text-center">
-            <p className="font-heading text-lg">Nothing matched</p>
+            <p className="font-heading text-lg">No matches (yet)</p>
             <p className="mt-2 text-sm text-muted-foreground">
-              Loosen a filter or{" "}
+              Widen a filter or{" "}
               <AppLink href="/submit" className="text-primary hover:underline">
-                submit a listing
+                suggest a listing
               </AppLink>
-              .
+              {" "}we are missing.
             </p>
           </div>
         ) : (
@@ -225,7 +224,7 @@ export default function ExploreApp() {
         className="mt-14 border-t border-border pt-8 text-sm text-muted-foreground"
         aria-label="Related hubs"
       >
-        <p className="font-medium text-foreground">Keep browsing</p>
+        <p className="font-medium text-foreground">Popular next stops</p>
         <ul className="mt-3 flex flex-wrap gap-x-4 gap-y-2">
           <li>
             <AppLink href="/categories/agent-tooling" className="hover:text-primary">

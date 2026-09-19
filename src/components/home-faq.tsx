@@ -14,10 +14,10 @@ export function HomeFaq() {
         id="home-faq-heading"
         className="mt-2 font-heading text-2xl font-semibold sm:text-3xl"
       >
-        Jev questions, short answers
+        Jev questions, answered fast
       </h2>
       <p className="mt-3 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-        Quotable facts for humans and search engines. Deeper guides live on{" "}
+        Short, quotable facts for humans and search crawlers. Go deeper on{" "}
         <AppLink href="/learn" className="text-primary hover:underline">
           Learn
         </AppLink>

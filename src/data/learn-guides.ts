@@ -22,7 +22,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "jev-typesafe",
     title: "Jev & TypeSafe",
     description:
-      "TypeSafe AI builds System One models like Jev: machine-native intelligence for software, not chat.",
+      "What Jev is, how System One fits your stack, and where this directory ends and TypeSafe docs begin.",
     definition:
       "Jev is TypeSafe's System One decision model for software: structured state in, typed parallel questions, probability-backed answers out.",
     exploreHref: "/explore?category=official",
@@ -33,7 +33,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       },
       {
         h: "Where to start",
-        body: "Read the official introduction at typesafe.ai, follow the quick start in docs.typesafe.ai, and try the browser playground. Install @typesafe-ai/sdk or typesafe-sdk on Python for production calls to POST /v1/systemone.",
+        body: "Read the introduction at typesafe.ai, follow the quick start on docs.typesafe.ai, and poke the browser playground. For production, install @typesafe-ai/sdk or typesafe-sdk on Python and call POST /v1/systemone.",
       },
       {
         h: "Relationship to this directory",
@@ -41,7 +41,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       },
       {
         h: "Choice, Score, and Noul",
-        body: "Choice picks one label from a fixed set with explicit probabilities. Score returns a numeric rating with uncertainty you can map to bands. Noul answers structured true or false style questions with confidence. You compose these primitives instead of prompting for free text and regex-parsing the reply.",
+        body: "Choice picks one label from a fixed set with explicit probabilities. Score returns a numeric rating with uncertainty you can map to bands. Noul answers structured true or false style questions with confidence. Compose these primitives instead of prompting for free text and regex-parsing the reply.",
       },
       {
         h: "Request shape in practice",
@@ -57,7 +57,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "system-one",
     title: "System One model",
     description:
-      "System One models evaluate parallel typed questions over shared context in one forward pass.",
+      "The model family behind Jev: parallel typed questions, one forward pass, probabilities you can threshold.",
     definition:
       "System One is TypeSafe's model family for parallel typed evaluation: many questions, one forward pass, calibrated probabilities.",
     exploreHref: "/learn/jev-typesafe",
@@ -92,7 +92,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "jev-vs-llm-classification",
     title: "Jev vs LLM classification",
     description:
-      "Compare generative classification with structured System One decisions.",
+      "When to gate with System One probabilities instead of asking a chat model to label things.",
     definition:
       "Use Jev when you need thresholdable probabilities over a fixed option set; use LLMs when you need open-ended language generation.",
     exploreHref: "/explore?q=moderation",
@@ -127,7 +127,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "vercel-ai-gateway",
     title: "Vercel AI Gateway Jev",
     description:
-      "Access typesafe-ai/jev through Vercel for AI SDK evaluate flows.",
+      "Try typesafe-ai/jev through Vercel's gateway and the AI SDK evaluate path.",
     definition:
       "Vercel AI Gateway exposes typesafe-ai/jev so AI SDK apps can run System One evaluate paths without wiring a separate TypeSafe stack first.",
     exploreHref: "/explore?category=integrations",
@@ -162,7 +162,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "use-cases",
     title: "Jev use cases",
     description:
-      "Popular patterns people search for in the Jev ecosystem.",
+      "The patterns builders actually search for: moderation, routing, triage, RAG verify, and agent gates.",
     definition:
       "Common Jev use cases include moderation gates, model routing, support triage, RAG verify, and agent tool approval.",
     exploreHref: "/explore?category=applications",
