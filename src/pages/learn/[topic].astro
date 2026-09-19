@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
 import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
-import { pageSeo } from "@/lib/seo";
+import { ogImagePaths, pageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export function getStaticPaths() {
@@ -19,6 +19,7 @@ const seo = pageSeo({
   description: guide.description,
   path: `/learn/${topic}`,
   type: "article",
+  imagePath: ogImagePaths.learnTopic(topic!),
 });
 ---
 
@@ -27,6 +28,7 @@ const seo = pageSeo({
   description={seo.description}
   path={`/learn/${topic}`}
   type="article"
+  ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },

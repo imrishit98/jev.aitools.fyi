@@ -3,7 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ExploreApp from "@/components/explore-app";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { getAllItems, getDirectoryStats } from "@/lib/items";
-import { pageSeo } from "@/lib/seo";
+import { ogImagePaths, pageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 const stats = getDirectoryStats();
@@ -12,6 +12,7 @@ const seo = pageSeo({
   description:
     "Filter TypeSafe Jev and System One projects by category, language, Jev MCP, demos, and GitHub. Faceted directory search for SDKs, agents, and integrations.",
   path: "/explore",
+  imagePath: ogImagePaths.explore,
 });
 const all = getAllItems();
 ---
@@ -20,6 +21,7 @@ const all = getAllItems();
   title={seo.title}
   description={seo.description}
   path="/explore"
+  ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },

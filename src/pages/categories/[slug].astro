@@ -5,7 +5,7 @@ import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
 import { CATEGORY_SLUGS } from "@/data/types";
 import { getItemsByCategory } from "@/lib/items";
-import { pageSeo } from "@/lib/seo";
+import { ogImagePaths, pageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 export function getStaticPaths() {
@@ -21,6 +21,7 @@ const seo = pageSeo({
   title: cat.seoTitle,
   description: cat.seoDescription,
   path: `/categories/${slug}`,
+  imagePath: ogImagePaths.category(slug!),
 });
 const categoryUrl = `/categories/${slug}`;
 ---
@@ -29,6 +30,7 @@ const categoryUrl = `/categories/${slug}`;
   title={seo.title}
   description={seo.description}
   path={categoryUrl}
+  ogImagePath={seo.imagePath}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },

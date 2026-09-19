@@ -5,9 +5,21 @@ export type PageSeo = {
   description: string;
   path: string;
   type?: "website" | "article";
+  imagePath?: string;
 };
 
-const ogImage = "/og.svg";
+export const OG_IMAGE_WIDTH = 1200;
+export const OG_IMAGE_HEIGHT = 630;
+
+export const ogImagePaths = {
+  home: "/og/home.png",
+  default: "/og/default.png",
+  explore: "/og/explore.png",
+  learnHub: "/og/learn/index.png",
+  learnTopic: (slug: string) => `/og/learn/${slug}.png`,
+  category: (slug: string) => `/og/categories/${slug}.png`,
+  item: (slug: string) => `/og/items/${slug}.png`,
+} as const;
 
 export function absoluteUrl(path: string): string {
   const base = siteConfig.url.replace(/\/$/, "");
@@ -21,21 +33,26 @@ export function pageSeo({
   description,
   path,
   type = "website",
+  imagePath = ogImagePaths.default,
 }: PageSeo) {
   const url = absoluteUrl(path);
   const fullTitle = title.includes(siteConfig.name)
     ? title
     : `${title} · ${siteConfig.name}`;
+  const image = absoluteUrl(imagePath);
   return {
     title: fullTitle,
     description,
     canonical: url,
+    imagePath,
     og: {
       title: fullTitle,
       description,
       url,
       type,
-      image: absoluteUrl(ogImage),
+      image,
+      width: OG_IMAGE_WIDTH,
+      height: OG_IMAGE_HEIGHT,
     },
   };
 }

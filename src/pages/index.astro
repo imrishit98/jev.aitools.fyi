@@ -10,7 +10,7 @@ import { StatsBar } from "@/components/stats-bar";
 import { faqPageJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { homeFaq } from "@/data/faq";
 import { getAllItems, getDirectoryStats } from "@/lib/items";
-import { pageSeo } from "@/lib/seo";
+import { ogImagePaths, pageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 const stats = getDirectoryStats();
@@ -19,6 +19,7 @@ const seo = pageSeo({
   title: `${siteConfig.tagline} | TypeSafe Jev directory`,
   description: `Browse ${stats.total} Jev listings: TypeSafe System One SDKs, Vercel AI Gateway Jev, Jev MCP servers, agent tooling, demos, and use cases. Curated by aitools.fyi.`,
   path: "/",
+  imagePath: ogImagePaths.home,
 });
 ---
 
@@ -26,6 +27,7 @@ const seo = pageSeo({
   title={seo.title}
   description={seo.description}
   path="/"
+  ogImagePath={seo.imagePath}
   jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq)]}
 >
   <section class="hero-mesh relative overflow-hidden border-b border-border">

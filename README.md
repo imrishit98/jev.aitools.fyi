@@ -76,7 +76,8 @@ Output: `src/data/catalog.json` (488 entries at last ingest).
 | Robots | `/robots.txt` |
 | LLM map | `/llms.txt` |
 | Publisher info | `/.well-known/jev-directory.json` |
-| Default OG image | `/og.svg` |
+| Default OG image | `/og/home.png` (PNG set generated at build; see `pnpm generate:og`) |
+| OG samples (docs) | `docs/og-samples/` |
 
 ## Routes
 
