@@ -1,5 +1,7 @@
 import { AppLink } from "@/components/app-link";
 import { ButtonLink } from "@/components/button-link";
+import { ShareBar } from "@/components/share-menu";
+import { homeShareOptions } from "@/lib/share";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import { siteConfig } from "@/lib/site";
 import {
@@ -218,9 +220,13 @@ export function HomeHangout() {
             Submit your build
           </ButtonLink>
         </div>
-        <p className="mt-6 text-xs text-muted-foreground/80" data-share-placeholder>
-          Share buttons land in the next pass. For now, grab a demo link from Showcase.
-        </p>
+        <div className="mt-8">
+          <ShareBar
+            options={homeShareOptions()}
+            hint="Steal this link. Tag TypeSafe if your team should see it."
+            layout="stack"
+          />
+        </div>
       </div>
     </section>
   );

@@ -11,6 +11,7 @@ import { getCategory } from "@/data/categories";
 import { getItemBySlug, getRelatedItems } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { itemListingSeo } from "@/lib/seo";
+import { ItemListingShare } from "@/components/share-menu";
 
 interface Props {
   slug: string;
@@ -106,6 +107,12 @@ const seo = itemListingSeo(item);
               </ButtonLink>
             )}
           </div>
+          <ItemListingShare
+            client:visible
+            title={item.title}
+            oneLiner={item.oneLiner}
+            path={itemPath}
+          />
           <p class="mt-6 text-xs leading-relaxed text-muted-foreground">
             Stale link or wrong stars? <a href="/submit" class="text-primary hover:underline">Ping us on Submit</a>.
           </p>
