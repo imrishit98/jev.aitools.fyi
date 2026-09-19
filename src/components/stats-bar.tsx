@@ -5,11 +5,11 @@ export function StatsBar() {
 
   const cells = [
     { label: "Listings", value: stats.total.toLocaleString() },
+    { label: "Detail pages", value: stats.detailPages.toLocaleString() },
+    { label: "Explore-only", value: stats.indexOnly.toLocaleString() },
     { label: "Categories", value: stats.categories },
-    { label: "Languages", value: stats.languages },
     { label: "With demo", value: stats.withDemo },
     { label: "GitHub repos", value: stats.withRepo },
-    { label: "Star sum", value: stats.totalStars.toLocaleString() },
   ];
 
   return (

@@ -8,12 +8,11 @@ import { ButtonLink } from "@/components/button-link";
 import { Badge } from "@/components/ui/badge";
 import { breadcrumbJsonLd, listingJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
-import { items } from "@/data/items/index";
-import { getItemBySlug, getRelatedItems } from "@/lib/items";
+import { getItemsWithDetailPages, getItemBySlug, getRelatedItems } from "@/lib/items";
 import { pageSeo } from "@/lib/seo";
 
 export function getStaticPaths() {
-  return items.map((item) => ({ params: { slug: item.slug } }));
+  return getItemsWithDetailPages().map((item) => ({ params: { slug: item.slug } }));
 }
 
 const { slug } = Astro.params;
@@ -70,6 +69,9 @@ const seo = pageSeo({
         <div class="surface-card p-6 sm:p-8">
           <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Overview</h2>
           <p class="mt-4 text-base leading-relaxed text-foreground/90">{item.description}</p>
+          {item.editorialBlurb && (
+            <p class="mt-4 text-base leading-relaxed text-foreground/90">{item.editorialBlurb}</p>
+          )}
           {(item.verifiedNote || item.sourceNote) && (
             <p class="mt-4 text-sm text-muted-foreground">{item.verifiedNote ?? item.sourceNote}</p>
           )}

@@ -1,6 +1,6 @@
 import { categories } from "@/data/categories";
 import { learnGuideSlugs } from "@/data/learn-guides";
-import { items } from "@/data/items/index";
+import { getItemsWithDetailPages } from "@/lib/items";
 import { absoluteUrl, parseItemLastModified } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -44,7 +44,7 @@ export function generateSitemapXml(): string {
     });
   }
 
-  for (const item of items) {
+  for (const item of getItemsWithDetailPages()) {
     entries.push({
       loc: absoluteUrl(`/items/${item.slug}`),
       lastmod: parseItemLastModified(item.updatedAt),
