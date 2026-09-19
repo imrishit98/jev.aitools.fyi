@@ -1,6 +1,6 @@
 # SEO content policy (pass 1)
 
-This document defines which catalog entries receive static `/items/[slug]` detail pages and which stay **explore-only** (`indexOnly`).
+This document defines which catalog entries receive static category detail pages (for example `/tools/[slug]`, `/sdks/[slug]`) and which stay **explore-only** (`indexOnly`).
 
 ## Goals
 
@@ -12,7 +12,7 @@ This document defines which catalog entries receive static `/items/[slug]` detai
 
 ### Detail page (KEEP)
 
-Generate `/items/[slug]`, include in `sitemap.xml`, and require **≥ 400 characters** of unique body copy across `description`, notes, and auto/editorial blurbs unless catalog `editorialBlurb` already satisfies the threshold.
+Generate a category-scoped detail URL via `getItemPath()` (see pass 2 IA in `src/lib/item-paths.ts`), include in `sitemap.xml`, and require **≥ 400 characters** of unique body copy across `description`, notes, and auto/editorial blurbs unless catalog `editorialBlurb` already satisfies the threshold.
 
 An item earns a detail page when **any** of the following hold (and it is not a duplicate demotion):
 
@@ -39,7 +39,7 @@ An item earns a detail page when **any** of the following hold (and it is not a 
 Default for stubs, one-liners, link-only guide entries, and listings that fail the rules above.
 
 - Still listed on `/explore`, search, and category grids.
-- Cards link to the primary external URL (no `/items/` page).
+- Cards link to the primary external URL (no on-site detail page).
 - Omitted from `sitemap.xml` item URLs.
 
 **Catalog overrides:** `indexOnly: true` forces explore-only. `detailPage: true` forces a detail page.
@@ -56,7 +56,7 @@ Learn guides must carry **≥ ~300 words** of original Jev/TypeSafe guidance (se
 
 - Policy: `src/lib/content-policy.ts`
 - Enriched catalog load: `src/data/items/index.ts`
-- Static paths + sitemap: `src/pages/items/[slug].astro`, `src/lib/sitemap-xml.ts`
+- Static paths + sitemap: `src/pages/{sdks,tools,apps,games,benchmarks,guides}/[slug].astro`, `src/lib/sitemap-xml.ts`, `src/lib/item-paths.ts`
 - UI: `src/components/item-card.tsx` (detail vs external link)
 
 ## Page counts (pass 1 baseline)
@@ -66,7 +66,7 @@ Run `pnpm build` and inspect Astro route output, or log `contentPolicyStats` fro
 | Metric | Before pass 1 | After pass 1 |
 |--------|----------------|--------------|
 | Catalog listings | 488 | 488 |
-| `/items/[slug]` HTML pages | 488 | 131 |
+| Detail HTML pages | 488 | 131 |
 | Explore-only (`indexOnly`) | 0 | 357 |
 | Sitemap item URLs | 488 | 131 |
 | Total static HTML routes (approx.) | ~508 | 151 |

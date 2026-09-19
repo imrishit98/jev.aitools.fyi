@@ -12,6 +12,7 @@ import {
 } from "@/components/ui/command";
 import { getDirectoryStats, searchItems } from "@/lib/items";
 import { itemHasDetailPage } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
 
 export default function SearchCommand() {
   const [open, setOpen] = React.useState(false);
@@ -66,13 +67,7 @@ export default function SearchCommand() {
               <CommandItem
                 key={item.slug}
                 value={item.title}
-                onSelect={() =>
-                  go(
-                    itemHasDetailPage(item)
-                      ? `/items/${item.slug}`
-                      : item.url,
-                  )
-                }
+                onSelect={() => go(hrefForListing(item))}
               >
                 <span className="font-medium">{item.title}</span>
                 <span className="ml-2 truncate text-xs text-muted-foreground">

@@ -75,7 +75,7 @@ node scripts/generate-catalog.mjs
 
 Output: `src/data/catalog.json` (488 entries at last ingest).
 
-**SEO content policy (pass 1):** see [docs/seo-content-policy.md](./docs/seo-content-policy.md). Most listings stay on Explore without a thin `/items/` page; only policy-approved entries get detail URLs in the sitemap.
+**SEO content policy:** see [docs/seo-content-policy.md](./docs/seo-content-policy.md). Most listings stay on Explore without a thin detail page; kept entries use category paths (`/tools/`, `/sdks/`, `/apps/`, and similar) in the sitemap. Legacy `/items/*` URLs 301 via `dist/_redirects`.
 
 ## SEO / LLM discovery
 

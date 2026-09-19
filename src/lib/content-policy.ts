@@ -12,7 +12,7 @@ export type ContentPolicyStats = {
 };
 
 export type EnrichedDirectoryItem = DirectoryItem & {
-  /** Resolved after policy: true means no `/items/[slug]` route. */
+  /** Resolved after policy: true means no category detail route (explore-only). */
   indexOnly: boolean;
   /** Auto or catalog editorial copy for thin but kept detail pages. */
   editorialBlurb?: string;

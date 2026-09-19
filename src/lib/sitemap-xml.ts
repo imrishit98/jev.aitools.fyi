@@ -1,6 +1,7 @@
 import { categories } from "@/data/categories";
 import { learnGuideSlugs } from "@/data/learn-guides";
 import { getItemsWithDetailPages } from "@/lib/items";
+import { getItemPath } from "@/lib/item-paths";
 import { absoluteUrl, parseItemLastModified } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -46,7 +47,7 @@ export function generateSitemapXml(): string {
 
   for (const item of getItemsWithDetailPages()) {
     entries.push({
-      loc: absoluteUrl(`/items/${item.slug}`),
+      loc: absoluteUrl(getItemPath(item)),
       lastmod: parseItemLastModified(item.updatedAt),
       priority: item.featured ? 0.65 : 0.55,
       changefreq: "monthly",
