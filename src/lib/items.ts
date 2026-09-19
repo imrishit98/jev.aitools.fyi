@@ -39,7 +39,14 @@ export function getItemsByCategory(category: CategorySlug): DirectoryItem[] {
 }
 
 export function getFeaturedItems(limit = 12): DirectoryItem[] {
-  return items.filter((i) => i.featured || i.badges?.includes("featured")).slice(0, limit);
+  return items
+    .filter((i) => i.featured || i.badges?.includes("featured"))
+    .sort(
+      (a, b) =>
+        (b.updatedAt ?? "").localeCompare(a.updatedAt ?? "") ||
+        (b.stars ?? 0) - (a.stars ?? 0),
+    )
+    .slice(0, limit);
 }
 
 export function getRelatedItems(item: DirectoryItem, limit = 4): DirectoryItem[] {

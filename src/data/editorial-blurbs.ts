@@ -93,6 +93,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Voice-controlled browsing where Jev picks the next action from heard intent plus page state. Wild demo, clear pattern for multimodal Choice questions.",
   "iammrduncan-typesafe-ai-benchmark":
     "Benchmark harness material for TypeSafe and System One comparisons. Use it to reproduce latency and accuracy claims on your hardware.",
+  "classifier-dev":
+    "The rare hosted Jev product that does not make you write System One JSON first. Paste labels, throw text at HTTP, and let smart tier nag the uncertain rows. Free tier needs no API key, which is great until your roommate discovers the IP limits.",
+  "jev-on-vercel-ai-gateway":
+    "Prototype Jev inside the AI SDK evaluate path without negotiating a separate inference stack on day one. Pricing matches TypeSafe's public input rate; you still pay Gateway credits like a normal Vercel customer.",
+  "http-api-reference":
+    "The boring link that saves you from shipping the wrong JSON shape. Read this before you fork another unofficial SDK that guesses field names.",
+  "openrouter-typesafe-jev-1-13":
+    "OpenRouter's Decisions route for the same list price TypeSafe advertises. Handy when your stack already bills through OpenRouter and you want Jev without another vendor onboarding form.",
+  "brainwires-jevwire":
+    "Agent-shaped MCP tools for evaluate, rank, verify, and gate_action with honest TypeSafe API keys. Less magic ball, more probability you can threshold.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
