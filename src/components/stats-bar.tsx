@@ -5,8 +5,8 @@ export function StatsBar() {
 
   const cells = [
     { label: "Listings", value: stats.total.toLocaleString() },
-    { label: "Detail pages", value: stats.detailPages.toLocaleString() },
-    { label: "Explore-only", value: stats.indexOnly.toLocaleString() },
+    { label: "Deep dives", value: stats.detailPages.toLocaleString() },
+    { label: "Card-only", value: stats.indexOnly.toLocaleString() },
     { label: "Categories", value: stats.categories },
     { label: "With demo", value: stats.withDemo },
     { label: "GitHub repos", value: stats.withRepo },

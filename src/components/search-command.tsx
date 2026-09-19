@@ -61,7 +61,7 @@ export default function SearchCommand() {
           onValueChange={setQuery}
         />
         <CommandList>
-          <CommandEmpty>No listings found.</CommandEmpty>
+          <CommandEmpty>Nothing matched. Try Explore filters or a shorter query.</CommandEmpty>
           <CommandGroup heading="Listings">
             {results.map((item) => (
               <CommandItem

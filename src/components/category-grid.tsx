@@ -7,12 +7,20 @@ export function CategoryGrid() {
 
   return (
     <section aria-labelledby="category-grid-heading" className="space-y-6">
-      <h2
-        id="category-grid-heading"
-        className="font-heading text-2xl font-semibold sm:text-3xl"
-      >
-        Categories
-      </h2>
+      <div>
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+          Browse by job
+        </p>
+        <h2
+          id="category-grid-heading"
+          className="mt-1 font-heading text-2xl font-semibold sm:text-3xl"
+        >
+          Categories
+        </h2>
+        <p className="mt-2 max-w-2xl text-sm text-muted-foreground">
+          SDKs, MCP, browser agents, games, benchmarks, and the rest. Pick a lane, then filter hard on Explore.
+        </p>
+      </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {categories.map((cat) => (
           <AppLink
