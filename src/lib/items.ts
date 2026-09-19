@@ -1,5 +1,9 @@
-import { items } from "@/data/items/index";
+import { contentPolicyStats, items } from "@/data/items/index";
 import type { CategorySlug, DirectoryItem, ItemBadge } from "@/data/types";
+import {
+  itemHasDetailPage,
+  type EnrichedDirectoryItem,
+} from "@/lib/content-policy";
 
 export type SortOption = "featured" | "stars" | "newest" | "title";
 
@@ -18,8 +22,12 @@ export type ExploreFilters = {
 
 export const EXPLORE_PAGE_SIZE = 48;
 
-export function getAllItems(): DirectoryItem[] {
+export function getAllItems(): EnrichedDirectoryItem[] {
   return items;
+}
+
+export function getItemsWithDetailPages(): EnrichedDirectoryItem[] {
+  return items.filter(itemHasDetailPage);
 }
 
 export function getItemBySlug(slug: string): DirectoryItem | undefined {
@@ -38,6 +46,7 @@ export function getRelatedItems(item: DirectoryItem, limit = 4): DirectoryItem[]
   return items
     .filter(
       (i) =>
+        itemHasDetailPage(i) &&
         i.slug !== item.slug &&
         (i.category === item.category ||
           i.tags.some((t) => item.tags.includes(t))),
@@ -56,8 +65,11 @@ export function getCategoryCounts(): Record<CategorySlug, number> {
 export function getDirectoryStats() {
   const all = items;
   const totalStars = all.reduce((sum, i) => sum + (i.stars ?? 0), 0);
+  const detailPages = all.filter(itemHasDetailPage).length;
   return {
     total: all.length,
+    detailPages,
+    indexOnly: all.length - detailPages,
     withRepo: all.filter((i) => i.repoUrl).length,
     withDemo: all.filter((i) => i.demoUrl).length,
     withMcp: all.filter((i) => i.badges?.includes("mcp")).length,
@@ -65,6 +77,7 @@ export function getDirectoryStats() {
     featured: all.filter((i) => i.featured || i.badges?.includes("featured")).length,
     languages: getUniqueLanguages().length,
     totalStars,
+    contentPolicy: contentPolicyStats,
   };
 }
 

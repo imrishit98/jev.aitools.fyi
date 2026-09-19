@@ -39,6 +39,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "Relationship to this directory",
         body: "jev.aitools.fyi is an independent curated directory by aitools.fyi. Listings link to third-party projects; only official TypeSafe properties are authored by TypeSafe AI.",
       },
+      {
+        h: "Choice, Score, and Noul",
+        body: "Choice picks one label from a fixed set with explicit probabilities. Score returns a numeric rating with uncertainty you can map to bands. Noul answers structured true or false style questions with confidence. You compose these primitives instead of prompting for free text and regex-parsing the reply.",
+      },
+      {
+        h: "Request shape in practice",
+        body: "Production clients send JSON state plus an array of typed questions in one POST to /v1/systemone. The response carries aligned answers with per-question confidence. Your service layer applies thresholds, logs decisions, and triggers side effects. There is no hidden chain-of-thought stream to consume.",
+      },
+      {
+        h: "When Jev is the wrong tool",
+        body: "Skip Jev when you need long-form copy, open-ended brainstorming, or narrative reasoning. Reach for an LLM or a template engine there. Many teams pair both: Jev for gates and routing, generative models for user-visible language.",
+      },
     ],
   },
   "system-one": {
@@ -61,6 +73,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Patterns",
         body: "Official docs describe speculative fan-out, confidence-gated routing, composite scoring, and hierarchical classification. All of that maps cleanly to Choice, Score, and Noul primitives.",
+      },
+      {
+        h: "Batching questions",
+        body: "System One shines when you ask many small questions about the same snapshot of state. One forward pass amortizes context loading and keeps latencies predictable compared with serial chat calls that repeat the same preamble.",
+      },
+      {
+        h: "Calibration matters",
+        body: "Probabilities are meant to be thresholded. If your pipeline needs a 0.95 bar for auto-approval, you can tune policies in code and measure drift over time. That is harder when a classifier returns unstructured text.",
+      },
+      {
+        h: "Operational footprint",
+        body: "Because outputs are discrete, logging and replay are straightforward: store the state hash, questions, and probability vector. Incident review does not require reading pages of generated prose.",
       },
     ],
   },
@@ -85,6 +109,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "When LLMs still win",
         body: "Open-ended drafting, long reasoning chains, and novel text generation remain LLM territory. Many production stacks use Jev for discrete decisions and LLMs for language-heavy steps. Browser Use Ultrafast is a well-known hybrid.",
       },
+      {
+        h: "Cost and token math",
+        body: "Generative classifiers often resend long instructions and examples on every call. System One calls keep prompts compact because questions are typed fields, not paragraphs of rubric text. For high-volume gates that difference shows up in both latency and spend.",
+      },
+      {
+        h: "Evaluation and testing",
+        body: "Fixed option sets make golden tests easier: feed recorded state, expect option B above 0.8. LLM label parsing tests brittle string contains checks. Teams migrating often keep LLM baselines while they calibrate Jev thresholds on production logs.",
+      },
+      {
+        h: "Directory examples",
+        body: "Browse moderation and routing listings in this directory for repos that publish benchmarks against chat baselines. Treat them as patterns, not endorsements. Always read the linked source for maintenance status.",
+      },
     ],
   },
   "vercel-ai-gateway": {
@@ -107,6 +143,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Learn more",
         body: "See the official gateway docs and explore eve on GitHub for production-shaped examples.",
+      },
+      {
+        h: "AI SDK evaluate path",
+        body: "The experimental evaluate APIs in the AI SDK expect structured inputs and return typed results. Gateway-hosted Jev fits that shape without standing up a separate inference stack on day one. You still own application thresholds and audit logs.",
+      },
+      {
+        h: "Model identifier",
+        body: "Configure the gateway model id documented for TypeSafe Jev in your provider settings. Keep environment secrets in Vercel or your CI vault, not in client bundles. Rotate keys the same way you would for any hosted model route.",
+      },
+      {
+        h: "Migration path",
+        body: "Teams often prototype on the gateway, then move to direct TypeSafe credentials when they need private networking or custom quotas. SDK listings in this directory show both styles so you can compare wiring.",
       },
     ],
   },
@@ -138,6 +186,18 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Agent auto-mode & compaction",
         body: "fast-jev-compaction and pi-jev-auto-mode score tool results and approvals so agents keep verbatim context or auto-approve safe tool calls.",
+      },
+      {
+        h: "Browser and desktop automation",
+        body: "Computer-use demos treat the next click or keypress as a Choice over a finite action catalog. Jev scores candidate nodes quickly enough for interactive loops. Pair with vision or DOM snapshots as your state payload.",
+      },
+      {
+        h: "Games and simulations",
+        body: "Arcade demos prove System One latency in public. They are useful sandboxes before you wire the same primitives into billing or safety code paths.",
+      },
+      {
+        h: "How to explore further",
+        body: "Use category filters on Explore to narrow listings by pattern. Favor repos with demos or recent commits when you are evaluating fit. Submit your own project if you ship something missing here.",
       },
     ],
   },
