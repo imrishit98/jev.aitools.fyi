@@ -43,7 +43,7 @@ export type DirectoryItem = {
   creatorHandle?: string;
   creatorName?: string;
   sourcePlatform?: SourcePlatform;
-  /** Catalog override: keep in explore but do not emit `/items/[slug]`. */
+  /** Catalog override: keep in explore but do not emit a detail page route. */
   indexOnly?: boolean;
   /** Catalog override: always emit a detail page (editorial added if body is short). */
   detailPage?: boolean;

@@ -161,6 +161,8 @@ export function searchItems(query: string, limit = 12): DirectoryItem[] {
   return filterItems({ q: query, sort: "featured" }).slice(0, limit);
 }
 
+export { getItemPath, hrefForListing } from "@/lib/item-paths";
+
 export function parseExploreFilters(
   params: URLSearchParams | Record<string, string | string[] | undefined>,
 ): ExploreFilters {

@@ -3,6 +3,7 @@ import { Code2, ExternalLink, Star } from "lucide-react";
 import type { DirectoryItem } from "@/data/types";
 import { getCategory } from "@/data/categories";
 import { itemHasDetailPage } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
 import { CreatorCredit } from "@/components/creator-credit";
 import { ItemBadges } from "@/components/item-badges";
 import { ButtonLink } from "@/components/button-link";
@@ -25,7 +26,7 @@ export function ItemCard({
   className?: string;
 }) {
   const cat = getCategory(item.category);
-  const detailHref = itemHasDetailPage(item) ? `/items/${item.slug}` : item.url;
+  const detailHref = hrefForListing(item);
   const detailIsExternal = !itemHasDetailPage(item);
 
   return (
@@ -84,7 +85,7 @@ export function ItemCard({
       </CardContent>
       <CardFooter className="relative z-10 mt-auto flex gap-2 border-t border-border/60 bg-muted/20 pt-3">
         {itemHasDetailPage(item) ? (
-          <ButtonLink href={`/items/${item.slug}`} size="sm" variant="secondary">
+          <ButtonLink href={hrefForListing(item)} size="sm" variant="secondary">
             Details
           </ButtonLink>
         ) : (

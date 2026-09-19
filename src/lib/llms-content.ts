@@ -40,6 +40,10 @@ export function generateLlmsTxt(): string {
     `- About / disclaimer: ${siteConfig.url}/about`,
     `- Sitemap: ${siteConfig.url}/sitemap.xml`,
     "",
+    "## Listing detail URLs",
+    "",
+    "Detail pages use category paths, not `/items/`: `/sdks/{slug}`, `/tools/{slug}`, `/apps/{slug}`, `/games/{slug}`, `/benchmarks/{slug}`, `/guides/{slug}`. Explore-only listings have no on-site detail URL.",
+    "",
     "## Learn guides",
     "",
     ...learnGuideSlugs.map(

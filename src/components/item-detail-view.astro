@@ -8,23 +8,25 @@ import { ButtonLink } from "@/components/button-link";
 import { Badge } from "@/components/ui/badge";
 import { breadcrumbJsonLd, listingJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
-import { getItemsWithDetailPages, getItemBySlug, getRelatedItems } from "@/lib/items";
+import { getItemBySlug, getRelatedItems } from "@/lib/items";
+import { getItemPath } from "@/lib/item-paths";
 import { pageSeo } from "@/lib/seo";
 
-export function getStaticPaths() {
-  return getItemsWithDetailPages().map((item) => ({ params: { slug: item.slug } }));
+interface Props {
+  slug: string;
 }
 
-const { slug } = Astro.params;
-const item = getItemBySlug(slug!);
+const { slug } = Astro.props;
+const item = getItemBySlug(slug);
 if (!item) throw new Error(`Unknown item ${slug}`);
 
 const cat = getCategory(item.category);
 const related = getRelatedItems(item);
+const itemPath = getItemPath(item);
 const seo = pageSeo({
   title: item.title,
   description: item.oneLiner,
-  path: `/items/${slug}`,
+  path: itemPath,
   type: "article",
 });
 ---
@@ -32,13 +34,13 @@ const seo = pageSeo({
 <BaseLayout
   title={seo.title}
   description={seo.description}
-  path={`/items/${slug}`}
+  path={itemPath}
   type="article"
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
       { name: cat?.title ?? item.category, path: `/categories/${item.category}` },
-      { name: item.title, path: `/items/${slug}` },
+      { name: item.title, path: itemPath },
     ]),
     listingJsonLd(item),
   ]}
