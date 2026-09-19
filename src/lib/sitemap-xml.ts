@@ -21,6 +21,7 @@ export function generateSitemapXml(): string {
   const staticRoutes = [
     { path: "", priority: 1, changefreq: "daily" },
     { path: "/explore", priority: 0.9, changefreq: "daily" },
+    { path: "/showcase", priority: 0.88, changefreq: "weekly" },
     { path: "/learn", priority: 0.85, changefreq: "weekly" },
     { path: "/submit", priority: 0.6, changefreq: "monthly" },
     { path: "/about", priority: 0.55, changefreq: "monthly" },

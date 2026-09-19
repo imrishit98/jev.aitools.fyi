@@ -1,21 +1,21 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
-import { CategoryGrid } from "@/components/category-grid";
-import { CollectionsGrid } from "@/components/collections-grid";
+import { HomeDemoStrip } from "@/components/demo-video-card";
 import { FeaturedRail } from "@/components/featured-rail";
 import { HomeFaq } from "@/components/home-faq";
-import { JevSpecSheet } from "@/components/jev-spec-sheet";
-import { StatsBar } from "@/components/stats-bar";
-import { faqPageJsonLd, itemListJsonLd } from "@/components/json-ld";
+import { HomeQuickJump } from "@/components/home-quick-jump";
+import { HomeHero, HomeWhyJev } from "@/components/home-sections";
+import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd } from "@/components/json-ld";
 import { homeFaq } from "@/data/faq";
-import { getAllItems, getDirectoryStats } from "@/lib/items";
+import { getHomepageDemos } from "@/data/showcase-demos";
+import { getAllItems } from "@/lib/items";
 import { homePageSeo } from "@/lib/seo";
-import { siteConfig } from "@/lib/site";
 
-const stats = getDirectoryStats();
 const items = getAllItems();
 const seo = homePageSeo();
+const homepageDemos = getHomepageDemos();
+const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
 ---
 
 <BaseLayout
@@ -23,55 +23,19 @@ const seo = homePageSeo();
   description={seo.description}
   path="/"
   ogImagePath={seo.imagePath}
-  jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq)]}
+  jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq), ...videoJsonLd]}
 >
-  <section class="hero-mesh relative overflow-hidden border-b border-border">
-    <div class="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
-      <div class="max-w-3xl">
-        <p class="mb-5 inline-flex items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1 text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground shadow-sm backdrop-blur-sm">
-          <span class="size-1.5 rounded-full bg-primary" aria-hidden="true"></span>
-          {siteConfig.parentBrand.name} picks · {stats.total} listings · {stats.detailPages} deep dives
-        </p>
-        <h1 class="text-balance font-heading text-4xl font-semibold leading-[1.08] tracking-tight sm:text-5xl lg:text-[3.25rem]">
-          The sharpest map of{" "}
-          <span class="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">Jev</span>{" "}
-          tools
-        </h1>
-        <p class="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-          Find SDKs, gateway hooks, MCP servers, agent routers, demos, and weird games built on TypeSafe&apos;s System One model. Real links, real repos, zero chatbot filler.
-        </p>
-        <div class="mt-9 flex flex-wrap gap-3">
-          <ButtonLink href="/explore" size="lg">Browse {stats.total} listings</ButtonLink>
-          <ButtonLink href="/learn" size="lg" variant="outline">Learn Jev in 5 minutes</ButtonLink>
-          <ButtonLink href={siteConfig.typesafe.playground} size="lg" variant="ghost" external>TypeSafe playground</ButtonLink>
-        </div>
-      </div>
-      <div class="mt-12 lg:mt-14"><StatsBar /></div>
-    </div>
-  </section>
+  <HomeHero client:load />
   <div class="mx-auto max-w-6xl space-y-20 px-4 py-16 sm:px-6 sm:py-20">
-    <JevSpecSheet />
-    <FeaturedRail />
-    <CollectionsGrid />
-    <CategoryGrid />
-    <section class="surface-card p-8 md:p-10 lg:p-12">
-      <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Primer</p>
-      <h2 class="mt-2 font-heading text-2xl font-semibold sm:text-3xl">Why Jev beats another LLM call</h2>
-      <p class="mt-4 max-w-3xl text-base leading-relaxed text-muted-foreground">
-        Jev is TypeSafe&apos;s <strong class="font-medium text-foreground">System One</strong> decision model. You send structured state plus typed questions (Choice, Score, Noul). You get calibrated probabilities, not a motivational essay. Your code sets thresholds. Your app runs the side effects.
-      </p>
-      <div class="mt-8 flex flex-wrap gap-x-6 gap-y-2 text-sm font-medium">
-        <a href="/learn/jev-typesafe" class="text-primary hover:underline">Jev and TypeSafe</a>
-        <a href="/learn/jev-vs-llm-classification" class="text-primary hover:underline">Jev vs LLM labels</a>
-        <a href="/learn/vercel-ai-gateway" class="text-primary hover:underline">Vercel AI Gateway Jev</a>
-        <a href="/explore?mcp=1" class="text-primary hover:underline">Jev MCP directory</a>
-      </div>
-    </section>
-    <HomeFaq />
+    <HomeDemoStrip client:visible demos={homepageDemos} />
+    <HomeQuickJump client:load />
+    <FeaturedRail client:load />
+    <HomeWhyJev client:load />
+    <HomeFaq client:load />
     <section class="relative overflow-hidden rounded-md border border-primary/25 bg-gradient-to-br from-primary/10 via-card to-card p-8 shadow-sm md:flex md:items-center md:justify-between md:gap-8 md:p-10">
       <div class="relative max-w-xl">
         <h2 class="font-heading text-xl font-semibold sm:text-2xl">Shipping with Jev?</h2>
-        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Send the repo or demo. We actually click the links. Star counts stay honest or they stay blank.</p>
+        <p class="mt-2 text-sm leading-relaxed text-muted-foreground">Send the repo or demo. We click the links. Star counts stay honest or they stay blank.</p>
       </div>
       <ButtonLink href="/submit" class="relative mt-6 shrink-0 md:mt-0">Add your project</ButtonLink>
     </section>

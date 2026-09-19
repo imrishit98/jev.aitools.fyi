@@ -1,3 +1,4 @@
+import type { ShowcaseDemo } from "@/data/showcase-demos";
 import type { DirectoryItem } from "@/data/types";
 import type { FaqEntry } from "@/data/faq";
 import { siteConfig } from "@/lib/site";
@@ -146,6 +147,24 @@ export function learnArticleJsonLd(guide: {
     },
     publisher: publisherOrg,
     inLanguage: "en-US",
+  };
+}
+
+export function demoVideoJsonLd(demo: ShowcaseDemo) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    name: demo.title,
+    description: demo.funnyBlurb,
+    thumbnailUrl: absoluteUrl(demo.posterUrl),
+    contentUrl: absoluteUrl(demo.videoUrl),
+    embedUrl: demo.tweetUrl,
+    uploadDate: "2026-09-19",
+    author: {
+      "@type": "Person",
+      name: demo.authorName,
+      url: `https://x.com/${demo.authorHandle}`,
+    },
   };
 }
 
