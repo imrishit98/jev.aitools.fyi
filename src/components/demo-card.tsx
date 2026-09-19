@@ -1,10 +1,12 @@
 "use client";
 
-import { useCallback, useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import type { ShowcaseDemo } from "@/data/showcase-demos";
 import { DemoLightbox } from "@/components/demo-lightbox";
 import { AppLink } from "@/components/app-link";
 import { cn } from "@/lib/utils";
+import { ShareMenu } from "@/components/share-menu";
+import { demoShareOptions } from "@/lib/share";
 import { Play } from "lucide-react";
 
 type DemoCardProps = {
@@ -141,7 +143,8 @@ export function DemoCard({
               {demo.funnyBlurb}
             </p>
           )}
-          <div className="mt-auto flex flex-wrap gap-1.5 pt-1">
+          <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
+            <div className="flex flex-wrap gap-1.5">
             {demo.categoryTags.slice(0, isCompact ? 2 : 3).map((tag) => (
               <span
                 key={tag}
@@ -150,6 +153,20 @@ export function DemoCard({
                 {tag}
               </span>
             ))}
+            </div>
+            <div
+              className="shrink-0"
+              onClick={(e) => e.stopPropagation()}
+              onKeyDown={(e) => e.stopPropagation()}
+            >
+              <ShareMenu
+                options={demoShareOptions(demo)}
+                triggerLabel="Share"
+                triggerVariant="ghost"
+                triggerSize="xs"
+                className="h-7 px-2 text-muted-foreground hover:text-foreground"
+              />
+            </div>
           </div>
         </div>
       </article>
@@ -212,16 +229,48 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
 }
 
 export function ShowcaseDemoGrid({ demos }: { demos: ShowcaseDemo[] }) {
+  const [deepLinkDemo, setDeepLinkDemo] = useState<ShowcaseDemo | null>(null);
+  const [deepLinkOpen, setDeepLinkOpen] = useState(false);
+
+  useEffect(() => {
+    const params = new URLSearchParams(window.location.search);
+    const id = params.get("demo");
+    if (!id) return;
+    const match = demos.find((d) => d.id === id);
+    if (!match) return;
+    setDeepLinkDemo(match);
+    setDeepLinkOpen(true);
+  }, [demos]);
+
+  const onDeepLinkOpenChange = useCallback((open: boolean) => {
+    setDeepLinkOpen(open);
+    if (!open) {
+      const url = new URL(window.location.href);
+      if (url.searchParams.has("demo")) {
+        url.searchParams.delete("demo");
+        const next = `${url.pathname}${url.search}${url.hash}`;
+        window.history.replaceState({}, "", next);
+      }
+    }
+  }, []);
+
   return (
-    <div
-      className="columns-1 gap-5 sm:columns-2 xl:columns-3"
-      style={{ columnFill: "balance" }}
-    >
-      {demos.map((demo) => (
-        <div key={demo.id} className="mb-5 break-inside-avoid">
-          <DemoCard demo={demo} variant="compact" />
-        </div>
-      ))}
-    </div>
+    <>
+      <div
+        className="columns-1 gap-5 sm:columns-2 xl:columns-3"
+        style={{ columnFill: "balance" }}
+      >
+        {demos.map((demo) => (
+          <div key={demo.id} className="mb-5 break-inside-avoid">
+            <DemoCard demo={demo} variant="compact" />
+          </div>
+        ))}
+      </div>
+      <DemoLightbox
+        demo={deepLinkDemo}
+        open={deepLinkOpen}
+        onOpenChange={onDeepLinkOpenChange}
+      />
+    </>
   );
 }

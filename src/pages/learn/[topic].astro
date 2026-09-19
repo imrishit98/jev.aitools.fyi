@@ -5,6 +5,7 @@ import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
 import { learnTopicPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
+import { LearnArticleShare } from "@/components/share-menu";
 
 export function getStaticPaths() {
   return learnGuideSlugs.map((topic) => ({ params: { topic } }));
@@ -52,6 +53,12 @@ const seo = learnTopicPageSeo(guide);
         </section>
       ))}
     </div>
+    <LearnArticleShare
+      client:visible
+      topic={topic!}
+      title={guide.title}
+      description={guide.description}
+    />
     <div class="mt-12 flex flex-wrap gap-3">
       {guide.exploreHref && <ButtonLink href={guide.exploreHref}>See matching listings</ButtonLink>}
       <ButtonLink href="/explore" variant="outline">Full directory</ButtonLink>

@@ -1,5 +1,6 @@
 ---
 import { ShowcaseDemoGrid } from "@/components/demo-card";
+import { ShowcasePageShare } from "@/components/share-menu";
 import { demoVideoJsonLd } from "@/components/json-ld";
 import { showcaseDemos } from "@/data/showcase-demos";
 import BaseLayout from "@/layouts/BaseLayout.astro";
@@ -28,6 +29,7 @@ const count = showcaseDemos.length;
       <p class="mt-4 text-base leading-relaxed text-muted-foreground">
         Real posts from builders using Jev on production problems. Tap a card for the full clip, then steal the SDK.
       </p>
+      <ShowcasePageShare client:visible />
     </header>
     <div class="mt-12">
       <ShowcaseDemoGrid client:visible demos={showcaseDemos} />

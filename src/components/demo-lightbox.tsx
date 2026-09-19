@@ -10,6 +10,8 @@ import {
   DialogTitle,
 } from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
+import { ShareMenu } from "@/components/share-menu";
+import { demoShareOptions } from "@/lib/share";
 import { ExternalLink, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
 
@@ -114,7 +116,12 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
           >
             {demo.funnyBlurb}
           </DialogDescription>
-          <div className="flex flex-wrap gap-2 pt-1">
+          <div className="flex flex-wrap items-center gap-2 pt-1">
+            <ShareMenu
+              options={demoShareOptions(demo)}
+              triggerLabel="Share demo"
+              triggerVariant="secondary"
+            />
             <a
               href={demo.tweetUrl}
               target="_blank"
