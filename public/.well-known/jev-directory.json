@@ -2,6 +2,18 @@
   "name": "Jev Directory",
   "url": "https://jev.aitools.fyi",
   "description": "Independent curated directory of the TypeSafe Jev and System One ecosystem, published by aitools.fyi (Southern East Inc.).",
+  "catalog_listings": 488,
+  "detail_pages": 131,
+  "url_patterns": {
+    "explore": "https://jev.aitools.fyi/explore",
+    "detail_sdks": "https://jev.aitools.fyi/sdks/{slug}",
+    "detail_tools": "https://jev.aitools.fyi/tools/{slug}",
+    "detail_apps": "https://jev.aitools.fyi/apps/{slug}",
+    "detail_games": "https://jev.aitools.fyi/games/{slug}",
+    "detail_benchmarks": "https://jev.aitools.fyi/benchmarks/{slug}",
+    "detail_guides": "https://jev.aitools.fyi/guides/{slug}",
+    "legacy_items_retired": "301 to /explore or new category path via /items/{slug}"
+  },
   "curator": {
     "name": "Rishit Patel",
     "url": "https://twitter.com/imrishit98"
@@ -12,5 +24,6 @@
   },
   "affiliation": "Not affiliated with TypeSafe AI unless an individual listing explicitly represents an official TypeSafe property.",
   "llms_txt": "https://jev.aitools.fyi/llms.txt",
-  "sitemap": "https://jev.aitools.fyi/sitemap.xml"
+  "sitemap": "https://jev.aitools.fyi/sitemap.xml",
+  "robots": "https://jev.aitools.fyi/robots.txt"
 }
