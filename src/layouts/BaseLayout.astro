@@ -1,7 +1,7 @@
 ---
 import "../styles/global.css";
 import { siteConfig } from "@/lib/site";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, formatDocumentTitle } from "@/lib/seo";
 import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer.astro";
 import SiteCredit from "@/components/site-credit.astro";
@@ -18,9 +18,7 @@ export interface Props {
 const { title, description, path, type = "website", jsonLd } = Astro.props;
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl("/og.svg");
-const fullTitle = title.includes(siteConfig.name)
-  ? title
-  : `${title} · ${siteConfig.name}`;
+const fullTitle = formatDocumentTitle(title);
 ---
 
 <!doctype html>

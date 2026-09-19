@@ -3,15 +3,10 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
 import { breadcrumbJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
-import { pageSeo } from "@/lib/seo";
+import { learnIndexPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
-const seo = pageSeo({
-  title: "Learn Jev: System One primer",
-  description:
-    "Start with Choice, Score, and Noul. Guides for TypeSafe Jev, System One architecture, Jev vs LLM classification, Vercel AI Gateway Jev, and real use cases.",
-  path: "/learn",
-});
+const seo = learnIndexPageSeo();
 
 const topics = learnGuideSlugs.map((slug) => {
   const g = learnGuides[slug];

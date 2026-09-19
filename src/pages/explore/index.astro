@@ -3,16 +3,11 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import ExploreApp from "@/components/explore-app";
 import { breadcrumbJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { getAllItems, getDirectoryStats } from "@/lib/items";
-import { pageSeo } from "@/lib/seo";
+import { explorePageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 const stats = getDirectoryStats();
-const seo = pageSeo({
-  title: `Explore ${stats.total} Jev listings`,
-  description:
-    "Filter TypeSafe Jev and System One projects by category, language, Jev MCP, demos, and GitHub. Faceted directory search for SDKs, agents, and integrations.",
-  path: "/explore",
-});
+const seo = explorePageSeo();
 const all = getAllItems();
 ---
 

@@ -10,16 +10,12 @@ import { StatsBar } from "@/components/stats-bar";
 import { faqPageJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { homeFaq } from "@/data/faq";
 import { getAllItems, getDirectoryStats } from "@/lib/items";
-import { pageSeo } from "@/lib/seo";
+import { homePageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
 const stats = getDirectoryStats();
 const items = getAllItems();
-const seo = pageSeo({
-  title: `${siteConfig.tagline} | TypeSafe Jev directory`,
-  description: `Browse ${stats.total} Jev listings: TypeSafe System One SDKs, Vercel AI Gateway Jev, Jev MCP servers, agent tooling, demos, and use cases. Curated by aitools.fyi.`,
-  path: "/",
-});
+const seo = homePageSeo();
 ---
 
 <BaseLayout
