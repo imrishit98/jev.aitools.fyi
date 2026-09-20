@@ -27,8 +27,12 @@ const {
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl(ogImagePath);
 const fullTitle = formatDocumentTitle(title);
-const cloudflareWebAnalyticsToken =
+/** Public site token; env override optional (same beacon, never double-loaded). */
+const DEFAULT_CLOUDFLARE_WEB_ANALYTICS_TOKEN = "9f778516d0a6445f97e40155dfac6edc";
+const envCloudflareWebAnalyticsToken =
   import.meta.env.PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN?.trim() ?? "";
+const cloudflareWebAnalyticsToken =
+  envCloudflareWebAnalyticsToken || DEFAULT_CLOUDFLARE_WEB_ANALYTICS_TOKEN;
 ---
 
 <!doctype html>
@@ -93,14 +97,10 @@ const cloudflareWebAnalyticsToken =
     </main>
     <SiteFooter />
     <SiteCredit />
-    {
-      cloudflareWebAnalyticsToken && (
-        <script
-          defer
-          src="https://static.cloudflareinsights.com/beacon.min.js"
-          data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
-        />
-      )
-    }
+    <script
+      type="module"
+      src="https://static.cloudflareinsights.com/beacon.min.js"
+      data-cf-beacon={JSON.stringify({ token: cloudflareWebAnalyticsToken })}
+    />
   </body>
 </html>
