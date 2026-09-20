@@ -36,6 +36,7 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 - [Submit a project](${SITE}/submit)
 - [About and disclaimer](${SITE}/about)
 - [Developers and agents](${SITE}/developers)
+- [For agents (HTML + Markdown)](${SITE}/for-agents)
 
 ## Agent-facing URLs
 
@@ -52,6 +53,45 @@ Unknown routes under \`/api/*\` return structured JSON errors (\`application/jso
 Canonical: ${SITE}/
 `;
 }
+
+/** Markdown-first crawl surface linked from the Human | Agent switch. */
+export function forAgentsMarkdownBody(): string {
+  return `# ${siteConfig.name}: agent crawl map
+
+> ${siteConfig.description}
+
+You are on the agent-oriented view of ${siteConfig.hostnameBrand}. Humans use the same host with HTML defaults.
+
+## Crawl order
+
+1. [llms.txt](${SITE}/llms.txt): compact site map and counts
+2. [OpenAPI](${SITE}/openapi.json): GET discovery endpoints on this directory
+3. [Search index](${SITE}/search-index.json): listing titles, slugs, and tags for Explore
+4. [Sitemap](${SITE}/sitemap.xml): indexable HTML routes
+5. [Publisher manifest](${SITE}/.well-known/jev-directory.json): URL patterns and metadata
+
+## Homepage negotiation
+
+- \`GET /\` with \`Accept: text/markdown\` returns a Markdown overview (see OpenAPI \`getHome\`).
+- \`GET /?view=agent\` with Markdown Accept returns this document instead of the shorter home overview.
+- Browsers without Markdown Accept always receive static HTML at \`/\` (HTTP 200).
+
+## Human pages worth linking
+
+- [Explore listings](${SITE}/explore)
+- [Learn hub](${SITE}/learn)
+- [Demo showcase](${SITE}/showcase)
+- [Developers notes](${SITE}/developers)
+
+## JSON errors
+
+Unknown routes under \`/api/*\` return structured JSON (\`application/json\`). Shapes are documented in OpenAPI.
+
+Canonical HTML entry for agents: ${SITE}${agentEntryPathSuffix}
+`;
+}
+
+const agentEntryPathSuffix = "/for-agents";
 
 export function notFoundMarkdownBody(pathname: string): string {
   const pathNote = pathname && pathname !== "/" ? `\n\nRequested path: \`${pathname}\`.` : "";

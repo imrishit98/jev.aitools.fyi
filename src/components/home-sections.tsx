@@ -1,4 +1,5 @@
 import { AppLink } from "@/components/app-link";
+import { AudienceSwitch } from "@/components/audience-switch";
 import { ButtonLink } from "@/components/button-link";
 import { ShareBar } from "@/components/share-menu";
 import { homeShareOptions } from "@/lib/share";
@@ -65,6 +66,12 @@ export function HomeWhatIsJev() {
           className="inline-flex items-center rounded-md border border-dashed border-primary/40 px-3 py-1.5 text-sm font-medium text-primary hover:bg-primary/5"
         >
           All Learn guides →
+        </AppLink>
+        <AppLink
+          href="#what-is-jev"
+          className="inline-flex items-center rounded-md border border-border bg-muted/40 px-3 py-1.5 text-sm font-medium transition-colors hover:border-primary/35 hover:bg-primary/5 hover:text-primary"
+        >
+          Jump to What is Jev?
         </AppLink>
       </div>
     </section>
@@ -188,6 +195,14 @@ export function HomeGetStarted() {
         <span aria-hidden>·</span>
         <AppLink href="/tools/jev-on-vercel-ai-gateway" className="font-mono text-primary hover:underline">
           {GATEWAY_MODEL_ID}
+        </AppLink>
+        <span aria-hidden>·</span>
+        <AppLink href="/developers" className="text-primary hover:underline">
+          Agent docs
+        </AppLink>
+        <span aria-hidden>·</span>
+        <AppLink href="/openapi.json" className="text-primary hover:underline">
+          OpenAPI
         </AppLink>
         <span aria-hidden>·</span>
         <AppLink href="/sdks/typesafe-ai-typesafe-sdk-python" className="font-mono text-primary hover:underline">
@@ -322,47 +337,30 @@ export function HomeHero() {
     <section className="hero-mesh relative overflow-hidden border-b border-border">
       <div className="mx-auto max-w-6xl px-4 py-14 sm:px-6 sm:py-20 lg:py-24">
         <div className="max-w-3xl">
-          <p className="mb-5 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-border bg-card/80 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur-sm">
-            <span className="size-1.5 rounded-full bg-primary" aria-hidden />
-            {siteConfig.hostnameBrand} · Jev Directory · System One
-          </p>
+          <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:items-center sm:justify-between sm:gap-4">
+            <p className="inline-flex w-fit max-w-full items-center gap-2 rounded-md border border-border bg-card/80 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur-sm">
+              <span className="size-1.5 shrink-0 rounded-full bg-primary" aria-hidden />
+              Jev directory
+            </p>
+            <AudienceSwitch variant="hero" />
+          </div>
           <h1 className="text-balance font-heading text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.35rem]">
-            {siteConfig.hostnameBrand}: learn Jev, watch builds,{" "}
+            Discover what people build with{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              ship yours.
+              Jev
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
-            Your 30-second briefing: structured decisions with Choice, Score, and Noul. Real demos from the timeline. Docs, SDKs, and the full tool map one click away.
+            The curated map of SDKs, integrations, demos, and apps on TypeSafe System One. Watch real builder clips, skim honest listings, and open docs when you are ready to wire something up.
           </p>
-          <div className="mt-9 flex flex-wrap gap-3">
-            <ButtonLink href="#what-is-jev" size="lg">
-              What is Jev?
+          <div className="mt-9 flex flex-wrap items-center gap-3">
+            <ButtonLink href="/explore" size="lg">
+              Browse the directory
             </ButtonLink>
             <ButtonLink href="/showcase" size="lg" variant="outline">
               Watch demos
             </ButtonLink>
-            <ButtonLink href="/learn" size="lg" variant="outline">
-              Learn guides
-            </ButtonLink>
           </div>
-          <p className="mt-6 text-sm text-muted-foreground">
-            <AppLink href="/explore" className="font-medium text-primary hover:underline">
-              Explore tools
-            </AppLink>
-            {" · "}
-            <AppLink href="/submit" className="font-medium text-primary hover:underline">
-              Submit a build
-            </AppLink>
-            {" · "}
-            <AppLink href="/developers" className="font-medium text-primary hover:underline">
-              Agent docs
-            </AppLink>
-            {" · "}
-            <AppLink href="/openapi.json" className="font-medium text-primary hover:underline">
-              OpenAPI
-            </AppLink>
-          </p>
         </div>
       </div>
     </section>

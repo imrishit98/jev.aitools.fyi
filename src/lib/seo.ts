@@ -268,9 +268,9 @@ export function itemListingSeo(item: DirectoryItem) {
 
 export function homePageSeo() {
   return pageSeo({
-    title: "Jev Directory at Jev.aitools.fyi: learn, demos, and tools",
+    title: "Jev Directory: demos, tools, and learn guides",
     description:
-      "Jev.aitools.fyi is the public Jev Directory. Learn TypeSafe System One in 30 seconds, watch builder demos, browse SDKs and integrations, read free guides, and submit your project.",
+      "Browse SDKs, integrations, and demos built on TypeSafe Jev. Watch builder clips, read free guides, and explore the curated tool map.",
     path: "/",
     imagePath: ogImagePaths.home,
   });
@@ -303,6 +303,16 @@ export function developersPageSeo() {
     description:
       "How agents read Jev.aitools.fyi: OpenAPI, llms.txt, sitemap, search-index.json, Markdown negotiation on /, and structured JSON errors for unknown /api/* routes.",
     path: "/developers",
+    imagePath: ogImagePaths.default,
+  });
+}
+
+export function forAgentsPageSeo() {
+  return pageSeo({
+    title: "For agents: crawl map and discovery URLs",
+    description:
+      "Markdown-friendly entry for AI agents: llms.txt, OpenAPI, search-index.json, sitemap, and how to negotiate Markdown on the homepage.",
+    path: "/for-agents",
     imagePath: ogImagePaths.default,
   });
 }

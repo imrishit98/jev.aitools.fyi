@@ -1,0 +1,145 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { AudienceSwitch } from "@/components/audience-switch";
+import { ButtonLink } from "@/components/button-link";
+import { forAgentsPageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+const seo = forAgentsPageSeo();
+---
+
+<BaseLayout title={seo.title} description={seo.description} path="/for-agents">
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <div class="flex flex-col gap-4 sm:flex-row sm:items-start sm:justify-between">
+      <p class="text-xs font-medium uppercase tracking-[0.2em] text-primary">Agent view</p>
+      <AudienceSwitch variant="hero" client:load />
+    </div>
+    <noscript>
+      <p class="mt-2 text-sm">
+        <a href="/" class="font-medium text-primary hover:underline">I'm human</a>
+        (return to the homepage)
+      </p>
+    </noscript>
+    <h1 class="mt-3 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">
+      Crawl map for software agents
+    </h1>
+    <p class="mt-5 max-w-2xl text-lg leading-relaxed text-muted-foreground">
+      This page is the fast path for bots and integrators. Fetch the machine-readable files below, or send
+      <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Accept: text/markdown</code>
+      to
+      <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code>
+      or
+      <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/for-agents</code>
+      for Markdown bodies. Human readers can switch back with the control above or open
+      <a href="/" class="text-primary hover:underline">the homepage</a>.
+    </p>
+
+    <div class="mt-12 space-y-10 leading-relaxed text-muted-foreground sm:mt-14 sm:space-y-12">
+      <section
+        class="rounded-md border border-border bg-card p-6 shadow-sm sm:p-8"
+        aria-labelledby="fetch-order-heading"
+      >
+        <h2
+          id="fetch-order-heading"
+          class="font-heading text-xl font-semibold text-foreground sm:text-2xl"
+        >
+          Recommended fetch order
+        </h2>
+        <ol class="mt-6 list-decimal space-y-6 pl-6 marker:font-medium marker:text-foreground">
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a href="/llms.txt" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/llms.txt</a
+              >
+              <p class="m-0 text-sm leading-relaxed">
+                Site map, counts, and editorial notes for LLM crawlers
+              </p>
+            </div>
+          </li>
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a href="/openapi.json" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/openapi.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">
+                OpenAPI 3.1 for discovery GET endpoints on this directory
+              </p>
+            </div>
+          </li>
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a
+                href="/search-index.json"
+                class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/search-index.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Listing index used by Explore search</p>
+            </div>
+          </li>
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a href="/sitemap.xml" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/sitemap.xml</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Indexable HTML routes</p>
+            </div>
+          </li>
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a
+                href="/.well-known/jev-directory.json"
+                class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/.well-known/jev-directory.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Publisher manifest with URL patterns</p>
+            </div>
+          </li>
+        </ol>
+      </section>
+
+      <section class="rounded-md border border-border bg-card p-6 shadow-sm sm:p-8">
+        <h2 class="font-heading text-xl font-semibold text-foreground sm:text-2xl">Homepage negotiation</h2>
+        <div class="mt-6 space-y-4">
+          <p class="text-sm leading-relaxed sm:text-base">
+            Browsers without Markdown in{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Accept</code> always receive static
+            HTML at{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code> (HTTP 200). With Markdown
+            preferred,{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">GET /</code> returns a short overview.
+            Add{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">?view=agent</code> for this longer crawl
+            map in Markdown only.
+          </p>
+          <p class="text-sm leading-relaxed sm:text-base">
+            Responses include{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Vary: Accept</code>. Unknown paths
+            return HTTP 404; Markdown 404 bodies link home, llms.txt, and the sitemap.
+          </p>
+        </div>
+      </section>
+
+      <section class="rounded-md border border-border bg-card p-6 shadow-sm sm:p-8">
+        <h2 class="font-heading text-xl font-semibold text-foreground sm:text-2xl">Human-readable docs</h2>
+        <p class="mt-6 text-sm leading-relaxed sm:text-base">
+          Longer prose for integrators lives on
+          <a href="/developers" class="text-primary hover:underline">/developers</a>. That page is not the TypeSafe
+          Jev inference API; use
+          <a
+            href={siteConfig.typesafe.api}
+            class="text-primary hover:underline"
+            target="_blank"
+            rel="noopener noreferrer">TypeSafe API docs</a
+          >
+          for System One calls.
+        </p>
+      </section>
+    </div>
+
+    <div class="mt-14 flex flex-wrap gap-3 sm:mt-16">
+      <ButtonLink href="/llms.txt">Read llms.txt</ButtonLink>
+      <ButtonLink href="/openapi.json" variant="outline">Open OpenAPI</ButtonLink>
+      <ButtonLink href="/" variant="outline">Human homepage</ButtonLink>
+    </div>
+  </div>
+</BaseLayout>

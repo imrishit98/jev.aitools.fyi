@@ -59,6 +59,8 @@ Custom domain: **jev.aitools.fyi** in Pages → Custom domains.
 
 Human-readable overview: [/developers](https://jev.aitools.fyi/developers) on the live site.
 
+The homepage and header include a **Human | Agent** switch (human is the default). Agents without JavaScript can follow **I'm an agent** to [/for-agents](https://jev.aitools.fyi/for-agents). With `Accept: text/markdown`, `GET /for-agents` and `GET /?view=agent` return Markdown crawl notes; normal browsers still get static HTML at `/` (HTTP 200).
+
 | Artifact | URL |
 | --- | --- |
 | OpenAPI | `/openapi.json` |

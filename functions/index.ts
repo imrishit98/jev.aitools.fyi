@@ -1,4 +1,5 @@
 import {
+  forAgentsMarkdownBody,
   homeMarkdownBody,
   prefersMarkdownAccept,
 } from "../src/lib/agent-surface";
@@ -55,7 +56,12 @@ export const onRequest: PagesFunction = async (context) => {
         },
       });
     }
-    return markdownResponse(homeMarkdownBody());
+    const view = url.searchParams.get("view");
+    const body =
+      view === "agent" || view === "agents"
+        ? forAgentsMarkdownBody()
+        : homeMarkdownBody();
+    return markdownResponse(body);
   }
 
   // HTML and other Accept values: serve static dist/index.html via the asset pipeline.
