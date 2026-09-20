@@ -28,7 +28,9 @@ PUBLIC_SITE_URL=https://jev.aitools.fyi pnpm build
 pnpm preview
 ```
 
-Static assets land in `dist/` (pre-rendered HTML). The post-build step moves `dist/index.html` to `dist/__home/index.html` so `functions/index.ts` can negotiate Markdown vs HTML on `/` without a conflicting static file. Agent routes live in [`functions/`](./functions/) at the repo root.
+Static assets land in `dist/` (pre-rendered HTML). **`dist/index.html` must stay at the site root** so `/` returns 200 even when Pages Functions fail. `functions/index.ts` only overrides `/` when `Accept` prefers `text/markdown`; normal browsers get the static homepage via `next()`. **Do not ship a build that removes or moves `dist/index.html` unless you have verified Functions serve HTML on `/` in production.**
+
+Agent routes live in [`functions/`](./functions/) at the repo root.
 
 ## Deploy (Cloudflare Pages)
 
