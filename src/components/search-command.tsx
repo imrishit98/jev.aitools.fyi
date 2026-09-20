@@ -79,15 +79,15 @@ export default function SearchCommand() {
       <Button
         variant="outline"
         size="sm"
-        className="h-9 w-9 px-0 sm:w-auto sm:gap-2 sm:px-3"
+        className="h-9 w-9 shrink-0 px-0 lg:w-auto lg:gap-2 lg:px-3"
         onClick={() => setOpen(true)}
         aria-label="Search directory"
         aria-haspopup="dialog"
         aria-expanded={open}
       >
         <Search className="size-4 shrink-0" aria-hidden />
-        <span className="hidden text-muted-foreground sm:inline">Search</span>
-        <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded-md border bg-muted px-1.5 font-mono text-[10px] font-medium sm:inline-flex">
+        <span className="hidden text-muted-foreground lg:inline">Search</span>
+        <kbd className="pointer-events-none hidden h-5 select-none items-center gap-1 rounded-md border bg-muted px-1.5 font-mono text-[10px] font-medium lg:inline-flex">
           ⌘K
         </kbd>
       </Button>
