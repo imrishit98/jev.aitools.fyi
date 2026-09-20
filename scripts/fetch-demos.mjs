@@ -74,6 +74,7 @@ const DEMO_SPECS = [
   { id: "opencode-palette-sonnylazuardi", tweetId: "2101699901461864664", prefer1080: false },
   { id: "moongotchi-trading-bot-moongotchi", tweetId: "2101320141065609294", prefer1080: false },
   { id: "nhtsa-complaints-kanaworks", tweetId: "2101509756737462446", prefer1080: false },
+  { id: "docjev-jerryjliu0", tweetId: "2101738281046294552", prefer1080: false },
 ];
 
 function pickMp4Url(formats, prefer1080 = false) {

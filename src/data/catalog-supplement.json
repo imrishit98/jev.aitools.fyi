@@ -183,5 +183,24 @@
     "sourcePlatform": "x",
     "detailPage": true,
     "updatedAt": "2026-09-20"
+  },
+  {
+    "slug": "docjev",
+    "title": "DocJev",
+    "oneLiner": "OSS document classify and split library powered by Jev and natural-language category rules, with liteparse or LlamaParse backends.",
+    "description": "DocJev (github.com/jerryjliu/docjev) is Jerry Liu's open-source library for document classification and splitting using TypeSafe Jev. You provide a document and natural-language category rules; Jev predicts the document category or boundaries between sub-documents. The launch post benchmarks about six times faster than gpt-5.6-luna at equivalent accuracy when using the liteparse OCR path. Optional LlamaParse integration targets complex documents via cloud.llamaindex.ai preprocessing.",
+    "category": "applications",
+    "tags": ["applications", "documents", "classification", "product"],
+    "language": "Python",
+    "url": "https://github.com/jerryjliu/docjev",
+    "repoUrl": "https://github.com/jerryjliu/docjev",
+    "postUrl": "https://x.com/jerryjliu0/status/2101738281046294552",
+    "featured": true,
+    "badges": ["has-demo", "featured"],
+    "creatorHandle": "jerryjliu0",
+    "creatorName": "Jerry Liu",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-09-20"
   }
 ]

@@ -125,6 +125,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Marketers drop product, audience, and vibe. Jev picks the UGC style mix, Hypit spawns a crowd of non-clone faces before your standup ends.",
   "egghead-smart-procurement":
     "Manufacturing procurement through SAP and Oracle busywork with Jev-speed browser ops. Egghead's clip is the enterprise FDE plus automation argument in one take.",
+  "docjev":
+    "Jerry Liu's DocJev pairs natural-language rules with Jev for document classify and split. The launch clip claims six times gpt-5.6-luna speed at the same accuracy with liteparse in the loop.",
   "brainwires-jevwire":
     "Agent-shaped MCP tools for evaluate, rank, verify, and gate_action with honest TypeSafe API keys. Less magic ball, more probability you can threshold.",
 };

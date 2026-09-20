@@ -605,6 +605,18 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: false,
     categoryTags: ["classification", "demo", "data"],
   }),
+  demo({
+    id: "docjev-jerryjliu0",
+    authorHandle: "jerryjliu0",
+    authorName: "Jerry Liu",
+    tweetUrl: "https://x.com/jerryjliu0/status/2101738281046294552",
+    title: "DocJev classify and split",
+    funnyBlurb:
+      "Feed a doc plus plain-English category rules. DocJev uses Jev to classify or find split boundaries six times faster than gpt-5.6-luna at matching accuracy, liteparse included.",
+    homepage: true,
+    categoryTags: ["product", "documents", "classification"],
+    projectUrl: "https://github.com/jerryjliu/docjev",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */

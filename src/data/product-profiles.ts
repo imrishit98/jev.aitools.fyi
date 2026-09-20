@@ -1125,4 +1125,77 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Egghead manufacturing procurement uses fast Jev browser routing for ERP entry. sakai_1910 showcase on Jev Directory.",
   },
 
+  docjev: {
+    slug: "docjev",
+    status: "published",
+    problem:
+      "Document pipelines need fast category labels and split boundaries without paying chat-model prices on every page.",
+    targetUser:
+      "Teams building ingestion, RAG, or compliance flows over PDFs and scans who want rule-driven classify and split steps.",
+    overview:
+      "DocJev is an open-source library from Jerry Liu (github.com/jerryjliu/docjev) for document classification and splitting with TypeSafe Jev. Supply natural-language category rules alongside document text; Jev returns a predicted category or sub-document boundaries.",
+    creator: {
+      name: "Jerry Liu",
+      handle: "jerryjliu0",
+      xUrl: "https://x.com/jerryjliu0/status/2101738281046294552",
+      githubUrl: "https://github.com/jerryjliu/docjev",
+      company: "LlamaIndex",
+      companyUrl: "https://www.llamaindex.ai",
+    },
+    creatorQuote: {
+      text:
+        "Give a document alongside natural language category rules. Jev will predict the document category or the boundaries between sub-documents.",
+      attributedTo: "Jerry Liu",
+      sourceUrl: "https://x.com/jerryjliu0/status/2101738281046294552",
+    },
+    jevUsage: {
+      flowRole: "Document classification and split-boundary prediction",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Parsed document text from liteparse or LlamaParse plus user-authored natural-language category or split rules from the DocJev API.",
+      decisionOut:
+        "Predicted document category for classify mode, or boundary decisions between sub-documents for split mode.",
+      flowSteps: [
+        "Parse document with liteparse (OSS) or LlamaParse (VLM preprocessing)",
+        "Format rules and text for Jev System One calls",
+        "Jev classifies or marks split boundaries per DocJev configuration",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "About six times faster than gpt-5.6-luna with equivalent accuracy in the launch benchmark (liteparse timings included).",
+          source: "Jerry Liu DocJev announcement on X",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "DocJev wraps Jev as the decision core for both classify and split workflows so teams express policy in natural language instead of brittle regex. liteparse is the default fast OSS parser for digital documents; LlamaParse adds VLM preprocessing latency but suits cached digitization for downstream LlamaIndex tasks. Confirm latest benchmarks and APIs in the DocJev repository.",
+    keyFeatures: [
+      "Open source at github.com/jerryjliu/docjev",
+      "Classify and split modes with natural-language rules",
+      "liteparse integration (github.com/run-llama/liteparse)",
+      "Optional LlamaParse via cloud.llamaindex.ai",
+    ],
+    stack: ["DocJev", "TypeSafe System One", "liteparse", "LlamaParse", "LlamaIndex ecosystem"],
+    links: {
+      repo: "https://github.com/jerryjliu/docjev",
+      website: "https://www.llamaindex.ai",
+      docs: "https://github.com/jerryjliu/docjev",
+      post: "https://x.com/jerryjliu0/status/2101738281046294552",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["docjev-jerryjliu0"],
+    relatedSlugs: ["wiktorb2004-llama-index-jev", "classifier-dev", "marissafamularo-citation-verifier"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is DocJev part of LlamaIndex core?",
+        answer:
+          "DocJev is a standalone OSS repo from Jerry Liu. It integrates optional LlamaParse and liteparse from the Run Llama ecosystem; treat github.com/jerryjliu/docjev as the source of truth.",
+      },
+    ],
+    metaTitle: "DocJev: Jev document classify and split",
+    metaDescription:
+      "Jerry Liu DocJev uses Jev for fast document classification and splitting with natural-language rules. Launch clip and GitHub repo on Jev Directory.",
+  },
+
 };

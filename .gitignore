@@ -55,3 +55,4 @@ agent-tools/
 /public/search-index.json
 /scripts/og/fonts/
 _worker.bundle
+artifacts/
