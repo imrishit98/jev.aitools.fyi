@@ -14,6 +14,7 @@ const force = process.argv.includes("--force");
 
 /** Keep in sync with src/data/showcase-demos.ts showcaseDemoFetchHints */
 const DEMO_SPECS = [
+  { id: "tanstack-ai-decide-tanstack", tweetId: "2101659024890765819", prefer1080: false },
   { id: "smart-copy-paste-marcus-lowe", tweetId: "2101476399488160013", prefer1080: false },
   { id: "ploy-jev-websites-bryantchou", tweetId: "2101485995669770522", prefer1080: false },
   { id: "clera-jobs-sebastianscott", tweetId: "2101429879078330390", prefer1080: false },

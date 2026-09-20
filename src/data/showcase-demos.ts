@@ -31,6 +31,18 @@ const demo = (partial: DemoInput): ShowcaseDemo => {
 
 export const showcaseDemos: ShowcaseDemo[] = [
   demo({
+    id: "tanstack-ai-decide-tanstack",
+    authorHandle: "tan_stack",
+    authorName: "TANSTACK",
+    tweetUrl: "https://x.com/tan_stack/status/2101659024890765819",
+    title: "decide() in TanStack AI",
+    funnyBlurb:
+      "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops cosplaying as a chatbot. They call the moment jevolution; we call it one less regex on model prose.",
+    homepage: true,
+    categoryTags: ["integrations", "sdk", "demo"],
+    projectUrl: "https://tanstack.com/ai/latest",
+  }),
+  demo({
     id: "smart-copy-paste-marcus-lowe",
     authorHandle: "marcus_lowe",
     authorName: "Marcus Lowe",
