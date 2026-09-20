@@ -33,7 +33,7 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
   jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq), ...videoJsonLd]}
 >
   <HomeHero client:load />
-  <div class="mx-auto max-w-6xl space-y-20 px-4 py-16 sm:px-6 sm:py-20">
+  <div class="mx-auto flex max-w-6xl flex-col gap-20 px-4 py-16 sm:px-6 sm:py-20">
     <HomeWhatIsJev client:load />
     <HomeGetStarted client:load />
     <HomeDemoStrip client:visible demos={homepageDemos} />
