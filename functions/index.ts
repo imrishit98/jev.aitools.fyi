@@ -3,8 +3,6 @@ import {
   prefersMarkdownAccept,
 } from "../src/lib/agent-surface";
 
-const HOME_SHELL_PATH = "/__home/";
-
 function markdownResponse(body: string): Response {
   return new Response(body, {
     status: 200,
@@ -60,16 +58,7 @@ export const onRequest: PagesFunction = async (context) => {
     return markdownResponse(homeMarkdownBody());
   }
 
-  const assets = (context.env as { ASSETS?: { fetch: typeof fetch } }).ASSETS;
-  if (assets) {
-    const assetUrl = new URL(request.url);
-    assetUrl.pathname = HOME_SHELL_PATH;
-    const assetResponse = await assets.fetch(
-      new Request(assetUrl.toString(), request),
-    );
-    return withVary(assetResponse);
-  }
-
+  // HTML and other Accept values: serve static dist/index.html via the asset pipeline.
   const response = await next();
   return withVary(response);
 };
