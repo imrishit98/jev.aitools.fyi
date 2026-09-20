@@ -161,19 +161,17 @@ function draftItemTitleCore(
 }
 
 function draftItemDescription(item: DirectoryItem): string {
-  const segment = getItemDetailSegment(item.category);
-  const segmentLabel = SEGMENT_LABEL[segment];
   const oneLiner = stripEmDash(item.oneLiner);
-  const directoryHint = ` Curated ${segmentLabel} listing on Jev Directory. Compare related TypeSafe Jev tools.`;
-  let description = oneLiner;
-  if (description.length < 95) {
-    description = `${oneLiner} See how ${item.title} fits the TypeSafe Jev ecosystem.${directoryHint}`;
-  } else if (description.length < 130) {
-    description = `${oneLiner}${directoryHint}`;
-  } else {
-    description = `${oneLiner} Open the full ${segmentLabel} profile on Jev Directory.`;
+  const body = stripEmDash(item.description ?? "");
+  if (body.length >= 100 && body !== oneLiner) {
+    return trimMetaDescription(body);
   }
-  return trimMetaDescription(description);
+  if (oneLiner.length >= 100) {
+    return trimMetaDescription(oneLiner);
+  }
+  return trimMetaDescription(
+    `${oneLiner} ${item.title} uses TypeSafe Jev for typed decisions, not chatty labels.`,
+  );
 }
 
 type ListingMetaDraft = { titleCore: string; description: string };

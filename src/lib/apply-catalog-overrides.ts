@@ -4,7 +4,15 @@ import type { DirectoryItem } from "@/data/types";
 const ATTRIBUTION_RE = /awesomejev|indexed from|sourced from/i;
 
 type MarketingPatch = Partial<
-  Pick<DirectoryItem, "oneLiner" | "description" | "editorialBlurb" | "title">
+  Pick<
+    DirectoryItem,
+    | "oneLiner"
+    | "description"
+    | "editorialBlurb"
+    | "title"
+    | "indexOnly"
+    | "detailPage"
+  >
 >;
 
 const overridesBySlug = marketingOverrides as Record<string, MarketingPatch>;
