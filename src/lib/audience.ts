@@ -21,3 +21,13 @@ export function setStoredAudience(mode: AudienceMode): void {
 }
 
 export const agentEntryPath = "/for-agents";
+
+/** True for `/for-agents` and `/for-agents/` (and nested paths under that prefix). */
+export function isAgentRoute(pathname: string): boolean {
+  const normalized = pathname.replace(/\/+$/, "") || "/";
+  return normalized === agentEntryPath;
+}
+
+export function humanHomeHref(): string {
+  return "/";
+}

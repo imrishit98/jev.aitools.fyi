@@ -1,7 +1,8 @@
 import { AppLink } from "@/components/app-link";
 import {
   agentEntryPath,
-  getStoredAudience,
+  humanHomeHref,
+  isAgentRoute,
   setStoredAudience,
   type AudienceMode,
 } from "@/lib/audience";
@@ -13,28 +14,48 @@ type AudienceSwitchProps = {
   className?: string;
 };
 
-function navigateForMode(mode: AudienceMode, pathname: string) {
-  if (mode === "agent" && pathname !== agentEntryPath) {
-    window.location.assign(agentEntryPath);
+function modeFromLocation(): AudienceMode {
+  if (typeof window === "undefined") return "human";
+  return isAgentRoute(window.location.pathname) ? "agent" : "human";
+}
+
+function applyAudienceMode(mode: AudienceMode): void {
+  setStoredAudience(mode);
+
+  const { pathname, search } = window.location;
+  const onAgentPage = isAgentRoute(pathname);
+  const params = new URLSearchParams(search);
+  const agentViewQuery =
+    params.get("view") === "agent" || params.get("view") === "agents";
+
+  if (mode === "agent") {
+    if (!onAgentPage) {
+      window.location.assign(agentEntryPath);
+    }
     return;
   }
-  if (mode === "human" && pathname === agentEntryPath) {
-    window.location.assign("/");
+
+  if (onAgentPage || agentViewQuery) {
+    window.location.assign(humanHomeHref());
   }
 }
 
 export function AudienceSwitch({ variant = "header", className }: AudienceSwitchProps) {
   const groupId = useId();
-  const [mode, setMode] = useState<AudienceMode>("human");
+  const [mode, setMode] = useState<AudienceMode>(() => modeFromLocation());
   const [mounted, setMounted] = useState(false);
 
   useEffect(() => {
-    const stored = getStoredAudience();
-    setMode(stored);
+    const fromPath = modeFromLocation();
+    setMode(fromPath);
+    if (fromPath === "human") {
+      setStoredAudience("human");
+    }
     setMounted(true);
   }, []);
 
   const isHero = variant === "hero";
+  const showAgentLink = mode !== "agent";
 
   return (
     <div
@@ -61,13 +82,12 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
             { value: "agent" as const, label: "Agent" },
           ] as const
         ).map((option) => {
-          const selected = mounted ? mode === option.value : option.value === "human";
+          const selected = mode === option.value;
           return (
             <button
               key={option.value}
               type="button"
               aria-pressed={selected}
-              disabled={!mounted}
               className={cn(
                 "rounded-md px-2.5 py-1 font-medium transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background",
                 isHero ? "text-xs sm:text-sm" : "text-xs",
@@ -76,9 +96,8 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
                   : "text-muted-foreground hover:text-foreground",
               )}
               onClick={() => {
-                setStoredAudience(option.value);
                 setMode(option.value);
-                navigateForMode(option.value, window.location.pathname);
+                applyAudienceMode(option.value);
               }}
             >
               {option.label}
@@ -86,15 +105,27 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
           );
         })}
       </div>
-      <AppLink
-        href={agentEntryPath}
-        className={cn(
-          "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-          isHero ? "text-sm" : "text-xs",
-        )}
-      >
-        I&apos;m an agent
-      </AppLink>
+      {showAgentLink ? (
+        <AppLink
+          href={agentEntryPath}
+          className={cn(
+            "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            isHero ? "text-sm" : "text-xs",
+          )}
+        >
+          I&apos;m an agent
+        </AppLink>
+      ) : (
+        <AppLink
+          href={humanHomeHref()}
+          className={cn(
+            "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+            isHero ? "text-sm" : "text-xs",
+          )}
+        >
+          I&apos;m human
+        </AppLink>
+      )}
     </div>
   );
 }
