@@ -9,7 +9,7 @@ import { siteConfig } from "@/lib/site";
 export function generateLlmsTxt(): string {
   const stats = getDirectoryStats();
   const lines: string[] = [
-    `# ${siteConfig.name}`,
+    `# ${siteConfig.hostnameBrand} (${siteConfig.name})`,
     "",
     `> ${siteConfig.description}`,
     "",
@@ -40,6 +40,7 @@ export function generateLlmsTxt(): string {
     `- Learn hub: ${siteConfig.url}/learn`,
     `- Submit a listing: ${siteConfig.url}/submit`,
     `- About / disclaimer: ${siteConfig.url}/about`,
+    `- Developers / agents: ${siteConfig.url}/developers`,
     `- Sitemap: ${siteConfig.url}/sitemap.xml`,
     `- OpenAPI (agent surface): ${siteConfig.url}/openapi.json`,
     `- JSON API errors: unknown /api/* routes return application/json (see OpenAPI)`,

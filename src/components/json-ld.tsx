@@ -12,7 +12,8 @@ const publisherOrg = {
   url: siteConfig.parentBrand.url,
   brand: {
     "@type": "Brand",
-    name: siteConfig.parentBrand.name,
+    name: siteConfig.hostnameBrand,
+    alternateName: siteConfig.name,
   },
 };
 
@@ -20,7 +21,8 @@ export function websiteJsonLd() {
   return {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: siteConfig.name,
+    name: siteConfig.hostnameBrand,
+    alternateName: siteConfig.name,
     description: siteConfig.description,
     url: siteConfig.url,
     inLanguage: "en-US",

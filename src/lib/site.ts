@@ -1,9 +1,11 @@
 export const siteConfig = {
+  /** Public hostname brand (navbar, JSON-LD, titles). */
+  hostnameBrand: "Jev.aitools.fyi",
   name: "Jev Directory",
   shortName: "Jev",
   tagline: "The sharpest map of Jev tools",
   description:
-    "Curated directory of SDKs, integrations, MCP servers, agents, demos, and apps on TypeSafe Jev. Find System One tooling fast, with links you can trust.",
+    "Jev Directory at Jev.aitools.fyi: curated SDKs, integrations, MCP servers, agents, demos, and apps on TypeSafe Jev. Find System One tooling fast, with links you can trust.",
   url:
     (typeof import.meta !== "undefined" &&
       import.meta.env?.PUBLIC_SITE_URL &&

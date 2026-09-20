@@ -1,16 +1,18 @@
-# Jev Directory (`jev-directory`)
+# Jev.aitools.fyi (Jev Directory)
 
-Curated public directory of the TypeSafe **Jev** (System One) ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides. Built for **[jev.aitools.fyi](https://jev.aitools.fyi)** as part of the [aitools.fyi](https://aitools.fyi) family (Southern East Inc.).
+**Live site:** [https://jev.aitools.fyi](https://jev.aitools.fyi)
 
-> **GitHub:** [github.com/imrishit98/jev.aitools.fyi](https://github.com/imrishit98/jev.aitools.fyi). Production hostname target **[jev.aitools.fyi](https://jev.aitools.fyi)**.
+Curated public directory of the TypeSafe **Jev** (System One) ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides. Built for builders who want link-first discovery, honest star counts, and readable detail pages.
 
-## Stack
+**Who it is for:** developers evaluating Jev tooling, agent authors wiring MCP and gateways, and maintainers who want a single indexable map of the ecosystem.
 
-- **Astro 5** (static output) + React islands for theme, search, explore filters
-- Tailwind CSS 4 + shadcn/ui tokens
-- pnpm
+**Stack:** [Astro 5](https://astro.build) (static output), React islands (theme, search, explore), Tailwind CSS 4, deployed on **Cloudflare Pages** with repo-root **Pages Functions** for agent-friendly negotiation and JSON API errors.
 
-## Local development
+**Repository:** [github.com/imrishit98/jev.aitools.fyi](https://github.com/imrishit98/jev.aitools.fyi)
+
+![Homepage OG preview](https://jev.aitools.fyi/og/home.png)
+
+## Quick start
 
 ```bash
 pnpm install
@@ -19,130 +21,82 @@ pnpm dev
 
 Open [http://localhost:4321](http://localhost:4321).
 
-Optional canonical URL at build time:
-
-```bash
-PUBLIC_SITE_URL=https://jev.aitools.fyi pnpm build
-```
-
-## Production build
+Production build:
 
 ```bash
 PUBLIC_SITE_URL=https://jev.aitools.fyi pnpm build
 pnpm preview
 ```
 
-Static output lives in `dist/` (all routes pre-rendered).
+Static assets land in `dist/` (pre-rendered HTML). The post-build step moves `dist/index.html` to `dist/__home/index.html` so `functions/index.ts` can negotiate Markdown vs HTML on `/` without a conflicting static file. Agent routes live in [`functions/`](./functions/) at the repo root.
 
-## Deploy (Cloudflare)
+## Deploy (Cloudflare Pages)
 
-**Preferred:** Cloudflare **Pages** project connected to this repo ([imrishit98/jev.aitools.fyi](https://github.com/imrishit98/jev.aitools.fyi)).
+Connect this repo to a Cloudflare **Pages** project.
 
 | Setting | Value |
 | --- | --- |
 | Build command | `pnpm install && pnpm build` |
 | Build output directory | `dist` |
-| **Deploy command** | *(leave empty — Pages uploads `dist/`; do **not** run `npx wrangler deploy` here)* |
+| **Deploy command** | *(empty: Pages uploads `dist/` only)* |
 | Environment variable | `PUBLIC_SITE_URL=https://jev.aitools.fyi` |
-| Web Analytics (optional) | `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` — see below |
+| Web Analytics (optional) | `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` |
 
-Agent routes (Markdown negotiation, JSON `/api/*` errors) live in the repo-root **`functions/`** directory. The build writes **`dist/_routes.json`** (`include: ["/*"]`) so those Functions run ahead of static files on Pages. `wrangler.toml` only configures the static asset directory for optional Workers deploys; it must **not** set `run_worker_first` without a Worker `main` entry (that breaks Pages deploy validation).
+**Pages Functions:** Markdown negotiation on `/`, Markdown 404 bodies, and structured JSON errors on unknown `/api/*` routes are implemented under [`functions/`](./functions/). The build writes **`dist/_routes.json`** (`include: ["/*"]`) so Functions run before static files. Do **not** set `run_worker_first` in `wrangler.toml` without a Worker `main` entry (that breaks Pages deploy validation). See comments in [`wrangler.toml`](./wrangler.toml).
 
-Add custom domain **jev.aitools.fyi** in Pages → Custom domains.
-
-### Cloudflare Web Analytics
-
-Cookieless page-view analytics via Cloudflare (not Google Analytics).
-
-1. Cloudflare Dashboard → **Analytics & Logs** → **Web Analytics** → **Add site** (hostname **jev.aitools.fyi**).
-2. Copy the site **token**.
-3. In your Cloudflare **Pages** project → **Settings** → **Environment variables**, set `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` to that token (Production, and Preview if desired).
-4. Trigger a new deployment (rebuild). The beacon is injected site-wide only when this variable is non-empty; local `pnpm dev` / builds without the token omit the script.
-
-`wrangler.toml` `[vars]` may document the name as a commented placeholder — do not commit a real token in the repo.
-
-If you deploy with **Workers static assets** (`pnpm deploy` / `npx wrangler deploy`), `wrangler.toml` sets `[assets].directory` to `./dist` so the same build output is used.
-
-Local Pages simulation:
+Simulate production locally:
 
 ```bash
 pnpm build
 pnpm pages:dev
 ```
 
-Or preview the static build:
+Custom domain: **jev.aitools.fyi** in Pages → Custom domains.
 
-```bash
-pnpm preview
-```
+## Agents and integrators
 
-Manual Pages upload: `pnpm pages:deploy` (after `pnpm build`).
-
-## Data
-
-Regenerate the catalog from saved HTML (maintainer workflow):
-
-```bash
-curl -sL https://awesomejev.com/ -o /tmp/awesomejev.html
-node scripts/generate-catalog.mjs
-```
-
-The generator ingests a public community index HTML export; marketing copy and attribution stripping are applied via `src/data/catalog-marketing-overrides.json` and `src/lib/apply-catalog-overrides.ts`. The live site does not display third-party index attribution.
-
-Output: `src/data/catalog.json` (494 entries at last ingest; hand-edited additions live beside awesomejev imports).
-
-Hand-maintained ecosystem patches (classifier.dev, gateway pricing, PyPI `jev-cli`, and similar) can be reapplied with:
-
-```bash
-node scripts/apply-jev-resources.mjs
-```
-
-**SEO content policy:** see [docs/seo-content-policy.md](./docs/seo-content-policy.md). Most listings stay on Explore without a thin detail page; kept entries use category paths (`/tools/`, `/sdks/`, `/apps/`, and similar) in the sitemap. Legacy `/items/*` URLs 301 via `dist/_redirects`.
-
-## SEO / LLM discovery
+Human-readable overview: [/developers](https://jev.aitools.fyi/developers) on the live site.
 
 | Artifact | URL |
 | --- | --- |
-| Sitemap | `/sitemap.xml` |
-| Robots | `/robots.txt` |
+| OpenAPI | `/openapi.json` |
 | LLM map | `/llms.txt` |
-| OpenAPI (agent surface) | `/openapi.json` |
-| Publisher info | `/.well-known/jev-directory.json` |
-| Default OG image | `/og/home.png` (PNG set generated at build; see `pnpm generate:og`) |
-| OG samples (docs) | `docs/og-samples/` |
+| Sitemap | `/sitemap.xml` |
+| Search index | `/search-index.json` |
+| Publisher manifest | `/.well-known/jev-directory.json` |
 
-### Agent-friendly checks (is-agentic top 5)
+`robots.txt` allows crawl; public pages use `index, follow`. The sitemap is linked from `robots.txt` and `llms.txt`.
 
-After `pnpm build`, run Cloudflare Pages locally so repo-root **`functions/`** and **`dist/_routes.json`** are active:
+### Verify agent checks (is-agentic)
 
-```bash
-pnpm pages:dev
-```
-
-Then (replace host if using preview):
+After `pnpm build`, run Pages locally (`pnpm pages:dev`), then:
 
 ```bash
-# 1) Markdown 404
-curl -sS -L -i -H 'Accept: text/markdown' http://localhost:4321/__ora-404-probe | head -20
+# 1) Markdown 404 (≥20 chars, links to /, llms.txt, sitemap)
+curl -sS -L -i -H 'Accept: text/markdown' http://localhost:4321/__ora-404-probe | head -25
 
-# 2) Homepage HTML has H1 before any H2 (build output)
-grep -oE '<(h[1-6])' dist/index.html | head -5
+# 2) JSON API error shape
+curl -sS http://localhost:4321/api/__ora-probe
 
-# 3) OpenAPI
-curl -sS http://localhost:4321/openapi.json | head
-
-# 4) JSON API error
-curl -sS -i http://localhost:4321/api/__ora-probe
-
-# 5) Homepage Markdown negotiation
+# 3) Homepage Markdown negotiation + Vary
 curl -sS -i -H 'Accept: text/markdown' http://localhost:4321/ | head -20
-curl -sS -i -H 'Accept: text/html' http://localhost:4321/ | head -10
+curl -sS -i -H 'Accept: text/html' http://localhost:4321/ | head -12
 ```
 
-## Routes
+## Submit listings
 
-Home, faceted **Explore**, **144** item detail pages (494 catalog entries), category hubs, learn guides (including where-to-run-jev), submit, about.
+Use [/submit](https://jev.aitools.fyi/submit) on the live site or see [CONTRIBUTING.md](./CONTRIBUTING.md).
+
+## Data and SEO
+
+- Catalog: `src/data/catalog.json` (regenerate with maintainer scripts in `scripts/`).
+- SEO policy: [docs/seo-content-policy.md](./docs/seo-content-policy.md).
+- Legacy `/items/*` URLs 301 via `dist/_redirects`.
+
+## License
+
+[MIT](./LICENSE) unless a file states otherwise.
 
 ## Affiliation
 
-Curated by **aitools.fyi**. Not affiliated with TypeSafe AI unless a listing says otherwise.
+Curated by [aitools.fyi](https://aitools.fyi) (Southern East Inc.). Not affiliated with TypeSafe AI unless a listing says otherwise.

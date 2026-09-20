@@ -16,6 +16,7 @@ const nav = [
   { href: "/explore", label: "Explore" },
   { href: "/showcase", label: "Showcase" },
   { href: "/learn", label: "Learn" },
+  { href: "/developers", label: "Agents" },
   { href: "/submit", label: "Submit" },
 ];
 
@@ -25,13 +26,11 @@ export default function SiteHeader() {
       <div className="mx-auto flex h-[4.25rem] max-w-6xl min-w-0 items-center gap-2 overflow-x-clip px-4 sm:gap-3 sm:px-6">
         <AppLink
           href="/"
-          className="group flex shrink-0 items-baseline gap-2 font-heading text-lg tracking-tight"
+          className="group flex min-w-0 max-w-[11.5rem] shrink items-baseline font-heading text-sm tracking-tight sm:max-w-none sm:text-base"
+          title={siteConfig.hostnameBrand}
         >
-          <span className="font-semibold text-foreground transition-colors group-hover:text-primary">
-            Jev
-          </span>
-          <span className="hidden text-muted-foreground sm:inline">
-            Directory
+          <span className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
+            {siteConfig.hostnameBrand}
           </span>
         </AppLink>
 

@@ -7,8 +7,9 @@ const year = new Date().getFullYear();
   <div class="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-12">
     <div class="space-y-4 md:col-span-5">
       <p class="font-heading text-xl font-semibold tracking-tight">
-        {siteConfig.name}
+        {siteConfig.hostnameBrand}
       </p>
+      <p class="text-sm text-muted-foreground">{siteConfig.name}</p>
       <p class="max-w-md text-sm leading-relaxed text-muted-foreground">
         {siteConfig.description}
       </p>
@@ -77,6 +78,11 @@ const year = new Date().getFullYear();
         <li>
           <a href="/llms.txt" class="text-muted-foreground hover:text-primary">
             llms.txt
+          </a>
+        </li>
+        <li>
+          <a href="/developers" class="text-muted-foreground hover:text-primary">
+            Developers and agents
           </a>
         </li>
         <li>

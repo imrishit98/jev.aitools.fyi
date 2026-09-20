@@ -3,6 +3,8 @@ import {
   prefersMarkdownAccept,
 } from "../src/lib/agent-surface";
 
+const HOME_SHELL_PATH = "/__home/";
+
 function markdownResponse(body: string): Response {
   return new Response(body, {
     status: 200,
@@ -14,15 +16,36 @@ function markdownResponse(body: string): Response {
   });
 }
 
+function mergeVary(existing: string | null, value: string): string {
+  if (!existing) return value;
+  const parts = existing.split(",").map((p) => p.trim().toLowerCase());
+  if (parts.includes(value.toLowerCase())) return existing;
+  return `${existing}, ${value}`;
+}
+
+function withVary(response: Response): Response {
+  const headers = new Headers(response.headers);
+  headers.set("Vary", mergeVary(headers.get("Vary"), "Accept"));
+  return new Response(response.body, {
+    status: response.status,
+    statusText: response.statusText,
+    headers,
+  });
+}
+
 export const onRequest: PagesFunction = async (context) => {
   const { request, next } = context;
+  const url = new URL(request.url);
+
+  if (url.pathname !== "/" && url.pathname !== "/index.html") {
+    return next();
+  }
 
   if (request.method !== "GET" && request.method !== "HEAD") {
     return next();
   }
 
   const wantsMarkdown = prefersMarkdownAccept(request.headers.get("Accept"));
-  const assetResponse = await next();
 
   if (wantsMarkdown) {
     if (request.method === "HEAD") {
@@ -37,18 +60,16 @@ export const onRequest: PagesFunction = async (context) => {
     return markdownResponse(homeMarkdownBody());
   }
 
-  const headers = new Headers(assetResponse.headers);
-  headers.set("Vary", mergeVary(headers.get("Vary"), "Accept"));
-  return new Response(assetResponse.body, {
-    status: assetResponse.status,
-    statusText: assetResponse.statusText,
-    headers,
-  });
-};
+  const assets = (context.env as { ASSETS?: { fetch: typeof fetch } }).ASSETS;
+  if (assets) {
+    const assetUrl = new URL(request.url);
+    assetUrl.pathname = HOME_SHELL_PATH;
+    const assetResponse = await assets.fetch(
+      new Request(assetUrl.toString(), request),
+    );
+    return withVary(assetResponse);
+  }
 
-function mergeVary(existing: string | null, value: string): string {
-  if (!existing) return value;
-  const parts = existing.split(",").map((p) => p.trim().toLowerCase());
-  if (parts.includes(value.toLowerCase())) return existing;
-  return `${existing}, ${value}`;
-}
+  const response = await next();
+  return withVary(response);
+};

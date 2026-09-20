@@ -11,6 +11,7 @@ import { getCategory } from "@/data/categories";
 import { getItemBySlug, getRelatedItems } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { itemListingSeo } from "@/lib/seo";
+import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
 
 interface Props {
@@ -25,6 +26,10 @@ const cat = getCategory(item.category);
 const related = getRelatedItems(item);
 const itemPath = getItemPath(item);
 const seo = itemListingSeo(item);
+const descriptionParagraphs = splitIntoParagraphs(item.description);
+const editorialParagraphs = item.editorialBlurb
+  ? splitIntoParagraphs(item.editorialBlurb)
+  : [];
 ---
 
 <BaseLayout
@@ -67,9 +72,17 @@ const seo = itemListingSeo(item);
         </div>
         <div class="surface-card p-6 sm:p-8">
           <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">What it does</h2>
-          <p class="mt-4 text-base leading-relaxed text-foreground/90">{item.description}</p>
-          {item.editorialBlurb && (
-            <p class="mt-4 border-l-2 border-primary/30 pl-4 text-base leading-relaxed text-foreground/90">{item.editorialBlurb}</p>
+          <div class="mt-4 space-y-4 text-base leading-relaxed text-foreground/90">
+            {descriptionParagraphs.map((para) => (
+              <p>{para}</p>
+            ))}
+          </div>
+          {editorialParagraphs.length > 0 && (
+            <div class="mt-6 space-y-4 border-l-2 border-primary/30 pl-4 text-base leading-relaxed text-foreground/90">
+              {editorialParagraphs.map((para) => (
+                <p>{para}</p>
+              ))}
+            </div>
           )}
         </div>
         <div class="surface-card p-6 sm:p-8">

@@ -23,7 +23,7 @@ export function prefersMarkdownAccept(acceptHeader: string | null): boolean {
 }
 
 export function homeMarkdownBody(): string {
-  return `# ${siteConfig.name}
+  return `# ${siteConfig.hostnameBrand} (${siteConfig.name})
 
 > ${siteConfig.description}
 
@@ -35,11 +35,12 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 - [Learn hub](${SITE}/learn)
 - [Submit a project](${SITE}/submit)
 - [About and disclaimer](${SITE}/about)
+- [Developers and agents](${SITE}/developers)
 
 ## Agent-facing URLs
 
-- [llms.txt](${SITE}/llms.txt) — site map for LLMs
-- [OpenAPI](${SITE}/openapi.json) — machine-readable surface for this directory (not the TypeSafe inference API)
+- [llms.txt](${SITE}/llms.txt): site map for LLMs
+- [OpenAPI](${SITE}/openapi.json): machine-readable surface for this directory (not the TypeSafe inference API)
 - [Sitemap](${SITE}/sitemap.xml)
 - [Directory manifest](${SITE}/.well-known/jev-directory.json)
 - [Search index JSON](${SITE}/search-index.json)
@@ -56,7 +57,7 @@ export function notFoundMarkdownBody(pathname: string): string {
   const pathNote = pathname && pathname !== "/" ? `\n\nRequested path: \`${pathname}\`.` : "";
   return `# Not found
 
-We looked everywhere polite and could not find that page on ${siteConfig.name}.${pathNote}
+We looked everywhere polite and could not find that page on ${siteConfig.hostnameBrand} (${siteConfig.name}).${pathNote}
 
 ## Try these instead
 
