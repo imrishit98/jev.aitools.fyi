@@ -45,34 +45,54 @@ const seo = forAgentsPageSeo();
         >
           Recommended fetch order
         </h2>
-        <ol class="mt-6 list-decimal space-y-5 pl-6 marker:font-medium marker:text-foreground">
+        <ol class="mt-6 list-decimal space-y-6 pl-6 marker:font-medium marker:text-foreground">
           <li class="ps-1">
-            <a href="/llms.txt" class="font-medium text-primary hover:underline">/llms.txt</a>
-            <span class="mt-2 block text-sm leading-relaxed">
-              Site map, counts, and editorial notes for LLM crawlers
-            </span>
+            <div class="flex flex-col gap-2">
+              <a href="/llms.txt" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/llms.txt</a
+              >
+              <p class="m-0 text-sm leading-relaxed">
+                Site map, counts, and editorial notes for LLM crawlers
+              </p>
+            </div>
           </li>
           <li class="ps-1">
-            <a href="/openapi.json" class="font-medium text-primary hover:underline">/openapi.json</a>
-            <span class="mt-2 block text-sm leading-relaxed">
-              OpenAPI 3.1 for discovery GET endpoints on this directory
-            </span>
+            <div class="flex flex-col gap-2">
+              <a href="/openapi.json" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/openapi.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">
+                OpenAPI 3.1 for discovery GET endpoints on this directory
+              </p>
+            </div>
           </li>
           <li class="ps-1">
-            <a href="/search-index.json" class="font-medium text-primary hover:underline">/search-index.json</a>
-            <span class="mt-2 block text-sm leading-relaxed">
-              Listing index used by Explore search
-            </span>
+            <div class="flex flex-col gap-2">
+              <a
+                href="/search-index.json"
+                class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/search-index.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Listing index used by Explore search</p>
+            </div>
           </li>
           <li class="ps-1">
-            <a href="/sitemap.xml" class="font-medium text-primary hover:underline">/sitemap.xml</a>
-            <span class="mt-2 block text-sm leading-relaxed">Indexable HTML routes</span>
+            <div class="flex flex-col gap-2">
+              <a href="/sitemap.xml" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/sitemap.xml</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Indexable HTML routes</p>
+            </div>
           </li>
           <li class="ps-1">
-            <a href="/.well-known/jev-directory.json" class="font-medium text-primary hover:underline"
-              >/.well-known/jev-directory.json</a
-            >
-            <span class="mt-2 block text-sm leading-relaxed">Publisher manifest with URL patterns</span>
+            <div class="flex flex-col gap-2">
+              <a
+                href="/.well-known/jev-directory.json"
+                class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/.well-known/jev-directory.json</a
+              >
+              <p class="m-0 text-sm leading-relaxed">Publisher manifest with URL patterns</p>
+            </div>
           </li>
         </ol>
       </section>
@@ -81,18 +101,20 @@ const seo = forAgentsPageSeo();
         <h2 class="font-heading text-xl font-semibold text-foreground sm:text-2xl">Homepage negotiation</h2>
         <div class="mt-6 space-y-4">
           <p class="text-sm leading-relaxed sm:text-base">
-          Browsers without Markdown in <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Accept</code>
-          always receive static HTML at
-          <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code>
-          (HTTP 200). With Markdown preferred, <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">GET /</code>
-          returns a short overview. Add
-          <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">?view=agent</code>
-          for this longer crawl map in Markdown only.
+            Browsers without Markdown in{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Accept</code> always receive static
+            HTML at{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code> (HTTP 200). With Markdown
+            preferred,{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">GET /</code> returns a short overview.
+            Add{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">?view=agent</code> for this longer crawl
+            map in Markdown only.
           </p>
           <p class="text-sm leading-relaxed sm:text-base">
-          Responses include
-          <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Vary: Accept</code>.
-          Unknown paths return HTTP 404; Markdown 404 bodies link home, llms.txt, and the sitemap.
+            Responses include{" "}
+            <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Vary: Accept</code>. Unknown paths
+            return HTTP 404; Markdown 404 bodies link home, llms.txt, and the sitemap.
           </p>
         </div>
       </section>
