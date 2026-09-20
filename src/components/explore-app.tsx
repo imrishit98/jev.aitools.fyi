@@ -169,6 +169,7 @@ export default function ExploreApp() {
               ["mcp", "Jev MCP"],
               ["official", "Official TypeSafe"],
               ["featured", "Featured only"],
+              ["products", "Product profiles"],
             ] as const
           ).map(([key, label]) => (
             <label key={key} className="flex cursor-pointer items-center gap-2">

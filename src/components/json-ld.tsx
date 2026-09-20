@@ -89,13 +89,17 @@ export function itemListJsonLd(
   };
 }
 
-export function softwareApplicationJsonLd(item: DirectoryItem) {
+export function softwareApplicationJsonLd(
+  item: DirectoryItem,
+  options?: { description?: string },
+) {
   const detailUrl = absoluteUrl(getItemPath(item));
+  const description = options?.description ?? item.description;
   return {
     "@context": "https://schema.org",
     "@type": "SoftwareApplication",
     name: item.title,
-    description: item.description,
+    description,
     applicationCategory: "DeveloperApplication",
     url: item.url,
     mainEntityOfPage: detailUrl,
@@ -122,11 +126,14 @@ export function creativeWorkJsonLd(item: DirectoryItem) {
   };
 }
 
-export function listingJsonLd(item: DirectoryItem) {
+export function listingJsonLd(
+  item: DirectoryItem,
+  options?: { description?: string },
+) {
   if (item.category === "guides") {
     return creativeWorkJsonLd(item);
   }
-  return softwareApplicationJsonLd(item);
+  return softwareApplicationJsonLd(item, options);
 }
 
 export function learnArticleJsonLd(guide: {

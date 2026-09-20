@@ -7,6 +7,7 @@ import { HomeFaq } from "@/components/home-faq";
 import { HomeQuickJump } from "@/components/home-quick-jump";
 import { JevSpecSheet } from "@/components/jev-spec-sheet";
 import {
+  HomeFeaturedProducts,
   HomeGetStarted,
   HomeHangout,
   HomeHero,
@@ -37,6 +38,7 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
     <HomeWhatIsJev client:load />
     <HomeGetStarted client:load />
     <HomeDemoStrip client:visible demos={homepageDemos} />
+    <HomeFeaturedProducts client:visible />
     <HomeQuickJump client:load />
     <JevSpecSheet client:load />
     <HomeHangout client:load />

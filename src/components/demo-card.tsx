@@ -268,6 +268,17 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
   );
 }
 
+export function ProductProfileDemos({ demos }: { demos: ShowcaseDemo[] }) {
+  if (demos.length === 0) return null;
+  return (
+    <div className="grid gap-4 sm:grid-cols-2">
+      {demos.map((demo) => (
+        <DemoCard key={demo.id} demo={demo} variant="default" className="h-auto self-start" />
+      ))}
+    </div>
+  );
+}
+
 export function ShowcaseDemoGrid({ demos }: { demos: ShowcaseDemo[] }) {
   const [deepLinkDemo, setDeepLinkDemo] = useState<ShowcaseDemo | null>(null);
   const [deepLinkOpen, setDeepLinkOpen] = useState(false);

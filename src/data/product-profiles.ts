@@ -1,0 +1,795 @@
+import type { LearnGuideSlug } from "@/data/learn-guides";
+
+export type JevPrimitive = "Choice" | "Score" | "Noul";
+
+export type ProductProfileFaq = {
+  question: string;
+  answer: string;
+};
+
+export type ProductCreator = {
+  name: string;
+  handle?: string;
+  xUrl?: string;
+  githubUrl?: string;
+  company?: string;
+  companyUrl?: string;
+};
+
+export type SourcedMetric = {
+  claim: string;
+  source: string;
+};
+
+export type ProductJevUsage = {
+  /** Where in the product loop Jev runs (gate, routing, ranking, moderation, compaction, etc.). */
+  flowRole: string;
+  primitives: JevPrimitive[];
+  stateIn: string;
+  decisionOut: string;
+  /** Ordered steps in the hot path, when documented. */
+  flowSteps?: string[];
+  sourcedMetrics?: SourcedMetric[];
+};
+
+export type ProductLinks = {
+  website?: string;
+  repo?: string;
+  docs?: string;
+  demo?: string;
+  post?: string;
+};
+
+export type ProductProfile = {
+  slug: string;
+  /** published profiles render rich detail pages; draft profiles are omitted from the index. */
+  status: "published" | "draft";
+  problem: string;
+  targetUser: string;
+  overview: string;
+  creator: ProductCreator;
+  creatorQuote?: {
+    text: string;
+    attributedTo: string;
+    sourceUrl: string;
+  };
+  jevUsage: ProductJevUsage;
+  /** Long-form narrative for crawlers; must align with jevUsage facts. */
+  howJevIsUsed: string;
+  keyFeatures: string[];
+  stack: string[];
+  links: ProductLinks;
+  pricingNote?: string;
+  /** ISO date or human date when the listing first appeared in public demos or docs. */
+  firstSeen?: string;
+  demoIds?: string[];
+  relatedSlugs?: string[];
+  relatedLearnSlugs?: LearnGuideSlug[];
+  faq?: ProductProfileFaq[];
+  metaTitle?: string;
+  metaDescription?: string;
+};
+
+export function getProductProfile(slug: string): ProductProfile | undefined {
+  const profile = productProfilesBySlug[slug];
+  if (!profile || profile.status !== "published") return undefined;
+  return profile;
+}
+
+export function measureProductProfileBodyChars(slug: string): number {
+  const profile = productProfilesBySlug[slug];
+  if (!profile || profile.status !== "published") return 0;
+  const j = profile.jevUsage;
+  const chunks = [
+    profile.problem,
+    profile.targetUser,
+    profile.overview,
+    profile.howJevIsUsed,
+    j.flowRole,
+    j.stateIn,
+    profile.creator.name,
+    j.decisionOut,
+    ...(j.flowSteps ?? []),
+    ...(j.primitives ?? []),
+    ...(j.sourcedMetrics ?? []).flatMap((m) => [m.claim, m.source]),
+    ...(profile.keyFeatures ?? []),
+    ...(profile.stack ?? []),
+    profile.pricingNote ?? "",
+    profile.creatorQuote?.text ?? "",
+    ...(profile.faq ?? []).flatMap((f) => [f.question, f.answer]),
+  ];
+  return chunks.join(" ").trim().length;
+}
+
+export const productProfilesBySlug: Record<string, ProductProfile> = {
+  "classifier-dev": {
+    slug: "classifier-dev",
+    status: "published",
+    problem:
+      "Teams still route moderation, support, and analytics labels through chat models that return prose instead of thresholdable scores.",
+    targetUser:
+      "Engineers who want HTTP-first zero-shot labels without hosting their own classifier stack.",
+    overview:
+      "classifier.dev is a zero-shot text classification API on a single Cloudflare Worker. Plain text and label lists go in; the service returns a label and calibrated confidence. The fast tier runs TypeSafe Jev from src/jev.ts; uncertain rows can escalate to a smart tier when confidence falls below 0.7.",
+    creator: {
+      name: "Michael Chomsky",
+      handle: "michael_chomsky",
+      company: "classifier.dev",
+      companyUrl: "https://classifier.dev",
+      githubUrl: "https://github.com/mrmps/classifier-dev",
+    },
+    jevUsage: {
+      flowRole: "Classification core (fast tier) plus confidence-gated escalation to smart tier",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Batched {id, text} inputs plus per-item questions. Multi-label uses one yes/no Score-style question per label on the same state (documented in src/jev.ts).",
+      decisionOut:
+        "Calibrated probability per label or option; callers threshold confidence. Smart tier re-asks only rows below ESCALATE_BELOW (0.7 in src/index.ts).",
+      flowSteps: [
+        "Pack many items into one POST /v1/systemone request on the fast tier",
+        "Read per-label probabilities from Jev",
+        "Re-run only sub-0.7 confidence rows on the smart tier chain",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Smart tier escalates when fast-tier confidence is below 0.7 (ESCALATE_BELOW).",
+          source: "github.com/mrmps/classifier-dev src/index.ts",
+        },
+        {
+          claim: "Multi-label F1 0.879 vs 0.799 for the LLM cascade it replaces, ~200ms on a seven-case eval set.",
+          source: "github.com/mrmps/classifier-dev src/jev.ts header comments",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The Worker routes classification through src/jev.ts, which calls TypeSafe POST /v1/systemone (model jev-latest) or Vercel AI Gateway evaluation-model when a gateway key is set. Jev is described in-repo as a decision model that returns calibrated probabilities, not prompted classification prose. Multi-label is implemented as parallel per-label questions on shared state. The smart tier is a separate model chain that runs only on answers the fast tier marks uncertain via the 0.7 gate, which keeps average cost down while preserving accuracy on edge cases documented in the repository eval notes.",
+    keyFeatures: [
+      "curl-friendly HTTP API with up to 1,000 texts per request (README)",
+      "Fast Jev tier plus smart re-ask tier below 0.7 confidence",
+      "No API key required for light use (catalog listing and site docs)",
+      "CLI npm package classifier-dev mirrors the HTTP API",
+      "feedback.now agent feedback endpoints on the same host",
+    ],
+    stack: [
+      "Cloudflare Worker",
+      "TypeSafe System One (jev-latest)",
+      "Optional Vercel AI Gateway evaluation-model",
+      "esbuild, no database",
+    ],
+    links: {
+      website: "https://classifier.dev",
+      repo: "https://github.com/mrmps/classifier-dev",
+      docs: "https://classifier.dev",
+      demo: "https://classifier.dev",
+    },
+    pricingNote:
+      "Public rate-limit headers document fast vs smart tiers (see repository API notes). Confirm live limits on classifier.dev before production traffic.",
+    firstSeen: "2026-09-19",
+    demoIds: [],
+    relatedSlugs: ["classifier-dev-mcp", "browser-use-jev-ultrafast", "hemanth-pkg-gate"],
+    relatedLearnSlugs: ["jev-vs-llm-classification", "use-cases"],
+    faq: [
+      {
+        question: "Which Jev primitives does classifier.dev use?",
+        answer:
+          "Source comments in src/jev.ts describe single-label Choice-style picks and multi-label yes/no questions read from probabilities. The implementation packs many items per System One request.",
+      },
+      {
+        question: "When does the smart tier run?",
+        answer:
+          "Only when fast-tier confidence is below 0.7, per ESCALATE_BELOW in src/index.ts. Read eval/fallback_bench.py in the repo before quoting production accuracy.",
+      },
+    ],
+    metaTitle: "classifier.dev: Jev fast tier and smart escalation API",
+    metaDescription:
+      "Hosted zero-shot labels with Jev on the fast tier, 0.7 confidence escalation, and HTTP plus CLI surfaces. Sourced from the open classifier.dev Worker repository.",
+  },
+
+  "classifier-dev-mcp": {
+    slug: "classifier-dev-mcp",
+    status: "published",
+    problem:
+      "Agents need classify tools that return structured probabilities instead of markdown tables in chat.",
+    targetUser:
+      "MCP hosts wiring streamable HTTP tools for moderation, routing, and analytics agents.",
+    overview:
+      "The classifier.dev MCP server exposes the same classification backend as the HTTP API through streamable HTTP tools such as classify_texts. Setup documentation lives on classifier.dev/mcp-setup.",
+    creator: {
+      name: "Michael Chomsky",
+      handle: "michael_chomsky",
+      company: "classifier.dev",
+      companyUrl: "https://classifier.dev",
+      githubUrl: "https://github.com/mrmps/classifier-dev",
+    },
+    jevUsage: {
+      flowRole: "Agent tool transport to the same Jev classification core as classifier.dev",
+      primitives: ["Choice", "Score"],
+      stateIn: "Tool payloads with texts and label dimensions (per MCP tool schema on classifier.dev).",
+      decisionOut:
+        "Same probability vectors as the HTTP API; MCP is transport only.",
+      flowSteps: [
+        "Agent calls MCP classify_texts (or related tools)",
+        "Server forwards to classifier.dev Jev tiers",
+        "Agent thresholds probabilities in code",
+      ],
+    },
+    howJevIsUsed:
+      "MCP does not change the System One question shapes: tools call into the classifier.dev Worker stack documented in the main repository. Agents should still think in terms of fast Jev probabilities and optional smart-tier escalation rather than parsing model prose from tool results.",
+    keyFeatures: [
+      "Streamable HTTP MCP documented on classifier.dev/mcp-setup",
+      "Free tier without API key for light experiments (catalog listing)",
+      "Multi-label and dimension aware tools",
+      "Pairs with the classifier.dev HTTP product profile",
+    ],
+    stack: ["MCP streamable HTTP", "classifier.dev Worker", "TypeSafe System One"],
+    links: {
+      website: "https://classifier.dev/mcp",
+      repo: "https://github.com/mrmps/classifier-dev",
+      docs: "https://classifier.dev/mcp-setup",
+      demo: "https://classifier.dev/mcp-setup",
+    },
+    pricingNote: "Matches classifier.dev tier limits.",
+    firstSeen: "2026-09-19",
+    relatedSlugs: ["classifier-dev", "kushwho-jev-codes"],
+    relatedLearnSlugs: ["jev-typesafe", "use-cases"],
+    faq: [
+      {
+        question: "Do MCP tools use a different model than curl?",
+        answer: "No. They hit the same classifier.dev backend described in the main repository.",
+      },
+    ],
+    metaTitle: "classifier.dev MCP: Jev classify tools for agents",
+    metaDescription:
+      "Streamable HTTP MCP for classify_texts on classifier.dev. Same Jev fast and smart tiers as the HTTP API.",
+  },
+
+  "browser-use-jev-ultrafast": {
+    slug: "browser-use-jev-ultrafast",
+    status: "published",
+    problem:
+      "LLM-in-the-loop browser agents spend too long and too much per click when every step is open-ended generation.",
+    targetUser:
+      "Teams building Browser Use style agents who want a reference hybrid policy with documented timings.",
+    overview:
+      "Jev Ultrafast is Browser Use's open agent where TypeSafe Jev picks an operation (CLICK, TYPE_TEXT, SELECT, SCROLL, WAIT, DONE, BLOCKED) and a numbered DOM target from a fresh element table each step. A small LLM only runs when the operation is TYPE_TEXT.",
+    creator: {
+      name: "Gregor Zunic",
+      handle: "gregpr07",
+      xUrl: "https://x.com/gregpr07/status/2100411066966749359",
+      githubUrl: "https://github.com/browser-use/jev-ultrafast",
+      company: "Browser Use",
+      companyUrl: "https://browser-use.com",
+    },
+    creatorQuote: {
+      text:
+        "Seven seconds, four tenths of a cent, and Jev clicks the right DOM node while a tiny LLM only types when it must.",
+      attributedTo: "Gregor Zunic",
+      sourceUrl: "https://x.com/gregpr07/status/2100411066966749359",
+    },
+    jevUsage: {
+      flowRole: "Per-step browser control routing (operation + target selection)",
+      primitives: ["Choice"],
+      stateIn:
+        "Structured element table from a single browser snapshot (role, name, value, numeric index). No screenshots in the default agent loop per README.",
+      decisionOut:
+        "Operation head plus speculative target heads (click_target, type_text_target, select_target) resolved in one TypeSafe request; only the matching target executes.",
+      flowSteps: [
+        "Snapshot page into indexed element table",
+        "One Jev request chooses operation and compatible target",
+        "CLICK/SELECT execute directly; TYPE_TEXT triggers small LLM for string then browser input",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Google Flights Zürich to London task completed in 7.073s at 1× in the published recording.",
+          source: "github.com/browser-use/jev-ultrafast docs/performance.md",
+        },
+        {
+          claim: "Median Jev latency 178ms across 17 requests in that recording.",
+          source: "github.com/browser-use/jev-ultrafast docs/performance.md",
+        },
+        {
+          claim: "Median optimized runtime 7.092s vs 9.450s original arm in three matched pairs.",
+          source: "github.com/browser-use/jev-ultrafast docs/performance.md",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Each observation rebuilds a finite action space. Jev consumes structured state, not pixels, and returns operation and target probabilities in one round trip per decision cycle. Target questions are speculative: if the operation is CLICK, only click_target can fire. TYPE_TEXT is the only branch that calls a separate text model (Mercury in the documented demo configuration). This split is why public clips show sub-second decisions with occasional LLM latency only on typing steps.",
+    keyFeatures: [
+      "Local inspector UI on port 8766 with Choose next stepping",
+      "Browser Harness integration for Chrome debugging",
+      "Documented flight, Wikipedia, and hotel fixture benchmarks",
+      "Python library API via jev_ultrafast.Agent",
+    ],
+    stack: [
+      "Python",
+      "Browser Harness",
+      "TypeSafe Jev (jev-1.13.0 in benchmark doc)",
+      "OpenRouter text helper for TYPE_TEXT",
+    ],
+    links: {
+      website: "https://browser-use.com",
+      repo: "https://github.com/browser-use/jev-ultrafast",
+      docs: "https://github.com/browser-use/jev-ultrafast/blob/main/docs/performance.md",
+      demo: "https://browser-use.com",
+      post: "https://x.com/gregpr07/status/2100411066966749359",
+    },
+    pricingNote:
+      "Open source agent; TypeSafe and text-model keys are bring-your-own. Recording notes ~$0.00006272 OpenRouter for two text calls only.",
+    firstSeen: "2026-09-19",
+    demoIds: ["browser-ultrafast-gregpr07", "computer-use-speed-savboj"],
+    relatedSlugs: ["vercel-eve", "tamaratran-fast-jev-compaction", "hemanth-pkg-gate"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev see screenshots?",
+        answer:
+          "The default agent loop uses structured DOM state per README. The inspector can opt into screenshots for humans; the benchmark video uses a separate screencast.",
+      },
+    ],
+    metaTitle: "Browser Use Jev Ultrafast: Choice per browser step",
+    metaDescription:
+      "Documented hybrid browser agent: Jev Choice for operation and target in one request, LLM only for TYPE_TEXT. 7.07s Flights demo per performance.md.",
+  },
+
+  "vercel-eve": {
+    slug: "vercel-eve",
+    status: "published",
+    problem:
+      "Durable agent frameworks need evaluation hooks that stay testable instead of free-form judge prompts.",
+    targetUser:
+      "TypeScript teams building filesystem-first agents on Vercel who want structured evaluation alongside tools and skills.",
+    overview:
+      "eve is Vercel's open, filesystem-first agent framework (agent/instructions.md, tools/, skills/, channels/). This directory indexes it because public eve materials describe Jev on the experimental evaluate path for typed scoring; confirm shapes on eve.dev for your pinned version.",
+    creator: {
+      name: "Vercel",
+      company: "Vercel",
+      companyUrl: "https://vercel.com",
+      githubUrl: "https://github.com/vercel/eve",
+    },
+    jevUsage: {
+      flowRole: "Agent evaluation (experimental evaluate path per listing and eve marketing)",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Structured evaluation payloads as documented on eve.dev for the evaluate integration (verify in your version pin).",
+      decisionOut:
+        "Thresholdable evaluation scores used in agent workflows instead of unparsed judge prose.",
+      flowSteps: [
+        "Author agent under agent/ layout",
+        "Call evaluate path with structured questions",
+        "Apply thresholds in TypeScript policy code",
+      ],
+    },
+    howJevIsUsed:
+      "eve keeps orchestration in conventional files while evaluation can call System One through the experimental path described in this site's catalog listing and on eve.dev. This profile does not duplicate eve's full evaluate API: read Vercel's docs for the exact question schema, models, and gateway configuration in the release you deploy.",
+    keyFeatures: [
+      "npx eve@latest init scaffolding",
+      "Filesystem-first agent layout",
+      "Channels and schedules for durable agents",
+      "Hosted docs at eve.dev",
+    ],
+    stack: ["TypeScript", "Vercel AI Gateway compatible flows", "TypeSafe System One evaluate path"],
+    links: {
+      website: "https://eve.dev",
+      repo: "https://github.com/vercel/eve",
+      docs: "https://eve.dev/docs",
+      demo: "https://eve.dev",
+    },
+    firstSeen: "2026-09-17",
+    relatedSlugs: ["tanstack-ai-decide", "browser-use-jev-ultrafast"],
+    relatedLearnSlugs: ["vercel-ai-gateway", "system-one"],
+    faq: [
+      {
+        question: "Where is Jev configured in eve?",
+        answer:
+          "Follow eve.dev/docs for evaluate integration in your release. This directory listing summarizes Jev as the default evaluation model on the experimental evaluate path.",
+      },
+    ],
+    metaTitle: "Vercel eve: filesystem agents with Jev evaluate path",
+    metaDescription:
+      "Vercel eve agent framework with documented Jev evaluate integration. eve.dev docs, GitHub source, and structured evaluation hooks.",
+  },
+
+  "tamaratran-fast-jev-compaction": {
+    slug: "tamaratran-fast-jev-compaction",
+    status: "published",
+    problem:
+      "LLM-written compaction summaries drop exact errors, paths, and constraints from agent transcripts.",
+    targetUser:
+      "Claude Code users who want compaction that deletes stale tool rows without rewriting user or assistant text.",
+    overview:
+      "fast-jev-compaction is an npm package and Claude Code plugin that replaces summarization with Jev keep-or-drop decisions on paired tool_use and tool_result messages.",
+    creator: {
+      name: "Tamara Tran",
+      handle: "tamarajtran",
+      xUrl: "https://x.com/tamarajtran/status/2100694549362553153",
+      githubUrl: "https://github.com/tamaratran/fast-jev-compaction",
+    },
+    creatorQuote: {
+      text:
+        "Shrink a messy thread before your agent drowns in tokens. Jev keeps the plot, drops the fanfic.",
+      attributedTo: "Tamara Tran",
+      sourceUrl: "https://x.com/tamarajtran/status/2100694549362553153",
+    },
+    jevUsage: {
+      flowRole: "Context compaction gate on agent tool history",
+      primitives: ["Noul"],
+      stateIn:
+        "Full conversation with tool results replaced by short notes, fitted into maxStateTokens (25k default) using staged truncation described in README.",
+      decisionOut:
+        "Per tool call: keep result verbatim, keep call with truncated result, or drop call and result based on keepThreshold.",
+      flowSteps: [
+        "Pair tool_use with tool_result; pin recent and first messages",
+        "For each non-pinned call, ask two noul questions (keep call?, keep result verbatim?)",
+        "Shard questions across concurrent requests under maxRequestTokens (30k)",
+        "Rebuild message list without summarizing user or assistant text",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Default keep threshold applied to keepResult and keepCall noul answers.",
+          source: "github.com/tamaratran/fast-jev-compaction README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Compaction never paraphrases content. Jev only answers whether a tool call or its result still matters given the entire transcript state. Noul questions are explicitly documented in the README, including parallel requests when state plus questions would exceed Jev request limits. Failures throw so the Claude Code hook can fall back to default behavior.",
+    keyFeatures: [
+      "npm library plus Claude Code plugin hooks",
+      "Preserves user and assistant messages verbatim",
+      "Concurrent shard requests under Jev limits",
+      "Configurable preserveRecentMessages and thresholds",
+    ],
+    stack: ["TypeScript", "Claude Code plugin", "TypeSafe System One", "npm"],
+    links: {
+      repo: "https://github.com/tamaratran/fast-jev-compaction",
+      docs: "https://github.com/tamaratran/fast-jev-compaction#how-it-works",
+      post: "https://x.com/tamarajtran/status/2100694549362553153",
+    },
+    pricingNote: "Bring your own TYPESAFE_API_KEY per README install section.",
+    firstSeen: "2026-09-19",
+    demoIds: ["context-compaction-tamarajtran"],
+    relatedSlugs: ["kushwho-jev-codes", "devagrawal09-jev-review"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Which primitive does compaction use?",
+        answer:
+          "The README specifies two noul questions per non-pinned tool call: whether to keep the call and whether to keep the result verbatim.",
+      },
+    ],
+    metaTitle: "fast-jev-compaction: Noul gates for Claude Code context",
+    metaDescription:
+      "Claude Code plugin using parallel Jev noul decisions to drop stale tool rows without LLM summaries. Documented in the fast-jev-compaction README.",
+  },
+
+  "hemanth-pkg-gate": {
+    slug: "hemanth-pkg-gate",
+    status: "published",
+    problem:
+      "npm lifecycle scripts can exfiltrate or install before humans read package.json hooks.",
+    targetUser:
+      "Node developers who want a pre-install gate with structured allow, warn, and block verdicts.",
+    overview:
+      "pkg-gate evaluates package names or raw install scripts with TypeSafe System One before npm hooks run. It exposes TUI and JSON structured output for CI.",
+    creator: {
+      name: "Hemanth HM",
+      handle: "GNUmanth",
+      xUrl: "https://x.com/GNUmanth/status/2100405456187564201",
+      githubUrl: "https://github.com/hemanth/pkg-gate",
+    },
+    creatorQuote: {
+      text:
+        "Intent-aware package installs: block the dependency you did not mean before npm writes to disk.",
+      attributedTo: "Hemanth HM",
+      sourceUrl: "https://x.com/GNUmanth/status/2100405456187564201",
+    },
+    jevUsage: {
+      flowRole: "Pre-install security gate on lifecycle scripts",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Package metadata or raw shell script strings passed to pkgGate(); hooks extracted from package.json for local paths.",
+      decisionOut:
+        "report.action allow | warn | block with structured intent.choice and probability fields (README structured output example).",
+      flowSteps: [
+        "Extract preinstall, install, postinstall scripts",
+        "Evaluate each script in parallel via System One",
+        "Route low confidence to human review per README confidence gate",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Low confidence (conf < 0.50) routes to human review instead of automatic block.",
+          source: "github.com/hemanth/pkg-gate README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "pkg-gate treats install intent as a Choice problem (example structured field intent.choice: credential_access) and uses Score-style probabilities such as accessesSecrets.probability in documented JSON output. Without TYPESAFE_API_KEY the README documents an offline calibrated simulator fallback.",
+    keyFeatures: [
+      "pkgGate() API plus CLI",
+      "Structured JSON for agents and CI",
+      "Raw script evaluation mode",
+      "Interactive demo site",
+    ],
+    stack: ["Node.js", "TypeSafe System One", "npm lifecycle hooks"],
+    links: {
+      website: "https://hemanth.github.io/pkg-gate/",
+      repo: "https://github.com/hemanth/pkg-gate",
+      docs: "https://github.com/hemanth/pkg-gate",
+      demo: "https://hemanth.github.io/pkg-gate/",
+      post: "https://x.com/GNUmanth/status/2100405456187564201",
+    },
+    pricingNote: "Requires TYPESAFE_API_KEY for live Jev; offline simulator without key per README.",
+    firstSeen: "2026-09-19",
+    demoIds: ["pkg-gate-gnumanth"],
+    relatedSlugs: ["kushwho-jev-codes", "classifier-dev"],
+    relatedLearnSlugs: ["jev-vs-llm-classification", "use-cases"],
+    faq: [
+      {
+        question: "Does pkg-gate replace npm audit?",
+        answer: "No. It judges install script intent, not CVE databases.",
+      },
+    ],
+    metaTitle: "pkg-gate: Choice and Score npm install gate",
+    metaDescription:
+      "Pre-install System One gate with structured allow, warn, and block verdicts. Hemanth pkg-gate README plus live demo.",
+  },
+
+  "devagrawal09-jev-review": {
+    slug: "devagrawal09-jev-review",
+    status: "published",
+    problem:
+      "Monolithic LLM code reviews are slow and non-deterministic compared to staged structured judgments.",
+    targetUser:
+      "Developers running local diff or full-repo reviews with a dashboard on localhost.",
+    overview:
+      "jev-review orchestrates a staged review pipeline in TypeScript and uses Jev for bounded judgments, presenting reports in a local dashboard on 127.0.0.1:4317.",
+    creator: {
+      name: "Dev Agrawal",
+      githubUrl: "https://github.com/devagrawal09",
+      company: "Independent",
+    },
+    jevUsage: {
+      flowRole: "Multi-stage code review and codebase scan judgments",
+      primitives: ["Noul", "Choice", "Score"],
+      stateIn:
+        "Git diffs or discovered source files plus selected evidence hunks and test context per README workflow.",
+      decisionOut:
+        "Staged risk matrix, file profiles, evidence selection, mechanism classification, severity scores, and reviewer routing decisions.",
+      flowSteps: [
+        "Noul risk matrix",
+        "Choice + Score file profiles",
+        "Choice evidence selection",
+        "Choice mechanism classification",
+        "Score severity",
+        "Conditional Choice reviewer routing",
+      ],
+    },
+    howJevIsUsed:
+      "The README documents an explicit pipeline where each stage is a focused Jev call type. Policy thresholds live in TypeScript, not in model prose. The dashboard binds to localhost and never serves .env files, which makes the tool suitable for experimenting with parallel questions before wiring CI gates.",
+    keyFeatures: [
+      "review:changes and review:codebase modes",
+      "Local dashboard with collapsible sections",
+      "Requires Node.js 24+ and TYPESAFE_API_KEY",
+      "Dependency-layer enforcement via scripts/check-dependencies.ts",
+    ],
+    stack: ["TypeScript", "Node.js 24+", "Git", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/devagrawal09/jev-review",
+      docs: "https://github.com/devagrawal09/jev-review#how-it-works",
+    },
+    pricingNote: "Uses TypeSafe API key from console.typesafe.ai per README.",
+    firstSeen: "2026-09-19",
+    demoIds: ["code-review-gate-kunal"],
+    relatedSlugs: ["kushwho-jev-codes", "hemanth-pkg-gate"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "How is this different from jev-codes?",
+        answer:
+          "jev-review is a staged review dashboard. jev-codes audits diffs against YAML standards packs with per-hunk parallel calls.",
+      },
+    ],
+    metaTitle: "jev-review: staged Noul, Choice, and Score reviews",
+    metaDescription:
+      "Local Jev review pipeline with documented stages from risk matrix through severity Score. GitHub README and dashboard on localhost.",
+  },
+
+  "ploy-ai": {
+    slug: "ploy-ai",
+    status: "published",
+    problem:
+      "Marketing teams run heavy A/B programs to test headlines and layouts for each visitor segment.",
+    targetUser:
+      "Growth teams using Ploy's AI-native site builder for funnel personalization.",
+    overview:
+      "Ploy (ploy.ai) is an AI-native site builder. The public Bryant Chou showcase clip describes Jev choosing headline, layout, and copy per visitor segment.",
+    creator: {
+      name: "Bryant Chou",
+      handle: "bryantchou",
+      xUrl: "https://x.com/bryantchou/status/2101485995669770522",
+      company: "Ploy",
+      companyUrl: "https://ploy.ai",
+    },
+    creatorQuote: {
+      text:
+        "Ploy reads your funnel, Jev picks headline and layout for each segment in about twenty-five milliseconds. A/B tests without the all-hands.",
+      attributedTo: "Bryant Chou",
+      sourceUrl: "https://x.com/bryantchou/status/2101485995669770522",
+    },
+    jevUsage: {
+      flowRole: "On-page personalization routing (headline, layout, copy selection)",
+      primitives: ["Choice"],
+      stateIn:
+        "Visitor or segment context plus variant catalog (inferred from showcase description; no open-source schema on this directory).",
+      decisionOut:
+        "Selected headline and layout variant per visitor according to the launch clip.",
+      sourcedMetrics: [
+        {
+          claim: "About twenty-five millisecond decisions per visitor in the launch clip.",
+          source: "Jev Directory showcase blurb citing Bryant Chou post",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Ploy uses Jev for discrete variant selection rather than generating entire pages from scratch on every request, per the attributed launch clip. This profile does not claim internal Ploy schemas beyond what Bryant Chou published; treat ploy.ai as the product source of truth for funnels and analytics.",
+    keyFeatures: [
+      "AI-native site builder at ploy.ai",
+      "Segment-aware copy and layout selection in public demo",
+      "Featured homepage showcase embed",
+    ],
+    stack: ["Ploy hosted platform", "TypeSafe System One (per builder clip)"],
+    links: {
+      website: "https://ploy.ai",
+      post: "https://x.com/bryantchou/status/2101485995669770522",
+    },
+    firstSeen: "2026-09-19",
+    demoIds: ["ploy-jev-websites-bryantchou"],
+    relatedSlugs: ["classifier-dev", "tanstack-ai-decide"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Can I verify latency independently?",
+        answer:
+          "The ~25ms figure comes from the attributed X clip on this site's showcase. Measure on your own funnel inside Ploy for production SLOs.",
+      },
+    ],
+    metaTitle: "Ploy: Choice-driven funnel personalization",
+    metaDescription:
+      "ploy.ai marketing builder with Jev picking headline and layout per segment. Sourced from Bryant Chou showcase clip on Jev Directory.",
+  },
+
+  "kushwho-jev-codes": {
+    slug: "kushwho-jev-codes",
+    status: "published",
+    problem:
+      "Agent-written diffs need merge gates that stay consistent across repos and agents.",
+    targetUser:
+      "Teams using Claude Code, Cursor, Codex, opencode, or Antigravity with YAML standards packs.",
+    overview:
+      "jev-codes audits git diffs hunk-by-hunk against editable YAML standards. Jev answers typed questions; it never writes code.",
+    creator: {
+      name: "Kushal Agarwal",
+      handle: "kushwho11146",
+      xUrl: "https://x.com/kushwho11146/status/2101103318386758011",
+      githubUrl: "https://github.com/kushwho/jev-codes",
+    },
+    creatorQuote: {
+      text:
+        "Point Jev at your diff and a YAML standards pack. Your agent gets a merge opinion that is not vibes-only.",
+      attributedTo: "Kushal Agarwal",
+      sourceUrl: "https://x.com/kushwho11146/status/2101103318386758011",
+    },
+    jevUsage: {
+      flowRole: "Pre-merge audit gate on changed hunks",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Per-hunk state {file, language, hunk, context_before, context_after} under 24k token budget per README.",
+      decisionOut:
+        "Thresholded pass or fail per pack question; JSON or TTY report with fail-on levels.",
+      flowSteps: [
+        "git diff to hunks, filter ignores",
+        "One parallel Jev call per hunk (eight in flight)",
+        "Apply thresholds and min_confidence from YAML pack",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Eval runner reports HIGH gate precision 1.000 on six cases at ~$0.0006 for 17 calls.",
+          source: "github.com/kushwho/jev-codes README eval section",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Packs are YAML question definitions including noul items that skip the confidence gate by design. The CLI caches answers by hash of state plus question text so reruns only re-score changed hunks. Agents invoke audit --json and fix only high or medium findings at reported lines per harness adapters.",
+    keyFeatures: [
+      "npx @kushwho/jev-codes audit with --json for agents",
+      "Bundled core pack plus per-repo .jev-codes/standards.yaml",
+      "Harness plugins for Claude, Cursor, Codex, opencode, Antigravity",
+      "jev-codes-eval labeled diff suite in repo",
+    ],
+    stack: ["TypeScript CLI", "YAML standards packs", "Git", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/kushwho/jev-codes",
+      docs: "https://github.com/kushwho/jev-codes#how-it-works",
+      post: "https://x.com/kushwho11146/status/2101103318386758011",
+    },
+    pricingNote: "Live Jev calls require TYPESAFE_API_KEY; README cites fraction-of-a-cent per audit.",
+    firstSeen: "2026-09-19",
+    demoIds: ["jev-codes-kushwho"],
+    relatedSlugs: ["devagrawal09-jev-review", "hemanth-pkg-gate"],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev edit my code?",
+        answer: "No. README states Jev only answers typed questions; agents apply fixes.",
+      },
+    ],
+    metaTitle: "jev-codes: YAML standards audit gate with Jev",
+    metaDescription:
+      "Parallel per-hunk Jev audits against YAML packs. Kushal jev-codes README, eval metrics, and showcase clip.",
+  },
+
+  "tanstack-ai-decide": {
+    slug: "tanstack-ai-decide",
+    status: "published",
+    problem:
+      "TypeScript apps need typed decision helpers instead of raw System One HTTP for every agent feature.",
+    targetUser:
+      "Developers using TanStack AI who want decide() for structured agent control flow.",
+    overview:
+      "TanStack AI adds decide() for typed Choice, Score, and boolean paths. Documentation lives on tanstack.com/ai with source in github.com/TanStack/ai.",
+    creator: {
+      name: "TanStack",
+      handle: "tan_stack",
+      xUrl: "https://x.com/tan_stack/status/2101659024890765819",
+      company: "TanStack",
+      companyUrl: "https://tanstack.com",
+      githubUrl: "https://github.com/TanStack/ai",
+    },
+    creatorQuote: {
+      text:
+        "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops cosplaying as a chatbot.",
+      attributedTo: "TanStack",
+      sourceUrl: "https://x.com/tan_stack/status/2101659024890765819",
+    },
+    jevUsage: {
+      flowRole: "Application and agent routing via decide() API",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn: "Typed decide() inputs as defined in TanStack AI docs for your runtime.",
+      decisionOut: "Structured decision results consumable in TypeScript control flow.",
+      flowSteps: [
+        "Call decide() from TanStack AI",
+        "Map to System One semantics",
+        "Threshold probabilities in app code",
+      ],
+    },
+    howJevIsUsed:
+      "decide() is TanStack's ergonomic surface for System One style questions. The launch clip on Jev Directory shows agent code using decide() instead of parsing chat completions. Pair TanStack AI with gateway or TypeSafe keys per TanStack docs for your deployment target.",
+    keyFeatures: [
+      "decide() API for choices, scores, and booleans",
+      "Official docs at tanstack.com/ai",
+      "Open source monorepo on GitHub",
+      "Homepage showcase clip",
+    ],
+    stack: ["TypeScript", "TanStack AI", "TypeSafe System One"],
+    links: {
+      website: "https://tanstack.com/ai/latest",
+      repo: "https://github.com/TanStack/ai",
+      docs: "https://tanstack.com/ai/latest",
+      post: "https://x.com/tan_stack/status/2101659024890765819",
+    },
+    firstSeen: "2026-09-19",
+    demoIds: ["tanstack-ai-decide-tanstack"],
+    relatedSlugs: ["vercel-eve", "classifier-dev"],
+    relatedLearnSlugs: ["vercel-ai-gateway", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is decide() only for React?",
+        answer: "TanStack AI documents multiple runtimes; read tanstack.com/ai for your stack.",
+      },
+    ],
+    metaTitle: "TanStack AI decide(): Choice, Score, Noul in TypeScript",
+    metaDescription:
+      "TanStack AI decide() exposes System One primitives in TypeScript. Official docs, GitHub repo, and TanStack launch clip.",
+  },
+
+};

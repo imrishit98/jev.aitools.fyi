@@ -1,6 +1,10 @@
 import { getCategory } from "@/data/categories";
 import { getHandwrittenEditorialBlurb } from "@/data/editorial-blurbs";
 import type { DirectoryItem } from "@/data/types";
+import {
+  getProductProfile,
+  measureProductProfileBodyChars,
+} from "@/data/product-profiles";
 
 /** Target unique body length on kept detail pages (description + notes + editorial). */
 export const DETAIL_PAGE_MIN_BODY_CHARS = 400;
@@ -83,6 +87,7 @@ export function computeIndexOnly(
   item: DirectoryItem,
   duplicateDemotions: Set<string>,
 ): boolean {
+  if (getProductProfile(item.slug)) return false;
   if (item.detailPage === true) return false;
   if (item.indexOnly === true) return true;
 
@@ -111,10 +116,11 @@ export function computeIndexOnly(
 }
 
 export function measureDetailBodyChars(item: DirectoryItem): number {
-  return [item.description, item.editorialBlurb]
+  const base = [item.description, item.editorialBlurb]
     .filter(Boolean)
     .join(" ")
     .trim().length;
+  return base + measureProductProfileBodyChars(item.slug);
 }
 
 function categoryEditorialTail(item: DirectoryItem): string {
@@ -179,7 +185,10 @@ export function resolveContentPolicy(
 
     let editorialBlurb = item.editorialBlurb;
     const bodyChars = measureDetailBodyChars({ ...item, editorialBlurb });
-    if (bodyChars < DETAIL_PAGE_MIN_BODY_CHARS) {
+    if (
+      bodyChars < DETAIL_PAGE_MIN_BODY_CHARS &&
+      !getProductProfile(item.slug)
+    ) {
       editorialBlurb = buildEditorialBlurb(item);
     }
 

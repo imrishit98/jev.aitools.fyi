@@ -3,7 +3,10 @@ import { AudienceSwitch } from "@/components/audience-switch";
 import { ButtonLink } from "@/components/button-link";
 import { ShareBar } from "@/components/share-menu";
 import { homeShareOptions } from "@/lib/share";
+import { ItemCard } from "@/components/item-card";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
+import { getFeaturedProductSlugs } from "@/lib/product-profiles";
+import { getItemBySlug } from "@/lib/items";
 import { siteConfig } from "@/lib/site";
 import {
   BookOpen,
@@ -362,6 +365,43 @@ export function HomeHero() {
             </ButtonLink>
           </div>
         </div>
+      </div>
+    </section>
+  );
+}
+
+export function HomeFeaturedProducts() {
+  const products = getFeaturedProductSlugs(4)
+    .map((slug) => getItemBySlug(slug))
+    .filter(Boolean);
+
+  if (products.length === 0) return null;
+
+  return (
+    <section aria-labelledby="featured-products-heading" className="space-y-6">
+      <div className="flex flex-col gap-3 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+            Products
+          </p>
+          <h2
+            id="featured-products-heading"
+            className="mt-1 font-heading text-2xl font-semibold tracking-tight sm:text-3xl"
+          >
+            Shipped with rich profiles
+          </h2>
+          <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+            Long-form pages with FAQs, System One notes, and showcase embeds when a clip exists.
+          </p>
+        </div>
+        <AppLink href="/explore?products=1" className="text-sm font-medium text-primary hover:underline">
+          All product profiles →
+        </AppLink>
+      </div>
+      <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        {products.map((item) => (
+          <ItemCard key={item!.slug} item={item!} />
+        ))}
       </div>
     </section>
   );

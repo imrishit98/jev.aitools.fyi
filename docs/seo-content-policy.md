@@ -34,6 +34,10 @@ An item earns a detail page when **any** of the following hold (and it is not a 
 
 **High-signal overrides:** catalog `detailPage: true` always keeps a detail page. Featured listings that pass the high-signal path receive an auto **editorial blurb** when body copy is still under 400 characters.
 
+### Product profiles (rich detail pages)
+
+Listings with a `status: "published"` entry in `src/data/product-profiles.ts` always receive a detail page, count profile copy toward the 400-character body threshold, and render structured sections (Overview, Creator, How Jev is used with primitives and sourced metrics, Features/stack, Demo embed, Links, FAQ with JSON-LD). Explore filter: `/explore?products=1`. Use `status: "draft"` or omit profiles when Jev usage cannot be verified from README, docs, or attributed posts. Prefer fewer thick pages over many thin ones.
+
 ### Explore-only (`indexOnly`)
 
 Default for stubs, one-liners, link-only guide entries, and listings that fail the rules above.

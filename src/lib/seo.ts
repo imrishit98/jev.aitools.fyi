@@ -3,6 +3,11 @@ import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
 import { getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
+import {
+  getProductProfile,
+  productProfileSeoDescription,
+  productProfileSeoTitle,
+} from "@/lib/product-profiles";
 import { siteConfig } from "@/lib/site";
 
 export type PageSeo = {
@@ -162,6 +167,10 @@ function draftItemTitleCore(
 }
 
 function draftItemDescription(item: DirectoryItem): string {
+  const profile = getProductProfile(item.slug);
+  if (profile) {
+    return trimMetaDescription(productProfileSeoDescription(profile));
+  }
   const oneLiner = stripEmDash(item.oneLiner);
   const body = stripEmDash(item.description ?? "");
   if (body.length >= 100 && body !== oneLiner) {
@@ -182,8 +191,11 @@ function buildUniqueListingMetaMap(): Map<string, ListingMetaDraft> {
   const map = new Map<string, ListingMetaDraft>();
 
   for (const item of items) {
+    const profile = getProductProfile(item.slug);
     map.set(item.slug, {
-      titleCore: draftItemTitleCore(item),
+      titleCore: profile
+        ? productProfileSeoTitle(item, profile)
+        : draftItemTitleCore(item),
       description: draftItemDescription(item),
     });
   }
