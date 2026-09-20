@@ -1,5 +1,10 @@
 "use client";
 
+/**
+ * Breakpoint contract (Tailwind lg = 1024px):
+ * - Below lg: logo + hamburger sheet for all primary/secondary/category links; utility cluster on the right.
+ * - lg+: inline primary links + More dropdown (secondary + categories); hamburger hidden.
+ */
 import { useState, type ReactNode } from "react";
 import { AppLink } from "@/components/app-link";
 import ThemeToggle from "@/components/theme-toggle";
@@ -24,6 +29,7 @@ import {
   SheetDescription,
   SheetHeader,
   SheetTitle,
+  SheetTrigger,
 } from "@/components/ui/sheet";
 import { ChevronDown, Menu } from "lucide-react";
 
@@ -40,6 +46,9 @@ const moreNav = [
   { href: "/about", label: "About" },
 ] as const;
 
+const HEADER_HEIGHT = "top-14 sm:top-[4.25rem]";
+const HEADER_HEIGHT_CALC = "h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4.25rem)]";
+
 function NavDrawerLink({
   href,
   children,
@@ -52,7 +61,7 @@ function NavDrawerLink({
   return (
     <AppLink
       href={href}
-      className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted"
+      className="block rounded-md px-3 py-2.5 text-sm font-medium text-foreground transition-colors hover:bg-muted focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring"
       onClick={onNavigate}
     >
       {children}
@@ -65,28 +74,32 @@ function MobileNavSheet() {
   const close = () => setOpen(false);
 
   return (
-    <Sheet open={open} onOpenChange={setOpen} modal={false}>
-      <Button
-        type="button"
-        variant="ghost"
-        size="icon-sm"
-        className="shrink-0 lg:hidden"
-        aria-label={open ? "Close menu" : "Open menu"}
-        aria-expanded={open}
-        onClick={() => setOpen((v) => !v)}
+    <Sheet open={open} onOpenChange={setOpen}>
+      <SheetTrigger
+        className="lg:hidden"
+        render={
+          <Button
+            type="button"
+            variant="ghost"
+            size="icon-sm"
+            className="shrink-0"
+            aria-label="Open menu"
+          />
+        }
       >
         <Menu className="size-5" aria-hidden />
-      </Button>
+      </SheetTrigger>
       <SheetContent
         side="right"
-        className="z-[90] w-[min(100vw-3rem,20rem)] gap-0 overflow-y-auto p-0 pt-14 sm:pt-[4.25rem]"
         showCloseButton
+        overlayClassName={`${HEADER_HEIGHT} inset-x-0 bottom-0`}
+        className={`${HEADER_HEIGHT} ${HEADER_HEIGHT_CALC} w-full max-w-sm gap-0 overflow-y-auto border-l p-0 data-[side=right]:inset-y-auto data-[side=right]:h-auto`}
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Site navigation</SheetTitle>
           <SheetDescription>Directory pages and categories</SheetDescription>
         </SheetHeader>
-        <nav className="flex flex-col px-2 pb-6 pt-2" aria-label="Mobile">
+        <nav className="flex flex-col px-2 pb-8 pt-3" aria-label="Mobile and tablet">
           <p className="px-3 py-2 text-xs font-medium uppercase tracking-wider text-muted-foreground">
             Browse
           </p>
@@ -117,88 +130,86 @@ function MobileNavSheet() {
   );
 }
 
-function MoreMenuContent() {
+function DesktopMoreMenu() {
   return (
-    <>
-      {moreNav.map((item) => (
-        <DropdownMenuItem key={item.href} className="p-0">
-          <AppLink href={item.href} className="block w-full px-2 py-1.5 text-sm">
-            {item.label}
-          </AppLink>
-        </DropdownMenuItem>
-      ))}
-      <DropdownMenuSeparator />
-      <DropdownMenuGroup>
-        <DropdownMenuLabel className="text-xs text-muted-foreground">Categories</DropdownMenuLabel>
-        {categories.map((cat) => (
-          <DropdownMenuItem key={cat.slug} className="p-0">
-            <AppLink
-              href={`/categories/${cat.slug}`}
-              className="block w-full px-2 py-1.5 text-sm"
-            >
-              {cat.title}
+    <DropdownMenu modal={false}>
+      <DropdownMenuTrigger className="inline-flex shrink-0 items-center gap-1 rounded-md px-2.5 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 xl:px-3">
+        More
+        <ChevronDown className="size-3.5 opacity-70" aria-hidden />
+      </DropdownMenuTrigger>
+      <DropdownMenuContent
+        align="start"
+        sideOffset={8}
+        className="z-[120] max-h-[min(24rem,70vh)] w-56"
+      >
+        {moreNav.map((item) => (
+          <DropdownMenuItem key={item.href} className="p-0">
+            <AppLink href={item.href} className="block w-full px-2 py-1.5 text-sm">
+              {item.label}
             </AppLink>
           </DropdownMenuItem>
         ))}
-      </DropdownMenuGroup>
-    </>
+        <DropdownMenuSeparator />
+        <DropdownMenuGroup>
+          <DropdownMenuLabel className="text-xs text-muted-foreground">Categories</DropdownMenuLabel>
+          {categories.map((cat) => (
+            <DropdownMenuItem key={cat.slug} className="p-0">
+              <AppLink
+                href={`/categories/${cat.slug}`}
+                className="block w-full px-2 py-1.5 text-sm"
+              >
+                {cat.title}
+              </AppLink>
+            </DropdownMenuItem>
+          ))}
+        </DropdownMenuGroup>
+      </DropdownMenuContent>
+    </DropdownMenu>
   );
 }
 
 export default function SiteHeader() {
   return (
-    <header className="sticky top-0 z-[100] border-b border-border/80 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex h-14 max-w-6xl min-w-0 items-center gap-2 px-4 sm:h-[4.25rem] sm:gap-3 sm:px-6">
-        <div className="flex min-w-0 flex-1 items-center gap-1 overflow-hidden sm:gap-2">
-          <AppLink
-            href="/"
-            className="group flex min-w-0 max-w-[9.5rem] shrink-0 items-baseline font-heading text-sm tracking-tight sm:max-w-[11.5rem] sm:text-base"
-            title={siteConfig.hostnameBrand}
-          >
-            <span className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
-              {siteConfig.hostnameBrand}
-            </span>
-          </AppLink>
+    <header className="sticky top-0 z-[100] border-b border-border/80 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/80">
+      <div className="mx-auto flex h-14 max-w-6xl min-w-0 items-center gap-2 px-3 sm:h-[4.25rem] sm:gap-3 sm:px-6">
+        <AppLink
+          href="/"
+          className="group flex min-w-0 max-w-[8.75rem] shrink-0 items-baseline font-heading text-sm tracking-tight sm:max-w-[11.5rem] sm:text-base"
+          title={siteConfig.hostnameBrand}
+        >
+          <span className="truncate font-semibold text-foreground transition-colors group-hover:text-primary">
+            {siteConfig.hostnameBrand}
+          </span>
+        </AppLink>
 
-          <MobileNavSheet />
+        <MobileNavSheet />
 
-          <nav
-            className="hidden shrink-0 items-center gap-0.5 lg:flex xl:gap-1"
-            aria-label="Main"
-          >
-            {primaryNav.map((item) => (
-              <AppLink
-                key={item.href}
-                href={item.href}
-                className="shrink-0 rounded-md px-2.5 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 xl:px-3"
-              >
-                {item.label}
-              </AppLink>
-            ))}
-          </nav>
-
-          <DropdownMenu modal={false}>
-            <DropdownMenuTrigger className="hidden shrink-0 items-center gap-1 rounded-md px-2.5 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 lg:inline-flex xl:px-3">
-              More
-              <ChevronDown className="size-3.5 opacity-70" aria-hidden />
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="start"
-              sideOffset={8}
-              className="z-[110] max-h-[min(24rem,70vh)] w-56"
+        <nav
+          className="ml-1 hidden min-w-0 shrink-0 items-center gap-0.5 lg:flex xl:ml-2 xl:gap-1"
+          aria-label="Main"
+        >
+          {primaryNav.map((item) => (
+            <AppLink
+              key={item.href}
+              href={item.href}
+              className="shrink-0 rounded-md px-2.5 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50 xl:px-3"
             >
-              <MoreMenuContent />
-            </DropdownMenuContent>
-          </DropdownMenu>
+              {item.label}
+            </AppLink>
+          ))}
+        </nav>
+
+        <div className="hidden lg:block">
+          <DesktopMoreMenu />
         </div>
 
-        <div className="relative flex shrink-0 items-center gap-1 border-l border-border/60 pl-2 sm:gap-1.5 sm:pl-3">
+        <div className="ml-auto flex shrink-0 items-center gap-0.5 border-l border-border/60 pl-2 sm:gap-1.5 sm:pl-3">
           <AudienceSwitch
             variant="header"
             hideAuxLinkUntil="lg"
-            className="hidden sm:flex"
+            className="hidden md:flex"
           />
-          <GitHubStarLink />
+          <GitHubStarLink className="max-[374px]:px-1.5" />
           <ThemeToggle />
           <SearchCommand />
         </div>
