@@ -1,4 +1,5 @@
 import { categories } from "@/data/categories-data";
+import { getCategoryEnrichment } from "@/lib/category-enrichment";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
@@ -8,6 +9,7 @@ import {
   productProfileSeoDescription,
   productProfileSeoTitle,
 } from "@/lib/product-profiles";
+import { getListingEnrichment } from "@/lib/listing-enrichment";
 import { siteConfig } from "@/lib/site";
 
 export type PageSeo = {
@@ -192,11 +194,16 @@ function buildUniqueListingMetaMap(): Map<string, ListingMetaDraft> {
 
   for (const item of items) {
     const profile = getProductProfile(item.slug);
+    const enrichment = getListingEnrichment(item.slug);
     map.set(item.slug, {
       titleCore: profile
         ? productProfileSeoTitle(item, profile)
-        : draftItemTitleCore(item),
-      description: draftItemDescription(item),
+        : enrichment?.metaTitle
+          ? stripEmDash(enrichment.metaTitle)
+          : draftItemTitleCore(item),
+      description: enrichment?.metaDescription
+        ? trimMetaDescription(stripEmDash(enrichment.metaDescription))
+        : draftItemDescription(item),
     });
   }
 
@@ -347,10 +354,13 @@ export function submitPageSeo() {
   });
 }
 
-export function categoryPageSeo(cat: CategoryMeta) {
+export function categoryPageSeo(
+  cat: CategoryMeta,
+  overrides?: { title?: string; description?: string },
+) {
   return pageSeo({
-    title: cat.seoTitle,
-    description: cat.seoDescription,
+    title: overrides?.title ?? cat.seoTitle,
+    description: overrides?.description ?? cat.seoDescription,
     path: `/categories/${cat.slug}`,
     imagePath: ogImagePaths.category(cat.slug),
   });
@@ -408,7 +418,11 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
   push("/showcase", showcase.title, showcase.description);
 
   for (const cat of categories) {
-    const seo = categoryPageSeo(cat);
+    const enrichment = getCategoryEnrichment(cat.slug);
+    const seo = categoryPageSeo(cat, {
+      title: enrichment?.seoTitle,
+      description: enrichment?.seoDescription,
+    });
     push(`/categories/${cat.slug}`, seo.title, seo.description);
   }
 

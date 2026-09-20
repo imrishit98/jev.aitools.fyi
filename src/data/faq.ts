@@ -21,4 +21,9 @@ export const homeFaq: FaqEntry[] = [
     answer:
       "Jev Directory at jev.aitools.fyi is an independent index of SDKs, integrations, Jev MCP servers, demos, and apps. The explore index lists the full public catalog; only stronger listings get on-site detail pages under paths like /sdks/ and /tools/. Published by aitools.fyi. Not affiliated with TypeSafe AI unless a listing is official.",
   },
+  {
+    question: "What is the Jev AI website?",
+    answer:
+      "TypeSafe AI hosts product docs and the playground at docs.typesafe.ai and jev.works. This site, jev.aitools.fyi, is a community directory of tools, SDKs, benchmarks, and guides that use System One Jev. Start on Learn for primers, then Explore for listings.",
+  },
 ];

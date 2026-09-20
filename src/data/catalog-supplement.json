@@ -202,5 +202,31 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-09-20"
+  },
+  {
+    "slug": "socai-io-jev-social",
+    "title": "Jev Social",
+    "oneLiner": "Local Jev decision loop that drives socai CLI research in the user's Chrome and turns social evidence into cited reports.",
+    "description": "Jev Social is an open-source, local-first Instagram, TikTok, and LinkedIn research app from socai-io. You describe a goal in plain language; the app builds a bounded set of read-only socai CLI operations discovered from live results (search, open a specific profile or post, read comments, download TikTok media, inspect page state, finish). TypeSafe Jev chooses the next typed operation each step via OpenRouter; socai runs the command in your real Chrome and returns observations. Unsupported, malformed, and low-confidence choices do not execute, and attempted ops drop out of the next choice set. There is no mock fallback, no arbitrary shell generation for Jev, and no handoff to a separate research agent: evidence compiles into cards, tables, and a cited Markdown report. Loopback UI on port 8766, Node 20+, OpenRouter key with Jev access, and the current socai CLI. Live marketing site and GIF demos on GitHub.",
+    "category": "browser-computer-use",
+    "tags": [
+      "browser-computer-use",
+      "browser-use",
+      "social-research",
+      "cli",
+      "javascript",
+      "evidence"
+    ],
+    "language": "JavaScript",
+    "stars": 21,
+    "url": "https://github.com/socai-io/jev-social",
+    "repoUrl": "https://github.com/socai-io/jev-social",
+    "demoUrl": "https://socai-io.github.io/jev-social/",
+    "postUrl": "https://socai.io/blog/jev-social-media-automation/",
+    "badges": ["has-demo"],
+    "creatorHandle": "Asklv123123123",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-09-20"
   }
 ]

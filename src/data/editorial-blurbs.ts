@@ -7,6 +7,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Vercel's open agent stack with Jev wired into the experimental evaluate path. A practical reference if you want typed scoring and gates in TypeScript without inventing your own rubric parser.",
   "browser-use-jev-ultrafast":
     "The famous hybrid: Jev chooses the browser operation and target node in one shot, and a small LLM only shows up when something actually needs typing. Fast enough to feel interactive on real sites.",
+  "socai-io-jev-social":
+    "Social research without vibe-based browsing: Jev picks the next read-only socai command from a shrinking menu of real targets, socai runs it in your Chrome, and the app assembles a cited report. Low-confidence picks never execute, which is the whole point of typed gates on logged-in sites.",
   "tamaratran-fast-jev-compaction":
     "Context compaction that asks Jev whether a tool result is worth keeping verbatim. Agents stay under token limits without blindly truncating the good stuff.",
   "theoleecj-semif":

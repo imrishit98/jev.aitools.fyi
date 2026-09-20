@@ -5,6 +5,7 @@ import {
   getProductProfile,
   measureProductProfileBodyChars,
 } from "@/data/product-profiles";
+import { measureListingEnrichmentChars } from "@/lib/listing-enrichment";
 
 /** Target unique body length on kept detail pages (description + notes + editorial). */
 export const DETAIL_PAGE_MIN_BODY_CHARS = 400;
@@ -120,7 +121,11 @@ export function measureDetailBodyChars(item: DirectoryItem): number {
     .filter(Boolean)
     .join(" ")
     .trim().length;
-  return base + measureProductProfileBodyChars(item.slug);
+  return (
+    base +
+    measureProductProfileBodyChars(item.slug) +
+    measureListingEnrichmentChars(item.slug)
+  );
 }
 
 function categoryEditorialTail(item: DirectoryItem): string {
