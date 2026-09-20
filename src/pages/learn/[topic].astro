@@ -5,6 +5,7 @@ import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
 import { learnTopicPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
+import { splitIntoParagraphs } from "@/lib/prose";
 import { LearnArticleShare } from "@/components/share-menu";
 
 export function getStaticPaths() {
@@ -16,6 +17,8 @@ const guide = getLearnGuide(topic!);
 if (!guide) throw new Error(`Unknown topic ${topic}`);
 
 const seo = learnTopicPageSeo(guide);
+const introParagraphs = splitIntoParagraphs(guide.description, 220);
+const definitionParagraphs = splitIntoParagraphs(guide.definition, 220);
 ---
 
 <BaseLayout
@@ -40,18 +43,33 @@ const seo = learnTopicPageSeo(guide);
       <span class="text-foreground">{guide.title}</span>
     </nav>
     <h1 class="mt-4 font-heading text-3xl font-semibold">{guide.title}</h1>
-    <p class="mt-3 text-lg text-muted-foreground">{guide.description}</p>
+    <div class="mt-3 space-y-3 text-lg text-muted-foreground">
+      {introParagraphs.map((para) => (
+        <p class="leading-relaxed">{para}</p>
+      ))}
+    </div>
     <aside class="mt-8 rounded-md border border-primary/25 bg-primary/5 p-5">
       <p class="text-[11px] font-medium uppercase tracking-widest text-primary">Definition</p>
-      <p class="mt-2 text-base leading-relaxed text-foreground">{guide.definition}</p>
+      <div class="mt-2 space-y-3 text-base leading-relaxed text-foreground">
+        {definitionParagraphs.map((para) => (
+          <p>{para}</p>
+        ))}
+      </div>
     </aside>
     <div class="mt-10 space-y-8">
-      {guide.headings.map((section) => (
+      {guide.headings.map((section) => {
+        const bodyParagraphs = splitIntoParagraphs(section.body, 260);
+        return (
         <section>
           <h2 class="font-heading text-xl font-semibold text-foreground">{section.h}</h2>
-          <p class="mt-2 leading-relaxed text-muted-foreground">{section.body}</p>
+          <div class="mt-2 space-y-3 leading-relaxed text-muted-foreground">
+            {bodyParagraphs.map((para) => (
+              <p>{para}</p>
+            ))}
+          </div>
         </section>
-      ))}
+        );
+      })}
     </div>
     <LearnArticleShare
       client:visible

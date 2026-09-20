@@ -324,12 +324,12 @@ export function HomeHero() {
         <div className="max-w-3xl">
           <p className="mb-5 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-md border border-border bg-card/80 px-3 py-1.5 text-[11px] font-medium uppercase tracking-[0.18em] text-muted-foreground shadow-sm backdrop-blur-sm">
             <span className="size-1.5 rounded-full bg-primary" aria-hidden />
-            The homepage for Jev · System One · not a chat LLM
+            {siteConfig.hostnameBrand} · Jev Directory · System One
           </p>
           <h1 className="text-balance font-heading text-4xl font-semibold leading-[1.06] tracking-tight sm:text-5xl lg:text-[3.35rem]">
-            Learn Jev. Watch the builds.{" "}
+            {siteConfig.hostnameBrand}: learn Jev, watch builds,{" "}
             <span className="bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
-              Ship yours.
+              ship yours.
             </span>
           </h1>
           <p className="mt-6 max-w-2xl text-lg leading-relaxed text-muted-foreground">
@@ -355,8 +355,12 @@ export function HomeHero() {
               Submit a build
             </AppLink>
             {" · "}
+            <AppLink href="/developers" className="font-medium text-primary hover:underline">
+              Agent docs
+            </AppLink>
+            {" · "}
             <AppLink href="/openapi.json" className="font-medium text-primary hover:underline">
-              OpenAPI for agents
+              OpenAPI
             </AppLink>
           </p>
         </div>

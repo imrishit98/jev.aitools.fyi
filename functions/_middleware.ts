@@ -25,10 +25,6 @@ export const onRequest: PagesFunction = async (context) => {
   const wantsMarkdown = prefersMarkdownAccept(request.headers.get("Accept"));
   const response = await next();
 
-  if (url.pathname === "/" && response.ok) {
-    return response;
-  }
-
   if (response.status === 404 && wantsMarkdown) {
     if (request.method === "HEAD") {
       return new Response(null, {

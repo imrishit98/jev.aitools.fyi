@@ -1,4 +1,4 @@
-import { writeFileSync } from "node:fs";
+import { existsSync, mkdirSync, renameSync, writeFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createRequire } from "node:module";
 
@@ -40,3 +40,12 @@ writeFileSync(
   )}\n`,
 );
 console.log("Wrote dist/_routes.json (invoke Pages Functions + middleware on all paths)");
+
+const indexHtml = resolve(distDir, "index.html");
+const homeDir = resolve(distDir, "__home");
+const homeShell = resolve(homeDir, "index.html");
+if (existsSync(indexHtml)) {
+  mkdirSync(homeDir, { recursive: true });
+  renameSync(indexHtml, homeShell);
+  console.log("Moved dist/index.html -> dist/__home/index.html (homepage served via Functions)");
+}

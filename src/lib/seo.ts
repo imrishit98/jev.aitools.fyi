@@ -30,8 +30,9 @@ export const ogImagePaths = {
 /** Document title suffix (also used in Open Graph / Twitter titles). */
 export function withBrand(title: string): string {
   const trimmed = title.trim();
-  if (trimmed.includes(siteConfig.name)) return trimmed;
-  return `${trimmed} | ${siteConfig.name}`;
+  const brand = siteConfig.hostnameBrand;
+  if (trimmed.includes(brand) || trimmed.includes(siteConfig.name)) return trimmed;
+  return `${trimmed} | ${brand}`;
 }
 
 export function formatDocumentTitle(title: string): string {
@@ -267,9 +268,9 @@ export function itemListingSeo(item: DirectoryItem) {
 
 export function homePageSeo() {
   return pageSeo({
-    title: "The homepage for Jev: learn, demos, and tools",
+    title: "Jev Directory at Jev.aitools.fyi: learn, demos, and tools",
     description:
-      "Learn TypeSafe Jev in 30 seconds: System One, Choice, Score, and Noul. Watch builder demos, browse SDKs and integrations, read free guides, and submit your project.",
+      "Jev.aitools.fyi is the public Jev Directory. Learn TypeSafe System One in 30 seconds, watch builder demos, browse SDKs and integrations, read free guides, and submit your project.",
     path: "/",
     imagePath: ogImagePaths.home,
   });
@@ -293,6 +294,16 @@ export function explorePageSeo() {
       "Filter TypeSafe Jev projects by category, language, demos, MCP, and GitHub stars. Search SDKs, agent routers, integrations, and live demos in one directory.",
     path: "/explore",
     imagePath: ogImagePaths.explore,
+  });
+}
+
+export function developersPageSeo() {
+  return pageSeo({
+    title: "Developers and agents: OpenAPI, llms.txt, and discovery",
+    description:
+      "How agents read Jev.aitools.fyi: OpenAPI, llms.txt, sitemap, search-index.json, Markdown negotiation on /, and structured JSON errors for unknown /api/* routes.",
+    path: "/developers",
+    imagePath: ogImagePaths.default,
   });
 }
 

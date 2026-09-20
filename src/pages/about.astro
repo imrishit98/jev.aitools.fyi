@@ -8,14 +8,20 @@ const seo = aboutPageSeo();
 
 <BaseLayout title={seo.title} description={seo.description} path="/about">
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-    <h1 class="font-heading text-3xl font-semibold">About this directory</h1>
+    <h1 class="font-heading text-3xl font-semibold">About {siteConfig.hostnameBrand}</h1>
     <div class="mt-8 space-y-6 leading-relaxed text-muted-foreground">
       <p>
-        <strong class="text-foreground">{siteConfig.name}</strong> is the public index of the TypeSafe Jev ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides. Published by <a href={siteConfig.parentBrand.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">{siteConfig.parentBrand.name}</a> (Southern East Inc.) as part of the aitools.fyi family. Production hostname: <span class="font-mono text-foreground">jev.aitools.fyi</span>.
+        <strong class="text-foreground">{siteConfig.hostnameBrand}</strong> hosts <strong class="text-foreground">{siteConfig.name}</strong>, the public index of the TypeSafe Jev ecosystem: SDKs, integrations, agent tooling, demos, games, benchmarks, and guides.
+      </p>
+      <p>
+        Published by <a href={siteConfig.parentBrand.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">{siteConfig.parentBrand.name}</a> (Southern East Inc.) as part of the aitools.fyi family. Canonical URL: <a href={siteConfig.url} class="text-accent hover:underline">{siteConfig.url}</a>.
       </p>
       <p><strong class="text-foreground">Disclaimer:</strong> We are not TypeSafe AI unless a listing is an official TypeSafe property (docs, SDKs, playground, and similar). Community projects belong to their authors.</p>
       <p>
         Listings are curated from public TypeSafe documentation, GitHub repositories, demos, and community projects. We show star counts only when they are public. We do not invent metrics or URLs.
+      </p>
+      <p>
+        For software agents, start at <a href="/developers" class="text-accent hover:underline">/developers</a> (OpenAPI, llms.txt, and discovery notes).
       </p>
       <p>
         For LLM crawlers: <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>. Publisher metadata: <a href="/.well-known/jev-directory.json" class="text-accent hover:underline">/.well-known/jev-directory.json</a>.
