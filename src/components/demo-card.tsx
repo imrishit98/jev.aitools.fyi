@@ -57,7 +57,7 @@ export function DemoCard({
       <article
         className={cn(
           "group relative flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-sm transition-shadow motion-safe:hover:shadow-md",
-          isHero ? "h-auto" : "h-full",
+          isHero ? "h-auto w-full self-start" : variant === "default" ? "h-full" : "h-auto self-start",
           className,
         )}
       >
@@ -116,7 +116,7 @@ export function DemoCard({
         <div
           className={cn(
             "flex flex-col space-y-2",
-            !isHero && "flex-1",
+            variant === "default" && "flex-1",
             isCompact
               ? "p-3"
               : isSidebar
@@ -168,7 +168,7 @@ export function DemoCard({
           <div
             className={cn(
               "flex flex-wrap items-center justify-between gap-2 pt-1",
-              !isHero && "mt-auto",
+              variant === "default" && "mt-auto",
             )}
           >
             <div className="flex flex-wrap gap-1.5">
@@ -245,15 +245,20 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
           </AppLink>
         </div>
       </div>
-      <div className="grid min-w-0 items-start gap-4 sm:gap-5 lg:grid-cols-12">
+      <div className="grid min-w-0 items-start gap-4 sm:gap-5 lg:grid-cols-12 lg:items-start">
         {hero && (
-          <div className="min-w-0 self-start lg:col-span-7">
+          <div className="min-w-0 w-full self-start lg:col-span-7">
             <DemoCard demo={hero} variant="hero" />
           </div>
         )}
-        <div className="grid min-w-0 auto-rows-fr gap-4 sm:grid-cols-2 sm:gap-4 lg:col-span-5 lg:grid-cols-1 lg:gap-5 lg:content-start [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
+        <div className="grid min-w-0 w-full gap-4 sm:grid-cols-2 sm:gap-4 lg:col-span-5 lg:grid-cols-1 lg:items-start lg:gap-5 lg:self-start lg:content-start [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
           {rest.map((demo) => (
-            <DemoCard key={demo.id} demo={demo} variant="sidebar" className="h-full" />
+            <DemoCard
+              key={demo.id}
+              demo={demo}
+              variant="sidebar"
+              className="h-auto self-start"
+            />
           ))}
         </div>
       </div>
