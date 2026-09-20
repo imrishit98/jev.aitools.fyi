@@ -1,0 +1,46 @@
+{
+  "http-api-reference": {
+    "oneLiner": "Every field in POST /v1/systemone, spelled out for engineers who ship gates, not grad students writing RFC fanfic.",
+    "description": "This is the canonical HTTP contract for System One: how you send state plus typed questions, how Choice, Score, and Noul answers come back as probability vectors, and what error shapes mean when your JSON is creative in the wrong ways. Wire Jev behind the Vercel AI Gateway, an official SDK, or plain fetch(): read this before you guess field names in production."
+  },
+  "documentation": {
+    "oneLiner": "The TypeSafe docs hub: from first principles to cookbooks, SDK shelves, and the HTTP contract.",
+    "description": "Start here when you want maintained truth, not a random thread. The doc tree covers Jev primitives, integration patterns, SDK references, and the System One API surface. Bookmark it next to your gateway dashboard so you stop cargo-culting copy-paste from three different repos."
+  },
+  "quick-start": {
+    "oneLiner": "API key in hand, first typed Choice out the door before your coffee gets cold.",
+    "description": "The shortest honest path from credentials to a working System One call: install or configure access, shape minimal state, ask one well-formed question, and read probabilities you can threshold in code. Perfect when you need proof Jev works in your stack before you refactor half the agent."
+  },
+  "playground": {
+    "oneLiner": "Paste state, stack questions, watch probabilities wiggle in the browser without touching billing.",
+    "description": "Official browser sandbox for System One. Tune Choice, Score, and Noul questions against real state, inspect vectors, and sanity-check thresholds before you embed calls in services. Cheaper than deploying a staging stack just to see if your question schema is nonsense."
+  },
+  "primitives": {
+    "oneLiner": "Choice, Score, and Noul: three question shapes, three answer shapes, zero vibes-based parsing.",
+    "description": "The doc page that finally separates the primitives: when to ask for a discrete label, a graded score, or a structured Noul object, and what comes back on the wire. Read it once and stop treating every Jev integration like a chat completion with extra steps."
+  },
+  "patterns": {
+    "oneLiner": "Speculative fan-out, confidence gates, and routing patterns you should steal instead of reinventing every sprint.",
+    "description": "TypeSafe's pattern catalog for production-shaped Jev workflows: parallel questions, composite scoring, intent routing, and the guardrail moves that keep agents from free-texting their way into incidents. Use it as a checklist when you review agent PRs."
+  },
+  "cookbooks": {
+    "oneLiner": "Copy-paste recipes for parallel questions, reranking, guardrails, and other unglamorous prod survival skills.",
+    "description": "Reproducible cookbooks for the boring parts that matter: reranking candidates, running parallel evaluations, tightening guardrails, checking citations, extracting fields, and hierarchical classification with typed thresholds. Less hero debugging, more repeatable pipelines."
+  },
+  "workflow-evals": {
+    "oneLiner": "How TypeSafe benchmarks System One on real workflows, with numbers you can argue about in standup.",
+    "description": "Published methodology and per-model results for System One workflow evaluations. Use it when you need to compare latency, calibration, or task win rates against something official, not a screenshot from someone's laptop."
+  },
+  "typesafe-ai-typesafe-sdk-python": {
+    "oneLiner": "Official Python client for System One: sync, async, and types that complain before your notebook hits prod.",
+    "description": "pip install typesafe-sdk and get maintained wrappers around POST /v1/systemone with Python-native ergonomics for Choice, Score, and Noul. Same contract as the JavaScript SDK, different packaging, equally allergic to stringly-typed agent output."
+  },
+  "typesafe-ai-typesafe-sdk-js": {
+    "oneLiner": "The official TypeScript SDK: inferred answer types, System One primitives, and fewer any-shaped regrets.",
+    "description": "npm install @typesafe-ai/sdk for typed clients around System One. Questions compile down to structured requests; answers come back as probability vectors you can threshold without parsing model prose. The default starting point for Node, edge, and full-stack TypeScript services."
+  },
+  "iammrduncan-typesafe-ai-benchmark": {
+    "oneLiner": "A gateway-shaped benchmark rig that speaks structured System One, useful when you need apples-to-apples latency stories.",
+    "description": "Benchmark harness material that mimics gateway-style structured output so you can stress Jev-like paths without wiring every vendor by hand. Treat it as lab equipment: reproduce numbers on your hardware before you quote blog-post latencies in a roadmap deck."
+  }
+}

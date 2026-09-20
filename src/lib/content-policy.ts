@@ -24,7 +24,7 @@ function richSignalScore(item: DirectoryItem): number {
   if (item.demoUrl) score += 2;
   if (item.repoUrl && item.repoUrl !== item.url) score += 1;
   if (item.postUrl) score += 1;
-  if (item.verifiedNote || item.sourceNote) score += 1;
+  if (item.updatedAt) score += 1;
   if ((item.badges?.length ?? 0) > 0) score += 1;
   if ((item.tags?.length ?? 0) >= 4) score += 1;
   return score;
@@ -111,12 +111,7 @@ export function computeIndexOnly(
 }
 
 export function measureDetailBodyChars(item: DirectoryItem): number {
-  return [
-    item.description,
-    item.verifiedNote,
-    item.sourceNote,
-    item.editorialBlurb,
-  ]
+  return [item.description, item.editorialBlurb]
     .filter(Boolean)
     .join(" ")
     .trim().length;

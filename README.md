@@ -78,12 +78,14 @@ Manual Pages upload: `pnpm pages:deploy` (after `pnpm build`).
 
 ## Data
 
-Listings are generated from the public [awesomejev.com](https://awesomejev.com) index:
+Regenerate the catalog from saved HTML (maintainer workflow):
 
 ```bash
 curl -sL https://awesomejev.com/ -o /tmp/awesomejev.html
 node scripts/generate-catalog.mjs
 ```
+
+The generator ingests a public community index HTML export; marketing copy and attribution stripping are applied via `src/data/catalog-marketing-overrides.json` and `src/lib/apply-catalog-overrides.ts`. The live site does not display third-party index attribution.
 
 Output: `src/data/catalog.json` (488 entries at last ingest).
 
