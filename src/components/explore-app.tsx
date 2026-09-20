@@ -1,4 +1,4 @@
-import { useEffect, useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import type { CategorySlug } from "@/data/types";
 import { CATEGORY_SLUGS } from "@/data/types";
 import { categories } from "@/data/categories";
@@ -68,6 +68,27 @@ export default function ExploreApp() {
   }
 
   const category = params.get("category") as CategorySlug | null;
+  const urlQuery = params.get("q") ?? "";
+  const [searchDraft, setSearchDraft] = useState(urlQuery);
+  const searchDebounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+
+  useEffect(() => {
+    setSearchDraft(urlQuery);
+  }, [urlQuery]);
+
+  useEffect(() => {
+    return () => {
+      if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    };
+  }, []);
+
+  function onSearchInput(value: string) {
+    setSearchDraft(value);
+    if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+    searchDebounceRef.current = setTimeout(() => {
+      updateParam("q", value.trim() || null);
+    }, 200);
+  }
 
   return (
     <>
@@ -86,13 +107,21 @@ export default function ExploreApp() {
             <Label htmlFor="search">Search</Label>
             <Input
               id="search"
-              placeholder="Search name, tag, or creator..."
-              defaultValue={params.get("q") ?? ""}
+              type="search"
+              placeholder="Search name, tag, category, or creator..."
+              value={searchDraft}
+              onChange={(e) => onSearchInput(e.target.value)}
               onKeyDown={(e) => {
-                if (e.key === "Enter") {
-                  updateParam("q", (e.target as HTMLInputElement).value || null);
+                if (e.key === "Escape") {
+                  e.preventDefault();
+                  if (searchDebounceRef.current) clearTimeout(searchDebounceRef.current);
+                  setSearchDraft("");
+                  updateParam("q", null);
+                  (e.target as HTMLInputElement).blur();
                 }
               }}
+              autoComplete="off"
+              enterKeyHint="search"
             />
           </div>
           <div className="space-y-2">
