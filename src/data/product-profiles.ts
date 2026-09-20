@@ -792,4 +792,337 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "TanStack AI decide() exposes System One primitives in TypeScript. Official docs, GitHub repo, and TanStack launch clip.",
   },
 
+  "dub-co": {
+    slug: "dub-co",
+    status: "published",
+    problem:
+      "Free short links attract lead gen traffic and abusive actors who paste phishing URLs through the same dub.sh funnel.",
+    targetUser:
+      "Teams running Dub link campaigns who need scalable abuse detection without paying chat-model prices per click.",
+    overview:
+      "Dub (dub.co) is a link management and analytics platform. Steven Tey's weekend project clip describes building a malicious URL scanner for dub.sh using Jev, trained on ten thousand plus malicious domains Dub already caught historically.",
+    creator: {
+      name: "Steven Tey",
+      handle: "steventey",
+      xUrl: "https://x.com/steventey/status/2101706435898069093",
+      company: "Dub",
+      companyUrl: "https://dub.co",
+    },
+    creatorQuote: {
+      text:
+        "Feed malicious domains into Jev, train it to flag malicious-looking URLs, and keep scanning cost negligible thanks to token-efficient Jev.",
+      attributedTo: "Steven Tey",
+      sourceUrl: "https://x.com/steventey/status/2101706435898069093",
+    },
+    jevUsage: {
+      flowRole: "Abuse detection gate on new short links",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Candidate URL text plus historical malicious domain patterns described in the launch thread (ten thousand plus known bad domains).",
+      decisionOut:
+        "Malicious or suspicious URL flag before the link spreads on dub.sh, per the attributed build clip.",
+      flowSteps: [
+        "Collect historical malicious domains from Dub abuse operations",
+        "Train or calibrate Jev scoring on malicious-looking URL features",
+        "Run cheap Jev checks on incoming dub.sh links at creation time",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Built and shipped the scanner in about two hours after wrestling with abuse since day one.",
+          source: "Steven Tey X thread on malicious link scanner",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Instead of calling a general LLM on every new short link, Dub's clip uses Jev as a fast structured classifier over URL text informed by prior abuse data. Token efficiency keeps marginal scan cost near zero at link volume. This profile does not claim undisclosed Dub internal APIs beyond Steven Tey's public post.",
+    keyFeatures: [
+      "Branded links and analytics at dub.co",
+      "dub.sh free tier lead gen with abuse risk",
+      "Jev-backed malicious URL scanner from public demo",
+    ],
+    stack: ["Dub platform", "dub.sh short links", "TypeSafe System One"],
+    links: {
+      website: "https://dub.co",
+      post: "https://x.com/steventey/status/2101706435898069093",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["dub-malicious-urls-steventey"],
+    relatedSlugs: ["classifier-dev", "hemanth-pkg-gate"],
+    relatedLearnSlugs: ["jev-vs-llm-classification", "use-cases"],
+    faq: [
+      {
+        question: "Is the scanner live for all dub.sh links?",
+        answer:
+          "This directory documents the pattern from Steven Tey's public clip. Confirm rollout scope on dub.co or Dub changelogs.",
+      },
+    ],
+    metaTitle: "Dub: Jev malicious URL scanner for dub.sh",
+    metaDescription:
+      "Dub link platform abuse detection with Jev trained on historical malicious domains. Steven Tey showcase clip on Jev Directory.",
+  },
+
+  "avec-ai": {
+    slug: "avec-ai",
+    status: "published",
+    problem:
+      "Email clients default to reverse chronological inboxes, burying urgent threads under newsletter noise.",
+    targetUser:
+      "Knowledge workers who want incoming mail re-ranked by importance in real time.",
+    overview:
+      "Avec (avec.ai) is an email product teased by Jonathan Unikowski with live inbox prioritization powered by Jev instead of static chronological sorting.",
+    creator: {
+      name: "Jonathan Unikowski",
+      handle: "jnnnthnn",
+      xUrl: "https://x.com/jnnnthnn/status/2101399331115077760",
+      company: "Avec",
+      companyUrl: "https://avec.ai",
+    },
+    creatorQuote: {
+      text:
+        "What if your inbox was live prioritized by importance instead of reverse chronological order? Built with Jev.",
+      attributedTo: "Jonathan Unikowski",
+      sourceUrl: "https://x.com/jnnnthnn/status/2101399331115077760",
+    },
+    jevUsage: {
+      flowRole: "Live importance ranking as messages arrive",
+      primitives: ["Score", "Choice"],
+      stateIn:
+        "Incoming message metadata and body snippets plus current inbox context (inferred from showcase; no public schema beyond the clip).",
+      decisionOut:
+        "Dynamic ordering or priority labels so important threads surface immediately.",
+      flowSteps: [
+        "Ingest new mail events",
+        "Jev scores importance relative to user context",
+        "Reorder or highlight inbox UI live",
+      ],
+    },
+    howJevIsUsed:
+      "The showcase positions Jev as the fast structured ranker that can run continuously on mail streams without rewriting the whole message in an LLM on every ping. Avec is marked coming soon in the source post; treat feature availability on avec.ai as the source of truth.",
+    keyFeatures: [
+      "Live prioritization instead of reverse chronology",
+      "Public teaser at avec.ai",
+      "Homepage showcase embed",
+    ],
+    stack: ["Avec email client", "TypeSafe System One"],
+    links: {
+      website: "https://avec.ai",
+      post: "https://x.com/jnnnthnn/status/2101399331115077760",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["avec-email-priority-jnnnthnn"],
+    relatedSlugs: ["classifier-dev", "ploy-ai"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Can I sign up today?",
+        answer:
+          "The attributed clip says coming to Avec soon. Check avec.ai for current access.",
+      },
+    ],
+    metaTitle: "Avec: Jev live email importance ranking",
+    metaDescription:
+      "Avec email client teaser with Jev prioritizing inbox threads in real time. Jonathan Unikowski showcase on Jev Directory.",
+  },
+
+  "pixelml-com": {
+    slug: "pixelml-com",
+    status: "published",
+    problem:
+      "Agentic video Q&A over long files is slow and expensive when every retrieval hop uses a large multimodal model.",
+    targetUser:
+      "Teams indexing enterprise video libraries with many queries over the same corpus.",
+    overview:
+      "PixelML (pixelml.com) ships pixelml-av, the open-source library behind Composer and Sentinel agents that index video to text for LLM reasoning. Sean Phan's clip benchmarks Grok plus Jev against Gemini Flash native video on a seventy-five minute file.",
+    creator: {
+      name: "Sean Phan",
+      handle: "seanphan",
+      xUrl: "https://x.com/seanphan/status/2101398226654171359",
+      company: "PixelML",
+      companyUrl: "https://pixelml.com",
+    },
+    creatorQuote: {
+      text:
+        "pixelml-av plus Grok plus Jev: about two tenths of a cent per query and four seconds on eight questions over seventy-five minutes of video.",
+      attributedTo: "Sean Phan",
+      sourceUrl: "https://x.com/seanphan/status/2101398226654171359",
+    },
+    jevUsage: {
+      flowRole: "Relevance filter before Grok answers and support check after",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Retrieved candidate evidence with pixelml-av local temporal grouping bound to each query.",
+      decisionOut:
+        "Relevance pass on candidates, Grok answer, then support check with optional frame reinspection when confidence is low.",
+      flowSteps: [
+        "Query retrieves candidate evidence from indexed video",
+        "Jev checks relevance with av local temporal context",
+        "Grok generates answer",
+        "Jev support check; low confidence triggers frame inspection",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Eight questions on a seventy-five minute video: about $0.0022 per query and 4.0s for av plus Grok plus Jev vs $0.2253 and 39.9s for Gemini 3.8 Flash native in the clip.",
+          source: "Sean Phan X benchmark post",
+        },
+        {
+          claim: "Described as about 100x cheaper and 10x faster than Gemini Flash native in the same post.",
+          source: "Sean Phan X benchmark post",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jev acts as a System One refiner on the search path: fast cheap gates on whether evidence matters and whether Grok's answer is supported, reserving heavier vision calls for low-confidence reinspection. This matches PixelML's stated move away from using the LLM alone to verify every retrieval.",
+    keyFeatures: [
+      "pixelml-av open-source video indexing library",
+      "Composer and Sentinel agents at pixelml.com",
+      "Grok plus Jev refiner pipeline in public demo",
+    ],
+    stack: ["pixelml-av", "Grok", "TypeSafe System One", "PixelML agents"],
+    links: {
+      website: "https://pixelml.com",
+      post: "https://x.com/seanphan/status/2101398226654171359",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["pixelml-av-grok-jev-seanphan"],
+    relatedSlugs: ["browser-use-jev-ultrafast", "classifier-dev"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is pixelml-av open source?",
+        answer:
+          "Sean Phan's post describes pixelml-av as the open-source library behind PixelML agents. Confirm repo links on pixelml.com.",
+      },
+    ],
+    metaTitle: "PixelML: Grok plus Jev video Q&A with pixelml-av",
+    metaDescription:
+      "pixelml-av indexes video; Jev filters relevance and checks answer support before costly vision calls. Sean Phan benchmark clip.",
+  },
+
+  "hypit-ai": {
+    slug: "hypit-ai",
+    status: "published",
+    problem:
+      "Marketers need many distinct AI UGC creators without copy-paste faces or manual art direction for every variant.",
+    targetUser:
+      "Growth and creative teams using Hypit for AI UGC avatar campaigns.",
+    overview:
+      "Hypit (hypit.ai) generates unique AI UGC creators with natural expressions. The launch clip uses Jev to pick style combinations from product, audience, and vibe inputs before Hypit renders one hundred creators in about thirteen seconds.",
+    creator: {
+      name: "Hypit",
+      handle: "hypitai",
+      xUrl: "https://x.com/hypitai/status/2101686320909426977",
+      company: "Hypit",
+      companyUrl: "https://hypit.ai",
+    },
+    creatorQuote: {
+      text:
+        "Drop product, audience, and vibe into Jev. It picks styles that fit, then Hypit remixes them into fresh randomized combinations.",
+      attributedTo: "Hypit",
+      sourceUrl: "https://x.com/hypitai/status/2101686320909426977",
+    },
+    jevUsage: {
+      flowRole: "Creative style and persona mix selection",
+      primitives: ["Choice"],
+      stateIn:
+        "Marketer brief: product description, target audience, and desired vibe from the launch post.",
+      decisionOut:
+        "Selected UGC style combinations Hypit renders into distinct creators.",
+      sourcedMetrics: [
+        {
+          claim: "One hundred unique AI UGC creators in about 13.07 seconds in the launch clip.",
+          source: "Hypit X launch post",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jev chooses which creative styles fit the brief so Hypit is not brute-forcing random faces. Discrete Choice routing keeps generation fast enough for interactive campaign tooling. Confirm Hypit product UI details on hypit.ai.",
+    keyFeatures: [
+      "AI UGC creators with distinct looks and personalities",
+      "Brief-driven style selection via Jev",
+      "Public launch clip with timing claim",
+    ],
+    stack: ["Hypit platform", "TypeSafe System One"],
+    links: {
+      website: "https://hypit.ai",
+      post: "https://x.com/hypitai/status/2101686320909426977",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["hypit-ugc-styles-hypitai"],
+    relatedSlugs: ["ploy-ai", "dub-co"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Does Jev generate the video avatars?",
+        answer:
+          "The post describes Jev picking styles while Hypit renders creators. Generation stack details live on hypit.ai.",
+      },
+    ],
+    metaTitle: "Hypit: Jev style picks for AI UGC creators",
+    metaDescription:
+      "Hypit UGC studio uses Jev to choose creative mixes from marketer briefs. Launch clip on Jev Directory.",
+  },
+
+  "egghead-smart-procurement": {
+    slug: "egghead-smart-procurement",
+    status: "published",
+    problem:
+      "Manufacturing procurement teams lose hours on repetitive ERP data entry into SAP, Oracle, and similar systems.",
+    targetUser:
+      "Japanese manufacturers and integrators deploying Egghead Smart AI procurement with forward-deployed engineering.",
+    overview:
+      "Egghead Inc. (egghead.co.jp) offers Smart AI procurement for manufacturing. A sakai_1910 showcase clip praises Jev browser operation speed for ERP busywork and argues combining FDE services with Jev beats narrow SaaS alone.",
+    creator: {
+      name: "sakai",
+      handle: "sakai_1910",
+      xUrl: "https://x.com/sakai_1910/status/2101536551360704770",
+      company: "Egghead Inc.",
+      companyUrl: "https://www.egghead.co.jp",
+    },
+    creatorQuote: {
+      text:
+        "Jev browser ops are overwhelmingly fast for manufacturing procurement, including tedious input into SAP and Oracle core systems.",
+      attributedTo: "sakai",
+      sourceUrl: "https://x.com/sakai_1910/status/2101536551360704770",
+    },
+    jevUsage: {
+      flowRole: "Fast browser automation routing for ERP form workflows",
+      primitives: ["Choice"],
+      stateIn:
+        "Browser snapshots and procurement task context for SAP, Oracle, and similar web or terminal-adjacent UIs (per clip examples).",
+      decisionOut:
+        "Next browser operation targets for data entry and procurement steps without slow LLM planning on every click.",
+      flowSteps: [
+        "Observe ERP or procurement UI state",
+        "Jev chooses next browser operation",
+        "Execute entry steps across systems PC operators already use",
+      ],
+    },
+    howJevIsUsed:
+      "The clip highlights Jev's speed on browser-use style routing for manufacturing back-office tasks. Egghead positions Smart AI procurement as a domain-specific deployment with integrator support rather than generic RPA alone. Detailed schemas are not public in the X post; confirm implementation docs with Egghead.",
+    keyFeatures: [
+      "Smart AI procurement product on egghead.co.jp",
+      "Manufacturing-focused procurement automation",
+      "Jev-speed browser ops in public Japanese showcase",
+    ],
+    stack: ["Egghead Smart AI procurement", "SAP and Oracle UIs", "TypeSafe System One", "Browser automation"],
+    links: {
+      website: "https://www.egghead.co.jp",
+      post: "https://x.com/sakai_1910/status/2101536551360704770",
+    },
+    firstSeen: "2026-09-20",
+    demoIds: ["egghead-procurement-sakai1910"],
+    relatedSlugs: ["browser-use-jev-ultrafast", "rtrvr-ai"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is the demo in English?",
+        answer:
+          "The source clip is Japanese commentary about manufacturing procurement. Product pages on egghead.co.jp carry official language.",
+      },
+    ],
+    metaTitle: "Egghead Smart AI procurement with Jev browser ops",
+    metaDescription:
+      "Egghead manufacturing procurement uses fast Jev browser routing for ERP entry. sakai_1910 showcase on Jev Directory.",
+  },
+
 };

@@ -114,7 +114,17 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "jev-on-vercel-ai-gateway":
     "Prototype Jev inside the AI SDK evaluate path without negotiating a separate inference stack on day one. Pricing matches TypeSafe's public input rate; you still pay Gateway credits like a normal Vercel customer.",
   "openrouter-typesafe-jev-1-13":
-    "OpenRouter's Decisions route for the same list price TypeSafe advertises. Handy when your stack already bills through OpenRouter and you want Jev without another vendor onboarding form.",
+    "OpenRouter's Decisions route for the same list price TypeSafe advertises. Handy when your stack already bills through OpenRouter and you want Jev without another vendor onboarding form. The showcase news-to-brand scan demo ran four hundred seventy-one headlines in about thirty-two seconds on the free tier.",
+  "dub-co":
+    "Dub's dub.sh abuse problem finally met a gate that reads like security engineering, not vibes. Steven Tey's clip trains Jev on ten thousand plus caught malicious domains so new links get flagged cheaply.",
+  "avec-ai":
+    "Inbox as a live priority queue instead of archaeological reverse chronology. Jonathan Unikowski's Avec clip uses Jev to float what matters while mail still arrives.",
+  "pixelml-com":
+    "Long video RAG where Jev filters evidence before Grok speaks and checks support after. Sean Phan's pixelml-av numbers are the kind of enterprise corpus story that makes Gemini flash invoices nervous.",
+  "hypit-ai":
+    "Marketers drop product, audience, and vibe. Jev picks the UGC style mix, Hypit spawns a crowd of non-clone faces before your standup ends.",
+  "egghead-smart-procurement":
+    "Manufacturing procurement through SAP and Oracle busywork with Jev-speed browser ops. Egghead's clip is the enterprise FDE plus automation argument in one take.",
   "brainwires-jevwire":
     "Agent-shaped MCP tools for evaluate, rank, verify, and gate_action with honest TypeSafe API keys. Less magic ball, more probability you can threshold.",
 };

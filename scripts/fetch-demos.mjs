@@ -6,6 +6,10 @@
 import fs from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { execFile } from "node:child_process";
+import { promisify } from "node:util";
+
+const execFileAsync = promisify(execFile);
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
@@ -50,6 +54,24 @@ const DEMO_SPECS = [
   { id: "lurk-mxfp4", tweetId: "2101070906852298910", prefer1080: false },
   { id: "ryze-irabukht", tweetId: "2101375295152652372", prefer1080: false },
   { id: "seo-cost-hamonpaulm", tweetId: "2101265909826609278", prefer1080: false },
+  { id: "dub-malicious-urls-steventey", tweetId: "2101706435898069093", prefer1080: false },
+  { id: "flutter-genui-jev-abdallahsh07", tweetId: "2101719364450046351", prefer1080: false },
+  { id: "chat-negative-comments-developedbyed", tweetId: "2101628206478512341", prefer1080: false },
+  { id: "avec-email-priority-jnnnthnn", tweetId: "2101399331115077760", prefer1080: false },
+  { id: "atonomi-monetization-everestchris6", tweetId: "2101706320261128398", prefer1080: false },
+  { id: "twitter-bookmarks-alexchristou", tweetId: "2101674202361221376", prefer1080: false },
+  {
+    id: "toothless-addressee-ashutoshpuro97",
+    tweetId: "2101660362882085299",
+    prefer1080: false,
+    maxDurationSec: 90,
+  },
+  { id: "openrouter-news-brands-k2sbhai", tweetId: "2101408270128935071", prefer1080: false },
+  { id: "pixelml-av-grok-jev-seanphan", tweetId: "2101398226654171359", prefer1080: false },
+  { id: "egghead-procurement-sakai1910", tweetId: "2101536551360704770", prefer1080: false },
+  { id: "hypit-ugc-styles-hypitai", tweetId: "2101686320909426977", prefer1080: false },
+  { id: "x-reply-skip-itspavangk", tweetId: "2101388322077917388", prefer1080: false },
+  { id: "opencode-palette-sonnylazuardi", tweetId: "2101699901461864664", prefer1080: false },
 ];
 
 function pickMp4Url(formats, prefer1080 = false) {
@@ -139,6 +161,23 @@ async function main() {
 
     const videoBytes = await download(videoUrl, videoPath);
     console.log(`  video ${(videoBytes / 1024 / 1024).toFixed(1)} MiB`);
+
+    if (demo.maxDurationSec) {
+      const trimmed = path.join(dir, "video.trim.mp4");
+      await execFileAsync("ffmpeg", [
+        "-y",
+        "-i",
+        videoPath,
+        "-t",
+        String(demo.maxDurationSec),
+        "-c",
+        "copy",
+        trimmed,
+      ]);
+      await fs.rename(trimmed, videoPath);
+      const stat = await fs.stat(videoPath);
+      console.log(`  trimmed to ${demo.maxDurationSec}s (${(stat.size / 1024 / 1024).toFixed(1)} MiB)`);
+    }
   }
   console.log("Done.");
 }
