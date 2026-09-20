@@ -3,7 +3,9 @@ import { collections } from "@/data/collections";
 import { homeFaq } from "@/data/faq";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import { jevSpecSheet } from "@/data/spec";
-import { getDirectoryStats } from "@/lib/items";
+import { getAllProductProfileSlugs } from "@/lib/product-profiles";
+import { getDirectoryStats, getItemBySlug } from "@/lib/items";
+import { getItemPath } from "@/lib/item-paths";
 import { siteConfig } from "@/lib/site";
 
 export function generateLlmsTxt(): string {
@@ -45,6 +47,16 @@ export function generateLlmsTxt(): string {
     `- Sitemap: ${siteConfig.url}/sitemap.xml`,
     `- OpenAPI (agent surface): ${siteConfig.url}/openapi.json`,
     `- JSON API errors: unknown /api/* routes return application/json (see OpenAPI)`,
+    "",
+    "## Product profiles (rich detail pages)",
+    "",
+    `SEO-rich product and project pages with FAQs, System One usage notes, and showcase embeds when clips exist: ${getAllProductProfileSlugs().length} listings.`,
+    ...getAllProductProfileSlugs().map((slug) => {
+      const item = getItemBySlug(slug);
+      const title = item?.title ?? slug;
+      const path = item ? getItemPath(item) : `/apps/${slug}`;
+      return `- ${title}: ${siteConfig.url}${path}`;
+    }),
     "",
     "## Listing detail URLs",
     "",

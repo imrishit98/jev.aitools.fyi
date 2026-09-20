@@ -42,4 +42,11 @@ export const collections: CollectionLink[] = [
     description: "Try before you npm install. Filtered to listings with a live URL.",
     href: "/explore?demo=1",
   },
+  {
+    slug: "products",
+    title: "Product profiles",
+    description:
+      "Shipped apps and integrations with long-form SEO pages, FAQs, and showcase embeds.",
+    href: "/explore?products=1",
+  },
 ];

@@ -5,6 +5,8 @@ import {
   itemHasDetailPage,
   type EnrichedDirectoryItem,
 } from "@/lib/content-policy";
+import { getProductProfile } from "@/data/product-profiles";
+import { hasProductProfile } from "@/lib/product-profiles";
 
 export type SortOption = "featured" | "stars" | "newest" | "title";
 
@@ -16,6 +18,7 @@ export type ExploreFilters = {
   hasMcp?: boolean;
   officialOnly?: boolean;
   featuredOnly?: boolean;
+  hasProductProfile?: boolean;
   sourcePlatform?: DirectoryItem["sourcePlatform"];
   q?: string;
   sort?: SortOption;
@@ -48,6 +51,20 @@ export function getFeaturedItems(limit = 12): DirectoryItem[] {
         (b.stars ?? 0) - (a.stars ?? 0),
     )
     .slice(0, limit);
+}
+
+export function getRelatedItemsForProduct(
+  item: DirectoryItem,
+  limit = 4,
+): DirectoryItem[] {
+  const profile = getProductProfile(item.slug);
+  if (profile?.relatedSlugs?.length) {
+    const related = profile.relatedSlugs
+      .map((slug) => getItemBySlug(slug))
+      .filter((i): i is DirectoryItem => Boolean(i));
+    if (related.length > 0) return related.slice(0, limit);
+  }
+  return getRelatedItems(item, limit);
 }
 
 export function getRelatedItems(item: DirectoryItem, limit = 4): DirectoryItem[] {
@@ -133,6 +150,9 @@ export function filterItems(
   if (filters.featuredOnly) {
     result = result.filter((i) => i.featured || hasBadge(i, "featured"));
   }
+  if (filters.hasProductProfile) {
+    result = result.filter((i) => hasProductProfile(i.slug));
+  }
   if (filters.sourcePlatform) {
     result = result.filter((i) => i.sourcePlatform === filters.sourcePlatform);
   }
@@ -180,6 +200,7 @@ export function parseExploreFilters(
     hasMcp: get("mcp") === "1",
     officialOnly: get("official") === "1",
     featuredOnly: get("featured") === "1",
+    hasProductProfile: get("products") === "1",
     sourcePlatform: get("platform") as ExploreFilters["sourcePlatform"],
     q: get("q") ?? undefined,
     sort: (get("sort") as SortOption) ?? "featured",
