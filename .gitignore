@@ -54,3 +54,4 @@ agent-tools/
 # generated listing search index (pnpm generate:search-index / prebuild)
 /public/search-index.json
 /scripts/og/fonts/
+_worker.bundle
