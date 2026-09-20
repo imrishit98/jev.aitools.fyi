@@ -1,14 +1,15 @@
 ---
-import { ShowcaseDemoGrid } from "@/components/demo-card";
+import { InterestingDemoStrip, ShowcaseDemoGrid } from "@/components/demo-card";
 import { ShowcasePageShare } from "@/components/share-menu";
 import { demoVideoJsonLd } from "@/components/json-ld";
-import { showcaseDemos } from "@/data/showcase-demos";
+import { getInterestingDemos, showcaseDemos } from "@/data/showcase-demos";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { showcasePageSeo } from "@/lib/seo";
 
 const seo = showcasePageSeo();
 const jsonLd = showcaseDemos.map((d) => demoVideoJsonLd(d));
 const count = showcaseDemos.length;
+const interestingDemos = getInterestingDemos();
 ---
 
 <BaseLayout
@@ -31,7 +32,10 @@ const count = showcaseDemos.length;
       </p>
       <ShowcasePageShare client:visible />
     </header>
-    <div class="mt-12">
+    <div class="mt-12 space-y-12">
+      {interestingDemos.length > 0 && (
+        <InterestingDemoStrip client:visible demos={interestingDemos} />
+      )}
       <ShowcaseDemoGrid client:visible demos={showcaseDemos} />
     </div>
   </div>

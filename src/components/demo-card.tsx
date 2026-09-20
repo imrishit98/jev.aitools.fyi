@@ -268,6 +268,39 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
   );
 }
 
+export function InterestingDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
+  if (demos.length === 0) return null;
+
+  return (
+    <section
+      aria-labelledby="interesting-demos-heading"
+      className="min-w-0 space-y-4 overflow-x-clip border-b border-border/60 pb-10"
+    >
+      <div className="min-w-0 max-w-2xl">
+        <p className="text-xs font-medium uppercase tracking-[0.2em] text-primary">
+          Interesting
+        </p>
+        <h2
+          id="interesting-demos-heading"
+          className="mt-1 font-heading text-xl font-semibold tracking-tight sm:text-2xl"
+        >
+          Weird, viral, or painfully honest
+        </h2>
+        <p className="mt-2 text-sm leading-relaxed text-muted-foreground">
+          Demos tagged{" "}
+          <span className="font-medium text-foreground">interesting</span>. Trading bots that
+          confess their P and L, not just their latency.
+        </p>
+      </div>
+      <div className="grid min-w-0 gap-4 sm:grid-cols-2 lg:grid-cols-3">
+        {demos.map((demo) => (
+          <DemoCard key={demo.id} demo={demo} variant="default" className="h-auto self-start" />
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export function ProductProfileDemos({ demos }: { demos: ShowcaseDemo[] }) {
   if (demos.length === 0) return null;
   return (

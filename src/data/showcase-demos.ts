@@ -583,6 +583,28 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["devtools", "terminal", "agents"],
     projectUrl: "https://sonnylab.com",
   }),
+  demo({
+    id: "moongotchi-trading-bot-moongotchi",
+    authorHandle: "MoonGotchi",
+    authorName: "Moon",
+    tweetUrl: "https://x.com/MoonGotchi/status/2101320141065609294",
+    title: "Autonomous trading bot, costly lesson",
+    funnyBlurb:
+      "One evening build, onchain plus offchain feeds, Jev picking trades at machine speed. Also self-reported minus thirty-one grand. Peak interesting.",
+    homepage: true,
+    categoryTags: ["interesting", "trading", "demo"],
+  }),
+  demo({
+    id: "nhtsa-complaints-kanaworks",
+    authorHandle: "KanaWorks_AI",
+    authorName: "KANA",
+    tweetUrl: "https://x.com/KanaWorks_AI/status/2101509756737462446",
+    title: "NHTSA complaints in six buckets",
+    funnyBlurb:
+      "Seventy-four thousand federal car complaints on the shelf, three hundred sampled, Jev sorted six categories in twenty seconds for about a penny. Paper mountains hate this one trick.",
+    homepage: false,
+    categoryTags: ["classification", "demo", "data"],
+  }),
 ];
 
 /** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */
@@ -594,7 +616,14 @@ export const showcaseDemoFetchHints: { id: string; tweetId: string; prefer1080?:
   }));
 
 export function getHomepageDemos(): ShowcaseDemo[] {
-  return showcaseDemos.filter((d) => d.homepage);
+  const home = showcaseDemos.filter((d) => d.homepage);
+  const interesting = home.filter((d) => d.categoryTags.includes("interesting"));
+  const rest = home.filter((d) => !d.categoryTags.includes("interesting"));
+  return [...interesting, ...rest];
+}
+
+export function getInterestingDemos(): ShowcaseDemo[] {
+  return showcaseDemos.filter((d) => d.categoryTags.includes("interesting"));
 }
 
 export function getDemoById(id: string): ShowcaseDemo | undefined {

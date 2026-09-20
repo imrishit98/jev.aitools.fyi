@@ -72,6 +72,8 @@ const DEMO_SPECS = [
   { id: "hypit-ugc-styles-hypitai", tweetId: "2101686320909426977", prefer1080: false },
   { id: "x-reply-skip-itspavangk", tweetId: "2101388322077917388", prefer1080: false },
   { id: "opencode-palette-sonnylazuardi", tweetId: "2101699901461864664", prefer1080: false },
+  { id: "moongotchi-trading-bot-moongotchi", tweetId: "2101320141065609294", prefer1080: false },
+  { id: "nhtsa-complaints-kanaworks", tweetId: "2101509756737462446", prefer1080: false },
 ];
 
 function pickMp4Url(formats, prefer1080 = false) {
