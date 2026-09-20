@@ -9,7 +9,6 @@ import {
   DialogContent,
   DialogDescription,
   DialogHeader,
-  DialogTitle,
 } from "@/components/ui/dialog"
 import {
   InputGroup,
@@ -50,7 +49,7 @@ function CommandDialog({
   return (
     <Dialog {...props}>
       <DialogHeader className="sr-only">
-        <DialogTitle>{title}</DialogTitle>
+        <p className="font-heading text-base leading-none font-medium">{title}</p>
         <DialogDescription>{description}</DialogDescription>
       </DialogHeader>
       <DialogContent

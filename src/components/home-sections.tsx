@@ -320,6 +320,10 @@ export function HomeHero() {
             <AppLink href="/submit" className="font-medium text-primary hover:underline">
               Submit a build
             </AppLink>
+            {" · "}
+            <AppLink href="/openapi.json" className="font-medium text-primary hover:underline">
+              OpenAPI for agents
+            </AppLink>
           </p>
         </div>
       </div>

@@ -41,6 +41,8 @@ export function generateLlmsTxt(): string {
     `- Submit a listing: ${siteConfig.url}/submit`,
     `- About / disclaimer: ${siteConfig.url}/about`,
     `- Sitemap: ${siteConfig.url}/sitemap.xml`,
+    `- OpenAPI (agent surface): ${siteConfig.url}/openapi.json`,
+    `- JSON API errors: unknown /api/* routes return application/json (see OpenAPI)`,
     "",
     "## Listing detail URLs",
     "",
