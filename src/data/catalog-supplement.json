@@ -231,9 +231,9 @@
   },
   {
     "slug": "mfm-jev-search",
-    "title": "MFM Search",
-    "oneLiner": "Search every My First Million upload like a founder with a photographic memory and a very picky research intern.",
-    "description": "MFM Search is a channel-scoped YouTube demo for @MyFirstMillionPod. You describe a guest, startup idea, or random business rabbit hole; the app understands the query, runs hybrid recall (BM25, TF-IDF, and fuzzy fused with RRF), then fans out multi-question Jev scoring with exists and match gates. Caption enrichment adds jump-to-mention links when transcripts are present. Open source Node and Hono server with a pile UI, mock mode for offline hacking, and a flat-playlist catalog ingest via yt-dlp. Built as a Jev Directory companion demo for the My First Million catalog (~2000+ uploads).",
+    "title": "My First Million × Jev",
+    "oneLiner": "Search what was said on My First Million: hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps.",
+    "description": "My First Million × Jev is a channel-scoped YouTube search demo for @MyFirstMillionPod on the Node and Hono stack (server.mjs, port 4891). Query understanding uses local lexicon plus Jev Choice intent before hybrid recall (BM25, TF-IDF, fuzzy, and caption-proximity fused with weighted RRF). One experimental_evaluate batch scores exists, relevance, topic, and hit rubric per shortlist candidate with confidence gates. The pile UI lifts matches with FLIP animation; the feature card shows Mentioned in captions chips with YouTube timestamp jumps when transcripts are enriched. Open source with flat-playlist ingest via yt-dlp and optional caption enrichment.",
     "category": "applications",
     "tags": [
       "applications",

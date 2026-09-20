@@ -1296,7 +1296,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "My First Million listeners, indie hackers, and Jev builders who want a reference channel-search stack with typed gates instead of vibes-only reranking.",
     overview:
-      "MFM Search scopes retrieval to the @MyFirstMillionPod catalog. A pile UI surfaces matches; a feature card shows Jev scores, debug telemetry, and caption mention chips with YouTube timestamp links when enrichment has transcripts.",
+      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Search what was said on the show: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
     creator: {
       name: "Rishit Patel",
       handle: "imrishit98",
@@ -1313,15 +1313,15 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       decisionOut:
         "Intent Choice for query understanding; boolean exists gate; per-candidate relevance, topic, and hit Score/Noul blend with configurable thresholds before results render.",
       flowSteps: [
-        "Local synonym and entity expansion plus Jev Choice for search intent",
-        "Hybrid recall: BM25 union TF-IDF union fuzzy, fused with reciprocal rank fusion",
-        "Multi-question Jev evaluate on each shortlist candidate",
-        "Exists and combined-score gates drop empty or off-topic result sets",
-        "Caption mention indexer adds proximity snippets and &t= jump links in the UI",
+        "Local lexicon expansion plus Jev Choice intent (guest, series, game, vibe, other)",
+        "Hybrid recall: BM25, TF-IDF, fuzzy, and caption-proximity lanes fused with weighted RRF (~12)",
+        "Single experimental_evaluate: exists, rel_*, topic_*, hit_* with transcript snippets in state",
+        "Weighted blend (0.4 / 0.25 / 0.35) with exists and combined match gates",
+        "UI pile, FLIP rise, debug sheet, Mentioned in captions with YouTube &t= links",
       ],
     },
     howJevIsUsed:
-      "Jev is not a chat wrapper here. The server calls AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway (or JEV_MOCK=true offline). One Choice classifies query intent before recall expands terms. The rerank step batches boolean and score questions per candidate: channel-level exists, relevance, topic fit, and a three-level hit rubric for transcript mentions. Application code blends those probabilities with explicit weights and thresholds so weak matches never pretend to be winners. Hybrid recall stays local; Jev only sees the shortlist blob built from catalog fields.",
+      "Jev is not a chat wrapper here. The Hono server calls AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway. One Choice classifies query intent before hybrid recall expands BM25 terms; re-rank still uses the original user query. A single evaluate batches exists, per-candidate relevance and topic booleans, and hit score rubric (off-topic, partial, direct hit) with transcript snippets in state. Application code blends 0.4 / 0.25 / 0.35 and applies exists and match gates. Hybrid recall (including caption-proximity lane) stays local; Jev only sees the shortlist metadata blob.",
     keyFeatures: [
       "Hybrid recall (BM25, TF-IDF, fuzzy to RRF) in hybrid-recall.mjs",
       "Query understanding before BM25 expansion",
@@ -1363,9 +1363,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "After you enrich captions with node scripts/enrich-catalog.mjs --captions, caption-timestamps.mjs finds mention windows and builds YouTube &t= URLs in the feature card.",
       },
     ],
-    metaTitle: "MFM Search: Jev channel search for My First Million",
+    metaTitle: "My First Million × Jev: search what was said",
     metaDescription:
-      "Hybrid recall plus multi-question Jev gates for @MyFirstMillionPod. Open source pile UI, caption mentions, and mock mode on GitHub.",
+      "Hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps for @MyFirstMillionPod. Node and Hono demo on GitHub.",
   },
 
 };
