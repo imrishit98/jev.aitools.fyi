@@ -123,6 +123,17 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["browser-use", "agents", "demo"],
   }),
   demo({
+    id: "jev-captcha-arbitrage-kenonews",
+    authorHandle: "kenonews",
+    authorName: "keno",
+    tweetUrl: "https://x.com/kenonews/status/2101656436136661163",
+    title: "CAPTCHA arbitrage spreadsheet",
+    funnyBlurb:
+      "Keno runs the napkin math: a cent per puzzle on one side, about seven mills for a hundred Jev solves on the other. Gross margin, not a business plan.",
+    homepage: false,
+    categoryTags: ["economics", "security", "demo"],
+  }),
+  demo({
     id: "browser-ultrafast-gregpr07",
     authorHandle: "gregpr07",
     authorName: "Gregor Zunic",
