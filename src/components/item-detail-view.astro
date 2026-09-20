@@ -14,8 +14,10 @@ import {
 } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
 import { learnGuides } from "@/data/learn-guides";
+import { getBenchmarkResults } from "@/data/benchmark-results";
 import { getItemBySlug, getRelatedItemsForProduct } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
+import { getListingEnrichment } from "@/lib/listing-enrichment";
 import {
   getDemosForProfile,
   getProductProfile,
@@ -34,6 +36,8 @@ const item = getItemBySlug(slug);
 if (!item) throw new Error(`Unknown item ${slug}`);
 
 const profile = getProductProfile(slug);
+const listingEnrichment = getListingEnrichment(slug);
+const benchmarkResults = getBenchmarkResults(slug);
 const cat = getCategory(item.category);
 const related = getRelatedItemsForProduct(item);
 const itemPath = getItemPath(item);
@@ -48,9 +52,16 @@ const editorialParagraphs = item.editorialBlurb
   ? splitIntoParagraphs(item.editorialBlurb)
   : [];
 
-const jsonLdExtra = profile?.faq?.length
-  ? [faqPageJsonLd(profile.faq)]
-  : [];
+const enrichmentFaq = [
+  ...(listingEnrichment?.faq ?? []),
+  ...(benchmarkResults?.faq ?? []),
+];
+const jsonLdExtra = [
+  ...(profile?.faq?.length ? [faqPageJsonLd(profile.faq)] : []),
+  ...(enrichmentFaq.length && !profile?.faq?.length
+    ? [faqPageJsonLd(enrichmentFaq)]
+    : []),
+];
 const listingDescription = profile
   ? productProfileSeoDescription(profile)
   : undefined;
@@ -325,6 +336,115 @@ const listingDescription = profile
               </div>
             )}
           </div>
+        )}
+
+        {listingEnrichment && !profile && (
+          <section class="surface-card p-6 sm:p-8" aria-labelledby="listing-jev-heading">
+            <h2 id="listing-jev-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">How Jev is used</h2>
+            {listingEnrichment.jevPrimitives && listingEnrichment.jevPrimitives.length > 0 && (
+              <div class="mt-4 flex flex-wrap gap-2">
+                {listingEnrichment.jevPrimitives.map((p) => (
+                  <Badge variant="secondary">{p}</Badge>
+                ))}
+              </div>
+            )}
+            <p class="mt-4 text-base leading-relaxed text-foreground/90">{listingEnrichment.jevUsageSummary}</p>
+            {listingEnrichment.setupNotes && (
+              <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                <span class="font-medium text-foreground">Setup:</span> {listingEnrichment.setupNotes}
+              </p>
+            )}
+            {listingEnrichment.caveats && (
+              <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                <span class="font-medium text-foreground">Caveats:</span> {listingEnrichment.caveats}
+              </p>
+            )}
+          </section>
+        )}
+
+        {listingEnrichment?.sections.map((section) => (
+          <section class="surface-card p-6 sm:p-8" aria-labelledby={`listing-section-${section.heading}`}>
+            <h2 id={`listing-section-${section.heading}`} class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">{section.heading}</h2>
+            <div class="mt-4 space-y-4 text-base leading-relaxed text-foreground/90">
+              {section.paragraphs.map((para) => (
+                <p>{para}</p>
+              ))}
+            </div>
+          </section>
+        ))}
+
+        {benchmarkResults && (
+          <section class="surface-card p-6 sm:p-8" aria-labelledby="benchmark-results-heading">
+            <h2 id="benchmark-results-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Results</h2>
+            <p class="mt-3 text-sm text-muted-foreground">
+              Sourced from{" "}
+              <a href={benchmarkResults.sourceUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">
+                {benchmarkResults.sourceUrl}
+              </a>
+              {" "}on {benchmarkResults.sourcedOn}. Numbers are copied as published; re-run upstream scripts to refresh.
+            </p>
+            <p class="mt-4 text-base leading-relaxed text-foreground/90">{benchmarkResults.summary}</p>
+            {benchmarkResults.methodology && (
+              <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+                <span class="font-medium text-foreground">Methodology:</span> {benchmarkResults.methodology}
+              </p>
+            )}
+            <div class="mt-8 space-y-10">
+              {benchmarkResults.tables.map((table) => (
+                <div>
+                  <h3 class="font-heading text-lg font-semibold">{table.title}</h3>
+                  <div class="mt-4 overflow-x-auto rounded-md border border-border">
+                    <table class="w-full min-w-[32rem] text-left text-sm">
+                      <thead class="border-b border-border bg-muted/40">
+                        <tr>
+                          {table.columns.map((col) => (
+                            <th class="px-3 py-2 font-medium text-foreground">{col}</th>
+                          ))}
+                        </tr>
+                      </thead>
+                      <tbody>
+                        {table.rows.map((row) => (
+                          <tr class="border-b border-border/70 last:border-0">
+                            {row.map((cell) => (
+                              <td class="px-3 py-2 align-top text-muted-foreground">{cell}</td>
+                            ))}
+                          </tr>
+                        ))}
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </section>
+        )}
+
+        {listingEnrichment?.faq && listingEnrichment.faq.length > 0 && !profile && (
+          <section class="surface-card p-6 sm:p-8" aria-labelledby="listing-faq-heading">
+            <h2 id="listing-faq-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">FAQ</h2>
+            <dl class="mt-4 space-y-6">
+              {listingEnrichment.faq.map((entry) => (
+                <div>
+                  <dt class="font-medium text-foreground">{entry.question}</dt>
+                  <dd class="mt-2 text-base leading-relaxed text-muted-foreground">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
+        {benchmarkResults?.faq && benchmarkResults.faq.length > 0 && (
+          <section class="surface-card p-6 sm:p-8" aria-labelledby="benchmark-faq-heading">
+            <h2 id="benchmark-faq-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Benchmark FAQ</h2>
+            <dl class="mt-4 space-y-6">
+              {benchmarkResults.faq.map((entry) => (
+                <div>
+                  <dt class="font-medium text-foreground">{entry.question}</dt>
+                  <dd class="mt-2 text-base leading-relaxed text-muted-foreground">{entry.answer}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
         )}
 
         {!profile && editorialParagraphs.length === 0 && descriptionParagraphs.length > 0 && (

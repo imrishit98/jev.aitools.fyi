@@ -6,6 +6,7 @@ import {
   type EnrichedDirectoryItem,
 } from "@/lib/content-policy";
 import { getProductProfile } from "@/data/product-profiles";
+import { getListingEnrichment } from "@/lib/listing-enrichment";
 import { hasProductProfile } from "@/lib/product-profiles";
 
 export type SortOption = "featured" | "stars" | "newest" | "title";
@@ -58,8 +59,10 @@ export function getRelatedItemsForProduct(
   limit = 4,
 ): DirectoryItem[] {
   const profile = getProductProfile(item.slug);
-  if (profile?.relatedSlugs?.length) {
-    const related = profile.relatedSlugs
+  const explicitSlugs =
+    profile?.relatedSlugs ?? getListingEnrichment(item.slug)?.relatedSlugs;
+  if (explicitSlugs?.length) {
+    const related = explicitSlugs
       .map((slug) => getItemBySlug(slug))
       .filter((i): i is DirectoryItem => Boolean(i));
     if (related.length > 0) return related.slice(0, limit);
