@@ -355,7 +355,7 @@ export function HomeHero() {
           </p>
           <div className="mt-9 flex flex-wrap items-center gap-3">
             <ButtonLink href="/explore" size="lg">
-              Explore listings
+              Browse the directory
             </ButtonLink>
             <ButtonLink href="/showcase" size="lg" variant="outline">
               Watch demos
