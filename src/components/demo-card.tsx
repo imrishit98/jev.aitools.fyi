@@ -56,7 +56,8 @@ export function DemoCard({
     <>
       <article
         className={cn(
-          "group relative flex h-full min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-sm transition-shadow motion-safe:hover:shadow-md",
+          "group relative flex min-w-0 flex-col overflow-hidden rounded-md border border-border bg-card shadow-sm transition-shadow motion-safe:hover:shadow-md",
+          isHero ? "h-auto" : "h-full",
           className,
         )}
       >
@@ -64,7 +65,7 @@ export function DemoCard({
           type="button"
           className={cn(
             "relative w-full shrink-0 overflow-hidden bg-muted text-left",
-            isHero ? "aspect-[16/10] sm:aspect-[16/9]" : "aspect-video",
+            isHero ? "aspect-video lg:aspect-[16/10]" : "aspect-video",
           )}
           aria-label={`Open video lightbox: ${demo.title}`}
           onClick={openLightbox}
@@ -114,7 +115,8 @@ export function DemoCard({
         </button>
         <div
           className={cn(
-            "flex flex-1 flex-col space-y-2",
+            "flex flex-col space-y-2",
+            !isHero && "flex-1",
             isCompact
               ? "p-3"
               : isSidebar
@@ -124,7 +126,7 @@ export function DemoCard({
                   : "p-4",
           )}
         >
-          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-xs text-muted-foreground">
+          <div className="flex min-w-0 flex-wrap items-center gap-x-2 gap-y-1 text-xs leading-5 text-muted-foreground">
             <span className="font-medium text-foreground">{demo.authorName}</span>
             <span className="hidden sm:inline" aria-hidden>
               ·
@@ -133,7 +135,7 @@ export function DemoCard({
               href={demo.tweetUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="max-w-full truncate text-primary hover:underline"
+              className="inline-flex max-w-full items-center truncate rounded-sm text-primary hover:underline focus-visible:outline-none focus-visible:ring-3 focus-visible:ring-ring/50 max-sm:min-h-11 max-sm:py-2"
               onClick={(e) => e.stopPropagation()}
             >
               @{demo.authorHandle}
@@ -163,7 +165,12 @@ export function DemoCard({
               {demo.funnyBlurb}
             </p>
           )}
-          <div className="mt-auto flex flex-wrap items-center justify-between gap-2 pt-1">
+          <div
+            className={cn(
+              "flex flex-wrap items-center justify-between gap-2 pt-1",
+              !isHero && "mt-auto",
+            )}
+          >
             <div className="flex flex-wrap gap-1.5">
             {demo.categoryTags.slice(0, isCompact || isSidebar ? 2 : 3).map((tag) => (
               <span
@@ -183,8 +190,8 @@ export function DemoCard({
                 options={demoShareOptions(demo)}
                 triggerLabel="Share"
                 triggerVariant="ghost"
-                triggerSize="xs"
-                className="h-7 px-2 text-muted-foreground hover:text-foreground"
+                triggerSize="sm"
+                className="min-h-11 min-w-[4.25rem] px-3 text-muted-foreground hover:text-foreground sm:h-7 sm:min-h-0 sm:min-w-0 sm:px-2"
               />
             </div>
           </div>
@@ -205,7 +212,7 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
   return (
     <section
       aria-labelledby="demos-heading"
-      className="min-w-0 space-y-6 overflow-x-clip sm:space-y-8"
+      className="min-w-0 space-y-6 overflow-x-clip pb-4 sm:space-y-8 md:pb-6"
     >
       <div className="flex flex-col gap-4 md:flex-row md:items-end md:justify-between md:gap-6">
         <div className="min-w-0 max-w-2xl">
@@ -238,10 +245,10 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
           </AppLink>
         </div>
       </div>
-      <div className="grid min-w-0 gap-4 sm:gap-5 lg:grid-cols-12">
+      <div className="grid min-w-0 items-start gap-4 sm:gap-5 lg:grid-cols-12">
         {hero && (
-          <div className="min-w-0 lg:col-span-7">
-            <DemoCard demo={hero} variant="hero" className="h-full" />
+          <div className="min-w-0 self-start lg:col-span-7">
+            <DemoCard demo={hero} variant="hero" />
           </div>
         )}
         <div className="grid min-w-0 auto-rows-fr gap-4 sm:grid-cols-2 sm:gap-4 lg:col-span-5 lg:grid-cols-1 lg:gap-5 lg:content-start [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">

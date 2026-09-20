@@ -22,7 +22,7 @@ const nav = [
 export default function SiteHeader() {
   return (
     <header className="sticky top-0 z-50 border-b border-border/80 bg-background/85 backdrop-blur-xl supports-[backdrop-filter]:bg-background/70">
-      <div className="mx-auto flex h-[4.25rem] max-w-6xl items-center gap-3 px-4 sm:px-6">
+      <div className="mx-auto flex h-[4.25rem] max-w-6xl min-w-0 items-center gap-2 overflow-x-clip px-4 sm:gap-3 sm:px-6">
         <AppLink
           href="/"
           className="group flex shrink-0 items-baseline gap-2 font-heading text-lg tracking-tight"
@@ -35,7 +35,7 @@ export default function SiteHeader() {
           </span>
         </AppLink>
 
-        <nav className="hidden items-center gap-0.5 md:flex" aria-label="Main">
+        <nav className="hidden min-w-0 shrink items-center gap-0.5 md:flex" aria-label="Main">
           {nav.map((item) => (
             <AppLink
               key={item.href}
@@ -65,10 +65,10 @@ export default function SiteHeader() {
           </DropdownMenu>
         </nav>
 
-        <div className="ml-auto flex items-center gap-2">
+        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
           <ThemeToggle />
           <SearchCommand />
-          <ButtonLink href="/explore" size="sm" className="hidden sm:inline-flex">
+          <ButtonLink href="/explore" size="sm" className="hidden lg:inline-flex">
             Explore all
           </ButtonLink>
           <ButtonLink
