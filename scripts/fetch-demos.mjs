@@ -14,6 +14,14 @@ const force = process.argv.includes("--force");
 
 /** Keep in sync with src/data/showcase-demos.ts showcaseDemoFetchHints */
 const DEMO_SPECS = [
+  { id: "smart-copy-paste-marcus-lowe", tweetId: "2101476399488160013", prefer1080: false },
+  { id: "ploy-jev-websites-bryantchou", tweetId: "2101485995669770522", prefer1080: false },
+  { id: "clera-jobs-sebastianscott", tweetId: "2101429879078330390", prefer1080: false },
+  { id: "ui-flow-capture-omarjpeg", tweetId: "2101047036863037753", prefer1080: false },
+  { id: "rtrvr-jev-bkalisetty", tweetId: "2100693198175928707", prefer1080: false },
+  { id: "jev-codes-kushwho", tweetId: "2101103318386758011", prefer1080: false },
+  { id: "your-signal-fabioangela79", tweetId: "2101013867627159592", prefer1080: false },
+  { id: "computer-use-speed-savboj", tweetId: "2100545295201288678", prefer1080: false },
   { id: "browser-ultrafast-gregpr07", tweetId: "2100411066966749359", prefer1080: false },
   { id: "json-render-ctatedev", tweetId: "2101022101750571357", prefer1080: true },
   { id: "spreadsheets-intent-dabit3", tweetId: "2100780008193020049", prefer1080: false },
