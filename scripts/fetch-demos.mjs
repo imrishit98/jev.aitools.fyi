@@ -22,6 +22,7 @@ const DEMO_SPECS = [
   { id: "jev-codes-kushwho", tweetId: "2101103318386758011", prefer1080: false },
   { id: "your-signal-fabioangela79", tweetId: "2101013867627159592", prefer1080: false },
   { id: "computer-use-speed-savboj", tweetId: "2100545295201288678", prefer1080: false },
+  { id: "jev-captcha-arbitrage-kenonews", tweetId: "2101656436136661163", prefer1080: false },
   { id: "browser-ultrafast-gregpr07", tweetId: "2100411066966749359", prefer1080: false },
   { id: "json-render-ctatedev", tweetId: "2101022101750571357", prefer1080: true },
   { id: "spreadsheets-intent-dabit3", tweetId: "2100780008193020049", prefer1080: false },
