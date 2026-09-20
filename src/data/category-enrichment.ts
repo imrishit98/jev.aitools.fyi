@@ -207,6 +207,11 @@ export const categoryEnrichmentBySlug: Partial<
           "Reference hybrid: Jev picks operation + target node; small LLM types only when needed.",
       },
       {
+        slug: "socai-io-jev-social",
+        blurb:
+          "Local Jev loop over bounded socai CLI ops in your Chrome: Instagram, TikTok, and LinkedIn evidence into cited reports.",
+      },
+      {
         slug: "awlevin-typesafe-computer-use",
         blurb:
           "Desktop loops with discrete actions over screen state.",

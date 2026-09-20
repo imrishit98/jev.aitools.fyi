@@ -1198,4 +1198,94 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Jerry Liu DocJev uses Jev for fast document classification and splitting with natural-language rules. Launch clip and GitHub repo on Jev Directory.",
   },
 
+  "socai-io-jev-social": {
+    slug: "socai-io-jev-social",
+    status: "published",
+    problem:
+      "Social research agents often free-form shell commands or opaque browser macros, which is risky on logged-in Instagram, TikTok, and LinkedIn sessions.",
+    targetUser:
+      "Analysts and builders who want local-first social evidence gathering with auditable steps and cited Markdown output.",
+    overview:
+      "Jev Social pairs TypeSafe Jev with the socai CLI. You state a research goal; each loop rebuilds a finite menu of read-only socai commands (search, open a discovered profile or post, read comments, optional TikTok download, inspect state, finish). Jev selects the next operation; socai executes in the user's Chrome and returns structured observations. The UI stores choice, confidence, command, summary, and timing per step, then compiles cards, tables, and an evidence report with source links.",
+    creator: {
+      name: "socai",
+      handle: "Asklv123123123",
+      xUrl: "https://x.com/Asklv123123123",
+      githubUrl: "https://github.com/socai-io/jev-social",
+      company: "socai",
+      companyUrl: "https://socai.io",
+    },
+    jevUsage: {
+      flowRole: "Per-step routing over a dynamic catalog of socai CLI operations",
+      primitives: ["Choice"],
+      stateIn:
+        "User goal, platform context, history of prior operations with observed summaries, and enumerated command targets derived from captured results or explicit URLs.",
+      decisionOut:
+        "Next allowed socai command or finish; confidence recorded per README. Unsupported, malformed, and low-confidence decisions do not run; failed ops are removed from the next choice set.",
+      flowSteps: [
+        "Build bounded operation list from socai capabilities and prior results",
+        "Jev Choice picks platform (auto mode) then next operation",
+        "socai CLI runs read-only command in Chrome",
+        "Append observation and repeat until finish or max-steps",
+        "Compile cited Markdown report from captured text and links",
+      ],
+    },
+    howJevIsUsed:
+      "Jev never emits arbitrary shell or DOM coordinates. It only chooses among commands the app exposes, matching the Browser Use pattern of finite actions over structured state. Confidence and policy live in application code: sub-threshold or invalid picks are dropped before socai runs. The OpenRouter Decisions path supplies Jev access with bring-your-own-key configuration documented in the repository README. Step limits (--max-steps, default 12) bound cost while partial results remain honest when login walls or decision failures appear.",
+    keyFeatures: [
+      "Instagram, TikTok, and LinkedIn operation tables in README",
+      "npx github:socai-io/jev-social onboard without cloning",
+      "Loopback web UI at 127.0.0.1:8766 plus CLI search mode",
+      "Per-step telemetry: choice, confidence, command, elapsed time",
+      "Marketing site and GIF demos linked from repository",
+    ],
+    stack: [
+      "Node 20+",
+      "socai CLI (Chrome automation)",
+      "TypeSafe Jev via OpenRouter",
+      "JavaScript",
+    ],
+    links: {
+      website: "https://socai-io.github.io/jev-social/",
+      repo: "https://github.com/socai-io/jev-social",
+      docs: "https://github.com/socai-io/jev-social",
+      demo: "https://socai-io.github.io/jev-social/",
+      post: "https://socai.io/blog/jev-social-media-automation/",
+    },
+    pricingNote:
+      "Open source; OpenRouter Jev usage bills to your key. No mock fallback when Jev is unavailable.",
+    firstSeen: "2026-09-20",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "awlevin-typesafe-computer-use",
+      "jkudish-jev-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev Social run in the cloud?",
+        answer:
+          "No. The app is local-first with a loopback UI. socai drives your Chrome; README states reports compile from captured evidence without handing browsing to another agent.",
+      },
+      {
+        question: "What happens on low confidence?",
+        answer:
+          "README: unsupported, malformed, and low-confidence decisions do not execute. The next choice set also omits previously attempted operations.",
+      },
+      {
+        question: "Which platforms are supported?",
+        answer:
+          "Instagram, TikTok, and LinkedIn via socai commands documented in the Available operations table. Only installed socai CLI commands appear as Jev choices.",
+      },
+      {
+        question: "How do I try it quickly?",
+        answer:
+          "npx --yes github:socai-io/jev-social onboard then npx --yes github:socai-io/jev-social, or clone the repo and npm start per README. You need Node 20+, OpenRouter with Jev access, and socai CLI.",
+      },
+    ],
+    metaTitle: "Jev Social: typed socai CLI loops for social research",
+    metaDescription:
+      "Local Jev Choice router over read-only socai commands in Chrome. Instagram, TikTok, LinkedIn evidence to cited Markdown. Open source with live demo site.",
+  },
+
 };
