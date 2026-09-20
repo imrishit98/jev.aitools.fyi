@@ -26,6 +26,7 @@ export function generateSitemapXml(): string {
     { path: "/submit", priority: 0.6, changefreq: "monthly" },
     { path: "/about", priority: 0.55, changefreq: "monthly" },
     { path: "/developers", priority: 0.62, changefreq: "monthly" },
+    { path: "/for-agents", priority: 0.58, changefreq: "monthly" },
   ];
 
   for (const r of staticRoutes) {

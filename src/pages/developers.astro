@@ -22,6 +22,26 @@ const seo = developersPageSeo();
 
     <div class="mt-10 space-y-8 leading-relaxed text-muted-foreground">
       <section>
+        <h2 class="font-heading text-xl font-semibold text-foreground">Human vs agent entry</h2>
+        <p class="mt-3">
+          The homepage hero and site header include a <strong class="font-medium text-foreground">Human | Agent</strong>
+          control. Human is the default visual experience. Choosing Agent opens
+          <a href="/for-agents" class="text-primary hover:underline">/for-agents</a>, a crawl-oriented page with the
+          same discovery links as this doc. No JavaScript is required: the hero also exposes a plain
+          <a href="/for-agents" class="text-primary hover:underline">I'm an agent</a> link.
+        </p>
+        <p class="mt-3">
+          Markdown negotiation: send
+          <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">Accept: text/markdown</code>
+          to <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/for-agents</code>, or add
+          <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">?view=agent</code>
+          on <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code>
+          for the longer agent map. HTML at <code class="rounded bg-muted px-1.5 py-0.5 text-sm text-foreground">/</code>
+          is unchanged for typical browser Accept headers.
+        </p>
+      </section>
+
+      <section>
         <h2 class="font-heading text-xl font-semibold text-foreground">Start here</h2>
         <p class="mt-3">
           Canonical site URL: <a href={siteConfig.url} class="text-primary hover:underline">{siteConfig.url}</a>.
@@ -95,6 +115,7 @@ const seo = developersPageSeo();
     <div class="mt-12 flex flex-wrap gap-3">
       <ButtonLink href="/openapi.json">Open OpenAPI</ButtonLink>
       <ButtonLink href="/llms.txt" variant="outline">Read llms.txt</ButtonLink>
+      <ButtonLink href="/for-agents" variant="outline">For agents page</ButtonLink>
       <ButtonLink href="/explore" variant="outline">Browse listings</ButtonLink>
     </div>
   </div>

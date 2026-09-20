@@ -1,5 +1,6 @@
 import { AppLink } from "@/components/app-link";
 import ThemeToggle from "@/components/theme-toggle";
+import { AudienceSwitch } from "@/components/audience-switch";
 import SearchCommand from "@/components/search-command";
 import { ButtonLink } from "@/components/button-link";
 import { categories } from "@/data/categories";
@@ -65,6 +66,7 @@ export default function SiteHeader() {
         </nav>
 
         <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+          <AudienceSwitch variant="header" className="hidden sm:flex" />
           <ThemeToggle />
           <SearchCommand />
           <ButtonLink href="/explore" size="sm" className="hidden lg:inline-flex">
