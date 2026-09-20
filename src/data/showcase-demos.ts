@@ -134,6 +134,17 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["economics", "security", "demo"],
   }),
   demo({
+    id: "laya-mlx-lonely-mh",
+    authorHandle: "Lonely__MH",
+    authorName: "Lonely",
+    tweetUrl: "https://x.com/Lonely__MH/status/2101626594452492450",
+    title: "laya-mlx snake on Apple Silicon",
+    funnyBlurb:
+      "Lonely ports Laya, an open text-probability classifier, to MLX on an M2 Pro. Their tweet claims about fifty times faster than cloud Jev for latency; snake runs near sixty decisions per second on roughly one gig of RAM.",
+    homepage: false,
+    categoryTags: ["local", "mlx", "ecosystem", "demo"],
+  }),
+  demo({
     id: "browser-ultrafast-gregpr07",
     authorHandle: "gregpr07",
     authorName: "Gregor Zunic",
