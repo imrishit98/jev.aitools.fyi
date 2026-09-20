@@ -8,7 +8,8 @@ pages_build_output_dir = "dist"
 [assets]
 directory = "./dist"
 not_found_handling = "404-page"
-run_worker_first = true
+# Pages git deploy: use repo-root `functions/` + dist/_routes.json (see README).
+# Do not set run_worker_first here without a Worker `main` script and assets.binding.
 
 [vars]
 PUBLIC_SITE_URL = "https://jev.aitools.fyi"

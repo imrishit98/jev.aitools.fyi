@@ -42,9 +42,11 @@ Static output lives in `dist/` (all routes pre-rendered).
 | --- | --- |
 | Build command | `pnpm install && pnpm build` |
 | Build output directory | `dist` |
-| Deploy command | *(leave empty — do not use `npx wrangler deploy`)* |
+| **Deploy command** | *(leave empty — Pages uploads `dist/`; do **not** run `npx wrangler deploy` here)* |
 | Environment variable | `PUBLIC_SITE_URL=https://jev.aitools.fyi` |
 | Web Analytics (optional) | `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` — see below |
+
+Agent routes (Markdown negotiation, JSON `/api/*` errors) live in the repo-root **`functions/`** directory. The build writes **`dist/_routes.json`** (`include: ["/*"]`) so those Functions run ahead of static files on Pages. `wrangler.toml` only configures the static asset directory for optional Workers deploys; it must **not** set `run_worker_first` without a Worker `main` entry (that breaks Pages deploy validation).
 
 Add custom domain **jev.aitools.fyi** in Pages → Custom domains.
 
@@ -109,7 +111,7 @@ node scripts/apply-jev-resources.mjs
 
 ### Agent-friendly checks (is-agentic top 5)
 
-After `pnpm build`, run Cloudflare Pages locally so `/functions` middleware is active (`wrangler.toml` sets `run_worker_first = true` so negotiation runs before static assets):
+After `pnpm build`, run Cloudflare Pages locally so repo-root **`functions/`** and **`dist/_routes.json`** are active:
 
 ```bash
 pnpm pages:dev
