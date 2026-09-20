@@ -1288,4 +1288,84 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Local Jev Choice router over read-only socai commands in Chrome. Instagram, TikTok, LinkedIn evidence to cited Markdown. Open source with live demo site.",
   },
 
+  "mfm-jev-search": {
+    slug: "mfm-jev-search",
+    status: "published",
+    problem:
+      "YouTube channel search is either generic Google results or endless scrolling the uploads tab. Founders want \"that episode where they talked about X\" without memorizing titles.",
+    targetUser:
+      "My First Million listeners, indie hackers, and Jev builders who want a reference channel-search stack with typed gates instead of vibes-only reranking.",
+    overview:
+      "MFM Search scopes retrieval to the @MyFirstMillionPod catalog. A pile UI surfaces matches; a feature card shows Jev scores, debug telemetry, and caption mention chips with YouTube timestamp links when enrichment has transcripts.",
+    creator: {
+      name: "Rishit Patel",
+      handle: "imrishit98",
+      xUrl: "https://x.com/imrishit98",
+      githubUrl: "https://github.com/imrishit98",
+      company: "Southern East Inc.",
+      companyUrl: "https://aitools.fyi",
+    },
+    jevUsage: {
+      flowRole: "Query understanding, hybrid shortlist rerank, and per-video match gates",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "User query, channel metadata, and a shortlist of candidate videos with title, description, tags, chapters, and transcript snippets pulled from the local catalog.",
+      decisionOut:
+        "Intent Choice for query understanding; boolean exists gate; per-candidate relevance, topic, and hit Score/Noul blend with configurable thresholds before results render.",
+      flowSteps: [
+        "Local synonym and entity expansion plus Jev Choice for search intent",
+        "Hybrid recall: BM25 union TF-IDF union fuzzy, fused with reciprocal rank fusion",
+        "Multi-question Jev evaluate on each shortlist candidate",
+        "Exists and combined-score gates drop empty or off-topic result sets",
+        "Caption mention indexer adds proximity snippets and &t= jump links in the UI",
+      ],
+    },
+    howJevIsUsed:
+      "Jev is not a chat wrapper here. The server calls AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway (or JEV_MOCK=true offline). One Choice classifies query intent before recall expands terms. The rerank step batches boolean and score questions per candidate: channel-level exists, relevance, topic fit, and a three-level hit rubric for transcript mentions. Application code blends those probabilities with explicit weights and thresholds so weak matches never pretend to be winners. Hybrid recall stays local; Jev only sees the shortlist blob built from catalog fields.",
+    keyFeatures: [
+      "Hybrid recall (BM25, TF-IDF, fuzzy to RRF) in hybrid-recall.mjs",
+      "Query understanding before BM25 expansion",
+      "Multi-question Jev with exists and match confidence gates",
+      "Caption mention timestamps and Jump to mention links",
+      "Flat-playlist ingest and optional yt-dlp enrichment for captions",
+      "Debug sheet with understand, shortlist lanes, and full JSON",
+    ],
+    stack: [
+      "Node.js",
+      "Hono",
+      "Vercel AI SDK + AI Gateway",
+      "typesafe-ai/jev",
+      "yt-dlp catalog ingest",
+    ],
+    links: {
+      repo: "https://github.com/imrishit98/mfm-jev-search",
+      docs: "https://github.com/imrishit98/mfm-jev-search#readme",
+    },
+    pricingNote:
+      "Open source demo. Live Jev calls bill to your AI Gateway key; mock mode skips network.",
+    firstSeen: "2026-09-20",
+    relatedSlugs: ["classifier-dev", "tanstack-ai-decide", "vercel-eve"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does this search the whole internet?",
+        answer:
+          "No. Retrieval and scoring are scoped to the My First Million uploads playlist ingested into src/data/catalog.json.",
+      },
+      {
+        question: "Can I run it without a Gateway key?",
+        answer:
+          "Yes. Copy .dev.vars.example, set JEV_MOCK=true, npm run ingest, then npm run dev on port 4891.",
+      },
+      {
+        question: "Where do caption jump links come from?",
+        answer:
+          "After you enrich captions with node scripts/enrich-catalog.mjs --captions, caption-timestamps.mjs finds mention windows and builds YouTube &t= URLs in the feature card.",
+      },
+    ],
+    metaTitle: "MFM Search: Jev channel search for My First Million",
+    metaDescription:
+      "Hybrid recall plus multi-question Jev gates for @MyFirstMillionPod. Open source pile UI, caption mentions, and mock mode on GitHub.",
+  },
+
 };

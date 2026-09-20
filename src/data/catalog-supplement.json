@@ -228,5 +228,29 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-09-20"
+  },
+  {
+    "slug": "mfm-jev-search",
+    "title": "MFM Search",
+    "oneLiner": "Search every My First Million upload like a founder with a photographic memory and a very picky research intern.",
+    "description": "MFM Search is a channel-scoped YouTube demo for @MyFirstMillionPod. You describe a guest, startup idea, or random business rabbit hole; the app understands the query, runs hybrid recall (BM25, TF-IDF, and fuzzy fused with RRF), then fans out multi-question Jev scoring with exists and match gates. Caption enrichment adds jump-to-mention links when transcripts are present. Open source Node and Hono server with a pile UI, mock mode for offline hacking, and a flat-playlist catalog ingest via yt-dlp. Built as a Jev Directory companion demo for the My First Million catalog (~2000+ uploads).",
+    "category": "applications",
+    "tags": [
+      "applications",
+      "search",
+      "youtube",
+      "channel-search",
+      "demo",
+      "product"
+    ],
+    "language": "JavaScript",
+    "url": "https://github.com/imrishit98/mfm-jev-search",
+    "repoUrl": "https://github.com/imrishit98/mfm-jev-search",
+    "badges": ["has-demo"],
+    "creatorHandle": "imrishit98",
+    "creatorName": "Rishit Patel",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-09-20"
   }
 ]
