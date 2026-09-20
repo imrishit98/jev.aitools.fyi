@@ -74,51 +74,63 @@ export function HomeWhatIsJev() {
 const startPaths = [
   {
     icon: BookOpen,
-    title: "Official docs",
-    blurb: "Quick start, API reference, and the boring parts done right.",
-    href: siteConfig.typesafe.docs,
-    external: true,
-    cta: "docs.typesafe.ai",
+    title: "Learn guides",
+    blurb: "Plain-language paths through System One, gateway wiring, and when not to use chat labels.",
+    href: "/learn",
+    cta: "/learn",
+  },
+  {
+    icon: Rocket,
+    title: "Quick start",
+    blurb: "First steps on the official stack listing, with links out when you are ready to run code.",
+    href: "/sdks/quick-start",
+    cta: "quick-start profile",
+  },
+  {
+    icon: Layers,
+    title: "API reference",
+    blurb: "HTTP shapes, primitives, and the boring parts, indexed here like every other listing.",
+    href: "/sdks/documentation",
+    cta: "documentation profile",
   },
   {
     icon: FlaskConical,
-    title: "Playground",
-    blurb: "Poke Choice, Score, and Noul in the browser before you wire prod.",
-    href: siteConfig.typesafe.playground,
-    external: true,
-    cta: "Open playground",
+    title: "Playgrounds",
+    blurb: "Official sandbox profile plus community demos when you want to click before you npm install.",
+    href: "/sdks/playground",
+    cta: "playground profile",
   },
   {
     icon: Zap,
     title: "Vercel AI Gateway",
-    blurb: `Model id ${GATEWAY_MODEL_ID} for AI SDK evaluate flows.`,
-    href: siteConfig.vercelGateway,
-    external: true,
-    cta: GATEWAY_MODEL_ID,
+    blurb: `Learn how ${GATEWAY_MODEL_ID} shows up in AI SDK flows, then open the tool page.`,
+    href: "/learn/vercel-ai-gateway",
+    cta: "Gateway learn guide",
   },
   {
     icon: Code2,
-    title: "SDKs",
-    blurb: "TypeScript and Python clients plus community wrappers in the directory.",
+    title: "JavaScript SDK",
+    blurb: "First-party TypeScript client in the directory, stars and repo links included.",
     href: "/sdks/typesafe-ai-typesafe-sdk-js",
-    external: false,
-    cta: "JS SDK profile",
+    cta: "typesafe-ai-typesafe-sdk-js",
+  },
+] as const;
+
+const externalStartLinks = [
+  {
+    label: "TypeSafe docs",
+    hint: "docs.typesafe.ai",
+    href: siteConfig.typesafe.docs,
   },
   {
-    icon: Layers,
-    title: "SDK hub",
-    blurb: "Every client we know about, one faceted list.",
-    href: "/explore?category=sdks",
-    external: false,
-    cta: "Browse SDKs",
+    label: "Live playground",
+    hint: "console.typesafe.ai",
+    href: siteConfig.typesafe.playground,
   },
   {
-    icon: Rocket,
-    title: "Official stack",
-    blurb: "First-party listings: API, console, and friends.",
-    href: "/explore?category=official",
-    external: false,
-    cta: "Official tools",
+    label: "Vercel model docs",
+    hint: "vercel.com/docs/ai-gateway",
+    href: siteConfig.vercelGateway,
   },
 ] as const;
 
@@ -136,15 +148,19 @@ export function HomeGetStarted() {
           Get started in minutes
         </h2>
         <p className="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
-          Docs, playground, gateway model id, and SDK paths. Pick one door; they all lead to System One.
+          Stay on jev.aitools.fyi for guides, SDK profiles, and gateway notes. External TypeSafe and Vercel links sit below when you are ready to leave.
         </p>
       </div>
       <div className="grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
         {startPaths.map((path) => {
           const Icon = path.icon;
-          const inner = (
-            <>
-              <span className="flex size-9 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-primary">
+          return (
+            <AppLink
+              key={path.title}
+              href={path.href}
+              className="group flex gap-4 rounded-md border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0"
+            >
+              <span className="flex size-9 shrink-0 items-center justify-center rounded-md border border-primary/20 bg-primary/10 text-primary">
                 <Icon className="size-4" aria-hidden />
               </span>
               <div className="min-w-0 flex-1">
@@ -154,37 +170,52 @@ export function HomeGetStarted() {
                 </p>
                 <p className="mt-2 font-mono text-[11px] text-primary">{path.cta}</p>
               </div>
-            </>
-          );
-          const className =
-            "group flex gap-4 rounded-md border border-border bg-card p-4 shadow-sm transition-[border-color,box-shadow,transform] duration-200 hover:-translate-y-0.5 hover:border-primary/30 hover:shadow-md motion-reduce:transition-none motion-reduce:hover:translate-y-0";
-
-          if (path.external) {
-            return (
-              <a
-                key={path.title}
-                href={path.href}
-                target="_blank"
-                rel="noopener noreferrer"
-                className={className}
-              >
-                {inner}
-              </a>
-            );
-          }
-          return (
-            <AppLink key={path.title} href={path.href} className={className}>
-              {inner}
             </AppLink>
           );
         })}
       </div>
-      <p className="text-center text-sm text-muted-foreground">
-        Python SDK:{" "}
+      <div className="flex flex-wrap items-center justify-center gap-x-2 gap-y-1 text-center text-sm text-muted-foreground">
+        <span className="w-full text-xs font-medium uppercase tracking-widest text-muted-foreground sm:w-auto sm:normal-case sm:tracking-normal">
+          Also on this site:
+        </span>
+        <AppLink href="/explore?category=sdks" className="text-primary hover:underline">
+          SDK hub
+        </AppLink>
+        <span aria-hidden>·</span>
+        <AppLink href="/explore?category=official" className="text-primary hover:underline">
+          Official stack
+        </AppLink>
+        <span aria-hidden>·</span>
+        <AppLink href="/tools/jev-on-vercel-ai-gateway" className="font-mono text-primary hover:underline">
+          {GATEWAY_MODEL_ID}
+        </AppLink>
+        <span aria-hidden>·</span>
         <AppLink href="/sdks/typesafe-ai-typesafe-sdk-python" className="font-mono text-primary hover:underline">
           typesafe-ai-typesafe-sdk-python
         </AppLink>
-      </p>
+      </div>
+      <div className="rounded-md border border-dashed border-border bg-muted/25 px-4 py-4">
+        <p className="text-xs font-medium uppercase tracking-widest text-muted-foreground">
+          External (opens in a new tab)
+        </p>
+        <ul className="mt-3 flex flex-col gap-2 sm:flex-row sm:flex-wrap sm:gap-x-4 sm:gap-y-2">
+          {externalStartLinks.map((link) => (
+            <li key={link.href}>
+              <a
+                href={link.href}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex flex-wrap items-baseline gap-x-2 text-sm font-medium text-primary hover:underline"
+              >
+                {link.label}
+                <span className="font-mono text-[11px] font-normal text-muted-foreground">
+                  {link.hint}
+                </span>
+              </a>
+            </li>
+          ))}
+        </ul>
+      </div>
     </section>
   );
 }
@@ -275,8 +306,11 @@ export function HomeWhyJev() {
         <AppLink href="/learn/vercel-ai-gateway" className="text-primary hover:underline">
           Vercel AI Gateway
         </AppLink>
-        <AppLink href={siteConfig.typesafe.playground} className="text-primary hover:underline" external>
-          Playground
+        <AppLink href="/sdks/playground" className="text-primary hover:underline">
+          Playground listing
+        </AppLink>
+        <AppLink href={siteConfig.typesafe.playground} className="text-muted-foreground hover:text-primary hover:underline" external>
+          Live console (external)
         </AppLink>
       </div>
     </section>
