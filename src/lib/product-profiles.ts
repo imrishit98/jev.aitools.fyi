@@ -50,6 +50,9 @@ export function getFeaturedProductSlugs(limit = 6): string[] {
   const ordered = [
     "classifier-dev",
     "browser-use-jev-ultrafast",
+    "dub-co",
+    "hypit-ai",
+    "pixelml-com",
     "ploy-ai",
     "tanstack-ai-decide",
     "vercel-eve",
