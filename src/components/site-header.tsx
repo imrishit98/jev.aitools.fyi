@@ -35,18 +35,21 @@ export default function SiteHeader() {
           </span>
         </AppLink>
 
-        <nav className="hidden min-w-0 shrink items-center gap-0.5 md:flex" aria-label="Main">
+        <nav
+          className="hidden min-w-0 flex-1 items-center gap-0.5 overflow-x-auto md:flex [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          aria-label="Main"
+        >
           {nav.map((item) => (
             <AppLink
               key={item.href}
               href={item.href}
-              className="rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
+              className="shrink-0 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50"
             >
               {item.label}
             </AppLink>
           ))}
           <DropdownMenu>
-            <DropdownMenuTrigger className="inline-flex items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50">
+            <DropdownMenuTrigger className="inline-flex shrink-0 items-center gap-1 rounded-md px-3 py-2 text-sm text-muted-foreground transition-colors hover:bg-muted hover:text-foreground focus-visible:ring-3 focus-visible:ring-ring/50">
               Categories
               <ChevronDown className="size-3.5 opacity-70" aria-hidden />
             </DropdownMenuTrigger>
@@ -65,7 +68,7 @@ export default function SiteHeader() {
           </DropdownMenu>
         </nav>
 
-        <div className="ml-auto flex shrink-0 items-center gap-1.5 sm:gap-2">
+        <div className="relative z-30 ml-auto flex shrink-0 items-center gap-1.5 border-l border-border/60 pl-2 sm:gap-2 sm:pl-3">
           <AudienceSwitch variant="header" className="hidden sm:flex" />
           <ThemeToggle />
           <SearchCommand />
