@@ -24,6 +24,7 @@
   },
   "affiliation": "Not affiliated with TypeSafe AI unless an individual listing explicitly represents an official TypeSafe property.",
   "llms_txt": "https://jev.aitools.fyi/llms.txt",
+  "openapi": "https://jev.aitools.fyi/openapi.json",
   "sitemap": "https://jev.aitools.fyi/sitemap.xml",
   "robots": "https://jev.aitools.fyi/robots.txt"
 }

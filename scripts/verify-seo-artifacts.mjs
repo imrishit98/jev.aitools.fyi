@@ -107,6 +107,19 @@ if (!llms.includes(`Detail pages (indexable HTML): ${expectedDetail}`)) {
   errors.push("llms.txt missing detail page count");
 }
 
+const openapiPath = join(distRoot, "openapi.json");
+try {
+  const openapi = JSON.parse(readFileSync(openapiPath, "utf8"));
+  if (!openapi.openapi?.startsWith("3.")) {
+    errors.push("openapi.json missing OpenAPI 3.x version");
+  }
+  if (!openapi.paths?.["/search-index.json"]) {
+    errors.push("openapi.json missing /search-index.json path");
+  }
+} catch {
+  errors.push("openapi.json missing or invalid JSON");
+}
+
 const publisherPath = join(distRoot, ".well-known/jev-directory.json");
 const publisher = JSON.parse(readFileSync(publisherPath, "utf8"));
 if (publisher.catalog_listings !== expectedCatalog) {

@@ -102,9 +102,38 @@ node scripts/apply-jev-resources.mjs
 | Sitemap | `/sitemap.xml` |
 | Robots | `/robots.txt` |
 | LLM map | `/llms.txt` |
+| OpenAPI (agent surface) | `/openapi.json` |
 | Publisher info | `/.well-known/jev-directory.json` |
 | Default OG image | `/og/home.png` (PNG set generated at build; see `pnpm generate:og`) |
 | OG samples (docs) | `docs/og-samples/` |
+
+### Agent-friendly checks (is-agentic top 5)
+
+After `pnpm build`, run Cloudflare Pages locally so `/functions` middleware is active (`wrangler.toml` sets `run_worker_first = true` so negotiation runs before static assets):
+
+```bash
+pnpm pages:dev
+```
+
+Then (replace host if using preview):
+
+```bash
+# 1) Markdown 404
+curl -sS -L -i -H 'Accept: text/markdown' http://localhost:4321/__ora-404-probe | head -20
+
+# 2) Homepage HTML has H1 before any H2 (build output)
+grep -oE '<(h[1-6])' dist/index.html | head -5
+
+# 3) OpenAPI
+curl -sS http://localhost:4321/openapi.json | head
+
+# 4) JSON API error
+curl -sS -i http://localhost:4321/api/__ora-probe
+
+# 5) Homepage Markdown negotiation
+curl -sS -i -H 'Accept: text/markdown' http://localhost:4321/ | head -20
+curl -sS -i -H 'Accept: text/html' http://localhost:4321/ | head -10
+```
 
 ## Routes
 
