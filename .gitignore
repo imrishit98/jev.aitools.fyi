@@ -56,3 +56,4 @@ agent-tools/
 /scripts/og/fonts/
 _worker.bundle
 artifacts/
+.dev.vars

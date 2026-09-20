@@ -1296,7 +1296,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "My First Million listeners, indie hackers, and Jev builders who want a reference channel-search stack with typed gates instead of vibes-only reranking.",
     overview:
-      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Search what was said on the show: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
+      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Try the live demo at /demos/my-first-million/: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
     creator: {
       name: "Rishit Patel",
       handle: "imrishit98",
@@ -1321,7 +1321,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Jev is not a chat wrapper here. The Hono server calls AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway. One Choice classifies query intent before hybrid recall expands BM25 terms; re-rank still uses the original user query. A single evaluate batches exists, per-candidate relevance and topic booleans, and hit score rubric (off-topic, partial, direct hit) with transcript snippets in state. Application code blends 0.4 / 0.25 / 0.35 and applies exists and match gates. Hybrid recall (including caption-proximity lane) stays local; Jev only sees the shortlist metadata blob.",
+      "Jev is not a chat wrapper here. Cloudflare Pages Functions call AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway. One Choice classifies query intent before hybrid recall expands BM25 terms; re-rank still uses the original user query. A single evaluate batches exists, per-candidate relevance and topic booleans, and hit score rubric (off-topic, partial, direct hit) with transcript snippets in state. Application code blends 0.4 / 0.25 / 0.35 and applies exists and match gates. Hybrid recall (including caption-proximity lane) stays local; Jev only sees the shortlist metadata blob.",
     keyFeatures: [
       "Hybrid recall (BM25, TF-IDF, fuzzy to RRF) in hybrid-recall.mjs",
       "Query understanding before BM25 expansion",
@@ -1331,15 +1331,15 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Debug sheet with understand, shortlist lanes, and full JSON",
     ],
     stack: [
-      "Node.js",
-      "Hono",
+      "Cloudflare Pages Functions",
       "Vercel AI SDK + AI Gateway",
       "typesafe-ai/jev",
-      "yt-dlp catalog ingest",
+      "Hybrid BM25 / TF-IDF / fuzzy / caption RRF",
     ],
     links: {
-      repo: "https://github.com/imrishit98/mfm-jev-search",
-      docs: "https://github.com/imrishit98/mfm-jev-search#readme",
+      repo: "https://github.com/imrishit98/jev.aitools.fyi",
+      docs: "https://jev.aitools.fyi/demos/my-first-million/",
+      demo: "https://jev.aitools.fyi/demos/my-first-million/",
     },
     pricingNote:
       "Open source demo. Live Jev calls bill to your AI Gateway key; mock mode skips network.",
@@ -1350,22 +1350,22 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Does this search the whole internet?",
         answer:
-          "No. Retrieval and scoring are scoped to the My First Million uploads playlist ingested into src/data/catalog.json.",
+          "No. Retrieval and scoring are scoped to the My First Million uploads catalog bundled at src/data/mfm-channel-catalog.json.",
       },
       {
         question: "Can I run it without a Gateway key?",
         answer:
-          "Yes. Copy .dev.vars.example, set JEV_MOCK=true, npm run ingest, then npm run dev on port 4891.",
+          "Yes. Set JEV_MOCK=true in Cloudflare Pages env vars (or .dev.vars for wrangler pages dev). Mock mode skips Gateway calls and uses deterministic scores.",
       },
       {
         question: "Where do caption jump links come from?",
         answer:
-          "After you enrich captions with node scripts/enrich-catalog.mjs --captions, caption-timestamps.mjs finds mention windows and builds YouTube &t= URLs in the feature card.",
+          "When catalog videos include SRT/VTT caption text, the demo finds mention windows and builds YouTube &t= URLs in the feature card.",
       },
     ],
     metaTitle: "My First Million × Jev: search what was said",
     metaDescription:
-      "Hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps for @MyFirstMillionPod. Node and Hono demo on GitHub.",
+      "Hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps for @MyFirstMillionPod. Live demo on jev.aitools.fyi.",
   },
 
 };
