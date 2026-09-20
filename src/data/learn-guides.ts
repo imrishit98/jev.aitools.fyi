@@ -14,6 +14,7 @@ export const learnGuideSlugs = [
   "system-one",
   "jev-vs-llm-classification",
   "vercel-ai-gateway",
+  "where-to-run-jev",
   "use-cases",
 ] as const;
 
@@ -169,6 +170,44 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Migration path",
         body: "Teams often prototype on the gateway, then move to direct TypeSafe credentials when they need private networking or custom quotas. SDK listings in this directory show both styles so you can compare wiring.",
+      },
+    ],
+  },
+  "where-to-run-jev": {
+    slug: "where-to-run-jev",
+    title: "Where to run Jev",
+    description:
+      "Compare official TypeSafe, Vercel AI Gateway, OpenRouter, Cloudflare Workers AI, and classifier.dev with a fact table.",
+    seoTitle: "Where to run Jev: gateways, APIs, and classifier.dev",
+    seoDescription:
+      "Fact table of Jev inference surfaces: TypeSafe POST /v1/systemone, typesafe-ai/jev on Vercel AI Gateway, OpenRouter Decisions, Cloudflare Workers AI, and classifier.dev HTTP classification.",
+    definition:
+      "The same Jev model shows up on multiple gateways and APIs. Pick the surface that matches your auth, billing, and question shape.",
+    exploreHref: "/explore?category=integrations",
+    headings: [
+      {
+        h: "Official TypeSafe API",
+        body: "POST https://api.typesafe.ai/v1/systemone with TYPESAFE_AI_API_KEY (or TYPESAFE_API_KEY on some community tools). TypeSafe's Sep 15, 2026 launch post lists $0.042 per million input tokens with output free. Model aliases on docs and SDKs include jev-latest and jev-1.13 family ids. Latency cited by TypeSafe: about 70 ms to 500 ms end to end for typical batches.",
+      },
+      {
+        h: "Vercel AI Gateway",
+        body: "Model id typesafe-ai/jev for AI SDK experimental_evaluate and gateway.evaluationModel('typesafe-ai/jev'). Vercel documents $0.042/M input, no output charge, and a 32,000 token context window. Gateway itself includes $5/month free credit then pay-as-you-go credits without markup on model rates.",
+      },
+      {
+        h: "OpenRouter",
+        body: "Model typesafe/jev-1.13 on the Decisions API (not chat completions). OpenRouter lists $0.042/M input, $0/M output, 32k context, with a Sep 18, 2026 release note on the model page.",
+      },
+      {
+        h: "Cloudflare Workers AI",
+        body: "Model id typesafe/jev via env.AI.run('typesafe/jev', { state, questions }). Cloudflare lists a 32,000 token context window; dollar rates are dashboard-priced on their side. TypeSafe's public list price still applies when you compare unit economics.",
+      },
+      {
+        h: "classifier.dev (Jev for labels)",
+        body: "Not the System One JSON API: classifier.dev is zero-shot text classification over HTTP with fast tier on Jev and smart tier escalation below 0.7 confidence. Free tier needs no API key; limits count classifications per IP. See classifier.dev/pricing and the classifier-dev listing in this directory.",
+      },
+      {
+        h: "What we did not guess",
+        body: "Rate limits like 250,000 tokens per second on the official API are omitted here unless docs.typesafe.ai/models states them in your checkout. Context limits vary by gateway (32k on Vercel, OpenRouter, and Cloudflare model pages). Always confirm aliases on the provider page you ship against.",
       },
     ],
   },

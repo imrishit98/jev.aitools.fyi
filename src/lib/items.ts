@@ -1,5 +1,6 @@
 import { contentPolicyStats, items } from "@/data/items/index";
 import type { CategorySlug, DirectoryItem, ItemBadge } from "@/data/types";
+import { listingMatchesQuery } from "@/lib/search-index";
 import {
   itemHasDetailPage,
   type EnrichedDirectoryItem,
@@ -39,7 +40,14 @@ export function getItemsByCategory(category: CategorySlug): DirectoryItem[] {
 }
 
 export function getFeaturedItems(limit = 12): DirectoryItem[] {
-  return items.filter((i) => i.featured || i.badges?.includes("featured")).slice(0, limit);
+  return items
+    .filter((i) => i.featured || i.badges?.includes("featured"))
+    .sort(
+      (a, b) =>
+        (b.updatedAt ?? "").localeCompare(a.updatedAt ?? "") ||
+        (b.stars ?? 0) - (a.stars ?? 0),
+    )
+    .slice(0, limit);
 }
 
 export function getRelatedItems(item: DirectoryItem, limit = 4): DirectoryItem[] {
@@ -98,7 +106,7 @@ export function filterItems(
   source: DirectoryItem[] = items,
 ): DirectoryItem[] {
   let result = [...source];
-  const q = filters.q?.trim().toLowerCase();
+  const q = filters.q?.trim();
 
   if (filters.category) {
     result = result.filter((i) => i.category === filters.category);
@@ -129,14 +137,7 @@ export function filterItems(
     result = result.filter((i) => i.sourcePlatform === filters.sourcePlatform);
   }
   if (q) {
-    result = result.filter(
-      (i) =>
-        i.title.toLowerCase().includes(q) ||
-        i.oneLiner.toLowerCase().includes(q) ||
-        i.description.toLowerCase().includes(q) ||
-        i.tags.some((t) => t.toLowerCase().includes(q)) ||
-        i.creatorHandle?.toLowerCase().includes(q),
-    );
+    result = result.filter((i) => listingMatchesQuery(i, q));
   }
 
   const sort = filters.sort ?? "featured";

@@ -48,4 +48,6 @@ agent-tools/
 # generated OG PNGs (rebuilt via pnpm generate:og / prebuild)
 /public/og/*
 !/public/og/.gitkeep
+# generated listing search index (pnpm generate:search-index / prebuild)
+/public/search-index.json
 /scripts/og/fonts/

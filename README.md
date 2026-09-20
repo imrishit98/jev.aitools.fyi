@@ -87,7 +87,13 @@ node scripts/generate-catalog.mjs
 
 The generator ingests a public community index HTML export; marketing copy and attribution stripping are applied via `src/data/catalog-marketing-overrides.json` and `src/lib/apply-catalog-overrides.ts`. The live site does not display third-party index attribution.
 
-Output: `src/data/catalog.json` (488 entries at last ingest).
+Output: `src/data/catalog.json` (494 entries at last ingest; hand-edited additions live beside awesomejev imports).
+
+Hand-maintained ecosystem patches (classifier.dev, gateway pricing, PyPI `jev-cli`, and similar) can be reapplied with:
+
+```bash
+node scripts/apply-jev-resources.mjs
+```
 
 **SEO content policy:** see [docs/seo-content-policy.md](./docs/seo-content-policy.md). Most listings stay on Explore without a thin detail page; kept entries use category paths (`/tools/`, `/sdks/`, `/apps/`, and similar) in the sitemap. Legacy `/items/*` URLs 301 via `dist/_redirects`.
 
@@ -104,7 +110,7 @@ Output: `src/data/catalog.json` (488 entries at last ingest).
 
 ## Routes
 
-Home, faceted **Explore**, **131** item detail pages (488 catalog entries), category hubs, learn guides, submit, about.
+Home, faceted **Explore**, **144** item detail pages (494 catalog entries), category hubs, learn guides (including where-to-run-jev), submit, about.
 
 ## Affiliation
 

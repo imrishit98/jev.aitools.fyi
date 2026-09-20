@@ -84,7 +84,7 @@
     "description": "awesome-typesafe in the Jev ecosystem. Curated list of official resources and community projects for TypeSafe, System One models, and Jev, with a GitHub Pages site. Reading queue from builders: essays, lists, and launch threads to supplement official docs. Tags in the wild: guides. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "awlevin-typesafe-computer-use": {
-    "oneLiner": "typesafe-computer-use: Computer use for about $0.",
+    "oneLiner": "Computer use for about $0.",
     "description": "Computer use for about $0.0002 a step: OCR the screen, classify the next action with TypeSafe, click. macOS. Pick the next click from a finite action list, fast enough to feel like automation, not theatre. Tags in the wild: browser computer use, browser-use. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "usenotra-notra": {
@@ -128,11 +128,11 @@
     "description": "Search the web with TypeSafe's Jev: source selection, query understanding and relevance ranking. Built with Search1API. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, rag, agents. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "dicklesworthstone-skillranker": {
-    "oneLiner": "skillranker: Rust CLI powered by Jev from TypeSafe.",
+    "oneLiner": "Rust CLI powered by Jev from TypeSafe.",
     "description": "Rust CLI powered by Jev from TypeSafe.ai that ranks agent skills for the next step using live session context. Includes Claude Code hooks, structured JSON, abstention, and local feedback. Requires a TypeSafe API key. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, agents. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "moritzkremb-jev-voice-browser": {
-    "oneLiner": "jev-voice-browser: Control a real browser by voice.",
+    "oneLiner": "Control a real browser by voice.",
     "description": "Control a real browser by voice. Jev (TypeSafe System One) decides intent + target in ~300 ms per spoken word; Playwright acts, often before you finish the sentence. Pick the next click from a finite action list, fast enough to feel like automation, not theatre. Tags in the wild: browser computer use, browser-use. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "brainstormity-jev-moderation-bot": {
@@ -176,7 +176,7 @@
     "description": "typesafe-ai-playground (BunsDev) in the Jev ecosystem. Community TypeSafe AI playground: 110 use cases, games, dilemmas and model challenges, with editable prompts, A/B comparisons and a mobile-friendly UI. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds, game. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "goodrahstar-jev-column-race": {
-    "oneLiner": "jev-column-race: Jev vs Gemini 3.",
+    "oneLiner": "Jev vs Gemini 3.",
     "description": "Jev vs Gemini 3.8 Flash: labelling 1,000 app reviews, 4.1× faster and 7× cheaper. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "jomatsu-zod-jev": {
@@ -192,7 +192,7 @@
     "description": "TypeSafe (Jev) skill routing for Hermes Agent: names the one skill worth loading, before the model call. Opt-in, stdlib only, ~$0.001 per routed turn. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, routing, agents. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "saibimajdi-typesafeai-dotnet-sdk": {
-    "oneLiner": "typesafe-dotnet-sdk: Community .",
+    "oneLiner": "Community .",
     "description": "Community .NET SDK for the TypeSafe AI System One API, typed noul, choice, and score questions with structured, confidence-scored answers. Not affiliated with TypeSafe AI. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdks, sdk. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "arunav25-jev-mcp": {
@@ -200,7 +200,7 @@
     "description": "jev-mcp (arunav25) in the Jev ecosystem. Connect JEV to MCP clients and compare its judgments against general-purpose LLMs using shared datasets and measurable accuracy. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, mcp, sdk. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "kikoncuo-jevfire": {
-    "oneLiner": "jevfire: JEV-inspired parallel decisions for CUDA LLMs.",
+    "oneLiner": "JEV-inspired parallel decisions for CUDA LLMs.",
     "description": "JEV-inspired parallel decisions for CUDA LLMs. One context, many decisions. vLLM API, game-agent examples, and reproducible benchmarks. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks, agents, eval. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "omnijev-awesome-jev": {
@@ -256,7 +256,7 @@
     "description": "An idiomatic, type-safe Elixir port of the official TypeScript AI SDK (ai / ai-sdk) providing unified LLM integrations, streaming text and structured outputs, tool calling, and agentic workflows. Jev is their current flagship model and is the first System One model. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdks, sdk, agents. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "tylerjharden-ailerix": {
-    "oneLiner": "ailerix: Type-safe model router.",
+    "oneLiner": "Type-safe model router.",
     "description": "Type-safe model router. Jev (System One) banks each request to a typed catalog route. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, routing, agents. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "rashedint32-jev-mcp": {
@@ -292,7 +292,7 @@
     "description": "Ask a yes/no question of every function in a codebase. Ranked answers in seconds, for cents. Grep whose pattern is a question, powered by TypeSafe Jev. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "reachjalil-jev-tree": {
-    "oneLiner": "jev-tree: Recursive Jev choice over a taxonomy.",
+    "oneLiner": "Recursive Jev choice over a taxonomy.",
     "description": "Recursive Jev choice over a taxonomy. Select from more than 255 options without breaking TypeSafe Jev's choice cap. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "hellogumbo-should-ai-kill-us-all": {
@@ -304,7 +304,7 @@
     "description": "Eight minimal working examples of TypeSafe's Jev (a System One model) applied to mechanical and electrical engineering: CAD/CAE/CAM routing, FEM result triage, DFM screening, BOM alignment, hallucination-proof extraction. Zero dependencies. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks, routing. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "monglong0214-jev-gate": {
-    "oneLiner": "jev-gate: Not every coding task needs your best model.",
+    "oneLiner": "Not every coding task needs your best model.",
     "description": "Not every coding task needs your best model. Experimental Jev-powered model routing for Claude Code, V3 prototype runs today, V4 routes at the task boundary. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks, routing, agents. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "gaurav-gosain-jev-go": {
@@ -312,7 +312,7 @@
     "description": "jev-go (Gaurav-Gosain) in the Jev ecosystem. Go client for TypeSafe's System One API and its model Jev: typed judgments and calibrated probabilities instead of generated text. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdks, sdk, eval. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "abovecolin-jevclient": {
-    "oneLiner": "jevclient: Async Python client for TypeSafe Jev.",
+    "oneLiner": "Async Python client for TypeSafe Jev.",
     "description": "Async Python client for TypeSafe Jev. Typed questions in, probabilities and choices out, no prose to parse. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdks, sdk. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "bestagentkits-jev-skillful": {
@@ -336,7 +336,7 @@
     "description": "gpt-vs-jev in the Jev ecosystem. Compare GPT generated language with JEV structured Noul decisions on the same input. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "joevidev-ui-generator-instinct-jev": {
-    "oneLiner": "Instinct: describe a case in free text and Jev picks the UI from a fixed catalog without generating a line of code or copy.",
+    "oneLiner": "Instinct in the Jev ecosystem.",
     "description": "Instinct in the Jev ecosystem. Instinct: describe a case in free text and Jev picks the UI from a fixed catalog without generating a line of code or copy. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "little-planet-labs-jev-playground": {
@@ -348,7 +348,7 @@
     "description": "High-throughput synthetic & pretraining dataset sifter powered by TypeSafe AI Jev (api.typesafe.ai). Stream, filter, and score Parquet & JSONL datasets at 1,500+ rows/sec using System One typed decisions (Choice, Score, Noul). Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "anessbelbati-jev-rerank-bench": {
-    "oneLiner": "jev-rerank-bench: Can a decision model beat dedicated rerankers?",
+    "oneLiner": "Can a decision model beat dedicated rerankers?",
     "description": "Can a decision model beat dedicated rerankers? TypeSafe Jev vs Cohere Rerank 4 vs ZeroEntropy zerank-2 vs a chat-model baseline: 14 datasets, every raw API response, bootstrap ranges on every gap. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks, rag. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "altryne-jevify": {
@@ -424,7 +424,7 @@
     "description": "jev-document-classification in the Jev ecosystem. JEV Document Classification enables the rapid and cost-effective classification of text-based documents using AI, leveraging TypeSafe's \"System One\" model. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications, rag. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
   },
   "0xarx-jevegis": {
-    "oneLiner": "jevegis: Guardrails for LLM apps in one API call.",
+    "oneLiner": "Guardrails for LLM apps in one API call.",
     "description": "Guardrails for LLM apps in one API call. Prompt injection, jailbreaks, leaks, unsafe content. Built on TypeSafe Jev. MIT. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications, guardrails. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "cpaczek-s1s": {
@@ -452,15 +452,15 @@
     "description": "A cyberpunk border encounter powered by TypeSafe Jev. Bluff the guard. Inspect the receipts. Playable proof that discrete Jev choices beat joystick LLM improv. Fun demo, serious latency lesson. Tags in the wild: games, guardrails, game. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "vnmoorthy-siege": {
-    "oneLiner": "siege: SIEGE: 200 people vs one agent.",
+    "oneLiner": "SIEGE: 200 people vs one agent.",
     "description": "SIEGE: 200 people vs one agent. A typed action gate (TypeSafe System One) that learns from every breach, evaluated by W&B Weave, hardened by a defender loop. Built at CoreWeave Hacks: Agent Loops 2026. Playable proof that discrete Jev choices beat joystick LLM improv. Fun demo, serious latency lesson. Tags in the wild: games, agents, eval. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "cbetz-extremely-specific-council": {
-    "oneLiner": "extremely-specific-council: Twelve members.",
+    "oneLiner": "Twelve members.",
     "description": "Twelve members. Zero qualifications. A playful TypeSafe AI council with animated votes, inspectable decisions, and shareable verdicts. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "asfarsadewa-human-compiler": {
-    "oneLiner": "human-compiler: A compiler for human language.",
+    "oneLiner": "A compiler for human language.",
     "description": "A compiler for human language. Paste text, get diagnostics. Measured by TypeSafe Jev. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "narulaskaran-jev-data-questions": {
@@ -492,7 +492,7 @@
     "description": "Free, no-signup Noul demo. Ask a question, get yes, no, or maybe, with web search when needed. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds. Follow the primary link for the author's latest notes and setup quirks."
   },
   "lab-dados-jev-anotacao-sentencas": {
-    "oneLiner": "jev-anotacao-sentencas: Jev (TypeSafe) vs.",
+    "oneLiner": "Jev (TypeSafe) vs.",
     "description": "Jev (TypeSafe) vs. Gemini 3.8 Flash vs. GPT-5.6 Luna na anotação estruturada de sentenças do TJSP: qualidade, tempo e custo. Numbers, harnesses, and comparisons you can rerun on your hardware instead of trusting a screenshot. Tags in the wild: benchmarks. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "dnakhoa-jev-deferred-crispification": {
@@ -552,5 +552,33 @@
   "nickthompson480-typesafe-ai-playground": {
     "oneLiner": "Community TypeSafe AI playground: 110 use cases, games, dilemmas and model challenges, with editable prompts, A/B comparisons and a mobile-friendly UI.",
     "description": "typesafe-ai-playground in the Jev ecosystem. Community TypeSafe AI playground: 110 use cases, games, dilemmas and model challenges, with editable prompts, A/B comparisons and a mobile-friendly UI. Sandbox first, invoice later: poke at Choice, Score, and Noul before you wire billing. Tags in the wild: playgrounds, game. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
+  },
+  "brainwires-jevwire": {
+    "oneLiner": "Brainwires jevwire packages a Jev decision layer for agents: Streamable MCP server, embeddable DecisionModel library, and a Claude Code plugin marketpla",
+    "description": "Brainwires jevwire packages a Jev decision layer for agents: Streamable MCP server, embeddable DecisionModel library, and a Claude Code plugin marketplace entry (Brainwires/jevwire). npm package jevwire; repo github.com/Brainwires/jevwire. Requires TYPESAFE_API_KEY for the official TypeSafe API. Documented MCP tools include jev_evaluate, jev_rank, jev_verify, jev_gate_action, jev_next_step, and jev_list_models. TypeSafe lists Jev at $0.042 per million input tokens with output free (Sep 15, 2026 launch post). Also indexed on Glama as jev-mcp by Brainwires. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, mcp, agents. The repo has install steps, env vars, and recent commits if you are deciding whether to depend on it."
+  },
+  "classifier-dev": {
+    "oneLiner": "classifier.",
+    "description": "classifier.dev is a hosted zero-shot text classifier: send labels and text, get calibrated scores back over REST with no account on the free tier. The fast tier uses Jev; the smart tier escalates uncertain items to a reasoning model (public smart requests cap at 200 inputs per call). OpenAPI lives at classifier.dev/openapi.json; llms.txt at classifier.dev/llms.txt. Measured on classifier.dev/benchmark (400 items each, live 2026-09-18): fast tier AG News 87.5% and emotion 61.8%; smart tier AG News 90.0% and emotion 62.7%. Free per-IP limits count classifications, not HTTP requests: fast 3,000/min and 20,000/day; smart 200/min and 2,000/day. Pro is $20/month with Bearer classifier_pro_ keys (fast 30,000/min and 200,000/day; smart 2,000/min and 20,000/day). The site states fast model cost about $0.005 per thousand classifications and smart escalations about $0.70 per thousand on its own pricing and benchmark pages. Privacy policy: text is not stored or logged; it is sent to the model provider only to classify. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications, classification, moderation. Skim the repo for setup, then open the demo when you want proof before you merge anything."
+  },
+  "classifier-dev-cli": {
+    "oneLiner": "Install with npm i -g classifier-dev (package classifier-dev on npm).",
+    "description": "Install with npm i -g classifier-dev (package classifier-dev on npm). The open source repo is github.com/mrmps/classifier-dev. It talks to the same classifier.dev REST API as the website, including fast and smart tiers, batch posts up to 1,000 inputs, and Pro keys via --api-key or CLASSIFY_API_KEY (CLASSIFIER_API_KEY also works per pricing docs). Handy when you want shell scripts that classify logs without standing up your own Jev stack. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdk, classification, cli. Skim the repo for setup, then open the demo when you want proof before you merge anything."
+  },
+  "classifier-dev-mcp": {
+    "oneLiner": "Two Streamable HTTP MCP endpoints from classifier.",
+    "description": "Two Streamable HTTP MCP endpoints from classifier.dev: https://classifier.dev/mcp exposes classify_texts, classify_dimensions, classify_multi_label, count_labels, and review_uncertain; https://classifier.dev/mcp/docs exposes list_docs, read_doc, and search_docs. Registry ids include dev.classifier/classifier and dev.classifier/docs. Setup guide: classifier.dev/mcp-setup. Free tier uses the same per-IP classification limits as the REST API (no key). Pro uses Bearer classifier_pro_ on MCP or REST. Agent skill install: npx skills add https://classifier.dev (well-known at /.well-known/agent-skills/index.json and /skill.md). Skills leaderboard: classifier.dev/skills. Agent plumbing where probabilities beat regex on model output. Fork the pattern, not the prose. Tags in the wild: agent tooling, mcp, classification. Skim the repo for setup, then open the demo when you want proof before you merge anything."
+  },
+  "openrouter-typesafe-jev-1-13": {
+    "oneLiner": "OpenRouter lists typesafe/jev-1.",
+    "description": "OpenRouter lists typesafe/jev-1.13 (jev-latest alias family) for TypeSafe's structured decision model. Published pricing on openrouter.ai/typesafe/jev-1.13: $0.042 per million input tokens and $0 per million output tokens, with a 32,000 token context window. The model page notes release on Sep 18, 2026. Routing uses OpenRouter's Decisions API rather than chat completions. Bring OPENROUTER_API_KEY. Glue code for gateways, agents, and platforms that should stay typed instead of chatty. Tags in the wild: integrations, routing, sdk. Follow the primary link for the author's latest notes and setup quirks."
+  },
+  "cloudflare-workers-ai-typesafe-jev": {
+    "oneLiner": "Cloudflare documents model id typesafe/jev for TypeSafe's structured evaluation model on Workers AI.",
+    "description": "Cloudflare documents model id typesafe/jev for TypeSafe's structured evaluation model on Workers AI. Context window is listed as 32,000 tokens. Call pattern from Cloudflare docs: env.AI.run('typesafe/jev', { state, questions }) with noul, choice, and score question shapes. Dollar pricing is not published on the model page; Cloudflare points to dashboard pricing. TypeSafe's public list price elsewhere is $0.042 per million input tokens with output free (typesafe.ai blog Sep 15, 2026). Glue code for gateways, agents, and platforms that should stay typed instead of chatty. Tags in the wild: integrations, sdk, agents. Follow the primary link for the author's latest notes and setup quirks."
+  },
+  "pypi-jev-cli": {
+    "oneLiner": "PyPI package jev-cli (v0.",
+    "description": "PyPI package jev-cli (v0.6.2 at time of indexing): small CLI plus stdio MCP server for TypeSafe Jev. Providers documented on PyPI: official API with TYPESAFE_API_KEY, Vercel AI Gateway with AI_GATEWAY_API_KEY targeting typesafe-ai/jev, OpenRouter with OPENROUTER_API_KEY targeting typesafe/jev-1.13, plus custom endpoints. Install via pip from pypi.org/project/jev-cli/. Distinct from unrelated jev-cli repos on GitHub by other authors. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdk, mcp, cli. Follow the primary link for the author's latest notes and setup quirks."
   }
 }

@@ -21,9 +21,11 @@ const vite = await createServer({
   logLevel: "error",
 });
 const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
+const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
 await vite.close();
 
 const stats = itemsMod.getDirectoryStats();
+const learnTopicCount = learnMod.learnGuideSlugs.length;
 const expectedDetail = stats.detailPages;
 const expectedCatalog = stats.total;
 
@@ -49,7 +51,7 @@ if (detailInSitemap !== expectedDetail) {
 }
 
 const staticExpected =
-  6 + 10 + 5; /* home, explore, learn, submit, about, showcase + categories + learn topics */
+  6 + 10 + learnTopicCount; /* home, explore, learn, submit, about, showcase + categories + learn topics */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,
