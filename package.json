@@ -36,7 +36,7 @@
     "@types/react-dom": "^19",
     "cheerio": "^1.2.0",
     "eslint": "^9",
-    "playwright": "1.49.1",
+    "playwright": "1.55.1",
     "satori": "^0.19.1",
     "sharp": "^0.35.4",
     "tailwindcss": "^4.1.4",
