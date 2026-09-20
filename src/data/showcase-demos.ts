@@ -31,6 +31,98 @@ const demo = (partial: DemoInput): ShowcaseDemo => {
 
 export const showcaseDemos: ShowcaseDemo[] = [
   demo({
+    id: "smart-copy-paste-marcus-lowe",
+    authorHandle: "marcus_lowe",
+    authorName: "Marcus Lowe",
+    tweetUrl: "https://x.com/marcus_lowe/status/2101476399488160013",
+    title: "Smart copy and paste",
+    funnyBlurb:
+      "Your clipboard finally reads the room. Jev picks what you meant to paste before you undo the chaos.",
+    homepage: true,
+    categoryTags: ["productivity", "clipboard", "demo"],
+  }),
+  demo({
+    id: "ploy-jev-websites-bryantchou",
+    authorHandle: "bryantchou",
+    authorName: "Bryant Chou",
+    tweetUrl: "https://x.com/bryantchou/status/2101485995669770522",
+    title: "Ploy picks copy and design per visitor",
+    funnyBlurb:
+      "Ploy reads your funnel, Jev picks headline and layout for each segment in about twenty-five milliseconds. A/B tests without the all-hands.",
+    homepage: true,
+    categoryTags: ["marketing", "personalization", "product"],
+    projectUrl: "https://ploy.ai",
+  }),
+  demo({
+    id: "clera-jobs-sebastianscott",
+    authorHandle: "_sebastianscott",
+    authorName: "Seb from Clera",
+    tweetUrl: "https://x.com/_sebastianscott/status/2101429879078330390",
+    title: "Jev for hiring workflows",
+    funnyBlurb:
+      "Clera matches talent at scale. Jev handles the messy job of who fits what before your calendar fills with maybe calls.",
+    homepage: true,
+    categoryTags: ["jobs", "recruiting", "product"],
+    projectUrl: "https://getclera.com",
+  }),
+  demo({
+    id: "ui-flow-capture-omarjpeg",
+    authorHandle: "omarjpeg",
+    authorName: "omar",
+    tweetUrl: "https://x.com/omarjpeg/status/2101047036863037753",
+    title: "On-demand UI flow capture",
+    funnyBlurb:
+      "Mobbin energy, but Jev grabs fresh flows for whatever you are building instead of stale screenshots from 2019.",
+    homepage: false,
+    categoryTags: ["design", "browser-use", "demo"],
+  }),
+  demo({
+    id: "rtrvr-jev-bkalisetty",
+    authorHandle: "b_kalisetty",
+    authorName: "Bhavani Kalisetty",
+    tweetUrl: "https://x.com/b_kalisetty/status/2100693198175928707",
+    title: "rtrvr.ai with Jev routing",
+    funnyBlurb:
+      "Free browser agent, no API key drama. Jev shaves time off recorded tasks while the LLM still writes the plan.",
+    homepage: false,
+    categoryTags: ["agents", "browser", "product"],
+    projectUrl: "https://rtrvr.ai",
+  }),
+  demo({
+    id: "jev-codes-kushwho",
+    authorHandle: "kushwho11146",
+    authorName: "Kushal Agarwal",
+    tweetUrl: "https://x.com/kushwho11146/status/2101103318386758011",
+    title: "jev-codes standards gate",
+    funnyBlurb:
+      "Point Jev at your diff and a YAML standards pack. Your agent gets a merge opinion that is not vibes-only.",
+    homepage: false,
+    categoryTags: ["devtools", "review", "demo"],
+    projectUrl: "https://github.com/kushwho/jev-codes",
+  }),
+  demo({
+    id: "your-signal-fabioangela79",
+    authorHandle: "FabioAngela79",
+    authorName: "Fabio Angela",
+    tweetUrl: "https://x.com/FabioAngela79/status/2101013867627159592",
+    title: "Your Signal feed scoring",
+    funnyBlurb:
+      "Jev scores posts already on your screen against your rules locally. BYOK, reversible, and no telemetry guilt trip.",
+    homepage: false,
+    categoryTags: ["social", "ranking", "opensource"],
+  }),
+  demo({
+    id: "computer-use-speed-savboj",
+    authorHandle: "savboj",
+    authorName: "Sav",
+    tweetUrl: "https://x.com/savboj/status/2100545295201288678",
+    title: "Blink-and-you-miss-it browser use",
+    funnyBlurb:
+      "Jev plus computer use moves so fast you need slo-mo to see the DOM click. LLMs are still catching up.",
+    homepage: false,
+    categoryTags: ["browser-use", "agents", "demo"],
+  }),
+  demo({
     id: "browser-ultrafast-gregpr07",
     authorHandle: "gregpr07",
     authorName: "Gregor Zunic",
