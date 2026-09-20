@@ -18,6 +18,7 @@
   },
   {
     "slug": "rtrvr-ai",
+    "indexOnly": true,
     "title": "rtrvr.ai",
     "oneLiner": "Free browser agent that records tasks; Jev speeds routing on the hot path while the LLM still plans steps.",
     "description": "rtrvr.ai is a browser automation product aimed at repeatable recorded workflows without forcing every user to bring their own API keys on day one. Community demos highlight Jev shaving latency on routing decisions inside the agent loop while larger models handle open-ended planning. Treat this listing as the product home for the rtrvr.ai domain referenced in builder clips on the showcase.",
@@ -29,7 +30,6 @@
     "creatorHandle": "b_kalisetty",
     "creatorName": "Bhavani Kalisetty",
     "sourcePlatform": "x",
-    "detailPage": true,
     "updatedAt": "2026-09-19"
   },
   {
@@ -71,6 +71,7 @@
   },
   {
     "slug": "your-signal",
+    "indexOnly": true,
     "title": "Your Signal",
     "oneLiner": "Local feed scoring: Jev ranks posts already on screen against your rules with BYOK and no telemetry pitch.",
     "description": "Your Signal is an open experiment from Fabio Angela for ranking social feed items against personal rules on device. The builder clip emphasizes local scoring with bring-your-own-key configuration instead of shipping text to a mystery cloud for relevance labels. Listing tracks the project as described in the public showcase post while we wait for a stable product URL beyond the launch thread.",
@@ -82,11 +83,11 @@
     "creatorHandle": "FabioAngela79",
     "creatorName": "Fabio Angela",
     "sourcePlatform": "x",
-    "detailPage": true,
     "updatedAt": "2026-09-19"
   },
   {
     "slug": "magic-jev-ball",
+    "indexOnly": true,
     "title": "Magic Jev Ball",
     "oneLiner": "Playful code-review gate that bounces bad diffs; merge when Jev says yes, not when vibes say maybe.",
     "description": "Magic Jev Ball is a builder demo from Agamya that frames code review as a merge gate with visible Jev judgments. The showcase clip treats it as a teaching pattern for parallel questions on diffs before you trust an agent with write access. Primary public reference is the launch post on X until a canonical repo link is published separately.",
@@ -98,7 +99,6 @@
     "creatorHandle": "acharyaagamya",
     "creatorName": "Agamya",
     "sourcePlatform": "x",
-    "detailPage": true,
     "updatedAt": "2026-09-19"
   }
 ]

@@ -36,7 +36,7 @@ An item earns a detail page when **any** of the following hold (and it is not a 
 
 ### Product profiles (rich detail pages)
 
-Listings with a hand-written entry in `src/data/product-profiles.ts` always receive a detail page, count profile copy toward the 400-character body threshold, and render extended sections (problem, Jev usage, FAQ with JSON-LD, showcase embeds when `demoIds` match). Explore filter: `/explore?products=1`. Do not add a profile without enough verified facts for a thick page.
+Listings with a `status: "published"` entry in `src/data/product-profiles.ts` always receive a detail page, count profile copy toward the 400-character body threshold, and render structured sections (Overview, Creator, How Jev is used with primitives and sourced metrics, Features/stack, Demo embed, Links, FAQ with JSON-LD). Explore filter: `/explore?products=1`. Use `status: "draft"` or omit profiles when Jev usage cannot be verified from README, docs, or attributed posts. Prefer fewer thick pages over many thin ones.
 
 ### Explore-only (`indexOnly`)
 

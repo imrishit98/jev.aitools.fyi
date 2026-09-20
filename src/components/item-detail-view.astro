@@ -127,49 +127,128 @@ const listingDescription = profile
           )}
         </div>
 
-        {showcaseDemos.length > 0 && (
-          <section class="surface-card p-6 sm:p-8" aria-labelledby="product-demo-heading">
-            <h2 id="product-demo-heading" class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
-              Builder demo
-            </h2>
-            <p class="mt-2 text-sm text-muted-foreground">
-              Same lightbox experience as the homepage showcase. Click a card to play the full clip.
-            </p>
-            <div class="mt-6">
-              <ProductProfileDemos client:visible demos={showcaseDemos} />
-            </div>
-          </section>
-        )}
-
         {profile ? (
           <>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">The problem</h2>
-              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.problem}</p>
-            </div>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">What it is</h2>
-              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.whatItIs}</p>
-            </div>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Who it is for</h2>
-              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.audience}</p>
-            </div>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">How it uses Jev</h2>
-              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.howJevIsUsed}</p>
-            </div>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Key features</h2>
-              <ul class="mt-4 list-disc space-y-2 pl-5 text-base leading-relaxed text-foreground/90">
+            <section class="surface-card p-6 sm:p-8" aria-labelledby="product-overview-heading">
+              <h2 id="product-overview-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Overview</h2>
+              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.overview}</p>
+              <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                <span class="font-medium text-foreground">Problem:</span> {profile.problem}
+              </p>
+              <p class="mt-4 text-base leading-relaxed text-muted-foreground">
+                <span class="font-medium text-foreground">Built for:</span> {profile.targetUser}
+              </p>
+              {profile.firstSeen && (
+                <p class="mt-4 text-sm text-muted-foreground">
+                  <span class="font-medium text-foreground">First indexed on Jev Directory:</span> {profile.firstSeen}
+                </p>
+              )}
+            </section>
+
+            <section class="surface-card p-6 sm:p-8" aria-labelledby="product-creator-heading">
+              <h2 id="product-creator-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Creator and team</h2>
+              <dl class="mt-4 space-y-3 text-base">
+                <div>
+                  <dt class="text-sm font-medium text-muted-foreground">Name</dt>
+                  <dd class="mt-1 text-foreground">{profile.creator.name}</dd>
+                </div>
+                {profile.creator.company && (
+                  <div>
+                    <dt class="text-sm font-medium text-muted-foreground">Organization</dt>
+                    <dd class="mt-1">
+                      {profile.creator.companyUrl ? (
+                        <a href={profile.creator.companyUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">{profile.creator.company}</a>
+                      ) : (
+                        profile.creator.company
+                      )}
+                    </dd>
+                  </div>
+                )}
+                {profile.creator.handle && (
+                  <div>
+                    <dt class="text-sm font-medium text-muted-foreground">Handle</dt>
+                    <dd class="mt-1 text-foreground">@{profile.creator.handle}</dd>
+                  </div>
+                )}
+                <div class="flex flex-wrap gap-3 pt-1">
+                  {profile.creator.xUrl && (
+                    <a href={profile.creator.xUrl} class="text-sm text-primary hover:underline" rel="noopener noreferrer" target="_blank">X profile</a>
+                  )}
+                  {profile.creator.githubUrl && (
+                    <a href={profile.creator.githubUrl} class="text-sm text-primary hover:underline" rel="noopener noreferrer" target="_blank">GitHub</a>
+                  )}
+                </div>
+              </dl>
+              {profile.creatorQuote && (
+                <blockquote class="mt-6 border-l-2 border-primary/40 pl-4 text-base italic leading-relaxed text-foreground/90">
+                  &ldquo;{profile.creatorQuote.text}&rdquo;
+                  <footer class="mt-2 text-sm not-italic text-muted-foreground">
+                    — {profile.creatorQuote.attributedTo},{" "}
+                    <a href={profile.creatorQuote.sourceUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">source</a>
+                  </footer>
+                </blockquote>
+              )}
+            </section>
+
+            <section class="surface-card p-6 sm:p-8" aria-labelledby="product-jev-heading">
+              <h2 id="product-jev-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">How Jev is used</h2>
+              <dl class="mt-4 grid gap-4 sm:grid-cols-2">
+                <div class="sm:col-span-2">
+                  <dt class="text-sm font-medium text-muted-foreground">Role in the product flow</dt>
+                  <dd class="mt-1 text-base leading-relaxed text-foreground/90">{profile.jevUsage.flowRole}</dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-muted-foreground">Primitives</dt>
+                  <dd class="mt-2 flex flex-wrap gap-2">
+                    {profile.jevUsage.primitives.map((p) => (
+                      <Badge variant="secondary">{p}</Badge>
+                    ))}
+                  </dd>
+                </div>
+                <div>
+                  <dt class="text-sm font-medium text-muted-foreground">State in</dt>
+                  <dd class="mt-1 text-sm leading-relaxed text-foreground/90">{profile.jevUsage.stateIn}</dd>
+                </div>
+                <div class="sm:col-span-2">
+                  <dt class="text-sm font-medium text-muted-foreground">Decision out</dt>
+                  <dd class="mt-1 text-sm leading-relaxed text-foreground/90">{profile.jevUsage.decisionOut}</dd>
+                </div>
+              </dl>
+              {profile.jevUsage.flowSteps && profile.jevUsage.flowSteps.length > 0 && (
+                <ol class="mt-6 list-decimal space-y-2 pl-5 text-sm leading-relaxed text-foreground/90">
+                  {profile.jevUsage.flowSteps.map((step) => (
+                    <li>{step}</li>
+                  ))}
+                </ol>
+              )}
+              <div class="mt-6 space-y-4 text-base leading-relaxed text-foreground/90">
+                <p>{profile.howJevIsUsed}</p>
+              </div>
+              {profile.jevUsage.sourcedMetrics && profile.jevUsage.sourcedMetrics.length > 0 && (
+                <div class="mt-6 rounded-md border border-border bg-muted/30 p-4">
+                  <p class="text-sm font-medium text-foreground">Sourced performance claims</p>
+                  <ul class="mt-3 space-y-2 text-sm leading-relaxed text-muted-foreground">
+                    {profile.jevUsage.sourcedMetrics.map((m) => (
+                      <li>
+                        <span class="text-foreground">{m.claim}</span>
+                        <span class="block text-xs text-muted-foreground">Source: {m.source}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </section>
+
+            <section class="surface-card p-6 sm:p-8" aria-labelledby="product-features-heading">
+              <h2 id="product-features-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Features and stack</h2>
+              <h3 class="mt-6 text-sm font-medium uppercase tracking-widest text-muted-foreground">Features</h3>
+              <ul class="mt-3 list-disc space-y-2 pl-5 text-base leading-relaxed text-foreground/90">
                 {profile.keyFeatures.map((feature) => (
                   <li>{feature}</li>
                 ))}
               </ul>
-            </div>
-            <div class="surface-card p-6 sm:p-8">
-              <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Stack and runtime</h2>
-              <ul class="mt-4 flex flex-wrap gap-2">
+              <h3 class="mt-8 text-sm font-medium uppercase tracking-widest text-muted-foreground">Stack</h3>
+              <ul class="mt-3 flex flex-wrap gap-2">
                 {profile.stack.map((tech) => (
                   <li>
                     <Badge variant="outline" className="font-normal">{tech}</Badge>
@@ -178,13 +257,47 @@ const listingDescription = profile
               </ul>
               {profile.pricingNote && (
                 <p class="mt-6 text-sm leading-relaxed text-muted-foreground">
-                  <span class="font-medium text-foreground">Pricing note:</span> {profile.pricingNote}
+                  <span class="font-medium text-foreground">Pricing:</span> {profile.pricingNote}
                 </p>
               )}
-            </div>
+            </section>
+
+            {showcaseDemos.length > 0 && (
+              <section class="surface-card p-6 sm:p-8" aria-labelledby="product-demo-heading">
+                <h2 id="product-demo-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Demo</h2>
+                <p class="mt-2 text-sm text-muted-foreground">
+                  Showcase clip with the same lightbox player as the homepage. Click to play.
+                </p>
+                <div class="mt-6">
+                  <ProductProfileDemos client:visible demos={showcaseDemos} />
+                </div>
+              </section>
+            )}
+
+            <section class="surface-card p-6 sm:p-8" aria-labelledby="product-links-heading">
+              <h2 id="product-links-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Links</h2>
+              <ul class="mt-4 space-y-2 text-base">
+                {profile.links.website && (
+                  <li><a href={profile.links.website} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Website</a></li>
+                )}
+                {profile.links.repo && (
+                  <li><a href={profile.links.repo} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Repository</a></li>
+                )}
+                {profile.links.docs && (
+                  <li><a href={profile.links.docs} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Documentation</a></li>
+                )}
+                {profile.links.demo && (
+                  <li><a href={profile.links.demo} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Live demo</a></li>
+                )}
+                {profile.links.post && (
+                  <li><a href={profile.links.post} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Launch post</a></li>
+                )}
+              </ul>
+            </section>
+
             {profile.faq && profile.faq.length > 0 && (
-              <div class="surface-card p-6 sm:p-8">
-                <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">FAQ</h2>
+              <section class="surface-card p-6 sm:p-8" aria-labelledby="product-faq-heading">
+                <h2 id="product-faq-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">FAQ</h2>
                 <dl class="mt-4 space-y-6">
                   {profile.faq.map((entry) => (
                     <div>
@@ -193,7 +306,7 @@ const listingDescription = profile
                     </div>
                   ))}
                 </dl>
-              </div>
+              </section>
             )}
           </>
         ) : (

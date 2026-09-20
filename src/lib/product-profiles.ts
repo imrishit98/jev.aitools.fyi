@@ -29,7 +29,9 @@ export function hasProductProfile(slug: string): boolean {
 }
 
 export function getAllProductProfileSlugs(): string[] {
-  return Object.keys(productProfilesBySlug);
+  return Object.keys(productProfilesBySlug).filter(
+    (slug) => productProfilesBySlug[slug]?.status === "published",
+  );
 }
 
 export function getProductProfilesForItems(
@@ -52,7 +54,6 @@ export function getFeaturedProductSlugs(limit = 6): string[] {
     "tanstack-ai-decide",
     "vercel-eve",
     "tamaratran-fast-jev-compaction",
-    "rtrvr-ai",
     "kushwho-jev-codes",
   ];
   return ordered.filter((s) => productProfilesBySlug[s]).slice(0, limit);
@@ -70,7 +71,7 @@ export function productProfileSeoDescription(profile: ProductProfile): string {
     return stripEmDash(profile.metaDescription);
   }
   return stripEmDash(
-    `${profile.whatItIs} ${profile.howJevIsUsed}`.replace(/\s+/g, " ").trim(),
+    `${profile.overview} ${profile.howJevIsUsed}`.replace(/\s+/g, " ").trim(),
   );
 }
 
