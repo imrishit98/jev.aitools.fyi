@@ -12,6 +12,8 @@ import { useEffect, useId, useState } from "react";
 type AudienceSwitchProps = {
   variant?: "header" | "hero";
   className?: string;
+  /** Hide the extra Human/Agent deep link until this breakpoint (saves header space on tablets). */
+  hideAuxLinkUntil?: "lg";
 };
 
 function modeFromLocation(): AudienceMode {
@@ -28,7 +30,11 @@ const segmentClass = (selected: boolean, isHero: boolean) =>
       : "text-muted-foreground hover:text-foreground",
   );
 
-export function AudienceSwitch({ variant = "header", className }: AudienceSwitchProps) {
+export function AudienceSwitch({
+  variant = "header",
+  className,
+  hideAuxLinkUntil,
+}: AudienceSwitchProps) {
   const groupId = useId();
   const [mode, setMode] = useState<AudienceMode>(() => modeFromLocation());
 
@@ -48,6 +54,12 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
   const isHero = variant === "hero";
   const isHeader = variant === "header";
   const showAgentLink = mode !== "agent";
+
+  const auxLinkClass = cn(
+    "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
+    isHero ? "text-sm" : "text-xs",
+    hideAuxLinkUntil === "lg" && "hidden lg:inline-flex",
+  );
 
   return (
     <div
@@ -86,10 +98,7 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
       {showAgentLink ? (
         <AppLink
           href={agentEntryPath}
-          className={cn(
-            "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            isHero ? "text-sm" : "text-xs",
-          )}
+          className={auxLinkClass}
           onClick={() => setStoredAudience("agent")}
         >
           I&apos;m an agent
@@ -97,10 +106,7 @@ export function AudienceSwitch({ variant = "header", className }: AudienceSwitch
       ) : (
         <AppLink
           href={humanHomeHref()}
-          className={cn(
-            "font-medium text-primary underline-offset-4 hover:underline focus-visible:rounded-md focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring",
-            isHero ? "text-sm" : "text-xs",
-          )}
+          className={auxLinkClass}
           onClick={() => setStoredAudience("human")}
         >
           I&apos;m human
