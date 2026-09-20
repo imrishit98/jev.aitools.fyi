@@ -245,22 +245,24 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
           </AppLink>
         </div>
       </div>
-      <div className="grid min-w-0 items-start gap-4 sm:gap-5 lg:grid-cols-12 lg:items-start">
+      <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
         {hero && (
-          <div className="min-w-0 w-full self-start lg:col-span-7">
+          <div className="min-w-0 w-full">
             <DemoCard demo={hero} variant="hero" />
           </div>
         )}
-        <div className="grid min-w-0 w-full gap-4 sm:grid-cols-2 sm:gap-4 lg:col-span-5 lg:grid-cols-1 lg:items-start lg:gap-5 lg:self-start lg:content-start [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
-          {rest.map((demo) => (
-            <DemoCard
-              key={demo.id}
-              demo={demo}
-              variant="sidebar"
-              className="h-auto self-start"
-            />
-          ))}
-        </div>
+        {rest.length > 0 && (
+          <div className="grid min-w-0 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2 lg:gap-5 xl:grid-cols-3 [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
+            {rest.map((demo) => (
+              <DemoCard
+                key={demo.id}
+                demo={demo}
+                variant="default"
+                className="h-auto self-start"
+              />
+            ))}
+          </div>
+        )}
       </div>
     </section>
   );
