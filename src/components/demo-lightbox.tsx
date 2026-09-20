@@ -60,7 +60,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className={cn(
-          "flex max-h-[min(92vh,900px)] flex-col gap-0 overflow-hidden p-0 sm:max-w-4xl",
+          "flex max-h-[min(85vh,720px)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl",
         )}
         showCloseButton
         aria-describedby={`demo-lightbox-desc-${demo.id}`}
