@@ -6,6 +6,7 @@ import * as fs from "fs";
 import * as path from "path";
 import { load } from "cheerio";
 import { fileURLToPath } from "url";
+import { mergeMarketingOverrides } from "./lib/merge-marketing-overrides.mjs";
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const htmlPath =
@@ -192,7 +193,6 @@ $("section.cat.win").each((_, section) => {
         ...(creatorHandle && sourcePlatform === "x"
           ? { creatorHandle, sourcePlatform: "x" }
           : {}),
-        verifiedNote: "Indexed from awesomejev.com",
       });
     });
 });
@@ -201,5 +201,6 @@ items.sort((a, b) => (b.stars ?? 0) - (a.stars ?? 0));
 
 const out = path.join(__dirname, "../src/data/catalog.json");
 fs.writeFileSync(out, JSON.stringify(items, null, 0));
+mergeMarketingOverrides(out);
 
 console.log(`Wrote ${items.length} items to ${out}`);

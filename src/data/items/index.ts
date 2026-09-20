@@ -1,5 +1,6 @@
 import type { DirectoryItem } from "../types";
 import catalog from "../catalog.json";
+import { applyCatalogOverrides } from "@/lib/apply-catalog-overrides";
 import {
   buildDuplicateDemotionSet,
   resolveContentPolicy,
@@ -7,7 +8,7 @@ import {
   type EnrichedDirectoryItem,
 } from "@/lib/content-policy";
 
-const catalogItems = catalog as DirectoryItem[];
+const catalogItems = applyCatalogOverrides(catalog as DirectoryItem[]);
 const duplicateDemotions = buildDuplicateDemotionSet(catalogItems);
 
 export const items: EnrichedDirectoryItem[] =

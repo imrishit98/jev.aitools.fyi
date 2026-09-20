@@ -39,6 +39,22 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Model and tool routing with sub-200ms System One calls. A solid template for anyone building a catalog of models and needing deterministic picks.",
   "typesafe-ai-typesafe-sdk-js":
     "The official JavaScript SDK for POST /v1/systemone. Typed questions, probability vectors, and the primitives you actually use in production TypeScript services.",
+  "http-api-reference":
+    "Open this when you are about to wire raw HTTP and need the real System One schema, not a guess from an old gist. Errors, auth, and answer shapes live here.",
+  "documentation":
+    "The maintained doc tree for Jev: primitives, patterns, SDKs, and API reference in one place. Keep it pinned next to your gateway dashboard.",
+  "quick-start":
+    "Minimal steps from API key to a thresholdable Choice. Great sanity check before you refactor an entire agent around Jev.",
+  "playground":
+    "Browser sandbox for stacking questions against sample state. Tune thresholds with your eyes before you tune them with incident reports.",
+  "primitives":
+    "Choice vs Score vs Noul, explained like you are shipping gates this quarter, not writing a taxonomy paper.",
+  "patterns":
+    "Fan-out, routing, and composite scoring patterns from TypeSafe that save you from reinventing agent architecture every sprint.",
+  "cookbooks":
+    "Runnable recipes for reranking, guardrails, parallel evals, and extraction. The unsexy pages that keep prod boring in a good way.",
+  "workflow-evals":
+    "Official workflow eval write-ups and numbers when you need to compare models on something more structured than vibes.",
   "niazmorshed2007-jev-review":
     "Another take on Jev-backed review loops for coding agents. Compare approaches with other review listings before you standardize on one gate style.",
   "yibie-awesome-jev":
@@ -92,13 +108,11 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "moritzkremb-jev-voice-browser":
     "Voice-controlled browsing where Jev picks the next action from heard intent plus page state. Wild demo, clear pattern for multimodal Choice questions.",
   "iammrduncan-typesafe-ai-benchmark":
-    "Benchmark harness material for TypeSafe and System One comparisons. Use it to reproduce latency and accuracy claims on your hardware.",
+    "Gateway-shaped benchmark rig for structured System One paths. Reproduce latency and calibration on your box before you quote blog numbers in a deck.",
   "classifier-dev":
     "The rare hosted Jev product that does not make you write System One JSON first. Paste labels, throw text at HTTP, and let smart tier nag the uncertain rows. Free tier needs no API key, which is great until your roommate discovers the IP limits.",
   "jev-on-vercel-ai-gateway":
     "Prototype Jev inside the AI SDK evaluate path without negotiating a separate inference stack on day one. Pricing matches TypeSafe's public input rate; you still pay Gateway credits like a normal Vercel customer.",
-  "http-api-reference":
-    "The boring link that saves you from shipping the wrong JSON shape. Read this before you fork another unofficial SDK that guesses field names.",
   "openrouter-typesafe-jev-1-13":
     "OpenRouter's Decisions route for the same list price TypeSafe advertises. Handy when your stack already bills through OpenRouter and you want Jev without another vendor onboarding form.",
   "brainwires-jevwire":

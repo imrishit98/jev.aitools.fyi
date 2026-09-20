@@ -71,9 +71,6 @@ const seo = itemListingSeo(item);
           {item.editorialBlurb && (
             <p class="mt-4 border-l-2 border-primary/30 pl-4 text-base leading-relaxed text-foreground/90">{item.editorialBlurb}</p>
           )}
-          {(item.verifiedNote || item.sourceNote) && (
-            <p class="mt-4 text-sm text-muted-foreground">{item.verifiedNote ?? item.sourceNote}</p>
-          )}
         </div>
         <div class="surface-card p-6 sm:p-8">
           <h2 class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">Tags</h2>
