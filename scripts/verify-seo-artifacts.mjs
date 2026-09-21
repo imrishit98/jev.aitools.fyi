@@ -22,6 +22,7 @@ const vite = await createServer({
 });
 const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
 const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
+const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 await vite.close();
 
 const stats = itemsMod.getDirectoryStats();
@@ -143,9 +144,10 @@ if (!redirects.includes("/items /explore 301")) {
 const redirectLines = redirects
   .split("\n")
   .filter((l) => l && !l.startsWith("#"));
-if (redirectLines.length !== expectedCatalog + 1) {
+const extraRedirectRules = redirectsMod.EXTRA_REDIRECT_RULES?.length ?? 1;
+if (redirectLines.length !== expectedCatalog + extraRedirectRules) {
   errors.push(
-    `_redirects line count: expected ${expectedCatalog + 1}, got ${redirectLines.length}`,
+    `_redirects line count: expected ${expectedCatalog + extraRedirectRules}, got ${redirectLines.length}`,
   );
 }
 

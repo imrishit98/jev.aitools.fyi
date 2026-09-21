@@ -56,7 +56,7 @@ cp .dev.vars.example .dev.vars   # JEV_MOCK=true for search without a Gateway ke
 pnpm pages:dev
 ```
 
-Live channel search demo: [https://jev.aitools.fyi/demos/my-first-million/](https://jev.aitools.fyi/demos/my-first-million/) (API under `/demos/my-first-million/api/*`).
+Live channel search demo: [https://jev.aitools.fyi/demos/my-first-million/](https://jev.aitools.fyi/demos/my-first-million/) (shortcut: [/mfm](https://jev.aitools.fyi/mfm); API under `/demos/my-first-million/api/*`).
 
 Custom domain: **jev.aitools.fyi** in Pages → Custom domains.
 
