@@ -46,7 +46,7 @@ Connect this repo to a Cloudflare **Pages** project.
 | My First Million demo (optional) | `AI_GATEWAY_API_KEY` (Vercel AI Gateway for live Jev) |
 | My First Million mock mode | `JEV_MOCK=true` skips Gateway calls (local `pnpm pages:dev`) |
 
-**Pages Functions:** Markdown negotiation on `/`, Markdown 404 bodies, and structured JSON errors on unknown `/api/*` routes are implemented under [`functions/`](./functions/). The build writes **`dist/_routes.json`** (`include: ["/*"]`) so Functions run before static files. Do **not** set `run_worker_first` in `wrangler.toml` without a Worker `main` entry (that breaks Pages deploy validation). See comments in [`wrangler.toml`](./wrangler.toml).
+**Workers Builds (`pnpm deploy`):** `workers/site-and-assets.ts` handles dynamic routes (My First Million demo API at `/demos/my-first-million/api/*`) and passes other requests to the `SITE_ASSETS` binding (`dist/`). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
 
 Simulate production locally:
 
