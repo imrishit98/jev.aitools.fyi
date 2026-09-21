@@ -1,0 +1,18 @@
+name = "jev-aitools-fyi"
+compatibility_date = "2024-09-23"
+main = "workers/site-and-assets.ts"
+
+# Cloudflare Pages (git-connected) looks at this:
+pages_build_output_dir = "dist"
+
+# Workers Builds (`wrangler deploy`): worker runs first; static site via SITE_ASSETS binding.
+[assets]
+directory = "./dist"
+binding = "SITE_ASSETS"
+not_found_handling = "404-page"
+# Pages git deploy: repo-root `functions/` + dist/_routes.json still work when using Pages CI.
+# MFM API routes are shared via src/lib/mfm-jev-search/api-route.ts (Worker + Pages Functions).
+
+[vars]
+PUBLIC_SITE_URL = "https://jev.aitools.fyi"
+# PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN = "" # Set in Cloudflare Pages project env vars, not here
