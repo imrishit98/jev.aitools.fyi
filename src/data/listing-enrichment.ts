@@ -375,4 +375,177 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     ],
     relatedSlugs: ["fhshaik-typesafe-mario", "romanslack-jev-drone"],
   },
+
+  "antoniocoppe-jev-harness": {
+    slug: "antoniocoppe-jev-harness",
+    metaTitle: "jev-harness: policy, shadow mode, and evals on Jev",
+    metaDescription:
+      "TypeScript DecisionHarness for TypeSafe Jev: confidence gates, shadow mode, recipes for alerts and routing, and an offline eval CLI. OpenClaw jev-harness plugin builds on this library.",
+    creatorHandle: "AntonioCoppe",
+    jevPrimitives: ["Choice", "Score", "Noul"],
+    jevUsageSummary:
+      "Wraps POST /v1/systemone answers in a production-shaped loop: map Choice, Score, and Noul outputs through a policy function, enforce minConfidence with review or suppress paths, log shadow decisions without changing live behavior, and replay fixtures in the eval CLI.",
+    setupNotes:
+      "npm install jev-harness, export TYPESAFE_API_KEY, then construct DecisionHarness and pass parallel questions plus a decide() policy. OpenClaw users install the jev-harness plugin that bundles these recipes for shell gates, tool allow lists, and browser next-action steps.",
+    caveats:
+      "Not affiliated with TypeSafe or OpenClaw Foundation. README wall-clock table (48.9 s vs 1.3 s on one row-filter job) is a maintainer measurement, not a universal SLA.",
+    sections: [
+      {
+        heading: "What the harness adds beyond one Jev call",
+        paragraphs: [
+          "Calling Jev once is easy. Shipping it usually needs a policy that turns answers into notify, suppress, queue, or skip actions, a confidence gate when probabilities are soft, shadow mode to log would-be actions, and reusable recipes for alerts, inbox triage, model cost routing, and agent handoffs.",
+          "The library stays small and TypeScript-first so OpenClaw plugins, Node services, and benchmarks can share the same DecisionHarness API.",
+        ],
+      },
+      {
+        heading: "Recipes and OpenClaw jev-harness",
+        paragraphs: [
+          "GitHub documents recipes for shell exec gates, tool allow and deny lists, stuck-agent recovery, and browser next-action classification. The OpenClaw plugin on openclawdir maps those recipes to plugin tools while generative work stays on Claude, Codex, or other providers.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is this the same as jev-claw?",
+        answer:
+          "No. jev-claw focuses on multi-model routing labels inside OpenClaw. jev-harness focuses on pre-tool and pre-shell gates with recipes and shadow evals.",
+      },
+      {
+        question: "Which primitives show up in recipes?",
+        answer:
+          "Most recipes combine Choice for the action enum, Score for severity or urgency, and Noul checks for human review or policy fit in one parallel request.",
+      },
+    ],
+    relatedSlugs: ["browser-use-jev-ultrafast", "itsmostafa-typesafe-mcp"],
+  },
+
+  "0xnatoshi-jev-codex-router": {
+    slug: "0xnatoshi-jev-codex-router",
+    metaTitle: "jev-codex-router: per-turn Codex model routing with Jev",
+    metaDescription:
+      "Codex Router extension that classifies each turn with Jev, picks Luna, Sol, or Astra plus thinking depth, fail-open on errors, and logs decisions locally for calibration.",
+    creatorHandle: "0xLogicrw",
+    jevPrimitives: ["Choice"],
+    jevUsageSummary:
+      "Exposes a curated jev/auto model inside Codex Router. A local jev_server.py compacts decision state, asks Jev one Choice over fifteen model and effort pairs, then replays the canonical Codex request on the selected native route. Responses stream verbatim; tool and reasoning behavior stay native.",
+    setupNotes:
+      "Requires an existing Codex Router install, LiteLLM sidecar, and TYPESAFE_API_KEY. README documents AGENTS.md for AI-assisted setup, kill switch file, and ~/.codex/codex-router/jev-router-live.jsonl decision logs.",
+    caveats:
+      "Historical simulation figures in README are not measured Codex quota savings. Fail-open uses a logged technical fallback route when Jev errors; read BACKTEST.md before trusting headline percentages.",
+    sections: [
+      {
+        heading: "Routing at the Codex edge",
+        paragraphs: [
+          "Codex sends each turn through Codex Router on port 4202. Native models hit the ChatGPT backend; jev/auto forwards through a forwarder where Jev sees only bounded decision state while the executing model still receives the full canonical replay including tools and compaction handoff.",
+          "The design keeps Responses in and Responses out with no format conversion, so tool calls and reasoning blocks behave like stock Codex.",
+        ],
+      },
+      {
+        heading: "Fail-open and operational bypasses",
+        paragraphs: [
+          "Jev errors keep the turn alive on a safe fallback route. A sentinel kill switch file skips Jev instantly. When native quota is exhausted, README documents a Codex-dry tandem that swaps models until native usage returns.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How is this different from jev-judge-mcp?",
+        answer:
+          "jev-judge-mcp exposes a judge tool for evidence you supply. jev-codex-router is traffic control: it picks which Codex model and thinking effort run the next native call.",
+      },
+      {
+        question: "Does every route use Fast speed?",
+        answer:
+          "README states the policy forces standard speed on every pair, overriding an incoming Fast setting, so Jev optimizes capability per turn rather than a fixed cheap model.",
+      },
+    ],
+    relatedSlugs: ["itsmostafa-typesafe-mcp", "brainwires-jevwire"],
+  },
+
+  "keeltrace-hermes-jev": {
+    slug: "keeltrace-hermes-jev",
+    metaTitle: "hermes-jev: async Jev nervous system for Hermes",
+    metaDescription:
+      "Community Hermes plugin: background Jev admission, adaptive context routing, bounded decision comparison, and high-confidence challenges without blocking ordinary Hermes execution.",
+    creatorHandle: "keeltrace",
+    jevPrimitives: ["Choice", "Score", "Noul"],
+    jevUsageSummary:
+      "Hermes keeps reasoning and tool execution; Jev supervises accountable decisions in parallel. Turn ingress runs a background admission Choice (OFF, WATCH, ON) while Hermes starts immediately. Supervised turns batch decision-significant state instead of evaluate-every-tool gating.",
+    setupNotes:
+      "Install from the GitHub README, configure OpenRouter Decisions, direct TypeSafe System One, or OpenCode Zen per docs/PROVIDER_SETUP.md. Only the selected provider credential is required.",
+    caveats:
+      "Community project, not affiliated with TypeSafe AI or Nous Research. Conflate with anpicasso/hermes-jev-approvals only after reading both READMEs: approvals swap the smart auxiliary reviewer; hermes-jev adds async supervision.",
+    sections: [
+      {
+        heading: "Nervous system vs synchronous gates",
+        paragraphs: [
+          "The recommended path is not blocking Hermes on every tool call. Admission classifies how much supervision a turn needs; local routers suppress routine noise and send only decision-significant bursts to Jev. Agreement and low-confidence disagreement stay telemetry; high-confidence disagreement surfaces only while the challenged state is still current.",
+        ],
+      },
+      {
+        heading: "Public tools and context engines",
+        paragraphs: [
+          "README documents jev_decide, jev_rank, jev_verify, jev_assess, context curation tools, and optional pre_tool_call gates in off, advisory, or enforce modes. v0.2.x releases harden recovery fingerprints so repeated identical failures stop burning provider calls.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Does Hermes wait for Jev on every step?",
+        answer:
+          "No. Ordinary execution proceeds while remote Jev calls run on the ~500 ms class latency budget described in the README. Supervision is parallel, not a full stop-the-world gate.",
+      },
+      {
+        question: "How does this relate to hermes-jev-approvals?",
+        answer:
+          "anpicasso/hermes-jev-approvals replaces the smart shell approval auxiliary with typed APPROVE, DENY, or ESCALATE. keeltrace/hermes-jev is a broader nervous system for routing, verification, and context curation.",
+      },
+    ],
+    relatedSlugs: [
+      "anpicasso-hermes-jev-approvals",
+      "decrux9812-typesafe-skill-router",
+    ],
+  },
+
+  "jkudish-jev-browser": {
+    slug: "jkudish-jev-browser",
+    metaTitle: "jev-browser: MCP and CLI browser loops with Jev actions",
+    metaDescription:
+      "Headless browser automation where Jev picks one action per step from clickable elements, scores goal progress and stuck risk, and code owns budgets and recovery.",
+    creatorHandle: "jkudish",
+    jevPrimitives: ["Choice", "Score", "Noul"],
+    jevUsageSummary:
+      "Drives Playwright through an MCP server, CLI, or library. Each step sends page state to Jev for the next operation Choice plus goal and stuck probabilities. Optional typing providers handle literal text entry when the DOM requires it.",
+    setupNotes:
+      "Node 20+, TYPESAFE_API_KEY from console.typesafe.ai, npx -y @jkudish/jev-browser for MCP. README includes agent-install paste text and per-client registration examples.",
+    caveats:
+      "Early software: README warns about rough edges on harder sites. Reported Wikipedia and GitHub demo costs are maintainer measurements on specific runs, not guarantees.",
+    sections: [
+      {
+        heading: "Split brain browser loop",
+        paragraphs: [
+          "The harness mirrors the ultrafast pattern in the directory: Jev classifies the next browser operation from structured element lists while larger models only appear for typing when necessary. You receive traces with per-step confidences, console errors, and screenshots for debugging.",
+        ],
+      },
+      {
+        heading: "MCP-first operator path",
+        paragraphs: [
+          "Register jev-browser as a stdio MCP server so IDE agents can navigate, extract markdown, or fill forms under budget caps you define in code. The README documents real-site tasks including Wikipedia hops, pricing pages, and accessibility-tree breakdowns.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "How is this different from browser-use-jev-ultrafast?",
+        answer:
+          "Both use Jev for decisions over browser ops. jev-browser ships as an npm MCP package with Playwright bundled; compare README feature lists and client setup before picking one for production.",
+      },
+      {
+        question: "Does it auto-submit sensitive forms?",
+        answer:
+          "README examples include stopping before submit on contact forms. You own stop gates and policy in the calling harness.",
+      },
+    ],
+    relatedSlugs: ["browser-use-jev-ultrafast", "awlevin-typesafe-computer-use"],
+  },
 };
