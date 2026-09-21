@@ -14,7 +14,10 @@ import { ShareMenu } from "@/components/share-menu";
 import { demoShareOptions } from "@/lib/share";
 import { ExternalLink, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
-import { ShowcaseDemoVideo } from "@/components/showcase-demo-video";
+import {
+  playMutedAutoplayWhenReady,
+  ShowcaseDemoVideo,
+} from "@/components/showcase-demo-video";
 
 type DemoLightboxProps = {
   demo: ShowcaseDemo | null;
@@ -40,10 +43,9 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
     }
     const el = videoRef.current;
     if (!el || !demo?.hasLocalVideo) return;
-    el.muted = true;
     setMuted(true);
-    void el.play().catch(() => {});
-  }, [open, demo?.id, demo?.hasLocalVideo, pauseAndReset]);
+    return playMutedAutoplayWhenReady(el, true);
+  }, [open, demo?.id, demo?.videoUrl, demo?.hasLocalVideo, pauseAndReset]);
 
   const toggleMute = useCallback(() => {
     const el = videoRef.current;
@@ -76,6 +78,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
                 poster={demo.posterUrl}
                 controls
                 playsInline
+                autoPlay
                 muted
                 videoIsRemote={demo.videoIsRemote}
                 aria-label={`Video demo: ${demo.title}`}
