@@ -1,5 +1,11 @@
 import { categories } from "@/data/categories-data";
 import { getCategoryEnrichment } from "@/lib/category-enrichment";
+import {
+  agentGuideSlugs,
+  agentGuides,
+  agentGuidesHub,
+  type AgentGuide,
+} from "@/data/agent-guides";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
@@ -390,6 +396,26 @@ export function learnTopicPageSeo(guide: {
   });
 }
 
+export function agentGuidesHubSeo() {
+  return pageSeo({
+    title: agentGuidesHub.seoTitle,
+    description: agentGuidesHub.seoDescription,
+    path: "/guides/jev-with-ai-agents",
+    type: "article",
+    imagePath: ogImagePaths.learnHub,
+  });
+}
+
+export function agentGuidePageSeo(guide: AgentGuide) {
+  return pageSeo({
+    title: guide.seoTitle,
+    description: guide.seoDescription,
+    path: `/guides/jev-with-ai-agents/${guide.slug}`,
+    type: "article",
+    imagePath: ogImagePaths.default,
+  });
+}
+
 export function parseItemLastModified(updatedAt?: string): Date {
   if (updatedAt) {
     const parsed = new Date(updatedAt);
@@ -432,6 +458,14 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
     const guide = learnGuides[slug];
     const seo = learnTopicPageSeo(guide);
     push(`/learn/${slug}`, seo.title, seo.description);
+  }
+
+  const agentHub = agentGuidesHubSeo();
+  push("/guides/jev-with-ai-agents", agentHub.title, agentHub.description);
+  for (const slug of agentGuideSlugs) {
+    const guide = agentGuides[slug];
+    const seo = agentGuidePageSeo(guide);
+    push(`/guides/jev-with-ai-agents/${slug}`, seo.title, seo.description);
   }
 
   for (const item of getItemsWithDetailPages()) {

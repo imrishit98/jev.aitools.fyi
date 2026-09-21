@@ -22,11 +22,14 @@ const vite = await createServer({
 });
 const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
 const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
+const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 await vite.close();
 
 const stats = itemsMod.getDirectoryStats();
 const learnTopicCount = learnMod.learnGuideSlugs.length;
+const agentGuidePageCount =
+  1 + agentGuidesMod.agentGuideSlugs.length; /* hub + per-agent */
 const expectedDetail = stats.detailPages;
 const expectedCatalog = stats.total;
 
@@ -42,8 +45,10 @@ if (locs.some((l) => l.includes("llms.txt"))) {
   errors.push("sitemap should not list llms.txt (non-HTML)");
 }
 
-const detailInSitemap = locs.filter((l) =>
-  /\/(sdks|tools|apps|games|benchmarks|guides)\//.test(l),
+const detailInSitemap = locs.filter(
+  (l) =>
+    /\/(sdks|tools|apps|games|benchmarks|guides)\//.test(l) &&
+    !l.includes("/guides/jev-with-ai-agents"),
 ).length;
 if (detailInSitemap !== expectedDetail) {
   errors.push(
@@ -52,7 +57,7 @@ if (detailInSitemap !== expectedDetail) {
 }
 
 const staticExpected =
-  8 + 10 + learnTopicCount; /* home, explore, learn hub, submit, about, showcase, developers, for-agents + categories + learn topics */
+  8 + 10 + learnTopicCount + agentGuidePageCount; /* home, explore, learn hub, submit, about, showcase, developers, for-agents + categories + learn topics + agent guides */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,

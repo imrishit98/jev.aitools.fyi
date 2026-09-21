@@ -1,0 +1,45 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AgentGuideView from "@/components/agent-guide-view.astro";
+import { breadcrumbJsonLd, faqPageJsonLd, agentGuideArticleJsonLd } from "@/components/json-ld";
+import { agentGuideSlugs, agentGuidesHub, getAgentGuide } from "@/data/agent-guides";
+import { agentGuidePageSeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return agentGuideSlugs.map((agent) => ({ params: { agent } }));
+}
+
+const { agent } = Astro.params;
+const guide = getAgentGuide(agent!);
+if (!guide) throw new Error(`Unknown agent guide ${agent}`);
+
+const seo = agentGuidePageSeo(guide);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={`/guides/jev-with-ai-agents/${agent}`}
+  type="article"
+  ogImagePath={seo.imagePath}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Learn", path: "/learn" },
+      { name: agentGuidesHub.title, path: "/guides/jev-with-ai-agents" },
+      { name: guide.title, path: `/guides/jev-with-ai-agents/${agent}` },
+    ]),
+    agentGuideArticleJsonLd(guide),
+    faqPageJsonLd(guide.faq),
+  ]}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <nav class="text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <a href="/guides/jev-with-ai-agents" class="hover:text-accent">{agentGuidesHub.title}</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">{guide.title}</span>
+    </nav>
+    <h1 class="mt-4 font-heading text-3xl font-semibold">{guide.title}</h1>
+    <AgentGuideView guide={guide} />
+  </div>
+</BaseLayout>

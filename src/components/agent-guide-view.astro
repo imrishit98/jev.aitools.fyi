@@ -1,0 +1,115 @@
+---
+import { ButtonLink } from "@/components/button-link";
+import { ItemCard } from "@/components/item-card";
+import type { AgentGuide } from "@/data/agent-guides";
+import { agentGuides, agentGuidePath } from "@/data/agent-guides";
+import { getItemBySlug } from "@/lib/items";
+import { splitIntoParagraphs } from "@/lib/prose";
+
+interface Props {
+  guide: AgentGuide;
+}
+
+const { guide } = Astro.props;
+const whyParagraphs = splitIntoParagraphs(guide.whyJev, 260);
+const relatedAgents = (guide.relatedAgentSlugs ?? [])
+  .map((slug) => agentGuides[slug as keyof typeof agentGuides])
+  .filter(Boolean);
+const relatedItems = guide.relatedCatalogSlugs
+  .map((slug) => getItemBySlug(slug))
+  .filter(Boolean);
+---
+
+<article>
+  <p class="text-sm font-medium text-primary">{guide.tagline}</p>
+  <aside class="mt-6 rounded-md border border-primary/25 bg-primary/5 p-5">
+    <p class="text-[11px] font-medium uppercase tracking-widest text-primary">Why Jev here</p>
+    <div class="mt-2 space-y-3 text-base leading-relaxed text-foreground">
+      {whyParagraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </aside>
+
+  <div class="mt-10 space-y-10">
+    {
+      guide.sections.map((section) => {
+        const bodyParagraphs = splitIntoParagraphs(section.body, 280);
+        return (
+          <section>
+            <h2 class="font-heading text-xl font-semibold text-foreground">{section.h}</h2>
+            <div class="mt-2 space-y-3 leading-relaxed text-muted-foreground">
+              {bodyParagraphs.map((para) => <p>{para}</p>)}
+            </div>
+            {section.code && (
+              <pre
+                class="mt-4 overflow-x-auto rounded-md border border-border bg-muted/40 p-4 text-sm text-foreground"
+              ><code class={`language-${section.code.lang}`}>{section.code.content}</code></pre>
+            )}
+          </section>
+        );
+      })
+    }
+  </div>
+
+  {relatedItems.length > 0 && (
+    <section class="mt-14">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Related directory listings</h2>
+      <ul class="mt-6 grid gap-4 sm:grid-cols-2">
+        {relatedItems.map((item) => (
+          <li>
+            <ItemCard item={item} />
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {relatedAgents.length > 0 && (
+    <section class="mt-12">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Related agent guides</h2>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        {relatedAgents.map((g) => (
+          <li>
+            <a
+              href={agentGuidePath(g.slug)}
+              class="block rounded-md border border-border/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="font-medium text-foreground">{g.title}</p>
+              <p class="mt-1 text-sm text-muted-foreground">{g.tagline}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="mt-14" id="faq">
+    <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+    <dl class="mt-6 space-y-6">
+      {guide.faq.map((entry) => (
+        <div>
+          <dt class="font-medium text-foreground">{entry.question}</dt>
+          <dd class="mt-2 leading-relaxed text-muted-foreground">{entry.answer}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="mt-14">
+    <h2 class="font-heading text-xl font-semibold text-foreground">Primary sources</h2>
+    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+      {guide.sources.map((src) => (
+        <li>
+          <a href={src.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+            {src.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="mt-12 flex flex-wrap gap-3">
+    <ButtonLink href={agentGuidePath()} variant="outline">All agent guides</ButtonLink>
+    <ButtonLink href="/learn/jev-typesafe" variant="outline">Jev primer</ButtonLink>
+    <ButtonLink href="/explore?category=agents">Agent tooling in Explore</ButtonLink>
+  </div>
+</article>
