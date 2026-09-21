@@ -33,6 +33,8 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 
 - [Explore listings](${SITE}/explore)
 - [Learn hub](${SITE}/learn)
+- [Guides hub](${SITE}/guides) (agent integration guides + community articles)
+- [Agent integration guides](${SITE}/guides/jev-with-ai-agents)
 - [Submit a project](${SITE}/submit)
 - [About and disclaimer](${SITE}/about)
 - [Developers and agents](${SITE}/developers)
@@ -42,7 +44,7 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 
 - [llms.txt](${SITE}/llms.txt): site map for LLMs
 - [OpenAPI](${SITE}/openapi.json): machine-readable surface for this directory (not the TypeSafe inference API)
-- [Sitemap](${SITE}/sitemap.xml)
+- [Sitemap index](${SITE}/sitemap.xml) (child maps: sitemap-static.xml, sitemap-learn.xml, sitemap-guides.xml, sitemap-listings.xml)
 - [Directory manifest](${SITE}/.well-known/jev-directory.json)
 - [Search index JSON](${SITE}/search-index.json)
 
@@ -67,7 +69,7 @@ You are on the agent-oriented view of ${siteConfig.hostnameBrand}. Humans use th
 1. [llms.txt](${SITE}/llms.txt): compact site map and counts
 2. [OpenAPI](${SITE}/openapi.json): GET discovery endpoints on this directory
 3. [Search index](${SITE}/search-index.json): listing titles, slugs, and tags for Explore
-4. [Sitemap](${SITE}/sitemap.xml): indexable HTML routes
+4. [Sitemap index](${SITE}/sitemap.xml): indexable HTML routes (see child sitemap-*.xml files)
 5. [Publisher manifest](${SITE}/.well-known/jev-directory.json): URL patterns and metadata
 
 ## Homepage negotiation
@@ -80,6 +82,8 @@ You are on the agent-oriented view of ${siteConfig.hostnameBrand}. Humans use th
 
 - [Explore listings](${SITE}/explore)
 - [Learn hub](${SITE}/learn)
+- [Guides hub](${SITE}/guides)
+- [Jev with AI agents](${SITE}/guides/jev-with-ai-agents)
 - [Demo showcase](${SITE}/showcase)
 - [Developers notes](${SITE}/developers)
 
@@ -187,7 +191,7 @@ export function buildOpenApiSpec() {
       "/sitemap.xml": {
         get: {
           operationId: "getSitemap",
-          summary: "XML sitemap of indexable pages",
+          summary: "XML sitemap index (child sitemap-*.xml maps)",
           responses: {
             "200": {
               description: "Sitemap XML",

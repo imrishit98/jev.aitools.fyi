@@ -41,6 +41,7 @@ const primaryNav = [
 ] as const;
 
 const moreNav = [
+  { href: "/guides", label: "Guides" },
   { href: "/developers", label: "Agents & API" },
   { href: "/for-agents", label: "For agents" },
   { href: "/about", label: "About" },

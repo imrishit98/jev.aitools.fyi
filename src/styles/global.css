@@ -131,15 +131,25 @@
     @apply border-border outline-ring/50;
   }
   html {
-    @apply font-sans scroll-smooth;
+    @apply font-sans scroll-smooth bg-background;
   }
   body {
-    @apply min-h-full bg-background text-foreground antialiased;
+    @apply min-h-full bg-transparent text-foreground antialiased;
+  }
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-color: var(--background);
     background-image: radial-gradient(
-      ellipse 100% 60% at 50% -20%,
+      ellipse 120% 70% at 50% -15%,
       var(--hero-glow),
-      transparent 65%
+      transparent 62%
     );
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
   }
   .font-heading {
     font-family: var(--font-heading), var(--font-sans), ui-serif, serif;
@@ -166,6 +176,7 @@
       56px 56px,
       56px 56px;
     background-position: center top;
+    background-repeat: no-repeat, repeat, repeat;
   }
   .surface-card {
     @apply rounded-md border border-border bg-card text-card-foreground shadow-sm;
