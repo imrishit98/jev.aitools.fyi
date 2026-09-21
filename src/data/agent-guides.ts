@@ -38,7 +38,7 @@ export const agentGuidesHub = {
   title: "Jev with AI agents",
   tagline:
     "Let the chat model write prose. Let Jev decide which shell command, skill, route, or gate fires next.",
-  seoTitle: "Use TypeSafe Jev with AI agents: Hermes, OpenClaw, Claude, Codex, Cursor",
+  seoTitle: "Jev with AI agents: Hermes, OpenClaw, Claude, Cursor",
   seoDescription:
     "Setup guides for pairing Jev (System One decide) with Hermes, OpenClaw, Claude Code, Cowork, Codex, OpenCode, and Cursor via MCP and official TypeSafe skills. Keys, pitfalls, and catalog links.",
   intro:
@@ -115,7 +115,7 @@ export const agentGuides: Record<AgentGuideSlug, AgentGuide> = {
     slug: "hermes",
     title: "Hermes Agent + Jev",
     tagline: "Smart approvals, skill routing, and MCP without asking Hermes to fake a classifier.",
-    seoTitle: "Hermes Agent with TypeSafe Jev: approvals, MCP, skill routing",
+    seoTitle: "Hermes Agent + Jev: approvals, MCP, routing",
     seoDescription:
       "Install hermes-jev-approvals, typesafe-skill-router, and Jev MCP servers on Hermes Agent. Typed APPROVE/DENY/ESCALATE, parallel nouls, and catalog links with sources.",
     whyJev:
@@ -223,7 +223,7 @@ systemctl --user restart hermes-gateway`,
     slug: "openclaw",
     title: "OpenClaw + Jev",
     tagline: "Assistant OS from OpenClaw, decide layer from Jev. Routing, gates, and official decisionModel support.",
-    seoTitle: "OpenClaw with Jev: jev-claw routing, jev-harness gates, decisionModel",
+    seoTitle: "OpenClaw + Jev: jev-claw routing and harness gates",
     seoDescription:
       "Layer OpenClaw plugins jev-claw and jev-harness, plus bundled typesafe/jev-latest decisionModel. Tools, config, and when to route vs gate.",
     whyJev:
@@ -317,7 +317,7 @@ systemctl --user restart hermes-gateway`,
     slug: "claude-code-desktop-cowork",
     title: "Claude Code, Desktop, and Cowork + Jev",
     tagline: "Plugins, MCP connectors, and TypeSafe skills on Anthropic's agent stack.",
-    seoTitle: "Claude Code and Cowork with Jev: MCP, plugins, TypeSafe skills",
+    seoTitle: "Claude Code and Cowork + Jev: MCP and skills",
     seoDescription:
       "Wire Jev into Claude Code and Cowork using typesafe-ai/skills, jev-judge-mcp, typesafe-mcp evaluate, and jevwire. Env keys, install commands, and Cowork Customize notes.",
     whyJev:
@@ -431,7 +431,7 @@ TYPESAFE_API_KEY=your-key evaluate setup mcp`,
     slug: "codex-and-opencode",
     title: "Codex and OpenCode + Jev",
     tagline: "jev-judge on the CLI, evaluate setup, and routers that treat Jev as traffic control.",
-    seoTitle: "OpenAI Codex and OpenCode with Jev: jev-judge-mcp and routers",
+    seoTitle: "Codex and OpenCode + Jev: judge MCP and routers",
     seoDescription:
       "Add jev-judge-mcp to Codex and OpenCode, use typesafe-mcp evaluate setup, and explore jev-codex-router. MCP config shapes, skills, and fail-open routing patterns.",
     whyJev:
@@ -530,7 +530,7 @@ args = ["-y", "jev-judge-mcp"]
     slug: "cursor-mcp-and-skills",
     title: "Cursor, Grok, and agent skills + Jev",
     tagline: "MCP in Cursor settings, TypeSafe skills in the agent, no imaginary Grok-only APIs.",
-    seoTitle: "Cursor agents with Jev: MCP servers and TypeSafe skills",
+    seoTitle: "Cursor agents + Jev: MCP servers and skills",
     seoDescription:
       "Add jev-mcp to Cursor MCP config, install typesafe-ai/skills for Cloud Agents, and use Jev beside Grok or other models without custom Grok Bot APIs.",
     whyJev:

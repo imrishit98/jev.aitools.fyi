@@ -1,7 +1,7 @@
 import type { APIRoute } from "astro";
-import { generateSitemapIndexXml } from "@/lib/sitemap-xml";
+import { generateSitemapGuidesXml } from "@/lib/sitemap-xml";
 
 export const GET: APIRoute = () =>
-  new Response(generateSitemapIndexXml(), {
+  new Response(generateSitemapGuidesXml(), {
     headers: { "Content-Type": "application/xml; charset=utf-8" },
   });

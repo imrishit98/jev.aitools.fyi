@@ -24,6 +24,7 @@ const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
 const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
 const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
+const sitemapMod = await vite.ssrLoadModule("/src/lib/sitemap-xml.ts");
 await vite.close();
 
 const stats = itemsMod.getDirectoryStats();
@@ -33,8 +34,42 @@ const agentGuidePageCount =
 const expectedDetail = stats.detailPages;
 const expectedCatalog = stats.total;
 
-const xml = readFileSync(join(distRoot, "sitemap.xml"), "utf8");
-const locs = [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+function readLocsFromFile(fileName) {
+  const xml = readFileSync(join(distRoot, fileName), "utf8");
+  return [...xml.matchAll(/<loc>([^<]+)<\/loc>/g)].map((m) => m[1]);
+}
+
+const indexXml = readFileSync(join(distRoot, "sitemap.xml"), "utf8");
+if (!indexXml.includes("<sitemapindex")) {
+  throw new Error("sitemap.xml must be a sitemap index");
+}
+
+const childSitemaps = [...indexXml.matchAll(/<loc>([^<]+)<\/loc>/g)].map(
+  (m) => m[1],
+);
+const expectedChildren = [
+  "https://jev.aitools.fyi/sitemap-static.xml",
+  "https://jev.aitools.fyi/sitemap-learn.xml",
+  "https://jev.aitools.fyi/sitemap-guides.xml",
+  "https://jev.aitools.fyi/sitemap-listings.xml",
+];
+for (const child of expectedChildren) {
+  if (!childSitemaps.includes(child)) {
+    throw new Error(`sitemap index missing child: ${child}`);
+  }
+}
+
+const locs = childSitemaps.flatMap((url) => {
+  const file = url.replace("https://jev.aitools.fyi/", "");
+  return readLocsFromFile(file);
+});
+
+const expectedFromLib = sitemapMod.collectAllSitemapLocs();
+if (locs.length !== expectedFromLib.length) {
+  throw new Error(
+    `sitemap URL count mismatch: dist ${locs.length}, lib ${expectedFromLib.length}`,
+  );
+}
 
 const errors = [];
 
@@ -57,10 +92,26 @@ if (detailInSitemap !== expectedDetail) {
 }
 
 const staticExpected =
-  8 + 10 + learnTopicCount + agentGuidePageCount; /* home, explore, learn hub, submit, about, showcase, developers, for-agents + categories + learn topics + agent guides */
+  9 +
+  10 +
+  1 +
+  learnTopicCount +
+  agentGuidePageCount; /* static hubs + categories + MFM demo + learn topics + agent guides */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,
+  );
+}
+
+const lastmods = childSitemaps.flatMap((url) => {
+  const file = url.replace("https://jev.aitools.fyi/", "");
+  const xml = readFileSync(join(distRoot, file), "utf8");
+  return [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+});
+const uniqueLastmods = new Set(lastmods);
+if (uniqueLastmods.size < 3 && expectedDetail > 10) {
+  errors.push(
+    "sitemap lastmod values look too uniform (expected mixed content dates)",
   );
 }
 
@@ -163,5 +214,5 @@ if (errors.length) {
 }
 
 console.log(
-  `SEO artifacts OK: sitemap ${locs.length} URLs (${expectedDetail} detail), catalog ${expectedCatalog}, redirects ${redirectLines.length}.`,
+  `SEO artifacts OK: sitemap index + ${childSitemaps.length} child maps, ${locs.length} URLs (${expectedDetail} detail), catalog ${expectedCatalog}, redirects ${redirectLines.length}.`,
 );

@@ -81,7 +81,21 @@ const seo = forAgentsPageSeo();
               <a href="/sitemap.xml" class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
                 >/sitemap.xml</a
               >
-              <p class="m-0 text-sm leading-relaxed">Indexable HTML routes</p>
+              <p class="m-0 text-sm leading-relaxed">
+                Sitemap index (static, learn, guides, listings child maps)
+              </p>
+            </div>
+          </li>
+          <li class="ps-1">
+            <div class="flex flex-col gap-2">
+              <a
+                href="/guides/jev-with-ai-agents"
+                class="w-fit font-mono text-sm font-semibold text-primary hover:underline"
+                >/guides/jev-with-ai-agents</a
+              >
+              <p class="m-0 text-sm leading-relaxed">
+                Agent integration guides (Hermes, OpenClaw, Claude, Codex, Cursor)
+              </p>
             </div>
           </li>
           <li class="ps-1">
@@ -120,6 +134,18 @@ const seo = forAgentsPageSeo();
       </section>
 
       <section class="rounded-md border border-border bg-card p-6 shadow-sm sm:p-8">
+        <h2 class="font-heading text-xl font-semibold text-foreground sm:text-2xl">Guides for agents</h2>
+        <p class="mt-6 text-sm leading-relaxed sm:text-base">
+          The
+          <a href="/guides" class="text-primary hover:underline">/guides</a>
+          hub lists community articles plus the
+          <a href="/guides/jev-with-ai-agents" class="text-primary hover:underline">Jev with AI agents</a>
+          series: MCP wiring, TypeSafe skills, env keys, and catalog links per platform. System One primers stay on
+          <a href="/learn" class="text-primary hover:underline">/learn</a>.
+        </p>
+      </section>
+
+      <section class="rounded-md border border-border bg-card p-6 shadow-sm sm:p-8">
         <h2 class="font-heading text-xl font-semibold text-foreground sm:text-2xl">Human-readable docs</h2>
         <p class="mt-6 text-sm leading-relaxed sm:text-base">
           Longer prose for integrators lives on
@@ -138,6 +164,7 @@ const seo = forAgentsPageSeo();
 
     <div class="mt-14 flex flex-wrap gap-3 sm:mt-16">
       <ButtonLink href="/llms.txt">Read llms.txt</ButtonLink>
+      <ButtonLink href="/guides/jev-with-ai-agents" variant="outline">Agent guides</ButtonLink>
       <ButtonLink href="/openapi.json" variant="outline">Open OpenAPI</ButtonLink>
       <ButtonLink href="/" variant="outline">Human homepage</ButtonLink>
     </div>

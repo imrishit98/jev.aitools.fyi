@@ -40,12 +40,44 @@ export const ogImagePaths = {
   item: (slug: string) => `/og/items/${slug}.png`,
 } as const;
 
+const TITLE_BRAND = siteConfig.shortName;
+const MAX_DOCUMENT_TITLE = 60;
+
+function capDocumentTitle(full: string): string {
+  if (full.length <= MAX_DOCUMENT_TITLE) return full;
+  const pipe = full.lastIndexOf(" | ");
+  if (pipe > 20) {
+    const suffix = full.slice(pipe);
+    const maxCore = MAX_DOCUMENT_TITLE - suffix.length;
+    if (maxCore > 16) {
+      const core = full.slice(0, pipe);
+      const cut = core.slice(0, maxCore - 1);
+      const lastSpace = cut.lastIndexOf(" ");
+      const shortened =
+        lastSpace > 14 ? cut.slice(0, lastSpace).trimEnd() : cut.trimEnd();
+      return `${shortened}${suffix}`;
+    }
+  }
+  const cut = full.slice(0, MAX_DOCUMENT_TITLE - 1);
+  const lastSpace = cut.lastIndexOf(" ");
+  return (lastSpace > 20 ? cut.slice(0, lastSpace) : cut).trimEnd();
+}
+
 /** Document title suffix (also used in Open Graph / Twitter titles). */
 export function withBrand(title: string): string {
   const trimmed = title.trim();
-  const brand = siteConfig.hostnameBrand;
-  if (trimmed.includes(brand) || trimmed.includes(siteConfig.name)) return trimmed;
-  return `${trimmed} | ${brand}`;
+  const host = siteConfig.hostnameBrand;
+  if (
+    trimmed.includes(`| ${TITLE_BRAND}`) ||
+    trimmed.includes(`| ${host}`) ||
+    trimmed.includes(`| ${siteConfig.name}`)
+  ) {
+    return capDocumentTitle(trimmed);
+  }
+  if (trimmed.includes(TITLE_BRAND) || trimmed.includes(siteConfig.name)) {
+    return capDocumentTitle(trimmed);
+  }
+  return capDocumentTitle(`${trimmed} | ${TITLE_BRAND}`);
 }
 
 export function formatDocumentTitle(title: string): string {
@@ -130,8 +162,8 @@ const SEGMENT_LABEL: Record<
   guides: "guide",
 };
 
-const BRAND_SUFFIX = ` | ${siteConfig.name}`;
-const MAX_TITLE_CORE = Math.max(28, 58 - BRAND_SUFFIX.length);
+const BRAND_SUFFIX = ` | ${TITLE_BRAND}`;
+const MAX_TITLE_CORE = Math.max(28, MAX_DOCUMENT_TITLE - BRAND_SUFFIX.length);
 
 const SLUG_STOP_WORDS = new Set([
   "jev",
@@ -372,6 +404,16 @@ export function categoryPageSeo(
   });
 }
 
+export function guidesIndexPageSeo() {
+  return pageSeo({
+    title: "Guides: Jev agent setup and community articles",
+    description:
+      "Browse the Jev with AI agents hub (Hermes, OpenClaw, Claude, Codex, Cursor) plus community guide listings hosted on the directory. Links to Learn primers and official TypeSafe docs.",
+    path: "/guides",
+    imagePath: ogImagePaths.learnHub,
+  });
+}
+
 export function learnIndexPageSeo() {
   return pageSeo({
     title: "Learn TypeSafe Jev: System One guides and primers",
@@ -454,6 +496,8 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
 
   const learnIndex = learnIndexPageSeo();
   push("/learn", learnIndex.title, learnIndex.description);
+  const guidesIndex = guidesIndexPageSeo();
+  push("/guides", guidesIndex.title, guidesIndex.description);
   for (const slug of learnGuideSlugs) {
     const guide = learnGuides[slug];
     const seo = learnTopicPageSeo(guide);

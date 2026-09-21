@@ -11,6 +11,7 @@ function isAbsoluteUrl(target: string): boolean {
 /** Non-catalog 301 rules (hub + shortcuts); keep in sync with verify-seo-artifacts redirect count. */
 export const EXTRA_REDIRECT_RULES = [
   "/items /explore 301",
+  "/guides/index /guides/ 301",
   "/mfm /demos/my-first-million/ 301",
   "/mfm/ /demos/my-first-million/ 301",
 ];
