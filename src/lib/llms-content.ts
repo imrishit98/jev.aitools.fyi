@@ -1,6 +1,7 @@
 import { categories } from "@/data/categories";
 import { collections } from "@/data/collections";
 import { homeFaq } from "@/data/faq";
+import { agentGuideSlugs, agentGuides, agentGuidesHub } from "@/data/agent-guides";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import { jevSpecSheet } from "@/data/spec";
 import { getAllProductProfileSlugs } from "@/lib/product-profiles";
@@ -75,6 +76,14 @@ export function generateLlmsTxt(): string {
     ...learnGuideSlugs.map(
       (slug) =>
         `- ${learnGuides[slug].title}: ${siteConfig.url}/learn/${slug}`,
+    ),
+    "",
+    "## Agent integration guides",
+    "",
+    `- ${agentGuidesHub.title} (hub): ${siteConfig.url}/guides/jev-with-ai-agents`,
+    ...agentGuideSlugs.map(
+      (slug) =>
+        `- ${agentGuides[slug].title}: ${siteConfig.url}/guides/jev-with-ai-agents/${slug}`,
     ),
     "",
     "## Categories",

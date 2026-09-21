@@ -1,4 +1,5 @@
 import { categories } from "@/data/categories";
+import { agentGuideSlugs } from "@/data/agent-guides";
 import { learnGuideSlugs } from "@/data/learn-guides";
 import { getItemsWithDetailPages } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
@@ -59,6 +60,21 @@ export function generateSitemapXml(): string {
   for (const topic of learnGuideSlugs) {
     entries.push({
       loc: absoluteUrl(`/learn/${topic}`),
+      lastmod: buildTime,
+      priority: 0.8,
+      changefreq: "monthly",
+    });
+  }
+
+  entries.push({
+    loc: absoluteUrl("/guides/jev-with-ai-agents"),
+    lastmod: buildTime,
+    priority: 0.82,
+    changefreq: "monthly",
+  });
+  for (const agent of agentGuideSlugs) {
+    entries.push({
+      loc: absoluteUrl(`/guides/jev-with-ai-agents/${agent}`),
       lastmod: buildTime,
       priority: 0.8,
       changefreq: "monthly",
