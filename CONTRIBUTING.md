@@ -12,6 +12,7 @@ The fastest path is the site form: [jev.aitools.fyi/submit](https://jev.aitools.
 2. `pnpm install` and `pnpm dev`.
 3. Keep user-facing copy free of third-party index attribution. Do not use em dashes in new marketing copy.
 4. Run `pnpm build` before opening a pull request.
+5. Showcase videos are **never** committed. Add the demo in `src/data/showcase-demos.ts`, then run `pnpm sync:showcase-media` to refresh `src/data/showcase-demo-media.json` (posters + `video.twimg.com` MP4s via fxtwitter). Build fails if any `.mp4`/`.webm`/`.mov` appears under `public/` or `dist/`.
 
 ## Catalog data
 

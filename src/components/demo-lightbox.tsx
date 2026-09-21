@@ -76,6 +76,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
                 controls
                 playsInline
                 muted
+                crossOrigin={demo.videoIsRemote ? "anonymous" : undefined}
                 aria-label={`Video demo: ${demo.title}`}
               />
               <Button

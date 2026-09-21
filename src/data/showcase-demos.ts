@@ -1,3 +1,16 @@
+import showcaseDemoMediaJson from "./showcase-demo-media.json";
+
+type ShowcaseDemoMediaEntry = {
+  posterUrl: string;
+  videoUrl?: string;
+  posterOnly?: boolean;
+};
+
+const showcaseDemoMedia = showcaseDemoMediaJson as Record<
+  string,
+  ShowcaseDemoMediaEntry
+>;
+
 export type ShowcaseDemo = {
   id: string;
   authorHandle: string;
@@ -5,29 +18,61 @@ export type ShowcaseDemo = {
   tweetUrl: string;
   title: string;
   funnyBlurb: string;
-  /** Paths under public/ after scripts/fetch-demos.mjs */
   posterUrl: string;
   videoUrl: string;
-  /** False when only a poster is hosted (image posts). */
+  /** True when the card/lightbox should render a video (always remote twimg). */
   hasLocalVideo: boolean;
+  /** Video plays from video.twimg.com (never committed under public/demos). */
+  videoIsRemote?: boolean;
   homepage: boolean;
   categoryTags: string[];
   projectUrl?: string;
 };
 
-type DemoInput = Omit<ShowcaseDemo, "posterUrl" | "videoUrl"> & {
+type DemoInput = Omit<
+  ShowcaseDemo,
+  "posterUrl" | "videoUrl" | "videoIsRemote"
+> & {
+  /** Poster-only card (no tweet video), e.g. X Article cover. */
   hasLocalVideo?: boolean;
 };
 
 const demo = (partial: DemoInput): ShowcaseDemo => {
-  const hasLocalVideo = partial.hasLocalVideo ?? true;
+  const media = showcaseDemoMedia[partial.id];
+  const posterOnly =
+    partial.hasLocalVideo === false || media?.posterOnly === true;
+
+  if (posterOnly || !media?.videoUrl) {
+    return {
+      ...partial,
+      hasLocalVideo: false,
+      videoIsRemote: false,
+      posterUrl: media?.posterUrl ?? "",
+      videoUrl: "",
+    };
+  }
+
   return {
     ...partial,
-    hasLocalVideo,
-    posterUrl: `/demos/${partial.id}/poster.jpg`,
-    videoUrl: hasLocalVideo ? `/demos/${partial.id}/video.mp4` : "",
+    hasLocalVideo: true,
+    videoIsRemote: true,
+    posterUrl: media.posterUrl,
+    videoUrl: media.videoUrl,
   };
 };
+
+/** Absolute URL for JSON-LD and share metadata. */
+export function showcaseDemoMediaUrl(pathOrUrl: string): string {
+  if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
+    return pathOrUrl;
+  }
+  const base =
+    (typeof import.meta !== "undefined" &&
+      import.meta.env?.PUBLIC_SITE_URL) ||
+    "https://jev.aitools.fyi";
+  const origin = base.replace(/\/$/, "");
+  return `${origin}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+}
 
 export const showcaseDemos: ShowcaseDemo[] = [
   demo({
@@ -617,9 +662,126 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["product", "documents", "classification"],
     projectUrl: "https://github.com/jerryjliu/docjev",
   }),
+  demo({
+    id: "jev-fifa-rebuild-shubhankar",
+    authorHandle: "_shubhankar",
+    authorName: "Shubhankar Srivastava",
+    tweetUrl: "https://x.com/_shubhankar/status/2101830589620056160",
+    title: "FIFA rebuilt on Jev loops",
+    funnyBlurb:
+      "Eleven brains on the pitch, each asking Jev every 150 ms whether to tackle, pass, or shoot. Even the commentary queue got promoted from intern to System One.",
+    homepage: true,
+    categoryTags: ["games", "sports", "demo"],
+    projectUrl: "https://shubhankar.xyz/",
+  }),
+  demo({
+    id: "jev-dodge-realtime-abolbuild",
+    authorHandle: "abolbuild",
+    authorName: "abolbuild",
+    tweetUrl: "https://x.com/abolbuild/status/2100509548339408972",
+    title: "Don't get hit: Jev in the game loop",
+    funnyBlurb:
+      "One goal, zero chat transcripts. Structured state goes in, LEFT or RIGHT or STAY comes out, and your rectangle survives another frame of chaos.",
+    homepage: false,
+    categoryTags: ["games", "realtime", "demo"],
+  }),
+  demo({
+    id: "jev-doom-realtime-ziwenxu",
+    authorHandle: "ziwenxu_",
+    authorName: "Ziwen Xu",
+    tweetUrl: "https://x.com/ziwenxu_/status/2100039609958727756",
+    title: "Jev plays Doom in real time",
+    funnyBlurb:
+      "Looks like a human fragging, smells like ten typed decisions per second. No essay per demon, just probabilities on the next button mash.",
+    homepage: false,
+    categoryTags: ["games", "fps", "demo"],
+  }),
+  demo({
+    id: "typesafe-mario-faadilhshaik",
+    authorHandle: "faadilhshaik",
+    authorName: "Faadil Shaik",
+    tweetUrl: "https://x.com/faadilhshaik/status/2100086301894881578",
+    title: "Super Mario Bros from RAM, not pixels",
+    funnyBlurb:
+      "NES memory becomes JSON, Jev picks run or jump, and World 1-1 advances without a vision model cosplaying as a speedrunner.",
+    homepage: false,
+    categoryTags: ["games", "emulator", "demo"],
+    projectUrl: "https://github.com/fhshaik/typesafe-mario",
+  }),
+  demo({
+    id: "jev-shootout-goalie-peytoncasper",
+    authorHandle: "peytoncasper",
+    authorName: "Peyton Casper",
+    tweetUrl: "https://x.com/peytoncasper/status/2101724157587357977",
+    title: "Shootout goalie with split-second Jev",
+    funnyBlurb:
+      "Before the full FIFA rebuild, Shubhankar's keeper was already diving on typed reflexes. Same soccer itch, smaller pitch, equal panic.",
+    homepage: false,
+    categoryTags: ["games", "sports", "demo"],
+    projectUrl: "https://shubhankar.xyz/",
+  }),
+  demo({
+    id: "jev-as-judge-kylejeong",
+    authorHandle: "kylejeong",
+    authorName: "Kyle Jeong",
+    tweetUrl: "https://x.com/kylejeong/status/2101832317862056149",
+    title: "Jev as a Judge on real cases",
+    funnyBlurb:
+      "Feed a docket, get a ruling with confidence. Kyle benchmarked 100 plus famous cases and Jev picked a different outcome than history only 13 percent of the time. Law school wishlist energy.",
+    homepage: true,
+    categoryTags: ["product", "legal", "demo"],
+    projectUrl: "https://judge.kylejeong.com",
+  }),
+  demo({
+    id: "jev-agent-economics-mika",
+    authorHandle: "mika_systems",
+    authorName: "Mika",
+    tweetUrl: "https://x.com/mika_systems/status/2101745157846823228",
+    title: "When agents stop renting an LLM per click",
+    funnyBlurb:
+      "Twenty-eight seconds on why yes-or-no branches belong on System One: batch the leads, threshold the scores, ship the high-confidence rows, nap on the rest.",
+    homepage: false,
+    categoryTags: ["guides", "economics", "demo"],
+  }),
+  demo({
+    id: "jevrls-supabase-carolmonroe",
+    authorHandle: "CarolMonroe",
+    authorName: "Carol Monroe",
+    tweetUrl: "https://x.com/carolmonroe/status/2101747586126557230",
+    title: "JevRLS races your RLS policies",
+    funnyBlurb:
+      "Paste pg_policies, watch Jev, GPT, and Gemini flag the same Supabase leaks side by side. Same rubric, same stopwatch, fewer quiet data holes.",
+    homepage: false,
+    categoryTags: ["product", "security", "database"],
+    projectUrl: "https://jevrls.lovable.app",
+  }),
+  demo({
+    id: "logview-semantic-iurysza",
+    authorHandle: "IurySza",
+    authorName: "iury souza",
+    tweetUrl: "https://x.com/iurysza/status/2101770705155010568",
+    title: "Semantic Android log filter",
+    funnyBlurb:
+      "Slash becomes a natural-language triage lane. Jev scores fresh log lines while your TUI keeps scrolling and agents get a CLI that speaks relevance, not regex.",
+    homepage: false,
+    categoryTags: ["devtools", "cli", "demo"],
+    projectUrl: "https://github.com/iurysza/logview",
+  }),
+  demo({
+    id: "jevarcade-seven-games-thisiskp",
+    authorHandle: "thisiskp_",
+    authorName: "KP",
+    tweetUrl: "https://x.com/thisiskp_/status/2101846703091376219",
+    title: "Seven-game Jev Arcade on Netlify",
+    funnyBlurb:
+      "KP traded sleep for a coin-op cabinet: color blobs, mood piano, pictionary, puppet theatre, movie guesser, things icons, plus an explainer on Netlify plus Jev. Pick your favorite mini boss.",
+    homepage: true,
+    categoryTags: ["games", "integrations", "product"],
+    projectUrl: "https://jevarcade.netlify.app",
+  }),
 ];
 
-/** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */
+/** Tweet fetch hints for scripts/sync-showcase-demo-media.mjs (not used at runtime). */
 export const showcaseDemoFetchHints: { id: string; tweetId: string; prefer1080?: boolean }[] =
   showcaseDemos.map((d) => ({
     id: d.id,

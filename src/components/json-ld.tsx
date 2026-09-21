@@ -165,10 +165,16 @@ export function demoVideoJsonLd(demo: ShowcaseDemo) {
     "@type": "VideoObject",
     name: demo.title,
     description: demo.funnyBlurb,
-    thumbnailUrl: absoluteUrl(demo.posterUrl),
-    contentUrl: demo.hasLocalVideo
-      ? absoluteUrl(demo.videoUrl)
+    thumbnailUrl: demo.posterUrl.startsWith("http")
+      ? demo.posterUrl
       : absoluteUrl(demo.posterUrl),
+    contentUrl: demo.hasLocalVideo
+      ? demo.videoUrl.startsWith("http")
+        ? demo.videoUrl
+        : absoluteUrl(demo.videoUrl)
+      : demo.posterUrl.startsWith("http")
+        ? demo.posterUrl
+        : absoluteUrl(demo.posterUrl),
     embedUrl: demo.tweetUrl,
     uploadDate: "2026-09-19",
     author: {

@@ -84,6 +84,7 @@ export function DemoCard({
               playsInline
               loop
               preload="metadata"
+              crossOrigin={demo.videoIsRemote ? "anonymous" : undefined}
               aria-hidden
             />
           ) : (
