@@ -617,6 +617,64 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["product", "documents", "classification"],
     projectUrl: "https://github.com/jerryjliu/docjev",
   }),
+  demo({
+    id: "jev-fifa-rebuild-shubhankar",
+    authorHandle: "_shubhankar",
+    authorName: "Shubhankar Srivastava",
+    tweetUrl: "https://x.com/_shubhankar/status/2101830589620056160",
+    title: "FIFA rebuilt on Jev loops",
+    funnyBlurb:
+      "Eleven brains on the pitch, each asking Jev every 150 ms whether to tackle, pass, or shoot. Even the commentary queue got promoted from intern to System One.",
+    homepage: true,
+    categoryTags: ["games", "sports", "demo"],
+    projectUrl: "https://shubhankar.xyz/",
+  }),
+  demo({
+    id: "jev-dodge-realtime-abolbuild",
+    authorHandle: "abolbuild",
+    authorName: "abolbuild",
+    tweetUrl: "https://x.com/abolbuild/status/2100509548339408972",
+    title: "Don't get hit: Jev in the game loop",
+    funnyBlurb:
+      "One goal, zero chat transcripts. Structured state goes in, LEFT or RIGHT or STAY comes out, and your rectangle survives another frame of chaos.",
+    homepage: false,
+    categoryTags: ["games", "realtime", "demo"],
+  }),
+  demo({
+    id: "jev-doom-realtime-ziwenxu",
+    authorHandle: "ziwenxu_",
+    authorName: "Ziwen Xu",
+    tweetUrl: "https://x.com/ziwenxu_/status/2100039609958727756",
+    title: "Jev plays Doom in real time",
+    funnyBlurb:
+      "Looks like a human fragging, smells like ten typed decisions per second. No essay per demon, just probabilities on the next button mash.",
+    homepage: false,
+    categoryTags: ["games", "fps", "demo"],
+  }),
+  demo({
+    id: "typesafe-mario-faadilhshaik",
+    authorHandle: "faadilhshaik",
+    authorName: "Faadil Shaik",
+    tweetUrl: "https://x.com/faadilhshaik/status/2100086301894881578",
+    title: "Super Mario Bros from RAM, not pixels",
+    funnyBlurb:
+      "NES memory becomes JSON, Jev picks run or jump, and World 1-1 advances without a vision model cosplaying as a speedrunner.",
+    homepage: false,
+    categoryTags: ["games", "emulator", "demo"],
+    projectUrl: "https://github.com/fhshaik/typesafe-mario",
+  }),
+  demo({
+    id: "jev-shootout-goalie-peytoncasper",
+    authorHandle: "peytoncasper",
+    authorName: "Peyton Casper",
+    tweetUrl: "https://x.com/peytoncasper/status/2101724157587357977",
+    title: "Shootout goalie with split-second Jev",
+    funnyBlurb:
+      "Before the full FIFA rebuild, Shubhankar's keeper was already diving on typed reflexes. Same soccer itch, smaller pitch, equal panic.",
+    homepage: false,
+    categoryTags: ["games", "sports", "demo"],
+    projectUrl: "https://shubhankar.xyz/",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */

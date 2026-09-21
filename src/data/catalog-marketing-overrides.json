@@ -431,6 +431,10 @@
     "oneLiner": "System One Search: navigate and trace code with TypeSafe judgments and repository evidence.",
     "description": "s1s in the Jev ecosystem. System One Search: navigate and trace code with TypeSafe judgments and repository evidence. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
+  "fhshaik-typesafe-mario": {
+    "oneLiner": "NES RAM becomes JSON; Jev Choice picks legal Mario buttons every few frames with a live probability dashboard.",
+    "description": "typesafe-mario (Faadil Shaik) is the reference Python harness for Super Mario Bros without screenshots. Emulator telemetry and RAM feed structured player, hazard, terrain, and reaction_timing objects; Jev returns a Choice over noop, run, and jump combinations while the game advances several frames per decision. CLI tools include state-demo for inspecting payloads, play with an on-screen dashboard, and jsonl artifacts for clips. You supply a lawful ROM and TYPESAFE_API_KEY. The public launch clip on X shows real-time World 1-1 play; this listing tracks the open GitHub repo and showcase embed on Jev Directory."
+  },
   "hollow-creek": {
     "oneLiner": "Village NPCs that judge you each tick, deciding what to do and how they feel, instead of chatting.",
     "description": "Hollow Creek in the Jev ecosystem. Village NPCs that judge you each tick, deciding what to do and how they feel, instead of chatting. Playable proof that discrete Jev choices beat joystick LLM improv. Fun demo, serious latency lesson. Tags in the wild: games, game. Follow the primary link for the author's latest notes and setup quirks."

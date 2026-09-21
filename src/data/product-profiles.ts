@@ -1368,4 +1368,438 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps for @MyFirstMillionPod. Live demo on jev.aitools.fyi.",
   },
 
+  "shubhankar-jev-fifa": {
+    slug: "shubhankar-jev-fifa",
+    status: "published",
+    problem:
+      "Soccer games usually hard-code bot logic or bolt a chat model on top, which is too slow and too vague for eleven independent players plus live presentation layers.",
+    targetUser:
+      "Builders studying real-time sports sims, Browserbase engineers experimenting with System One, and fans who want proof that Jev can sit inside a 150 ms control loop.",
+    overview:
+      "Shubhankar Srivastava (Browserbase, shubhankar.xyz) published a FIFA-style rebuild where every outfield player runs its own Jev loop on roughly a 150 millisecond cadence. Each cycle decides tackle, pass, or shoot plus speed and heading. The same build routes commentary and soundtrack choices through Jev rather than a separate generative audio pipeline. The launch clip on X is the primary public artifact; no repo or hosted play link appeared in the thread as of September 2026.",
+    creator: {
+      name: "Shubhankar Srivastava",
+      handle: "_shubhankar",
+      xUrl: "https://x.com/_shubhankar/status/2101830589620056160",
+      company: "Browserbase",
+      companyUrl: "https://www.browserbase.com",
+      githubUrl: "https://github.com/shubh24",
+    },
+    creatorQuote: {
+      text:
+        "I rebuilt FIFA with Jev! Each player has a Jev loop running every ~150ms, deciding whether it should tackle, pass, shoot, and with what speed/direction. Heck, even the commentary/soundtracks are Jev!",
+      attributedTo: "Shubhankar Srivastava",
+      sourceUrl: "https://x.com/_shubhankar/status/2101830589620056160",
+    },
+    jevUsage: {
+      flowRole: "Per-player real-time action selection plus presentation routing (commentary and soundtrack)",
+      primitives: ["Choice"],
+      stateIn:
+        "Per-player match state at each tick (positions, ball context, and other fields implied by the clip; exact schema not published outside the build).",
+      decisionOut:
+        "Discrete soccer actions (tackle, pass, shoot) with speed and direction parameters; separate Jev choices for commentary lines and soundtrack selection per the launch post.",
+      flowSteps: [
+        "Simulation advances on a sub-second game clock",
+        "Each player issues a Jev request about every 150 ms",
+        "Engine applies returned actions to movement and ball interaction",
+        "Presentation layer queries Jev for commentary and music choices",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Each player runs a Jev loop about every 150 ms.",
+          source: "x.com/_shubhankar/status/2101830589620056160",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The match treats Jev as the reflex layer for every athlete instead of one monolithic bot brain. That matches the System One pattern: structured state in, typed Choice out, no play-by-play prose between ticks. Shubhankar's post also extends the same primitive to broadcast flavor (commentary and soundtracks), which is unusual for sports demos and shows how sidecar presentation systems can share one fast model. Peyton Casper quoted an earlier shootout goalie prototype from the same author; this profile focuses on the full-pitch FIFA rebuild in Shubhankar's September 2026 clip while the Peyton post remains a related showcase embed on this directory.",
+    keyFeatures: [
+      "Eleven independent per-player Jev loops at ~150 ms cadence (attributed post)",
+      "Tackle, pass, and shoot decisions with speed and direction",
+      "Commentary and soundtrack selection also driven by Jev (attributed post)",
+      "Featured homepage showcase video embed on Jev Directory",
+      "Creator site at shubhankar.xyz and GitHub shubh24 for other experiments",
+    ],
+    stack: [
+      "TypeSafe System One (Jev)",
+      "Custom FIFA-style sim (details not open-sourced in the launch thread)",
+    ],
+    links: {
+      website: "https://shubhankar.xyz/",
+      post: "https://x.com/_shubhankar/status/2101830589620056160",
+      demo: "https://x.com/_shubhankar/status/2101830589620056160",
+    },
+    firstSeen: "2026-09-21",
+    demoIds: ["jev-fifa-rebuild-shubhankar", "jev-shootout-goalie-peytoncasper"],
+    relatedSlugs: [
+      "fhshaik-typesafe-mario",
+      "enoyola-jev-grand-prix",
+      "lukaske-jev-doom-agent",
+      "jev-arcade",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is there a public repo or playable URL?",
+        answer:
+          "Not in the September 2026 launch thread. This directory lists the attributed X clip and showcase embed until Shubhankar publishes a repo or demo link.",
+      },
+      {
+        question: "How does the Peyton Casper goalie clip relate?",
+        answer:
+          "Peyton Casper posted that @_shubhankar built a Jev-powered goalie for a shootout-style soccer game before the full FIFA rebuild. We host both videos as showcases but keep one product profile for the full-match build Shubhankar described.",
+      },
+      {
+        question: "Which Jev primitives are documented?",
+        answer:
+          "The public post describes discrete action picks (tackle, pass, shoot, speed, direction) and presentation choices. Treat those as Choice-style decisions; no Score or Noul usage was claimed in the thread.",
+      },
+    ],
+    metaTitle: "Shubhankar Jev FIFA rebuild: 150 ms player loops",
+    metaDescription:
+      "Browserbase builder Shubhankar's FIFA-style sim with per-player Jev loops, commentary, and soundtracks. Facts sourced from the September 2026 launch clip on X.",
+  },
+
+  "enoyola-jev-grand-prix": {
+    slug: "enoyola-jev-grand-prix",
+    status: "published",
+    problem:
+      "Racing AI that steers the wheel directly from slow model replies weaves off track; F1 speeds cover twenty meters before an answer returns.",
+    targetUser:
+      "Developers learning the goal-versus-actuator split for real-time sims and hobbyists who want a local Jev race engineer.",
+    overview:
+      "Jev Grand Prix is an open F1 toy from enoyola. A Python server turns car telemetry into engineer prose, batches three System One questions (line Choice, pedal Choice, trouble Noul), and lets browser physics steer toward the chosen line at 120 Hz. Between laps, code compares sector notes and asks Jev once per corner whether to push, hold, or back off on a grip-percent ladder documented in the README.",
+    creator: {
+      name: "enoyola",
+      handle: "enoyola",
+      githubUrl: "https://github.com/enoyola",
+    },
+    jevUsage: {
+      flowRole: "High-level racing line and pedal selection; separate lap-level corner pace planner",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Speed, track position, corner context, and natural-language sector notes generated from lap timing (see server.py and README tables).",
+      decisionOut:
+        "Target line across five lateral buckets, pedal mode among throttle/brake steps, and trouble probability; per-corner faster/same/slower plan between laps.",
+      flowSteps: [
+        "Browser sends telemetry several times per second",
+        "Server composes engineer text and batches three questions per request (~0.27 s cited)",
+        "Client steers and applies brake-by-wire toward targets at 120 Hz",
+        "At lap end, code summarizes sectors and asks Jev for per-corner pace adjustments",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Typical Jev answer latency about 0.27 s; direct wheel steering caused nine off-tracks in the first test lap.",
+          source: "github.com/enoyola/jev-grand-prix README",
+        },
+        {
+          claim: "Eight-lap test improved best lap from 59.2 s (standing start) to 50.9 s with real Jev calls.",
+          source: "github.com/enoyola/jev-grand-prix README lap table",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The README is explicit that Jev picks goals while code executes them, matching the Pokemon and Minecraft patterns TypeSafe cites. Noul powers the Trouble meter so the model can express leave-the-track risk without free text. The race-engineer ladder is a teaching tool: memory lives in deterministic lap analytics, while Jev only judges the next incremental pace change per corner. You can race Jev or drive yourself with arrow keys on localhost:8765 after uv run server.py.",
+    keyFeatures: [
+      "Local browser client plus Python server (uv run server.py)",
+      "Three batched questions per driving decision",
+      "Optional human driver with camera toggle",
+      "Race engineer panel with per-corner history",
+      "Documented eight-lap improvement curve with real API calls",
+    ],
+    stack: ["Python", "uv", "Browser client", "TypeSafe System One API"],
+    links: {
+      repo: "https://github.com/enoyola/jev-grand-prix",
+      docs: "https://github.com/enoyola/jev-grand-prix",
+      demo: "http://localhost:8765",
+    },
+    pricingNote: "Requires your TypeSafe API key; README uses console.typesafe.ai early access.",
+    firstSeen: "2026-09-21",
+    relatedSlugs: ["shubhankar-jev-fifa", "fhshaik-typesafe-mario", "thumay9700-jev-plays"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Why not steer the wheel directly from Jev?",
+        answer:
+          "README reports weaving and nine off-tracks when Jev commanded the wheel; line plus pedal targets with fast local steering fixed clean laps.",
+      },
+      {
+        question: "Which primitives are used?",
+        answer: "Choice for line and pedals, Noul for trouble probability, per README question table.",
+      },
+    ],
+    metaTitle: "Jev Grand Prix: F1 line and pedal Choice loops",
+    metaDescription:
+      "Open F1 sim where Jev picks racing lines and pedals while code steers at 120 Hz. Lap engineer and benchmarks from github.com/enoyola/jev-grand-prix.",
+  },
+
+  "muhammadaq1-before-the-fall-jev": {
+    slug: "muhammadaq1-before-the-fall-jev",
+    status: "published",
+    problem:
+      "Rescue puzzles often cheat with hidden hints in prompts; players want tension without trusting a chat model to improvise physics.",
+    targetUser:
+      "Indie devs building narrative micro-games and Jev learners who want validation loops separate from model prose.",
+    overview:
+      "Before the Fall is a 2D rescue game starring robot S-01. Six victims, thirty-five seconds, three junctions per rescue, five-second room collapse timers. Jev reads text descriptions of obstacles and robot capabilities, then picks a door and action. The engine checks answers against rules without telling Jev which door is correct.",
+    creator: {
+      name: "muhammadaq1",
+      handle: "muhammadaq1",
+      githubUrl: "https://github.com/muhammadaq1",
+    },
+    jevUsage: {
+      flowRole: "Door and maneuver selection under time pressure",
+      primitives: ["Choice"],
+      stateIn:
+        "Natural-language descriptions of each door blockage, rescue goal, and allowed robot actions (push aside, lift aside, duck under, step through).",
+      decisionOut: "Chosen door plus action; game validates against scene rules and advances or rejects.",
+      flowSteps: [
+        "Room collapse timer starts",
+        "Engine sends junction descriptions to Jev",
+        "Jev returns door and action Choice",
+        "Physics validates; on success, fresh descriptions for next junction",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Recorded run: six rescues in 28.4 s, 18/18 applied decisions, ~352 ms average response.",
+          source: "github.com/muhammadaq1/before-the-fall-jev README results screenshot",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jev never sees pixels, only text derived from the scene, which mirrors TypeSafe's structured-state guidance. Free wheels on a trolley still fail if there is nowhere to push, so the model must read constraints, not keywords. README stresses 100 percent decision accuracy on the showcased run while noting variance across live API calls. Clone the repo and follow run-locally instructions with your TypeSafe key.",
+    keyFeatures: [
+      "Six people, 35 second mission clock",
+      "Three doors per junction with timed collapses",
+      "Text-only state to Jev; viewer sees art",
+      "Bundled demo video in README",
+      "Documented latency and accuracy metrics for a sample run",
+    ],
+    stack: ["JavaScript", "TypeSafe Jev API"],
+    links: {
+      repo: "https://github.com/muhammadaq1/before-the-fall-jev",
+      docs: "https://github.com/muhammadaq1/before-the-fall-jev",
+    },
+    firstSeen: "2026-09-21",
+    relatedSlugs: ["shubhankar-jev-fifa", "muratcanberber-jev-the-fish-game"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Does Jev see the artwork?",
+        answer:
+          "No. README states Jev receives text descriptions while players see the 2D scene.",
+      },
+      {
+        question: "Are metrics guaranteed?",
+        answer:
+          "README documents one recorded run; live latency and success rates can vary with API load.",
+      },
+    ],
+    metaTitle: "Before the Fall: Jev rescue choices under a 35 s clock",
+    metaDescription:
+      "Cinematic rescue game where Jev picks doors and actions from text. Sample run metrics from the open GitHub README.",
+  },
+
+  "muratcanberber-jev-the-fish-game": {
+    slug: "muratcanberber-jev-the-fish-game",
+    status: "published",
+    problem:
+      "Multiplayer fish games often fake AI with scripts or parse LLM chatter that drifts under load.",
+    targetUser:
+      "Engineers who want a reference multiplayer loop with batched Choice and Noul calls and a live Q&A inspector.",
+    overview:
+      "JEV: The Fish Game is an authoritative Node server with a Three.js client. AI fish batch three questions per decision: action Choice, target Choice, and panic Noul. Humans steer with the mouse; spectators read per-fish Q&A panels with confidence bars.",
+    creator: {
+      name: "muratcanberber",
+      handle: "muratcanberber",
+      githubUrl: "https://github.com/muratcanberber",
+    },
+    jevUsage: {
+      flowRole: "Per-fish tactical routing every few seconds",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Nearby threats, prey, food pellets, spikes, energy, and mass telemetry summarized for each fish (see README question table).",
+      decisionOut:
+        "action choice (flee, hunt, eat_food, roam), target object id, panic noul for sprinting.",
+      flowSteps: [
+        "30 Hz simulation on server",
+        "Each AI fish schedules Jev calls every ~4-8 s, up to three concurrent",
+        "Server applies thresholds, walls, spikes, and metabolism in code",
+        "10 Hz WebSocket broadcast with client interpolation to 60 fps",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "About 300 ms per fish decision; five AI fish ≈ 70 decisions/min (~$0.10/hour cited).",
+          source: "github.com/muratcanberber/JEV-TheFishGame README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The README argues for AI as a programming primitive: JSON decisions, not chat. Policy stays in TypeScript so the same model weights behave per host configuration. A local fallback brain keeps fish moving if Jev is unreachable, but the showcase value is the inspector that exposes questions and probabilities to spectators. npm start serves localhost:8787; cloudflared tunnel instructions included for quick shares.",
+    keyFeatures: [
+      "Up to five players plus unlimited spectators",
+      "Live Q&A inspector per fish",
+      "Metabolism, spikes, and mass-scaled speed",
+      "Server-side API key only",
+      "Auto-reload clients on deploy",
+    ],
+    stack: ["Node.js", "Three.js r160", "WebSockets", "TypeSafe Jev"],
+    links: {
+      repo: "https://github.com/muratcanberber/JEV-TheFishGame",
+      docs: "https://github.com/muratcanberber/JEV-TheFishGame",
+    },
+    pricingNote: "README cites ~$0.10/hour for five AI fish at listed Jev rates; verify on console.typesafe.ai.",
+    firstSeen: "2026-09-21",
+    relatedSlugs: ["icohen007-jev-play-ping-pong", "hollow-creek", "jev-arcade"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Do browsers call Jev directly?",
+        answer: "No. README states the API key lives only in server .env.",
+      },
+      {
+        question: "What if Jev is down?",
+        answer: "A documented local fallback brain keeps fish playable without remote calls.",
+      },
+    ],
+    metaTitle: "JEV The Fish Game: multiplayer Choice and Noul fish AI",
+    metaDescription:
+      "Real-time multiplayer aquarium with batched Jev questions and a live Q&A inspector. Metrics and setup from the open GitHub repo.",
+  },
+
+  "thumay9700-jev-plays": {
+    slug: "thumay9700-jev-plays",
+    status: "published",
+    problem:
+      "Retro game agents built on LLMs burn budget and latency parsing text about button presses.",
+    targetUser:
+      "Streamers, researchers, and emulator hackers who want a modular PyBoy harness for Pokemon Red today and more titles later.",
+    overview:
+      "jev-plays connects TypeSafe Jev to PyBoy with typed RAM maps, Pydantic state, and per-game tactic modules. Pokemon Red is the first shipped world, with navigator and battle Choice schemas documented in the repository layout.",
+    creator: {
+      name: "thumay9700",
+      handle: "thumay9700",
+      githubUrl: "https://github.com/thumay9700",
+    },
+    jevUsage: {
+      flowRole: "Emulator tick decision layer for navigation and battle",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Parsed Game Boy RAM via ram_map.py into structured models (party, map, battle context).",
+      decisionOut:
+        "Typed controller or battle actions from Choice/Noul/Score questions defined per tactics.py.",
+      flowSteps: [
+        "PyBoy advances frames",
+        "state.py builds structured observation",
+        "jev_client issues parallel System One questions",
+        "Agent applies inputs and logs telemetry metrics",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "README cites 50 to 150 ms per decision and sub-dollar full-game cost vs $200+ LLM playthroughs.",
+          source: "github.com/thumay9700/jev-plays README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The framework treats Jev as System One instinct: no tokenized play-by-play, only schemas the emulator can execute. README outlines a YouTube roadmap for Mario, Zelda, and Mega Man using the same BaseGame interface. Bring your own legally obtained Pokemon Red ROM and TYPESAFE_API_KEY, then run the documented CLI entrypoints with uv.",
+    keyFeatures: [
+      "Modular games/ package with Pokemon Red shipped",
+      "Telemetry for latency, HUD, and cost",
+      "Smart mock engine for offline dev",
+      "pytest suite in repository",
+      "Documented roadmap for additional consoles",
+    ],
+    stack: ["Python 3.11+", "uv", "PyBoy", "TypeSafe SDK"],
+    links: {
+      repo: "https://github.com/thumay9700/jev-plays",
+      docs: "https://github.com/thumay9700/jev-plays",
+    },
+    firstSeen: "2026-09-21",
+    relatedSlugs: ["fhshaik-typesafe-mario", "enoyola-jev-grand-prix"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Which game works today?",
+        answer: "Pokemon Red via PyBoy is the first implemented world per README roadmap checkboxes.",
+      },
+      {
+        question: "Does the repo include ROMs?",
+        answer: "No. README requires a legally obtained PokemonRed.gb file.",
+      },
+    ],
+    metaTitle: "jev-plays: PyBoy Pokemon agent with typed Jev tactics",
+    metaDescription:
+      "Open emulator framework for System One decisions in Pokemon Red. Architecture and cost notes from github.com/thumay9700/jev-plays.",
+  },
+
+  "fhshaik-typesafe-mario": {
+    slug: "fhshaik-typesafe-mario",
+    status: "published",
+    problem:
+      "Vision pipelines for NES agents are heavy; Mario needs fast discrete inputs from reliable state, not screenshot captions.",
+    targetUser:
+      "Python developers benchmarking Jev on World 1-1 and anyone comparing RAM-first harness design.",
+    overview:
+      "typesafe-mario lets Jev choose NES controller actions for Super Mario Bros from structured JSON built out of emulator telemetry and RAM. Faadil Shaik's launch clip shows real-time play without pixels in the prompt. The repo ships CLI tools, a live dashboard, and jsonl artifacts for overlays.",
+    creator: {
+      name: "Faadil Shaik",
+      handle: "faadilhshaik",
+      xUrl: "https://x.com/faadilhshaik/status/2100086301894881578",
+      githubUrl: "https://github.com/fhshaik",
+    },
+    creatorQuote: {
+      text:
+        "got @typesafeai's new model Jev to play Super Mario Bros. fast inference + structured outputs makes it surprisingly good for real time use cases.",
+      attributedTo: "Faadil Shaik",
+      sourceUrl: "https://x.com/faadilhshaik/status/2100086301894881578",
+    },
+    jevUsage: {
+      flowRole: "Per-step controller Choice from structured world model",
+      primitives: ["Choice"],
+      stateIn:
+        "player, trajectory, hazard, terrain, reaction_timing, and episode fields parsed from RAM (README architecture).",
+      decisionOut:
+        "One of noop, right, right_jump, right_run, right_run_jump, jump, left with probability distribution logged.",
+      flowSteps: [
+        "NES emulator advances frames",
+        "Parser builds JSON state without screenshots",
+        "Jev Choice selects controller action",
+        "Harness applies input for configured frames-per-decision (default 8 steps)",
+      ],
+    },
+    howJevIsUsed:
+      "The harness keeps cardinality small and legal actions explicit, which is how Jev avoids hallucinated buttons. reaction_timing fields document observation-to-action delay for benchmarking. typesafe-mario state-demo prints payloads without launching the game. Play mode records artifacts/run-*.jsonl for clips and telemetry. You must supply your own lawful ROM and TYPESAFE_API_KEY.",
+    keyFeatures: [
+      "Python 3.13 CLI typesafe-mario play and state-demo",
+      "Live dashboard with probabilities and latency",
+      "jsonl decision logs for overlays",
+      "Documented action set and parser fields",
+      "Hundreds of GitHub stars in the public catalog snapshot",
+    ],
+    stack: ["Python 3.13", "NES emulator harness", "TypeSafe Jev"],
+    links: {
+      repo: "https://github.com/fhshaik/typesafe-mario",
+      docs: "https://github.com/fhshaik/typesafe-mario",
+      post: "https://x.com/faadilhshaik/status/2100086301894881578",
+    },
+    firstSeen: "2026-09-16",
+    demoIds: ["typesafe-mario-faadilhshaik"],
+    relatedSlugs: ["thumay9700-jev-plays", "lukaske-jev-doom-agent", "shubhankar-jev-fifa"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Does Jev see the screen?",
+        answer: "No. README states the model receives structured JSON from telemetry and RAM, not screenshots.",
+      },
+      {
+        question: "How often does it decide?",
+        answer: "Default play command uses one decision every eight emulator steps; adjust --frames-per-decision for benchmarks.",
+      },
+    ],
+    metaTitle: "typesafe-mario: Jev NES controller from RAM JSON",
+    metaDescription:
+      "Faadil Shaik harness for Super Mario Bros with structured state and Choice actions. README architecture plus launch clip on Jev Directory.",
+  },
+
 };

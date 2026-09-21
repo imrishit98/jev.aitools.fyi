@@ -75,6 +75,11 @@ const DEMO_SPECS = [
   { id: "moongotchi-trading-bot-moongotchi", tweetId: "2101320141065609294", prefer1080: false },
   { id: "nhtsa-complaints-kanaworks", tweetId: "2101509756737462446", prefer1080: false },
   { id: "docjev-jerryjliu0", tweetId: "2101738281046294552", prefer1080: false },
+  { id: "jev-fifa-rebuild-shubhankar", tweetId: "2101830589620056160", prefer1080: true },
+  { id: "jev-dodge-realtime-abolbuild", tweetId: "2100509548339408972", prefer1080: false },
+  { id: "jev-doom-realtime-ziwenxu", tweetId: "2100039609958727756", prefer1080: false },
+  { id: "typesafe-mario-faadilhshaik", tweetId: "2100086301894881578", prefer1080: false },
+  { id: "jev-shootout-goalie-peytoncasper", tweetId: "2101724157587357977", prefer1080: false },
 ];
 
 function pickMp4Url(formats, prefer1080 = false) {
