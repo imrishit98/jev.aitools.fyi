@@ -302,12 +302,22 @@ function localExpand(query: string) {
   return { tokens, expansions: [...expansions], entities, synonymHits };
 }
 
-function isMock(env: MfmSearchEnv) {
+function hasGatewayKey(env: MfmSearchEnv) {
+  return Boolean(env.AI_GATEWAY_API_KEY?.trim());
+}
+
+/** Explicit mock flag (forces mock even when a Gateway key is present). */
+function isExplicitMock(env: MfmSearchEnv) {
   return env.JEV_MOCK === "true" || env.JEV_MOCK === "1";
 }
 
+/** Mock when no key, or when JEV_MOCK is set. */
+function isMock(env: MfmSearchEnv) {
+  return isExplicitMock(env) || !hasGatewayKey(env);
+}
+
 function hasLiveJev(env: MfmSearchEnv) {
-  return Boolean(env.AI_GATEWAY_API_KEY?.trim()) && !isMock(env);
+  return hasGatewayKey(env) && !isExplicitMock(env);
 }
 
 async function understandQuery(query: string, env: MfmSearchEnv) {
@@ -686,9 +696,6 @@ export async function handleSearch(q: string, env: MfmSearchEnv) {
   const totalT0 = performance.now();
   const query = (q || "").trim();
   if (!query) return jsonResponse({ error: "Missing q" }, 400);
-  if (!hasLiveJev(env) && !isMock(env)) {
-    return jsonResponse({ error: "AI_GATEWAY_API_KEY missing (set JEV_MOCK=true for local mock)" }, 503);
-  }
 
   const understood = await understandQuery(query, env);
   const recallT0 = performance.now();

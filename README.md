@@ -44,7 +44,7 @@ Connect this repo to a Cloudflare **Pages** project.
 | Environment variable | `PUBLIC_SITE_URL=https://jev.aitools.fyi` |
 | Web Analytics (optional) | `PUBLIC_CLOUDFLARE_WEB_ANALYTICS_TOKEN` |
 | My First Million demo (optional) | `AI_GATEWAY_API_KEY` (Vercel AI Gateway for live Jev) |
-| My First Million mock mode | `JEV_MOCK=true` skips Gateway calls (local `pnpm pages:dev`) |
+| My First Million mock mode | Auto when no `AI_GATEWAY_API_KEY`; optional `JEV_MOCK=true` forces mock even with a key |
 
 **Workers Builds (`pnpm deploy`):** `workers/site-and-assets.ts` handles dynamic routes (My First Million demo API at `/demos/my-first-million/api/*`) and passes other requests to the `SITE_ASSETS` binding (`dist/`). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
 
