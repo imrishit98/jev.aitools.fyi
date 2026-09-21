@@ -675,6 +675,65 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["games", "sports", "demo"],
     projectUrl: "https://shubhankar.xyz/",
   }),
+  demo({
+    id: "jev-as-judge-kylejeong",
+    authorHandle: "kylejeong",
+    authorName: "Kyle Jeong",
+    tweetUrl: "https://x.com/kylejeong/status/2101832317862056149",
+    title: "Jev as a Judge on real cases",
+    funnyBlurb:
+      "Feed a docket, get a ruling with confidence. Kyle benchmarked 100 plus famous cases and Jev picked a different outcome than history only 13 percent of the time. Law school wishlist energy.",
+    homepage: true,
+    categoryTags: ["product", "legal", "demo"],
+    projectUrl: "https://judge.kylejeong.com",
+  }),
+  demo({
+    id: "jev-agent-economics-mika",
+    authorHandle: "mika_systems",
+    authorName: "Mika",
+    tweetUrl: "https://x.com/mika_systems/status/2101745157846823228",
+    title: "When agents stop renting an LLM per click",
+    funnyBlurb:
+      "Twenty-eight seconds on why yes-or-no branches belong on System One: batch the leads, threshold the scores, ship the high-confidence rows, nap on the rest.",
+    homepage: false,
+    categoryTags: ["guides", "economics", "demo"],
+  }),
+  demo({
+    id: "jevrls-supabase-carolmonroe",
+    authorHandle: "CarolMonroe",
+    authorName: "Carol Monroe",
+    tweetUrl: "https://x.com/carolmonroe/status/2101747586126557230",
+    title: "JevRLS races your RLS policies",
+    funnyBlurb:
+      "Paste pg_policies, watch Jev, GPT, and Gemini flag the same Supabase leaks side by side. Same rubric, same stopwatch, fewer quiet data holes.",
+    homepage: false,
+    categoryTags: ["product", "security", "database"],
+    projectUrl: "https://jevrls.lovable.app",
+  }),
+  demo({
+    id: "logview-semantic-iurysza",
+    authorHandle: "IurySza",
+    authorName: "iury souza",
+    tweetUrl: "https://x.com/iurysza/status/2101770705155010568",
+    title: "Semantic Android log filter",
+    funnyBlurb:
+      "Slash becomes a natural-language triage lane. Jev scores fresh log lines while your TUI keeps scrolling and agents get a CLI that speaks relevance, not regex.",
+    homepage: false,
+    categoryTags: ["devtools", "cli", "demo"],
+    projectUrl: "https://github.com/iurysza/logview",
+  }),
+  demo({
+    id: "jevarcade-seven-games-thisiskp",
+    authorHandle: "thisiskp_",
+    authorName: "KP",
+    tweetUrl: "https://x.com/thisiskp_/status/2101846703091376219",
+    title: "Seven-game Jev Arcade on Netlify",
+    funnyBlurb:
+      "KP traded sleep for a coin-op cabinet: color blobs, mood piano, pictionary, puppet theatre, movie guesser, things icons, plus an explainer on Netlify plus Jev. Pick your favorite mini boss.",
+    homepage: true,
+    categoryTags: ["games", "integrations", "product"],
+    projectUrl: "https://jevarcade.netlify.app",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */

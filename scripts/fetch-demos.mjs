@@ -80,6 +80,11 @@ const DEMO_SPECS = [
   { id: "jev-doom-realtime-ziwenxu", tweetId: "2100039609958727756", prefer1080: false },
   { id: "typesafe-mario-faadilhshaik", tweetId: "2100086301894881578", prefer1080: false },
   { id: "jev-shootout-goalie-peytoncasper", tweetId: "2101724157587357977", prefer1080: false },
+  { id: "jev-as-judge-kylejeong", tweetId: "2101832317862056149", prefer1080: true },
+  { id: "jev-agent-economics-mika", tweetId: "2101745157846823228", prefer1080: false },
+  { id: "jevrls-supabase-carolmonroe", tweetId: "2101747586126557230", prefer1080: true },
+  { id: "logview-semantic-iurysza", tweetId: "2101770705155010568", prefer1080: false },
+  { id: "jevarcade-seven-games-thisiskp", tweetId: "2101846703091376219", prefer1080: false },
 ];
 
 function pickMp4Url(formats, prefer1080 = false) {
