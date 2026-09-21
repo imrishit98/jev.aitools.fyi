@@ -1,6 +1,7 @@
 /**
  * Refresh remote poster + video URLs from X tweets (fxtwitter API).
  * Writes src/data/showcase-demo-media.json — no binaries in public/demos.
+ * In-app playback: ShowcaseDemoVideo sets referrerPolicy=no-referrer (twimg 403s with site Referer).
  *
  * Run: node scripts/sync-showcase-demo-media.mjs
  * Optional: --force to refetch all; default skips ids already present.
