@@ -2079,4 +2079,484 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "jevarcade.netlify.app hosts seven Jev-powered modes via Netlify AI Gateway. Distinct from the Vercel FPS Jev Arcade listing.",
   },
 
+  "virlo-ai": {
+    slug: "virlo-ai",
+    status: "published",
+    problem:
+      "Short-form research feeds drown teams in off-niche clips, hashtag stuffing, and videos that look viral but miss the brief.",
+    targetUser:
+      "TikTok and Reels marketers, agencies, and creators using Virlo to benchmark hooks and formats against a large viral corpus.",
+    overview:
+      "Virlo (virlo.ai, dev.virlo.ai) is a short-form social listening and content research platform spanning TikTok, Instagram Reels, and YouTube Shorts. Public positioning cites more than twelve million indexed viral videos and over one hundred thousand users. Co-founder jaffa (@dsqjaffa, @virlomain) wired TypeSafe Jev into a Clearance layer that must pass before Virlo's eighty-signal tagging panel scores hooks, formats, angles, and production cues.",
+    creator: {
+      name: "jaffa",
+      handle: "dsqjaffa",
+      xUrl: "https://x.com/dsqjaffa/status/2102090111198363988",
+      company: "Virlo",
+      companyUrl: "https://virlo.ai",
+    },
+    creatorQuote: {
+      text:
+        "Jev is INSANE for Marketing: Clearance decides what enters the benchmark sample before Virlo tags the rest.",
+      attributedTo: "jaffa",
+      sourceUrl: "https://x.com/i/article/2102004103240904704",
+    },
+    jevUsage: {
+      flowRole:
+        "Clearance gate plus marketing-agent packs before eighty-signal viral tagging",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Caption, hashtags, transcript text, and niche brief context for each candidate short-form video entering the Virlo pipeline.",
+      decisionOut:
+        "Clearance Noul on niche match and stuffing or mismatch flags; parallel Choice, Score, and Noul on hook type, format, angle, and worth-scripting with confidence thresholds for auto-act versus escalate.",
+      flowSteps: [
+        "Ingest candidate clip metadata and transcript from Virlo search or watchlists",
+        "Jev Clearance: niche match and hashtag or topic mismatch nouls with confidence",
+        "On pass, Virlo runs eighty-signal visual and production tagging (outside Jev)",
+        "Marketing agent loops use parallel Choice, Score, and Noul packs on script angles",
+        "Calibration UI A/B tests Jev Clearance against the legacy judge on labeled sets",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Early human-labeled head-to-head: Jev Clearance thirty-three of forty-four versus legacy judge thirty of forty-four.",
+          source: "jaffa X Article Jev is INSANE for Marketing and launch clip",
+        },
+        {
+          claim:
+            "Virlo indexes twelve point eight million plus viral videos and tags eighty signals per accepted clip.",
+          source: "Virlo public marketing and jaffa article",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Virlo treats Jev as the typed judgment layer on text and brief fit, not as a replacement for computer vision. Clearance is Noul-forward: does this clip belong in the niche given caption, hashtags, and transcript, and is the topic consistent or stuffed? Confidence gates route high-certainty accepts straight into the eighty-signal benchmark sample; uncertain rows escalate to stronger models or human review instead of polluting trend charts. Separate parallel packs score marketing-agent outputs such as hook archetype, format, angle, and whether the clip is worth scripting, using Choice and Score where the product needs ranked options. Virlo still performs visual and production tagging; Jev only controls whether a row earns a seat at that table. Operators wire TypeSafe with a dedicated API key while Virlo product keys use the virlo_tkn_* format documented on dev.virlo.ai, including MCP at dev.virlo.ai/api/mcp/mcp for agent integrations. Open-source Vee (github.com/Virlo-AI/vee) reuses Virlo data for marketing agents; this profile focuses on the shipped SaaS Clearance path from the September 2026 launch.",
+    keyFeatures: [
+      "Clearance gate before eighty-signal viral tagging",
+      "Calibration A/B versus legacy judge with published early win rate",
+      "MCP and API surfaces on dev.virlo.ai",
+      "Featured showcase clip with remote X video embed",
+      "Cross-links to Vee open-source marketing agent",
+    ],
+    stack: [
+      "Virlo SaaS (virlo.ai)",
+      "TypeSafe System One",
+      "Virlo MCP (dev.virlo.ai)",
+    ],
+    links: {
+      website: "https://virlo.ai",
+      docs: "https://dev.virlo.ai",
+      demo: "https://dev.virlo.ai",
+      post: "https://x.com/dsqjaffa/status/2102090111198363988",
+      repo: "https://github.com/Virlo-AI/vee",
+    },
+    pricingNote:
+      "Virlo product billing uses virlo_tkn_* keys; System One calls require a separate TypeSafe API key per dev.virlo.ai docs.",
+    firstSeen: "2026-09-21",
+    demoIds: ["virlo-clearance-dsqjaffa"],
+    relatedSlugs: ["stealads-ai", "ploy-ai", "hypit-ai", "socai-io-jev-social"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev replace Virlo's eighty-signal panel?",
+        answer:
+          "No. Jev Clearance filters which clips enter the tagged benchmark sample. Virlo still runs visual and production tagging on accepted rows.",
+      },
+      {
+        question: "Where is the long-form write-up?",
+        answer:
+          "jaffa published an X Article titled Jev is INSANE for Marketing at x.com/i/article/2102004103240904704 with Clearance and Calibration detail.",
+      },
+      {
+        question: "What is Vee?",
+        answer:
+          "Vee is Virlo's open-source marketing agent repo at github.com/Virlo-AI/vee. It consumes Virlo research data; Clearance behavior on virlo.ai may differ from Vee defaults.",
+      },
+    ],
+    metaTitle: "Virlo: Jev Clearance for TikTok and Reels research",
+    metaDescription:
+      "Virlo content research SaaS uses TypeSafe Jev Clearance before eighty-signal tagging. Noul niche gates, Calibration A/B, MCP on dev.virlo.ai. Sourced from jaffa launch clip.",
+  },
+
+  "stealads-ai": {
+    slug: "stealads-ai",
+    status: "published",
+    problem:
+      "Media buyers need structured labels across hundreds of competitor ads without manually opening every creative and landing page.",
+    targetUser:
+      "Performance marketers and founders using StealAds to reverse-engineer competitor Meta libraries.",
+    overview:
+      "StealAds (stealads.ai) tears down live competitor ad libraries with Jev on the labeling hot path. Matthew Berman's (@TheMattBerman) launch clip shows seven hundred twenty-four ads across thirty-seven brands analyzed in about forty seconds for roughly nine cents of tokens, emitting hook, format, offer, CTA, awareness stage, and landing-page mismatch fields.",
+    creator: {
+      name: "Matthew Berman",
+      handle: "TheMattBerman",
+      xUrl: "https://x.com/TheMattBerman/status/2100654891756589230",
+      company: "StealAds",
+      companyUrl: "https://stealads.ai",
+    },
+    creatorQuote: {
+      text:
+        "In forty seconds Jev broke down seven hundred twenty-four live ads from thirty-seven brands for about nine cents.",
+      attributedTo: "Matthew Berman",
+      sourceUrl: "https://x.com/TheMattBerman/status/2100654891756589230",
+    },
+    jevUsage: {
+      flowRole: "Batch structured labeling over live ad creatives and landing pairs",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Ad creative text, visuals metadata, and landing URLs from StealAds ingestion of live competitor libraries (per launch clip).",
+      decisionOut:
+        "Per-ad labels for hook, format, offer, CTA, awareness stage, and landing mismatch signals suitable for filtering and swipe files.",
+      flowSteps: [
+        "StealAds pulls live ads for selected brands",
+        "Jev classifies each creative against marketing taxonomy fields in parallel batches",
+        "Operators browse labeled sets in StealAds UI or upcoming MCP tools",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Seven hundred twenty-four live ads, thirty-seven brands, about forty seconds, about nine cents of tokens in the attributed clip.",
+          source: "Matthew Berman X post 2100654891756589230",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "StealAds uses Jev where a general chat model would drown in token-heavy JSON improvisation. Each ad becomes a compact state object; Jev returns typed marketing labels so the UI can sort, filter, and export patterns without regex on model prose. Choice and Score style questions cover categorical fields like hook archetype and awareness stage, while Noul-style checks flag landing-page mismatches between promise and destination. The builder noted StealAds product and MCP availability in the same thread; madewithjev.com/builds/competitor-ad-teardown documents the pattern for teams reproducing the workflow. Try app.stealads.ai/demo for the interactive surface; this profile does not claim undisclosed StealAds schemas beyond the public clip.",
+    keyFeatures: [
+      "Large-batch competitor ad labeling",
+      "Public demo at app.stealads.ai/demo",
+      "Made with Jev build write-up",
+      "Upcoming @stealads MCP integration per launch post",
+    ],
+    stack: ["StealAds hosted app", "TypeSafe System One"],
+    links: {
+      website: "https://stealads.ai",
+      demo: "https://app.stealads.ai/demo",
+      post: "https://x.com/TheMattBerman/status/2100654891756589230",
+    },
+    firstSeen: "2026-09-17",
+    demoIds: ["stealads-ad-teardown-mattberman"],
+    relatedSlugs: ["virlo-ai", "dub-co", "ploy-ai"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is the nine cent figure reproducible?",
+        answer:
+          "It comes from Matthew Berman's September 2026 clip on seven hundred twenty-four ads. Re-run on your brand set inside StealAds for production budgeting.",
+      },
+      {
+        question: "Where is the build guide?",
+        answer:
+          "madewithjev.com/builds/competitor-ad-teardown summarizes the competitor teardown pattern shown in the showcase clip.",
+      },
+    ],
+    metaTitle: "StealAds: Jev labels for competitor ad libraries",
+    metaDescription:
+      "StealAds uses Jev to label hooks, offers, CTAs, and landing mismatches across hundreds of live competitor ads. Demo clip and app.stealads.ai/demo on Jev Directory.",
+  },
+
+  "marcelpociot-wordshift": {
+    slug: "marcelpociot-wordshift",
+    status: "published",
+    problem:
+      "Typing games reward raw speed, not whether players understand semantic relationships between words.",
+    targetUser:
+      "Developers and players exploring Jev-powered game loops from Marcel Pociot's community experiments.",
+    overview:
+      "Wordshift is a semantic typing racer Marcel Pociot (@marcelpociot) demoed on X as a game where Jev from TypeSafe judges comparison prompts. The bigger the semantic difference between the typed pair, the farther the car moves along the track.",
+    creator: {
+      name: "Marcel Pociot",
+      handle: "marcelpociot",
+      xUrl: "https://x.com/marcelpociot/status/2100715684732801095",
+      company: "beyondcode",
+      companyUrl: "https://beyondcode.com",
+    },
+    creatorQuote: {
+      text:
+        "Slower than a jet, bigger than an elephant, faster than a cheetah. The bigger the difference, the farther your car moves.",
+      attributedTo: "Marcel Pociot",
+      sourceUrl: "https://x.com/marcelpociot/status/2100715684732801095",
+    },
+    jevUsage: {
+      flowRole: "Per-prompt semantic distance scoring for game physics",
+      primitives: ["Score"],
+      stateIn:
+        "Player-typed comparison phrases against challenge prompts shown in the racer UI (per launch clip).",
+      decisionOut:
+        "Semantic distance score mapped to car advancement distance on the track.",
+      flowSteps: [
+        "Present comparison challenge to the player",
+        "Player types candidate phrase",
+        "Jev scores semantic distance versus reference concepts",
+        "Game engine moves car proportional to score",
+      ],
+    },
+    howJevIsUsed:
+      "Wordshift treats Jev as the referee for meaning instead of string equality. Each keystroke finishes a comparison the game can score with System One: how much slower, bigger, or faster is the typed phrase relative to the anchor nouns in the prompt? Score outputs drive physics so players optimize for conceptual distance, not dictionary overlap. Marcel framed the project as proof that Jev opens gaming loops beyond moderation and routing. No hosted play URL shipped in the September 2026 thread; use the showcase clip until a public build appears.",
+    keyFeatures: [
+      "Semantic typing racer mechanic",
+      "Score-driven movement based on meaning",
+      "Launch clip on Jev Directory showcase",
+    ],
+    stack: ["Browser game shell", "TypeSafe System One"],
+    links: {
+      post: "https://x.com/marcelpociot/status/2100715684732801095",
+    },
+    firstSeen: "2026-09-18",
+    demoIds: ["wordshift-semantic-racer-marcelpociot"],
+    relatedSlugs: ["fhshaik-typesafe-mario", "thisiskp-jevarcade"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Where can I play Wordshift?",
+        answer:
+          "Marcel's launch thread did not include a stable public URL. Watch the showcase embed and follow @marcelpociot for a hosted build.",
+      },
+    ],
+    metaTitle: "Wordshift: semantic typing racer with Jev Score",
+    metaDescription:
+      "Marcel Pociot's Wordshift uses Jev to score semantic distance and drive a typing racer car. Clip on Jev Directory showcase.",
+  },
+
+  "box-jev-incident-triage": {
+    slug: "box-jev-incident-triage",
+    status: "published",
+    problem:
+      "Enterprise teams store incident reports in Box but still manually triage severity, customer impact, and folder routing.",
+    targetUser:
+      "Box customers experimenting with AI classification on content in Box hubs, security, and operations workflows.",
+    overview:
+      "Aaron Levie (@levie) demoed Box plus Jev for incident triage: pull a report from Box, ask whether it is customer-facing and how severe it is, move the file into escalate, monitor, or review folders, and write metadata template fields with the result.",
+    creator: {
+      name: "Aaron Levie",
+      handle: "levie",
+      xUrl: "https://x.com/levie/status/2101007708044574906",
+      company: "Box",
+      companyUrl: "https://www.box.com",
+    },
+    creatorQuote: {
+      text:
+        "Pull an incident from Box, ask customer-facing and severity, route to folders, set metadata. Nearly instantly and at almost no cost.",
+      attributedTo: "Aaron Levie",
+      sourceUrl: "https://x.com/levie/status/2101007708044574906",
+    },
+    jevUsage: {
+      flowRole: "Content classification and routing gate on Box files",
+      primitives: ["Noul", "Choice", "Score"],
+      stateIn:
+        "Incident report body and metadata retrieved from Box content APIs in the demo workflow.",
+      decisionOut:
+        "Customer-facing judgment, severity band, target folder (escalate, monitor, review), and metadata template instance values.",
+      flowSteps: [
+        "Fetch incident file from Box",
+        "Jev asks customer-facing and severity questions with confidence",
+        "Automation moves file to escalate, monitor, or review folder",
+        "Apply Box metadata template instance with structured results",
+      ],
+    },
+    howJevIsUsed:
+      "The Box demo mirrors how enterprises want agents to behave on governed content: read structured state from the system of record, decide with typed questions, then write deterministic outcomes back as folder moves and metadata instead of chat summaries nobody audits. Jev supplies fast Noul and Choice answers on customer impact and severity so the workflow can branch without calling a large generative model on every PDF. Levie named insurance claims, contract management, loan processing, security reviews, and customer log analysis as adjacent patterns using the same shape. Production Box deployments need your tenant's security review; this profile documents only the public X demonstration on Jev Directory.",
+    keyFeatures: [
+      "Box file ingest and folder routing",
+      "Metadata template writes after Jev classification",
+      "Enterprise-oriented launch clip from Box CEO",
+    ],
+    stack: ["Box Content Cloud", "TypeSafe System One"],
+    links: {
+      website: "https://www.box.com",
+      post: "https://x.com/levie/status/2101007708044574906",
+    },
+    firstSeen: "2026-09-19",
+    demoIds: ["box-incident-triage-levie"],
+    relatedSlugs: ["classifier-dev", "vercel-eve"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is this a shipped Box SKU?",
+        answer:
+          "The directory indexes Levie's public demonstration clip. Confirm product availability with Box for your tenant.",
+      },
+    ],
+    metaTitle: "Box × Jev: incident triage on Content Cloud",
+    metaDescription:
+      "Aaron Levie's Box demo uses Jev for customer-facing and severity gates, folder routing, and metadata on incident reports. Enterprise showcase on Jev Directory.",
+  },
+
+  "lahfir-agent-desktop": {
+    slug: "lahfir-agent-desktop",
+    status: "published",
+    problem:
+      "Desktop agents that read pixels or brittle DOM dumps waste tokens and mis-click when UI refs shift between snapshots.",
+    targetUser:
+      "Agent builders on macOS who want native accessibility-tree computer use with typed next-action routing.",
+    overview:
+      "agent-desktop (github.com/lahfir/agent-desktop) is a Rust-native CLI distributed on npm. It snapshots any app's accessibility tree, returns compact skeleton overviews with drill-down refs, and executes headless-safe clicks, typing, scrolling, and window management. Your harness calls TypeSafe Jev to choose the next ref action from structured JSON, the same pattern Muhammad Aayan (@socialwithaayan) summarized as Jev picks the next button or input.",
+    creator: {
+      name: "lahfir",
+      handle: "lahfir",
+      githubUrl: "https://github.com/lahfir/agent-desktop",
+    },
+    creatorQuote: {
+      text:
+        "Desktop automation on the accessibility tree. Jev picks the next button or input.",
+      attributedTo: "Muhammad Aayan",
+      sourceUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    jevUsage: {
+      flowRole: "Choice over the next desktop ref action in the observe-act loop",
+      primitives: ["Choice"],
+      stateIn:
+        "agent-desktop snapshot JSON: skeleton regions, qualified refs (@snapshot:eN), roles, names, and values from macOS accessibility APIs.",
+      decisionOut:
+        "Selected command family (click, type, scroll, etc.) and target ref from the current finite action menu.",
+      flowSteps: [
+        "agent-desktop snapshot --skeleton (or find) returns refs and snapshot_id",
+        "Harness builds allowed actions from refs and safety policy",
+        "Jev Choice picks operation and ref in one System One call",
+        "agent-desktop executes via accessibility APIs; loop until goal or budget",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Progressive skeleton traversal reports seventy-eight to ninety-six percent token reduction on dense apps versus flat snapshots in README examples.",
+          source: "github.com/lahfir/agent-desktop README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "agent-desktop deliberately does not embed an LLM. It is the hands and eyes: structured observation in, deterministic CLI commands out. Jev sits in the calling agent exactly like Browser Use Ultrafast: rebuild the action space from fresh state, ask one typed question, threshold confidence, then act. Refs stay stable across steps because they are accessibility identities, not coordinates. Pair with Hermes, Claude Code, or custom harnesses via npm global install, npx, or the C-ABI cdylib for in-process calls. Chromium apps can mix CDP for web content with native AX for menus and dialogs. This profile does not claim a bundled Jev binary inside agent-desktop; wire console.typesafe.ai credentials in your agent layer.",
+    keyFeatures: [
+      "Rust CLI with fifty-eight command names and structured JSON errors",
+      "Skeleton snapshots with drill-down refs for Slack, Finder, Xcode, and more",
+      "npm and npx install with prebuilt macOS binaries",
+      "ClawHub and skills.sh agent-desktop skill docs",
+      "Featured in Aayan top-ten Jev repos thread",
+    ],
+    stack: ["Rust", "macOS Accessibility APIs", "TypeSafe System One (in agent harness)"],
+    links: {
+      website: "https://github.com/lahfir/agent-desktop",
+      repo: "https://github.com/lahfir/agent-desktop",
+      docs: "https://github.com/lahfir/agent-desktop/tree/main/skills/agent-desktop",
+      post: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    pricingNote:
+      "Open source Apache-2.0; TypeSafe API usage is bring-your-own when your agent calls Jev.",
+    firstSeen: "2026-09-21",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "awlevin-typesafe-computer-use",
+      "jkudish-jev-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does agent-desktop include Jev?",
+        answer:
+          "No. It exposes desktop actions. Your agent or skill harness calls Jev separately to pick the next safe action from snapshot output.",
+      },
+      {
+        question: "Which platforms are supported?",
+        answer:
+          "macOS thirteen plus is production-ready per README. Windows and Linux adapters are planned with the same core contracts.",
+      },
+    ],
+    metaTitle: "agent-desktop: Jev Choice over macOS accessibility refs",
+    metaDescription:
+      "lahfir/agent-desktop Rust CLI for AX-tree desktop automation. Pair with Jev for next-action Choice. Listed from Muhammad Aayan top-ten Jev repos.",
+  },
+
+  "kerpopule-hermes-jev-skills": {
+    slug: "kerpopule-hermes-jev-skills",
+    status: "published",
+    problem:
+      "Hermes and IDE agents burn frontier tokens on routing, memory hygiene, skill pick, and GUI steps that are decisions, not essays.",
+    targetUser:
+      "Hermes Agent operators plus Claude Code and Codex users installing the kerpopule skill pack.",
+    overview:
+      "hermes-jev-skills (github.com/kerpopule/hermes-jev-skills) packages nine Jev-powered skills as plain SKILL.md files and a Hermes plugin that can shadow or enable routing, skill suggestion, memory filtering, compaction selection, triage, mailbox sorting, and computer or browser action Choice. README documents sub-second latencies and sub-cent costs per decision class. Distinct from fast-jev-compaction (Claude-only context trim), hermes-jev-approvals (shell auxiliary), and keeltrace/hermes-jev (async supervision).",
+    creator: {
+      name: "kerpopule",
+      handle: "kerpopule",
+      githubUrl: "https://github.com/kerpopule/hermes-jev-skills",
+    },
+    creatorQuote: {
+      text:
+        "Jev routing, memory, compaction, skill pick, and computer use for Hermes, Claude Code, and Codex.",
+      attributedTo: "Muhammad Aayan",
+      sourceUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    jevUsage: {
+      flowRole:
+        "Multi-skill decision layer: routing, retrieval, compaction, skill pick, triage, and GUI or browser Choice",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Redacted user turns, passage batches, skill name lists, inbox messages, or safe action tables per skill README privacy rules.",
+      decisionOut:
+        "Model tier Choice, keep or drop turns, ranked passages, skill id or none, triage labels, next GUI or browser action with confidence.",
+      flowSteps: [
+        "python3 install.py registers Hermes, Claude Code, and Codex when present",
+        "jev setup-key stores TypeSafe credentials outside chat",
+        "/jev routing shadow logs decisions before switching models",
+        "Plugin tools jev_memory_filter, jev_compact_select, jev_choose_action expose hot paths",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Model routing about 0.4 s per turn; skill selection across 377 skills in about 2.8 s per README table.",
+          source: "github.com/kerpopule/hermes-jev-skills README",
+        },
+        {
+          claim:
+            "Compaction eval: 58.7% recall alone and 75.0% with one search vs 37.5% and 68.3% baseline per SCORECARD-2026-09-20.md.",
+          source: "kerpopule/hermes-jev-skills evals/compaction",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Each skill sends only the minimum redacted state Jev needs for a typed question: never full transcripts on routing, never screenshots on computer use, local injection screens before memory calls. Shadow mode lets operators compare Jev routing logs against incumbent models without switching production traffic. Computer and browser skills mirror the directory pattern of finite safe actions with Jev Choice per step. Compaction and handoff skills use parallel Score or keep or drop nouls instead of asking a frontier model to summarize tool noise. If you only need Claude Code context trimming, use tamaratran-fast-jev-compaction; if you need Hermes shell APPROVE gates, use anpicasso-hermes-jev-approvals. This repo is the broad everyday skill router Muhammad Aayan placed ninth on his September 2026 list.",
+    keyFeatures: [
+      "Nine skills as portable SKILL.md files",
+      "Hermes plugin with shadow routing and dashboard",
+      "jev CLI for mail sorting, doctor, and model pool setup",
+      "Documented redaction and private profile rules",
+      "Featured in Aayan top-ten Jev repos thread",
+    ],
+    stack: [
+      "Python 3.9+ installer",
+      "Hermes Agent plugin API",
+      "TypeSafe System One",
+    ],
+    links: {
+      website: "https://github.com/kerpopule/hermes-jev-skills",
+      repo: "https://github.com/kerpopule/hermes-jev-skills",
+      docs: "https://github.com/kerpopule/hermes-jev-skills/blob/main/README.md",
+      post: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    pricingNote:
+      "Open source; TypeSafe keys via jev setup-key. README lists per-skill approximate dollar costs per thousand operations.",
+    firstSeen: "2026-09-21",
+    demoIds: ["socialwithaayan-ten-jev-repos"],
+    relatedSlugs: [
+      "tamaratran-fast-jev-compaction",
+      "anpicasso-hermes-jev-approvals",
+      "keeltrace-hermes-jev",
+      "typesafe-ai-skills",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is this the same as fast-jev-compaction?",
+        answer:
+          "No. tamaratran/fast-jev-compaction is a Claude Code plugin for tool-row keep or drop. hermes-jev-skills is a multi-skill Hermes plus IDE pack with routing, memory, GUI, and more.",
+      },
+      {
+        question: "How do I try routing safely?",
+        answer:
+          "Start with /jev routing shadow on Hermes. It logs Jev decisions without switching models until you trust the pools.",
+      },
+    ],
+    metaTitle: "Hermes Jev Skills: routing, memory, compaction, and GUI Choice",
+    metaDescription:
+      "kerpopule/hermes-jev-skills wires Jev into Hermes, Claude Code, and Codex. Not fast-jev-compaction or hermes-jev-approvals. Aayan top-ten listing.",
+  },
+
 };

@@ -548,4 +548,152 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     ],
     relatedSlugs: ["browser-use-jev-ultrafast", "awlevin-typesafe-computer-use"],
   },
+
+  "lahfir-agent-desktop": {
+    slug: "lahfir-agent-desktop",
+    metaTitle: "agent-desktop: accessibility-tree desktop automation with Jev",
+    metaDescription:
+      "lahfir/agent-desktop Rust CLI for macOS AX snapshots and ref actions. Pair with Jev Choice in your agent loop. Starred in Muhammad Aayan top-ten Jev repos.",
+    creatorHandle: "lahfir",
+    jevPrimitives: ["Choice"],
+    jevUsageSummary:
+      "agent-desktop returns structured snapshot refs; your agent asks Jev which ref to click, type into, or scroll next. The binary never generates language, keeping the hot path at System One prices.",
+    setupNotes:
+      "npm install -g agent-desktop or npx agent-desktop snapshot --app Finder -i. Grant Accessibility and Screen Recording permissions on macOS. Wire TYPESAFE_API_KEY in the calling agent.",
+    sections: [
+      {
+        heading: "Why accessibility beats pixels",
+        paragraphs: [
+          "Native AX trees expose roles, names, and stable refs that survive window moves. agent-desktop compresses dense apps with skeleton overview plus drill-down so Jev sees a small action menu instead of thirty thousand tokens of Slack chrome.",
+        ],
+      },
+    ],
+    relatedSlugs: ["browser-use-jev-ultrafast", "awlevin-typesafe-computer-use"],
+  },
+
+  "kerpopule-hermes-jev-skills": {
+    slug: "kerpopule-hermes-jev-skills",
+    metaTitle: "Hermes Jev Skills: nine decision skills for agents",
+    metaDescription:
+      "kerpopule/hermes-jev-skills: Jev model routing, memory filter, compaction select, skill pick, triage, mail lanes, computer and browser Choice. Distinct from fast-jev-compaction.",
+    creatorHandle: "kerpopule",
+    jevPrimitives: ["Choice", "Score", "Noul"],
+    jevUsageSummary:
+      "Each SKILL.md describes a typed Jev question batch for a recurring agent chore. The Hermes plugin exposes tools so sessions can filter memory, compact transcripts, or route models without another chat completion per micro-decision.",
+    setupNotes:
+      "git clone and python3 install.py, then jev setup-key for TypeSafe credentials. Use /jev routing shadow before enabling live model switches.",
+    caveats:
+      "Not affiliated with TypeSafe AI. Read privacy section in README before sending production mail or memory blobs.",
+    sections: [
+      {
+        heading: "How this differs from other Hermes plus Jev projects",
+        paragraphs: [
+          "fast-jev-compaction targets Claude Code tool rows. hermes-jev-approvals swaps the smart shell reviewer. keeltrace/hermes-jev adds async supervision. hermes-jev-skills is the day-to-day skill pack for routing, retrieval hygiene, and GUI steps with documented latencies.",
+        ],
+      },
+    ],
+    relatedSlugs: [
+      "tamaratran-fast-jev-compaction",
+      "anpicasso-hermes-jev-approvals",
+      "typesafe-ai-skills",
+    ],
+  },
+
+  "socialwithaayan-ten-jev-repos": {
+    slug: "socialwithaayan-ten-jev-repos",
+    metaTitle: "10 Jev repos blowing up: Muhammad Aayan roundup",
+    metaDescription:
+      "Muhammad Aayan (@socialwithaayan) ranks ten hot Jev GitHub projects with how each uses Choice, Score, and Noul. Directory deep links for every repo plus his Full Guide article.",
+    creatorHandle: "socialwithaayan",
+    jevUsageSummary:
+      "The thread is editorial, not a new integration: each numbered repo already embeds Jev on a specific hot path. Use this page as a map into our product profiles and tool listings rather than a substitute for upstream READMEs.",
+    setupNotes:
+      "Read the original post at x.com/socialwithaayan/status/2102059089652285739. For onboarding prose, see Aayan X Article How to Actually Use Jev (Full Guide) linked from the same author.",
+    sections: [
+      {
+        heading: "1. Browser Use Jev Ultrafast",
+        paragraphs: [
+          "Browser Use agent where Jev picks the next click and target; a small model only types when needed. Directory listing: /apps/browser-use-jev-ultrafast (slug browser-use-jev-ultrafast).",
+        ],
+      },
+      {
+        heading: "2. fast-jev-compaction",
+        paragraphs: [
+          "Claude Code context trim: Jev scores tool call rows, drops junk, keeps useful text verbatim. Directory listing: /tools/tamaratran-fast-jev-compaction.",
+        ],
+      },
+      {
+        heading: "3. jev-trader",
+        paragraphs: [
+          "Monad market maker with one Jev buy or sell Choice about every block (~81 ms in public clips). Directory listing: /apps/jarrodwatts-jev-trader.",
+        ],
+      },
+      {
+        heading: "4. TypeSafe skills",
+        paragraphs: [
+          "Official agent skill for Claude Code and Codex with Choice, Score, and Noul patterns. Directory listing: /sdks/typesafe-ai-skills.",
+        ],
+      },
+      {
+        heading: "5. agent-desktop",
+        paragraphs: [
+          "Desktop automation on the accessibility tree; Jev picks the next button or input in your harness. New directory listing: /apps/lahfir-agent-desktop.",
+        ],
+      },
+      {
+        heading: "6. typesafe-computer-use",
+        paragraphs: [
+          "macOS computer use with OCR plus Jev action Choice per step at fractions of a cent. Directory listing: /apps/awlevin-typesafe-computer-use.",
+        ],
+      },
+      {
+        heading: "7. jev-review",
+        paragraphs: [
+          "Staged code review dashboard: Jev flags risk before you spend a frontier model on the whole diff. Directory listing: /tools/devagrawal09-jev-review.",
+        ],
+      },
+      {
+        heading: "8. foreman",
+        paragraphs: [
+          "Agent supervisor keeping coding agents on task inside a software factory loop with typed Jev decisions. Directory listing: /tools/thruwire-foreman.",
+        ],
+      },
+      {
+        heading: "9. hermes-jev-skills",
+        paragraphs: [
+          "Jev routing, memory, compaction, skill pick, and computer or browser use for Hermes plus Claude Code and Codex. New directory listing: /tools/kerpopule-hermes-jev-skills (not the same repo as fast-jev-compaction).",
+        ],
+      },
+      {
+        heading: "10. pg-jev",
+        paragraphs: [
+          "Postgres extension to ask tables questions in plain English with WHERE jev(...). Directory listing: /tools/realzachi-pg-jev.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Where is Aayan longer guide?",
+        answer:
+          "He published How to Actually Use Jev (Full Guide) as an X Article at x.com/i/article/2101984233145409536 and a companion status at x.com/socialwithaayan/status/2101984240225448270.",
+      },
+      {
+        question: "Are star counts exact?",
+        answer:
+          "The thread used rounded marketing numbers. Check each GitHub repo at commit time before you cite stars in production docs.",
+      },
+    ],
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "tamaratran-fast-jev-compaction",
+      "jarrodwatts-jev-trader",
+      "typesafe-ai-skills",
+      "lahfir-agent-desktop",
+      "awlevin-typesafe-computer-use",
+      "devagrawal09-jev-review",
+      "thruwire-foreman",
+      "kerpopule-hermes-jev-skills",
+      "realzachi-pg-jev",
+    ],
+  },
 };

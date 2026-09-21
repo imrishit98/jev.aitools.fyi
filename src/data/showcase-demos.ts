@@ -76,6 +76,30 @@ export function showcaseDemoMediaUrl(pathOrUrl: string): string {
 
 export const showcaseDemos: ShowcaseDemo[] = [
   demo({
+    id: "virlo-clearance-dsqjaffa",
+    authorHandle: "dsqjaffa",
+    authorName: "jaffa",
+    tweetUrl: "https://x.com/dsqjaffa/status/2102090111198363988",
+    title: "Virlo Clearance for TikTok content research",
+    funnyBlurb:
+      "Twelve million viral clips, one Clearance gate so your niche feed stops cosplaying as hashtag soup. Jev says on-brief before Virlo's eighty-signal panel tags the hooks.",
+    homepage: true,
+    categoryTags: ["marketing", "product", "demo"],
+    projectUrl: "https://virlo.ai",
+  }),
+  demo({
+    id: "stealads-ad-teardown-mattberman",
+    authorHandle: "TheMattBerman",
+    authorName: "Matthew Berman",
+    tweetUrl: "https://x.com/TheMattBerman/status/2100654891756589230",
+    title: "StealAds competitor ad teardown",
+    funnyBlurb:
+      "Seven hundred twenty-four live ads, thirty-seven brands, forty seconds, nine cents. Jev labels hooks and landing mismatches so media buyers steal patterns, not vibes.",
+    homepage: true,
+    categoryTags: ["marketing", "ads", "product"],
+    projectUrl: "https://stealads.ai",
+  }),
+  demo({
     id: "tanstack-ai-decide-tanstack",
     authorHandle: "tan_stack",
     authorName: "TANSTACK",
@@ -778,6 +802,41 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: true,
     categoryTags: ["games", "integrations", "product"],
     projectUrl: "https://jevarcade.netlify.app",
+  }),
+  demo({
+    id: "wordshift-semantic-racer-marcelpociot",
+    authorHandle: "marcelpociot",
+    authorName: "Marcel Pociot",
+    tweetUrl: "https://x.com/marcelpociot/status/2100715684732801095",
+    title: "Wordshift semantic typing racer",
+    funnyBlurb:
+      "Type slower than a jet, bigger than an elephant, faster than a cheetah. Jev scores how far apart your words are in meaning, and the car moves when you are semantically correct, not just fast.",
+    homepage: false,
+    categoryTags: ["games", "demo"],
+  }),
+  demo({
+    id: "box-incident-triage-levie",
+    authorHandle: "levie",
+    authorName: "Aaron Levie",
+    tweetUrl: "https://x.com/levie/status/2101007708044574906",
+    title: "Box incident triage with Jev",
+    funnyBlurb:
+      "Pull the incident from Box, ask customer-facing and severity with confidence, file it into escalate, monitor, or review, and stamp metadata before anyone schedules a war room for a typo.",
+    homepage: false,
+    categoryTags: ["enterprise", "integrations", "demo"],
+    projectUrl: "https://www.box.com",
+  }),
+  demo({
+    id: "socialwithaayan-ten-jev-repos",
+    authorHandle: "socialwithaayan",
+    authorName: "Muhammad Aayan",
+    tweetUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    title: "10 Jev repos blowing up right now",
+    funnyBlurb:
+      "No video, just receipts: Aayan ranks ten GitHub projects by stars and tells you what Jev actually does in each loop. Bookmark the directory guide so you do not paste the same list into Slack twice.",
+    homepage: false,
+    categoryTags: ["guides", "roundup", "interesting"],
+    projectUrl: "https://jev.aitools.fyi/guides/socialwithaayan-ten-jev-repos",
   }),
 ];
 

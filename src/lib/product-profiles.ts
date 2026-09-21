@@ -48,6 +48,8 @@ export function getProductProfilesForItems(
 
 export function getFeaturedProductSlugs(limit = 6): string[] {
   const ordered = [
+    "virlo-ai",
+    "stealads-ai",
     "classifier-dev",
     "browser-use-jev-ultrafast",
     "dub-co",
