@@ -15,6 +15,8 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const OUT = path.join(ROOT, "public", "demos");
 const force = process.argv.includes("--force");
+/** Cloudflare Workers asset limit; keep local files below this. */
+const MAX_VIDEO_BYTES = 20 * 1024 * 1024;
 
 /** Keep in sync with src/data/showcase-demos.ts showcaseDemoFetchHints */
 const DEMO_SPECS = [
@@ -75,12 +77,22 @@ const DEMO_SPECS = [
   { id: "moongotchi-trading-bot-moongotchi", tweetId: "2101320141065609294", prefer1080: false },
   { id: "nhtsa-complaints-kanaworks", tweetId: "2101509756737462446", prefer1080: false },
   { id: "docjev-jerryjliu0", tweetId: "2101738281046294552", prefer1080: false },
-  { id: "jev-fifa-rebuild-shubhankar", tweetId: "2101830589620056160", prefer1080: true },
+  {
+    id: "jev-fifa-rebuild-shubhankar",
+    tweetId: "2101830589620056160",
+    prefer1080: false,
+    remoteOnly: true,
+  },
   { id: "jev-dodge-realtime-abolbuild", tweetId: "2100509548339408972", prefer1080: false },
   { id: "jev-doom-realtime-ziwenxu", tweetId: "2100039609958727756", prefer1080: false },
   { id: "typesafe-mario-faadilhshaik", tweetId: "2100086301894881578", prefer1080: false },
   { id: "jev-shootout-goalie-peytoncasper", tweetId: "2101724157587357977", prefer1080: false },
-  { id: "jev-as-judge-kylejeong", tweetId: "2101832317862056149", prefer1080: true },
+  {
+    id: "jev-as-judge-kylejeong",
+    tweetId: "2101832317862056149",
+    prefer1080: false,
+    remoteOnly: true,
+  },
   { id: "jev-agent-economics-mika", tweetId: "2101745157846823228", prefer1080: false },
   { id: "jevrls-supabase-carolmonroe", tweetId: "2101747586126557230", prefer1080: true },
   { id: "logview-semantic-iurysza", tweetId: "2101770705155010568", prefer1080: false },
@@ -165,6 +177,13 @@ async function main() {
       continue;
     }
 
+    if (demo.remoteOnly) {
+      console.log(
+        `  remote-only demo (video plays from tweet CDN via remoteVideoUrl in showcase-demos.ts)`,
+      );
+      continue;
+    }
+
     const videoUrl =
       pickMp4Url(videoMedia?.formats, demo.prefer1080) ?? videoMedia?.url;
     if (!videoUrl) {
@@ -172,8 +191,18 @@ async function main() {
       continue;
     }
 
-    const videoBytes = await download(videoUrl, videoPath);
-    console.log(`  video ${(videoBytes / 1024 / 1024).toFixed(1)} MiB`);
+    const res = await fetch(videoUrl, { redirect: "follow" });
+    if (!res.ok) throw new Error(`HTTP ${res.status} for ${videoUrl}`);
+    const buf = Buffer.from(await res.arrayBuffer());
+    if (buf.length > MAX_VIDEO_BYTES) {
+      console.warn(
+        `  skip video (${(buf.length / 1024 / 1024).toFixed(1)} MiB > ${(MAX_VIDEO_BYTES / 1024 / 1024).toFixed(0)} MiB): set remoteVideoUrl in showcase-demos.ts`,
+      );
+      continue;
+    }
+    await fs.mkdir(path.dirname(videoPath), { recursive: true });
+    await fs.writeFile(videoPath, buf);
+    console.log(`  video ${(buf.length / 1024 / 1024).toFixed(1)} MiB`);
 
     if (demo.maxDurationSec) {
       const trimmed = path.join(dir, "video.trim.mp4");

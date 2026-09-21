@@ -5,29 +5,72 @@ export type ShowcaseDemo = {
   tweetUrl: string;
   title: string;
   funnyBlurb: string;
-  /** Paths under public/ after scripts/fetch-demos.mjs */
   posterUrl: string;
   videoUrl: string;
-  /** False when only a poster is hosted (image posts). */
+  /** True when the card/lightbox should render a video (local path or remote twimg URL). */
   hasLocalVideo: boolean;
+  /** Remote tweet CDN media (not copied into public/demos). */
+  videoIsRemote?: boolean;
   homepage: boolean;
   categoryTags: string[];
   projectUrl?: string;
 };
 
-type DemoInput = Omit<ShowcaseDemo, "posterUrl" | "videoUrl"> & {
+type DemoInput = Omit<
+  ShowcaseDemo,
+  "posterUrl" | "videoUrl" | "videoIsRemote"
+> & {
   hasLocalVideo?: boolean;
+  /** Play video from X/Twitter CDN instead of public/demos/{id}/video.mp4 */
+  remoteVideoUrl?: string;
+  remotePosterUrl?: string;
 };
 
 const demo = (partial: DemoInput): ShowcaseDemo => {
+  if (partial.hasLocalVideo === false) {
+    const posterUrl =
+      partial.remotePosterUrl ?? `/demos/${partial.id}/poster.jpg`;
+    return {
+      ...partial,
+      hasLocalVideo: false,
+      posterUrl,
+      videoUrl: "",
+    };
+  }
+
+  if (partial.remoteVideoUrl) {
+    return {
+      ...partial,
+      hasLocalVideo: true,
+      videoIsRemote: true,
+      videoUrl: partial.remoteVideoUrl,
+      posterUrl:
+        partial.remotePosterUrl ?? `/demos/${partial.id}/poster.jpg`,
+    };
+  }
+
   const hasLocalVideo = partial.hasLocalVideo ?? true;
   return {
     ...partial,
     hasLocalVideo,
+    videoIsRemote: false,
     posterUrl: `/demos/${partial.id}/poster.jpg`,
     videoUrl: hasLocalVideo ? `/demos/${partial.id}/video.mp4` : "",
   };
 };
+
+/** Absolute URL for JSON-LD and share metadata. */
+export function showcaseDemoMediaUrl(pathOrUrl: string): string {
+  if (pathOrUrl.startsWith("http://") || pathOrUrl.startsWith("https://")) {
+    return pathOrUrl;
+  }
+  const base =
+    (typeof import.meta !== "undefined" &&
+      import.meta.env?.PUBLIC_SITE_URL) ||
+    "https://jev.aitools.fyi";
+  const origin = base.replace(/\/$/, "");
+  return `${origin}${pathOrUrl.startsWith("/") ? pathOrUrl : `/${pathOrUrl}`}`;
+}
 
 export const showcaseDemos: ShowcaseDemo[] = [
   demo({
@@ -628,6 +671,10 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: true,
     categoryTags: ["games", "sports", "demo"],
     projectUrl: "https://shubhankar.xyz/",
+    remoteVideoUrl:
+      "https://video.twimg.com/amplify_video/2101829435855147008/vid/avc1/1280x720/RICLMnZKgchXEjD-.mp4?tag=29",
+    remotePosterUrl:
+      "https://pbs.twimg.com/amplify_video_thumb/2101829435855147008/img/PfN38k2ZCauEwPNh.jpg",
   }),
   demo({
     id: "jev-dodge-realtime-abolbuild",
@@ -686,6 +733,10 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: true,
     categoryTags: ["product", "legal", "demo"],
     projectUrl: "https://judge.kylejeong.com",
+    remoteVideoUrl:
+      "https://video.twimg.com/amplify_video/2101831753363259392/vid/avc1/958x720/u4CRPE1MCyiBp-L4.mp4?tag=29",
+    remotePosterUrl:
+      "https://pbs.twimg.com/amplify_video_thumb/2101831753363259392/img/0FZG8mGApbMEfRIY.jpg",
   }),
   demo({
     id: "jev-agent-economics-mika",
