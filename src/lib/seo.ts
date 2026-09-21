@@ -408,7 +408,7 @@ export function guidesIndexPageSeo() {
   return pageSeo({
     title: "Guides: Jev agent setup and community articles",
     description:
-      "Browse the Jev with AI agents hub (Hermes, OpenClaw, Claude, Codex, Cursor) plus community guide listings hosted on the directory. Links to Learn primers and official TypeSafe docs.",
+      "Browse the Jev with AI agents hub (Hermes, LangChain, Cline, Copilot, Cursor, and more) plus community guide listings hosted on the directory. Links to Learn primers and official TypeSafe docs.",
     path: "/guides",
     imagePath: ogImagePaths.learnHub,
   });
