@@ -1,0 +1,17 @@
+{
+  "$schema": "node_modules/wrangler/config-schema.json",
+  "name": "jev-aitools-fyi",
+  "compatibility_date": "2024-09-23",
+  "main": "workers/site-and-assets.ts",
+  // Cloudflare Pages (git-connected) uses this output dir when applicable.
+  "pages_build_output_dir": "dist",
+  // Workers Builds: worker runs first; static site via SITE_ASSETS (see workers/site-and-assets.ts).
+  "assets": {
+    "directory": "./dist",
+    "binding": "SITE_ASSETS",
+    "not_found_handling": "404-page"
+  },
+  "vars": {
+    "PUBLIC_SITE_URL": "https://jev.aitools.fyi"
+  }
+}
