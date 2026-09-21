@@ -584,5 +584,18 @@
   "pypi-jev-cli": {
     "oneLiner": "PyPI package jev-cli (v0.",
     "description": "PyPI package jev-cli (v0.6.2 at time of indexing): small CLI plus stdio MCP server for TypeSafe Jev. Providers documented on PyPI: official API with TYPESAFE_API_KEY, Vercel AI Gateway with AI_GATEWAY_API_KEY targeting typesafe-ai/jev, OpenRouter with OPENROUTER_API_KEY targeting typesafe/jev-1.13, plus custom endpoints. Install via pip from pypi.org/project/jev-cli/. Distinct from unrelated jev-cli repos on GitHub by other authors. Same POST /v1/systemone contract, wrapped for your language so you stop hand-rolling JSON in prod. Tags in the wild: sdk, mcp, cli. Follow the primary link for the author's latest notes and setup quirks."
+  },
+  "antoniocoppe-jev-harness": {
+    "detailPage": true
+  },
+  "0xnatoshi-jev-codex-router": {
+    "detailPage": true
+  },
+  "keeltrace-hermes-jev": {
+    "detailPage": true
+  },
+  "jkudish-jev-browser": {
+    "detailPage": true,
+    "description": "jev-browser (github.com/jkudish/jev-browser) is Joel Kudish's npm package for headless browser tasks where TypeSafe Jev picks one action per step from clickable, typeable, and selectable elements while code owns budgets, recovery, and stop gates. MCP, CLI, and library entry points share the same loop; README documents Wikipedia navigation, form fills that stop before submit, pricing extraction, and GitHub search demos with per-step confidence traces."
   }
 }

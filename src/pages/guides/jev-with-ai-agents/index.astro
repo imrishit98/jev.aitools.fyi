@@ -11,7 +11,9 @@ import {
 import { agentGuidesHubSeo } from "@/lib/seo";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { getItemBySlug } from "@/lib/items";
-import { getItemPath } from "@/lib/item-paths";
+import { itemHasDetailPage } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
+import { ExternalLink } from "lucide-react";
 
 const seo = agentGuidesHubSeo();
 const introParagraphs = splitIntoParagraphs(agentGuidesHub.intro, 280);
@@ -73,11 +75,24 @@ const cards = agentGuideSlugs.map((slug) => agentGuides[slug]);
       <ul class="mt-6 space-y-4">
         {agentGuidesHub.alsoWorksWith.map((row) => {
           const item = row.slug ? getItemBySlug(row.slug) : undefined;
+          const listingHref = item ? hrefForListing(item) : undefined;
+          const listingExternal = item ? !itemHasDetailPage(item) : false;
           return (
             <li class="border-t border-border/60 pt-4 first:border-t-0 first:pt-0">
               <p class="font-medium text-foreground">
-                {item ? (
-                  <a href={getItemPath(item)} class="text-accent hover:underline">{row.name}</a>
+                {item && listingHref ? (
+                  <a
+                    href={listingHref}
+                    class="inline-flex items-center gap-1 text-accent hover:underline"
+                    {...(listingExternal
+                      ? { target: "_blank", rel: "noopener noreferrer" }
+                      : {})}
+                  >
+                    {row.name}
+                    {listingExternal && (
+                      <ExternalLink className="size-3.5 shrink-0 opacity-80" aria-hidden />
+                    )}
+                  </a>
                 ) : (
                   row.name
                 )}

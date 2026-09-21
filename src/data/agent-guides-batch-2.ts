@@ -156,7 +156,6 @@ auto_mode = AutoModeMiddleware(
       },
     ],
     relatedCatalogSlugs: [
-      "jvsteiner-jevex",
       "vercel-eve",
       "classifier-dev",
       "typesafe-ai-skills",
@@ -612,8 +611,6 @@ uvx system1-mcp doctor`,
     relatedCatalogSlugs: [
       "browser-use-jev-ultrafast",
       "awlevin-typesafe-computer-use",
-      "computer-use-built-on-jev",
-      "opencode-browser-use-powered-by-jev",
       "jkudish-jev-browser",
     ],
     relatedAgentSlugs: ["openclaw", "langchain-langgraph", "cursor-mcp-and-skills"],
