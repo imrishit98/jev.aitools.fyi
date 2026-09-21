@@ -262,5 +262,9 @@
   "box-incident-triage-levie": {
     "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2100999115949953024/img/6D1_NvmSfMLGDstw.jpg",
     "videoUrl": "https://video.twimg.com/amplify_video/2100999115949953024/vid/avc1/3304x2160/aSB_JMB8sLOMHle3.mp4?tag=29"
+  },
+  "socialwithaayan-ten-jev-repos": {
+    "posterUrl": "https://pbs.twimg.com/media/HSwDl3xaoAA4vTf.jpg",
+    "posterOnly": true
   }
 }

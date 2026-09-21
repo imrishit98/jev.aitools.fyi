@@ -2382,4 +2382,181 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Aaron Levie's Box demo uses Jev for customer-facing and severity gates, folder routing, and metadata on incident reports. Enterprise showcase on Jev Directory.",
   },
 
+  "lahfir-agent-desktop": {
+    slug: "lahfir-agent-desktop",
+    status: "published",
+    problem:
+      "Desktop agents that read pixels or brittle DOM dumps waste tokens and mis-click when UI refs shift between snapshots.",
+    targetUser:
+      "Agent builders on macOS who want native accessibility-tree computer use with typed next-action routing.",
+    overview:
+      "agent-desktop (github.com/lahfir/agent-desktop) is a Rust-native CLI distributed on npm. It snapshots any app's accessibility tree, returns compact skeleton overviews with drill-down refs, and executes headless-safe clicks, typing, scrolling, and window management. Your harness calls TypeSafe Jev to choose the next ref action from structured JSON, the same pattern Muhammad Aayan (@socialwithaayan) summarized as Jev picks the next button or input.",
+    creator: {
+      name: "lahfir",
+      handle: "lahfir",
+      githubUrl: "https://github.com/lahfir/agent-desktop",
+    },
+    creatorQuote: {
+      text:
+        "Desktop automation on the accessibility tree. Jev picks the next button or input.",
+      attributedTo: "Muhammad Aayan",
+      sourceUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    jevUsage: {
+      flowRole: "Choice over the next desktop ref action in the observe-act loop",
+      primitives: ["Choice"],
+      stateIn:
+        "agent-desktop snapshot JSON: skeleton regions, qualified refs (@snapshot:eN), roles, names, and values from macOS accessibility APIs.",
+      decisionOut:
+        "Selected command family (click, type, scroll, etc.) and target ref from the current finite action menu.",
+      flowSteps: [
+        "agent-desktop snapshot --skeleton (or find) returns refs and snapshot_id",
+        "Harness builds allowed actions from refs and safety policy",
+        "Jev Choice picks operation and ref in one System One call",
+        "agent-desktop executes via accessibility APIs; loop until goal or budget",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Progressive skeleton traversal reports seventy-eight to ninety-six percent token reduction on dense apps versus flat snapshots in README examples.",
+          source: "github.com/lahfir/agent-desktop README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "agent-desktop deliberately does not embed an LLM. It is the hands and eyes: structured observation in, deterministic CLI commands out. Jev sits in the calling agent exactly like Browser Use Ultrafast: rebuild the action space from fresh state, ask one typed question, threshold confidence, then act. Refs stay stable across steps because they are accessibility identities, not coordinates. Pair with Hermes, Claude Code, or custom harnesses via npm global install, npx, or the C-ABI cdylib for in-process calls. Chromium apps can mix CDP for web content with native AX for menus and dialogs. This profile does not claim a bundled Jev binary inside agent-desktop; wire console.typesafe.ai credentials in your agent layer.",
+    keyFeatures: [
+      "Rust CLI with fifty-eight command names and structured JSON errors",
+      "Skeleton snapshots with drill-down refs for Slack, Finder, Xcode, and more",
+      "npm and npx install with prebuilt macOS binaries",
+      "ClawHub and skills.sh agent-desktop skill docs",
+      "Featured in Aayan top-ten Jev repos thread",
+    ],
+    stack: ["Rust", "macOS Accessibility APIs", "TypeSafe System One (in agent harness)"],
+    links: {
+      website: "https://github.com/lahfir/agent-desktop",
+      repo: "https://github.com/lahfir/agent-desktop",
+      docs: "https://github.com/lahfir/agent-desktop/tree/main/skills/agent-desktop",
+      post: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    pricingNote:
+      "Open source Apache-2.0; TypeSafe API usage is bring-your-own when your agent calls Jev.",
+    firstSeen: "2026-09-21",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "awlevin-typesafe-computer-use",
+      "jkudish-jev-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does agent-desktop include Jev?",
+        answer:
+          "No. It exposes desktop actions. Your agent or skill harness calls Jev separately to pick the next safe action from snapshot output.",
+      },
+      {
+        question: "Which platforms are supported?",
+        answer:
+          "macOS thirteen plus is production-ready per README. Windows and Linux adapters are planned with the same core contracts.",
+      },
+    ],
+    metaTitle: "agent-desktop: Jev Choice over macOS accessibility refs",
+    metaDescription:
+      "lahfir/agent-desktop Rust CLI for AX-tree desktop automation. Pair with Jev for next-action Choice. Listed from Muhammad Aayan top-ten Jev repos.",
+  },
+
+  "kerpopule-hermes-jev-skills": {
+    slug: "kerpopule-hermes-jev-skills",
+    status: "published",
+    problem:
+      "Hermes and IDE agents burn frontier tokens on routing, memory hygiene, skill pick, and GUI steps that are decisions, not essays.",
+    targetUser:
+      "Hermes Agent operators plus Claude Code and Codex users installing the kerpopule skill pack.",
+    overview:
+      "hermes-jev-skills (github.com/kerpopule/hermes-jev-skills) packages nine Jev-powered skills as plain SKILL.md files and a Hermes plugin that can shadow or enable routing, skill suggestion, memory filtering, compaction selection, triage, mailbox sorting, and computer or browser action Choice. README documents sub-second latencies and sub-cent costs per decision class. Distinct from fast-jev-compaction (Claude-only context trim), hermes-jev-approvals (shell auxiliary), and keeltrace/hermes-jev (async supervision).",
+    creator: {
+      name: "kerpopule",
+      handle: "kerpopule",
+      githubUrl: "https://github.com/kerpopule/hermes-jev-skills",
+    },
+    creatorQuote: {
+      text:
+        "Jev routing, memory, compaction, skill pick, and computer use for Hermes, Claude Code, and Codex.",
+      attributedTo: "Muhammad Aayan",
+      sourceUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    jevUsage: {
+      flowRole:
+        "Multi-skill decision layer: routing, retrieval, compaction, skill pick, triage, and GUI or browser Choice",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Redacted user turns, passage batches, skill name lists, inbox messages, or safe action tables per skill README privacy rules.",
+      decisionOut:
+        "Model tier Choice, keep or drop turns, ranked passages, skill id or none, triage labels, next GUI or browser action with confidence.",
+      flowSteps: [
+        "python3 install.py registers Hermes, Claude Code, and Codex when present",
+        "jev setup-key stores TypeSafe credentials outside chat",
+        "/jev routing shadow logs decisions before switching models",
+        "Plugin tools jev_memory_filter, jev_compact_select, jev_choose_action expose hot paths",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Model routing about 0.4 s per turn; skill selection across 377 skills in about 2.8 s per README table.",
+          source: "github.com/kerpopule/hermes-jev-skills README",
+        },
+        {
+          claim:
+            "Compaction eval: 58.7% recall alone and 75.0% with one search vs 37.5% and 68.3% baseline per SCORECARD-2026-09-20.md.",
+          source: "kerpopule/hermes-jev-skills evals/compaction",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Each skill sends only the minimum redacted state Jev needs for a typed question: never full transcripts on routing, never screenshots on computer use, local injection screens before memory calls. Shadow mode lets operators compare Jev routing logs against incumbent models without switching production traffic. Computer and browser skills mirror the directory pattern of finite safe actions with Jev Choice per step. Compaction and handoff skills use parallel Score or keep or drop nouls instead of asking a frontier model to summarize tool noise. If you only need Claude Code context trimming, use tamaratran-fast-jev-compaction; if you need Hermes shell APPROVE gates, use anpicasso-hermes-jev-approvals. This repo is the broad everyday skill router Muhammad Aayan placed ninth on his September 2026 list.",
+    keyFeatures: [
+      "Nine skills as portable SKILL.md files",
+      "Hermes plugin with shadow routing and dashboard",
+      "jev CLI for mail sorting, doctor, and model pool setup",
+      "Documented redaction and private profile rules",
+      "Featured in Aayan top-ten Jev repos thread",
+    ],
+    stack: [
+      "Python 3.9+ installer",
+      "Hermes Agent plugin API",
+      "TypeSafe System One",
+    ],
+    links: {
+      website: "https://github.com/kerpopule/hermes-jev-skills",
+      repo: "https://github.com/kerpopule/hermes-jev-skills",
+      docs: "https://github.com/kerpopule/hermes-jev-skills/blob/main/README.md",
+      post: "https://x.com/socialwithaayan/status/2102059089652285739",
+    },
+    pricingNote:
+      "Open source; TypeSafe keys via jev setup-key. README lists per-skill approximate dollar costs per thousand operations.",
+    firstSeen: "2026-09-21",
+    demoIds: ["socialwithaayan-ten-jev-repos"],
+    relatedSlugs: [
+      "tamaratran-fast-jev-compaction",
+      "anpicasso-hermes-jev-approvals",
+      "keeltrace-hermes-jev",
+      "typesafe-ai-skills",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is this the same as fast-jev-compaction?",
+        answer:
+          "No. tamaratran/fast-jev-compaction is a Claude Code plugin for tool-row keep or drop. hermes-jev-skills is a multi-skill Hermes plus IDE pack with routing, memory, GUI, and more.",
+      },
+      {
+        question: "How do I try routing safely?",
+        answer:
+          "Start with /jev routing shadow on Hermes. It logs Jev decisions without switching models until you trust the pools.",
+      },
+    ],
+    metaTitle: "Hermes Jev Skills: routing, memory, compaction, and GUI Choice",
+    metaDescription:
+      "kerpopule/hermes-jev-skills wires Jev into Hermes, Claude Code, and Codex. Not fast-jev-compaction or hermes-jev-approvals. Aayan top-ten listing.",
+  },
+
 };

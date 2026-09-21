@@ -826,6 +826,18 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["enterprise", "integrations", "demo"],
     projectUrl: "https://www.box.com",
   }),
+  demo({
+    id: "socialwithaayan-ten-jev-repos",
+    authorHandle: "socialwithaayan",
+    authorName: "Muhammad Aayan",
+    tweetUrl: "https://x.com/socialwithaayan/status/2102059089652285739",
+    title: "10 Jev repos blowing up right now",
+    funnyBlurb:
+      "No video, just receipts: Aayan ranks ten GitHub projects by stars and tells you what Jev actually does in each loop. Bookmark the directory guide so you do not paste the same list into Slack twice.",
+    homepage: false,
+    categoryTags: ["guides", "roundup", "interesting"],
+    projectUrl: "https://jev.aitools.fyi/guides/socialwithaayan-ten-jev-repos",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/sync-showcase-demo-media.mjs (not used at runtime). */
