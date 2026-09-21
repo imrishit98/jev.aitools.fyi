@@ -246,5 +246,21 @@
   "code-review-gate-kunal": {
     "posterUrl": "https://pbs.twimg.com/media/HShZOthbUAECsDo.jpg",
     "posterOnly": true
+  },
+  "virlo-clearance-dsqjaffa": {
+    "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2102085392707026944/img/bU9qGQNDVaSY0Lx5.jpg",
+    "videoUrl": "https://video.twimg.com/amplify_video/2102085392707026944/vid/avc1/1280x720/9mzWyrhICp5ZsgXD.mp4?tag=29"
+  },
+  "stealads-ad-teardown-mattberman": {
+    "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2100654321792684032/img/cXvU50KmCe6QFu86.jpg",
+    "videoUrl": "https://video.twimg.com/amplify_video/2100654321792684032/vid/avc1/1920x1080/EdR3NHgzGz4SruPv.mp4?tag=29"
+  },
+  "wordshift-semantic-racer-marcelpociot": {
+    "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2100715348458606592/img/-RKsSJJxxLUW8XUB.jpg",
+    "videoUrl": "https://video.twimg.com/amplify_video/2100715348458606592/vid/avc1/1918x1080/Rfzf4olIeynfR0e-.mp4?tag=29"
+  },
+  "box-incident-triage-levie": {
+    "posterUrl": "https://pbs.twimg.com/amplify_video_thumb/2100999115949953024/img/6D1_NvmSfMLGDstw.jpg",
+    "videoUrl": "https://video.twimg.com/amplify_video/2100999115949953024/vid/avc1/3304x2160/aSB_JMB8sLOMHle3.mp4?tag=29"
   }
 }

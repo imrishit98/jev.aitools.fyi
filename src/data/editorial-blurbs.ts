@@ -131,6 +131,14 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Jerry Liu's DocJev pairs natural-language rules with Jev for document classify and split. The launch clip claims six times gpt-5.6-luna speed at the same accuracy with liteparse in the loop.",
   "brainwires-jevwire":
     "Agent-shaped MCP tools for evaluate, rank, verify, and gate_action with honest TypeSafe API keys. Less magic ball, more probability you can threshold.",
+  "virlo-ai":
+    "Virlo's Clearance layer is the bouncer for your TikTok research: Jev decides on-niche with confidence before eighty-signal tagging touches the clip. Calibration A/B against their legacy judge is the kind of receipts marketers actually trust.",
+  "stealads-ai":
+    "Matthew Berman turned seven hundred plus live competitor ads into labeled swipe-file fuel in one Jev batch. Hooks, offers, CTAs, and landing mismatches without opening every creative by hand.",
+  "marcelpociot-wordshift":
+    "A typing racer where Jev scores semantic distance, not WPM. Type elephant versus jet and watch the car move when you mean it, not when you mash keys.",
+  "box-jev-incident-triage":
+    "Box plus Jev for grown-up content workflows: customer-facing, severity, folder routing, metadata. Aaron Levie's clip is the enterprise gate pattern in under a minute.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
