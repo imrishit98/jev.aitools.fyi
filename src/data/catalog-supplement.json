@@ -228,5 +228,30 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-09-20"
+  },
+  {
+    "slug": "mfm-jev-search",
+    "title": "My First Million × Jev",
+    "oneLiner": "Search what was said on My First Million: hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps.",
+    "description": "My First Million × Jev is a channel-scoped YouTube search demo for @MyFirstMillionPod hosted on jev.aitools.fyi. Query understanding uses local lexicon plus Jev Choice intent before hybrid recall (BM25, TF-IDF, fuzzy, and caption-proximity fused with weighted RRF). One experimental_evaluate batch scores exists, relevance, topic, and hit rubric per shortlist candidate with confidence gates. The pile UI lifts matches with FLIP animation; the feature card shows Mentioned in captions chips with YouTube timestamp jumps when transcripts are enriched. Live at /demos/my-first-million/ with Cloudflare Pages Functions and a bundled channel catalog.",
+    "category": "applications",
+    "tags": [
+      "applications",
+      "search",
+      "youtube",
+      "channel-search",
+      "demo",
+      "product"
+    ],
+    "language": "JavaScript",
+    "url": "https://jev.aitools.fyi/demos/my-first-million/",
+    "repoUrl": "https://github.com/imrishit98/jev.aitools.fyi",
+    "demoUrl": "https://jev.aitools.fyi/demos/my-first-million/",
+    "badges": ["has-demo"],
+    "creatorHandle": "imrishit98",
+    "creatorName": "Rishit Patel",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-09-20"
   }
 ]

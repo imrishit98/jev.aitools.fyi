@@ -1288,4 +1288,84 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Local Jev Choice router over read-only socai commands in Chrome. Instagram, TikTok, LinkedIn evidence to cited Markdown. Open source with live demo site.",
   },
 
+  "mfm-jev-search": {
+    slug: "mfm-jev-search",
+    status: "published",
+    problem:
+      "YouTube channel search is either generic Google results or endless scrolling the uploads tab. Founders want \"that episode where they talked about X\" without memorizing titles.",
+    targetUser:
+      "My First Million listeners, indie hackers, and Jev builders who want a reference channel-search stack with typed gates instead of vibes-only reranking.",
+    overview:
+      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Try the live demo at /demos/my-first-million/: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
+    creator: {
+      name: "Rishit Patel",
+      handle: "imrishit98",
+      xUrl: "https://x.com/imrishit98",
+      githubUrl: "https://github.com/imrishit98",
+      company: "Southern East Inc.",
+      companyUrl: "https://aitools.fyi",
+    },
+    jevUsage: {
+      flowRole: "Query understanding, hybrid shortlist rerank, and per-video match gates",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "User query, channel metadata, and a shortlist of candidate videos with title, description, tags, chapters, and transcript snippets pulled from the local catalog.",
+      decisionOut:
+        "Intent Choice for query understanding; boolean exists gate; per-candidate relevance, topic, and hit Score/Noul blend with configurable thresholds before results render.",
+      flowSteps: [
+        "Local lexicon expansion plus Jev Choice intent (guest, series, game, vibe, other)",
+        "Hybrid recall: BM25, TF-IDF, fuzzy, and caption-proximity lanes fused with weighted RRF (~12)",
+        "Single experimental_evaluate: exists, rel_*, topic_*, hit_* with transcript snippets in state",
+        "Weighted blend (0.4 / 0.25 / 0.35) with exists and combined match gates",
+        "UI pile, FLIP rise, debug sheet, Mentioned in captions with YouTube &t= links",
+      ],
+    },
+    howJevIsUsed:
+      "Jev is not a chat wrapper here. Cloudflare Pages Functions call AI SDK experimental_evaluate with typesafe-ai/jev through the Vercel AI Gateway. One Choice classifies query intent before hybrid recall expands BM25 terms; re-rank still uses the original user query. A single evaluate batches exists, per-candidate relevance and topic booleans, and hit score rubric (off-topic, partial, direct hit) with transcript snippets in state. Application code blends 0.4 / 0.25 / 0.35 and applies exists and match gates. Hybrid recall (including caption-proximity lane) stays local; Jev only sees the shortlist metadata blob.",
+    keyFeatures: [
+      "Hybrid recall (BM25, TF-IDF, fuzzy to RRF) in hybrid-recall.mjs",
+      "Query understanding before BM25 expansion",
+      "Multi-question Jev with exists and match confidence gates",
+      "Caption mention timestamps and Jump to mention links",
+      "Flat-playlist ingest and optional yt-dlp enrichment for captions",
+      "Debug sheet with understand, shortlist lanes, and full JSON",
+    ],
+    stack: [
+      "Cloudflare Pages Functions",
+      "Vercel AI SDK + AI Gateway",
+      "typesafe-ai/jev",
+      "Hybrid BM25 / TF-IDF / fuzzy / caption RRF",
+    ],
+    links: {
+      repo: "https://github.com/imrishit98/jev.aitools.fyi",
+      docs: "https://jev.aitools.fyi/demos/my-first-million/",
+      demo: "https://jev.aitools.fyi/demos/my-first-million/",
+    },
+    pricingNote:
+      "Open source demo. Live Jev calls bill to your AI Gateway key; mock mode skips network.",
+    firstSeen: "2026-09-20",
+    relatedSlugs: ["classifier-dev", "tanstack-ai-decide", "vercel-eve"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does this search the whole internet?",
+        answer:
+          "No. Retrieval and scoring are scoped to the My First Million uploads catalog bundled at src/data/mfm-channel-catalog.json.",
+      },
+      {
+        question: "Can I run it without a Gateway key?",
+        answer:
+          "Yes. Set JEV_MOCK=true in Cloudflare Pages env vars (or .dev.vars for wrangler pages dev). Mock mode skips Gateway calls and uses deterministic scores.",
+      },
+      {
+        question: "Where do caption jump links come from?",
+        answer:
+          "When catalog videos include SRT/VTT caption text, the demo finds mention windows and builds YouTube &t= URLs in the feature card.",
+      },
+    ],
+    metaTitle: "My First Million × Jev: search what was said",
+    metaDescription:
+      "Hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps for @MyFirstMillionPod. Live demo on jev.aitools.fyi.",
+  },
+
 };

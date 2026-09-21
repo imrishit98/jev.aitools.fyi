@@ -8,11 +8,15 @@ function isAbsoluteUrl(target: string): boolean {
 /**
  * Cloudflare Pages `_redirects` (301) for retired `/items/*` URLs.
  */
+/** Non-catalog 301 rules (hub + shortcuts); keep in sync with verify-seo-artifacts redirect count. */
+export const EXTRA_REDIRECT_RULES = [
+  "/items /explore 301",
+  "/mfm /demos/my-first-million/ 301",
+  "/mfm/ /demos/my-first-million/ 301",
+];
+
 export function generateRedirectsFile(): string {
-  const lines: string[] = [
-    "# Pass 2: retire /items/* detail URLs",
-    "/items /explore 301",
-  ];
+  const lines: string[] = ["# Pass 2: retire /items/* detail URLs", ...EXTRA_REDIRECT_RULES];
 
   for (const item of items) {
     const target = redirectTargetForLegacyItem(item);
@@ -28,5 +32,5 @@ export function generateRedirectsFile(): string {
 }
 
 export function countItemRedirects(): number {
-  return items.length + 1;
+  return items.length + EXTRA_REDIRECT_RULES.length;
 }
