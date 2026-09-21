@@ -14,6 +14,7 @@ import { ShareMenu } from "@/components/share-menu";
 import { demoShareOptions } from "@/lib/share";
 import { ExternalLink, Volume2, VolumeX } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ShowcaseDemoVideo } from "@/components/showcase-demo-video";
 
 type DemoLightboxProps = {
   demo: ShowcaseDemo | null;
@@ -68,7 +69,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
         <div className="relative aspect-video w-full shrink-0 bg-black">
           {showVideo ? (
             <>
-              <video
+              <ShowcaseDemoVideo
                 ref={videoRef}
                 className="size-full object-contain"
                 src={demo.videoUrl}
@@ -76,7 +77,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
                 controls
                 playsInline
                 muted
-                crossOrigin={demo.videoIsRemote ? "anonymous" : undefined}
+                videoIsRemote={demo.videoIsRemote}
                 aria-label={`Video demo: ${demo.title}`}
               />
               <Button

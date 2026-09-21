@@ -8,6 +8,7 @@ import { cn } from "@/lib/utils";
 import { ShareMenu } from "@/components/share-menu";
 import { demoShareOptions } from "@/lib/share";
 import { Play } from "lucide-react";
+import { ShowcaseDemoVideo } from "@/components/showcase-demo-video";
 
 type DemoCardProps = {
   demo: ShowcaseDemo;
@@ -75,7 +76,7 @@ export function DemoCard({
           onBlur={stopHoverPreview}
         >
           {demo.hasLocalVideo ? (
-            <video
+            <ShowcaseDemoVideo
               ref={videoRef}
               className="absolute inset-0 size-full object-cover"
               poster={demo.posterUrl}
@@ -84,7 +85,7 @@ export function DemoCard({
               playsInline
               loop
               preload="metadata"
-              crossOrigin={demo.videoIsRemote ? "anonymous" : undefined}
+              videoIsRemote={demo.videoIsRemote}
               aria-hidden
             />
           ) : (

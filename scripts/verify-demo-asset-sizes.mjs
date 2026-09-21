@@ -3,6 +3,7 @@
  * - No video binaries under public/ or dist/ (.mp4, .webm, .mov)
  * - No file over Cloudflare Workers per-file limit (25 MiB) under public/demos or dist/demos
  */
+import { execSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -39,6 +40,30 @@ const sizeRoots = distOnly
     : ["public/demos", "dist/demos"];
 
 const errors = [];
+
+function gitTrackedPublicVideos() {
+  try {
+    const out = execSync("git ls-files public", {
+      cwd: ROOT,
+      encoding: "utf8",
+      stdio: ["ignore", "pipe", "ignore"],
+    });
+    return out
+      .split("\n")
+      .map((line) => line.trim())
+      .filter((line) => line && VIDEO_EXT.has(path.extname(line).toLowerCase()));
+  } catch {
+    return [];
+  }
+}
+
+if (!distOnly) {
+  for (const rel of gitTrackedPublicVideos()) {
+    errors.push(
+      `tracked video binary: public/${rel} (use remote video.twimg.com URLs in showcase-demo-media.json)`,
+    );
+  }
+}
 
 for (const rel of videoRoots) {
   const root = path.join(ROOT, rel);
