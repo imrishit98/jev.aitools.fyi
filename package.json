@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "pnpm run generate:search-index && astro dev --port 4321",
-    "fetch:demos": "node scripts/fetch-demos.mjs",
+    "fetch:demos": "node scripts/sync-showcase-demo-media.mjs",
+    "sync:showcase-media": "node scripts/sync-showcase-demo-media.mjs",
     "generate:og": "tsx scripts/generate-og-images.ts",
     "generate:search-index": "tsx scripts/generate-search-index.ts",
     "generate:openapi": "node scripts/generate-openapi.mjs",

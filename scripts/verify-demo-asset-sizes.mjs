@@ -1,6 +1,7 @@
 /**
- * Fail the build if any showcase asset exceeds Cloudflare Workers per-file limit (25 MiB).
- * Checks public/demos (source) and dist/demos (post-build) when present.
+ * Build guard for showcase assets:
+ * - No video binaries under public/ or dist/ (.mp4, .webm, .mov)
+ * - No file over Cloudflare Workers per-file limit (25 MiB) under public/demos or dist/demos
  */
 import fs from "node:fs";
 import path from "node:path";
@@ -9,6 +10,7 @@ import { fileURLToPath } from "node:url";
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const ROOT = path.resolve(__dirname, "..");
 const MAX_BYTES = 25 * 1024 * 1024;
+const VIDEO_EXT = new Set([".mp4", ".webm", ".mov"]);
 
 function walkFiles(dir, acc = []) {
   if (!fs.existsSync(dir)) return acc;
@@ -21,14 +23,35 @@ function walkFiles(dir, acc = []) {
   return acc;
 }
 
-const scope = process.argv.includes("--dist-only")
+const publicOnly = process.argv.includes("--public-only");
+const distOnly = process.argv.includes("--dist-only");
+
+const videoRoots = distOnly
+  ? ["dist"]
+  : publicOnly
+    ? ["public"]
+    : ["public", "dist"];
+
+const sizeRoots = distOnly
   ? ["dist/demos"]
-  : process.argv.includes("--public-only")
+  : publicOnly
     ? ["public/demos"]
     : ["public/demos", "dist/demos"];
 
 const errors = [];
-for (const rel of scope) {
+
+for (const rel of videoRoots) {
+  const root = path.join(ROOT, rel);
+  for (const file of walkFiles(root)) {
+    if (VIDEO_EXT.has(path.extname(file).toLowerCase())) {
+      errors.push(
+        `video binary: ${rel}/${path.relative(root, file)} (showcase demos must use video.twimg.com URLs in showcase-demo-media.json)`,
+      );
+    }
+  }
+}
+
+for (const rel of sizeRoots) {
   const root = path.join(ROOT, rel);
   for (const file of walkFiles(root)) {
     const size = fs.statSync(file).size;
@@ -41,12 +64,11 @@ for (const rel of scope) {
 }
 
 if (errors.length) {
-  console.error("Demo asset size check failed:\n");
+  console.error("Demo asset check failed:\n");
   for (const e of errors) console.error(`  - ${e}`);
-  console.error(
-    "\nUse remoteVideoUrl in src/data/showcase-demos.ts (tweet MP4 on video.twimg.com) and remove the local file.",
-  );
   process.exit(1);
 }
 
-console.log("Demo asset sizes OK (nothing over 25 MiB under public/demos or dist/demos).");
+console.log(
+  "Demo assets OK (no video binaries under public/dist; nothing over 25 MiB under demos).",
+);

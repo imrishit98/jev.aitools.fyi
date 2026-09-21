@@ -1,3 +1,16 @@
+import showcaseDemoMediaJson from "./showcase-demo-media.json";
+
+type ShowcaseDemoMediaEntry = {
+  posterUrl: string;
+  videoUrl?: string;
+  posterOnly?: boolean;
+};
+
+const showcaseDemoMedia = showcaseDemoMediaJson as Record<
+  string,
+  ShowcaseDemoMediaEntry
+>;
+
 export type ShowcaseDemo = {
   id: string;
   authorHandle: string;
@@ -7,9 +20,9 @@ export type ShowcaseDemo = {
   funnyBlurb: string;
   posterUrl: string;
   videoUrl: string;
-  /** True when the card/lightbox should render a video (local path or remote twimg URL). */
+  /** True when the card/lightbox should render a video (always remote twimg). */
   hasLocalVideo: boolean;
-  /** Remote tweet CDN media (not copied into public/demos). */
+  /** Video plays from video.twimg.com (never committed under public/demos). */
   videoIsRemote?: boolean;
   homepage: boolean;
   categoryTags: string[];
@@ -20,42 +33,31 @@ type DemoInput = Omit<
   ShowcaseDemo,
   "posterUrl" | "videoUrl" | "videoIsRemote"
 > & {
+  /** Poster-only card (no tweet video), e.g. X Article cover. */
   hasLocalVideo?: boolean;
-  /** Play video from X/Twitter CDN instead of public/demos/{id}/video.mp4 */
-  remoteVideoUrl?: string;
-  remotePosterUrl?: string;
 };
 
 const demo = (partial: DemoInput): ShowcaseDemo => {
-  if (partial.hasLocalVideo === false) {
-    const posterUrl =
-      partial.remotePosterUrl ?? `/demos/${partial.id}/poster.jpg`;
+  const media = showcaseDemoMedia[partial.id];
+  const posterOnly =
+    partial.hasLocalVideo === false || media?.posterOnly === true;
+
+  if (posterOnly || !media?.videoUrl) {
     return {
       ...partial,
       hasLocalVideo: false,
-      posterUrl,
+      videoIsRemote: false,
+      posterUrl: media?.posterUrl ?? "",
       videoUrl: "",
     };
   }
 
-  if (partial.remoteVideoUrl) {
-    return {
-      ...partial,
-      hasLocalVideo: true,
-      videoIsRemote: true,
-      videoUrl: partial.remoteVideoUrl,
-      posterUrl:
-        partial.remotePosterUrl ?? `/demos/${partial.id}/poster.jpg`,
-    };
-  }
-
-  const hasLocalVideo = partial.hasLocalVideo ?? true;
   return {
     ...partial,
-    hasLocalVideo,
-    videoIsRemote: false,
-    posterUrl: `/demos/${partial.id}/poster.jpg`,
-    videoUrl: hasLocalVideo ? `/demos/${partial.id}/video.mp4` : "",
+    hasLocalVideo: true,
+    videoIsRemote: true,
+    posterUrl: media.posterUrl,
+    videoUrl: media.videoUrl,
   };
 };
 
@@ -671,10 +673,6 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: true,
     categoryTags: ["games", "sports", "demo"],
     projectUrl: "https://shubhankar.xyz/",
-    remoteVideoUrl:
-      "https://video.twimg.com/amplify_video/2101829435855147008/vid/avc1/1280x720/RICLMnZKgchXEjD-.mp4?tag=29",
-    remotePosterUrl:
-      "https://pbs.twimg.com/amplify_video_thumb/2101829435855147008/img/PfN38k2ZCauEwPNh.jpg",
   }),
   demo({
     id: "jev-dodge-realtime-abolbuild",
@@ -733,10 +731,6 @@ export const showcaseDemos: ShowcaseDemo[] = [
     homepage: true,
     categoryTags: ["product", "legal", "demo"],
     projectUrl: "https://judge.kylejeong.com",
-    remoteVideoUrl:
-      "https://video.twimg.com/amplify_video/2101831753363259392/vid/avc1/958x720/u4CRPE1MCyiBp-L4.mp4?tag=29",
-    remotePosterUrl:
-      "https://pbs.twimg.com/amplify_video_thumb/2101831753363259392/img/0FZG8mGApbMEfRIY.jpg",
   }),
   demo({
     id: "jev-agent-economics-mika",
@@ -787,7 +781,7 @@ export const showcaseDemos: ShowcaseDemo[] = [
   }),
 ];
 
-/** Tweet fetch hints for scripts/fetch-demos.mjs (not used at runtime). */
+/** Tweet fetch hints for scripts/sync-showcase-demo-media.mjs (not used at runtime). */
 export const showcaseDemoFetchHints: { id: string; tweetId: string; prefer1080?: boolean }[] =
   showcaseDemos.map((d) => ({
     id: d.id,
