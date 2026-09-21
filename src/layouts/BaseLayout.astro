@@ -14,6 +14,8 @@ export interface Props {
   type?: "website" | "article";
   ogImagePath?: string;
   jsonLd?: object | object[];
+  /** Omit Referer on twimg video fetches (hotlink block on jev.aitools.fyi). */
+  remoteShowcaseVideos?: boolean;
 }
 
 const {
@@ -23,6 +25,7 @@ const {
   type = "website",
   ogImagePath = ogImagePaths.default,
   jsonLd,
+  remoteShowcaseVideos = false,
 } = Astro.props;
 const canonical = absoluteUrl(path);
 const ogImage = absoluteUrl(ogImagePath);
@@ -40,6 +43,11 @@ const cloudflareWebAnalyticsToken =
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    {
+      remoteShowcaseVideos ? (
+        <meta name="referrer" content="no-referrer" />
+      ) : null
+    }
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
