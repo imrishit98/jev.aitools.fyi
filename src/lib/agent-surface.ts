@@ -138,7 +138,7 @@ export function buildOpenApiSpec() {
   return {
     openapi: "3.1.0",
     info: {
-      title: `${siteConfig.name} — agent surface`,
+      title: `${siteConfig.name}: agent surface`,
       version: "1.0.0",
       description:
         "Read-only discovery endpoints for jev.aitools.fyi. This describes the directory site, not TypeSafe's Jev inference API.",

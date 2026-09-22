@@ -191,7 +191,7 @@ function rebuildEntityLexicon() {
       const h = m[1].toLowerCase();
       handleCounts.set(h, (handleCounts.get(h) || 0) + 1);
     }
-    const sm = title.match(/^([A-Za-z][A-Za-z0-9'’&/\- ]{2,40}?)\s*[-–—:]/);
+    const sm = title.match(/^([A-Za-z][A-Za-z0-9'’&/\- ]{2,40}?)\s*[-\u2013\u2014:]/);
     if (sm) {
       const s = sm[1].trim().toLowerCase();
       seriesCounts.set(s, (seriesCounts.get(s) || 0) + 1);
@@ -485,7 +485,7 @@ function buildState(query: string, shortlist: { video: MfmVideo }[]) {
     `You are scoring ${CHANNEL_LABEL} YouTube videos for a channel-only search demo.`,
     `Search query: ${query}`,
     "",
-    "Score each candidate independently. A video can all be weak matches — do not force a winner.",
+    "Score each candidate independently. A video can all be weak matches; do not force a winner.",
     "Candidate videos (rich metadata: title, tags, chapters, description, transcript snippets):",
   ];
   for (const { video } of shortlist) {
@@ -559,7 +559,7 @@ async function jevRankNoul(
   const questions: Record<string, unknown> = {
     exists: {
       type: "boolean",
-      instructions: `Does at least one candidate video match the search query "${query}"? Answer yes if the query topic, entity, or phrase is clearly present in title, description, chapters, OR transcript snippets — including brief spoken mentions. Answer no only when every candidate is unrelated keyword coincidence.`,
+      instructions: `Does at least one candidate video match the search query "${query}"? Answer yes if the query topic, entity, or phrase is clearly present in title, description, chapters, OR transcript snippets, including brief spoken mentions. Answer no only when every candidate is unrelated keyword coincidence.`,
     },
   };
 
@@ -577,9 +577,9 @@ async function jevRankNoul(
       type: "score",
       instructions: `Considering ONLY candidate [${id}] ("${video.title}"), how well does it satisfy the search query "${query}"?`,
       criteria: [
-        "Off-topic — query entity/phrase is absent from title, description, chapters, and transcript snippets",
-        "Partial — related or weakly mentioned, or only loose overlap",
-        "Direct hit — query entity/place/phrase appears clearly in title/description OR in a transcript match snippet",
+        "Off-topic: query entity/phrase is absent from title, description, chapters, and transcript snippets",
+        "Partial: related or weakly mentioned, or only loose overlap",
+        "Direct hit: query entity/place/phrase appears clearly in title/description OR in a transcript match snippet",
       ],
     };
   }
@@ -787,7 +787,7 @@ export async function handleSearch(q: string, env: MfmSearchEnv) {
     let ranked: typeof scored = [];
     let gateNote: string | null = null;
     if (!existsOk) {
-      gateNote = `exists Noul ${jev.existsProbability.toFixed(3)} < ${EXISTS_THRESHOLD} — no genuine match`;
+      gateNote = `exists Noul ${jev.existsProbability.toFixed(3)} < ${EXISTS_THRESHOLD}; no genuine match`;
       ranked = [];
     } else {
       ranked = scored.filter((s) => {

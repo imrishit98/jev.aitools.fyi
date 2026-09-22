@@ -77,8 +77,14 @@ function parseXHandle(postUrl) {
   return h;
 }
 
+const EM_DASH = "\u2014";
+const EN_DASH = "\u2013";
+
 function stripEmDash(s) {
-  return s.replace(/\s*[—–]\s*/g, ", ").replace(/\s+/g, " ").trim();
+  return s
+    .replace(/\s*[\u2014\u2013]\s*/g, ", ")
+    .replace(/\s+/g, " ")
+    .trim();
 }
 
 const html = fs.readFileSync(htmlPath, "utf8");
@@ -102,7 +108,9 @@ $("section.cat.win").each((_, section) => {
       const description = stripEmDash($row.find(".c-desc").text().trim());
       const langRaw = $row.find(".c-lang").text().trim();
       const language =
-        langRaw && langRaw !== "—" && langRaw !== "–" ? langRaw : undefined;
+        langRaw && langRaw !== EM_DASH && langRaw !== EN_DASH
+          ? langRaw
+          : undefined;
 
       const stars = parseInt($row.attr("data-stars") || "0", 10) || undefined;
       const addedAt = $row.attr("data-added") || undefined;

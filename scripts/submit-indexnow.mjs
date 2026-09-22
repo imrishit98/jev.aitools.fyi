@@ -87,7 +87,7 @@ async function main() {
       ? "accepted"
       : await res.text().catch(() => "");
     console.log(
-      `Batch ${i + 1}/${batches.length}: HTTP ${res.status} (${batch.length} URLs)${detail && detail !== "accepted" ? ` — ${detail.slice(0, 200)}` : ""}`,
+      `Batch ${i + 1}/${batches.length}: HTTP ${res.status} (${batch.length} URLs)${detail && detail !== "accepted" ? `: ${detail.slice(0, 200)}` : ""}`,
     );
     if (!res.ok && res.status !== 202) {
       process.exitCode = 1;
