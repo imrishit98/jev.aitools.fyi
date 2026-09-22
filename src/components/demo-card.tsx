@@ -209,8 +209,6 @@ export function DemoCard({
 }
 
 export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
-  const [hero, ...rest] = demos;
-
   return (
     <section
       aria-labelledby="demos-heading"
@@ -247,25 +245,13 @@ export function HomeDemoStrip({ demos }: { demos: ShowcaseDemo[] }) {
           </AppLink>
         </div>
       </div>
-      <div className="flex min-w-0 flex-col gap-4 sm:gap-5">
-        {hero && (
-          <div className="min-w-0 w-full">
-            <DemoCard demo={hero} variant="hero" />
-          </div>
-        )}
-        {rest.length > 0 && (
-          <div className="grid min-w-0 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-2 lg:gap-5 xl:grid-cols-3 [&>*:last-child:nth-child(odd)]:sm:col-span-2 lg:[&>*:last-child:nth-child(odd)]:col-span-1">
-            {rest.map((demo) => (
-              <DemoCard
-                key={demo.id}
-                demo={demo}
-                variant="default"
-                className="h-auto self-start"
-              />
-            ))}
-          </div>
-        )}
-      </div>
+      {demos.length > 0 && (
+        <div className="grid min-w-0 gap-4 sm:grid-cols-2 sm:gap-4 lg:grid-cols-3 lg:gap-5">
+          {demos.map((demo) => (
+            <DemoCard key={demo.id} demo={demo} variant="default" className="h-full" />
+          ))}
+        </div>
+      )}
     </section>
   );
 }

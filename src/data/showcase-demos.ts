@@ -908,10 +908,27 @@ export const showcaseDemoFetchHints: { id: string; tweetId: string; prefer1080?:
     prefer1080: d.id === "json-render-ctatedev",
   }));
 
+/** Curated strip on `/` (Press play on the timeline). Full library: `/showcase`. */
+const HOMEPAGE_DEMO_IDS: string[] = [
+  "moongotchi-trading-bot-moongotchi",
+  "virlo-clearance-dsqjaffa",
+  "stealads-ad-teardown-mattberman",
+  "jev-trader-jarrodwatts",
+  "tanstack-ai-decide-tanstack",
+  "browser-ultrafast-gregpr07",
+  "pg-jev-iam-zachi",
+  "docjev-jerryjliu0",
+  "dub-malicious-urls-steventey",
+];
+
 export function getHomepageDemos(): ShowcaseDemo[] {
-  const home = showcaseDemos.filter((d) => d.homepage);
-  const interesting = home.filter((d) => d.categoryTags.includes("interesting"));
-  const rest = home.filter((d) => !d.categoryTags.includes("interesting"));
+  const byId = new Map(showcaseDemos.map((d) => [d.id, d]));
+  const curated = HOMEPAGE_DEMO_IDS.flatMap((id) => {
+    const demo = byId.get(id);
+    return demo ? [demo] : [];
+  });
+  const interesting = curated.filter((d) => d.categoryTags.includes("interesting"));
+  const rest = curated.filter((d) => !d.categoryTags.includes("interesting"));
   return [...interesting, ...rest];
 }
 
