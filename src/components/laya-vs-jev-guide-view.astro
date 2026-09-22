@@ -1,0 +1,133 @@
+---
+import { ButtonLink } from "@/components/button-link";
+import type { LayaVsJevGuide } from "@/data/laya-vs-jev-guides";
+import { layaVsJevGuides, layaVsJevGuidePath } from "@/data/laya-vs-jev-guides";
+import { learnGuides } from "@/data/learn-guides";
+import type { LearnGuideSlug } from "@/data/learn-guides";
+import { splitIntoParagraphs } from "@/lib/prose";
+
+interface Props {
+  guide: LayaVsJevGuide;
+}
+
+const { guide } = Astro.props;
+const keyPointParagraphs = splitIntoParagraphs(guide.keyPoint, 260);
+const relatedGuides = guide.relatedGuideSlugs
+  .map((slug) => layaVsJevGuides[slug as keyof typeof layaVsJevGuides])
+  .filter(Boolean);
+const relatedLearn = guide.relatedLearnSlugs
+  .map((slug) => learnGuides[slug as LearnGuideSlug])
+  .filter(Boolean);
+---
+
+<article>
+  <p class="text-sm font-medium text-primary">{guide.tagline}</p>
+  <aside class="mt-6 rounded-md border border-primary/25 bg-primary/5 p-5">
+    <p class="text-[11px] font-medium uppercase tracking-widest text-primary">Key point</p>
+    <div class="mt-2 space-y-3 text-base leading-relaxed text-foreground">
+      {keyPointParagraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </aside>
+
+  <div class="mt-10 space-y-10">
+    {
+      guide.sections.map((section) => {
+        const bodyParagraphs = splitIntoParagraphs(section.body, 280);
+        return (
+          <section>
+            <h2 class="font-heading text-xl font-semibold text-foreground">{section.h}</h2>
+            <div class="mt-2 space-y-3 leading-relaxed text-muted-foreground">
+              {bodyParagraphs.map((para) => <p>{para}</p>)}
+            </div>
+            {section.code && (
+              <pre
+                class="mt-4 overflow-x-auto rounded-md border border-border bg-muted/40 p-4 text-sm text-foreground"
+              ><code class={`language-${section.code.lang}`}>{section.code.content}</code></pre>
+            )}
+          </section>
+        );
+      })
+    }
+  </div>
+
+  {relatedGuides.length > 0 && (
+    <section class="mt-14">
+      <h2 class="font-heading text-xl font-semibold text-foreground">More in this hub</h2>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        {relatedGuides.map((g) => (
+          <li>
+            <a
+              href={layaVsJevGuidePath(g.slug)}
+              class="block rounded-md border border-border/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="font-medium text-foreground">{g.title}</p>
+              <p class="mt-1 text-sm text-muted-foreground">{g.tagline}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  {relatedLearn.length > 0 && (
+    <section class="mt-12">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Related Jev learn guides</h2>
+      <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+        {relatedLearn.map((g) => (
+          <li>
+            <a
+              href={`/learn/${g.slug}`}
+              class="block rounded-md border border-border/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="font-medium text-foreground">{g.title}</p>
+              <p class="mt-1 text-sm text-muted-foreground">{g.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+  )}
+
+  <section class="mt-12 rounded-md border border-border/60 bg-muted/20 p-5">
+    <h2 class="font-heading text-lg font-semibold text-foreground">Live demo</h2>
+    <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+      Lonely__MH&apos;s laya-mlx snake clip shows local typed decisions driving a game loop on Apple Silicon. Not a benchmark, but a useful feel for throughput.
+    </p>
+    <div class="mt-4">
+      <ButtonLink href="/showcase?demo=laya-mlx-lonely-mh" variant="outline">
+        Open showcase embed
+      </ButtonLink>
+    </div>
+  </section>
+
+  <section class="mt-14" id="faq">
+    <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+    <dl class="mt-6 space-y-6">
+      {guide.faq.map((entry) => (
+        <div>
+          <dt class="font-medium text-foreground">{entry.question}</dt>
+          <dd class="mt-2 leading-relaxed text-muted-foreground">{entry.answer}</dd>
+        </div>
+      ))}
+    </dl>
+  </section>
+
+  <section class="mt-14">
+    <h2 class="font-heading text-xl font-semibold text-foreground">Primary sources</h2>
+    <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+      {guide.sources.map((src) => (
+        <li>
+          <a href={src.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+            {src.label}
+          </a>
+        </li>
+      ))}
+    </ul>
+  </section>
+
+  <div class="mt-12 flex flex-wrap gap-3">
+    <ButtonLink href={layaVsJevGuidePath()} variant="outline">Laya vs Jev hub</ButtonLink>
+    <ButtonLink href="/learn/jev-typesafe" variant="outline">Jev primer</ButtonLink>
+    <ButtonLink href="/learn/jev-vs-llm-classification" variant="outline">Jev vs LLM labels</ButtonLink>
+  </div>
+</article>

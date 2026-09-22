@@ -87,6 +87,15 @@ for (const { w, label } of WIDTHS) {
     await page.waitForTimeout(500);
     const open = await probe(page);
     if (open.headerCount !== 1) failures.push(`${label}: header unmounted on sheet open`);
+    const drawerOk = await page.evaluate(() => {
+      const nav = document.querySelector('nav[aria-label="Mobile and tablet"]');
+      if (!nav) return false;
+      const r = nav.getBoundingClientRect();
+      const header = document.querySelector("header");
+      const headerBottom = header ? header.getBoundingClientRect().bottom : 0;
+      return r.top >= headerBottom - 2 && r.top < 400 && r.height > 100 && r.width > 120;
+    });
+    if (!drawerOk) failures.push(`${label}: mobile sheet panel not visible in viewport`);
     await page.screenshot({ path: join(OUT, `${label}-sheet-open.png`) });
     await page.keyboard.press("Escape");
   }

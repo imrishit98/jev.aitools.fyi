@@ -22,6 +22,7 @@ const vite = await createServer({
 });
 const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
 const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
+const layaVsJevMod = await vite.ssrLoadModule("/src/data/laya-vs-jev-guides.ts");
 const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 const sitemapMod = await vite.ssrLoadModule("/src/lib/sitemap-xml.ts");
@@ -31,6 +32,8 @@ const stats = itemsMod.getDirectoryStats();
 const learnTopicCount = learnMod.learnGuideSlugs.length;
 const agentGuidePageCount =
   1 + agentGuidesMod.agentGuideSlugs.length; /* hub + per-agent */
+const layaVsJevPageCount =
+  1 + layaVsJevMod.layaVsJevGuideSlugs.length; /* hub + per-topic */
 const expectedDetail = stats.detailPages;
 const expectedCatalog = stats.total;
 
@@ -96,7 +99,8 @@ const staticExpected =
   10 +
   1 +
   learnTopicCount +
-  agentGuidePageCount; /* static hubs + categories + MFM demo + learn topics + agent guides */
+  layaVsJevPageCount +
+  agentGuidePageCount; /* static hubs + categories + MFM demo + learn topics + laya hub + agent guides */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,

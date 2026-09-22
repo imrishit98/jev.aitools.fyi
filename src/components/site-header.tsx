@@ -2,7 +2,7 @@
 
 /**
  * Breakpoint contract (Tailwind lg = 1024px):
- * - Below lg: logo + hamburger sheet for all primary/secondary/category links; utility cluster on the right.
+ * - Below lg: logo left, utilities center-right, hamburger last; sheet for Browse / More / Categories.
  * - lg+: inline primary links + More dropdown (secondary + categories); hamburger hidden.
  */
 import { useState, type ReactNode } from "react";
@@ -47,9 +47,6 @@ const moreNav = [
   { href: "/about", label: "About" },
 ] as const;
 
-const HEADER_HEIGHT = "top-14 sm:top-[4.25rem]";
-const HEADER_HEIGHT_CALC = "h-[calc(100dvh-3.5rem)] sm:h-[calc(100dvh-4.25rem)]";
-
 function NavDrawerLink({
   href,
   children,
@@ -92,9 +89,9 @@ function MobileNavSheet() {
       </SheetTrigger>
       <SheetContent
         side="right"
+        belowHeader
         showCloseButton
-        overlayClassName={`${HEADER_HEIGHT} inset-x-0 bottom-0`}
-        className={`${HEADER_HEIGHT} ${HEADER_HEIGHT_CALC} w-full max-w-sm gap-0 overflow-y-auto border-l p-0 data-[side=right]:inset-y-auto data-[side=right]:h-auto`}
+        className="w-full gap-0 overflow-y-auto p-0"
       >
         <SheetHeader className="sr-only">
           <SheetTitle>Site navigation</SheetTitle>
@@ -183,8 +180,6 @@ export default function SiteHeader() {
           </span>
         </AppLink>
 
-        <MobileNavSheet />
-
         <nav
           className="ml-1 hidden min-w-0 shrink-0 items-center gap-0.5 lg:flex xl:ml-2 xl:gap-1"
           aria-label="Main"
@@ -213,6 +208,7 @@ export default function SiteHeader() {
           <GitHubStarLink className="max-[374px]:px-1.5" />
           <ThemeToggle />
           <SearchCommand />
+          <MobileNavSheet />
         </div>
       </div>
     </header>

@@ -3,6 +3,11 @@ import { collections } from "@/data/collections";
 import { homeFaq } from "@/data/faq";
 import { agentGuideSlugs, agentGuides, agentGuidesHub } from "@/data/agent-guides";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
+import {
+  layaVsJevGuideSlugs,
+  layaVsJevGuides,
+  layaVsJevHub,
+} from "@/data/laya-vs-jev-guides";
 import { jevSpecSheet } from "@/data/spec";
 import { getAllProductProfileSlugs } from "@/lib/product-profiles";
 import { getDirectoryStats, getItemBySlug } from "@/lib/items";
@@ -77,6 +82,14 @@ export function generateLlmsTxt(): string {
     ...learnGuideSlugs.map(
       (slug) =>
         `- ${learnGuides[slug].title}: ${siteConfig.url}/learn/${slug}`,
+    ),
+    "",
+    "## Laya vs Jev (open-weight local decisions)",
+    "",
+    `- ${layaVsJevHub.title} (hub): ${siteConfig.url}/learn/laya-vs-jev`,
+    ...layaVsJevGuideSlugs.map(
+      (slug) =>
+        `- ${layaVsJevGuides[slug].title}: ${siteConfig.url}/learn/laya-vs-jev/${slug}`,
     ),
     "",
     "## Agent integration guides",
