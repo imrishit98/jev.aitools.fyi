@@ -3027,4 +3027,334 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "robj3d3 SuperX viral scorer runs sixty one parallel Jev probes in about one second. Free Tweet Tester, launch metrics, and showcase clip.",
   },
 
+  "kitfunso-hippo-memory": {
+    slug: "kitfunso-hippo-memory",
+    status: "published",
+    problem:
+      "Agent memory tools retrieve by embedding similarity alone, so the first hit is often related noise instead of the fact you actually needed.",
+    targetUser:
+      "Builders who want a local-first memory CLI and optional Jev reranking when recall quality matters more than raw speed.",
+    overview:
+      "Hippo Memory is kitfunso's open memory layer with a hippo recall CLI, local storage, and an opt-in TypeSafe Jev reranker. Default recall stays cheap and offline-friendly; add --reranker jev when you want structured ranking judgments on candidate memories before results print.",
+    creator: {
+      name: "kitfunso",
+      handle: "kitfunso",
+      githubUrl: "https://github.com/kitfunso",
+      companyUrl: "https://hippo-memory.com",
+    },
+    jevUsage: {
+      flowRole: "Optional reranker on memory recall (ranking only, not generation)",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "User query plus a bounded set of candidate memory rows retrieved by the local index before reranking runs.",
+      decisionOut:
+        "Reordered recall list where Jev scores or keeps-drop judgments elevate the best matching memory to rank one.",
+      flowSteps: [
+        "Run hippo recall \"<query>\" to fetch local candidates",
+        "Pass --reranker jev to enable TypeSafe Jev on the candidate set",
+        "Jev applies ranking judgments per README schema (not summarization)",
+        "Return reranked rows to the caller; reranker stays off unless opted in",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Private eval on three hundred queries: recall at one reportedly moves from 0.41 to 0.62 with Jev reranker enabled (docs/evals/2026-09-19-jev-reranker.md).",
+          source: "github.com/kitfunso/hippo-memory eval doc",
+        },
+        {
+          claim: "Documented ballpark ~$0.0004 per recall when reranker is on.",
+          source: "github.com/kitfunso/hippo-memory README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Hippo does not ask Jev to write memories or paraphrase notes. The hot path is recall: local retrieval proposes candidates, then Jev answers structured questions about which rows best satisfy the query. That is classic ranking work for Score and Noul style probes instead of a chat completion. The reranker ships off by default so scripts and agents keep predictable latency; turn it on when your eval says first-result quality is worth a fraction of a cent. Read the published eval markdown in the repo before you quote the 0.41 to 0.62 recall-at-one jump in a slide deck; it is the author's private set, not a third-party benchmark leaderboard.",
+    keyFeatures: [
+      "CLI hippo recall with optional --reranker jev",
+      "Local memory store with ranking-only Jev path",
+      "Published eval notes for reranker impact",
+      "TypeSafe API key required only when reranker runs",
+    ],
+    stack: ["TypeScript", "CLI", "TypeSafe System One", "local memory index"],
+    links: {
+      website: "https://hippo-memory.com",
+      repo: "https://github.com/kitfunso/hippo-memory",
+      docs: "https://github.com/kitfunso/hippo-memory/tree/main/docs",
+    },
+    pricingNote:
+      "Local recall is yours to host; Jev reranker bills per TypeSafe usage (~$0.0004/recall per README order of magnitude).",
+    firstSeen: "2026-09-22",
+    relatedSlugs: ["docjev", "tamaratran-fast-jev-compaction", "tanstack-ai-decide"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does Jev rewrite stored memories?",
+        answer:
+          "No. README positions Jev as a reranker on recall candidates only. Ingest and storage stay outside the Jev path unless you add your own hooks.",
+      },
+      {
+        question: "How do I enable reranking?",
+        answer:
+          "Use hippo recall \"<query>\" --reranker jev with TYPESAFE_API_KEY configured per install docs.",
+      },
+    ],
+    metaTitle: "Hippo Memory: optional Jev reranker on agent recall",
+    metaDescription:
+      "kitfunso Hippo Memory CLI with opt-in Jev reranking on recall. Published eval notes, ~$0.0004/recall ballpark, ranking-only TypeSafe path.",
+  },
+
+  "juspay-neurolink": {
+    slug: "juspay-neurolink",
+    status: "published",
+    problem:
+      "Agent frameworks treat chat and embeddings as the only inference modes, so routing, budgeting, and tool picks still devolve into JSON parsing games.",
+    targetUser:
+      "Teams building on NeuroLink who want decide() beside generate and embed, with typed booleans and choices in production control flow.",
+    overview:
+      "NeuroLink is Juspay's open agent SDK (neurolink.ink). It adds a third inference type, decide, exposed as tryDecide() in application code. Under the hood that path uses TypeSafe Jev via documented gateway wiring so you get calibrated Choice, Score, and boolean answers for routing without inventing another HTTP client.",
+    creator: {
+      name: "Juspay",
+      handle: "juspay",
+      company: "Juspay",
+      companyUrl: "https://juspay.in",
+      githubUrl: "https://github.com/juspay/neurolink",
+    },
+    jevUsage: {
+      flowRole: "Structured decide inference for routing, budgeting, compaction, and tool selection",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Typed decide inputs per NeuroLink schema: candidate sets for Choice, rubric state for Score, yes-no propositions for boolean/Noul paths.",
+      decisionOut:
+        "Calibrated structured results consumed directly in TypeScript control flow (pick model, drop context chunk, allow tool, etc.).",
+      flowSteps: [
+        "Configure TYPESAFE_API_KEY and gateway per NeuroLink docs",
+        "Call tryDecide() with the schema for your routing or gate question",
+        "NeuroLink forwards to TypeSafe Jev semantics",
+        "App thresholds probabilities; on missing key the SDK fail-opens per README",
+      ],
+    },
+    howJevIsUsed:
+      "NeuroLink is not wrapping Jev as a chat persona. decide is a first-class inference type next to chat and embed, which matters for payment-grade agents that cannot afford ambiguous prose. Documented uses include picking among models, trimming context when relevance scores fall, compacting transcripts with structured keep or drop signals, and routing tools. tryDecide() returns the same primitive families you would hand-roll against System One, but with NeuroLink's agent lifecycle and observability hooks. If the TypeSafe key is absent, the framework is explicit about failing open so dev laptops still run; production should set keys and monitor decide latency like any other dependency.",
+    keyFeatures: [
+      "tryDecide() third inference type beside chat and embed",
+      "Choice, Score, and boolean/Noul schemas in one SDK",
+      "Documented model routing and context budgeting patterns",
+      "Fail-open behavior without TYPESAFE_API_KEY",
+    ],
+    stack: ["TypeScript", "NeuroLink SDK", "Vercel AI Gateway", "TypeSafe System One"],
+    links: {
+      website: "https://neurolink.ink",
+      repo: "https://github.com/juspay/neurolink",
+      docs: "https://docs.neurolink.ink",
+    },
+    pricingNote: "Jev decide calls bill through your TypeSafe or gateway account; NeuroLink itself is open source.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: ["tanstack-ai-decide", "vercel-eve", "classifier-dev"],
+    relatedLearnSlugs: ["vercel-ai-gateway", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is decide separate from chat completions?",
+        answer:
+          "Yes. NeuroLink docs describe decide as its own inference type with tryDecide(), not a prompt hack on top of generate().",
+      },
+      {
+        question: "What happens without a TypeSafe key?",
+        answer:
+          "README documents fail-open behavior so local dev does not hard crash; production agents should configure TYPESAFE_API_KEY.",
+      },
+    ],
+    metaTitle: "NeuroLink: Juspay agent SDK with tryDecide() and Jev",
+    metaDescription:
+      "juspay/neurolink adds decide inference via TypeSafe Jev for routing, compaction, and tool picks. Docs at docs.neurolink.ink.",
+  },
+
+  "uehaj-jev-semgrep": {
+    slug: "uehaj-jev-semgrep",
+    status: "published",
+    problem:
+      "Regex grep misses intent (find the line that handles refunds) and LLM grep burns budget reading whole files into chat.",
+    targetUser:
+      "Developers who want line-level semantic filters in CI or ad hoc audits with composable boolean meaning expressions.",
+    overview:
+      "jev-semgrep is uehaj's meaning grep CLI. You state a natural-language proposition; the tool batches lines from stdin or files and asks Jev whether each line satisfies that meaning above a threshold. AND, OR, and NOT compose propositions; file language and query language can differ.",
+    creator: {
+      name: "uehaj",
+      handle: "uehaj",
+      githubUrl: "https://github.com/uehaj",
+    },
+    jevUsage: {
+      flowRole: "Per-line semantic match filter (batched Noul questions)",
+      primitives: ["Noul"],
+      stateIn:
+        "One text line (or batch) plus the active meaning proposition from the CLI expression tree.",
+      decisionOut:
+        "Binary keep or drop for each line based on calibrated probability against threshold; composed trees for AND/OR/NOT.",
+      flowSteps: [
+        "Parse CLI meaning expression (possibly nested boolean ops)",
+        "Stream or batch file lines to Jev with the active proposition",
+        "Threshold Noul outputs to emit matching lines only",
+        "Cross-language: proposition can be Japanese while the file is English, per author writeup",
+      ],
+    },
+    howJevIsUsed:
+      "This is grep-shaped, not agent-shaped. Every emitted line earned its place because Jev answered a Noul question: does this line entail the meaning you asked for? Batching keeps latency tolerable on large repos. Boolean composition lets you build mini policies (error handling AND not test fixture) without learning another query DSL beyond words. The Zenn article walks through real examples and contrasts the approach with classic semgrep rules that die on paraphrase. Bring a TypeSafe key; there is no cloud-hosted meaning grep service in the repo.",
+    keyFeatures: [
+      "Natural-language propositions instead of regex",
+      "AND, OR, NOT composition in the CLI",
+      "Cross-language matching between query and file",
+      "Line-at-a-time threshold filtering",
+    ],
+    stack: ["TypeScript", "CLI", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/uehaj/jev-semgrep",
+      docs: "https://github.com/uehaj/jev-semgrep#readme",
+      post: "https://zenn.dev/uehaj/articles/jev-semgrep-grep-by-meaning",
+    },
+    pricingNote: "Per-line Jev calls; tune batch size and threshold to control cost on big trees.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: ["hemanth-pkg-gate", "kushwho-jev-codes", "classifier-dev"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Is this the Semgrep security product?",
+        answer:
+          "No. The name is a pun on grep-by-meaning. This repo is uehaj's Jev CLI, not semgrep.dev rule packs.",
+      },
+      {
+        question: "Which primitive does each line use?",
+        answer:
+          "The README and Zenn post describe a probability that the proposition holds, which maps to Noul semantics in Jev vocabulary.",
+      },
+    ],
+    metaTitle: "jev-semgrep: meaning grep with Jev Noul per line",
+    metaDescription:
+      "uehaj jev-semgrep filters files by natural-language propositions with Jev. Boolean composition, cross-language lines, Zenn writeup.",
+  },
+
+  "tamaratran-jev-pruner": {
+    slug: "tamaratran-jev-pruner",
+    status: "published",
+    problem:
+      "Agent shells return megabytes of build logs and test output; stuffing it all into context drowns the model before anyone reads the failure line.",
+    targetUser:
+      "Claude Code and Codex users who want Bash hook compaction on command stdout without summarizing away stack traces.",
+    overview:
+      "jev-pruner is Tamara Tran's hook that sits between shell completion and the LLM. It chunks stdout, asks Jev a Noul question per chunk about whether any line must remain visible, keeps chunks above threshold, and archives the full output locally for forensics.",
+    creator: {
+      name: "Tamara Tran",
+      handle: "tamaratran",
+      githubUrl: "https://github.com/tamaratran/jev-pruner",
+    },
+    jevUsage: {
+      flowRole: "Bash hook compaction on command stdout before tool results return",
+      primitives: ["Noul"],
+      stateIn:
+        "Chunked stdout from the finished command plus hook context about what the agent was trying to learn.",
+      decisionOut:
+        "Trimmed stdout for the model with full transcript archived; chunks dropped only when Jev says nothing important remains.",
+      flowSteps: [
+        "Command runs to completion in Claude Code or Codex Bash tool",
+        "Hook intercepts stdout before the LLM receives it",
+        "Split into chunks; parallel Noul: does any line in this chunk need to stay?",
+        "Emit surviving chunks; store complete stdout in archive per README",
+      ],
+    },
+    howJevIsUsed:
+      "jev-pruner complements fast-jev-compaction, it does not replace it. Compaction attacks long-lived tool rows in the transcript; pruner attacks one-shot terminal floods right after they happen. Jev never rewrites log lines into summaries. It only votes keep or drop at chunk granularity, which preserves exact error strings when they matter. If you already run tamaratran/fast-jev-compaction for history hygiene, add pruner when npm test or cargo build spews more text than your context budget allows. Same TypeSafe key story as Tamara's other plugins.",
+    keyFeatures: [
+      "Claude Code and Codex Bash hook integration",
+      "Chunk-level Noul gates, not LLM summaries",
+      "Full stdout archive alongside trimmed view",
+      "Sibling project to fast-jev-compaction (different repo)",
+    ],
+    stack: ["TypeScript", "Claude Code hooks", "Codex", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/tamaratran/jev-pruner",
+      docs: "https://github.com/tamaratran/jev-pruner#readme",
+    },
+    pricingNote: "Bring your own TYPESAFE_API_KEY; cost scales with chunk count per command.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: ["tamaratran-fast-jev-compaction", "kushwho-jev-codes", "kerpopule-hermes-jev-skills"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "How is this different from fast-jev-compaction?",
+        answer:
+          "fast-jev-compaction trims paired tool_use and tool_result rows in the transcript. jev-pruner trims fresh shell stdout in the Bash hook path. Different repos, same Noul philosophy.",
+      },
+      {
+        question: "Do I lose the full log?",
+        answer:
+          "README describes archiving complete stdout while only the Jev-approved chunks return to the model.",
+      },
+    ],
+    metaTitle: "jev-pruner: Noul chunk gates for shell output",
+    metaDescription:
+      "tamaratran/jev-pruner Bash hook uses Jev Noul per stdout chunk for Claude Code and Codex. Archives full output, distinct from fast-jev-compaction.",
+  },
+
+  "hyperspaceai-jevcache": {
+    slug: "hyperspaceai-jevcache",
+    status: "published",
+    problem:
+      "Agents replay identical decide questions on unchanged state, paying inference micro-dollars for deterministic answers they already bought.",
+    targetUser:
+      "Operators who want a local ledger for Jev-class decisions with CLI audit trails, not another hosted proxy holding their keys.",
+    overview:
+      "jevcache from hyperspaceai memoizes structured Jev answers keyed by model, schema, and state hash. The jev backend talks to TypeSafe with your local API key; decide, recall, replay, and serve commands expose hits, misses, and replays for debugging spend.",
+    creator: {
+      name: "hyperspaceai",
+      handle: "hyperspaceai",
+      githubUrl: "https://github.com/hyperspaceai",
+      companyUrl: "https://jevcache.sh",
+    },
+    jevUsage: {
+      flowRole: "Local cache and replay layer in front of TypeSafe Jev calls",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Tuple of model id, JSON schema fingerprint, and canonical serialized state presented to decide.",
+      decisionOut:
+        "Cached structured answer on hit; on miss, forward to Jev, persist, then return. replay reproduces prior decisions for audits.",
+      flowSteps: [
+        "CLI or serve endpoint receives decide with schema + state",
+        "jevcache hashes inputs and checks the local ledger",
+        "On miss, call TypeSafe Jev and store response with metadata",
+        "recall and replay commands inspect history without re-spend",
+      ],
+    },
+    howJevIsUsed:
+      "jevcache is infrastructure, not a new primitive. Whatever schema you pass (Choice among tools, Score for risk, Noul for allow) is what gets cached. The project is explicit that it is not reselling inference: your key stays on the machine running jevcache. That makes it attractive for agent loops that re-read the same repository snapshot or policy table every turn. Use serve when multiple workers should share one ledger; use replay when finance asks why the bot flipped a gate last Tuesday.",
+    keyFeatures: [
+      "Memoize (model, schema, state) to Jev answers",
+      "CLI decide, recall, replay, and serve",
+      "Local TypeSafe key, not a proxy reseller",
+      "Works with any primitive your schema defines",
+    ],
+    stack: ["TypeScript", "CLI", "local ledger store", "TypeSafe System One"],
+    links: {
+      website: "https://jevcache.sh",
+      repo: "https://github.com/hyperspaceai/jevcache",
+      docs: "https://github.com/hyperspaceai/jevcache#readme",
+    },
+    pricingNote: "Cache hits avoid repeat Jev charges; misses bill normally through TypeSafe.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: ["tanstack-ai-decide", "juspay-neurolink", "classifier-dev"],
+    relatedLearnSlugs: ["jev-typesafe", "system-one"],
+    faq: [
+      {
+        question: "Does jevcache host my API key in the cloud?",
+        answer:
+          "No. README positions the tool as a local decision ledger with your TypeSafe credentials on the operator machine.",
+      },
+      {
+        question: "Which primitives can I cache?",
+        answer:
+          "Any structured decide schema you define: Choice, Score, or Noul shaped questions all serialize into the same cache key pattern.",
+      },
+    ],
+    metaTitle: "jevcache: local ledger for TypeSafe Jev decisions",
+    metaDescription:
+      "hyperspaceai jevcache memoizes Jev decide calls with CLI recall and replay. Local key, no proxy resale, jevcache.sh docs.",
+  },
+
 };
