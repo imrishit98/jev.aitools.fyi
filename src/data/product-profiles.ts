@@ -2559,4 +2559,472 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "kerpopule/hermes-jev-skills wires Jev into Hermes, Claude Code, and Codex. Not fast-jev-compaction or hermes-jev-approvals. Aayan top-ten listing.",
   },
 
+  "jarrodwatts-jev-trader": {
+    slug: "jarrodwatts-jev-trader",
+    status: "published",
+    problem:
+      "On-chain market makers need a discrete buy or sell decision every block without paying for open-ended market commentary on each tick.",
+    targetUser:
+      "Developers experimenting with Monad trading bots and anyone studying Jev Choice on live order books rather than paper sims.",
+    overview:
+      "jev-trader (github.com/jarrodwatts/jev-trader, jev-trader.vercel.app) is Jarrod Watts's (@jarrodwatts) Monad trading demo. Jev reads the MON-USDC price feed state and chooses buy or sell on each roughly three hundred millisecond block; the bot places real orders on Kuru's on-chain MON-USDC order book. The public launch clip stresses live execution, not a backtest dashboard.",
+    creator: {
+      name: "Jarrod Watts",
+      handle: "jarrodwatts",
+      xUrl: "https://x.com/jarrodwatts/status/2100356151468585346",
+      githubUrl: "https://github.com/jarrodwatts",
+      companyUrl: "https://jev-trader.vercel.app",
+    },
+    creatorQuote: {
+      text:
+        "Jev decides if it should buy or sell given the price feed, and executes real trades on Kuru's on-chain order book every three hundred millisecond block.",
+      attributedTo: "Jarrod Watts",
+      sourceUrl: "https://x.com/jarrodwatts/status/2100356151468585346",
+    },
+    jevUsage: {
+      flowRole: "Per-block buy versus sell Choice from live price-feed state",
+      primitives: ["Choice"],
+      stateIn:
+        "Asset pair price feed and position context on Monad, refreshed each block (per launch clip and repo README).",
+      decisionOut:
+        "Typed buy or sell Choice that triggers order placement on Kuru MON-USDC.",
+      flowSteps: [
+        "Ingest latest MON-USDC price feed on each Monad block (~300 ms cadence in the clip)",
+        "Jev Choice: buy or sell given current state",
+        "Submit order to Kuru on-chain order book",
+        "Repeat on the next block with updated feed",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Orders fire on every three hundred millisecond Monad block in the attributed demo clip.",
+          source: "Jarrod Watts X post 2100356151468585346",
+        },
+        {
+          claim:
+            "Public GitHub repo jarrodwatts/jev-trader had about one thousand eight hundred fifty-one stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-trader treats Jev as a throttle-friendly decision head on a hot loop. Instead of prompting a chat model for paragraphs about macro trends, the bot passes compact market state into a single Choice primitive each block. That keeps latency aligned with Monad block time and makes the policy auditable: you can log every buy or sell gate with confidence. Kuru handles settlement; Jev only answers whether to lean long or short on the next tick. The Vercel demo and open-source repo document wiring TypeSafe credentials and Monad RPC endpoints. This profile tracks the shipped trader pattern from the September 2026 clip, not generic DeFi advice.",
+    keyFeatures: [
+      "Live Kuru MON-USDC orders, not paper trading",
+      "Per-block Jev Choice on price-feed state",
+      "Open-source TypeScript repo and Vercel demo",
+      "Featured showcase clip with remote X video",
+    ],
+    stack: ["Monad", "Kuru order book", "TypeSafe System One", "Vercel demo"],
+    links: {
+      website: "https://jev-trader.vercel.app",
+      repo: "https://github.com/jarrodwatts/jev-trader",
+      demo: "https://jev-trader.vercel.app",
+      post: "https://x.com/jarrodwatts/status/2100356151468585346",
+    },
+    pricingNote:
+      "Open source; live trading spends real funds and TypeSafe API usage on each block.",
+    firstSeen: "2026-09-17",
+    demoIds: ["jev-trader-jarrodwatts"],
+    relatedSlugs: [
+      "moongotchi-trading-bot-moongotchi",
+      "virlo-ai",
+      "realzachi-pg-jev",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is this a paper trading simulator?",
+        answer:
+          "No. Jarrod Watts's launch post describes real trades on Kuru's on-chain MON-USDC book. Budget for gas, slippage, and API cost before you point it at mainnet.",
+      },
+      {
+        question: "Which Jev primitive runs each block?",
+        answer:
+          "A Choice between buy and sell from the current price-feed state. There is no separate Score or Noul layer documented in the public clip.",
+      },
+      {
+        question: "Where do I run it?",
+        answer:
+          "Clone github.com/jarrodwatts/jev-trader or open jev-trader.vercel.app for the hosted demo linked in the showcase.",
+      },
+    ],
+    metaTitle: "jev-trader: Jev buy or sell every Monad block on Kuru",
+    metaDescription:
+      "Jarrod Watts jev-trader uses Jev Choice on MON-USDC price state each Monad block and places real Kuru orders. Repo, demo, and launch clip on Jev Directory.",
+  },
+
+  "nutlope-1kpapers": {
+    slug: "nutlope-1kpapers",
+    status: "published",
+    problem:
+      "Research atlases need stable topic labels across hundreds of papers without paying frontier-model prices per row or waiting on slow batch jobs.",
+    targetUser:
+      "ML researchers, technical writers, and builders curating large paper sets who want cheap, fast topic routing with typed Jev labels.",
+    overview:
+      "1kpapers (1kpapers.com) is Hassan El Mghari's (@nutlope) live atlas of AI research papers. A September 2026 clip describes classifying one thousand eighteen papers for about eight cents total with roughly two hundred fifty six millisecond median end-to-end latency per paper. DeepSeek V4 Flash summarizes each PDF; Jev Choice picks one of twenty four topics from title plus summary. The site may still show editorial topics while experimental Jev labels are evaluated, per the builder thread.",
+    creator: {
+      name: "Hassan El Mghari",
+      handle: "nutlope",
+      xUrl: "https://x.com/nutlope/status/2100426999546184123",
+      company: "Together",
+      companyUrl: "https://together.ai",
+    },
+    creatorQuote: {
+      text:
+        "I used Jev to classify 1,018 AI research papers. The result: $0.08 total cost and 256ms median end-to-end latency per paper.",
+      attributedTo: "Hassan El Mghari",
+      sourceUrl: "https://x.com/nutlope/status/2100426999546184123",
+    },
+    jevUsage: {
+      flowRole: "Topic Choice after cheap summarization on each paper row",
+      primitives: ["Choice"],
+      stateIn:
+        "Paper title plus DeepSeek V4 Flash summary text and a fixed menu of twenty four topic labels (per launch clip).",
+      decisionOut:
+        "Single topic Choice per paper for atlas filtering and map placement.",
+      flowSteps: [
+        "Summarize each paper with DeepSeek V4 Flash",
+        "Send title, summary, and twenty four topic options to Jev",
+        "Jev Choice selects the best-matching topic",
+        "Publish labels to the 1kpapers atlas UI",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "One thousand eighteen papers classified for about eight cents total; about two hundred fifty six millisecond median latency per paper.",
+          source: "nutlope X post 2100426999546184123",
+        },
+        {
+          claim: "Twenty four candidate topics per classification call.",
+          source: "nutlope X post pipeline description",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "1kpapers separates cheap text generation from typed routing. Summaries can drift; Jev Choice forces each paper into one of twenty four explicit topics so the atlas stays sortable and filterable without embedding indexes. Parallel batches keep median latency near a quarter second per row at micro-dollar prices in the attributed clip. Hassan noted the Jev labels are still experimental: readers may see editorial topics on the live site while evals run. Treat the X thread and 1kpapers.com as canonical for current behavior, not a frozen schema export.",
+    keyFeatures: [
+      "Live paper atlas at 1kpapers.com",
+      "DeepSeek V4 Flash summaries plus Jev topic Choice",
+      "Sub-dollar batch cost on one thousand plus papers in the clip",
+      "Featured showcase video from @nutlope",
+    ],
+    stack: ["1kpapers.com", "DeepSeek V4 Flash", "TypeSafe System One"],
+    links: {
+      website: "https://1kpapers.com",
+      demo: "https://1kpapers.com",
+      post: "https://x.com/nutlope/status/2100426999546184123",
+    },
+    pricingNote:
+      "Public atlas browsing is free; rebuilding the pipeline spends summarization and System One tokens per paper.",
+    firstSeen: "2026-09-21",
+    demoIds: ["1kpapers-nutlope"],
+    relatedSlugs: ["virlo-ai", "classifier-dev", "egghead-smart-procurement"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Are Jev topics live on every paper card?",
+        answer:
+          "Hassan's thread says Jev labels are experimental. The site may still display editorial topics while evaluations finish. Refresh 1kpapers.com for the latest UI.",
+      },
+      {
+        question: "Why Choice instead of embeddings?",
+        answer:
+          "The launch pipeline sends explicit topic strings to Jev Choice after summarization, avoiding vector indexes for the first pass at atlas scale.",
+      },
+      {
+        question: "Can I reproduce the eight cent figure?",
+        answer:
+          "It comes from the September 2026 clip on one thousand eighteen papers. Re-run on your corpus with current Together and TypeSafe pricing for production budgeting.",
+      },
+    ],
+    metaTitle: "1kpapers: Jev topic Choice on a thousand AI papers",
+    metaDescription:
+      "nutlope 1kpapers atlas uses DeepSeek summaries and Jev Choice across twenty four topics. About eight cents for 1,018 papers in the launch clip.",
+  },
+
+  "realzachi-pg-jev": {
+    slug: "realzachi-pg-jev",
+    status: "published",
+    problem:
+      "Teams want natural-language filters over Postgres rows without standing up embeddings, vector indexes, or a separate inference service.",
+    targetUser:
+      "Backend engineers and data folks who already trust SQL and want Jev Noul, Choice, or Score predicates inside WHERE clauses.",
+    overview:
+      "pg-jev (github.com/realZachi/pg-jev, pgjev.com) is Zachi's (@iam_zachi) PostgreSQL extension exposing jev() for per-row judgments in plain language. Example patterns from the launch clip include WHERE jev(people, 'could work from home') without embeddings. Zachi reported one hundred twenty nine rows judged in about one second for about $0.0009, with cache hits near six milliseconds on a second run. This listing is the database extension only, not the separate Chrome ad-blocker demo elsewhere in the showcase.",
+    creator: {
+      name: "Zachi",
+      handle: "iam_zachi",
+      xUrl: "https://x.com/iam_zachi/status/2100679300756435135",
+      githubUrl: "https://github.com/realZachi",
+      companyUrl: "https://pgjev.com",
+    },
+    creatorQuote: {
+      text:
+        "jev(): a PostgreSQL extension that searches your whole database in natural language. No index, no embeddings, just one function.",
+      attributedTo: "Zachi",
+      sourceUrl: "https://x.com/iam_zachi/status/2100679300756435135",
+    },
+    jevUsage: {
+      flowRole: "Per-row Jev predicates inside SQL filters",
+      primitives: ["Noul", "Choice", "Score"],
+      stateIn:
+        "Row JSON or table columns passed into jev() plus a plain-language question string (per launch clip and pgjev.com docs).",
+      decisionOut:
+        "Boolean or typed judgment per row used directly in WHERE clauses.",
+      flowSteps: [
+        "Install pg-jev extension in Postgres",
+        "Write SQL with jev(table_or_row, 'plain language criteria')",
+        "Extension calls TypeSafe per row (with caching on repeats)",
+        "Return matching rows to the application",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "One hundred twenty nine rows judged in about one second for about $0.0009; second run about six milliseconds from cache.",
+          source: "iam_zachi X post 2100679300756435135",
+        },
+        {
+          claim:
+            "Public GitHub repo realZachi/pg-jev had about two hundred eighty three stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "pg-jev pushes Jev to the data plane. Application code stays SQL-native: analysts phrase constraints in English, the extension maps each row through System One, and the planner filters like any other predicate. Caching repeated questions is what drives single-digit millisecond hits on warm rows in the clip. You can mix Noul-style yes or no gates, Choice among small enums, and Score thresholds depending on how you phrase the function call in SQL. The showcase ad-blocker clip for @iam_zachi is a different Chrome extension product; do not conflate it with this Postgres extension.",
+    keyFeatures: [
+      "jev() SQL function without vector indexes",
+      "Documented latency and cost figures from launch clip",
+      "pgjev.com site and open-source extension repo",
+      "Distinct from ad-blocker-iam-zachi showcase",
+    ],
+    stack: ["PostgreSQL extension", "TypeSafe System One", "pgjev.com"],
+    links: {
+      website: "https://pgjev.com",
+      repo: "https://github.com/realZachi/pg-jev",
+      docs: "https://pgjev.com",
+      demo: "https://pgjev.com",
+      post: "https://x.com/iam_zachi/status/2100679300756435135",
+    },
+    pricingNote:
+      "Open source extension; TypeSafe usage bills per row judged unless cache hits apply.",
+    firstSeen: "2026-09-18",
+    demoIds: ["pg-jev-iam-zachi"],
+    relatedSlugs: [
+      "jarrodwatts-jev-trader",
+      "virlo-ai",
+      "carolmonroe-jevrls",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is this the same as the ad-blocker showcase?",
+        answer:
+          "No. ad-blocker-iam-zachi is a Chrome extension demo. pg-jev is a PostgreSQL extension for SQL filters at pgjev.com.",
+      },
+      {
+        question: "Do I need embeddings?",
+        answer:
+          "Zachi's launch clip emphasizes no embeddings and no special indexes for the jev() function path shown.",
+      },
+      {
+        question: "What primitives does SQL expose?",
+        answer:
+          "Marketing and docs describe Noul, Choice, and Score style questions depending on how you phrase the plain-language predicate per row.",
+      },
+    ],
+    metaTitle: "pg-jev: Jev predicates inside PostgreSQL",
+    metaDescription:
+      "realZachi pg-jev adds jev() for natural-language WHERE clauses without embeddings. Launch metrics, pgjev.com, and SQL extension repo.",
+  },
+
+  "kraayenjon-ai-slop-detector": {
+    slug: "kraayenjon-ai-slop-detector",
+    status: "published",
+    problem:
+      "Buyers and readers need a fast signal that a landing page was assembled from generic AI layout patterns, not a careful human edit.",
+    targetUser:
+      "Marketers, founders, and designers auditing competitor sites or their own drafts before launch.",
+    overview:
+      "AI Slop Detector is Jon Kraayenbrink's (@kraayenJon) free URL scanner. A September 2026 clip shows Jev checking a site for thirty five parallel tells of AI slop, including purple gradients, emoji headers, seamlessly phrasing, fake testimonials, and bento grids, in about two hundred forty three milliseconds for about $0.00015 of tokens. Headless Chrome captures the page; vision describes visuals; Jev answers parallel Noul questions plus a whole-page score; DeepSeek writes the verdict text from found tells. The live tool allows two scans per day without signup on the public free-tools URL linked in the post.",
+    creator: {
+      name: "Jon Kraayenbrink",
+      handle: "kraayenJon",
+      xUrl: "https://x.com/kraayenJon/status/2101157548346794059",
+    },
+    creatorQuote: {
+      text:
+        "In 243 ms it checked a website for 35 tells of ai slop. Paste any url, get a slop score.",
+      attributedTo: "Jon Kraayenbrink",
+      sourceUrl: "https://x.com/kraayenJon/status/2101157548346794059",
+    },
+    jevUsage: {
+      flowRole: "Parallel Noul tells plus page-level Score after vision description",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Rendered page screenshot or vision-derived description from headless Chrome (per launch clip).",
+      decisionOut:
+        "Per-tell Noul flags, aggregate slop score, and DeepSeek-generated verdict copy listing matched patterns.",
+      flowSteps: [
+        "Fetch and render target URL in headless Chrome",
+        "Vision model describes layout and copy cues",
+        "Jev runs about thirty five parallel Noul questions on tells",
+        "Whole-page Score summarizes slop level",
+        "DeepSeek writes human-readable verdict from hits",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "About two hundred forty three milliseconds and about $0.00015 of tokens for thirty five tells in the launch clip.",
+          source: "kraayenJon X post 2101157548346794059",
+        },
+        {
+          claim: "Free tier: two scans per day without signup (per launch post).",
+          source: "kraayenJon X post linked free tool",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The slop detector keeps expensive vision and cheap judgment separate. Chrome plus a vision description produces structured state; Jev fires dozens of tiny Noul questions in parallel so each tell is typed instead of buried in one chat essay. A Score primitive rolls the tells into a single slop number suitable for sorting URLs. DeepSeek only narrates the evidence Jev already flagged, which keeps latency sub-second in the attributed clip. Operators paste any public URL into the free tool linked from Kraayenbrink's post. This profile cites the X launch and live scanner, not third-party directories.",
+    keyFeatures: [
+      "Thirty five parallel slop tells per URL",
+      "Sub-second Jev pass in the public clip",
+      "Free daily scans on the linked tool",
+      "Showcase video embed from @kraayenJon",
+    ],
+    stack: [
+      "Headless Chrome capture",
+      "Vision description",
+      "TypeSafe System One",
+      "DeepSeek verdict copy",
+    ],
+    links: {
+      website: "https://madewithjev.com/free-tools/ai-slop-detector",
+      demo: "https://madewithjev.com/free-tools/ai-slop-detector",
+      post: "https://x.com/kraayenJon/status/2101157548346794059",
+    },
+    pricingNote: "Two free scans per day on the public tool; additional usage not documented in the clip.",
+    firstSeen: "2026-09-21",
+    demoIds: ["ai-slop-detector-kraayenjon"],
+    relatedSlugs: ["stealads-ai", "ploy-ai", "hypit-ai", "classifier-dev"],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev write the final paragraph?",
+        answer:
+          "Jev answers the parallel tell questions and scores the page. DeepSeek generates the readable verdict from the tells Jev flagged, per the launch thread.",
+      },
+      {
+        question: "What counts as a tell?",
+        answer:
+          "The clip names patterns like purple gradients, emoji headers, seamlessly phrasing, fake testimonials, and bento grids among thirty five parallel checks.",
+      },
+      {
+        question: "Is there an API?",
+        answer:
+          "This listing documents the free URL tool linked in the X post. No public API was claimed in the September 2026 clip.",
+      },
+    ],
+    metaTitle: "AI Slop Detector: parallel Jev tells on any URL",
+    metaDescription:
+      "kraayenJon free AI Slop Detector uses vision plus thirty five Jev Noul tells and a page score in about 243 ms. Launch clip and tool link.",
+  },
+
+  "robj3d3-superx-post-scoring": {
+    slug: "robj3d3-superx-post-scoring",
+    status: "published",
+    problem:
+      "Creators need to know whether a draft will outperform their own baseline post before spending reach on reply bait or weak hooks.",
+    targetUser:
+      "X creators, growth operators, and agents drafting social copy who want a fast viral score loop with rewrite until peak.",
+    overview:
+      "SuperX post scoring is Rob Hallam's (@robj3d3) Jev classifier for X drafts. His September 2026 clip claims sixty one parallel questions in about one second for about $0.0004, fitted on nine thousand four hundred eighty one real posts from two hundred seven creators, picking the more viral post about two thirds of the time while avoiding reply-bait rewards. The free Tweet Tester at superx.so scores drafts without signup; the same engine ships inside SuperX via API, MCP, and CLI per the thread.",
+    creator: {
+      name: "Rob Hallam",
+      handle: "robj3d3",
+      xUrl: "https://x.com/robj3d3/status/2100722975645598191",
+      company: "SuperX",
+      companyUrl: "https://superx.so",
+    },
+    creatorQuote: {
+      text:
+        "Every post gets 61 questions in ~1s for $0.0004. Write, score, rewrite, stop when it peaks.",
+      attributedTo: "Rob Hallam",
+      sourceUrl: "https://x.com/robj3d3/status/2100722975645598191",
+    },
+    jevUsage: {
+      flowRole: "Parallel question pack per draft plus rewrite loop until score peaks",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Draft post text only (per launch thread); population model uses nine thousand four hundred eighty one labeled posts from two hundred seven creators.",
+      decisionOut:
+        "Relative viral score versus creator baseline, help or hurt reasons, and guidance to rewrite until score peaks without rewarding reply bait.",
+      flowSteps: [
+        "Author drafts post text in Tweet Tester or SuperX",
+        "Jev answers sixty one parallel questions in about one second",
+        "Score compared to fitted creator baseline",
+        "Rewrite loop until score peaks or reply-bait flags fire",
+        "Optional agent skill runs the same loop via MCP",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Sixty one questions in about one second for about $0.0004 per draft in the launch clip.",
+          source: "robj3d3 X post 2100722975645598191",
+        },
+        {
+          claim:
+            "Model fitted on nine thousand four hundred eighty one posts from two hundred seven creators; picks the viral post about two in three times.",
+          source: "robj3d3 X post and thread",
+        },
+        {
+          claim:
+            "About six thousand free demo runs cost the builder about one dollar and four cents total (follow-up post).",
+          source: "robj3d3 X post 2100879539257938355",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "SuperX treats each draft as a bundle of parallel Noul and Score style probes instead of one monolithic LLM rubric. Training data from thousands of real posts sets the baseline so the score means better or worse than this creator's normal, not a universal like count. The rewrite loop is explicit in the clip: draft, score, edit, stop at the peak. Reply-bait patterns are penalized rather than rewarded. Free users can try superx.so/tweet-tester without login; paid SuperX plans expose POST /v1/posts/viral-score, an MCP predict_viral_score tool, and superx posts:viral-score CLI per Rob's thread. This directory entry focuses on the shipped scoring path and attributed metrics, not unaudited accuracy guarantees.",
+    keyFeatures: [
+      "Free Tweet Tester without signup",
+      "Sixty one parallel Jev questions per draft",
+      "Rewrite-until-peak workflow in launch clip",
+      "SuperX API, MCP, and CLI for the same scorer",
+    ],
+    stack: ["superx.so Tweet Tester", "SuperX API", "TypeSafe System One"],
+    links: {
+      website: "https://superx.so/tweet-tester",
+      demo: "https://superx.so/tweet-tester",
+      post: "https://x.com/robj3d3/status/2100722975645598191",
+    },
+    pricingNote:
+      "Tweet Tester is free with a five-post browser limit before SuperX upsell; in-product API billing follows SuperX plans.",
+    firstSeen: "2026-09-17",
+    demoIds: ["superx-post-scoring-robj3d3"],
+    relatedSlugs: ["virlo-ai", "ploy-ai", "hypit-ai", "kraayenjon-ai-slop-detector"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Where is the free tool?",
+        answer:
+          "superx.so/tweet-tester scores drafts in a simulated feed without signup, linked from Rob Hallam's launch thread.",
+      },
+      {
+        question: "Does the score predict global virality?",
+        answer:
+          "SuperX docs emphasize scoring relative to your own normal post at your follower size, not a universal like target.",
+      },
+      {
+        question: "How do agents call the scorer?",
+        answer:
+          "Rob's thread lists SuperX MCP predict_viral_score and CLI superx posts:viral-score alongside POST /v1/posts/viral-score.",
+      },
+    ],
+    metaTitle: "SuperX post scoring: sixty one Jev questions per draft",
+    metaDescription:
+      "robj3d3 SuperX viral scorer runs sixty one parallel Jev probes in about one second. Free Tweet Tester, launch metrics, and showcase clip.",
+  },
+
 };

@@ -107,6 +107,11 @@ const DEMO_SPECS = [
   { id: "jevrls-supabase-carolmonroe", tweetId: "2101747586126557230" },
   { id: "logview-semantic-iurysza", tweetId: "2101770705155010568" },
   { id: "jevarcade-seven-games-thisiskp", tweetId: "2101846703091376219" },
+  { id: "jev-trader-jarrodwatts", tweetId: "2100356151468585346" },
+  { id: "1kpapers-nutlope", tweetId: "2100426999546184123" },
+  { id: "pg-jev-iam-zachi", tweetId: "2100679300756435135" },
+  { id: "ai-slop-detector-kraayenjon", tweetId: "2101157548346794059" },
+  { id: "superx-post-scoring-robj3d3", tweetId: "2100722975645598191" },
 ];
 
 async function main() {
