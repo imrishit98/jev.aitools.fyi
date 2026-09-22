@@ -7,6 +7,12 @@ import {
   type AgentGuide,
 } from "@/data/agent-guides";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
+import {
+  layaVsJevGuideSlugs,
+  layaVsJevGuides,
+  layaVsJevHub,
+  type LayaVsJevGuide,
+} from "@/data/laya-vs-jev-guides";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
 import { getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
@@ -458,6 +464,26 @@ export function agentGuidePageSeo(guide: AgentGuide) {
   });
 }
 
+export function layaVsJevHubSeo() {
+  return pageSeo({
+    title: layaVsJevHub.seoTitle,
+    description: layaVsJevHub.seoDescription,
+    path: "/learn/laya-vs-jev",
+    type: "article",
+    imagePath: ogImagePaths.learnHub,
+  });
+}
+
+export function layaVsJevGuidePageSeo(guide: LayaVsJevGuide) {
+  return pageSeo({
+    title: guide.seoTitle,
+    description: guide.seoDescription,
+    path: `/learn/laya-vs-jev/${guide.slug}`,
+    type: "article",
+    imagePath: ogImagePaths.default,
+  });
+}
+
 export function parseItemLastModified(updatedAt?: string): Date {
   if (updatedAt) {
     const parsed = new Date(updatedAt);
@@ -502,6 +528,14 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
     const guide = learnGuides[slug];
     const seo = learnTopicPageSeo(guide);
     push(`/learn/${slug}`, seo.title, seo.description);
+  }
+
+  const layaHub = layaVsJevHubSeo();
+  push("/learn/laya-vs-jev", layaHub.title, layaHub.description);
+  for (const slug of layaVsJevGuideSlugs) {
+    const guide = layaVsJevGuides[slug];
+    const seo = layaVsJevGuidePageSeo(guide);
+    push(`/learn/laya-vs-jev/${slug}`, seo.title, seo.description);
   }
 
   const agentHub = agentGuidesHubSeo();

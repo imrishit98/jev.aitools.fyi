@@ -1,0 +1,97 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { ButtonLink } from "@/components/button-link";
+import { breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
+import {
+  layaVsJevGuideSlugs,
+  layaVsJevGuides,
+  layaVsJevHub,
+  layaVsJevGuidePath,
+} from "@/data/laya-vs-jev-guides";
+import { layaVsJevHubSeo } from "@/lib/seo";
+import { splitIntoParagraphs } from "@/lib/prose";
+
+const seo = layaVsJevHubSeo();
+const introParagraphs = splitIntoParagraphs(layaVsJevHub.intro, 280);
+const cards = layaVsJevGuideSlugs.map((slug) => layaVsJevGuides[slug]);
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path="/learn/laya-vs-jev"
+  type="article"
+  ogImagePath={seo.imagePath}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Learn", path: "/learn" },
+      { name: layaVsJevHub.title, path: "/learn/laya-vs-jev" },
+    ]),
+    faqPageJsonLd(layaVsJevHub.faq),
+  ]}
+>
+  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
+    <nav class="text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <a href="/learn" class="hover:text-accent">Learn</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">{layaVsJevHub.title}</span>
+    </nav>
+    <header class="mt-4 max-w-3xl">
+      <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{layaVsJevHub.title}</h1>
+      <p class="mt-3 text-lg text-muted-foreground">{layaVsJevHub.tagline}</p>
+      <div class="mt-4 space-y-3 text-muted-foreground">
+        {introParagraphs.map((para) => <p class="leading-relaxed">{para}</p>)}
+      </div>
+    </header>
+
+    <section class="mt-10 flex flex-wrap gap-3">
+      <ButtonLink href={layaVsJevGuidePath("compare")}>Start with comparison table</ButtonLink>
+      <ButtonLink href="/showcase?demo=laya-mlx-lonely-mh" variant="outline">
+        laya-mlx snake demo
+      </ButtonLink>
+      <ButtonLink href="/learn/jev-typesafe" variant="outline">What is Jev?</ButtonLink>
+    </section>
+
+    <section class="mt-12">
+      <h2 class="font-heading text-xl font-semibold">Guides in this series</h2>
+      <ul class="mt-6 grid gap-4 md:grid-cols-2">
+        {cards.map((g) => (
+          <li>
+            <a
+              href={layaVsJevGuidePath(g.slug)}
+              class="flex h-full flex-col rounded-md border border-border/60 p-6 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="font-heading text-lg font-medium text-foreground">{g.title}</p>
+              <p class="mt-2 flex-1 text-sm leading-relaxed text-muted-foreground">{g.tagline}</p>
+              <span class="mt-4 text-sm font-medium text-primary">Read guide →</span>
+            </a>
+          </li>
+        ))}
+      </ul>
+    </section>
+
+    <section class="mt-14 rounded-md border border-border bg-card p-6 sm:p-8">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Fair comparison reminder</h2>
+      <p class="mt-2 max-w-3xl text-sm leading-relaxed text-muted-foreground">
+        Local GPU or MLX milliseconds are not the same metric as hosted Jev end-to-end latency. Vendor-published Laya-vs-Jev accuracy tables mix benchmarks and are not independent third-party audits. Laya is not a drop-in replacement for Jev context limits, ops, or default option budgets—read
+        <a href={layaVsJevGuidePath("benchmarks-and-fairness")} class="text-accent hover:underline">
+          benchmarks and fairness
+        </a>
+        before you quote numbers in a pitch deck.
+      </p>
+    </section>
+
+    <section class="mt-14" id="faq">
+      <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+      <dl class="mt-6 max-w-3xl space-y-6">
+        {layaVsJevHub.faq.map((entry) => (
+          <div>
+            <dt class="font-medium text-foreground">{entry.question}</dt>
+            <dd class="mt-2 leading-relaxed text-muted-foreground">{entry.answer}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+  </div>
+</BaseLayout>
