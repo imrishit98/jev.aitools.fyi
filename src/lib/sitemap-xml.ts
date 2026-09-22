@@ -5,6 +5,7 @@ import { categories } from "@/data/categories";
 import type { CategorySlug } from "@/data/types";
 import { agentGuideSlugs } from "@/data/agent-guides";
 import { learnGuideSlugs } from "@/data/learn-guides";
+import { layaVsJevGuideSlugs } from "@/data/laya-vs-jev-guides";
 import { getItemsByCategory, getItemsWithDetailPages } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { absoluteUrl, parseItemLastModified } from "@/lib/seo";
@@ -130,12 +131,27 @@ export function generateSitemapStaticXml(): string {
 
 export function generateSitemapLearnXml(): string {
   const learnMtime = sourceLastModified("data/learn-guides.ts");
-  const entries: SitemapUrl[] = learnGuideSlugs.map((topic) => ({
-    loc: absoluteUrl(`/learn/${topic}`),
-    lastmod: learnMtime,
-    priority: 0.8,
-    changefreq: "monthly",
-  }));
+  const layaMtime = sourceLastModified("data/laya-vs-jev-guides.ts");
+  const entries: SitemapUrl[] = [
+    ...learnGuideSlugs.map((topic) => ({
+      loc: absoluteUrl(`/learn/${topic}`),
+      lastmod: learnMtime,
+      priority: 0.8,
+      changefreq: "monthly",
+    })),
+    {
+      loc: absoluteUrl("/learn/laya-vs-jev"),
+      lastmod: layaMtime,
+      priority: 0.85,
+      changefreq: "monthly",
+    },
+    ...layaVsJevGuideSlugs.map((topic) => ({
+      loc: absoluteUrl(`/learn/laya-vs-jev/${topic}`),
+      lastmod: layaMtime,
+      priority: 0.82,
+      changefreq: "monthly",
+    })),
+  ];
   return renderUrlset(entries);
 }
 

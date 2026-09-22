@@ -3,6 +3,12 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
 import { breadcrumbJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
+import {
+  layaVsJevGuideSlugs,
+  layaVsJevGuides,
+  layaVsJevHub,
+  layaVsJevGuidePath,
+} from "@/data/laya-vs-jev-guides";
 import { learnIndexPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 
@@ -11,6 +17,11 @@ const seo = learnIndexPageSeo();
 const topics = learnGuideSlugs.map((slug) => {
   const g = learnGuides[slug];
   return { href: `/learn/${slug}`, title: g.title, description: g.description };
+});
+
+const layaHubCards = layaVsJevGuideSlugs.map((slug) => {
+  const g = layaVsJevGuides[slug];
+  return { href: layaVsJevGuidePath(slug), title: g.title, description: g.tagline };
 });
 ---
 
@@ -44,6 +55,30 @@ const topics = learnGuideSlugs.map((slug) => {
         <h2 class="font-mono text-sm text-accent">noul</h2>
         <p class="mt-2 text-sm text-muted-foreground">Is this statement true? You get a noul value from 0 to 1.</p>
       </div>
+    </section>
+    <section class="mt-12 rounded-md border border-primary/30 bg-primary/5 p-6 sm:p-8">
+      <h2 class="font-heading text-xl font-semibold">{layaVsJevHub.title}</h2>
+      <p class="mt-2 max-w-2xl text-sm leading-relaxed text-muted-foreground">
+        {layaVsJevHub.tagline} Independent comparison hub while open-weight Laya is trending: checkpoints, Laya-MLX on Mac, benchmark fairness, and hybrid patterns with hosted Jev.
+      </p>
+      <div class="mt-4 flex flex-wrap gap-3">
+        <ButtonLink href="/learn/laya-vs-jev">Open hub</ButtonLink>
+        <ButtonLink href={layaVsJevGuidePath("compare")} variant="outline">Comparison overview</ButtonLink>
+        <ButtonLink href="/showcase?demo=laya-mlx-lonely-mh" variant="outline">laya-mlx snake demo</ButtonLink>
+      </div>
+      <ul class="mt-6 grid gap-3 sm:grid-cols-2">
+        {layaHubCards.slice(0, 4).map((t) => (
+          <li>
+            <a
+              href={t.href}
+              class="block rounded-md border border-border/60 bg-background/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="text-sm font-medium">{t.title}</p>
+              <p class="mt-1 text-xs text-muted-foreground line-clamp-2">{t.description}</p>
+            </a>
+          </li>
+        ))}
+      </ul>
     </section>
     <section class="mt-12 rounded-md border border-primary/30 bg-primary/5 p-6 sm:p-8">
       <h2 class="font-heading text-xl font-semibold">Jev with AI agents</h2>

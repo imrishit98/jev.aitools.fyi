@@ -1,0 +1,54 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import LayaVsJevGuideView from "@/components/laya-vs-jev-guide-view.astro";
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  layaVsJevArticleJsonLd,
+} from "@/components/json-ld";
+import {
+  layaVsJevGuideSlugs,
+  layaVsJevHub,
+  getLayaVsJevGuide,
+} from "@/data/laya-vs-jev-guides";
+import { layaVsJevGuidePageSeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return layaVsJevGuideSlugs.map((topic) => ({ params: { topic } }));
+}
+
+const { topic } = Astro.params;
+const guide = getLayaVsJevGuide(topic!);
+if (!guide) throw new Error(`Unknown Laya vs Jev guide ${topic}`);
+
+const seo = layaVsJevGuidePageSeo(guide);
+const path = `/learn/laya-vs-jev/${topic}`;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={path}
+  type="article"
+  ogImagePath={seo.imagePath}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Learn", path: "/learn" },
+      { name: layaVsJevHub.title, path: "/learn/laya-vs-jev" },
+      { name: guide.title, path },
+    ]),
+    layaVsJevArticleJsonLd(guide),
+    faqPageJsonLd(guide.faq),
+  ]}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <nav class="text-sm text-muted-foreground" aria-label="Breadcrumb">
+      <a href="/learn/laya-vs-jev" class="hover:text-accent">{layaVsJevHub.title}</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">{guide.title}</span>
+    </nav>
+    <h1 class="mt-4 font-heading text-3xl font-semibold">{guide.title}</h1>
+    <LayaVsJevGuideView guide={guide} />
+  </div>
+</BaseLayout>

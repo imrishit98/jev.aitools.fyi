@@ -182,6 +182,29 @@ export function agentGuideArticleJsonLd(guide: {
   };
 }
 
+export function layaVsJevArticleJsonLd(guide: {
+  title: string;
+  tagline: string;
+  slug: string;
+}) {
+  const url = absoluteUrl(`/learn/laya-vs-jev/${guide.slug}`);
+  return {
+    "@context": "https://schema.org",
+    "@type": "Article",
+    headline: guide.title,
+    description: guide.tagline,
+    url,
+    mainEntityOfPage: url,
+    author: {
+      "@type": "Person",
+      name: "Rishit Patel",
+      url: "https://twitter.com/imrishit98",
+    },
+    publisher: publisherOrg,
+    inLanguage: "en-US",
+  };
+}
+
 export function demoVideoJsonLd(demo: ShowcaseDemo) {
   return {
     "@context": "https://schema.org",
