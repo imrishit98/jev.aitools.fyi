@@ -2,6 +2,7 @@ import type { DirectoryItem } from "../types";
 import catalog from "../catalog.json";
 import catalogSupplement from "../catalog-supplement.json";
 import { applyCatalogOverrides } from "@/lib/apply-catalog-overrides";
+import { mergeCatalogSources } from "@/lib/merge-catalog-sources";
 import {
   buildDuplicateDemotionSet,
   resolveContentPolicy,
@@ -9,10 +10,12 @@ import {
   type EnrichedDirectoryItem,
 } from "@/lib/content-policy";
 
-const catalogItems = applyCatalogOverrides([
-  ...(catalog as DirectoryItem[]),
-  ...(catalogSupplement as DirectoryItem[]),
-]);
+const catalogItems = applyCatalogOverrides(
+  mergeCatalogSources(
+    catalog as DirectoryItem[],
+    catalogSupplement as DirectoryItem[],
+  ),
+);
 const duplicateDemotions = buildDuplicateDemotionSet(catalogItems);
 
 export const items: EnrichedDirectoryItem[] =
