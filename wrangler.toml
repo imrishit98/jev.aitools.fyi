@@ -10,6 +10,8 @@ pages_build_output_dir = "dist"
 directory = "./dist"
 binding = "SITE_ASSETS"
 not_found_handling = "404-page"
+# Invoke the Worker before static files so `/` can negotiate Markdown (Accept) and set Vary.
+run_worker_first = ["/", "/index.html"]
 # Pages git deploy: repo-root `functions/` + dist/_routes.json still work when using Pages CI.
 # MFM API routes are shared via src/lib/mfm-jev-search/api-route.ts (Worker + Pages Functions).
 

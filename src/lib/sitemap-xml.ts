@@ -98,6 +98,8 @@ const STATIC_ROUTE_META: {
   { path: "/guides", priority: 0.84, changefreq: "weekly", source: "pages/guides/index.astro" },
   { path: "/submit", priority: 0.6, changefreq: "monthly", source: "pages/submit.astro" },
   { path: "/about", priority: 0.55, changefreq: "monthly", source: "pages/about.astro" },
+  { path: "/contact", priority: 0.52, changefreq: "monthly", source: "pages/contact.astro" },
+  { path: "/privacy", priority: 0.5, changefreq: "monthly", source: "pages/privacy.astro" },
   { path: "/developers", priority: 0.62, changefreq: "monthly", source: "pages/developers.astro" },
   { path: "/for-agents", priority: 0.58, changefreq: "monthly", source: "pages/for-agents.astro" },
 ];

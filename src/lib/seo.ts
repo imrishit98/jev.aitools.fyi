@@ -389,6 +389,24 @@ export function aboutPageSeo() {
   });
 }
 
+export function contactPageSeo() {
+  return pageSeo({
+    title: "Contact Jev Directory: submissions and corrections",
+    description:
+      "Reach Southern East Inc. for directory submissions, listing corrections, and publisher questions about jev.aitools.fyi. Email and mailing address.",
+    path: "/contact",
+  });
+}
+
+export function privacyPageSeo() {
+  return pageSeo({
+    title: "Privacy policy for Jev Directory",
+    description:
+      "How jev.aitools.fyi handles analytics, submitted links, and public directory data. Privacy policy for the curated Jev ecosystem index.",
+    path: "/privacy",
+  });
+}
+
 export function submitPageSeo() {
   return pageSeo({
     title: "Submit a Jev listing: add your tool to the directory",

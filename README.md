@@ -30,6 +30,8 @@ pnpm preview
 
 Static assets land in `dist/` (pre-rendered HTML). **`dist/index.html` must stay at the site root** so `/` returns 200 even when Pages Functions fail. `functions/index.ts` only overrides `/` when `Accept` prefers `text/markdown`; normal browsers get the static homepage via `next()`. **Do not ship a build that removes or moves `dist/index.html` unless you have verified Functions serve HTML on `/` in production.**
 
+**Production (`pnpm deploy` / Workers Builds):** Markdown negotiation for `/` and Markdown 404s is implemented in [`workers/site-and-assets.ts`](./workers/site-and-assets.ts), sharing logic with Pages Functions via [`src/lib/markdown-negotiation.ts`](./src/lib/markdown-negotiation.ts). Responses set `Vary: Accept` and `CDN-Cache-Control` so Cloudflare does not serve a cached HTML document to `Accept: text/markdown` clients. After deploy, purge cache for `/` if an old HTML response without `Vary` is still cached.
+
 Agent routes live in [`functions/`](./functions/) at the repo root.
 
 ## Deploy (Cloudflare Pages)
@@ -46,7 +48,7 @@ Connect this repo to a Cloudflare **Pages** project.
 | My First Million demo (optional) | `AI_GATEWAY_API_KEY` (Vercel AI Gateway for live Jev) |
 | My First Million mock mode | Auto when no `AI_GATEWAY_API_KEY`; optional `JEV_MOCK=true` forces mock even with a key |
 
-**Workers Builds (`pnpm deploy`):** Wrangler config is [`wrangler.toml`](./wrangler.toml) (`main`, `SITE_ASSETS`, `[vars] PUBLIC_SITE_URL`). `workers/site-and-assets.ts` handles dynamic routes (My First Million demo API at `/demos/my-first-million/api/*`) and passes other requests to the `SITE_ASSETS` binding (`dist/`). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
+**Workers Builds (`pnpm deploy`):** Wrangler config is [`wrangler.toml`](./wrangler.toml) (`main`, `SITE_ASSETS`, `[vars] PUBLIC_SITE_URL`, **`[assets] run_worker_first`** for `/` and `/index.html`). `workers/site-and-assets.ts` handles Markdown negotiation, My First Million demo API at `/demos/my-first-million/api/*`, and passes other requests to the `SITE_ASSETS` binding (`dist/`). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
 
 Simulate production locally:
 
@@ -81,6 +83,9 @@ The homepage and header include a **Human | Agent** switch (human is the default
 After `pnpm build`, run Pages locally (`pnpm pages:dev`), then:
 
 ```bash
+# Shared module checks (also runs in pnpm build)
+node scripts/verify-markdown-negotiation.mjs
+
 # 1) Markdown 404 (≥20 chars, links to /, llms.txt, sitemap)
 curl -sS -L -i -H 'Accept: text/markdown' http://localhost:4321/__ora-404-probe | head -25
 
@@ -91,6 +96,16 @@ curl -sS http://localhost:4321/api/__ora-probe
 curl -sS -i -H 'Accept: text/markdown' http://localhost:4321/ | head -20
 curl -sS -i -H 'Accept: text/html' http://localhost:4321/ | head -12
 ```
+
+After **Workers** deploy to production:
+
+```bash
+curl -sS -L -i -H 'Accept: text/markdown' https://jev.aitools.fyi/ | sed -n '1,15p'
+curl -sS -L -i -H 'Accept: text/html' https://jev.aitools.fyi/ | sed -n '1,12p'
+curl -sS -L -i -H 'Accept: text/markdown' https://jev.aitools.fyi/some-path-that-does-not-exist | sed -n '1,20p'
+```
+
+Expect `content-type: text/markdown`, `vary: Accept`, and HTTP 404 on missing paths. If you still see `cf-cache-status: HIT` HTML without `Vary`, purge CDN cache for those URLs once after the deploy.
 
 ## Submit listings
 

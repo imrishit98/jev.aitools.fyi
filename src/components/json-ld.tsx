@@ -45,10 +45,25 @@ export function websiteJsonLd() {
 }
 
 export function organizationJsonLd() {
+  const { publisherContact } = siteConfig;
   return {
     "@context": "https://schema.org",
     ...publisherOrg,
     sameAs: [siteConfig.parentBrand.url, siteConfig.githubRepo],
+    contactPoint: {
+      "@type": "ContactPoint",
+      contactType: publisherContact.contactType,
+      email: publisherContact.email,
+      availableLanguage: ["en"],
+    },
+    address: {
+      "@type": "PostalAddress",
+      streetAddress: publisherContact.address.streetAddress,
+      addressLocality: publisherContact.address.addressLocality,
+      addressRegion: publisherContact.address.addressRegion,
+      postalCode: publisherContact.address.postalCode,
+      addressCountry: publisherContact.address.addressCountry,
+    },
   };
 }
 

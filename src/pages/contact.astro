@@ -1,0 +1,49 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { contactPageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+const seo = contactPageSeo();
+const { publisherContact } = siteConfig;
+---
+
+<BaseLayout title={seo.title} description={seo.description} path="/contact">
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="font-heading text-3xl font-semibold">Contact us</h1>
+    <div class="mt-8 space-y-6 leading-relaxed text-muted-foreground">
+      <p>
+        {siteConfig.hostnameBrand} is operated by <strong class="text-foreground">{publisherContact.legalName}</strong> as part of {siteConfig.parentBrand.name}. We read every message that belongs here. If you are unsure which channel to use, email is the fastest route.
+      </p>
+      <p>
+        <strong class="text-foreground">Email:</strong>{" "}
+        <a href={`mailto:${publisherContact.email}`} class="text-accent hover:underline">{publisherContact.email}</a>
+      </p>
+      <p>
+        <strong class="text-foreground">Mailing address:</strong><br />
+        {publisherContact.legalName}<br />
+        {publisherContact.address.streetAddress}<br />
+        {publisherContact.address.addressLocality}, {publisherContact.address.addressRegion}{" "}
+        {publisherContact.address.postalCode}<br />
+        Canada
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">What to contact us about</h2>
+      <ul class="list-disc space-y-2 pl-5">
+        <li>
+          <strong class="text-foreground">Directory submissions:</strong> suggest a Jev SDK, MCP server, integration, demo, game, benchmark, or guide via <a href="/submit" class="text-accent hover:underline">/submit</a> or email if the form is not a fit.
+        </li>
+        <li>
+          <strong class="text-foreground">Corrections:</strong> broken links, wrong star counts, outdated descriptions, or a listing that should be removed. Send the URL on our site plus the fix you want.
+        </li>
+        <li>
+          <strong class="text-foreground">Publisher questions:</strong> affiliation, attribution, or how we describe TypeSafe Jev versus community projects. See also <a href="/about" class="text-accent hover:underline">/about</a> and <a href="/privacy" class="text-accent hover:underline">/privacy</a>.
+        </li>
+      </ul>
+      <p>
+        We do not offer phone support for this directory. For TypeSafe product support, use official TypeSafe channels linked from individual listings.
+      </p>
+      <p>
+        Software agents should prefer <a href="/developers" class="text-accent hover:underline">/developers</a>, <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>, and <a href="/openapi.json" class="text-accent hover:underline">/openapi.json</a> for discovery instead of scraping this page.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

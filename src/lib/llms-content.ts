@@ -49,6 +49,8 @@ export function generateLlmsTxt(): string {
     `- Guides hub: ${siteConfig.url}/guides`,
     `- Submit a listing: ${siteConfig.url}/submit`,
     `- About / disclaimer: ${siteConfig.url}/about`,
+    `- Contact: ${siteConfig.url}/contact`,
+    `- Privacy policy: ${siteConfig.url}/privacy`,
     `- Developers / agents: ${siteConfig.url}/developers`,
     `- For agents (crawl map): ${siteConfig.url}/for-agents`,
     `- Sitemap index: ${siteConfig.url}/sitemap.xml (child maps: sitemap-static.xml, sitemap-learn.xml, sitemap-guides.xml, sitemap-listings.xml)`,
