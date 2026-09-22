@@ -45,6 +45,8 @@ const moreNav = [
   { href: "/developers", label: "Agents & API" },
   { href: "/for-agents", label: "For agents" },
   { href: "/about", label: "About" },
+  { href: "/contact", label: "Contact" },
+  { href: "/privacy", label: "Privacy" },
 ] as const;
 
 function NavDrawerLink({

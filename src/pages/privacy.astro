@@ -1,0 +1,48 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { privacyPageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+
+const seo = privacyPageSeo();
+const { publisherContact } = siteConfig;
+---
+
+<BaseLayout title={seo.title} description={seo.description} path="/privacy">
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="font-heading text-3xl font-semibold">Privacy policy</h1>
+    <p class="mt-3 text-sm text-muted-foreground">Last updated: September 22, 2026</p>
+    <div class="mt-8 space-y-6 leading-relaxed text-muted-foreground">
+      <p>
+        This policy describes how {publisherContact.legalName} ("we", "us") handles information when you visit {siteConfig.hostnameBrand} ({siteConfig.url}), a curated public directory of TypeSafe Jev and System One projects.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">What we publish</h2>
+      <p>
+        The directory lists public project metadata: titles, descriptions, repository links, demo URLs, tags, and star counts when those numbers are visible on public GitHub. Submitting a listing or opening a GitHub issue may expose your username and message content on GitHub's platform under their terms.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Analytics and hosting</h2>
+      <p>
+        The site is hosted on Cloudflare. Cloudflare may process connection data (such as IP address, user agent, and requested URL) for security, performance, and optional Web Analytics if enabled in our project settings. We use that data in aggregate to understand traffic, not to sell personal profiles.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Cookies and local storage</h2>
+      <p>
+        We use a small theme preference in your browser local storage so light and dark mode persist. We do not run third-party advertising cookies on this directory.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Embedded media and outbound links</h2>
+      <p>
+        Detail pages and the showcase may embed clips or link to GitHub, X, and author sites. Those services have their own privacy policies when you leave {siteConfig.hostnameBrand}.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Agent and API traffic</h2>
+      <p>
+        Read-only endpoints such as <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>, <a href="/openapi.json" class="text-accent hover:underline">/openapi.json</a>, and <a href="/search-index.json" class="text-accent hover:underline">/search-index.json</a> return public directory data. Unknown <code class="rounded bg-muted px-1 text-foreground">/api/*</code> routes return JSON error documents without storing request bodies.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Your choices</h2>
+      <p>
+        You may use standard browser controls to block storage or analytics. To correct or remove a listing, contact us at <a href={`mailto:${publisherContact.email}`} class="text-accent hover:underline">{publisherContact.email}</a> or use <a href="/submit" class="text-accent hover:underline">/submit</a>.
+      </p>
+      <h2 class="font-heading text-xl font-semibold text-foreground">Contact</h2>
+      <p>
+        Privacy questions: <a href={`mailto:${publisherContact.email}`} class="text-accent hover:underline">{publisherContact.email}</a>. Postal mail: {publisherContact.address.streetAddress}, {publisherContact.address.addressLocality}, {publisherContact.address.addressRegion} {publisherContact.address.postalCode}, Canada. See <a href="/contact" class="text-accent hover:underline">/contact</a> for more detail.
+      </p>
+    </div>
+  </div>
+</BaseLayout>

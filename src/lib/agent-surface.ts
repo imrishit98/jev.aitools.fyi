@@ -37,6 +37,8 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 - [Agent integration guides](${SITE}/guides/jev-with-ai-agents)
 - [Submit a project](${SITE}/submit)
 - [About and disclaimer](${SITE}/about)
+- [Contact](${SITE}/contact)
+- [Privacy policy](${SITE}/privacy)
 - [Developers and agents](${SITE}/developers)
 - [For agents (HTML + Markdown)](${SITE}/for-agents)
 

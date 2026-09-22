@@ -21,6 +21,19 @@ export const siteConfig = {
     name: "aitools.fyi",
     url: "https://aitools.fyi",
   },
+  /** Southern East Inc. public contact (JSON-LD, contact page). No public phone in repo. */
+  publisherContact: {
+    legalName: "Southern East Inc.",
+    email: "support@aitools.fyi",
+    contactType: "customer support",
+    address: {
+      streetAddress: "222 Main St E",
+      addressLocality: "North Bay",
+      addressRegion: "ON",
+      postalCode: "P1B 1B1",
+      addressCountry: "CA",
+    },
+  },
   submitIssueUrl:
     "https://github.com/imrishit98/jev.aitools.fyi/issues/new",
   typesafe: {
