@@ -42,12 +42,12 @@ export function layaVsJevGuidePath(slug?: string): string {
 }
 
 export const layaVsJevHub = {
-  title: "Laya vs TypeSafe Jev",
+  title: "Laya vs Jev",
   tagline:
     "Run typed decisions on your own machine, or call hosted System One in the cloud. Same kind of question, very different homework.",
   seoTitle: "Laya vs Jev: open local decisions vs hosted System One",
   seoDescription:
-    "Compare Convai Laya (Apache 2.0 checkpoints, local inference) with TypeSafe Jev (hosted API). Latency caveats, benchmarks, Laya-MLX on Mac, migration patterns, and when to use both.",
+    "Compare Convai Laya (Apache 2.0 checkpoints, local inference) with hosted Jev (System One API). Jev vs Laya tradeoffs, latency caveats, benchmarks, Laya-MLX on Mac, migration patterns, and when to use both.",
   intro:
     "Laya is Convai's open-weight family of decision models. You ask Choice, Score, or Noul questions over structured state. One forward pass, no chat essay. TypeSafe Jev is the hosted System One API many teams already plug into agents, gateways, and moderation pipelines. Both help software make judgment calls. They differ in who hosts the GPU, what you can download, and how you pay. This hub is independent writing on jev.aitools.fyi. We are not TypeSafe or Convai. We link primary sources and say plainly when a vendor benchmark is not an independent audit.",
   faq: [
@@ -55,6 +55,11 @@ export const layaVsJevHub = {
       question: "Is Laya a drop-in replacement for Jev?",
       answer:
         "No. APIs, context limits, option budgets, calibration, and ops all differ. Laya gives you checkpoints to host. Jev is a managed POST /v1/systemone service with gateway integrations. Many teams run Laya locally for fast gates and Jev where they want hosted scale. See migration-and-coexistence.",
+    },
+    {
+      question: "Jev vs Laya: which should you use?",
+      answer:
+        "Pick Laya when you need open weights, on-prem or edge inference, and you can run GPUs. Pick hosted Jev when you want a supported API, gateway billing, and large option sets without tuning head budgets yourself. Hybrid stacks are common. Start with the comparison overview in this hub.",
     },
     {
       question: "Who makes Laya and who makes Jev?",
@@ -110,7 +115,7 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
       "Same typed primitives, different deployment. Read this before you rip out a working Jev integration on a Friday afternoon.",
     seoTitle: "Laya vs Jev comparison: access, latency, cost, privacy",
     seoDescription:
-      "Side-by-side Laya (open Apache 2.0 weights, self-host) vs TypeSafe Jev (hosted API): latency caveats, context, fine-tuning, ops, and when each fits routing and agent gates.",
+      "Side-by-side Laya (open Apache 2.0 weights, self-host) vs Jev (hosted System One API): latency caveats, context, fine-tuning, ops, and when each fits routing and agent gates.",
     keyPoint:
       "Pick Laya when you need on-prem or edge inference with open weights. Pick Jev when you want a managed System One API, gateway routing, and TypeSafe's hosted release cycle. Hybrid stacks are normal, not cheating.",
     sections: [
