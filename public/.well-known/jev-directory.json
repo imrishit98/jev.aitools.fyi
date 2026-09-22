@@ -3,8 +3,8 @@
   "alternate_name": "Jev Directory",
   "url": "https://jev.aitools.fyi",
   "description": "Independent curated directory of the TypeSafe Jev and System One ecosystem, published by aitools.fyi (Southern East Inc.).",
-  "catalog_listings": 527,
-  "detail_pages": 181,
+  "catalog_listings": 532,
+  "detail_pages": 186,
   "url_patterns": {
     "explore": "https://jev.aitools.fyi/explore",
     "detail_sdks": "https://jev.aitools.fyi/sdks/{slug}",
