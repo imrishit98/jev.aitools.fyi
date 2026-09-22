@@ -3357,4 +3357,435 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "hyperspaceai jevcache memoizes Jev decide calls with CLI recall and replay. Local key, no proxy resale, jevcache.sh docs.",
   },
 
+  "thruwire-foreman": {
+    slug: "thruwire-foreman",
+    status: "published",
+    problem:
+      "Coding agents can churn for hours while humans guess whether work is done, tests are enough, or someone should intervene.",
+    targetUser:
+      "Teams experimenting with software factory layouts where Codex or OpenCode workers implement tickets and a separate supervisor must steer without rewriting every line.",
+    overview:
+      "foreman (github.com/thruwire/foreman, thruwire.ai) is Josh Rosen's (@JoshARosen) native Python asyncio runtime for semantic supervision. Workers in the coding agent loop produce factory evidence; Foreman runs a parallel assess loop that feeds that evidence to TypeSafe Jev and reads calibrated scores across responsibility buckets: completion, verification, worker health, repository instruction drift, and human escalation. Routing then picks continue, steer, stop, retry, verify, or finish. The README frames Foreman as an architectural experiment, not a claim that it already beats every conventional harness.",
+    creator: {
+      name: "Josh Rosen",
+      handle: "JoshARosen",
+      xUrl: "https://x.com/JoshARosen/status/2100573432089866717",
+      githubUrl: "https://github.com/thruwire",
+      companyUrl: "https://thruwire.ai",
+    },
+    creatorQuote: {
+      text:
+        "Generative models work. Foreman watches the work.",
+      attributedTo: "Josh Rosen",
+      sourceUrl: "https://github.com/thruwire/foreman",
+    },
+    jevUsage: {
+      flowRole:
+        "Parallel supervision loop scoring factory responsibilities from worker evidence",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "Factory events from Codex or OpenCode runs: implementation progress, test output, requirement signals, and worker telemetry described in Foreman docs.",
+      decisionOut:
+        "Calibrated responsibility scores (for example implementation_complete, requirements_satisfied, needs_verification, worker_stuck, needs_human) that drive steering actions.",
+      flowSteps: [
+        "Worker loop: reason, tool, observe while emitting factory events",
+        "Foreman loop ingests evidence on each assess tick",
+        "Jev evaluates configured responsibilities with typed scores",
+        "Router maps responsibility pattern to continue, steer, stop, retry, verify, or finish",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Public GitHub repo thruwire/foreman had about five hundred six stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Foreman does not ask Jev to write patches. The coding agent does software engineering; Jev answers fast structured questions about whether the factory is healthy. README diagrams show responsibility groups with example probabilities (implementation_complete near 0.91 while ready_to_finish stays low until verification catches up). That is Score and Noul shaped supervision: thresholds become policy without parsing chat prose. Operators configure responsibilities and routing in repo docs (theory, runtime, steering, workers). Bring a TypeSafe key for live assess calls. Pair Foreman with ordinary agent harnesses when you want a second opinion that only watches evidence.",
+    keyFeatures: [
+      "Dual asyncio loops: coding agent plus Foreman assess",
+      "Responsibility buckets for completion, verification, health, escalation",
+      "Codex and OpenCode worker backends documented",
+      "Open Python repo and thruwire.ai product site",
+    ],
+    stack: ["Python", "asyncio", "Codex", "OpenCode", "TypeSafe System One"],
+    links: {
+      website: "https://thruwire.ai",
+      repo: "https://github.com/thruwire/foreman",
+      docs: "https://github.com/thruwire/foreman/tree/main/docs",
+      post: "https://x.com/JoshARosen/status/2100573432089866717",
+    },
+    pricingNote:
+      "Open source runtime; TypeSafe usage bills per assess call configured in your factory.",
+    firstSeen: "2026-09-17",
+    relatedSlugs: [
+      "lahfir-agent-desktop",
+      "kerpopule-hermes-jev-skills",
+      "tamaratran-fast-jev-compaction",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does Foreman replace Codex or OpenCode?",
+        answer:
+          "No. README positions workers as the implementers and Foreman as the watcher that scores responsibilities and steers the factory.",
+      },
+      {
+        question: "Which Jev primitives appear in the loop?",
+        answer:
+          "Responsibility outputs are calibrated scores over completion, verification, health, and escalation questions. Treat them as Score and Noul style gates in routing docs, not free-form chat.",
+      },
+      {
+        question: "Where is the announce thread?",
+        answer:
+          "Josh Rosen's X post at x.com/JoshARosen/status/2100573432089866717 introduces the factory foreman concept; deep wiring lives in github.com/thruwire/foreman docs.",
+      },
+    ],
+    metaTitle: "foreman: Jev supervisor for Codex and OpenCode factories",
+    metaDescription:
+      "thruwire foreman watches software factory evidence with TypeSafe Jev responsibilities, then continue, steer, verify, or escalate. Repo, thruwire.ai, and launch post.",
+  },
+
+  "dicklesworthstone-skillranker": {
+    slug: "dicklesworthstone-skillranker",
+    status: "published",
+    problem:
+      "Large skill libraries look interchangeable in prose, so agents load the wrong procedure and burn context three turns later.",
+    targetUser:
+      "Claude Code and compatible harness users who want sr to rank skills from live session context with abstention when nothing fits.",
+    overview:
+      "skillranker (github.com/Dicklesworthstone/skillranker) is Dicklesworthstone's Rust CLI (sr) built around TypeSafe Jev. It reads recent conversation, the current request, workspace signals, and the harness skill inventory, then asks Jev to compare candidates including a real none of these option. Large rosters can pre-filter with Quill from FrankenSearch before Jev runs; explicit skill requests resolve locally first. Hooks, JSON output, replay, and local feedback ship for production agents. A TypeSafe API key is mandatory: there is no bundled local model.",
+    creator: {
+      name: "Dicklesworthstone",
+      handle: "Dicklesworthstone",
+      githubUrl: "https://github.com/Dicklesworthstone",
+    },
+    jevUsage: {
+      flowRole: "Two-stage skill fit ranking with abstention over the visible inventory",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Session transcript slice, active user request, workspace metadata, and eligible skill records (full roster or Quill-narrowed shortlist per README).",
+      decisionOut:
+        "Ranked skill recommendations with none of these when Jev rejects the field; advisory output for the agent, not a forced load.",
+      flowSteps: [
+        "Establish session context and eligible skills (local resolution for explicit picks)",
+        "Optionally narrow very large libraries with Quill before Jev",
+        "Jev broad comparison then richer excerpt evaluation on a shortlist",
+        "Emit ranked skills, abstention, and inspectable JSON or hook payload",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Public GitHub repo Dicklesworthstone/skillranker had about one hundred thirteen stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "SkillRanker treats Jev as the evaluation engine, not the transport layer. Local code gathers candidates and safeguards; Jev answers which skill fits the next step and whether the set should be rejected entirely. Choice semantics cover picking among named skills plus none of these, which is how abstention stays typed instead of a hand-wavy maybe later. Score-style comparisons show up in the two-pass flow (broad compare, then deeper excerpt read). Operators run sr rank --allow-network with hooks wired in Claude Code when they want automatic nudges. Budget TypeSafe spend on busy sessions; README documents replay and local calibration tooling for when rankings drift.",
+    keyFeatures: [
+      "Rust sr CLI with JSON, hooks, and TUI surfaces",
+      "Jev comparisons include none of these abstention",
+      "Quill pre-filter for libraries above two hundred fifty four skills",
+      "Requires TypeSafe API key (no substitute provider)",
+    ],
+    stack: ["Rust", "CLI", "Claude Code hooks", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/Dicklesworthstone/skillranker",
+      docs: "https://github.com/Dicklesworthstone/skillranker#how-ranking-works",
+    },
+    pricingNote:
+      "Open source CLI; every rank call uses your TypeSafe account. Quill narrowing is local; Jev evaluations bill per README.",
+    firstSeen: "2026-09-18",
+    relatedSlugs: [
+      "kerpopule-hermes-jev-skills",
+      "kitfunso-hippo-memory",
+      "tanstack-ai-decide",
+      "juspay-neurolink",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Can SkillRanker run without TypeSafe?",
+        answer:
+          "No. README states ranking requires your own TypeSafe account and API key; local retrieval only prepares candidates.",
+      },
+      {
+        question: "What is none of these?",
+        answer:
+          "Jev can reject the whole candidate set when nothing fits, so the agent is not forced to load a plausible-but-wrong skill.",
+      },
+      {
+        question: "How do I try it offline first?",
+        answer:
+          "Run sr demo --case useful for fixtures, then sr rank --allow-network when you are ready to connect a live session.",
+      },
+    ],
+    metaTitle: "skillranker: Jev ranks agent skills with abstention",
+    metaDescription:
+      "Dicklesworthstone skillranker sr CLI uses TypeSafe Jev to rank Claude Code skills from live context, with none of these and hooks. Rust repo on Jev Directory.",
+  },
+
+  "mrnugget-jev-shell-history": {
+    slug: "mrnugget-jev-shell-history",
+    status: "published",
+    problem:
+      "Plain prefix history search suggests the most recent literal match, not the command you meant when typing fuzzy intent.",
+    targetUser:
+      "zsh users who want Fish-style grey autosuggestions ranked by Jev instead of dumb substring order.",
+    overview:
+      "jev-shell-history (github.com/mrnugget/jev-shell-history) is mrnugget's zsh plugin. On each buffer change it asynchronously runs a small Node CLI that reads up to one hundred distinct history entries, then asks TypeSafe Jev which entry you are completing. Prefix mode filters literals before the model; fuzzy mode leans on calibrated Choice and Noul gates. Accept with arrow right, Ctrl+E, or End. Latency is roughly seven tenths to nine tenths of a second per request per README, mostly API time.",
+    creator: {
+      name: "mrnugget",
+      handle: "mrnugget",
+      githubUrl: "https://github.com/mrnugget",
+    },
+    jevUsage: {
+      flowRole: "Per-keystroke history completion Choice with Noul gate for fuzzy mode",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "typed_so_far plus ID-tagged candidate commands from zsh history (prefix-filtered or full set).",
+      decisionOut:
+        "Top Choice candidate with probability score; fuzzy mode only surfaces when Noul and score thresholds pass.",
+      flowSteps: [
+        "line-pre-redraw hook starts cli.ts without blocking the prompt",
+        "Load recent distinct history; prefix mode if any entry starts with typed text",
+        "Single TypeSafe request: Choice over candidate IDs plus Noul whether any completes input",
+        "Apply JEV_THRESHOLD, JEV_MIN_SCORE, JEV_STRONG_SCORE gates; discard stale responses if buffer changed",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Roughly 0.7 to 0.9 seconds per suggestion request, mostly API latency (README).",
+          source: "github.com/mrnugget/jev-shell-history README",
+        },
+        {
+          claim:
+            "Public GitHub repo mrnugget/jev-shell-history had about one hundred one stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The plugin keeps deterministic shell rules in zsh and delegates judgment to Jev. Choice picks which history ID best continues what you typed; Noul catches cases where nothing in the set actually completes the buffer, which matters in fuzzy mode when the model might otherwise spread probability across noise. README explains why both signals exist: Noul under-fires on tiny histories where Choice is decisive, while nonsense inputs spread Choice mass but leave Noul near zero. Privacy is straightforward: candidate commands and your partial line are sent to TypeSafe on each ranked request (skip the network when a single prefix match is obvious). Configure limits and thresholds with JEV_HISTORY_LIMIT, JEV_MIN_CHARS, JEV_THRESHOLD, and friends before sourcing the plugin.",
+    keyFeatures: [
+      "Fish-style grey suggestions in zsh 5.9+",
+      "Prefix fast path without API when one literal match exists",
+      "Choice plus Noul in one request per keystroke batch",
+      "Documented env vars for thresholds and history window",
+    ],
+    stack: ["TypeScript", "zsh", "Node 22+", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/mrnugget/jev-shell-history",
+      docs: "https://github.com/mrnugget/jev-shell-history#how-it-works",
+    },
+    pricingNote:
+      "Plugin is open source; each ranked keystroke uses TypeSafe API credits. Tune JEV_MIN_CHARS and history limit to control spend.",
+    firstSeen: "2026-09-18",
+    relatedSlugs: [
+      "realzachi-pg-jev",
+      "uehaj-jev-semgrep",
+      "classifier-dev",
+      "tamaratran-jev-pruner",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-typesafe"],
+    faq: [
+      {
+        question: "Does my shell history leave my machine?",
+        answer:
+          "When Jev ranks candidates, typed text and up to JEV_HISTORY_LIMIT recent commands are sent to TypeSafe. Single obvious prefix matches can skip the API. Read README before enabling on shared machines.",
+      },
+      {
+        question: "Which primitives run per request?",
+        answer:
+          "One request with Choice over history IDs and a Noul asking whether any candidate completes the typed buffer.",
+      },
+      {
+        question: "Why are suggestions sometimes empty?",
+        answer:
+          "Fuzzy mode requires top score and Noul or strong score thresholds. Nonsense input should yield no suggestion instead of a random history line.",
+      },
+    ],
+    metaTitle: "jev-shell-history: Jev-ranked zsh autosuggestions",
+    metaDescription:
+      "mrnugget jev-shell-history uses Jev Choice and Noul on zsh history for Fish-style completions. Thresholds, privacy notes, and install docs.",
+  },
+
+  "jexp-neo4jev": {
+    slug: "jexp-neo4jev",
+    status: "published",
+    problem:
+      "Graph walks with chat models waste tokens narrating edges instead of returning a calibrated distribution over next hops.",
+    targetUser:
+      "Neo4j developers and ML engineers who want a reproducible demo of beam search navigation with one structured call per hop.",
+    overview:
+      "neo4jev (github.com/jexp/neo4jev) is Michael Hunger's (jexp) graph navigation demo using TypeSafe system_one. Each hop lists outgoing relationships as Choice options (type, properties, target labels) and asks a Noul whether the navigation goal is reached in the same call. Beam search keeps top branches ranked by sum of log probabilities to avoid float underflow. Streamlit app, notebooks, and neo4j-viz rendering target the public companies2 graph by default but introspect schema live for other instances.",
+    creator: {
+      name: "Michael Hunger",
+      handle: "jexp",
+      githubUrl: "https://github.com/jexp",
+    },
+    jevUsage: {
+      flowRole: "Single-hop navigator: Choice over edges plus goal Noul in one system_one round trip",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Current node context, capped outgoing relationship candidates from Neo4j, and GoalSpec text from the UI or notebook.",
+      decisionOut:
+        "Probability mass over next relationships plus goal-reached signal; beam search aggregates log-probs along paths.",
+      flowSteps: [
+        "Introspect labels and indexes; search a start node",
+        "Fetch outgoing relationship candidates for the active node",
+        "system_one with Choice over NavCandidate edges and Noul for goal reached",
+        "Beam search expands top branches; viz highlights chosen paths vs neighborhood",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Each hop costs exactly one system_one round trip for both Choice and Noul (README architecture).",
+          source: "github.com/jexp/neo4jev README",
+        },
+        {
+          claim:
+            "Public GitHub repo jexp/neo4jev had about eighty nine stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "neo4jev is a teaching stack for structured graph policies. Instead of prompting an LLM to ramble about Cypher, navigator.py sends typed state to system_one and reads a full distribution over legal next edges. Noul goal detection riding in the same call keeps hop cost predictable for beam search. Notebooks and Streamlit wire the same library; without TYPESAFE_API_KEY the UI shows failures verbatim and uses labeled stand-ins so pipelines still demo. That honesty matters for evals: never present synthetic probabilities as live Jev output. Point .env at your own Neo4j URI when you outgrow the Labs companies2 sandbox.",
+    keyFeatures: [
+      "Schema-agnostic Neo4j introspection",
+      "Choice plus Noul per hop in one system_one call",
+      "Beam search ranked by log probability sums",
+      "Streamlit app and Jupyter notebooks share neo4jev core",
+    ],
+    stack: ["Python", "Neo4j", "Streamlit", "typesafe-sdk", "neo4j-viz"],
+    links: {
+      repo: "https://github.com/jexp/neo4jev",
+      docs: "https://github.com/jexp/neo4jev#architecture-overview",
+      post: "https://x.com/jexp/status/2100478725393686556",
+    },
+    pricingNote:
+      "Open source demo; live hops bill TypeSafe per system_one call. Public Neo4j Labs endpoint is free to try with documented credentials.",
+    firstSeen: "2026-09-17",
+    relatedSlugs: ["classifier-dev", "mfm-jev-search", "realzachi-pg-jev", "vercel-eve"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does it work without TypeSafe credentials?",
+        answer:
+          "Code runs, but README states live system_one calls need TYPESAFE_API_KEY. Without it you see explicit stand-in answers, not fake model output.",
+      },
+      {
+        question: "Which graph does the default demo use?",
+        answer:
+          "Public Neo4j Labs companies2 database per README, with schema-agnostic code for other URIs via .env.",
+      },
+      {
+        question: "Why log probabilities for beam search?",
+        answer:
+          "README cites sum of log-probs to reduce float underflow and length bias when comparing multi-hop paths.",
+      },
+    ],
+    metaTitle: "neo4jev: Jev Choice beam search on Neo4j graphs",
+    metaDescription:
+      "jexp neo4jev navigates Neo4j one hop at a time with system_one Choice and Noul, beam search, Streamlit UI, and notebooks.",
+  },
+
+  "chetaslua-jevmeter": {
+    slug: "chetaslua-jevmeter",
+    status: "published",
+    problem:
+      "Long talking-head videos hide evasive lines in volume; viewers need sentence-level BS signals, not a vibe check after forty minutes.",
+    targetUser:
+      "Creators, researchers, and terminal-friendly editors who want open-source overlays that score every sentence with Jev and export a postable clip.",
+    overview:
+      "jevmeter (github.com/ChetasLua/jevmeter) is chetaslua's Python CLI. Whisper timestamps sentences, then parallel Jev Noul probes (per preset questions on evasion, spin, hot takes, or hype) score each line. Pillow draws 1920x1080 frames into ffmpeg for a 16:9 jevmeter.mp4 beside your source. Presets cover debates, earnings calls, podcasts, and launch hype. README badges quote about five cents for a full debate render on the battle demo thread and held-out preset accuracy claims in eval/RESULTS.md.",
+    creator: {
+      name: "chetaslua",
+      handle: "chetaslua",
+      xUrl: "https://x.com/chetaslua/status/2100602714204049588",
+      githubUrl: "https://github.com/ChetasLua",
+    },
+    creatorQuote: {
+      text:
+        "Every sentence scored. Every dodge flagged. Rendered as a 16:9 edit you can post.",
+      attributedTo: "chetaslua",
+      sourceUrl: "https://github.com/ChetasLua/jevmeter",
+    },
+    jevUsage: {
+      flowRole: "Per-sentence BS and spin scoring with parallel Noul probes after Whisper segmentation",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Sentence text, speaker context, preset rubric questions, and prior lines per README pipeline (Whisper word alignment optional with transcript file).",
+      decisionOut:
+        "Calibrated per-sentence scores driving on-screen meters and highlight edits in the rendered video.",
+      flowSteps: [
+        "Transcribe with Whisper timestamps (optional transcript alignment)",
+        "Fire parallel POST /v1/systemone Noul questions per sentence and preset",
+        "Aggregate scores for highlight or full-length edit modes",
+        "Render 1920x1080 frames via Pillow into ffmpeg output",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README badge cites about five cents for a full debate render (battle demo post).",
+          source: "github.com/ChetasLua/jevmeter README and x.com/chetaslua/status/2100473581251748216",
+        },
+        {
+          claim:
+            "Public GitHub repo ChetasLua/jevmeter had about eighty one stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevmeter is a batch media pipeline, not a chat wrapper. Whisper handles audio; Jev handles judgment. Each sentence triggers structured Noul questions drawn from the preset (evasive, dodged the question, hype, and similar flags in the wizard copy). README documents parallel Jev threads and render workers so long videos stay practical. The open-source BS meter clip on X shows the overlay in motion; this directory embeds that remote video in the showcase (referrerPolicy no-referrer so twimg playback works in Chromium). API keys live in user settings per install.sh, not in the repo. Mention the optional battle post only as cost context; the featured embed follows the open-source launch post.",
+    keyFeatures: [
+      "Terminal wizard for presets, speakers, and highlight vs full render",
+      "Whisper transcription plus parallel Jev scoring",
+      "16:9 ffmpeg output ready to post",
+      "Featured showcase clip with remote X video",
+    ],
+    stack: ["Python", "Whisper", "ffmpeg", "Pillow", "TypeSafe System One"],
+    links: {
+      repo: "https://github.com/ChetasLua/jevmeter",
+      docs: "https://github.com/ChetasLua/jevmeter#-new-here-3-steps-no-coding",
+      post: "https://x.com/chetaslua/status/2100602714204049588",
+    },
+    pricingNote:
+      "Open source; TypeSafe spend scales with sentence count and --threads. README cites micro-dollar debate totals for the sample battle.",
+    firstSeen: "2026-09-17",
+    demoIds: ["jevmeter-chetaslua"],
+    relatedSlugs: [
+      "kraayenjon-ai-slop-detector",
+      "robj3d3-superx-post-scoring",
+      "nutlope-1kpapers",
+      "virlo-ai",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Which primitive scores each sentence?",
+        answer:
+          "README pipeline uses Noul questions per preset flag via systemone, with parallel requests per sentence.",
+      },
+      {
+        question: "Do I need to commit videos to GitHub?",
+        answer:
+          "No. Run the CLI locally; this directory only hotlinks the X/Twitter mp4 for the showcase player.",
+      },
+      {
+        question: "What does the five cent badge mean?",
+        answer:
+          "It comes from the jevmeter README battle demo badge referencing the full debate render. Your cost scales with length, preset, and thread settings.",
+      },
+    ],
+    metaTitle: "jevmeter: Jev BS meter overlays for any video",
+    metaDescription:
+      "chetaslua jevmeter transcribes with Whisper, scores sentences via parallel Jev Noul probes, and renders 16:9 edits. Repo plus showcase clip.",
+  },
+
 };

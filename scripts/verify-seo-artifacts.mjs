@@ -205,6 +205,15 @@ const redirectLines = redirects
   .split("\n")
   .filter((l) => l && !l.startsWith("#"));
 const extraRedirectRules = redirectsMod.EXTRA_REDIRECT_RULES?.length ?? 1;
+const redirectFromPaths = redirectLines.map((l) => l.split(/\s+/)[0]);
+const duplicateRedirectPaths = redirectFromPaths.filter(
+  (path, index) => redirectFromPaths.indexOf(path) !== index,
+);
+if (duplicateRedirectPaths.length > 0) {
+  errors.push(
+    `_redirects duplicate source paths: ${[...new Set(duplicateRedirectPaths)].slice(0, 8).join(", ")}`,
+  );
+}
 if (redirectLines.length !== expectedCatalog + extraRedirectRules) {
   errors.push(
     `_redirects line count: expected ${expectedCatalog + extraRedirectRules}, got ${redirectLines.length}`,

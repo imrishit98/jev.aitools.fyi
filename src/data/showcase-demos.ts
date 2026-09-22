@@ -148,6 +148,18 @@ export const showcaseDemos: ShowcaseDemo[] = [
     projectUrl: "https://madewithjev.com/free-tools/ai-slop-detector",
   }),
   demo({
+    id: "jevmeter-chetaslua",
+    authorHandle: "chetaslua",
+    authorName: "chetaslua",
+    tweetUrl: "https://x.com/chetaslua/status/2100602714204049588",
+    title: "jevmeter live BS meter on any video",
+    funnyBlurb:
+      "Whisper slices the rant into sentences; parallel Noul probes light up every dodge. Sixteen by nine ffmpeg guilt you can post before the talking head finishes pivoting.",
+    homepage: true,
+    categoryTags: ["video", "applications", "demo"],
+    projectUrl: "https://github.com/ChetasLua/jevmeter",
+  }),
+  demo({
     id: "superx-post-scoring-robj3d3",
     authorHandle: "robj3d3",
     authorName: "Rob Hallam",
