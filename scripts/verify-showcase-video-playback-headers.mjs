@@ -1,6 +1,6 @@
 /**
  * Smoke test: documents why ShowcaseDemoVideo sets referrerPolicy=no-referrer.
- * Not wired into `pnpm build` — Twitter can flap; run manually after media sync.
+ * Not wired into `pnpm build`; Twitter can flap. Run manually after media sync.
  *
  *   node scripts/verify-showcase-video-playback-headers.mjs
  */
@@ -34,7 +34,7 @@ const withX = await head("https://x.com/");
 
 console.log(`Sample: ${url}`);
 console.log(`  no Referer:     ${without} (expect 200)`);
-console.log(`  jev Referer:    ${withSite} (expect 403 — hotlink block)`);
+console.log(`  jev Referer:    ${withSite} (expect 403, hotlink block)`);
 console.log(`  x.com Referer:  ${withX} (expect 200)`);
 
 if (without !== 200) {
@@ -49,4 +49,4 @@ if (withSite !== 403) {
   process.exit(0);
 }
 
-console.log("\nOK — omitting Referer (no-referrer) is required for in-site playback.");
+console.log("\nOK: omitting Referer (no-referrer) is required for in-site playback.");

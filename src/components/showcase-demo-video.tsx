@@ -9,7 +9,7 @@ import {
 } from "react";
 
 export type ShowcaseDemoVideoProps = ComponentPropsWithoutRef<"video"> & {
-  /** When true, src is video.twimg.com (or other remote X media) — never committed under public/. */
+  /** When true, src is video.twimg.com (or other remote X media); never committed under public/. */
   videoIsRemote?: boolean;
 };
 

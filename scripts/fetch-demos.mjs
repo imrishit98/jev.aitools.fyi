@@ -1,5 +1,5 @@
 /**
- * @deprecated Use sync-showcase-demo-media.mjs — showcase videos are never committed.
+ * @deprecated Use sync-showcase-demo-media.mjs; showcase videos are never committed.
  * Kept as an alias for `pnpm fetch:demos`.
  */
 import { spawn } from "node:child_process";
