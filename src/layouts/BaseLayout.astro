@@ -18,6 +18,10 @@ export interface Props {
   remoteShowcaseVideos?: boolean;
   /** Override canonical path (defaults to `path`). */
   canonicalPath?: string;
+  /** Defaults to `index, follow`. Use `noindex, follow` for error pages. */
+  robots?: string;
+  /** When false, omit `<link rel="canonical">` (error / soft-404 pages). */
+  includeCanonical?: boolean;
 }
 
 const {
@@ -29,6 +33,8 @@ const {
   jsonLd,
   remoteShowcaseVideos = false,
   canonicalPath,
+  robots = "index, follow",
+  includeCanonical = true,
 } = Astro.props;
 const canonical = absoluteUrl(canonicalPath ?? path);
 const ogImage = absoluteUrl(ogImagePath);
@@ -62,15 +68,15 @@ const cloudflareWebAnalyticsToken =
     />
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
-    <link rel="canonical" href={canonical} />
-    <meta name="robots" content="index, follow" />
+    {includeCanonical && <link rel="canonical" href={canonical} />}
+    <meta name="robots" content={robots} />
     <meta name="author" content="Rishit Patel" />
     <meta property="og:type" content={type} />
     <meta property="og:locale" content="en_US" />
     <meta property="og:site_name" content={siteConfig.hostnameBrand} />
     <meta property="og:title" content={fullTitle} />
     <meta property="og:description" content={description} />
-    <meta property="og:url" content={canonical} />
+    {includeCanonical && <meta property="og:url" content={canonical} />}
     <meta property="og:image" content={ogImage} />
     <meta property="og:image:width" content={String(OG_IMAGE_WIDTH)} />
     <meta property="og:image:height" content={String(OG_IMAGE_HEIGHT)} />

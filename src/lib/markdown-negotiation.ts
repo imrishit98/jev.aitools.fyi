@@ -4,6 +4,7 @@ import {
   notFoundMarkdownBody,
   prefersMarkdownAccept,
 } from "@/lib/agent-surface";
+import { NOINDEX_FOLLOW_ROBOTS } from "@/lib/not-found-seo";
 
 export function isHomePath(pathname: string): boolean {
   return pathname === "/" || pathname === "/index.html";
@@ -23,7 +24,10 @@ export function markdownResponseHeaders(status: number): HeadersInit {
     Vary: "Accept",
     "Cache-Control": status === 404 ? "no-store" : "public, max-age=300",
     ...(status === 404
-      ? { "CDN-Cache-Control": "no-store" }
+      ? {
+          "CDN-Cache-Control": "no-store",
+          "X-Robots-Tag": NOINDEX_FOLLOW_ROBOTS,
+        }
       : { "CDN-Cache-Control": "public, max-age=300" }),
   };
 }

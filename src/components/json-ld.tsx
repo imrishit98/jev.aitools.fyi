@@ -237,7 +237,7 @@ export function demoVideoJsonLd(demo: ShowcaseDemo) {
         ? demo.posterUrl
         : absoluteUrl(demo.posterUrl),
     embedUrl: demo.tweetUrl,
-    uploadDate: "2026-09-19",
+    uploadDate: "2026-09-19T12:00:00Z",
     author: {
       "@type": "Person",
       name: demo.authorName,

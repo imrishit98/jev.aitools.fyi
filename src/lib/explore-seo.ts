@@ -1,4 +1,5 @@
 import { categoryCanonicalFromExploreParams } from "@/lib/explore-canonical";
+import { applyNoindexFollowHeaders } from "@/lib/not-found-seo";
 import { absoluteUrl } from "@/lib/seo";
 
 export type ExploreSeoAction =
@@ -71,6 +72,7 @@ export async function tryExploreSeoResponse(
     const headers = new Headers(response.headers);
     headers.set("content-type", "text/html; charset=utf-8");
     headers.delete("content-length");
+    applyNoindexFollowHeaders(headers);
     return new Response(patched, { status: response.status, headers });
   }
 
