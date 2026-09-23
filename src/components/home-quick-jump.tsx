@@ -13,7 +13,7 @@ const categoryChips: { href: string; label: string; hint: string }[] = [
 ];
 
 /** Pass-2 segment roots for power users */
-export const segmentRoots = ITEM_DETAIL_SEGMENTS.map((s) => `/${s}/`);
+export const segmentRoots = ITEM_DETAIL_SEGMENTS.map((s) => `/${s}`);
 
 export function HomeQuickJump() {
   return (
