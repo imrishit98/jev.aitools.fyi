@@ -1,5 +1,6 @@
 import { dispatchMfmApi } from "../src/lib/mfm-jev-search/api-route";
 import type { MfmSearchEnv } from "../src/lib/mfm-jev-search/search-service";
+import { tryExploreSeoResponse } from "../src/lib/explore-seo";
 import {
   isHomePath,
   tryHomeMarkdownResponse,
@@ -24,6 +25,18 @@ export default {
     const markdownHome = tryHomeMarkdownResponse(request, url);
     if (markdownHome) {
       return markdownHome;
+    }
+
+    const exploreResponse = await tryExploreSeoResponse(request, url, () =>
+      env.SITE_ASSETS.fetch(
+        new Request(new URL("/explore", url.origin), {
+          method: request.method,
+          headers: request.headers,
+        }),
+      ),
+    );
+    if (exploreResponse) {
+      return exploreResponse;
     }
 
     const response = await env.SITE_ASSETS.fetch(request);

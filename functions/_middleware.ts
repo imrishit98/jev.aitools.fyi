@@ -1,3 +1,4 @@
+import { tryExploreSeoResponse } from "../src/lib/explore-seo";
 import {
   isHomePath,
   tryHomeMarkdownResponse,
@@ -11,6 +12,16 @@ export const onRequest: PagesFunction = async (context) => {
 
   const markdownHome = tryHomeMarkdownResponse(request, url);
   if (markdownHome) return markdownHome;
+
+  const exploreResponse = await tryExploreSeoResponse(request, url, () =>
+    next(
+      new Request(new URL("/explore", url.origin), {
+        method: request.method,
+        headers: request.headers,
+      }),
+    ),
+  );
+  if (exploreResponse) return exploreResponse;
 
   const response = await next();
 

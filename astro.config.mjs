@@ -9,6 +9,11 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 export default defineConfig({
   site: process.env.PUBLIC_SITE_URL || "https://jev.aitools.fyi",
   output: "static",
+  /** Prefer bare paths in sitemap, canonicals, and internal links (no trailing slash). */
+  trailingSlash: "never",
+  build: {
+    format: "file",
+  },
   integrations: [react()],
   vite: {
     plugins: [tailwindcss()],
