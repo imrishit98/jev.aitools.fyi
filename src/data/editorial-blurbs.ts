@@ -155,6 +155,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "AGENTS.md enforcement that finally scales: one Jev question per rule on every diff, repair messages in-band, and replay numbers that justify sub-cent checks.",
   "sdras-jev-webmcp-extension":
     "Sarah Drasner's Chrome panel turns WebMCP tool schemas into parallel Jev questions so natural language picks tools and args with confirmation policy baked in.",
+  "jev-chat-jev-chat-jarvis":
+    "Android chat co-pilot that judges intent and scam vibes before it drafts replies you still send yourself. Accessibility read only, fill the box, never auto-tap send.",
+  "sac-y-jev-cu":
+    "Codex CUA with a text-only Jev brain: pick the next AX candidate without shipping screenshots to the judge. Dry-run first; confirm before delete or pay.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
