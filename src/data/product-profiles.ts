@@ -3788,4 +3788,476 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "chetaslua jevmeter transcribes with Whisper, scores sentences via parallel Jev Noul probes, and renders 16:9 edits. Repo plus showcase clip.",
   },
 
+  "theoleecj-semif": {
+    slug: "theoleecj-semif",
+    status: "published",
+    problem:
+      "Teams want System One shaped APIs and calibrated option probabilities without routing every gate through a closed hosted model.",
+    targetUser:
+      "Researchers and hackers self-hosting open weights who need Choice, Score, and Noul style batches on hardware they control.",
+    overview:
+      "SemIf (github.com/TheoLeeCJ/SemIf, openjev.com) is Theo Lee CJ's independent decision server formerly marketed as OpenJev on the site. It reads shared state once, asks many typed questions, and returns option probabilities from open models in a single forward pass. The project explicitly disclaims affiliation with TypeSafe: same interface ideas, different weights and training. WebGPU browser demos and PyTorch/MPS paths ship in-repo for replayable evidence.",
+    creator: {
+      name: "Theo Lee CJ",
+      handle: "TheoLeeCJ",
+      githubUrl: "https://github.com/TheoLeeCJ",
+      companyUrl: "https://openjev.com",
+    },
+    jevUsage: {
+      flowRole: "Self-hosted System One compatible decision server over open model logits",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Shared text or structured state plus runtime-defined question schemas (criteria maps, rubric scores, boolean nouls) documented in SemIf harnesses.",
+      decisionOut:
+        "Per-question probability vectors read directly from logits without generating answer prose or JSON repair loops.",
+      flowSteps: [
+        "Pack state and typed questions into one model forward pass",
+        "Read option logits for each Choice, Score, or Noul head",
+        "Return calibrated-style scores (operators should run local calibration per README)",
+        "Downstream code thresholds probabilities like any System One client",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Public GitHub repo TheoLeeCJ/SemIf had about three thousand eight hundred forty four stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+        {
+          claim:
+            "README positions SemIf as reproducing the interface pattern, not TypeSafe's undisclosed model or training.",
+          source: "github.com/TheoLeeCJ/SemIf README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "SemIf is the open alternative when you want semantic ifs without TypeSafe inference bills. Agent code still writes thresholds; the server answers which branch wins, how risky a state feels, or whether evidence supports a claim. Because probabilities come from logits, you skip the usual chat completion detour. Treat scores as research baselines: README adds temperature calibration work and warns that home GPU numbers are not production SLAs. Pair SemIf with hosted classifier.dev when you want a managed fast tier beside your own hardware experiments.",
+    keyFeatures: [
+      "openjev.com browser demos plus local PyTorch and MPS scoring",
+      "Independent disclaimer and renamed SemIf branding in README",
+      "Batch many Choice, Score, and Noul questions on one state",
+      "Community bridges for additional open weight families",
+    ],
+    stack: ["Python", "PyTorch", "WebGPU demo", "Open weights", "Self-hosted inference"],
+    links: {
+      website: "https://openjev.com",
+      repo: "https://github.com/TheoLeeCJ/SemIf",
+      docs: "https://github.com/TheoLeeCJ/SemIf#semif-formerly-openjev",
+      demo: "https://openjev.com",
+    },
+    pricingNote:
+      "Open source software; you pay for GPUs, electricity, and any cloud you rent. Not a TypeSafe substitute for compliance-sensitive hosted gates.",
+    firstSeen: "2026-09-17",
+    relatedSlugs: [
+      "classifier-dev",
+      "vinnylarouge-jevlike",
+      "browser-use-jev-ultrafast",
+      "openrouter-typesafe-jev-1-13",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is SemIf the same as TypeSafe Jev?",
+        answer:
+          "No. README states SemIf is independent research that mimics the API shape with open models, not TypeSafe's closed service.",
+      },
+      {
+        question: "Can I trust the default probabilities out of the box?",
+        answer:
+          "README documents calibration passes and workload-specific temperature tuning. Run the bundled eval harnesses on your hardware before hard gates.",
+      },
+      {
+        question: "Where did the OpenJev name go?",
+        answer:
+          "The project rebranded to SemIf while keeping openjev.com as the demo home. This listing uses catalog slug theoleecj-semif.",
+      },
+    ],
+    metaTitle: "SemIf: self-hosted System One style decisions on open models",
+    metaDescription:
+      "TheoLeeCJ SemIf (openjev.com) batches Choice, Score, and Noul from open weights in one pass. Independent of TypeSafe; GitHub repo and browser demos.",
+  },
+
+  "featherless-simple-jev": {
+    slug: "featherless-simple-jev",
+    status: "published",
+    problem:
+      "Teams want Jev-shaped classifier HTTP without training a separate head or parsing model-generated JSON blobs.",
+    targetUser:
+      "ML engineers standardizing on Hugging Face weights who need a /v1/classifier surface for agents and eval scripts.",
+    overview:
+      "Simple Jev (github.com/featherless-ai/simple-jev) from Featherless AI turns compatible open models into structured decision endpoints. Clients send shared state plus typed questions; the server reads next-token logits and assembles JSON for Choice, Score, and Noul answers. The model never free-writes JSON. A public demo API at simple-jev-demo-api.featherless.ai allows two requests per second with a two thousand token context cap and no API key; production paths run on Featherless plans or your own HF server from the repo.",
+    creator: {
+      name: "Featherless AI",
+      handle: "featherless-ai",
+      githubUrl: "https://github.com/featherless-ai",
+      company: "Featherless AI",
+      companyUrl: "https://featherless.ai",
+    },
+    jevUsage: {
+      flowRole: "Hosted or self-hosted classifier API built from HF model logits",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Shared context string plus questions map with type choice, score, or noul criteria per OpenAPI examples in the repo.",
+      decisionOut:
+        "Structured JSON response with probabilities per option; assembled server-side from logits.",
+      flowSteps: [
+        "Validate request against shared common/ schemas",
+        "Run one forward pass over state and question prompts",
+        "Score each criterion token from logits",
+        "Return versioned JSON without decoding a completion",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Public GitHub repo featherless-ai/simple-jev had about four hundred eighty four stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+        {
+          claim:
+            "Demo API documents 2k token context and 2 RPS limits without authentication.",
+          source: "github.com/featherless-ai/simple-jev README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Simple Jev is the bring-your-own-weights cousin of hosted classifier.dev. Agents keep the same mental model: pack state once, fan out questions, threshold probabilities in code. Featherless hosts a playground and demo API so you can curl a Gemma classifier ID before you sync weights locally. The common/ Python package holds validation and scoring rules so alternate inference backends can share behavior. Mention OpenRouter or TypeSafe hosted routes only when you compare latency; this repo is for open HF pipelines.",
+    keyFeatures: [
+      "POST /v1/classifier compatible HTTP surface",
+      "Public no-login demo API with documented rate limits",
+      "Playground and docs at simple-jev.featherless.ai",
+      "Self-host path with Hugging Face Transformers server",
+    ],
+    stack: [
+      "Python",
+      "PyTorch",
+      "Hugging Face Transformers",
+      "Featherless inference",
+    ],
+    links: {
+      website: "https://simple-jev.featherless.ai",
+      repo: "https://github.com/featherless-ai/simple-jev",
+      docs: "https://simple-jev.featherless.ai",
+      demo: "https://simple-jev-demo-api.featherless.ai/v1/classifier",
+    },
+    pricingNote:
+      "Demo tier is free with tight limits; Featherless paid plans raise caps per featherless.ai pricing.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: [
+      "classifier-dev",
+      "tanstack-ai-decide",
+      "openrouter-typesafe-jev-1-13",
+      "vinnylarouge-jevlike",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does the model emit JSON?",
+        answer:
+          "No. README states the server constructs JSON from logits; the model does not complete a JSON string.",
+      },
+      {
+        question: "Which models work?",
+        answer:
+          "GET /v1/models on the demo API lists served classifier IDs such as featherless-ai/gemma-4-26B-A4B-classifier; self-host docs cover adding weights.",
+      },
+      {
+        question: "Is this TypeSafe hosted Jev?",
+        answer:
+          "No. Simple Jev runs open models on Featherless or your hardware. Use classifier.dev or TypeSafe keys when you want the closed jev model.",
+      },
+    ],
+    metaTitle: "Simple Jev: HF models as Choice and Score classifier APIs",
+    metaDescription:
+      "Featherless Simple Jev serves /v1/classifier from open weights with logits-built JSON. Demo API, playground, and GitHub server.",
+  },
+
+  "awlevin-typesafe-computer-use": {
+    slug: "awlevin-typesafe-computer-use",
+    status: "published",
+    problem:
+      "Screenshot-first computer use agents burn dollars and seconds on steps that are really one click from a short list.",
+    targetUser:
+      "macOS builders who want a dry-run friendly clicker with TypeSafe Jev routing and a small writer only when typing matters.",
+    overview:
+      "typesafe-computer-use (github.com/awlevin/typesafe-computer-use) is Aaron Levin's Python clicker for real desktop automation. OCR and accessibility APIs turn the screen into numbered actions; each step sends one TypeSafe Jev Choice for operation and target; TYPE_TEXT, URL proposals, and final answers delegate to a compact writer model. Default runs are dry-run; pass --act to drive mouse and keyboard. README comparison tables claim about 155x lower per-step cost and 14x to 40x faster model latency versus Claude Opus 5 on a bare screenshot for the same decision (author measured; rerun locally).",
+    creator: {
+      name: "Aaron Levin",
+      handle: "awlevin",
+      xUrl: "https://x.com/awlevin/status/2100262612428894676",
+      githubUrl: "https://github.com/awlevin",
+    },
+    creatorQuote: {
+      text:
+        "Most steps do not need a plan. They need one choice from a short list, made quickly and cheaply, with a confidence number you can gate on.",
+      attributedTo: "Aaron Levin",
+      sourceUrl: "https://github.com/awlevin/typesafe-computer-use",
+    },
+    jevUsage: {
+      flowRole: "Per-step macOS computer-use Choice over OCR and accessibility action lists",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Structured screen capture: element indices, roles, text, and deterministic date parsing helpers described in README (not raw pixels for the classifier path).",
+      decisionOut:
+        "Next operation and target index with calibrated confidence; writer model only on TYPE_TEXT or answer paths.",
+      flowSteps: [
+        "Capture screen via accessibility plus OCR into finite actions",
+        "One Jev Choice selects operation and compatible target",
+        "Execute click, scroll, or navigation directly when safe",
+        "Invoke writer model for free-text fields or final natural-language answers",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README table cites about $0.0002 per decision versus about $0.032 for Opus 5 on the same screenshot step.",
+          source: "github.com/awlevin/typesafe-computer-use README",
+        },
+        {
+          claim:
+            "README cites 0.13 to 0.38 s model latency versus 5.2 s for Opus 5 on the measured step.",
+          source: "github.com/awlevin/typesafe-computer-use README",
+        },
+        {
+          claim:
+            "Public GitHub repo awlevin/typesafe-computer-use had about eight hundred twenty eight stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Aaron's loop is the anti-screenshot pattern: deterministic parsers build state, Jev picks among finite UI actions, and only the exceptions touch a chat model. That is why related browser-use listings feel slower by comparison: they still ship pixels to frontier models every step. Dry-run mode lets you watch decisions without touching the cursor; --act is explicitly beta because real mice are scary. The showcase clip on X walks through TechCrunch ticket checkout style goals; embed uses remote twimg with referrerPolicy no-referrer like other directory videos. Do not confuse this repo with Milind's CoreML madewithjev computer-use build; this listing tracks awlevin's GitHub and Aaron's post only.",
+    keyFeatures: [
+      "clicker CLI with dry-run default and --act for live control",
+      "TypeSafe Jev every step; Anthropic writer optional for text",
+      "Documented cost and latency tables versus Opus screenshot baseline",
+      "macOS first with experimental Windows notes in README",
+    ],
+    stack: [
+      "Python",
+      "macOS accessibility",
+      "OCR",
+      "TypeSafe Jev",
+      "Anthropic writer models",
+    ],
+    links: {
+      repo: "https://github.com/awlevin/typesafe-computer-use",
+      docs: "https://github.com/awlevin/typesafe-computer-use#why",
+      post: "https://x.com/awlevin/status/2100262612428894676",
+    },
+    pricingNote:
+      "Open source; TypeSafe per-step fees plus optional writer model usage per README measurements.",
+    firstSeen: "2026-09-17",
+    demoIds: ["typesafe-computer-use-awlevin"],
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "lahfir-agent-desktop",
+      "classifier-dev",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev see screenshots?",
+        answer:
+          "The classifier path uses structured OCR and accessibility state per README. Writer models may use vision for final answers when enabled.",
+      },
+      {
+        question: "Is --act safe on day one?",
+        answer:
+          "README warns the tool is beta and drives your real mouse. Start with dry runs until thresholds look sane.",
+      },
+      {
+        question: "Where are the speedup numbers from?",
+        answer:
+          "They come from Aaron's README comparison table on the same goal and screenshot. Reproduce with the documented harness before quoting in prod decks.",
+      },
+    ],
+    metaTitle: "typesafe-computer-use: macOS Jev clicker without screenshot tax",
+    metaDescription:
+      "awlevin typesafe-computer-use uses TypeSafe Jev Choices on OCR action lists, dry-run clicker, author cost tables, and X demo clip.",
+  },
+
+  "moritzkremb-jev-voice-browser": {
+    slug: "moritzkremb-jev-voice-browser",
+    status: "published",
+    problem:
+      "Voice UIs either hallucinate actions in an LLM monologue or lag so badly that you finish the sentence before anything happens.",
+    targetUser:
+      "Hackers experimenting with headed Chromium plus Web Speech who want batched Jev gates on every partial transcript.",
+    overview:
+      "jev-voice-browser (github.com/moritzkremb/jev-voice-browser) wires Playwright, a localhost control page, and TypeSafe Jev into a voice-driven browser. Partial transcripts debounce every two hundred milliseconds; the server snapshots up to one hundred elements, then asks nine to eleven typed questions in one System One call returning in about two hundred fifty to three hundred fifty milliseconds. Policy code decides act, wait, ask, or ignore. Search queries, typed text, and URLs are candidate spans chosen by Choice and copied verbatim; Jev never generates natural language.",
+    creator: {
+      name: "Moritz Kremb",
+      handle: "moritzkremb",
+      githubUrl: "https://github.com/moritzkremb",
+    },
+    jevUsage: {
+      flowRole: "Voice debounce loop with batched intent, target, safety, and scroll Score questions",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Partial transcript text plus numbered DOM snapshot (roles, names, indices) and lightweight session context from constants.js.",
+      decisionOut:
+        "Intent operation, element target, site routing, command completeness, addressee checks, destructive flags, and scroll amount probabilities consumed by policy thresholds.",
+      flowSteps: [
+        "Web Speech streams partials over websocket to Node server",
+        "Debounce and snapshot controlled Chromium window",
+        "Single Jev request with parallel questions (intent, target, safety, scroll)",
+        "Playwright executes clicks, navigation, or scroll; destructive paths require spoken confirm",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README cites about $0.0002 per real API call and two hundred fifty to three hundred fifty ms Jev latency per debounced transcript.",
+          source: "github.com/moritzkremb/jev-voice-browser README",
+        },
+        {
+          claim:
+            "Public GitHub repo moritzkremb/jev-voice-browser had about two hundred forty four stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Voice browsers fail when you treat speech as chat completion. Moritz batches a dozen binary and Choice questions so one forward pass answers whether you meant the browser, which numbered overlay to click, and whether scroll should be a little or a lot. Ignored chit-chat stays near zero is_command probability per README table. Destructive clicks raise a confirm toast instead of trusting a single threshold. The API key never reaches the browser control page; only the Node process calls TypeSafe. No public X video was available when this batch shipped, so the product page stands on README architecture and the madewithjev build write-up linked from catalog.",
+    keyFeatures: [
+      "Headed Chromium with live probability bars on control UI",
+      "Batched Jev questions per partial transcript",
+      "Destructive action confirm flow",
+      "Text command fallback when microphone unavailable",
+    ],
+    stack: [
+      "Node.js",
+      "Playwright",
+      "Web Speech API",
+      "TypeSafe Jev jev-1.13.0",
+    ],
+    links: {
+      repo: "https://github.com/moritzkremb/jev-voice-browser",
+      docs: "https://github.com/moritzkremb/jev-voice-browser#run-it",
+      demo: "https://madewithjev.com/builds/jev-voice-browser",
+    },
+    pricingNote:
+      "Open source; README estimates fractions of a cent per Jev call with your TypeSafe key.",
+    firstSeen: "2026-09-18",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "lahfir-agent-desktop",
+      "awlevin-typesafe-computer-use",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does Jev write search queries?",
+        answer:
+          "No. README states code extracts candidate spans and Jev picks one verbatim via Choice.",
+      },
+      {
+        question: "Which browser supplies the microphone?",
+        answer:
+          "You open the control page in Chrome or Edge; Web Speech is unavailable in Firefox or Safari per README.",
+      },
+      {
+        question: "Can I attach to my own Chrome?",
+        answer:
+          "Yes. ./run.sh --cdp http://127.0.0.1:9222 attaches to an existing debugging port.",
+      },
+    ],
+    metaTitle: "jev-voice-browser: batched Jev for voice-driven Playwright",
+    metaDescription:
+      "moritzkremb jev-voice-browser debounces speech into one TypeSafe call for intent, targets, and safety before Playwright acts. GitHub README and build page.",
+  },
+
+  "romanslack-jev-drone": {
+    slug: "romanslack-jev-drone",
+    status: "published",
+    problem:
+      "Pure geometric planners stall on maneuvers like climbing when gaps do not exist, yet vision models are too slow and opaque for 500 Hz control.",
+    targetUser:
+      "Robotics curious developers evaluating advisory Jev loops on top of classical sim controllers.",
+    overview:
+      "jev-drone (github.com/RomanSlack/jev-drone) simulates a camera-only quadrotor in MuJoCo. Classical CV at fifteen hertz builds symbolic range sectors, obstacle height, and target bearing; TypeSafe Jev at about two and a half hertz advises maneuver Choice (hold_course, gap_left, gap_right, climb, brake, reacquire), risk Score, and target_truly_lost Noul when the scene fingerprint changes. A five hundred hertz geometric controller and fifty hertz safety reflex always own the sticks; code vetoes unsafe climbs. README ablation reports the no-Jev baseline never passes station two while Jev engaged clears the full course in the author's single documented run.",
+    creator: {
+      name: "Roman Slack",
+      handle: "RomanSlack",
+      githubUrl: "https://github.com/RomanSlack",
+    },
+    jevUsage: {
+      flowRole: "Low-rate tactical advisor over symbolic perception, not pixel input",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Compact JSON scene: forward range sectors, obstruction height, top-edge visibility, target bearing, and fingerprint hash from depth plus segmentation buffers.",
+      decisionOut:
+        "maneuver Choice, risk Score, and target_truly_lost Noul probabilities consumed by guidance with hard reflex overrides.",
+      flowSteps: [
+        "Eye pipeline segments depth at fifteen hertz without ground truth cheats",
+        "Fingerprint unchanged scenes reuse last Jev judgment",
+        "Batch three questions in one Jev call when tactical context shifts",
+        "Guidance merges Jev advice with geometric controller and reflex vetoes",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README ablation table: baseline without Jev stops near 17.7 m; Jev engaged run reaches 77.5 m full course with zero collisions in the cited run.",
+          source: "github.com/RomanSlack/jev-drone README",
+        },
+        {
+          claim:
+            "Typical sixty five second flight issues about one hundred ten Jev calls at 0.11 s median latency per README.",
+          source: "github.com/RomanSlack/jev-drone README",
+        },
+        {
+          claim:
+            "Public GitHub repo RomanSlack/jev-drone had about one hundred thirty one stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Roman's drone is the clean split brain story: perception and control stay in code you can unit test; Jev only answers small meaning questions when the symbolic scene changes. Without climb in the action vocabulary the greedy baseline dies at the low beam; Jev supplies the maneuver label while reflexes prevent suicide climbs. README is candid that early arenas showed no advantage and that the published Jev column is a single run, not a seed average. Try the Vercel demo for visuals; there is no hosted X clip in this batch, so the thick page leans on README figures and the interactive site.",
+    keyFeatures: [
+      "MuJoCo Skydio-style airframe with five station course",
+      "Advisory Jev at ~2.5 Hz with fingerprint caching",
+      "500 Hz controller plus 50 Hz safety reflex overrides",
+      "Web demo at jev-drone.vercel.app",
+    ],
+    stack: [
+      "Python",
+      "MuJoCo",
+      "Classical CV",
+      "TypeSafe Jev",
+      "Vercel demo frontend",
+    ],
+    links: {
+      repo: "https://github.com/RomanSlack/jev-drone",
+      docs: "https://github.com/RomanSlack/jev-drone#the-idea",
+      demo: "https://jev-drone.vercel.app",
+    },
+    pricingNote:
+      "Open source sim; live Jev calls need your TypeSafe API key during runs.",
+    firstSeen: "2026-09-17",
+    relatedSlugs: [
+      "fhshaik-typesafe-mario",
+      "browser-use-jev-ultrafast",
+      "awlevin-typesafe-computer-use",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does Jev see camera pixels?",
+        answer:
+          "No. README states Jev reads JSON scene summaries built by classical CV, not raw images.",
+      },
+      {
+        question: "Can Jev override safety reflexes?",
+        answer:
+          "No. Fifty hertz reflexes and geometric control veto unsafe maneuvers even if Jev proposes climb.",
+      },
+      {
+        question: "Are the ablation numbers averaged?",
+        answer:
+          "README warns the Jev column is one sixty five second run and earlier arenas showed variance. Treat claims as structural, not leaderboard guarantees.",
+      },
+    ],
+    metaTitle: "jev-drone: advisory Jev on MuJoCo quadrotor sim",
+    metaDescription:
+      "RomanSlack jev-drone uses TypeSafe Jev for maneuver Choice at 2.5 Hz over symbolic CV, with README ablation and jev-drone.vercel.app demo.",
+  },
+
 };
