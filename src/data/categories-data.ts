@@ -71,9 +71,9 @@ export const categories: CategoryMeta[] = [
     title: "Games and sims",
     description:
       "Doom, Mario, chess, wikiracing, and sims where Jev picks the next move.",
-    seoTitle: "Jev games and sims: Mario, chess, and live decision telemetry",
+    seoTitle: "Jev games and sims: Mario, chess, live telemetry",
     seoDescription:
-      "Playable games and research toys where each move is a typed Jev choice. Great for feeling System One latency before you wire the same primitives into billing or safety code.",
+      "Playable games and research toys where each move is a typed Jev choice. Feel System One latency before you wire it into billing or safety gates.",
     intro:
       "Proof that System One is fun at parties. Arcade games, sims, and research toys with live decision telemetry. Games make latency and probability visible turn by turn. They teach Jev faster than a whitepaper. Prefer listings with playable demos or videos so you can sanity-check responsiveness on your network.",
   },

@@ -1,0 +1,55 @@
+---
+import type { FaqEntry } from "@/data/faq";
+
+interface Props {
+  entry: FaqEntry;
+  class?: string;
+}
+
+const { entry, class: className = "" } = Astro.props;
+
+function renderSegments() {
+  const links = entry.links;
+  if (!links?.length) {
+    return [{ type: "text" as const, value: entry.answer }];
+  }
+
+  const segments: Array<
+    { type: "text"; value: string } | { type: "link"; value: string; href: string }
+  > = [];
+  let cursor = 0;
+  const text = entry.answer;
+
+  const sorted = [...links].sort(
+    (a, b) => text.indexOf(a.match) - text.indexOf(b.match),
+  );
+
+  for (const link of sorted) {
+    const idx = text.indexOf(link.match, cursor);
+    if (idx < 0) continue;
+    if (idx > cursor) {
+      segments.push({ type: "text", value: text.slice(cursor, idx) });
+    }
+    segments.push({ type: "link", value: link.match, href: link.href });
+    cursor = idx + link.match.length;
+  }
+  if (cursor < text.length) {
+    segments.push({ type: "text", value: text.slice(cursor) });
+  }
+  return segments;
+}
+
+const segments = renderSegments();
+---
+
+<p class:list={["text-base leading-relaxed text-muted-foreground", className]}>
+  {
+    segments.map((seg) =>
+      seg.type === "link" ? (
+        <a href={seg.href} class="text-primary hover:underline">{seg.value}</a>
+      ) : (
+        seg.value
+      ),
+    )
+  }
+</p>

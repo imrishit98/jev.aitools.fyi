@@ -10,6 +10,13 @@ export type ListingEnrichment = {
   slug: string;
   metaTitle?: string;
   metaDescription?: string;
+  /** Visible note above the listing body (e.g. link up to a guide). */
+  leadCallout?: {
+    beforeLink: string;
+    linkLabel: string;
+    linkHref: string;
+    afterLink: string;
+  };
   creatorHandle?: string;
   jevPrimitives?: JevPrimitive[];
   jevUsageSummary: string;
@@ -25,7 +32,14 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "anpicasso-hermes-jev-approvals",
     metaTitle: "Hermes Jev approvals: typed smart command gates",
     metaDescription:
-      "Hermes Agent plugin using TypeSafe Jev for smart shell approvals. Measured latency vs auxiliary chat LLM, six parallel questions per command, and smart_policy setup.",
+      "Hermes Agent plugin using TypeSafe Jev for smart shell approvals. Measured latency vs a chat LLM reviewer, six parallel questions per command.",
+    leadCallout: {
+      beforeLink:
+        "Want the full Hermes Agent plus Jev setup, including skill routing and MCP? Read the ",
+      linkLabel: "Hermes Agent + Jev guide",
+      linkHref: "/guides/jev-with-ai-agents/hermes",
+      afterLink: " first.",
+    },
     creatorHandle: "anpicasso",
     jevPrimitives: ["Choice", "Noul", "Score"],
     jevUsageSummary:
@@ -75,6 +89,38 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
       "caiovicentino-jev-shield",
       "jomatsu-pi-jev-auto-mode",
       "itsmostafa-typesafe-mcp",
+    ],
+  },
+
+  "cloudflare-workers-ai-typesafe-jev": {
+    slug: "cloudflare-workers-ai-typesafe-jev",
+    metaTitle: "Cloudflare Workers AI typesafe/jev model",
+    metaDescription:
+      "Cloudflare lists model id typesafe/jev for its structured evaluation model. 32k token context, env.AI.run call pattern, dashboard based pricing.",
+    jevPrimitives: ["Choice", "Score", "Noul"],
+    jevUsageSummary:
+      "Cloudflare Workers AI exposes TypeSafe's Jev model under the id typesafe/jev. From a Worker you call env.AI.run with structured state and noul, choice, or score question shapes, same System One contract as the TypeSafe API.",
+    setupNotes:
+      "Follow Cloudflare's Workers AI binding docs for model id typesafe/jev. Dollar pricing is managed in the Cloudflare dashboard rather than on the public model card.",
+    sections: [
+      {
+        heading: "When to use Workers AI vs TypeSafe direct",
+        paragraphs: [
+          "Pick this path when you already deploy on Cloudflare Workers and want Jev beside your other AI bindings without juggling a separate TypeSafe API key in every environment.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "What is Cloudflare Workers AI Jev?",
+        answer:
+          "It is TypeSafe's Jev model exposed through Cloudflare's env.AI.run binding. Same System One decisions, called from a Workers AI binding instead of a separate TypeSafe API key.",
+      },
+    ],
+    relatedSlugs: [
+      "jev-on-vercel-ai-gateway",
+      "openrouter-typesafe-jev-1-13",
+      "pypi-jev-cli",
     ],
   },
 
