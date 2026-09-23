@@ -922,6 +922,54 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["browser-computer-use", "browser-use", "demo"],
     projectUrl: "https://github.com/awlevin/typesafe-computer-use",
   }),
+  demo({
+    id: "drape-virtual-try-on-nailthy62",
+    authorHandle: "nailthy62",
+    authorName: "Nailthy Tang",
+    tweetUrl: "https://x.com/nailthy62/status/2101388186916454439",
+    title: "Drape realtime virtual try-on",
+    funnyBlurb:
+      "You narrate the outfit like a podcast host; Jev hears the transcript, checks what you are already wearing, and yeets the next look onto camera before your coffee cools.",
+    homepage: false,
+    categoryTags: ["applications", "fashion", "demo"],
+    projectUrl: "https://weardrape.app",
+  }),
+  demo({
+    id: "youtube-sponsor-skipper-tdinh",
+    authorHandle: "tdinh_me",
+    authorName: "Tony Dinh",
+    tweetUrl: "https://x.com/tdinh_me/status/2100793777103466615",
+    title: "YouTube sponsor segment skipper",
+    funnyBlurb:
+      "Optional ears on the tab, Jev spots the this video is sponsored pivot, and the player jumps past the coupon code monologue. BYOK, pennies per binge.",
+    homepage: false,
+    categoryTags: ["applications", "chrome-extension", "demo"],
+    projectUrl: "https://github.com/trungdq88/youtube-sponsor-detection",
+  }),
+  demo({
+    id: "internal-links-iannuttall",
+    authorHandle: "iannuttall",
+    authorName: "Ian Nuttall",
+    tweetUrl: "https://x.com/iannuttall/status/2102443273339994558",
+    title: "Internal linking with Jev classification",
+    funnyBlurb:
+      "Five hundred pages, zero spreadsheet trauma. Jev labels the site map and picks which posts should shake hands, then exports CSV your coding agent can actually read.",
+    homepage: false,
+    categoryTags: ["applications", "seo", "demo"],
+    projectUrl: "https://ian.is/tools/internal-links",
+  }),
+  demo({
+    id: "jevpilot-jpschroeder",
+    authorHandle: "jpschroeder",
+    authorName: "Justin Schroeder",
+    tweetUrl: "https://x.com/jpschroeder/status/2100347770867458384",
+    title: "JevPilot FSD-style driving sim",
+    funnyBlurb:
+      "No pixel soup: tables of legal steering arcs, Jev picks a lane like a calm copilot, and the safety brake still owns your dignity near traffic.",
+    homepage: false,
+    categoryTags: ["games", "simulation", "demo"],
+    projectUrl: "https://jevpilot.standardagents.ai",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/sync-showcase-demo-media.mjs (not used at runtime). */

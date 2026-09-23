@@ -4260,4 +4260,454 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "RomanSlack jev-drone uses TypeSafe Jev for maneuver Choice at 2.5 Hz over symbolic CV, with README ablation and jev-drone.vercel.app demo.",
   },
 
+  "superagents-lab-jev-search": {
+    slug: "superagents-lab-jev-search",
+    status: "published",
+    problem:
+      "Agent search demos either hallucinate answers or ship a single hard-coded Google query. Builders want ranked evidence with explicit source planning.",
+    targetUser:
+      "Engineers self-hosting Cloudflare Workers search who want Jev to plan queries and score hits without a chat summarizer on top.",
+    overview:
+      "jev-search (github.com/superagents-lab/jev-search) is an MIT TypeScript worker that accepts plain-language questions, lets Jev choose providers, time ranges, and keyword variants, calls Search1API for raw results, then Jev Scores relevance before returning links and snippets only. Try the hosted UI at jev.s1.dev or deploy the worker with your keys.",
+    creator: {
+      name: "Superagents Lab",
+      handle: "superagents-lab",
+      githubUrl: "https://github.com/superagents-lab",
+      company: "Superagents Lab",
+      companyUrl: "https://github.com/superagents-lab",
+    },
+    jevUsage: {
+      flowRole: "Query planning and per-hit relevance ranking over Search1API results",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "User question text, configured provider list, and candidate search parameters (sources, recency windows, query variants).",
+      decisionOut:
+        "Planned fetch plan (which sources and terms to run) plus per-result relevance scores that gate what surfaces in the UI.",
+      flowSteps: [
+        "User submits natural language query at jev.s1.dev or the worker API",
+        "Jev Choice selects sources, time filters, and query reformulations",
+        "Search1API returns raw hits without generated prose",
+        "Jev Score ranks snippets; UI shows links and excerpts only",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Public GitHub repo superagents-lab/jev-search had about four hundred twenty seven stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-search treats Jev as a planner and reranker, not an answer bot. The worker keeps HTTP boundaries crisp: one planning pass decides how to spend Search1API quota, then structured scoring trims noise before anything renders. That matches the directory pattern of typed gates instead of free-form chat. There is no public X launch clip tied to this repo in this batch, so the thick page leans on README architecture and the live demo. If you need channel-scoped search with caption jumps, compare the My First Million demo listing; jev-search is general web retrieval.",
+    keyFeatures: [
+      "MIT Cloudflare Workers deployment path",
+      "Search1API integration with BYOK configuration",
+      "No generated answer layer in the default UX",
+      "Hosted demo at jev.s1.dev",
+    ],
+    stack: [
+      "TypeScript",
+      "Cloudflare Workers",
+      "Search1API",
+      "TypeSafe Jev",
+    ],
+    links: {
+      repo: "https://github.com/superagents-lab/jev-search",
+      docs: "https://github.com/superagents-lab/jev-search#readme",
+      demo: "https://jev.s1.dev",
+    },
+    pricingNote:
+      "Open source worker; Search1API and TypeSafe usage bill to your keys on self-hosted runs.",
+    firstSeen: "2026-09-18",
+    relatedSlugs: [
+      "mfm-jev-search",
+      "classifier-dev",
+      "tanstack-ai-decide",
+      "vercel-eve",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does jev-search write summaries?",
+        answer:
+          "The product positioning is links plus snippets ranked by Jev. It is not a chat completion wrapper over search results.",
+      },
+      {
+        question: "Can I self-host?",
+        answer:
+          "Yes. README documents Cloudflare Workers deployment with your Search1API and TypeSafe credentials.",
+      },
+      {
+        question: "How is this different from the My First Million demo?",
+        answer:
+          "mfm-jev-search scopes retrieval to one YouTube catalog with hybrid recall. jev-search targets general web search planning via Search1API.",
+      },
+    ],
+    metaTitle: "jev-search: Jev-planned web search on Cloudflare Workers",
+    metaDescription:
+      "superagents-lab jev-search uses TypeSafe Jev to plan Search1API queries and score snippets without generated answers. MIT repo and jev.s1.dev demo.",
+  },
+
+  "nailthy62-drape-virtual-try-on": {
+    slug: "nailthy62-drape-virtual-try-on",
+    status: "published",
+    problem:
+      "Fashion try-on demos choke when every outfit change needs a slow generative rerender instead of a fast discrete closet pick.",
+    targetUser:
+      "Creators experimenting with realtime wardrobe UX for Drape and similar virtual try-on products.",
+    overview:
+      "Nailthy Tang's Drape experiment streams your voice, tracks what you are wearing, and lets Jev pick the next garment from a finite closet list so the preview updates live on camera. She cites about $0.0011 per decision and about 620 ms per swap on X. Product home is weardrape.app; the madewithjev build page documents the loop.",
+    creator: {
+      name: "Nailthy Tang",
+      handle: "nailthy62",
+      xUrl: "https://x.com/nailthy62",
+      company: "Drape",
+      companyUrl: "https://weardrape.app",
+    },
+    jevUsage: {
+      flowRole: "Realtime wardrobe Choice from transcript plus current outfit state",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Live speech transcript, detected or labeled current outfit pieces, and enumerated closet SKUs the renderer can swap.",
+      decisionOut:
+        "Next garment Choice (and supporting relevance scores) consumed by the try-on pipeline without free-form styling prose.",
+      flowSteps: [
+        "User talks through preferences while the camera feed runs",
+        "ASR transcript and outfit tags land in structured state",
+        "Jev Choice selects the next closet item that matches the request",
+        "Renderer swaps the outfit on the live preview",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Author post cites about $0.0011 per decision and about 620 ms per decision on the public X clip.",
+          source: "x.com/nailthy62/status/2101388186916454439",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is a closet-picker loop, not open-ended image generation every frame. Speech becomes text; the current look is already structured; Jev only answers which SKU comes next from a list the renderer understands. That keeps latency in the sub-second band Nailthy quoted on X. The directory embeds her launch video via remote twimg with referrerPolicy no-referrer like other showcase cards. Treat the experiment as a product pattern for Drape rather than a standalone open repo in this listing.",
+    keyFeatures: [
+      "Voice-driven outfit changes on a live feed",
+      "Finite closet Choice instead of unbounded generative edits",
+      "Author cost and latency figures on the X post",
+      "Linked from madewithjev.com/builds/drape-virtual-try-on",
+    ],
+    stack: [
+      "TypeSafe Jev",
+      "Speech to text",
+      "Realtime try-on renderer",
+      "Drape product stack",
+    ],
+    links: {
+      website: "https://weardrape.app",
+      post: "https://x.com/nailthy62/status/2101388186916454439",
+      demo: "https://madewithjev.com/builds/drape-virtual-try-on",
+    },
+    pricingNote:
+      "Experiment metrics from the author post; production Drape pricing lives on weardrape.app.",
+    firstSeen: "2026-09-19",
+    demoIds: ["drape-virtual-try-on-nailthy62"],
+    relatedSlugs: ["ploy-ai", "hypit-ai", "stealads-ai"],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Is there a public GitHub repo for this clip?",
+        answer:
+          "This listing tracks the Drape experiment and X proof. Follow weardrape.app for the product; no separate repo slug is claimed here.",
+      },
+      {
+        question: "Does Jev generate new clothing pixels?",
+        answer:
+          "The described loop picks among existing closet items the renderer can swap, keeping decisions typed and fast.",
+      },
+      {
+        question: "Where do the cost numbers come from?",
+        answer:
+          "They are author-reported on the X post embedded in the showcase. Re-measure on your own stack before quoting in decks.",
+      },
+    ],
+    metaTitle: "Drape virtual try-on: Jev closet picks in realtime",
+    metaDescription:
+      "Nailthy Tang Drape experiment uses TypeSafe Jev to read speech and current outfit state, then Choice-pick the next look in about 620 ms. X demo clip.",
+  },
+
+  "trungdq88-youtube-sponsor-detection": {
+    slug: "trungdq88-youtube-sponsor-detection",
+    status: "published",
+    problem:
+      "Sponsor segments waste viewer time and simple keyword skips miss nuanced transitions or fire on the wrong cue.",
+    targetUser:
+      "Chrome users who want a BYOK extension that listens for sponsor pivots and jumps the playhead without a cloud DVR service.",
+    overview:
+      "youtube-sponsor-detection (github.com/trungdq88/youtube-sponsor-detection) is Tony Dinh's open JavaScript extension. Optional live audio and captions feed Jev a sponsor-segment classification; when confidence crosses threshold the player skips forward. The author cites about $0.005 per video on X. MIT repo plus madewithjev build notes.",
+    creator: {
+      name: "Tony Dinh",
+      handle: "tdinh_me",
+      xUrl: "https://x.com/tdinh_me",
+      githubUrl: "https://github.com/trungdq88",
+    },
+    jevUsage: {
+      flowRole: "Realtime sponsor segment detection gate on streaming transcript or audio cues",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Rolling transcript or audio-derived text from the active YouTube tab plus lightweight player state.",
+      decisionOut:
+        "Sponsor-segment probability that triggers an automatic skip command when above threshold.",
+      flowSteps: [
+        "Extension attaches to the YouTube player with user consent",
+        "Audio or captions stream into chunked text state",
+        "Jev evaluates sponsor-segment questions on a timer",
+        "Player seeks past the segment when the gate fires",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Author post cites about $0.005 per video for the prototype with BYOK.",
+          source: "x.com/tdinh_me/status/2100793777103466615",
+        },
+        {
+          claim:
+            "Public GitHub repo trungdq88/youtube-sponsor-detection had about ninety four stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Tony's extension is a listening loop, not a batch summarizer. Chunks of transcript arrive while you watch; Jev answers a tight sponsor question instead of rewriting the video. That keeps cost in the fractional cent band he quoted. Skips are client-side player commands, so latency depends on how often you poll and how aggressive thresholds are. The showcase clip on X shows the behavior; embed uses remote twimg like other directory videos. Prototype status means expect rough edges before you ship it to non-technical friends.",
+    keyFeatures: [
+      "Chrome extension with optional live audio path",
+      "BYOK TypeSafe configuration",
+      "Automatic playhead skip on sponsor detection",
+      "Open source MIT JavaScript",
+    ],
+    stack: [
+      "JavaScript",
+      "Chrome extension APIs",
+      "YouTube player hooks",
+      "TypeSafe Jev",
+    ],
+    links: {
+      repo: "https://github.com/trungdq88/youtube-sponsor-detection",
+      docs: "https://github.com/trungdq88/youtube-sponsor-detection#readme",
+      post: "https://x.com/tdinh_me/status/2100793777103466615",
+      demo: "https://madewithjev.com/builds/youtube-sponsor-skipper",
+    },
+    pricingNote:
+      "BYOK; author cites about half a cent per video on the launch post.",
+    firstSeen: "2026-09-17",
+    demoIds: ["youtube-sponsor-skipper-tdinh"],
+    relatedSlugs: [
+      "kraayenjon-ai-slop-detector",
+      "classifier-dev",
+      "moritzkremb-jev-voice-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does it upload audio to a custom backend?",
+        answer:
+          "The prototype is BYOK to TypeSafe per repo and author post. Read the extension permissions before installing.",
+      },
+      {
+        question: "Will it skip non-sponsor CTAs?",
+        answer:
+          "Threshold tuning matters. Treat detections as probabilistic gates, not legal sponsorship disclosures.",
+      },
+      {
+        question: "Is this an official YouTube feature?",
+        answer:
+          "No. It is a third-party open source experiment from Tony Dinh, unrelated to Google.",
+      },
+    ],
+    metaTitle: "YouTube sponsor skipper: Jev detects paid segments",
+    metaDescription:
+      "trungdq88 youtube-sponsor-detection Chrome extension uses TypeSafe Jev on live captions or audio to skip sponsor blocks. MIT repo and X demo.",
+  },
+
+  "iannuttall-internal-links": {
+    slug: "iannuttall-internal-links",
+    status: "published",
+    problem:
+      "Internal linking audits devolve into spreadsheets no one updates, while blind LLM suggestions invent URLs that do not exist.",
+    targetUser:
+      "SEO-minded site owners and agent builders who want structured link recommendations for up to five hundred pages.",
+    overview:
+      "Ian Nuttall's free tool at ian.is/tools/internal-links crawls your site, uses Jev to classify pages and select sensible link pairs, then exports CSV or JSON for an LLM or editor to implement. Bring your own key or pay one dollar to run on Ian's TypeSafe credit. Launch clip on X walks through the export flow.",
+    creator: {
+      name: "Ian Nuttall",
+      handle: "iannuttall",
+      xUrl: "https://x.com/iannuttall",
+      companyUrl: "https://ian.is",
+    },
+    jevUsage: {
+      flowRole: "Page classification and pairwise internal link Choice across crawled URLs",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Crawl graph of up to five hundred URLs with titles, headings, and short text extracts per page.",
+      decisionOut:
+        "Typed labels per page plus selected source-to-target link pairs with scores suitable for CSV or JSON export.",
+      flowSteps: [
+        "User submits a site root and authentication options",
+        "Crawler collects page text up to the five hundred page cap",
+        "Jev classifies each page and scores candidate link pairs",
+        "Exporter writes CSV or JSON for downstream implementation",
+      ],
+      sourcedMetrics: [
+        {
+          claim: "Tool supports up to five hundred pages per run per author post.",
+          source: "x.com/iannuttall/status/2102443273339994558",
+        },
+        {
+          claim: "Pricing is BYOK or one dollar to use Ian's key per the launch post.",
+          source: "x.com/iannuttall/status/2102443273339994558",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Ian keeps humans or coding agents in the loop: Jev does the judgment-heavy pairing work, but the artifact is a file you can diff, not mystery HTML injected live. Classification questions keep page types explicit so you do not link a pricing page into every blog footer by accident. The dollar tier is for folks who do not want to paste a TypeSafe key on day one. Showcase video is the X clip referenced on madewithjev.com/builds/internal-link-tool; playback uses the same remote twimg pattern as other listings.",
+    keyFeatures: [
+      "Up to five hundred pages per crawl",
+      "CSV and JSON export for agent implementers",
+      "BYOK or one dollar hosted key option",
+      "Live tool at ian.is/tools/internal-links",
+    ],
+    stack: [
+      "Web crawler",
+      "TypeSafe Jev",
+      "CSV and JSON exporters",
+    ],
+    links: {
+      website: "https://ian.is/tools/internal-links",
+      demo: "https://ian.is/tools/internal-links",
+      post: "https://x.com/iannuttall/status/2102443273339994558",
+    },
+    pricingNote:
+      "BYOK free path or one dollar per run on Ian's key per launch post.",
+    firstSeen: "2026-09-22",
+    demoIds: ["internal-links-iannuttall"],
+    relatedSlugs: ["dub-co", "ploy-ai", "stealads-ai"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Does the tool edit my site automatically?",
+        answer:
+          "No. It exports recommendations you or an LLM implement in your CMS or codebase.",
+      },
+      {
+        question: "What happens above five hundred pages?",
+        answer:
+          "The author caps runs at five hundred pages per the launch materials. Split large sites or crawl sections separately.",
+      },
+      {
+        question: "Do I need an API key?",
+        answer:
+          "You can bring your own TypeSafe key or pay one dollar to use Ian's for that run.",
+      },
+    ],
+    metaTitle: "Internal links tool: Jev classifies and pairs site pages",
+    metaDescription:
+      "Ian Nuttall internal linking tool uses TypeSafe Jev on up to 500 crawled pages, exporting CSV or JSON link plans. BYOK or $1. X demo.",
+  },
+
+  "standardagents-jevpilot": {
+    slug: "standardagents-jevpilot",
+    status: "published",
+    problem:
+      "Driving agents that read pixels burn budget and latency, while toy sims ignore safety when models get creative near traffic.",
+    targetUser:
+      "Game and robotics curious developers who want a Three.js sandbox where Jev steers from symbolic path tables.",
+    overview:
+      "JevPilot (github.com/standardagents/jevpilot) is Justin Schroeder's browser driving game inspired by Tesla FSD visuals. Geometry, collision checks, and a hard safety brake stay in TypeScript; Jev reads compact candidate steering and speed paths, not camera frames, and answers up to about four times per second near traffic. Play at jevpilot.standardagents.ai with server-metered credit, or clone the MIT repo.",
+    creator: {
+      name: "Justin Schroeder",
+      handle: "jpschroeder",
+      xUrl: "https://x.com/jpschroeder",
+      githubUrl: "https://github.com/jpschroeder",
+      company: "Standard Agents",
+      companyUrl: "https://standardagents.ai",
+    },
+    jevUsage: {
+      flowRole: "High-frequency path Choice among filtered steering and speed candidates",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Symbolic road boundaries, nearby traffic summaries, signal state, destination bearing, and tables of eligible maneuver candidates.",
+      decisionOut:
+        "Selected path index consumed by the sim loop; single-candidate cases resolve locally without an API call.",
+      flowSteps: [
+        "Simulator samples steering and speed combinations each tick",
+        "Code filters candidates that leave the road or collide",
+        "Jev Choice picks among remaining paths (up to ~4 Hz near traffic)",
+        "Safety brake overrides imminent collisions regardless of model output",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Author materials cite up to about four decisions per second near traffic and about 1.5 Hz on clear roads.",
+          source: "madewithjev.com/builds/jevpilot and x.com/jpschroeder/status/2100347770867458384",
+        },
+        {
+          claim:
+            "Hosted demo meters about $0.25 of Jev credit server-side so API keys never reach the browser.",
+          source: "madewithjev.com/builds/jevpilot",
+        },
+        {
+          claim:
+            "Public GitHub repo standardagents/jevpilot had about one hundred seventy nine stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Justin rebuilt the vibe of FSD as a teaching toy: the renderer is Three.js eye candy, but the agent loop is classic robotics factoring. Candidate paths are rows in a table; illegal rows never reach Jev; obvious singletons short-circuit locally. That is why the sim can breathe four decisions a second without sending pixels to a vision model. Press J to toggle autopilot in the hosted build. Credit metering on standardagents.ai keeps keys off the client, which matters when you hand the link to a classroom. The X clip is embedded here via remote twimg; README and build page carry the longer architecture narrative.",
+    keyFeatures: [
+      "Three.js driving sim with autopilot toggle",
+      "Symbolic path tables instead of pixel inputs",
+      "Code-level safety brake on imminent collisions",
+      "Hosted demo with server-side credit metering",
+    ],
+    stack: [
+      "TypeScript",
+      "Three.js",
+      "TypeSafe Jev",
+      "Standard Agents auth for hosted demo",
+    ],
+    links: {
+      repo: "https://github.com/standardagents/jevpilot",
+      docs: "https://github.com/standardagents/jevpilot#readme",
+      demo: "https://jevpilot.standardagents.ai",
+      post: "https://x.com/jpschroeder/status/2100347770867458384",
+    },
+    pricingNote:
+      "Open source repo; hosted demo includes about $0.25 metered Jev credit per build page notes.",
+    firstSeen: "2026-09-16",
+    demoIds: ["jevpilot-jpschroeder"],
+    relatedSlugs: [
+      "romanslack-jev-drone",
+      "fhshaik-typesafe-mario",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does Jev see the canvas pixels?",
+        answer:
+          "No. Public materials describe compact tables of candidate paths and traffic summaries, not screenshots.",
+      },
+      {
+        question: "Can the model override the safety brake?",
+        answer:
+          "Imminent collision handling is coded separately from Jev outputs per the build write-up.",
+      },
+      {
+        question: "Is this a Tesla product?",
+        answer:
+          "No. It is an open source homage and teaching sim from Standard Agents, unaffiliated with Tesla.",
+      },
+    ],
+    metaTitle: "JevPilot: symbolic path Choice in a Three.js driving sim",
+    metaDescription:
+      "standardagents JevPilot uses TypeSafe Jev on filtered steering tables in a Three.js FSD-style game. GitHub, hosted demo, and X clip.",
+  },
+
 };
