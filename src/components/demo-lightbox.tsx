@@ -63,12 +63,13 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
     <Dialog open={open} onOpenChange={onOpenChange}>
       <DialogContent
         className={cn(
-          "flex max-h-[min(85vh,720px)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl",
+          "flex max-h-[min(90vh,760px)] flex-col gap-0 overflow-hidden p-0 sm:max-w-3xl",
         )}
         showCloseButton
+        closeButtonClassName="z-10 bg-white/95 text-neutral-950 shadow-md backdrop-blur-sm hover:bg-white"
         aria-describedby={`demo-lightbox-desc-${demo.id}`}
       >
-        <div className="relative aspect-video w-full shrink-0 bg-black">
+        <div className="relative min-h-0 w-full flex-1 bg-black">
           {showVideo ? (
             <>
               <ShowcaseDemoVideo
@@ -106,7 +107,7 @@ export function DemoLightbox({ demo, open, onOpenChange }: DemoLightboxProps) {
             />
           )}
         </div>
-        <DialogHeader className="gap-3 border-t border-border p-4 sm:p-5">
+        <DialogHeader className="max-h-[45vh] shrink-0 gap-3 overflow-y-auto border-t border-border p-4 pb-[max(1.25rem,env(safe-area-inset-bottom))] sm:p-5 sm:pb-[max(1.5rem,env(safe-area-inset-bottom))]">
           <div className="flex flex-wrap items-center gap-2 text-xs text-muted-foreground">
             <span className="font-medium text-foreground">{demo.authorName}</span>
             <span aria-hidden>·</span>
