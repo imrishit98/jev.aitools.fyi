@@ -145,6 +145,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Hermes gets a thriftier brain: Jev routes models, filters memory, compacts transcripts, picks skills, and chooses GUI steps. Not the Claude-only compaction plugin; the full skill drawer.",
   "socialwithaayan-ten-jev-repos":
     "Muhammad Aayan ranked ten GitHub repos that actually use Jev on the hot path. We mirrored the list with directory deep links so you stop screenshotting star counts into Discord.",
+  "tianyucodings-nanojev":
+    "A tiny Qwen3 checkpoint that actually trains parallel Choice and Score heads on public game data, with side-by-side replays against TypeSafe Jev on ViZDoom and maze tasks.",
+  "bespokelabsai-nimble":
+    "Bespoke Labs open-sourced the whole Nimble stack: contrastive curation, LoRA on answer tokens, and local 9B serving when you want schema-shaped decisions without a hosted gate.",
+  "miuuyy-astra-ares":
+    "Experimental Codex patch where Jev dials GPT-6 reasoning effort mid-session and leases how many generations stay at that depth before asking again.",
+  "coldteadotai-abide":
+    "AGENTS.md enforcement that finally scales: one Jev question per rule on every diff, repair messages in-band, and replay numbers that justify sub-cent checks.",
+  "sdras-jev-webmcp-extension":
+    "Sarah Drasner's Chrome panel turns WebMCP tool schemas into parallel Jev questions so natural language picks tools and args with confirmation policy baked in.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

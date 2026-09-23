@@ -4710,4 +4710,493 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "standardagents JevPilot uses TypeSafe Jev on filtered steering tables in a Three.js FSD-style game. GitHub, hosted demo, and X clip.",
   },
 
+  "tianyucodings-nanojev": {
+    slug: "tianyucodings-nanojev",
+    status: "published",
+    problem:
+      "Researchers want System One shaped decision heads on tiny backbones without paying hosted inference or decoding answer tokens from a chat model.",
+    targetUser:
+      "ML engineers reproducing parallel Choice, boolean, and Score heads who need a unified checkpoint, public dataset, and replayable game harnesses.",
+    overview:
+      "NanoJev (github.com/TianyuCodings/NanoJev) is Tianyu Codings' 0.6B Qwen3 backbone with shared decision heads for dynamic Choice (2 to 255 candidates), boolean propositions, and ordered Score levels. Each request supplies state, question, and candidates; one forward pass returns full probability vectors with zero output-token decoding. The unified-games-v1 Hugging Face release trains Maze, Snake, ViZDoom Basic, and ViZDoom Predict Position together; README tables compare held-out success rates against TypeSafe Jev and untuned Qwen3-0.6B on the same controllers. Public side-by-side replays and ViZDoom players live on nanojev-dev.tianyuchen99.chatgpt.site; model C-Tianyu/NanoJev and dataset C-Tianyu/NanoJev-Data pin revision unified-games-v1.",
+    creator: {
+      name: "Tianyu Codings",
+      handle: "TianyuCodings",
+      githubUrl: "https://github.com/TianyuCodings",
+    },
+    jevUsage: {
+      flowRole:
+        "Parallel game and simulation decisions from a single small checkpoint with shared Choice, boolean, and Score heads",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Per-step game observations encoded as text state plus runtime-defined questions and candidate action paths documented in NanoJev harnesses and dataset rows.",
+      decisionOut:
+        "Softmax over supplied candidates for Choice, sigmoid probability for boolean items, and weighted level distribution for Score without generating answer tokens.",
+      flowSteps: [
+        "Encode candidate paths through the Qwen3-0.6B backbone",
+        "Apply shared decision heads for each question type in the batch",
+        "Return probabilities for epsilon-greedy or argmax controllers",
+        "Replay trajectories through independent simulators for evaluation",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README reports NanoJev 128/128 ViZDoom Basic test successes versus 56/128 for TypeSafe Jev on the matched harness.",
+          source: "github.com/TianyuCodings/NanoJev README",
+        },
+        {
+          claim:
+            "Unified dataset ships 18,760 decision questions per target variant including 16,333 ViZDoom questions.",
+          source: "github.com/TianyuCodings/NanoJev README",
+        },
+        {
+          claim:
+            "Public GitHub repo TianyuCodings/NanoJev had about two thousand one hundred eight stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "NanoJev is an open weight replica path, not a hosted classifier.dev substitute. Where SemIf targets general System One HTTP on models you pick, and Simple Jev wraps HF logits behind /v1/classifier, NanoJev trains decision heads directly on game-scale data and publishes the full pipeline plus HF weights. Agent builders can still steal the interface lesson: pack state once, ask many typed questions, threshold probabilities in code. Game demos are evidence that 0.6B parallel heads can beat untuned backbones and match or exceed published Jev scores on specific ViZDoom splits; treat leaderboard cells as research baselines until you rerun scripts locally.",
+    keyFeatures: [
+      "Unified-games-v1 checkpoint across four game tasks",
+      "Hugging Face model and dataset with documented training mix weights",
+      "Browser replays comparing NanoJev, TypeSafe Jev, and untuned Qwen",
+      "End-to-end training and evaluation docs for Predict Position",
+    ],
+    stack: [
+      "Python",
+      "PyTorch",
+      "Qwen3-0.6B",
+      "Hugging Face Hub",
+      "ViZDoom",
+    ],
+    links: {
+      repo: "https://github.com/TianyuCodings/NanoJev",
+      docs: "https://github.com/TianyuCodings/NanoJev#quick-start",
+      demo: "https://nanojev-dev.tianyuchen99.chatgpt.site/?autoplay=1",
+      website: "https://huggingface.co/C-Tianyu/NanoJev",
+    },
+    pricingNote:
+      "MIT licensed open source; you pay for GPUs, Hugging Face bandwidth, and any cloud you rent for training or inference.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "theoleecj-semif",
+      "featherless-simple-jev",
+      "vinnylarouge-jevlike",
+      "fhshaik-typesafe-mario",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is NanoJev the same as TypeSafe Jev?",
+        answer:
+          "No. It is an independent 0.6B research replica with public weights and game benchmarks. TypeSafe Jev remains the closed hosted System One model.",
+      },
+      {
+        question: "How does it differ from SemIf or Simple Jev?",
+        answer:
+          "SemIf serves general open models with a System One shaped server. Simple Jev builds classifier HTTP from HF logits. NanoJev fine-tunes dedicated decision heads on a unified games dataset and publishes the training recipe.",
+      },
+      {
+        question: "Which Hugging Face revision should I download?",
+        answer:
+          "Use revision unified-games-v1 on C-Tianyu/NanoJev and C-Tianyu/NanoJev-Data so weights and labels match the README demos.",
+      },
+    ],
+    metaTitle: "NanoJev: 0.6B parallel Choice and Score heads for games",
+    metaDescription:
+      "TianyuCodings NanoJev trains Qwen3-0.6B decision heads on Maze, Snake, and ViZDoom. HF unified-games-v1, side-by-side demos, MIT repo.",
+  },
+
+  "bespokelabsai-nimble": {
+    slug: "bespokelabsai-nimble",
+    status: "published",
+    problem:
+      "Teams want locally runnable Jev-style classifiers with published data curation and training recipes, not opaque distillation from a hosted gate.",
+    targetUser:
+      "Applied researchers on Apple Silicon or NVIDIA who need Choice and boolean fields from a schema with probabilities, plus scripts to reproduce Bespoke-Nimble-9B.",
+    overview:
+      "Nimble (github.com/bespokelabsai/nimble) from Bespoke Labs ships contrastive data curation, LoRA training on answer tokens only, and serving for Bespoke-Nimble-9B on Hugging Face. You pass text plus a schema of Choice lists or true/false fields; the model scores one answer token per question in parallel without chain-of-thought prose. README reports 90.1% agreement with reference labels on 324 held-out examples versus 66.4% for the Qwen3.5-9B base and 93.2% for Jev 1.13.0, with explicit note that Bespoke did not distill from TypeSafe. September 2026 temperature fitting improves probability calibration while keeping discrete picks stable. Runs on Mac Metal or Linux CUDA with documented merge steps for LoRA adapters.",
+    creator: {
+      name: "Bespoke Labs",
+      handle: "bespokelabsai",
+      githubUrl: "https://github.com/bespokelabsai",
+      company: "Bespoke Labs",
+      companyUrl: "https://bespokelabs.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Local schema-driven Choice and Noul classification from merged 9B weights",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Prompt text up to 2,048 tokens including schema field names plus per-field candidate lists or boolean questions defined in nimble/scoring/parallel_schema.py.",
+      decisionOut:
+        "Selected option per field with normalized probabilities across supplied answers; no free-text completions.",
+      flowSteps: [
+        "Validate schema against model contract and prompt hash",
+        "Encode prompt once per request",
+        "Score allowed answer tokens in parallel for each schema field",
+        "Return picks and probabilities for downstream thresholds",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README cites 90.1% label match on 324 held-out examples for Bespoke-Nimble-9B versus 93.2% for Jev 1.13.0.",
+          source: "github.com/bespokelabsai/nimble README",
+        },
+        {
+          claim:
+            "Training set documents 2,676 curated examples with open curation and training scripts in-repo.",
+          source: "github.com/bespokelabsai/nimble README",
+        },
+        {
+          claim:
+            "Public GitHub repo bespokelabsai/nimble had about one thousand six hundred seventy eight stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Nimble is the teach-the-recipe counterpart to hosted Simple Jev or SemIf servers. Operators define explicit enums and booleans in code, call local inference, and treat probabilities as hints that still need domain calibration. The repo foregrounds data edits that flip labels under contrastive curation, which is rare in integration listings that only wrap API keys. Because fields cannot depend on each other, your orchestration layer must enforce cross-field consistency after Nimble returns independent answers. Pair with classifier.dev when you want managed latency without merging nine billion parameters on a laptop.",
+    keyFeatures: [
+      "Open data curation, training, and MLX or CUDA serving paths",
+      "Hugging Face Bespoke-Nimble-9B with schema contract files",
+      "Parallel answer-token scoring inspired by System One Choice docs",
+      "Documented limits: text-only, max 26 enum strings per field",
+    ],
+    stack: [
+      "Python",
+      "PyTorch",
+      "MLX on Apple Silicon",
+      "LoRA on Qwen3.5-9B",
+      "Hugging Face Hub",
+    ],
+    links: {
+      repo: "https://github.com/bespokelabsai/nimble",
+      docs: "https://github.com/bespokelabsai/nimble#methodology",
+      website: "https://huggingface.co/bespokelabs/Bespoke-Nimble-9B",
+    },
+    pricingNote:
+      "Open source recipe; you fund GPUs, RAM for merge steps, and any cloud training you run.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "featherless-simple-jev",
+      "theoleecj-semif",
+      "vinnylarouge-jevlike",
+      "classifier-dev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Did Bespoke distill from TypeSafe Jev?",
+        answer:
+          "README states they did not distill from Jev; the repo shares curation, training, and serving so others can research similar models.",
+      },
+      {
+        question: "Which primitives does Nimble support?",
+        answer:
+          "Schema fields are Choice over explicit lists or boolean (Noul-style) questions. There is no free-form text or nested JSON output.",
+      },
+      {
+        question: "Can I trust default probabilities in production?",
+        answer:
+          "README warns probabilities are calibrated on their curated set and still need threshold tuning on your data, especially when no supplied answer fits.",
+      },
+    ],
+    metaTitle: "Bespoke Nimble: open data and 9B local Choice classifier",
+    metaDescription:
+      "bespokelabsai/nimble publishes curation, LoRA training, and MLX or CUDA serving for Bespoke-Nimble-9B. Choice and Noul from schema, not chat JSON.",
+  },
+
+  "miuuyy-astra-ares": {
+    slug: "miuuyy-astra-ares",
+    status: "published",
+    problem:
+      "Codex sessions on GPT-6 Astra, Sol, or Luna often burn tokens on high reasoning effort for trivial next steps.",
+    targetUser:
+      "Power users running a patched Codex CLI who want mid-task reasoning effort changes without swapping models or invalidating prompt cache prefixes.",
+    overview:
+      "Astra-Ares (github.com/miuuyy/Astra-Ares) is miuuyy's experimental bridge that installs a separate pinned Codex build, then asks Jev before each eligible generation how hard the next step looks and how many generations that effort should cover. Jev reads bounded task context (recent tool results, public progress, retained user goals) and returns choices mapped to native GPT-6 reasoning effort plus a lease of 1, 2, 5, or 10 generations. Codex applies settings through OpenAI's configuration_update path so prompt prefixes stay cache-friendly. OpenRouter is the default Jev provider on fresh installs; transcript lines show APPLIED when native effort changes stick. README labels the project a reference implementation, not a polished daily driver.",
+    creator: {
+      name: "miuuyy",
+      handle: "miuuyy",
+      githubUrl: "https://github.com/miuuyy",
+    },
+    jevUsage: {
+      flowRole:
+        "Mid-run reasoning effort and lease duration routing inside patched Codex generations",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Evaluator packet with original task, public plans, last six tool call pairs, and truncated tool results under documented token guards (not the full encrypted reasoning stream).",
+      decisionOut:
+        "Selected reasoning effort tier and generation lease count applied natively before the next model generation.",
+      flowSteps: [
+        "Detect checkpoint when a new generation is due and lease expired or context changed",
+        "Send bounded state to configured Jev provider (OpenRouter default)",
+        "Map Jev choices to Codex native effort settings",
+        "Hold effort across leased generations without extra Jev calls until lease ends or user interrupts",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Example transcript in README shows a Jev decision in about 321 ms with a two-generation lease.",
+          source: "github.com/miuuyy/Astra-Ares README",
+        },
+        {
+          claim:
+            "Evaluator context caps recent tool results at 1,000 local tokens each and 28,000 tokens overall per configuration docs.",
+          source: "github.com/miuuyy/Astra-Ares docs/configuration.md",
+        },
+        {
+          claim:
+            "Public GitHub repo miuuyy/Astra-Ares had about two hundred thirty two stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Ares is model routing by reasoning depth, not by vendor swap. Hermes skill packs might pick which model answers; Ares keeps Astra, Sol, or Luna fixed and only moves effort up or down based on what Jev thinks the next step needs. That matches TypeSafe's pitch that structured decisions belong on the hot path while the big model writes code. Failures are explicit: README promises no silent provider fallback and logs decisions under ~/.local/share/astra-ares/runs. Treat leases as a cost knob: ten-generation leases amortize Jev latency, but tool failures force a fresh assessment.",
+    keyFeatures: [
+      "Pinned Codex patch with npm run setup build pipeline",
+      "Native GPT-6 effort changes with prefix-preserving cache story",
+      "ares doctor and --probe for local config plus billable Jev ping",
+      "Separate Ares Codex profiles without touching stock codex binary",
+    ],
+    stack: [
+      "TypeScript",
+      "Node.js 22+",
+      "Patched Codex CLI",
+      "OpenRouter or other Jev providers",
+      "Rust toolchain for Codex build",
+    ],
+    links: {
+      repo: "https://github.com/miuuyy/Astra-Ares",
+      docs: "https://github.com/miuuyy/Astra-Ares/blob/main/docs/architecture.md",
+    },
+    pricingNote:
+      "MIT bridge plus Apache-2.0 patched Codex sources; Jev calls bill through your configured provider, Codex usage bills through OpenAI as usual.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "gargpratyush-jev-router",
+      "kerpopule-hermes-jev-skills",
+      "typesafe-ai-skills",
+      "vercel-labs-ai-cli",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does this replace my normal codex command?",
+        answer:
+          "No. Setup installs a separate binary and profiles. Your existing Codex install stays untouched per README installation notes.",
+      },
+      {
+        question: "Which Jev provider works out of the box?",
+        answer:
+          "OpenRouter is default after ares configure. Other providers are documented under docs/configuration.md with explicit env vars.",
+      },
+      {
+        question: "Is it production ready?",
+        answer:
+          "README marks Astra-Ares as an experimental reference for adaptive reasoning effort, primarily for integrators experimenting with GPT-6 native effort APIs.",
+      },
+    ],
+    metaTitle: "Astra-Ares: Jev picks Codex GPT-6 reasoning effort mid-task",
+    metaDescription:
+      "miuuyy Astra-Ares patches Codex so Jev sets reasoning effort and generation leases on Astra, Sol, and Luna. OpenRouter default, MIT repo.",
+  },
+
+  "coldteadotai-abide": {
+    slug: "coldteadotai-abide",
+    status: "published",
+    problem:
+      "AGENTS.md and CLAUDE.md rules are too semantic for linters, so coding agents break style constraints from the first edit.",
+    targetUser:
+      "Teams on Claude Code, Codex, or OpenCode who want every edit checked against a compiled rubric without paying chat-model prices per hunk.",
+    overview:
+      "Abide (github.com/coldteadotai/abide) from Cold Tea hooks into Claude Code, Codex, and OpenCode to enforce project instruction files. On each edit or turn it sends Jev one typed question per compiled rule with the rule text and diff snippet, never the full chat log. Probabilities above 0.8 trigger an in-session repair message naming the rule and source line; mid-band scores surface notes without blocking. README replay benchmark on 93 Claude Code sessions reports about one in thirteen turns breaking a rule, with Jev checks around 300 ms and roughly a tenth of a cent per turn on measured replays. npm package @coldtea/abide stores keys locally; abide audit judges existing trees for preflight reports.",
+    creator: {
+      name: "Cold Tea",
+      handle: "coldteadotai",
+      githubUrl: "https://github.com/coldteadotai",
+      companyUrl: "https://coldtea.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-rule guardrail Noul-style probability on each edit or end-of-turn diff against compiled rubric JSON",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Single rule quote plus scoped file diff or aggregated turn diff; conversation history excluded by design.",
+      decisionOut:
+        "Calibrated violation probability per rule ID with banded actions (repair, note, or ignore).",
+      flowSteps: [
+        "Compile AGENTS.md, CLAUDE.md, and related files into .abide/rubric.json",
+        "On hook fire, batch one Jev question per applicable rule for the diff",
+        "Threshold probabilities into repair, note, or silent paths",
+        "Append repair instructions to tool results or turn follow-ups for the agent",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Replay benchmark README cites about 300 ms per check and roughly a tenth of a cent per turn on 93 sessions.",
+          source: "github.com/coldteadotai/abide benchmarks/replay",
+        },
+        {
+          claim:
+            "Measured replay found Jev flagged 39 edits and 15 turns with independent reviewer confirmation on subsets.",
+          source: "github.com/coldteadotai/abide README",
+        },
+        {
+          claim:
+            "Public GitHub repo coldteadotai/abide had about two hundred eleven stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Abide is the guardrail mirror to Hermes approvals or jev-review dashboards: instead of scoring whole PRs for humans, it sits on the agent hot path and asks cheap boolean-style questions per rule. That only works because Jev returns probabilities, not essays you must parse. Linters still own mechanically checkable rules; Abide skips duplicating ESLint. calibrate and tune commands close the loop when a rule never fires or fires everywhere. Keys stay in ~/.abide/.env or repo-local env files; README states Cold Tea does not receive your diffs on their servers.",
+    keyFeatures: [
+      "Hooks for Claude Code, Codex apply_patch, and OpenCode plugin mode",
+      "Committed rubric.json mapping rules to instruction line citations",
+      "abide audit and check for batch or pre-commit sweeps",
+      "Replay, calibrate, and tune tooling with JSON output flags",
+    ],
+    stack: [
+      "TypeScript",
+      "npm CLI",
+      "TypeSafe or Vercel AI Gateway keys",
+      "Agent hook APIs",
+    ],
+    links: {
+      repo: "https://github.com/coldteadotai/abide",
+      docs: "https://github.com/coldteadotai/abide#commands",
+      website: "https://www.npmjs.com/package/@coldtea/abide",
+    },
+    pricingNote:
+      "Open source MIT; Jev or gateway usage billed per your key with README-measured sub-cent per edit checks.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "anpicasso-hermes-jev-approvals",
+      "devagrawal09-jev-review",
+      "typesafe-ai-skills",
+      "dicklesworthstone-skillranker",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Abide send my chat log to Jev?",
+        answer:
+          "README states Jev sees the rule and diff only, not the conversation, so late edits get the same scrutiny as early ones.",
+      },
+      {
+        question: "Which agents are supported?",
+        answer:
+          "Claude Code settings, Codex hooks (accept the four entries once), and OpenCode plugin installs documented in README tables.",
+      },
+      {
+        question: "What happens at 0.86 probability?",
+        answer:
+          "Scores at or above 0.8 trigger a repair message with rule id and instruction quote; 0.5 to 0.8 is note-only per README bands.",
+      },
+    ],
+    metaTitle: "Abide: Jev guardrails on every agent edit",
+    metaDescription:
+      "coldteadotai/abide hooks Claude Code, Codex, and OpenCode to ask Jev per AGENTS.md rule on each diff. ~300 ms checks, MIT npm CLI.",
+  },
+
+  "sdras-jev-webmcp-extension": {
+    slug: "sdras-jev-webmcp-extension",
+    status: "published",
+    problem:
+      "WebMCP pages expose many typed tools, but natural-language commands need reliable tool and argument selection without site-specific prompt hacks.",
+    targetUser:
+      "Frontend and agent builders experimenting with Chrome WebMCP who want Jev Choice and Noul batches mapped from JSON Schema at typing speed.",
+    overview:
+      "jev-webmcp-extension (github.com/sdras/jev-webmcp-extension) is Sarah Drasner's Apache-2.0 Chrome side panel. It discovers tools a page registers, converts each schema field into parallel Jev questions (tool Choice plus per-argument Choice, Noul, or span picks from the user's words), and decodes answers into executable calls with confidence and latency labels. Manifest screening runs Noul checks on tool descriptions for agent-directed instructions; execution policy respects readOnlyHint, consequential annotations, and double-Enter confirmations. No build step: load unpacked on Chrome 149+ with WebMCP enabled. Chrome Web Store listing and Basketful demo walkthrough ship in README; eval harness hits the real TypeSafe API when TYPESAFE_API_KEY is set.",
+    creator: {
+      name: "Sarah Drasner",
+      handle: "sdras",
+      githubUrl: "https://github.com/sdras",
+      xUrl: "https://x.com/sdras",
+    },
+    jevUsage: {
+      flowRole:
+        "Side-panel tool routing and argument filling from schema-derived Jev question batches",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "User utterance plus discovered tool manifests converted to questions in src/core/questions.js (tool list Choice, enum booleans, optional-field nouls, span Choices for free text).",
+      decisionOut:
+        "Selected tool name, argument object, confidence score, and policy state (auto, confirm, or none).",
+      flowSteps: [
+        "Discover tools via page bridge and screen manifest text",
+        "Build parallel Jev questions and decode plan for the utterance",
+        "Call api.typesafe.ai/v1/systemone through extension storage key",
+        "Apply policy.js gates before chrome.scripting executes pageCallTool",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README example shows search_products at 98% confidence in 164 ms on Basketful demo input.",
+          source: "github.com/sdras/jev-webmcp-extension README",
+        },
+        {
+          claim:
+            "Public GitHub repo sdras/jev-webmcp-extension had about one hundred nine stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Drasner's extension is the browser-local counterpart to server-side Browser Use loops: instead of pixels, Jev chooses among declared tools and fills args using the user's own words as candidate spans. That keeps latency in the hundreds of milliseconds for read-only calls while still forcing confirmations on checkout flows. Core logic lives in pure JavaScript modules tested without Chrome so question wording tweaks are safe to iterate. Tool results stay out of model input per security README, which matters when pages are untrusted. Pair with typesafe-ai-typesafe-sdk-js when you graduate from the panel to a hosted agent backend.",
+    keyFeatures: [
+      "Schema-to-question converter with npm test coverage",
+      "Per-site optional_host_permissions and manifest screening badges",
+      "Keyboard navigation through tool candidates with Enter to execute",
+      "Open in playground link for debugging System One requests",
+    ],
+    stack: [
+      "JavaScript",
+      "Chrome extension APIs",
+      "WebMCP",
+      "TypeSafe System One HTTP",
+    ],
+    links: {
+      repo: "https://github.com/sdras/jev-webmcp-extension",
+      docs: "https://github.com/sdras/jev-webmcp-extension#demo-walkthrough",
+      demo: "https://shopping-webmcp-demo.netlify.app/",
+      website:
+        "https://chromewebstore.google.com/detail/jev-%C3%97-webmcp/gglnhcbhjfbmcpgccnmolbhejloflgkb",
+    },
+    pricingNote:
+      "Free extension; TypeSafe API keys bill per System One request when not using harness mocks.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "typesafe-ai-typesafe-sdk-js",
+      "typesafe-ai-skills",
+      "lahfir-agent-desktop",
+    ],
+    relatedLearnSlugs: ["system-one", "use-cases"],
+    faq: [
+      {
+        question: "Do I need WebMCP enabled?",
+        answer:
+          "README requires Chrome 149+ with WebMCP via origin trial or chrome://flags/#enable-webmcp-testing before tools appear.",
+      },
+      {
+        question: "Can any site auto-run destructive tools?",
+        answer:
+          "Policy treats tools as state-changing unless readOnlyHint is set; consequential annotations always need a second Enter per README safety section.",
+      },
+      {
+        question: "Where is the TypeSafe key stored?",
+        answer:
+          "Panel settings save the key in chrome.storage.local after a live API check per setup steps.",
+      },
+    ],
+    metaTitle: "Jev WebMCP extension: typed tool picks in Chrome",
+    metaDescription:
+      "sdras jev-webmcp-extension maps WebMCP schemas to Jev Choice and Noul batches, screens manifests, and executes with confirmation policy. GitHub plus Chrome Web Store.",
+  },
+
 };
