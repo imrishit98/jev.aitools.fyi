@@ -1,4 +1,9 @@
-export type FaqEntry = { question: string; answer: string };
+export type FaqEntry = {
+  question: string;
+  answer: string;
+  /** Inline links: matched phrases must appear verbatim in `answer` for JSON-LD parity. */
+  links?: Array<{ match: string; href: string }>;
+};
 
 export const homeFaq: FaqEntry[] = [
   {

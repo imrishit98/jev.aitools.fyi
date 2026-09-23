@@ -11,6 +11,12 @@ export type CategoryEnrichmentSection = {
   body: string;
 };
 
+export type CategoryStartHereLink = {
+  slug: string;
+  label: string;
+  suffix: string;
+};
+
 export type CategoryEnrichment = {
   slug: CategorySlug;
   seoTitle?: string;
@@ -18,6 +24,12 @@ export type CategoryEnrichment = {
   whoItsFor: string;
   howToChoose: string;
   sections: CategoryEnrichmentSection[];
+  /** Short featured links shown above the full listing grid (benchmarks hub). */
+  startHere?: {
+    preamble: string;
+    links: CategoryStartHereLink[];
+    closing: string;
+  };
   highlights: CategoryHighlight[];
   faq: FaqEntry[];
 };
@@ -27,9 +39,9 @@ export const categoryEnrichmentBySlug: Partial<
 > = {
   "agent-tooling": {
     slug: "agent-tooling",
-    seoTitle: "Jev agent tooling: MCP servers, routers, Pi gates, and review loops",
+    seoTitle: "Jev agent tooling: MCP servers, routers, and review gates",
     seoDescription:
-      "Compare coding-agent accessories that call TypeSafe Jev for model routing, tool approvals, context compaction, and diff review. FAQs, pick criteria, and featured listings.",
+      "Compare coding-agent accessories that call TypeSafe Jev for model routing, tool approvals, context compaction, and diff review. Pick criteria and FAQs below.",
     whoItsFor:
       "Teams running Claude Code, Pi, Hermes, or custom agents who need fast, thresholdable decisions on the hot path instead of parsing YES/NO from chat completions.",
     howToChoose:
@@ -82,7 +94,17 @@ export const categoryEnrichmentBySlug: Partial<
       {
         question: "What is Hermes Jev?",
         answer:
-          "It usually means hermes-jev-approvals: a Hermes Agent plugin that registers TypeSafe Jev as the auxiliary approval provider for smart command gates. See the anpicasso listing for measured latency tables and policy setup.",
+          "Short answer: see the Hermes Agent + Jev guide for the full setup, or the hermes-jev-approvals listing for just the approval plugin.",
+        links: [
+          {
+            match: "Hermes Agent + Jev guide",
+            href: "/guides/jev-with-ai-agents/hermes",
+          },
+          {
+            match: "hermes-jev-approvals listing",
+            href: "/tools/anpicasso-hermes-jev-approvals",
+          },
+        ],
       },
       {
         question: "MCP or npm plugin for Pi?",
@@ -111,7 +133,28 @@ export const categoryEnrichmentBySlug: Partial<
     slug: "benchmarks",
     seoTitle: "Jev benchmarks: calibration, replicas, and latency harnesses",
     seoDescription:
-      "Eval repos and open replicas that measure typed Jev decisions: workflow agreement, parallel decoding speedups, and calibration tooling. Sourced result tables on hot listings.",
+      "Eval repos and open replicas that measure typed Jev decisions: workflow agreement, parallel decoding speedups, and calibration tooling, with sourced tables.",
+    startHere: {
+      preamble: "Start here:",
+      links: [
+        {
+          slug: "daseinlabs-open-jev",
+          label: "daseinlabs/open-jev",
+          suffix: " for an open replica writeup",
+        },
+        {
+          slug: "parallel-constrained-decoding-qwen2-5-1b-rlcd",
+          label: "the qwen2.5-1b-rlcd parallel-decoding benchmark",
+          suffix: " for speedup numbers",
+        },
+        {
+          slug: "rorshopping-jev-on-a-laptop",
+          label: "rorshopping-jev-on-a-laptop",
+          suffix: " for a real hardware run",
+        },
+      ],
+      closing: "Each links to its own numbers below.",
+    },
     whoItsFor:
       "Engineers choosing between hosted Jev, gateway routes, and local replicas who need reproducible numbers before they bake routing policy into production.",
     howToChoose:
@@ -175,6 +218,60 @@ export const categoryEnrichmentBySlug: Partial<
         question: "Do benchmarks prove Jev beats GPT on everything?",
         answer:
           "No. Each listing measures a narrow claim (schema validity, approval latency, batching tokens). Treat marketing speedups as hypotheses until you run the packaged scripts on your hardware.",
+      },
+    ],
+  },
+
+  games: {
+    slug: "games",
+    seoTitle: "Jev games and sims: Mario, chess, live telemetry",
+    seoDescription:
+      "Playable games and research toys where each move is a typed Jev choice. Feel System One latency before you wire it into billing or safety gates.",
+    whoItsFor:
+      "Builders who want to feel Jev latency in a joystick loop before they trust the same primitives on money or safety paths.",
+    howToChoose:
+      "Pick a demo you can run in a browser on your network. Doom and arcade listings show discrete Choice loops with clips; chess and Mario forks teach routing without production stakes.",
+    sections: [
+      {
+        heading: "Why games show up in a tools directory",
+        body:
+          "Games make probability visible turn by turn. When Jev picks fire versus strafe nine times a second, you learn what sub-second gates feel like in your bones. That is cheaper than discovering latency surprises in billing code.",
+      },
+    ],
+    highlights: [
+      {
+        slug: "lukaske-jev-doom-agent",
+        blurb:
+          "Chocolate Doom in the browser with Jev reading live game state. Good answer for jev doom searches.",
+      },
+      {
+        slug: "jev-arcade",
+        blurb:
+          "Krunker-style 1v1 where Jev decides move, aim, and firing about nine times a second.",
+      },
+    ],
+    faq: [
+      {
+        question: "Can Jev play Doom?",
+        answer:
+          "Yes. jev-doom-agent runs a browser Chocolate Doom build where Jev picks the next move from live game state. See the listing for setup and clips.",
+        links: [
+          {
+            match: "jev-doom-agent",
+            href: "/games/lukaske-jev-doom-agent",
+          },
+        ],
+      },
+      {
+        question: "Is there a Jev arcade demo?",
+        answer:
+          "Yes. Jev Arcade is a Krunker-style 1v1 shooter where Jev decides movement, aim, and firing about nine times a second.",
+        links: [
+          {
+            match: "Jev Arcade",
+            href: "/games/jev-arcade",
+          },
+        ],
       },
     ],
   },

@@ -24,6 +24,7 @@ import {
   productProfileSeoDescription,
 } from "@/lib/product-profiles";
 import { itemListingSeo } from "@/lib/seo";
+import FaqAnswer from "@/components/faq-answer.astro";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
@@ -115,6 +116,18 @@ const listingDescription = profile
           </div>
           <h1 class="mt-5 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">{item.title}</h1>
           <p class="mt-3 text-lg leading-relaxed text-muted-foreground">{item.oneLiner}</p>
+          {listingEnrichment?.leadCallout && (
+            <p class="mt-4 text-base leading-relaxed text-foreground/90">
+              {listingEnrichment.leadCallout.beforeLink}
+              <a
+                href={listingEnrichment.leadCallout.linkHref}
+                class="font-medium text-primary hover:underline"
+              >
+                {listingEnrichment.leadCallout.linkLabel}
+              </a>
+              {listingEnrichment.leadCallout.afterLink}
+            </p>
+          )}
           <CreatorCredit item={item} className="mt-3" />
           {profile && (
             <div class="mt-6 flex flex-wrap gap-2">
@@ -428,7 +441,9 @@ const listingDescription = profile
               {listingEnrichment.faq.map((entry) => (
                 <div>
                   <dt class="font-medium text-foreground">{entry.question}</dt>
-                  <dd class="mt-2 text-base leading-relaxed text-muted-foreground">{entry.answer}</dd>
+                  <dd class="mt-2">
+                    <FaqAnswer entry={entry} class="!text-muted-foreground" />
+                  </dd>
                 </div>
               ))}
             </dl>

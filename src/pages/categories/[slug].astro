@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ItemCard } from "@/components/item-card";
+import FaqAnswer from "@/components/faq-answer.astro";
 import { breadcrumbJsonLd, faqPageJsonLd, itemListJsonLd } from "@/components/json-ld";
 import { getCategory } from "@/data/categories";
 import { CATEGORY_SLUGS } from "@/data/types";
@@ -30,6 +31,13 @@ const highlightItems = (enrichment?.highlights ?? [])
   .map((h) => {
     const item = getItemBySlug(h.slug);
     return item ? { item, blurb: h.blurb } : null;
+  })
+  .filter(Boolean);
+
+const startHereLinks = (enrichment?.startHere?.links ?? [])
+  .map((link) => {
+    const item = getItemBySlug(link.slug);
+    return item ? { item, label: link.label, suffix: link.suffix } : null;
   })
   .filter(Boolean);
 
@@ -139,10 +147,46 @@ const jsonLdExtra = enrichment?.faq?.length
             {enrichment.faq.map((entry) => (
               <div>
                 <dt class="font-medium text-foreground">{entry.question}</dt>
-                <dd class="mt-2 text-base leading-relaxed text-muted-foreground">{entry.answer}</dd>
+                <dd class="mt-2">
+                  <FaqAnswer entry={entry} class="!text-muted-foreground" />
+                </dd>
               </div>
             ))}
           </dl>
+        </section>
+      )
+    }
+
+    {
+      enrichment?.startHere && startHereLinks.length > 0 && (
+        <section
+          class="mb-12 max-w-3xl surface-card p-6 sm:p-8"
+          aria-labelledby="category-start-here-heading"
+        >
+          <h2 id="category-start-here-heading" class="font-heading text-2xl font-semibold">
+            Start here
+          </h2>
+          <p class="mt-4 text-base leading-relaxed text-foreground/90">
+            {enrichment.startHere.preamble}{" "}
+            {startHereLinks.map((entry, index) => {
+              const sep =
+                index === 0
+                  ? ""
+                  : index === startHereLinks.length - 1
+                    ? ", and "
+                    : ", ";
+              return (
+                <>
+                  {sep}
+                  <a href={getItemPath(entry!.item)} class="text-primary hover:underline">
+                    {entry!.label}
+                  </a>
+                  {entry!.suffix}
+                </>
+              );
+            })}
+            . {enrichment.startHere.closing}
+          </p>
         </section>
       )
     }
