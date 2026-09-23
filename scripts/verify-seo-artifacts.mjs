@@ -139,10 +139,16 @@ function walkHtml(dir, acc = []) {
 for (const file of walkHtml(distRoot)) {
   const html = readFileSync(file, "utf8");
   const $ = cheerio.load(html);
+  const robots = $('meta[name="robots"]').attr("content") ?? "";
   const canon = $('link[rel="canonical"]').attr("href") ?? "";
   const rel = file.replace(distRoot, "").replace(/\\/g, "/");
-  if (!canon.startsWith("https://jev.aitools.fyi")) {
-    errors.push(`canonical host mismatch: ${rel} -> ${canon}`);
+  const isNoindex = robots.includes("noindex");
+  if (!isNoindex) {
+    if (!canon.startsWith("https://jev.aitools.fyi")) {
+      errors.push(`canonical host mismatch: ${rel} -> ${canon}`);
+    }
+  } else if (canon) {
+    errors.push(`noindex page should omit canonical: ${rel} -> ${canon}`);
   }
   if (canon.includes("/items/")) {
     errors.push(`canonical still uses /items/: ${rel}`);

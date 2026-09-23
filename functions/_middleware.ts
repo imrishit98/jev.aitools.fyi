@@ -5,6 +5,7 @@ import {
   tryNotFoundMarkdownResponse,
   withVaryAccept,
 } from "../src/lib/markdown-negotiation";
+import { tryNotFoundHtmlSeoResponse } from "../src/lib/not-found-seo";
 
 export const onRequest: PagesFunction = async (context) => {
   const { request, next } = context;
@@ -27,6 +28,9 @@ export const onRequest: PagesFunction = async (context) => {
 
   const markdown404 = tryNotFoundMarkdownResponse(request, url, response);
   if (markdown404) return markdown404;
+
+  const html404 = await tryNotFoundHtmlSeoResponse(request, url, response);
+  if (html404) return html404;
 
   if (
     isHomePath(url.pathname) &&

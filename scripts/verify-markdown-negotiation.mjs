@@ -48,5 +48,8 @@ const nfRes = neg.tryNotFoundMarkdownResponse(
   new Response("html", { status: 404, headers: { "Content-Type": "text/html" } }),
 );
 if (!nfRes || nfRes.status !== 404) throw new Error("tryNotFoundMarkdownResponse failed");
+if (nfRes.headers.get("X-Robots-Tag") !== "noindex, follow") {
+  throw new Error("markdown 404 missing X-Robots-Tag");
+}
 
 console.log("verify-markdown-negotiation: ok");

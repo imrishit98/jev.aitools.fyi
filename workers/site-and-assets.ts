@@ -7,6 +7,7 @@ import {
   tryNotFoundMarkdownResponse,
   withVaryAccept,
 } from "../src/lib/markdown-negotiation";
+import { tryNotFoundHtmlSeoResponse } from "../src/lib/not-found-seo";
 
 export interface Env extends MfmSearchEnv {
   SITE_ASSETS: Fetcher;
@@ -44,6 +45,11 @@ export default {
     const markdown404 = tryNotFoundMarkdownResponse(request, url, response);
     if (markdown404) {
       return markdown404;
+    }
+
+    const html404 = await tryNotFoundHtmlSeoResponse(request, url, response);
+    if (html404) {
+      return html404;
     }
 
     if (
