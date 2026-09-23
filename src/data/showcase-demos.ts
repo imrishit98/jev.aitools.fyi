@@ -910,6 +910,18 @@ export const showcaseDemos: ShowcaseDemo[] = [
     categoryTags: ["guides", "roundup", "interesting"],
     projectUrl: "https://jev.aitools.fyi/guides/socialwithaayan-ten-jev-repos",
   }),
+  demo({
+    id: "typesafe-computer-use-awlevin",
+    authorHandle: "awlevin",
+    authorName: "Aaron Levin",
+    tweetUrl: "https://x.com/awlevin/status/2100262612428894676",
+    title: "typesafe-computer-use without screenshot theater",
+    funnyBlurb:
+      "OCR builds the menu, Jev picks the click for fractions of a cent, and Haiku only types when the classifier admits defeat. Your Opus screenshot budget can stay asleep.",
+    homepage: false,
+    categoryTags: ["browser-computer-use", "browser-use", "demo"],
+    projectUrl: "https://github.com/awlevin/typesafe-computer-use",
+  }),
 ];
 
 /** Tweet fetch hints for scripts/sync-showcase-demo-media.mjs (not used at runtime). */
