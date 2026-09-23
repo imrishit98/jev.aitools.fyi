@@ -747,7 +747,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     creatorQuote: {
       text:
-        "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops cosplaying as a chatbot.",
+        "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops faking it as a chatbot.",
       attributedTo: "TanStack",
       sourceUrl: "https://x.com/tan_stack/status/2101659024890765819",
     },

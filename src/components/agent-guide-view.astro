@@ -5,6 +5,7 @@ import type { AgentGuide } from "@/data/agent-guides";
 import { agentGuides, agentGuidePath } from "@/data/agent-guides";
 import { getItemBySlug } from "@/lib/items";
 import { splitIntoParagraphs } from "@/lib/prose";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 interface Props {
   guide: AgentGuide;
@@ -99,7 +100,7 @@ const relatedItems = guide.relatedCatalogSlugs
     <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
       {guide.sources.map((src) => (
         <li>
-          <a href={src.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+          <a href={withOutboundRef(src.url)} class="text-accent hover:underline" target="_blank" rel={externalLinkRel(src.url)}>
             {src.label}
           </a>
         </li>
@@ -110,6 +111,6 @@ const relatedItems = guide.relatedCatalogSlugs
   <div class="mt-12 flex flex-wrap gap-3">
     <ButtonLink href={agentGuidePath()} variant="outline">All agent guides</ButtonLink>
     <ButtonLink href="/learn/jev-typesafe" variant="outline">Jev primer</ButtonLink>
-    <ButtonLink href="/explore?category=agents">Agent tooling in Explore</ButtonLink>
+    <ButtonLink href="/categories/agent-tooling">Agent tooling category</ButtonLink>
   </div>
 </article>

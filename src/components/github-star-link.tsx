@@ -1,3 +1,4 @@
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import { siteConfig } from "@/lib/site";
 import { cn } from "@/lib/utils";
 import { Star } from "lucide-react";
@@ -42,9 +43,9 @@ export default function GitHubStarLink({ className }: { className?: string }) {
 
   return (
     <a
-      href={siteConfig.githubRepo}
+      href={withOutboundRef(siteConfig.githubRepo)}
       target="_blank"
-      rel="noopener noreferrer"
+      rel={externalLinkRel(siteConfig.githubRepo)}
       aria-label={label}
       title={label}
       className={cn(

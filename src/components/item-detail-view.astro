@@ -26,6 +26,7 @@ import {
 import { itemListingSeo } from "@/lib/seo";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 interface Props {
   slug: string;
@@ -169,7 +170,7 @@ const listingDescription = profile
                     <dt class="text-sm font-medium text-muted-foreground">Organization</dt>
                     <dd class="mt-1">
                       {profile.creator.companyUrl ? (
-                        <a href={profile.creator.companyUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">{profile.creator.company}</a>
+                        <a href={withOutboundRef(profile.creator.companyUrl)} class="text-primary hover:underline" rel={externalLinkRel(profile.creator.companyUrl)} target="_blank">{profile.creator.company}</a>
                       ) : (
                         profile.creator.company
                       )}
@@ -184,10 +185,10 @@ const listingDescription = profile
                 )}
                 <div class="flex flex-wrap gap-3 pt-1">
                   {profile.creator.xUrl && (
-                    <a href={profile.creator.xUrl} class="text-sm text-primary hover:underline" rel="noopener noreferrer" target="_blank">X profile</a>
+                    <a href={profile.creator.xUrl} class="text-sm text-primary hover:underline" rel={externalLinkRel(profile.creator.xUrl)} target="_blank">X profile</a>
                   )}
                   {profile.creator.githubUrl && (
-                    <a href={profile.creator.githubUrl} class="text-sm text-primary hover:underline" rel="noopener noreferrer" target="_blank">GitHub</a>
+                    <a href={withOutboundRef(profile.creator.githubUrl)} class="text-sm text-primary hover:underline" rel={externalLinkRel(profile.creator.githubUrl)} target="_blank">GitHub</a>
                   )}
                 </div>
               </dl>
@@ -196,7 +197,7 @@ const listingDescription = profile
                   &ldquo;{profile.creatorQuote.text}&rdquo;
                   <footer class="mt-2 text-sm not-italic text-muted-foreground">
                     {profile.creatorQuote.attributedTo},{" "}
-                    <a href={profile.creatorQuote.sourceUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">source</a>
+                    <a href={withOutboundRef(profile.creatorQuote.sourceUrl)} class="text-primary hover:underline" rel={externalLinkRel(profile.creatorQuote.sourceUrl)} target="_blank">source</a>
                   </footer>
                 </blockquote>
               )}
@@ -290,19 +291,19 @@ const listingDescription = profile
               <h2 id="product-links-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Links</h2>
               <ul class="mt-4 space-y-2 text-base">
                 {profile.links.website && (
-                  <li><a href={profile.links.website} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Website</a></li>
+                  <li><a href={withOutboundRef(profile.links.website)} class="text-primary hover:underline" rel={externalLinkRel(profile.links.website)} target="_blank">Website</a></li>
                 )}
                 {profile.links.repo && (
-                  <li><a href={profile.links.repo} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Repository</a></li>
+                  <li><a href={withOutboundRef(profile.links.repo)} class="text-primary hover:underline" rel={externalLinkRel(profile.links.repo)} target="_blank">Repository</a></li>
                 )}
                 {profile.links.docs && (
-                  <li><a href={profile.links.docs} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Documentation</a></li>
+                  <li><a href={withOutboundRef(profile.links.docs)} class="text-primary hover:underline" rel={externalLinkRel(profile.links.docs)} target="_blank">Documentation</a></li>
                 )}
                 {profile.links.demo && (
-                  <li><a href={profile.links.demo} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Live demo</a></li>
+                  <li><a href={withOutboundRef(profile.links.demo)} class="text-primary hover:underline" rel={externalLinkRel(profile.links.demo)} target="_blank">Live demo</a></li>
                 )}
                 {profile.links.post && (
-                  <li><a href={profile.links.post} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">Launch post</a></li>
+                  <li><a href={withOutboundRef(profile.links.post)} class="text-primary hover:underline" rel={externalLinkRel(profile.links.post)} target="_blank">Launch post</a></li>
                 )}
               </ul>
             </section>
@@ -379,7 +380,7 @@ const listingDescription = profile
             <h2 id="benchmark-results-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Results</h2>
             <p class="mt-3 text-sm text-muted-foreground">
               Sourced from{" "}
-              <a href={benchmarkResults.sourceUrl} class="text-primary hover:underline" rel="noopener noreferrer" target="_blank">
+              <a href={withOutboundRef(benchmarkResults.sourceUrl)} class="text-primary hover:underline" rel={externalLinkRel(benchmarkResults.sourceUrl)} target="_blank">
                 {benchmarkResults.sourceUrl}
               </a>
               {" "}on {benchmarkResults.sourcedOn}. Numbers are copied as published; re-run upstream scripts to refresh.

@@ -14,6 +14,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { ExploreCanonical } from "@/components/explore-canonical";
 import {
   EXPLORE_PAGE_SIZE,
   filterItems,
@@ -92,6 +93,7 @@ export default function ExploreApp() {
 
   return (
     <>
+      <ExploreCanonical params={params} />
       <div className="surface-card space-y-4 p-5 sm:p-6">
         <div className="flex flex-wrap items-end justify-between gap-3">
           <p className="text-sm text-muted-foreground">

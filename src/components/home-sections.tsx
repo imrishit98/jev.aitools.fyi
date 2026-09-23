@@ -7,6 +7,7 @@ import { ItemCard } from "@/components/item-card";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import { getFeaturedProductSlugs } from "@/lib/product-profiles";
 import { getItemBySlug } from "@/lib/items";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import { siteConfig } from "@/lib/site";
 import {
   BookOpen,
@@ -189,11 +190,11 @@ export function HomeGetStarted() {
         <span className="w-full text-xs font-medium uppercase tracking-widest text-muted-foreground sm:w-auto sm:normal-case sm:tracking-normal">
           Also on this site:
         </span>
-        <AppLink href="/explore?category=sdks" className="text-primary hover:underline">
+        <AppLink href="/categories/sdks" className="text-primary hover:underline">
           SDK hub
         </AppLink>
         <span aria-hidden>·</span>
-        <AppLink href="/explore?category=official" className="text-primary hover:underline">
+        <AppLink href="/categories/official" className="text-primary hover:underline">
           Official stack
         </AppLink>
         <span aria-hidden>·</span>
@@ -221,9 +222,9 @@ export function HomeGetStarted() {
           {externalStartLinks.map((link) => (
             <li key={link.href}>
               <a
-                href={link.href}
+                href={withOutboundRef(link.href)}
                 target="_blank"
-                rel="noopener noreferrer"
+                rel={externalLinkRel(link.href)}
                 className="inline-flex flex-wrap items-baseline gap-x-2 text-sm font-medium text-primary hover:underline"
               >
                 {link.label}

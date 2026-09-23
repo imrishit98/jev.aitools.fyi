@@ -16,6 +16,8 @@ export interface Props {
   jsonLd?: object | object[];
   /** Omit Referer on twimg video fetches (hotlink block on jev.aitools.fyi). */
   remoteShowcaseVideos?: boolean;
+  /** Override canonical path (defaults to `path`). */
+  canonicalPath?: string;
 }
 
 const {
@@ -26,8 +28,9 @@ const {
   ogImagePath = ogImagePaths.default,
   jsonLd,
   remoteShowcaseVideos = false,
+  canonicalPath,
 } = Astro.props;
-const canonical = absoluteUrl(path);
+const canonical = absoluteUrl(canonicalPath ?? path);
 const ogImage = absoluteUrl(ogImagePath);
 const fullTitle = formatDocumentTitle(title);
 /** Public site token; env override optional (same beacon, never double-loaded). */
@@ -46,7 +49,9 @@ const cloudflareWebAnalyticsToken =
     {
       remoteShowcaseVideos ? (
         <meta name="referrer" content="no-referrer" />
-      ) : null
+      ) : (
+        <meta name="referrer" content="strict-origin-when-cross-origin" />
+      )
     }
     <link rel="icon" href="/favicon.ico" sizes="any" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />

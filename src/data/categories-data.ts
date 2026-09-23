@@ -101,13 +101,13 @@ export const categories: CategoryMeta[] = [
   },
   {
     slug: "guides",
-    title: "Guides and lists",
+    title: "Articles and lists",
     description:
-      "Launch posts, how-tos, essays, awesome lists, and community write-ups.",
-    seoTitle: "Jev guides and lists: essays, tutorials, and awesome repos",
+      "Directory taxonomy for launch posts, essays, and awesome-list listings. Not the agent how-to hub.",
+    seoTitle: "Jev articles and lists: community write-ups in the catalog",
     seoDescription:
-      "Community essays, launch posts, and awesome lists about TypeSafe Jev workflows. Use as reading queues alongside official docs and the SDK shelf in this directory.",
+      "Catalog bucket for community essays, launch posts, and awesome lists indexed as listings. For agent setup walkthroughs use /guides; for System One primers use /learn.",
     intro:
-      "Reading material for the curious. Awesome lists, threads, and essays from people who shipped. Guide entries are often single-link announcements or essays. Many stay explore-only when the overview is too thin to index. Use them as reading queues, not as substitutes for official TypeSafe docs.",
+      "This is a catalog category, not an editorial hub. Entries are single-link announcements, threads, and essays we index as listings. Many stay explore-only when the overview is too thin for a detail page. For LangChain, Cursor, and Copilot setup guides, open /guides. For Choice, Score, and Noul primers, open /learn.",
   },
 ];

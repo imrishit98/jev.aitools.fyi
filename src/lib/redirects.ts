@@ -7,9 +7,12 @@ import { redirectTargetForLegacyItem } from "@/lib/item-paths";
 /** Non-catalog 301 rules (hub + shortcuts); keep in sync with verify-seo-artifacts redirect count. */
 export const EXTRA_REDIRECT_RULES = [
   "/items /explore 301",
-  "/guides/index /guides/ 301",
-  "/mfm /demos/my-first-million/ 301",
-  "/mfm/ /demos/my-first-million/ 301",
+  "/guides/index /guides 301",
+  "/guides/ /guides 301",
+  "/learn/laya-vs-jev/ /learn/laya-vs-jev 301",
+  "/mfm /demos/my-first-million 301",
+  "/mfm/ /demos/my-first-million 301",
+  "/demos/my-first-million/ /demos/my-first-million 301",
 ];
 
 export function generateRedirectsFile(): string {
