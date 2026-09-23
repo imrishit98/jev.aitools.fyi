@@ -3,13 +3,13 @@ import { learnChips } from "@/components/home-sections";
 import { ITEM_DETAIL_SEGMENTS } from "@/lib/item-paths";
 
 const categoryChips: { href: string; label: string; hint: string }[] = [
-  { href: "/explore?category=official", label: "Official", hint: "TypeSafe first-party" },
-  { href: "/explore?category=sdks", label: "SDKs", hint: "Typed clients" },
-  { href: "/explore?category=integrations", label: "Tools", hint: "Gateways & glue" },
-  { href: "/explore?category=applications", label: "Apps", hint: "Production builds" },
-  { href: "/explore?category=games", label: "Games", hint: "Weird and fun" },
-  { href: "/explore?category=benchmarks", label: "Benchmarks", hint: "Eval harnesses" },
-  { href: "/explore?category=guides", label: "Guides", hint: "Community writeups" },
+  { href: "/categories/official", label: "Official", hint: "TypeSafe first-party" },
+  { href: "/categories/sdks", label: "SDKs", hint: "Typed clients" },
+  { href: "/categories/integrations", label: "Tools", hint: "Gateways & glue" },
+  { href: "/categories/applications", label: "Apps", hint: "Production builds" },
+  { href: "/categories/games", label: "Games", hint: "Weird and fun" },
+  { href: "/categories/benchmarks", label: "Benchmarks", hint: "Eval harnesses" },
+  { href: "/categories/guides", label: "Articles", hint: "Catalog writeups" },
 ];
 
 /** Pass-2 segment roots for power users */

@@ -1,5 +1,10 @@
 import { AppLink } from "@/components/app-link";
 import { buttonVariants } from "@/components/ui/button";
+import {
+  externalLinkRel,
+  isOutboundHttpUrl,
+  withOutboundRef,
+} from "@/lib/outbound-attribution";
 import { cn } from "@/lib/utils";
 import type { VariantProps } from "class-variance-authority";
 
@@ -19,15 +24,16 @@ export function ButtonLink({
   external,
 }: ButtonLinkProps) {
   const classes = cn(buttonVariants({ variant, size }), className);
-  const isExternal = external || href.startsWith("http");
+  const isExternal = external || isOutboundHttpUrl(href);
+  const outboundHref = isExternal ? withOutboundRef(href) : href;
 
   if (isExternal) {
     return (
       <a
-        href={href}
+        href={outboundHref}
         className={classes}
         target="_blank"
-        rel="noopener noreferrer"
+        rel={externalLinkRel(href)}
       >
         {children}
       </a>

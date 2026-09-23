@@ -82,7 +82,7 @@ export const showcaseDemos: ShowcaseDemo[] = [
     tweetUrl: "https://x.com/dsqjaffa/status/2102090111198363988",
     title: "Virlo Clearance for TikTok content research",
     funnyBlurb:
-      "Twelve million viral clips, one Clearance gate so your niche feed stops cosplaying as hashtag soup. Jev says on-brief before Virlo's eighty-signal panel tags the hooks.",
+      "Twelve million viral clips, one Clearance gate so your niche feed stops pretending every trend fits. Jev says on-brief before Virlo's eighty-signal panel tags the hooks.",
     homepage: true,
     categoryTags: ["marketing", "product", "demo"],
     projectUrl: "https://virlo.ai",
@@ -94,7 +94,7 @@ export const showcaseDemos: ShowcaseDemo[] = [
     tweetUrl: "https://x.com/TheMattBerman/status/2100654891756589230",
     title: "StealAds competitor ad teardown",
     funnyBlurb:
-      "Seven hundred twenty-four live ads, thirty-seven brands, forty seconds, nine cents. Jev labels hooks and landing mismatches so media buyers steal patterns, not vibes.",
+      "724 live ads, 37 brands, 40 seconds, 9 cents. Jev labels hooks and landing mismatches so media buyers steal patterns, not vibes.",
     homepage: true,
     categoryTags: ["marketing", "ads", "product"],
     projectUrl: "https://stealads.ai",
@@ -178,7 +178,7 @@ export const showcaseDemos: ShowcaseDemo[] = [
     tweetUrl: "https://x.com/tan_stack/status/2101659024890765819",
     title: "decide() in TanStack AI",
     funnyBlurb:
-      "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops cosplaying as a chatbot. They call the moment jevolution; we call it one less regex on model prose.",
+      "TanStack ships decide() for typed choices, scores, and booleans so your agent loop stops faking it as a chatbot. They call the moment jevolution; we call it one less regex on model prose.",
     homepage: true,
     categoryTags: ["integrations", "sdk", "demo"],
     projectUrl: "https://tanstack.com/ai/latest",

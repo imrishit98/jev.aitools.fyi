@@ -5,6 +5,7 @@ import { layaVsJevGuides, layaVsJevGuidePath } from "@/data/laya-vs-jev-guides";
 import { learnGuides } from "@/data/learn-guides";
 import type { LearnGuideSlug } from "@/data/learn-guides";
 import { splitIntoParagraphs } from "@/lib/prose";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 interface Props {
   guide: LayaVsJevGuide;
@@ -117,7 +118,7 @@ const relatedLearn = guide.relatedLearnSlugs
     <ul class="mt-4 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
       {guide.sources.map((src) => (
         <li>
-          <a href={src.url} class="text-accent hover:underline" target="_blank" rel="noopener noreferrer">
+          <a href={withOutboundRef(src.url)} class="text-accent hover:underline" target="_blank" rel={externalLinkRel(src.url)}>
             {src.label}
           </a>
         </li>

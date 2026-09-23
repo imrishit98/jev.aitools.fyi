@@ -4,6 +4,10 @@ import type { DirectoryItem } from "@/data/types";
 import { getCategory } from "@/data/categories";
 import { itemHasDetailPage } from "@/lib/content-policy";
 import { hrefForListing } from "@/lib/item-paths";
+import {
+  externalLinkRel,
+  withOutboundRef,
+} from "@/lib/outbound-attribution";
 import { CreatorCredit } from "@/components/creator-credit";
 import { ItemBadges } from "@/components/item-badges";
 import { ButtonLink } from "@/components/button-link";
@@ -26,8 +30,11 @@ export function ItemCard({
   className?: string;
 }) {
   const cat = getCategory(item.category);
-  const detailHref = hrefForListing(item);
+  const rawDetailHref = hrefForListing(item);
   const detailIsExternal = !itemHasDetailPage(item);
+  const detailHref = detailIsExternal
+    ? withOutboundRef(rawDetailHref)
+    : rawDetailHref;
 
   return (
     <Card
@@ -62,7 +69,10 @@ export function ItemCard({
             href={detailHref}
             className="after:absolute after:inset-0 hover:text-primary focus-visible:text-primary"
             {...(detailIsExternal
-              ? { target: "_blank", rel: "noopener noreferrer" }
+              ? {
+                  target: "_blank",
+                  rel: externalLinkRel(rawDetailHref),
+                }
               : {})}
           >
             {item.title}

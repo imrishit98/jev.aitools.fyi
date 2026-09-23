@@ -1,5 +1,6 @@
 import { useCallback, useState } from "react";
 import { AppLink } from "@/components/app-link";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import { siteConfig } from "@/lib/site";
 import { Button, buttonVariants } from "@/components/ui/button";
 import { cn } from "cn";
@@ -142,7 +143,8 @@ export function SubmitForm() {
       const url = buildSubmitIssueUrl(payload);
       setIssueUrl(url);
 
-      const opened = window.open(url, "_blank", "noopener,noreferrer");
+      const attributed = withOutboundRef(url);
+      const opened = window.open(attributed, "_blank", "noopener");
       if (opened === null) {
         setStatus("popup_blocked");
       } else {
@@ -267,9 +269,9 @@ export function SubmitForm() {
           </p>
           <div className="mt-3 flex flex-wrap gap-2">
             <a
-              href={issueUrl}
+              href={withOutboundRef(issueUrl)}
               target="_blank"
-              rel="noopener noreferrer"
+              rel={externalLinkRel(issueUrl)}
               className={cn(buttonVariants({ variant: "default", size: "sm" }))}
             >
               Open GitHub issue

@@ -331,9 +331,9 @@ export function itemListingSeo(item: DirectoryItem) {
 
 export function homePageSeo() {
   return pageSeo({
-    title: "Jev Directory: demos, tools, and learn guides",
+    title: "Jev Directory: demos, tools, and featured listings",
     description:
-      "Browse SDKs, integrations, and demos built on TypeSafe Jev. Watch builder clips, read free guides, and explore the curated tool map.",
+      "Browse SDKs, integrations, and demos built on TypeSafe Jev. Watch builder clips, skim featured listings, and explore the curated tool map.",
     path: "/",
     imagePath: ogImagePaths.home,
   });
@@ -430,9 +430,9 @@ export function categoryPageSeo(
 
 export function guidesIndexPageSeo() {
   return pageSeo({
-    title: "Guides: Jev agent setup and community articles",
+    title: "Guides: Jev with AI agents (LangChain, Cursor, Copilot)",
     description:
-      "Browse the Jev with AI agents hub (Hermes, LangChain, Cline, Copilot, Cursor, and more) plus community guide listings hosted on the directory. Links to Learn primers and official TypeSafe docs.",
+      "How-to guides for wiring TypeSafe Jev into coding agents and frameworks. Hermes, LangChain, Cline, Copilot, Cursor, and more. System One primers live on /learn; catalog articles live under /categories/guides.",
     path: "/guides",
     imagePath: ogImagePaths.learnHub,
   });
@@ -440,9 +440,9 @@ export function guidesIndexPageSeo() {
 
 export function learnIndexPageSeo() {
   return pageSeo({
-    title: "Learn TypeSafe Jev: System One guides and primers",
+    title: "Learn TypeSafe Jev: System One primers and comparisons",
     description:
-      "Free guides on Choice, Score, and Noul, System One architecture, Jev vs LLM classification, Vercel AI Gateway Jev, and real production use cases. Start learning Jev here.",
+      "Educational hubs on Choice, Score, and Noul, System One architecture, Jev vs chat labels, Laya vs Jev, and gateway wiring. Agent tool setup guides are on /guides.",
     path: "/learn",
     imagePath: ogImagePaths.learnHub,
   });
