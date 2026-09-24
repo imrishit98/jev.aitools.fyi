@@ -68,3 +68,22 @@ export function sponsorLinkRel(href: string): string {
   if (shouldSkipOutboundRef(href)) return "sponsored noopener noreferrer";
   return "sponsored noopener";
 }
+
+const SPONSOR_REF = "outbid.fyi";
+const SPONSOR_UTM_SOURCE = "outbid.fyi";
+const SPONSOR_UTM_MEDIUM = "sponsor";
+const SPONSOR_UTM_CONTENT = "jev.aitools.fyi";
+
+/**
+ * Outbid.fyi sponsor attribution for paid slots. Preserves other query params;
+ * sets ref and UTM keys once each (no duplicates).
+ */
+export function sponsorHref(href: string): string {
+  const url = parseHttpUrl(href);
+  if (!url) return href;
+  url.searchParams.set("ref", SPONSOR_REF);
+  url.searchParams.set("utm_source", SPONSOR_UTM_SOURCE);
+  url.searchParams.set("utm_medium", SPONSOR_UTM_MEDIUM);
+  url.searchParams.set("utm_content", SPONSOR_UTM_CONTENT);
+  return url.toString();
+}

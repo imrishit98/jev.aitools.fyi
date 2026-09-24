@@ -1,6 +1,6 @@
 import { useState, type ReactNode } from "react";
 import { sponsors, type Sponsor } from "@/data/sponsors";
-import { sponsorLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
 import { cn } from "cn";
 
 const LOGO_SIZE = 32;
@@ -66,7 +66,7 @@ function SponsorExternalLink({
 }) {
   return (
     <a
-      href={withOutboundRef(sponsor.url)}
+      href={sponsorHref(sponsor.url)}
       target="_blank"
       rel={sponsorLinkRel(sponsor.url)}
       className={className}
