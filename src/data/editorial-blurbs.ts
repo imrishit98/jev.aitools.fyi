@@ -169,6 +169,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Quota rules first, TypeSafe ranking second, Herdr launch third. Honest pre-release notes, which is more than most router repos give you.",
   "leepokai-jev-guard":
     "Auto mode exported to every agent CLI: deny risky tools, flag injection in results, scan skills. npm install when plugins are not your vibe.",
+  "togethercomputer-tev1":
+    "Train your own letter-picker for the price of lunch: open data recipe, LoRA on Qwen3.5-4B, and a serverless endpoint that acts Jev-like without calling TypeSafe.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

@@ -6158,4 +6158,119 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "leepokai/jev-guard npm hooks risk, injection, and skill checks with TypeSafe Jev across Claude Code, Codex, Cursor, pi, and ACP. Upgraded thick page.",
   },
 
+  "togethercomputer-tev1": {
+    slug: "togethercomputer-tev1",
+    status: "published",
+    problem:
+      "Teams want fast letter-pick classifiers without paying TypeSafe per call, but also without guessing JSON from a chat model.",
+    targetUser:
+      "Builders who need Jev-shaped Choice decisions on their own Together endpoint, or who want to fine-tune Qwen3.5-4B with an open recipe for about twenty dollars.",
+    overview:
+      "tev1 (github.com/togethercomputer/tev1, MIT) is Together's open recipe for a Jev-inspired decision model, not a TypeSafe API client. Hassan El Mghari (@nutlope) published together/Tev1-4B-experimental on Together serverless with weights at huggingface.co/togethercomputer/Tev1-4B-experimental. You send state, a question, and 2 to 24 lettered options; the model returns one answer letter via examples/decide.py (temperature 0, max_tokens 8, thinking off, regex parse). Training recipe new v1 starts from Qwen/Qwen3.5-4B with LoRA SFT on 37,840 train and 4,568 val examples. README states this is an independent implementation that does not use Jev answers as training labels.",
+    creator: {
+      name: "Hassan El Mghari",
+      handle: "nutlope",
+      xUrl: "https://x.com/nutlope",
+      githubUrl: "https://github.com/Nutlope",
+      company: "Together",
+      companyUrl: "https://together.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Letter Choice over shared state and explicit option lists on a fine-tuned 4B endpoint",
+      primitives: ["Choice"],
+      stateIn:
+        "JSON with state string, question string, and options array (label, key, description) per examples/ and decide.py.",
+      decisionOut:
+        "Single option letter (and semantic key in the helper script) parsed from a short completion; logprobs are preferences, not calibrated confidence per README.",
+      flowSteps: [
+        "Format state, question, and 2 to 24 lettered options as JSON",
+        "Call Together chat completions with thinking disabled and tight token cap",
+        "Apply the repo system prompt: state is data, return one letter only",
+        "Parse the letter with regex in decide.py and map to option keys",
+        "Optional: run scripts/evaluate.py on a labeled holdout you control",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "new v1 recipe uses 37,840 training and 4,568 validation examples from the v1 plus v2.1 union on Qwen/Qwen3.5-4B with LoRA SFT.",
+          source: "github.com/togethercomputer/tev1 README and runs/new-v1/README.md",
+        },
+        {
+          claim:
+            "Development benchmarks on the published endpoint scored 880/1,000 main decisions (88%) and 300/300 policy-transfer; reused during training, not a held-out eval.",
+          source: "github.com/togethercomputer/tev1 runs/new-v1/README.md",
+        },
+        {
+          claim:
+            "Together blog cites about seventeen dollars and about twenty five minutes to fine-tune the sample dataset; serverless together/Tev1-4B-experimental lists about four cents per 1M input tokens with output free.",
+          source: "together.ai blog how-to-train-your-own-jev and Together model pricing September 2026",
+        },
+        {
+          claim:
+            "Public GitHub repo togethercomputer/tev1 had forty two stars and six forks when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Tev1 is the DIY cousin of hosted System One and the Featherless logits stack: same mental model of state plus explicit options, but the weights and bill live on Together. nutlope-1kpapers still calls TypeSafe for atlas topics; tev1 lets you own the classifier head after a cheap LoRA run. featherless-simple-jev assembles JSON from logits without a chat completion; tev1 learns letter answers from supervised examples. kylejeong-jev-as-judge and classifier.dev remain the paths when you want the closed jev model or HTTP primitives without training. Be honest in architecture reviews: Tev1 does not call api.typesafe.ai and dev bench scores are not production SLAs.",
+    keyFeatures: [
+      "Open MIT repo with dataset builders, train_together.py, and decide.py",
+      "Hosted weights Tev1-4B-experimental on Together serverless",
+      "Hugging Face model card and full weight download",
+      "Documented new v1 recipe with saved dev benchmark reports",
+      "Blog walkthrough from clone to deployed endpoint for about seventeen dollars",
+    ],
+    stack: [
+      "Python 3.12+",
+      "uv",
+      "Qwen/Qwen3.5-4B",
+      "Together fine-tuning and inference",
+      "LoRA SFT",
+    ],
+    links: {
+      website: "https://huggingface.co/togethercomputer/Tev1-4B-experimental",
+      repo: "https://github.com/togethercomputer/tev1",
+      docs: "https://www.together.ai/blog/how-to-train-your-own-jev",
+      demo: "https://api.together.ai/models/together/Tev1-4B-experimental",
+      post: "https://x.com/nutlope/status/2102881280115249597",
+    },
+    pricingNote:
+      "Repo training example targets about seventeen dollars per blog; serverless inference bills per Together model card (input priced, output free on the experimental endpoint).",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "nutlope-1kpapers",
+      "classifier-dev",
+      "featherless-simple-jev",
+      "kylejeong-jev-as-judge",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Tev1 the same as TypeSafe Jev?",
+        answer:
+          "No. README calls it a Jev-inspired independent implementation. It does not use Jev training labels and does not call the TypeSafe API unless you wire that yourself.",
+      },
+      {
+        question: "Can I trust the 88 percent main benchmark?",
+        answer:
+          "runs/new-v1/README.md labels those rows as reused development benchmarks, not untouched holdout tests. Run evaluate.py on your own split before quoting accuracy in prod.",
+      },
+      {
+        question: "How do I try it without training?",
+        answer:
+          "Call together/Tev1-4B-experimental on Together serverless or download weights from Hugging Face, then mirror decide.py settings (temperature 0, max_tokens 8, thinking off).",
+      },
+      {
+        question: "How is this different from Simple Jev?",
+        answer:
+          "Simple Jev serves Choice, Score, and Noul from open-model logits on Featherless. Tev1 is a single fine-tuned Qwen that completes one letter per question on Together.",
+      },
+    ],
+    metaTitle: "tev1: open Jev-like Choice model you train on Together",
+    metaDescription:
+      "togethercomputer/tev1 fine-tunes Qwen3.5-4B for letter decisions. Tev1-4B-experimental on Together, HF weights, about $17 training blog, not TypeSafe API.",
+  },
+
 };

@@ -1211,5 +1211,23 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-09-24"
+  },
+  {
+    "slug": "togethercomputer-tev1",
+    "title": "tev1",
+    "oneLiner": "Together's open Jev-inspired recipe: fine-tune Qwen3.5-4B for letter Choice on state plus options, host as Tev1-4B-experimental.",
+    "description": "tev1 (github.com/togethercomputer/tev1) ships dataset builders, LoRA SFT on new v1 (37,840 train, 4,568 val), and decide.py for Together endpoints. Independent of TypeSafe labels; serverless together/Tev1-4B-experimental plus HF weights. Blog and @nutlope launch thread.",
+    "category": "integrations",
+    "tags": ["integrations", "fine-tuning", "together", "classifier"],
+    "language": "Python",
+    "stars": 42,
+    "url": "https://api.together.ai/models/together/Tev1-4B-experimental",
+    "repoUrl": "https://github.com/togethercomputer/tev1",
+    "postUrl": "https://x.com/nutlope/status/2102881280115249597",
+    "creatorHandle": "nutlope",
+    "creatorName": "Hassan El Mghari",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-09-24"
   }
 ]
