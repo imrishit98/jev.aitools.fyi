@@ -159,6 +159,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Android chat co-pilot that judges intent and scam vibes before it drafts replies you still send yourself. Accessibility read only, fill the box, never auto-tap send.",
   "sac-y-jev-cu":
     "Codex CUA with a text-only Jev brain: pick the next AX candidate without shipping screenshots to the judge. Dry-run first; confirm before delete or pay.",
+  "anishfn-shapeshift":
+    "One box, many card types: Jev fan-out picks the shape while parsers handle the math. Offline by default so you can demo morphing UI without billing drama.",
+  "qkal-canny":
+    "The hook that refuses done when nothing ran after your last edit. Ledger facts block; Jev only nags on fuzzy claims. Replayable sessions without npm ceremony.",
+  "ellipsis-dev-blink":
+    "Ask where auth lives in English, let walkers sweep the tree, and trust Jev percentages instead of another ripgrep alias you forgot to alias.",
+  "nidhi-singh02-agent-router":
+    "Quota rules first, TypeSafe ranking second, Herdr launch third. Honest pre-release notes, which is more than most router repos give you.",
+  "leepokai-jev-guard":
+    "Auto mode exported to every agent CLI: deny risky tools, flag injection in results, scan skills. npm install when plugins are not your vibe.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

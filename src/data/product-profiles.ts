@@ -5684,4 +5684,478 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "y0usaf/pi-jev Pi extension batches gate nouls and impact Score, judges bash output, exposes jev_ask. Shadow default, fail-open on errors per README.",
   },
 
+  "anishfn-shapeshift": {
+    slug: "anishfn-shapeshift",
+    status: "published",
+    problem:
+      "Multi-step forms force users to pick a mode before they type, so quick notes become three screens of empty fields.",
+    targetUser:
+      "Product builders and demo hackers who want one morphing text box that becomes event cards, checklists, timers, and converters without a chat model filling every field.",
+    overview:
+      "Shapeshift (github.com/anishfn/shapeshift, shapeshiftui.vercel.app) is Anish Gupta's Bun app where a single input becomes the right UI as you type. TypeSafe Jev answers fourteen typed questions in one parallel call (which card type plus signals like video call or urgency) while deterministic code parses dates, amounts, units, and math from the same string. README documents an offline keyword classifier by default so the demo runs without an account; optional TYPESAFE_API_KEY on the server route /api/intent switches the latency badge from jev-offline to pinned jev-1.13.0 with quiet fallback when the API is unreachable.",
+    creator: {
+      name: "Anish Gupta",
+      handle: "anishfn",
+      githubUrl: "https://github.com/anishfn",
+    },
+    jevUsage: {
+      flowRole:
+        "Parallel intent and card-type classification; code fills structured field values",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "User utterance in the morphing text box; fourteen decomposed questions per README diagram (card type plus boolean signals).",
+      decisionOut:
+        "Selected card template and feature flags consumed by deterministic parsers for values.",
+      flowSteps: [
+        "User types natural language in the single input",
+        "Online path: one Jev fan-out answers fourteen questions in parallel",
+        "Offline path: built-in keyword classifier when no key or mock flag",
+        "Deterministic code computes dates, splits, conversions, and math",
+        "Rendered card persists in browser localStorage until deleted",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states one Jev call answers fourteen typed questions in parallel while code handles values.",
+          source: "github.com/anishfn/shapeshift README",
+        },
+        {
+          claim:
+            "Public GitHub repo anishfn/shapeshift had about five hundred ten stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+        {
+          claim:
+            "Live demo hosted at shapeshiftui.vercel.app with Bun 1.2+ dev setup documented in README.",
+          source: "github.com/anishfn/shapeshift README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Shapeshift is the UI morphing counterpoint to marketing personalization listings like ploy-ai: Jev classifies intent and card shape, not audience segments. The fan-out pattern keeps latency predictable because every question shares one HTTP round trip while parsers stay testable TypeScript. That split matches the directory mantra of facts in code and judgments on Jev. Press slash to browse card types; optional keys never reach the browser per README server-only routing.",
+    keyFeatures: [
+      "Sixteen plus card types from events to polls and time zones",
+      "Offline keyword mode without API keys",
+      "Optional TypeSafe server route with offline fallback",
+      "Keyboard shortcuts and localStorage history",
+      "Bun 1.2+ dev workflow",
+    ],
+    stack: ["Bun", "TypeScript", "TypeSafe Jev", "Vercel deploy"],
+    links: {
+      repo: "https://github.com/anishfn/shapeshift",
+      docs: "https://github.com/anishfn/shapeshift#quick-start",
+      demo: "https://shapeshiftui.vercel.app",
+      website: "https://shapeshiftui.vercel.app",
+    },
+    pricingNote:
+      "Open source; TypeSafe usage bills to your key when online intent is enabled.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "classifier-dev",
+      "sdras-jev-webmcp-extension",
+      "typesafe-ai-skills",
+      "ploy-ai",
+    ],
+    relatedLearnSlugs: ["primitives", "patterns", "use-cases"],
+    faq: [
+      {
+        question: "Does Shapeshift need a TypeSafe key?",
+        answer:
+          "No for the default experience. README documents offline keyword classification until you set TYPESAFE_API_KEY in .env.local for the server intent route.",
+      },
+      {
+        question: "How is this different from ploy-ai?",
+        answer:
+          "Shapeshift morphs a single input into structured personal UI cards. ploy-ai targets marketing segment personalization, not inline card typing.",
+      },
+      {
+        question: "Where is my data stored?",
+        answer:
+          "README states saved cards live in browser localStorage until you delete them.",
+      },
+    ],
+    metaTitle: "Shapeshift: Jev intent fan-out for morphing text UI",
+    metaDescription:
+      "anishfn/shapeshift uses parallel Jev questions plus deterministic parsers for one-box UI morphing. Offline default, live at shapeshiftui.vercel.app.",
+  },
+
+  "qkal-canny": {
+    slug: "qkal-canny",
+    status: "published",
+    problem:
+      "Coding agents can say done after a heredoc edit without running tests, and instruction files only ask the model to behave.",
+    targetUser:
+      "Claude Code and Codex users who want hook-level supervision with an append-only ledger and deterministic blockers before optional Jev judgments.",
+    overview:
+      "Canny (github.com/qkal/canny) is Qkal's zero runtime dependency supervisor for Claude Code and Codex. Hooks record what actually happened; code refuses finish when the ledger lacks a passing check after the last edit. README states facts go to code and judgments go to Jev: file changes, command exit codes, and secret patterns block offline, while done claims and rubric-style rule questions go to TypeSafe with about a quarter second latency. Jev never blocks by itself; a refused done is always missing ledger evidence, not a probability threshold. canny replay reproduces verdicts from the ledger.",
+    creator: {
+      name: "Qkal",
+      handle: "qkal",
+      githubUrl: "https://github.com/qkal",
+    },
+    jevUsage: {
+      flowRole:
+        "Optional Noul-style judgments on done claims and semantic rules; deterministic ledger gates completion",
+      primitives: ["Noul", "Score"],
+      stateIn:
+        "Append-only session ledger events plus diff snippets for rule questions documented in README.",
+      decisionOut:
+        "Calibrated probabilities for judgments surfaced as notes; blocking verdicts come only from provable ledger facts.",
+      flowSteps: [
+        "Agent hooks append tool and command events to the ledger",
+        "On finish attempt, code checks for passing test, build, lint, or type-check since last edit",
+        "Optional Jev answers typed questions about done claims or instruction rules",
+        "Deterministic refusal messages cite ledger facts, not model prose",
+        "canny replay re-derives the same verdict from stored events",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README documents Jev answering typed yes or no questions in about a quarter of a second for judgments.",
+          source: "github.com/qkal/canny README",
+        },
+        {
+          claim:
+            "README states zero runtime dependencies in package.json and compiled CLI committed to the repo.",
+          source: "github.com/qkal/canny README",
+        },
+        {
+          claim:
+            "Public GitHub repo qkal/canny had about seventy eight stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Canny complements coldteadotai-abide and leepokai-jev-guard rather than replacing them. Abide scores each AGENTS.md rule on diffs; jev-guard risk-scores every tool call and scans results for injection. Canny sits on completion evidence: did checks run after the last change, and does the ledger prove it. Jev handles fuzzy done language and semantic rule notes while code owns hard stops. That separation keeps sessions replayable and cheap when you omit a TypeSafe key.",
+    keyFeatures: [
+      "Claude Code and Codex hook installers via init prompt",
+      "Append-only session ledger with replay",
+      "Deterministic blockers for missing checks and secret patterns",
+      "Optional Jev judgments that never sole-block",
+      "Node 22 plus git install path without npm package",
+    ],
+    stack: ["TypeScript", "Node 22", "Agent hook APIs", "TypeSafe Jev"],
+    links: {
+      repo: "https://github.com/qkal/canny",
+      docs: "https://github.com/qkal/canny#install-by-pasting-a-prompt",
+    },
+    pricingNote:
+      "Open source; optional Jev usage bills to your TypeSafe key when judgments are enabled.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "coldteadotai-abide",
+      "hemanth-pkg-gate",
+      "leepokai-jev-guard",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Can Jev block my agent from finishing?",
+        answer:
+          "README states Jev never blocks. Finish refusals come from ledger facts such as no passing check since the last edit.",
+      },
+      {
+        question: "How is Canny different from Abide?",
+        answer:
+          "Abide enforces instruction-file rubrics on each edit. Canny focuses on completion evidence and optional semantic judgments over the session ledger.",
+      },
+      {
+        question: "Is there an npm install?",
+        answer:
+          "README install flow clones github.com/qkal/canny to ~/.canny/src and runs the committed dist CLI; there is no npm package.",
+      },
+    ],
+    metaTitle: "Canny: ledger-first agent supervision with optional Jev",
+    metaDescription:
+      "qkal/canny hooks Claude Code and Codex, blocks done without check evidence, and uses Jev only for judgments. Replayable ledger, zero runtime deps.",
+  },
+
+  "ellipsis-dev-blink": {
+    slug: "ellipsis-dev-blink",
+    status: "published",
+    problem:
+      "Ripgrep and filename search miss intent when engineers ask where authentication or billing logic lives in plain language.",
+    targetUser:
+      "Developers with a TypeSafe key who want local codebase search via parallel filesystem walkers scored by Jev probabilities.",
+    overview:
+      "blink (github.com/ellipsis-dev/blink) from ellipsis-dev is a Bun CLI that accepts a natural-language query and directory, optionally walks recursively, and runs an ensemble of filesystem walkers whose hits Jev scores into a ranked table. README example finds auth files in a sample tree with percentage columns per path. Setup requires Bun 1.3.14 plus TYPESAFE_API_KEY. This listing upgrades the thin catalog row with refreshed star count and a full ProductProfile distinct from web search demos.",
+    creator: {
+      name: "ellipsis-dev",
+      handle: "ellipsis-dev",
+      githubUrl: "https://github.com/ellipsis-dev",
+    },
+    jevUsage: {
+      flowRole:
+        "Relevance scoring over walker-selected file paths for a natural-language query",
+      primitives: ["Score", "Choice"],
+      stateIn:
+        "Query string, target directory path, walker count, and candidate file nodes from parallel tree walks per README CLI flags.",
+      decisionOut:
+        "Ranked file paths with percentage relevance for terminal table output.",
+      flowSteps: [
+        "Parse query and directory from CLI arguments",
+        "Spawn multiple filesystem walkers with -n_walkers and optional -r recursive mode",
+        "Collect candidate file nodes from the ensemble",
+        "Jev scores each node against the query",
+        "Print sorted table of paths and percentages",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README documents Bun 1.3.14 plus requirement and example ranking auth files at seventy four and sixteen percent.",
+          source: "github.com/ellipsis-dev/blink README",
+        },
+        {
+          claim:
+            "Public GitHub repo ellipsis-dev/blink had about seventy three stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "blink keeps search local: walkers explore the tree while Jev supplies calibrated relevance instead of embedding prose summaries. Compare superagents-lab-jev-search and mfm-jev-search for HTTP retrieval over the public web or a YouTube catalog; blink targets your checkout on disk. The ensemble pattern spreads walker diversity before a single scoring pass, which is a useful template when you outgrow ripgrep but do not want a vector database yet.",
+    keyFeatures: [
+      "CLI with query, directory, recursive, and walker count flags",
+      "Ensemble filesystem walkers",
+      "Terminal table output with percentage column",
+      "Bun-native install path",
+    ],
+    stack: ["Bun", "TypeScript", "TypeSafe Jev"],
+    links: {
+      repo: "https://github.com/ellipsis-dev/blink",
+      docs: "https://github.com/ellipsis-dev/blink#readme",
+      post: "https://x.com/0xLogicrw/status/2100478725393686556",
+    },
+    pricingNote:
+      "Open source CLI; TypeSafe usage bills to your TYPESAFE_API_KEY per README.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "superagents-lab-jev-search",
+      "mfm-jev-search",
+      "classifier-dev",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does blink search the web?",
+        answer:
+          "No. README documents local directory search with filesystem walkers, not HTTP indexes.",
+      },
+      {
+        question: "How is blink different from jev-search?",
+        answer:
+          "jev-search plans Search1API web queries. blink scores files inside a path you pass on the command line.",
+      },
+      {
+        question: "What runtime does blink need?",
+        answer:
+          "README requires Bun 1.3.14 or newer and export TYPESAFE_API_KEY for live scoring.",
+      },
+    ],
+    metaTitle: "blink: Jev-scored local codebase search with walkers",
+    metaDescription:
+      "ellipsis-dev/blink ranks files from parallel tree walkers with TypeSafe Jev probabilities. Bun CLI, upgraded thick listing on Jev Directory.",
+  },
+
+  "nidhi-singh02-agent-router": {
+    slug: "nidhi-singh02-agent-router",
+    status: "published",
+    problem:
+      "Developers juggle Cursor, Claude Code, Codex, and OpenCode subscriptions without a quota-aware pick of agent, model, and effort per task.",
+    targetUser:
+      "Herdr users with multiple agent CLIs logged in who want policy-first eligibility filters then TypeSafe ranking before launch.",
+    overview:
+      "Agent Router (github.com/nidhi-singh02/agent-router) is Nidhi Singh's pre-release CLI that reads a task string, applies deterministic rules on enabled models, quotas, and a forty percent reserve on shared accounts, then calls TypeSafe to rank what remains and choose reasoning effort. router run launches Cursor, Claude Code, Codex, or OpenCode inside a Herdr pane via logged-in CLIs rather than raw provider API keys. README marks the project under active development and requires a TypeSafe key with no fallback on every run. Local config and decision history stay under .model-router unless you opt into integrations.",
+    creator: {
+      name: "Nidhi Singh",
+      handle: "nidhi-singh02",
+      githubUrl: "https://github.com/nidhi-singh02",
+    },
+    jevUsage: {
+      flowRole:
+        "Semantic ranking and effort selection after deterministic subscription eligibility filters",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Task text plus filtered agent and model candidates after quota and policy rules per README.",
+      decisionOut:
+        "Chosen agent, model, and effort level used to spawn the selected CLI in Herdr.",
+      flowSteps: [
+        "Load MODEL_ROUTER_HOME config with enabled models and quotas",
+        "Apply fixed eligibility rules including shared-account reserve",
+        "Send remaining candidates and task text to TypeSafe for ranking",
+        "Pick agent CLI and effort, then launch via Herdr when HERDR_ENV is set",
+        "Record decisions locally under .model-router",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states routing always calls TypeSafe with no fallback and rejects recognizable credentials in task text locally.",
+          source: "github.com/nidhi-singh02/agent-router README",
+        },
+        {
+          claim:
+            "README labels the project pre-release and documents Node 20 plus, Herdr pane requirement, and forty percent shared quota reserve.",
+          source: "github.com/nidhi-singh02/agent-router README",
+        },
+        {
+          claim:
+            "Public GitHub repo nidhi-singh02/agent-router had about seventy stars when this listing was drafted.",
+          source: "GitHub star count September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Agent Router is the multi-agent launch desk: deterministic code enforces what you are allowed to spend, then Jev picks among legal options. That differs from gargpratyush-jev-router, which focuses on cheapest model routing inside Claude Code only. Pair with dicklesworthstone-skillranker when tasks need skill selection first, or dbreunig-building-with-jev-skill when you are teaching teammates how to shape routing questions. Treat pre-release warnings seriously before pointing shared credentials at router run.",
+    keyFeatures: [
+      "router run task launcher for four agent CLIs",
+      "Quota-aware filters before TypeSafe ranking",
+      "Herdr integration for pane launches",
+      "Local .model-router config and history",
+      "YouTube demo linked from README",
+    ],
+    stack: [
+      "Node.js 20",
+      "TypeScript monorepo",
+      "Herdr",
+      "TypeSafe Jev",
+    ],
+    links: {
+      repo: "https://github.com/nidhi-singh02/agent-router",
+      docs: "https://github.com/nidhi-singh02/agent-router#setup",
+      demo: "https://youtu.be/7w8eRWnUUA8",
+    },
+    pricingNote:
+      "Open source pre-release; TypeSafe bills per routing call; agent access uses your existing CLI logins.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "dicklesworthstone-skillranker",
+      "dbreunig-building-with-jev-skill",
+      "y0usaf-pi-jev",
+      "typesafe-ai-skills",
+    ],
+    relatedLearnSlugs: ["patterns", "use-cases"],
+    faq: [
+      {
+        question: "Is Agent Router production ready?",
+        answer:
+          "README explicitly marks pre-release active development and asks you to review security notes before real credentials.",
+      },
+      {
+        question: "How is this different from gargpratyush-jev-router?",
+        answer:
+          "Agent Router picks among Cursor, Claude Code, Codex, and OpenCode with quota rules and Herdr launch. gargpratyush-jev-router targets cheapest model choice inside Claude Code only and remains a thin catalog row here.",
+      },
+      {
+        question: "Can router run without Herdr?",
+        answer:
+          "README states non dry-run launches require running inside a Herdr pane with HERDR_ENV=1.",
+      },
+    ],
+    metaTitle: "Agent Router: quota-aware Jev pick among coding agent CLIs",
+    metaDescription:
+      "nidhi-singh02/agent-router filters subscriptions, ranks with TypeSafe, launches Cursor, Codex, Claude Code, or OpenCode via Herdr. Pre-release README.",
+  },
+
+  "leepokai-jev-guard": {
+    slug: "leepokai-jev-guard",
+    status: "published",
+    problem:
+      "Auto mode style safety exists inside Claude Code, but other agents lack a cheap per-tool-call classifier with session memory and injection scanning.",
+    targetUser:
+      "Teams on Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, or ACP who want Jev risk scoring before tools run and on untrusted results.",
+    overview:
+      "jev-guard (github.com/leepokai/jev-guard, npm jev-guard) from leepokai implements Claude Code auto mode semantics as three typed Jev questions (risk, user_requested, from_untrusted) on every tool call, plus result scanning for prompt injection and skill or plugin checks across hosts. README cites Vercel AI Gateway pricing near four hundredths of a cent per typical call and measured gateway p50 near five hundred eighty milliseconds in calibration runs. Adapters cover plugins, hooks, and npm global install with keys in ~/.jev-guard/config.json. Upgraded from a thin catalog row with refreshed stars and npm badge.",
+    creator: {
+      name: "leepokai",
+      handle: "leepokai",
+      githubUrl: "https://github.com/leepokai",
+    },
+    jevUsage: {
+      flowRole:
+        "Pre-tool risk gate, post-tool injection scan, and instruction file integrity checks",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "Tool name and payload before execution; tool stdout, files, and MCP output after; skill and plugin text on load per README tables.",
+      decisionOut:
+        "Deny, ask, or allow decisions plus untrusted flags stored for the session with calibrated probabilities.",
+      flowSteps: [
+        "Hook or plugin intercepts agent tool call with session context",
+        "Jev scores risk, user intent match, and untrusted instruction signals",
+        "Policy maps scores to deny, ask, or allow per host capabilities",
+        "After results return, Jev scans for agent-directed injection and canaries",
+        "Skills and AGENTS files checked on load and via scan-skills command",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README pricing table cites about four hundredths of a cent per typical thousand-token call via Vercel AI Gateway model card.",
+          source: "github.com/leepokai/jev-guard README",
+        },
+        {
+          claim:
+            "README measured AI Gateway p50 near five hundred eighty milliseconds over a twenty one call calibration run.",
+          source: "github.com/leepokai/jev-guard README",
+        },
+        {
+          claim:
+            "Public GitHub repo leepokai/jev-guard had about thirty three stars when this listing was drafted; npm package jev-guard at 0.3.1.",
+          source: "GitHub and npm September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-guard generalizes auto mode beyond Anthropic's host: same three-question batch, many adapters. coldteadotai-abide judges instruction compliance on diffs; qkal-canny refuses done without check evidence; jev-guard lives on the tool boundary and on poisoned outputs. y0usaf-pi-jev targets Pi specifically with batched nouls. Running jev-guard plus Abide plus Canny is heavy but each layer catches a different failure mode teams actually see in incident reviews.",
+    keyFeatures: [
+      "Claude Code, Codex, Copilot, Gemini, Cursor, pi, OpenCode, and ACP adapters",
+      "Pre-tool deny and ask policy with session memory",
+      "Post-tool injection and canary scanning",
+      "Skill and plugin integrity checks",
+      "npm global CLI with jev-guard check debugging",
+    ],
+    stack: [
+      "JavaScript",
+      "npm jev-guard",
+      "Agent hook and plugin APIs",
+      "TypeSafe Jev",
+    ],
+    links: {
+      repo: "https://github.com/leepokai/jev-guard",
+      docs: "https://github.com/leepokai/jev-guard#install",
+      website: "https://www.npmjs.com/package/jev-guard",
+    },
+    pricingNote:
+      "MIT npm package; Jev calls bill per README gateway or api.typesafe.ai pricing.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "coldteadotai-abide",
+      "y0usaf-pi-jev",
+      "hemanth-pkg-gate",
+      "qkal-canny",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does jev-guard replace Claude Code auto mode?",
+        answer:
+          "README positions it as the same classifier idea with Jev for many hosts, or a second opinion inside Claude Code.",
+      },
+      {
+        question: "How is jev-guard different from Canny?",
+        answer:
+          "Canny blocks finish without ledger check evidence. jev-guard scores each tool call and scans results for injection before work continues.",
+      },
+      {
+        question: "Where does the API key live?",
+        answer:
+          "jev-guard key writes ~/.jev-guard/config.json mode 0600; environment variables override when set per README.",
+      },
+    ],
+    metaTitle: "jev-guard: Jev auto mode for every coding agent CLI",
+    metaDescription:
+      "leepokai/jev-guard npm hooks risk, injection, and skill checks with TypeSafe Jev across Claude Code, Codex, Cursor, pi, and ACP. Upgraded thick page.",
+  },
+
 };
