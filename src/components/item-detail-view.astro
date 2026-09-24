@@ -28,6 +28,7 @@ import FaqAnswer from "@/components/faq-answer.astro";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import SponsorSidebar from "@/components/sponsor-sidebar.astro";
 
 interface Props {
   slug: string;
@@ -521,6 +522,7 @@ const listingDescription = profile
             Stale link or wrong stars? <a href="/submit" class="text-primary hover:underline">Ping us on Submit</a>.
           </p>
         </div>
+        <SponsorSidebar />
       </aside>
     </div>
 

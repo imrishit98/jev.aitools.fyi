@@ -1,0 +1,60 @@
+---
+import { sponsors, sponsorInitial } from "@/data/sponsors";
+import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
+
+const LOGO_SIZE = 28;
+---
+
+<div class="surface-card mt-4 hidden p-5 lg:block" aria-labelledby="page-sponsors-sidebar-heading">
+  <h2
+    id="page-sponsors-sidebar-heading"
+    class="text-[11px] font-medium uppercase tracking-[0.2em] text-muted-foreground"
+  >
+    Sponsored
+  </h2>
+  <ul class="mt-4 space-y-3">
+    {
+      sponsors.map((sponsor) => (
+        <li>
+          <a
+            href={sponsorHref(sponsor.url)}
+            target="_blank"
+            rel={sponsorLinkRel(sponsor.url)}
+            class="group flex gap-2.5 rounded-md border border-transparent p-1 -m-1 transition-colors hover:border-border/80 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+          >
+            <span
+              class="inline-flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-muted/50"
+              style={`width:${LOGO_SIZE}px;height:${LOGO_SIZE}px`}
+            >
+              <img
+                src={sponsor.logoUrl}
+                alt={`${sponsor.name} logo`}
+                width={LOGO_SIZE}
+                height={LOGO_SIZE}
+                class="size-full object-contain"
+                loading="lazy"
+                decoding="async"
+                onerror="this.style.display='none';const f=this.nextElementSibling;if(f)f.style.display='flex'"
+              />
+              <span
+                class="hidden size-full items-center justify-center font-heading text-[10px] font-semibold text-primary"
+                aria-hidden="true"
+              >
+                {sponsorInitial(sponsor.name)}
+              </span>
+            </span>
+            <div class="min-w-0 flex-1">
+              <p class="font-heading text-sm font-semibold leading-tight text-foreground">
+                {sponsor.name}
+              </p>
+              <p class="mt-0.5 line-clamp-2 text-xs leading-snug text-muted-foreground">
+                {sponsor.tagline}
+              </p>
+              <p class="mt-1 text-xs font-medium text-primary group-hover:underline">Visit site</p>
+            </div>
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
