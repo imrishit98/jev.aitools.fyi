@@ -5247,7 +5247,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "The product splits judgment from generation on purpose: the judge route can point at TypeSafe Jev, OpenRouter, or vendor presets such as the documented Bocha Jev endpoint, while reply and vision routes stay independently configurable. That keeps intent and danger nouls on a fast structured path before any chat model writes casual text. Local notes and contact aliases inject only when tags or titles match, so replies stay consistent with your own facts without shipping a full cloud memory product. The overlay model is the opposite of bot APIs: no package hooks, no database reads, only what you already see. Mention jev-chat-windows as a sibling port, not a second directory page in this batch.",
+      "The product splits judgment from generation on purpose: the judge route can point at TypeSafe Jev, OpenRouter, or vendor presets such as the documented Bocha Jev endpoint, while reply and vision routes stay independently configurable. That keeps intent and danger nouls on a fast structured path before any chat model writes casual text. Local notes and contact aliases inject only when tags or titles match, so replies stay consistent with your own facts without shipping a full cloud memory product. The overlay model is the opposite of bot APIs: no package hooks, no database reads, only what you already see. jev-chat-jev-chat-windows is the thick listing for the PyQt OCR desktop port.",
     keyFeatures: [
       "Floating panel with danger, intent, and three ranked replies",
       "Fill input only; no auto-send or payment actions",
@@ -5270,7 +5270,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     pricingNote:
       "Open source client; you bring API keys for judge, reply, and vision providers per README.",
     firstSeen: "2026-09-23",
-    relatedSlugs: ["sdras-jev-webmcp-extension", "avec-ai", "classifier-dev"],
+    relatedSlugs: [
+      "jev-chat-jev-chat-windows",
+      "sdras-jev-webmcp-extension",
+      "avec-ai",
+      "classifier-dev",
+    ],
     relatedLearnSlugs: ["use-cases", "primitives"],
     faq: [
       {
@@ -6271,6 +6276,579 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "tev1: open Jev-like Choice model you train on Together",
     metaDescription:
       "togethercomputer/tev1 fine-tunes Qwen3.5-4B for letter decisions. Tev1-4B-experimental on Together, HF weights, about $17 training blog, not TypeSafe API.",
+  },
+
+  "jaredpalmer-kev": {
+    slug: "jaredpalmer-kev",
+    status: "published",
+    problem:
+      "Teams want Jev-shaped Choice, Score, and Noul gates without per-call TypeSafe bills, but also without brittle chat JSON from general LLMs.",
+    targetUser:
+      "Engineers who can host Python 3.12+, want System One-compatible APIs, and may fine-tune Qwen3.5 or Qwen3.8 checkpoints on their own labels.",
+    overview:
+      "Kev (github.com/jaredpalmer/kev, Apache-2.0) is Jared Palmer's family of small decision models on Qwen3.5 and Qwen3.8 bases (0.8B, 4B, 9B, 27B). Weights and frozen eval suites live on Hugging Face; kev.serve exposes POST /v1/systemone matching TypeSafe's System One contract so the TypeSafe Python SDK can point at localhost. README publishes dev and test accuracy and Brier scores against hosted Jev on new sources (datasets Kev never trained on) and trained sources (held-out rows from Kev training). Kev-27B is within about one point of Jev on new-source accuracy in those tables; Kev-4B is the default starting size. Modal skills, one-command HTTPS deploy, and HF Spaces demo round out the train-and-serve story.",
+    creator: {
+      name: "Jared Palmer",
+      handle: "jaredpalmer",
+      xUrl: "https://x.com/jaredpalmer",
+      githubUrl: "https://github.com/jaredpalmer",
+    },
+    jevUsage: {
+      flowRole:
+        "Self-hosted System One parallel questions over shared state with calibrated probabilities",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Single state string plus a questions map of choice, noul, or score fields per README curl and typesafe_sdk examples.",
+      decisionOut:
+        "Per-question typed answers with probabilities or scores; latency_ms and token usage in the JSON envelope.",
+      flowSteps: [
+        "uv sync --extra serve and python -m kev.serve --run jaredpalmer/kev-4b",
+        "POST /v1/systemone with model kev-latest and parallel questions",
+        "Route high-confidence departments or escalate low-confidence tuples in app code",
+        "Optional: fine-tune adapters and redeploy with the repo training and Modal skill paths",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README table lists Kev-4B new-source development accuracy 0.817 and test 0.838 versus Jev hosted 0.857 on development new sources only.",
+          source: "github.com/jaredpalmer/kev README Models section",
+        },
+        {
+          claim:
+            "Public GitHub repo jaredpalmer/kev had 6740 stars and 389 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Apache-2.0 license; default serve example reports about 495 ms latency for a three-question ticket on Kev-4B bf16 on Apple M5 in README.",
+          source: "github.com/jaredpalmer/kev README Quick Start",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Kev is the open-weights answer when you want the same SDK calls as api.typesafe.ai but the bill and GPUs are yours. togethercomputer-tev1 teaches a letter-picker via LoRA on Together; featherless-simple-jev assembles logits from arbitrary HF models; bespokelabsai-nimble ships a curated 9B recipe. Kev ships full checkpoints with eval tables against hosted Jev and explicit warnings that Jev training data is unknown, so headline accuracy is directional. wfzyx-von chases sub-25 ms non-autoregressive inference on a smaller encoder; Kev stays autoregressive Qwen with richer Score and Noul in one batch. Do not confuse this repo with kevthetech143-super-jev fan forks. classifier.dev and hosted System One remain the paths when you refuse to operate inference.",
+    keyFeatures: [
+      "Four public sizes from 0.8B laptop class to 27B datacenter GPU",
+      "Drop-in TypeSafe Python SDK against local kev.serve",
+      "Frozen HF eval suites and per-model cards with Brier scores",
+      "HF Space demo, GitHub release checksums, Modal fine-tune skill",
+      "Parallel choice, noul, and score questions on one state string",
+    ],
+    stack: [
+      "Python 3.12 or 3.13",
+      "uv",
+      "Qwen3.5 and Qwen3.8 bases",
+      "CUDA, ROCm, or MLX serve paths",
+      "typesafe_sdk",
+    ],
+    links: {
+      repo: "https://github.com/jaredpalmer/kev",
+      docs: "https://github.com/jaredpalmer/kev#quick-start",
+      demo: "https://huggingface.co/spaces/jaredpalmer/kev",
+      website: "https://huggingface.co/collections/jaredpalmer/kev-6aad9d0ea49f2589665e07cd",
+    },
+    pricingNote:
+      "Open source weights; you pay for GPUs, Modal training, or your own cloud serve. No TypeSafe meter unless you call both.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "togethercomputer-tev1",
+      "featherless-simple-jev",
+      "bespokelabsai-nimble",
+      "wfzyx-von",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Kev the same product as TypeSafe Jev?",
+        answer:
+          "No. Kev reimplements a Jev-like decision stack on open Qwen weights with a compatible HTTP API. Hosted Jev stays on TypeSafe unless you point SDK clients at your server.",
+      },
+      {
+        question: "Which size should I start with?",
+        answer:
+          "README recommends Kev-4B for most GPUs, Kev-0.8B when size matters, and Kev-27B when you have 80 GB VRAM and want the best Kev accuracy in their tables.",
+      },
+      {
+        question: "How does Kev compare to tev1 or Nimble?",
+        answer:
+          "tev1 is a Together fine-tune recipe; Nimble is Bespoke's 9B schema classifier. Kev ships multiple finished checkpoints with System One parity and Jared Palmer's eval narrative against hosted Jev.",
+      },
+    ],
+    metaTitle: "Kev: Jared Palmer's open Jev-like models on Qwen",
+    metaDescription:
+      "jaredpalmer/kev serves System One-compatible Choice, Score, and Noul from 0.8B to 27B Qwen checkpoints. HF weights, evals vs hosted Jev, TypeSafe SDK drop-in.",
+  },
+
+  "wfzyx-von": {
+    slug: "wfzyx-von",
+    status: "published",
+    problem:
+      "Autoregressive chat classifiers burn hundreds of milliseconds and KV cache RAM for routing tasks that only need scored options, not generated prose.",
+    targetUser:
+      "Builders who want Apache-2.0 weights, local sub-25 ms decisions, and order-invariant option scoring without TypeSafe API keys.",
+    overview:
+      "Von (github.com/wfzyx/von, Apache-2.0) is a compact non-autoregressive System One-style model: one forward pass scores premise text against explicit option descriptions for Choice, Noul, and Score-style tasks. README positions Von 1.2 as fixing option-order sensitivity from Von 1.1 (JevBench hard-tier shuffle diagnostic). Weights ship at huggingface.co/wfzyx/von with Python 3.12+ and TypeScript clients. Marketing copy cites sub-25 ms inference and Doom gameplay where movement picks are zero-shot from depth-buffer text, with tables comparing kills and latency to TypeSafe Jev 1.13 API and other open baselines on the author's hardware.",
+    creator: {
+      name: "wfzyx",
+      githubUrl: "https://github.com/wfzyx",
+    },
+    jevUsage: {
+      flowRole:
+        "Bidirectional encoder scores each option against shared premise text in one pass",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Premise string plus option descriptions; Von 1.2 isolates option tokens so scores do not depend on sibling option order.",
+      decisionOut:
+        "Discrete picks with calibrated-style probabilities per primitive; local in-process latency on GPU or CPU per README benchmarks.",
+      flowSteps: [
+        "Load wfzyx/von weights from Hugging Face",
+        "Format premise and option list per package examples",
+        "Run single forward pass scoring all questions in parallel",
+        "Threshold probabilities in your router or game loop",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README cites Von 1.1 about 18 ms inference on documented JevBench and Doom tables versus TypeSafe Jev API about 115 ms in the same table footnotes.",
+          source: "github.com/wfzyx/von README benchmark tables",
+        },
+        {
+          claim:
+            "Von 1.2 release notes claim option-order shuffle sensitivity dropped from 49.5% answer changes on hard tier to architecture-level invariance.",
+          source: "github.com/wfzyx/von README What's new in 1.2",
+        },
+        {
+          claim:
+            "Public GitHub repo wfzyx/von had 635 stars and 46 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Von is the speed-first open cousin of hosted System One: no api.typesafe.ai round trip, no token-by-token decode for a letter answer. jaredpalmer-kev keeps Qwen autoregression but adds full fine-tune and SDK parity; togethercomputer-tev1 and featherless-simple-jev target different training and serving ergonomics. Laya and MLX ports covered in /learn/laya-vs-jev solve another local open stack; Von is explicitly tagged decision-model and System One in GitHub topics. Do not confuse with genai-craft-openvons. Pair with theoleecj-semif when you want a research server narrative, or classifier.dev when managed latency beats running 395M params yourself.",
+    keyFeatures: [
+      "Apache-2.0 weights and Python plus TypeScript inference paths",
+      "Order-invariant option scoring in Von 1.2 architecture",
+      "Documented JevBench and ViZDoom-style zero-shot demos",
+      "Sub-25 ms marketing claim for local interactive loops",
+      "250k example training story in README methodology section",
+    ],
+    stack: [
+      "Python 3.12+",
+      "TypeScript 5.x",
+      "ModernBERT-family encoder",
+      "Hugging Face Hub",
+    ],
+    links: {
+      repo: "https://github.com/wfzyx/von",
+      docs: "https://github.com/wfzyx/von#whats-new-in-12-order-invariant-option-scoring",
+      website: "https://huggingface.co/wfzyx/von",
+    },
+    pricingNote:
+      "Open weights; inference cost is your hardware or cloud GPU time, not TypeSafe tokens.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "togethercomputer-tev1",
+      "featherless-simple-jev",
+      "bespokelabsai-nimble",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Von a drop-in TypeSafe API client?",
+        answer:
+          "Von mirrors System One semantics in docs and examples but ships its own weights and clients. Point integrations at Von inference code, not api.typesafe.ai, unless you wrap it yourself.",
+      },
+      {
+        question: "How is Von different from Kev?",
+        answer:
+          "Kev is Jared Palmer's multi-size Qwen family with TypeSafe SDK compatibility and fine-tune tooling. Von is a smaller non-autoregressive encoder focused on fast local scoring.",
+      },
+      {
+        question: "Should I trust the Doom kill counts as production proof?",
+        answer:
+          "README presents them as zero-shot gameplay evidence on the author's GPU. Treat them as demos; run your own latency and accuracy harness before safety gates.",
+      },
+    ],
+    metaTitle: "Von: open non-autoregressive System One decision model",
+    metaDescription:
+      "wfzyx/von scores Choice, Noul, and Score in one forward pass with Apache-2.0 weights. Sub-25 ms local claims, order-invariant 1.2, contrast with hosted Jev and Kev.",
+  },
+
+  "monteduro-killmyidea": {
+    slug: "monteduro-killmyidea",
+    status: "published",
+    problem:
+      "Founders waste weeks on ideas that fail basic indie-hacker sanity checks, but generic chat opinions are not reproducible or thresholdable.",
+    targetUser:
+      "Solo builders who want a blunt KILL, FIX, or SHIP label from structured scores, not a motivational essay from GPT-class models.",
+    overview:
+      "Kill My Idea (github.com/monteduro/killmyidea, killmyidea.stemonte.io) is a Vite playground that sends exactly one TypeSafe Jev request per idea. Ten parallel questions run together: eight rubric scores from 0 to 4 (real problem, money, competition, and similar indie fields), plus category and understandability nouls. src/lib/scoring.ts multiplies each score by 25, applies goal-specific weights (make money, open source, or just for fun), averages, and src/lib/verdict.ts maps below 50 to KILL, 50 to 64 to FIX, and 65+ to SHIP with a clarity gate. No generative LLM writes the verdict; the UI exposes raw Jev probabilities in a collapsible panel. api/evaluate.ts holds the TypeSafe key server-side; optional SQLite archives successful runs.",
+    creator: {
+      name: "Marco Monteduro",
+      handle: "monteduro",
+      githubUrl: "https://github.com/monteduro",
+      companyUrl: "https://killmyidea.stemonte.io",
+    },
+    jevUsage: {
+      flowRole:
+        "Single batched Score and Noul pass that feeds deterministic weighted verdict math",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "User idea text plus selected goal mode that reweights Real problem, Money, Adoption, Fun, and related fields per README scoring section.",
+      decisionOut:
+        "Eight 0 to 4 scores, category and clarity signals, weighted 0 to 100 average, and KILL, FIX, or SHIP label with latency and token usage in the debug panel.",
+      flowSteps: [
+        "Browser posts idea and goal to /api/evaluate",
+        "Server calls TypeSafe Jev once with ten parallel questions",
+        "scoring.ts applies WEIGHTS per goal and computes weighted average",
+        "verdict.ts applies thresholds and clarity gate for the headline label",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states no generative LLM on the verdict path; one Jev request with ten parallel questions.",
+          source: "github.com/monteduro/killmyidea README",
+        },
+        {
+          claim:
+            "Verdict thresholds documented as score below 50 KILL, 50 to 64 FIX, 65+ SHIP in src/lib/verdict.ts.",
+          source: "github.com/monteduro/killmyidea src/lib/verdict.ts",
+        },
+        {
+          claim:
+            "Public GitHub repo monteduro/killmyidea had 191 stars and 24 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jev is the entire judgment engine: parallel Score heads replace a jury of chat prompts. The product value is transparent math on top of typed outputs, so you can tune weights in git instead of re-prompting. anishfn-shapeshift fans out many intent questions for UI morphing; killmyidea fans out once for investor-style rubrics. Hosted TypeSafe keys stay off the client; TYPESAFE_MOCK=1 enables UI work without billing. This is a playground, not a replacement for legal or market research. Pair with classifier.dev when you need HTTP labels outside a Vite demo.",
+    keyFeatures: [
+      "KILL, FIX, SHIP headline with expandable raw Jev panel",
+      "Goal modes reweight money versus adoption versus fun fields",
+      "Server-side evaluate function; keys never shipped to the browser",
+      "Optional SQLite analytics archive with per-request opt-out",
+      "Live demo at killmyidea.stemonte.io plus Vercel deploy docs",
+    ],
+    stack: ["TypeScript", "Vite", "TypeSafe Jev API", "SQLite analytics"],
+    links: {
+      repo: "https://github.com/monteduro/killmyidea",
+      demo: "https://killmyidea.stemonte.io",
+      docs: "https://github.com/monteduro/killmyidea#6-scoring",
+    },
+    pricingNote:
+      "Open source UI; each evaluation spends TypeSafe Jev tokens from your server key.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: ["anishfn-shapeshift", "classifier-dev", "kylejeong-jev-as-judge"],
+    relatedLearnSlugs: ["primitives", "use-cases"],
+    faq: [
+      {
+        question: "Does a chat model write the KILL or SHIP text?",
+        answer:
+          "No. README emphasizes Jev scores feed deterministic TypeScript verdict code. There is no separate generative model on the hot path.",
+      },
+      {
+        question: "Can I run it without a TypeSafe key?",
+        answer:
+          "Set TYPESAFE_MOCK=1 locally for deterministic MOCK DATA responses. Production needs TYPESAFE_API_KEY on the server.",
+      },
+      {
+        question: "How is this different from asking ChatGPT to roast my idea?",
+        answer:
+          "You get fixed rubric scores, published weights, and the same thresholds every time, which is closer to a gate than a prose opinion.",
+      },
+    ],
+    metaTitle: "Kill My Idea: Jev-scored startup verdict playground",
+    metaDescription:
+      "monteduro/killmyidea runs ten parallel Jev scores per idea, weighted average, KILL FIX SHIP thresholds. killmyidea.stemonte.io demo, no generative verdict LLM.",
+  },
+
+  "milind-soni-tiptour-macos": {
+    slug: "milind-soni-tiptour-macos",
+    status: "published",
+    problem:
+      "macOS computer-use demos that send screenshots to giant multimodal models are slow, costly, and hard to stop mid-loop.",
+    targetUser:
+      "Mac users who want a menu-bar agent that picks among locally detected controls with Jev, while keeping API keys in Keychain and screenshots local for the Jev path.",
+    overview:
+      "TipTour (github.com/milind-soni/tiptour-macos, MIT) is a macOS 14.2+ menu-bar app with two modes: Gemini realtime voice or screen writing, and JEV text mode (default) where you type a click task, Jev chooses among locally detected labels and coordinates, and TipTour executes single, double, or right clicks with validation. Ctrl+K starts Jev mode; Escape or Stop cancels. README documents a 12-action cap, no confidence cutoff on the top target, and keys stored per mode in Keychain without hosted proxies. Jev cannot see images or generate replacement text; Gemini handles keyboard and writing tasks. scripts/test-jev.sh runs isolated decision tests without launching the full app.",
+    creator: {
+      name: "Milind Soni",
+      githubUrl: "https://github.com/milind-soni",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-step Choice over locally detected control candidates for click automation",
+      primitives: ["Choice"],
+      stateIn:
+        "Typed user task, locally detected screen labels and locations, and recent action history per README privacy section (screenshots stay local for Jev).",
+      decisionOut:
+        "Ranked click target and action type; loop ends on completion signal, failure, user stop, or twelve actions.",
+      flowSteps: [
+        "Grant Accessibility and Screen Recording permissions for detection",
+        "User enters task in JEV text panel (Ctrl+K)",
+        "Jev selects among detected controls; TipTour executes click",
+        "Validate outcome and repeat until done, stop, or action limit",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README lists JEV as default mode with 12-action limit and no confidence cutoff on the top-ranked target.",
+          source: "github.com/milind-soni/tiptour-macos README",
+        },
+        {
+          claim:
+            "Public GitHub repo milind-soni/tiptour-macos had 663 stars and 103 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Jev path receives typed task and local labels only; screenshots stay local per privacy section.",
+          source: "github.com/milind-soni/tiptour-macos README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "TipTour treats Jev as a fast click router over finite local candidates, not a vision model. awlevin-typesafe-computer-use pairs OCR plus accessibility with TypeSafe on macOS CLI loops; sac-y-jev-cu does text-only AX lists inside Codex. TipTour is a polished menu-bar product with branded shortcuts and a separate Gemini path for voice. Featured on community lists such as jevlist.ai TipTour coverage. Auto-click is required for Jev; point-only mode is Gemini-only per README.",
+    keyFeatures: [
+      "Default JEV text mode with Ctrl+K shortcut",
+      "Single, double, and right click execution with stop controls",
+      "Per-mode API keys in Keychain; no shared hosted key proxy",
+      "Separate Gemini realtime mode for voice and writing",
+      "test-jev.sh harness for decision-only debugging",
+    ],
+    stack: [
+      "Swift",
+      "macOS 14.2+",
+      "Xcode",
+      "Jev API",
+      "Gemini realtime optional",
+    ],
+    links: {
+      repo: "https://github.com/milind-soni/tiptour-macos",
+      docs: "https://github.com/milind-soni/tiptour-macos/blob/main/docs/tiptour-agent-contract.md",
+    },
+    pricingNote:
+      "Open source app; you bring Jev and optional Gemini API keys.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "awlevin-typesafe-computer-use",
+      "sac-y-jev-cu",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["use-cases", "primitives"],
+    faq: [
+      {
+        question: "Does Jev mode send screenshots to the model?",
+        answer:
+          "README states Jev receives typed tasks and locally detected labels and locations while screenshots stay local. Gemini mode may send screenshots when enabled.",
+      },
+      {
+        question: "Can TipTour type text for me in Jev mode?",
+        answer:
+          "No. Jev mode supports click actions only. Use Gemini mode for keyboard or writing help.",
+      },
+      {
+        question: "How is this different from typesafe-computer-use?",
+        answer:
+          "Aaron Levin's CLI targets terminal-driven loops with dry-run defaults. TipTour is a menu-bar consumer app with shortcuts, dual models, and Keychain key storage.",
+      },
+    ],
+    metaTitle: "TipTour macOS: menu-bar Jev click companion",
+    metaDescription:
+      "milind-soni/tiptour-macos uses Jev to pick local controls for click tasks, 12-action cap, keys in Keychain. Distinct from Codex and CLI computer-use peers.",
+  },
+
+  "samuelfaj-distill": {
+    slug: "samuelfaj-distill",
+    status: "published",
+    problem:
+      "Coding agent sessions burn tokens when every step re-sends full transcripts to huge models for routing, effort, and compression choices.",
+    targetUser:
+      "Developers running Distill with Grok, Codex, or OpenRouter who want Jev to decide model tier, reasoning consults, and utility payloads without granting Jev tool approval power.",
+    overview:
+      "Distill (github.com/samuelfaj/distill, Apache-2.0) is Samuel Fajreldines's Rust agent harness and TUI built to stretch subscription and API budgets. docs/jev-routing.md documents Jev as the decision layer over harness-assembled state: Plan, Step, and Review batteries decide when the optional reasoning model consults, what effort level applies, and how tool results get summarized versus cited. Distill owns permissions, YOLO, and auto-approval; Jev cannot approve or veto tool calls. Fail-open behavior keeps the main model path when Jev errors or lacks confidence. Main, reasoning, and utility model tiers are configured separately on the home screen.",
+    creator: {
+      name: "Samuel Fajreldines",
+      handle: "samuelfaj",
+      githubUrl: "https://github.com/samuelfaj",
+    },
+    jevUsage: {
+      flowRole:
+        "Routing and consult gating for reasoning model, effort, and utility summarization",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Bounded payloads such as tool results, struggle signals, diffs, and complexity flags described per Plan, Step, and Review tables in docs/jev-routing.md.",
+      decisionOut:
+        "Whether to consult reasoning model, review verdicts, per-item full versus summary inclusion, and optional effort picks with documented confidence floors (0.40 effort, 0.55 plan).",
+      flowSteps: [
+        "Main model runs every session step",
+        "Jev Plan decision on first round when reasoning model configured",
+        "Jev Step and Review decisions gate consults before delivery",
+        "Utility model handles cite_spans compression when windows overflow",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "docs/jev-routing.md states Jev chooses among candidates supplied by code, does not invent tools, and cannot approve or hold tool calls.",
+          source: "github.com/samuelfaj/distill docs/jev-routing.md",
+        },
+        {
+          claim:
+            "Effort auto merges effort selection with reasoning consult questions for one Jev call per round when enabled.",
+          source: "github.com/samuelfaj/distill docs/jev-routing.md",
+        },
+        {
+          claim:
+            "Public GitHub repo samuelfaj/distill had 688 stars and 44 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Distill is an unusually explicit map of where Jev saves tokens versus where the harness must stay deterministic. nidhi-singh02-agent-router ranks agents and models up front; y0usaf-pi-jev gates bash and edits inside Pi; jkudish-jev-mcp exposes typed tools to external clients. Distill keeps Jev on consult and compression policy inside its own TUI loop. Do not confuse with bespokelabsai-nimble model distillation; this repo name is the agent harness. Read docs/token-saver.md alongside jev-routing.md when you explain ROI to your team.",
+    keyFeatures: [
+      "Plan, Step, and Review Jev batteries for reasoning consults",
+      "Fail-open when Jev times out or lacks confidence",
+      "Separate main, reasoning, and utility model tiers",
+      "GROK_LOG_JEV=1 debug logging for tuning questions",
+      "curl and PowerShell installers for macOS, Linux, and Windows",
+    ],
+    stack: ["Rust", "TUI", "OpenRouter", "Codex and Grok subscriptions"],
+    links: {
+      repo: "https://github.com/samuelfaj/distill",
+      docs: "https://github.com/samuelfaj/distill/blob/main/docs/jev-routing.md",
+    },
+    pricingNote:
+      "Open source harness; you pay model providers plus any TypeSafe Jev calls Distill issues.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: [
+      "nidhi-singh02-agent-router",
+      "y0usaf-pi-jev",
+      "jkudish-jev-mcp",
+      "leepokai-jev-guard",
+    ],
+    relatedLearnSlugs: ["use-cases", "primitives"],
+    faq: [
+      {
+        question: "Can Jev block a dangerous tool call in Distill?",
+        answer:
+          "No. docs/jev-routing.md says Distill owns permission policy and Jev cannot approve, veto, or hold confirmations.",
+      },
+      {
+        question: "What happens if Jev fails mid-session?",
+        answer:
+          "The harness documents fail-open behavior: the main model continues and consults may be skipped when decisions error or lack confidence.",
+      },
+      {
+        question: "Is this the same as Bespoke Nimble distillation?",
+        answer:
+          "No. Nimble trains open classifiers. Distill is a coding agent harness that calls Jev for routing and consult decisions at runtime.",
+      },
+    ],
+    metaTitle: "Distill: Rust agent harness with Jev routing docs",
+    metaDescription:
+      "samuelfaj/distill uses Jev for Plan, Step, Review consults and effort routing. Thick docs/jev-routing.md, fail-open, Distill owns permissions not Jev.",
+  },
+
+  "jev-chat-jev-chat-windows": {
+    slug: "jev-chat-jev-chat-windows",
+    status: "published",
+    problem:
+      "Windows desktop chat users want the same judge-first reply assist as mobile, without hooking WeChat or auto-sending messages.",
+    targetUser:
+      "Windows 10 1903+ users who run chat apps locally and want OCR read, Jev intent scoring, and three ranked drafts they paste manually.",
+    overview:
+      "JevChat Windows (github.com/jev-chat/jev-chat-windows) ports the jev-chat kernel to PyQt on Windows: window screenshot plus offline RapidOCR builds thread state, Jev judges intent, tension, and reply urgency, then a separate draft LLM writes three candidates ranked by Jev probabilities. Fill-in only; send stays manual. Releases ship as about 146 MB zip with jev-chat-windows.exe; keys for judge (OpenRouter or TypeSafe) and draft (default DeepSeek) live in HKCU environment variables. README documents session following, group speaker names, pause toggle, and optional debug overlay for OCR boxes.",
+    creator: {
+      name: "jev-chat",
+      githubUrl: "https://github.com/jev-chat",
+      company: "jev-chat",
+      companyUrl: "https://chatjevs.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Judge pass on OCR thread text before draft LLM writes three ranked replies",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Recent OCR messages per session, relationship preset, optional group reply target, and style notes from config.json beside the exe.",
+      decisionOut:
+        "Intent summary, tension 0 to 9, three reply candidates with Jev probability ordering; fill input only.",
+      flowSteps: [
+        "WGC captures chat window; RapidOCR extracts lines in memory",
+        "Judge API (Jev via OpenRouter or TypeSafe) scores intent and ranks drafts",
+        "Draft LLM writes three candidates (default DeepSeek direct)",
+        "User taps fill; program never triggers send",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states fill-in only with manual send and about 146 MB release zip size.",
+          source: "github.com/jev-chat/jev-chat-windows README",
+        },
+        {
+          claim:
+            "Public GitHub repo jev-chat/jev-chat-windows had 530 stars and 115 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Judge and draft use separate API keys (JEV_API_KEY and LLM_API_KEY) stored in Windows user environment variables, not files.",
+          source: "github.com/jev-chat/jev-chat-windows README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Windows shares the judge-then-draft split documented on jev-chat-jev-chat-jarvis for Android: structured judgment before casual text generation. Capture differs: desktop uses window screenshots and offline OCR instead of accessibility trees. TypeSafe or OpenRouter can back the judge card while draft defaults to DeepSeek for China-friendly latency per README. Cross-link the Android thick page for QQ and Lark paths; this listing covers WeChat-oriented Windows usage and floating PyQt UI. No package hooks and no auto-send mirror the mobile privacy story.",
+    keyFeatures: [
+      "Three ranked replies with Jev probability percentages",
+      "Session-following overlay with pause toggle",
+      "Separate judge and draft model cards and keys",
+      "Group chat speaker OCR and optional reply target",
+      "Debug view for OCR boxes without saving screenshots to disk in release exe",
+    ],
+    stack: [
+      "Python",
+      "PyQt",
+      "RapidOCR",
+      "OpenRouter or TypeSafe judge",
+      "DeepSeek draft default",
+    ],
+    links: {
+      repo: "https://github.com/jev-chat/jev-chat-windows",
+      docs: "https://github.com/jev-chat/jev-chat-windows#使用说明",
+      demo: "https://github.com/jev-chat/jev-chat-windows/releases/latest",
+      website: "https://chatjevs.com",
+    },
+    pricingNote:
+      "Free open source client; judge and draft APIs bill per provider when messages arrive.",
+    firstSeen: "2026-09-24",
+    relatedSlugs: ["jev-chat-jev-chat-jarvis", "avec-ai", "classifier-dev"],
+    relatedLearnSlugs: ["use-cases", "primitives"],
+    faq: [
+      {
+        question: "Does the Windows app auto-send replies?",
+        answer:
+          "No. README emphasizes manual send after fill-in, matching the Android jarvis policy.",
+      },
+      {
+        question: "Which API keys do I need?",
+        answer:
+          "One key for judge (OpenRouter or TypeSafe) and one for draft (default DeepSeek). They are stored separately in HKCU environment variables.",
+      },
+      {
+        question: "How does this relate to Jev Chat Jarvis?",
+        answer:
+          "Same jev-chat family kernel: judge-first Jev on visible thread text, three drafts, never auto-send. Jarvis is Android accessibility; this repo is Windows OCR plus PyQt.",
+      },
+    ],
+    metaTitle: "JevChat Windows: judge-first WeChat desktop co-pilot",
+    metaDescription:
+      "jev-chat/jev-chat-windows OCR plus Jev judge ranks three reply drafts on Windows. OpenRouter or TypeSafe judge, DeepSeek draft, fill-only never auto-send.",
   },
 
 };
