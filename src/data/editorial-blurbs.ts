@@ -171,6 +171,18 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Auto mode exported to every agent CLI: deny risky tools, flag injection in results, scan skills. npm install when plugins are not your vibe.",
   "togethercomputer-tev1":
     "Train your own letter-picker for the price of lunch: open data recipe, LoRA on Qwen3.5-4B, and a serverless endpoint that acts Jev-like without calling TypeSafe.",
+  "jaredpalmer-kev":
+    "Jared Palmer shipped the open Qwen family people actually compare to hosted Jev: same SDK shape, your GPUs, frozen eval tables that name the gap honestly.",
+  "wfzyx-von":
+    "When you need a letter pick without autoregressive drama, Von scores every option in one pass and brags with Doom clips, not slide decks.",
+  "monteduro-killmyidea":
+    "Ten parallel Jev scores, published weights, and a KILL FIX SHIP label with zero motivational LLM frosting. Perfect brutal Sunday for your Notion idea backlog.",
+  "milind-soni-tiptour-macos":
+    "Menu-bar clicks guided by Jev over what macOS already sees locally, while Gemini handles the yak-shaving voice mode. Keys never leave Keychain.",
+  "samuelfaj-distill":
+    "Rare agent repo that documents exactly which consult Jev approves and which tool permissions stay in Rust. Read jev-routing.md before your next token audit.",
+  "jev-chat-jev-chat-windows":
+    "Same judge-first chat assist as Jarvis, but for Windows OCR nerds: three ranked drafts, probabilities on screen, your finger still owns send.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
