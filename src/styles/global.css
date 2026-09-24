@@ -187,4 +187,13 @@
   .text-balance {
     text-wrap: balance;
   }
+  .page-shell {
+    @apply mx-auto px-4 py-8 sm:px-6 sm:py-10;
+  }
+  .page-shell-breadcrumb {
+    @apply mx-auto px-4 pb-10 pt-3 sm:px-6 sm:pb-12 sm:pt-4;
+  }
+  .breadcrumb-trail {
+    @apply mb-3 text-sm text-muted-foreground sm:mb-4;
+  }
 }

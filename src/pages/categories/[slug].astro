@@ -64,15 +64,15 @@ const jsonLdExtra = enrichment?.faq?.length
     ...jsonLdExtra,
   ]}
 >
-  <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-    <nav class="mb-6 text-sm text-muted-foreground" aria-label="Breadcrumb">
+  <div class="max-w-6xl page-shell-breadcrumb">
+    <nav class="breadcrumb-trail" aria-label="Breadcrumb">
       <a href="/" class="hover:text-accent">Home</a>
       <span class="mx-2">/</span>
       <a href="/explore" class="hover:text-accent">Explore</a>
       <span class="mx-2">/</span>
       <span class="text-foreground">{cat.title}</span>
     </nav>
-    <header class="mb-10 max-w-3xl">
+    <header class="mb-8 max-w-3xl sm:mb-10">
       <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{cat.title}</h1>
       <p class="mt-3 text-muted-foreground">{cat.description}</p>
       {cat.intro && <p class="mt-4 text-base leading-relaxed text-foreground/85">{cat.intro}</p>}
