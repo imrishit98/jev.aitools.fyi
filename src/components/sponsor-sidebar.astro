@@ -2,24 +2,24 @@
 import { sponsors, sponsorInitial } from "@/data/sponsors";
 import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
 
-const LOGO_SIZE = 36;
+const LOGO_SIZE = 22;
 ---
 
 <section
-  class="surface-card mt-4 hidden max-h-[min(28rem,calc(100vh-8rem))] overflow-y-auto p-5 lg:block"
+  class="surface-card mt-4 hidden p-3 lg:block"
   aria-labelledby="page-sponsors-sidebar-heading"
 >
   <p
     id="page-sponsors-sidebar-heading"
-    class="flex items-center gap-2 text-xs font-semibold uppercase tracking-[0.16em] text-foreground"
+    class="mb-2 flex items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/90"
   >
     <span
-      class="inline-block h-2 w-2 shrink-0 rounded-full bg-primary"
+      class="inline-block size-1.5 shrink-0 rounded-full bg-primary"
       aria-hidden="true"
     ></span>
     Sponsored
   </p>
-  <ul class="mt-4 space-y-3">
+  <ul class="space-y-1.5">
     {
       sponsors.map((sponsor) => (
         <li>
@@ -27,10 +27,10 @@ const LOGO_SIZE = 36;
             href={sponsorHref(sponsor.url)}
             target="_blank"
             rel={sponsorLinkRel(sponsor.url)}
-            class="group flex gap-3 rounded-md border border-transparent p-1 -m-1 transition-colors hover:border-border/80 hover:bg-muted/30 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+            class="flex w-full items-center gap-1.5 rounded-md border border-primary/20 bg-card/80 px-2 py-1 transition-colors hover:border-primary/35 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background"
           >
             <span
-              class="inline-flex size-9 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-muted/50"
+              class="inline-flex size-5 shrink-0 items-center justify-center overflow-hidden rounded border border-border/70 bg-muted/50"
             >
               <img
                 src={sponsor.logoUrl}
@@ -43,23 +43,15 @@ const LOGO_SIZE = 36;
                 onerror="this.style.display='none';const f=this.nextElementSibling;if(f)f.style.display='flex'"
               />
               <span
-                class="hidden size-full items-center justify-center font-heading text-xs font-semibold text-primary"
+                class="hidden size-full items-center justify-center font-heading text-[9px] font-semibold text-primary"
                 aria-hidden="true"
               >
                 {sponsorInitial(sponsor.name)}
               </span>
             </span>
-            <div class="min-w-0 flex-1">
-              <p class="font-heading text-base font-semibold leading-tight text-foreground">
-                {sponsor.name}
-              </p>
-              <p class="mt-0.5 line-clamp-2 text-sm leading-snug text-muted-foreground">
-                {sponsor.tagline}
-              </p>
-              <p class="mt-1.5 text-sm font-semibold text-primary group-hover:underline">
-                Visit site
-              </p>
-            </div>
+            <span class="min-w-0 flex-1 truncate text-[13px] font-semibold leading-tight text-foreground">
+              {sponsor.name}
+            </span>
           </a>
         </li>
       ))
