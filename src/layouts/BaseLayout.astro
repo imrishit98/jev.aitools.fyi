@@ -6,6 +6,7 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer.astro";
 import SiteCredit from "@/components/site-credit.astro";
 import GlobalJsonLd from "@/components/global-json-ld.astro";
+import SponsorStrip from "@/components/sponsor-strip.astro";
 
 export interface Props {
   title: string;
@@ -22,6 +23,8 @@ export interface Props {
   robots?: string;
   /** When false, omit `<link rel="canonical">` (error / soft-404 pages). */
   includeCanonical?: boolean;
+  /** Compact sponsor strip above the footer. Default true; off on home, 404, privacy. */
+  showSponsors?: boolean;
 }
 
 const {
@@ -35,6 +38,7 @@ const {
   canonicalPath,
   robots = "index, follow",
   includeCanonical = true,
+  showSponsors = true,
 } = Astro.props;
 const canonical = absoluteUrl(canonicalPath ?? path);
 const ogImage = absoluteUrl(ogImagePath);
@@ -114,6 +118,7 @@ const cloudflareWebAnalyticsToken =
     <main class="flex-1 pb-12 md:pb-14">
       <slot />
     </main>
+    {showSponsors && <SponsorStrip />}
     <SiteFooter />
     <SiteCredit />
     <script

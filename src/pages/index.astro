@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { HomeDemoStrip } from "@/components/demo-card";
 import { FeaturedRail } from "@/components/featured-rail";
 import { HomeFaq } from "@/components/home-faq";
+import { HomeSponsors } from "@/components/sponsors";
 import { HomeHero } from "@/components/home-sections";
 import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd } from "@/components/json-ld";
 import { homeFaq } from "@/data/faq";
@@ -22,12 +23,14 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
   path="/"
   ogImagePath={seo.imagePath}
   remoteShowcaseVideos
+  showSponsors={false}
   jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq), ...videoJsonLd]}
 >
   <HomeHero client:load />
   <div class="mx-auto flex max-w-6xl flex-col gap-20 px-4 py-16 sm:px-6 sm:py-20">
     <HomeDemoStrip client:visible demos={homepageDemos} />
     <FeaturedRail client:load />
+    <HomeSponsors client:visible />
     <HomeFaq client:load />
   </div>
 </BaseLayout>
