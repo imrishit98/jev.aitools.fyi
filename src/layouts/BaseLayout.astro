@@ -6,7 +6,7 @@ import SiteHeader from "@/components/site-header";
 import SiteFooter from "@/components/site-footer.astro";
 import SiteCredit from "@/components/site-credit.astro";
 import GlobalJsonLd from "@/components/global-json-ld.astro";
-import SponsorStrip from "@/components/sponsor-strip.astro";
+import SponsorFeatured from "@/components/sponsor-featured.astro";
 
 export interface Props {
   title: string;
@@ -23,7 +23,7 @@ export interface Props {
   robots?: string;
   /** When false, omit `<link rel="canonical">` (error / soft-404 pages). */
   includeCanonical?: boolean;
-  /** Compact sponsor strip above the footer. Default true; off on home, 404, privacy. */
+  /** Featured sponsor block at top of main. Default true; off on home, 404, privacy. */
   showSponsors?: boolean;
 }
 
@@ -116,9 +116,9 @@ const cloudflareWebAnalyticsToken =
   <body class="flex min-h-full flex-col font-sans">
     <SiteHeader client:load />
     <main class="flex-1 pb-12 md:pb-14">
+      {showSponsors && <SponsorFeatured />}
       <slot />
     </main>
-    {showSponsors && <SponsorStrip />}
     <SiteFooter />
     <SiteCredit />
     <script

@@ -33,13 +33,13 @@ const seo = agentGuidePageSeo(guide);
     faqPageJsonLd(guide.faq),
   ]}
 >
-  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-    <nav class="text-sm text-muted-foreground" aria-label="Breadcrumb">
+  <div class="max-w-3xl page-shell-breadcrumb">
+    <nav class="breadcrumb-trail" aria-label="Breadcrumb">
       <a href="/guides/jev-with-ai-agents" class="hover:text-accent">{agentGuidesHub.title}</a>
       <span class="mx-2">/</span>
       <span class="text-foreground">{guide.title}</span>
     </nav>
-    <h1 class="mt-4 font-heading text-3xl font-semibold">{guide.title}</h1>
+    <h1 class="font-heading text-3xl font-semibold">{guide.title}</h1>
     <AgentGuideView guide={guide} />
   </div>
 </BaseLayout>

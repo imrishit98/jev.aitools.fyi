@@ -28,6 +28,7 @@ import FaqAnswer from "@/components/faq-answer.astro";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import SponsorSidebar from "@/components/sponsor-sidebar.astro";
 
 interface Props {
   slug: string;
@@ -86,8 +87,8 @@ const listingDescription = profile
     ...jsonLdExtra,
   ]}
 >
-  <article class="mx-auto max-w-6xl px-4 py-12 sm:px-6">
-    <nav class="mb-8 text-sm text-muted-foreground">
+  <article class="max-w-6xl page-shell-breadcrumb">
+    <nav class="breadcrumb-trail" aria-label="Breadcrumb">
       <a href="/explore" class="hover:text-primary">Explore</a>
       <span class="mx-2 text-border">/</span>
       <a href={`/categories/${item.category}`} class="hover:text-primary">{cat?.title}</a>
@@ -521,6 +522,7 @@ const listingDescription = profile
             Stale link or wrong stars? <a href="/submit" class="text-primary hover:underline">Ping us on Submit</a>.
           </p>
         </div>
+        <SponsorSidebar />
       </aside>
     </div>
 

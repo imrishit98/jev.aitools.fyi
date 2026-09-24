@@ -1,0 +1,81 @@
+---
+import { sponsors, sponsorInitial } from "@/data/sponsors";
+import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
+
+const LOGO_SIZE = 24;
+---
+
+<section
+  class="border-b border-primary/15 bg-primary/[0.04] dark:bg-primary/[0.08]"
+  aria-labelledby="page-sponsors-heading"
+  data-sponsor-featured
+>
+  <div
+    class="mx-auto flex max-w-6xl items-center gap-1 px-4 py-1.5 sm:gap-3 sm:px-6 sm:py-2"
+  >
+    <p id="page-sponsors-heading" class="sr-only">Sponsored</p>
+    <span
+      class="shrink-0 rounded border border-border/70 bg-muted/40 px-1 py-px text-[10px] font-semibold uppercase leading-none tracking-wide text-muted-foreground sm:hidden"
+      aria-hidden="true"
+    >
+      Ad
+    </span>
+    <p
+      class="hidden shrink-0 items-center gap-1.5 text-[11px] font-semibold uppercase tracking-[0.14em] text-foreground/90 sm:flex sm:text-xs"
+      aria-hidden="true"
+    >
+      <span
+        class="inline-block size-1.5 shrink-0 rounded-full bg-primary"
+        aria-hidden="true"
+      ></span>
+      Sponsored
+    </p>
+    <ul
+      aria-label="Sponsored links"
+      class="flex min-w-0 flex-1 items-center gap-1 overflow-x-auto [-ms-overflow-style:none] [scrollbar-width:none] sm:gap-2 [&::-webkit-scrollbar]:hidden"
+    >
+      {
+        sponsors.map((sponsor) => (
+          <li class="shrink-0">
+            <a
+              href={sponsorHref(sponsor.url)}
+              target="_blank"
+              rel={sponsorLinkRel(sponsor.url)}
+              class="inline-flex max-w-[7.25rem] items-center gap-1 rounded-md border border-primary/20 bg-card/90 px-1.5 py-1 shadow-sm transition-colors hover:border-primary/35 hover:bg-card focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-1 focus-visible:ring-offset-background sm:max-w-[12.5rem] sm:gap-1.5 sm:px-2 lg:max-w-[16rem]"
+            >
+              <span
+                class="inline-flex size-5 shrink-0 items-center justify-center overflow-hidden rounded border border-border/70 bg-muted/50 sm:size-6"
+              >
+                <img
+                  src={sponsor.logoUrl}
+                  alt={`${sponsor.name} logo`}
+                  width={LOGO_SIZE}
+                  height={LOGO_SIZE}
+                  class="size-full object-contain"
+                  loading="eager"
+                  decoding="async"
+                  onerror="this.style.display='none';const f=this.nextElementSibling;if(f)f.style.display='flex'"
+                />
+                <span
+                  class="hidden size-full items-center justify-center font-heading text-[9px] font-semibold text-primary"
+                  aria-hidden="true"
+                >
+                  {sponsorInitial(sponsor.name)}
+                </span>
+              </span>
+              <span class="min-w-0 truncate text-[13px] font-semibold leading-none text-foreground sm:text-sm">
+                {sponsor.name}
+                <span
+                  class="hidden font-normal text-muted-foreground lg:inline"
+                >
+                  {" "}
+                  · {sponsor.tagline}
+                </span>
+              </span>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</section>
