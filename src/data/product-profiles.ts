@@ -5199,4 +5199,489 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "sdras jev-webmcp-extension maps WebMCP schemas to Jev Choice and Noul batches, screens manifests, and executes with confirmation policy. GitHub plus Chrome Web Store.",
   },
 
+  "jev-chat-jev-chat-jarvis": {
+    slug: "jev-chat-jev-chat-jarvis",
+    status: "published",
+    problem:
+      "Mobile chat apps bury you in threads where a blunt autocomplete draft is worse than no help, especially when tone, intent, and scam risk all matter at once.",
+    targetUser:
+      "Android users who want a co-pilot overlay on QQ, X DMs, or Lark without hooking chat apps or giving up send control.",
+    overview:
+      "jev-chat-jarvis (github.com/jev-chat/jev-chat-jarvis, chatjevs.com) is an Android 11+ accessibility overlay that reads only what is already on screen, runs a judge pass for intent, danger, and reply urgency, then drafts three ranked reply candidates you paste into the input box yourself. It never auto-sends and skips transfers or red packets. QQ and X are verified on device; Lark uses accessibility bounds plus on-device ML Kit OCR when message text is not in the AX tree. WeChat Android support stopped at 1.4 because newer builds hide message text from ordinary accessibility. Desktop siblings jev-chat-mac and jev-chat-windows share the same kernel with different capture paths.",
+    creator: {
+      name: "jev-chat",
+      githubUrl: "https://github.com/jev-chat",
+      company: "jev-chat",
+      companyUrl: "https://chatjevs.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Pre-reply judgment on visible thread text, then reply drafting gated on judge outputs",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Recent on-screen messages, session title, optional local knowledge notes and contact profile hits from on-device storage (README analysis section).",
+      decisionOut:
+        "Intent summary, danger level on a 1 to 9 rubric, should-reply-now signal, best-action Choice, then three candidate replies ranked by fit Score.",
+      flowSteps: [
+        "Accessibility or OCR capture builds a text state snapshot",
+        "Judge model returns intent, danger, urgency, and action in about one second per README",
+        "Reply model drafts three candidates; judge re-ranks with proportion scores",
+        "User taps fill or copy; ACTION_SET_TEXT or clipboard only, never send",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Judge pass documents about one second latency with confidence on intent and danger outputs.",
+          source: "github.com/jev-chat/jev-chat-jarvis README",
+        },
+        {
+          claim:
+            "Public GitHub repo jev-chat/jev-chat-jarvis had 5214 stars and 1009 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Release APK jev-assistant-v1.4 targets Android 11 plus with signed builds in apk/ and GitHub Releases.",
+          source: "github.com/jev-chat/jev-chat-jarvis README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "The product splits judgment from generation on purpose: the judge route can point at TypeSafe Jev, OpenRouter, or vendor presets such as the documented Bocha Jev endpoint, while reply and vision routes stay independently configurable. That keeps intent and danger nouls on a fast structured path before any chat model writes casual text. Local notes and contact aliases inject only when tags or titles match, so replies stay consistent with your own facts without shipping a full cloud memory product. The overlay model is the opposite of bot APIs: no package hooks, no database reads, only what you already see. Mention jev-chat-windows as a sibling port, not a second directory page in this batch.",
+    keyFeatures: [
+      "Floating panel with danger, intent, and three ranked replies",
+      "Fill input only; no auto-send or payment actions",
+      "QQ, X, and Lark paths documented with OCR fallback",
+      "Local knowledge base and optional on-device chat history",
+      "Separate judge, reply, and vision API cards with connectivity tests",
+    ],
+    stack: [
+      "Android Kotlin",
+      "Accessibility services",
+      "ML Kit OCR",
+      "TypeSafe or OpenRouter judge routes",
+    ],
+    links: {
+      website: "https://chatjevs.com",
+      repo: "https://github.com/jev-chat/jev-chat-jarvis",
+      docs: "https://github.com/jev-chat/jev-chat-jarvis#为什么用它",
+      demo: "https://github.com/jev-chat/jev-chat-jarvis/releases",
+    },
+    pricingNote:
+      "Open source client; you bring API keys for judge, reply, and vision providers per README.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: ["sdras-jev-webmcp-extension", "avec-ai", "classifier-dev"],
+    relatedLearnSlugs: ["use-cases", "primitives"],
+    faq: [
+      {
+        question: "Does the app send messages for me?",
+        answer:
+          "No. README states the tool only fills the input box or copies to clipboard and never triggers send, transfers, or red packets.",
+      },
+      {
+        question: "Does it read WeChat on Android?",
+        answer:
+          "WeChat support stopped at version 1.4 because recent WeChat builds hide message text from standard accessibility and may block screenshots.",
+      },
+      {
+        question: "Where do judge probabilities live?",
+        answer:
+          "Configure the judge card for TypeSafe-compatible endpoints or OpenRouter. Reply ranking uses the same judge route to sort three drafts.",
+      },
+    ],
+    metaTitle: "Jev Chat Jarvis: judge-first Android chat co-pilot",
+    metaDescription:
+      "jev-chat/jev-chat-jarvis overlay reads on-screen QQ, X, and Lark threads, runs intent and danger judgments, ranks three replies, fill-only never auto-send. chatjevs.com.",
+  },
+
+  "sac-y-jev-cu": {
+    slug: "sac-y-jev-cu",
+    status: "published",
+    problem:
+      "Computer-use loops that ship screenshots to a judge model on every step are slow, leaky, and hard to gate when delete or pay actions appear.",
+    targetUser:
+      "Codex desktop users who want a text-only Jev Choice layer over accessibility candidates with dry-run defaults and explicit confirm on risky ops.",
+    overview:
+      "Jev-cu (github.com/Sac-Y/Jev-cu) is Sac's Codex skill plus Node scripts that pair Codex Computer Use drivers with TypeSafe Jev decisions over accessibility text lists only. Each step Jev picks element, action, completion, and risk from numbered candidates; the CUA runtime executes clicks and typing. Screenshots never go to Jev. Default runs use dryRun true; policy.mjs stops delete, send, pay, auth, upload, captcha, install, and settings paths at confirm until a human approves.",
+    creator: {
+      name: "Sac",
+      handle: "Saccc_c",
+      xUrl: "https://x.com/Saccc_c",
+      githubUrl: "https://github.com/Sac-Y",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-step computer-use Choice and risk gates over AX text candidates inside Codex cua_repl",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Accessibility snapshots serialized as text candidate tables per fixtures/ and loop.mjs (not pixels).",
+      decisionOut:
+        "Next element and action Choice, task completion Score or noul, and risk classification that policy.mjs maps to auto, confirm, or block.",
+      flowSteps: [
+        "npm run install-skill copies skill/jev-cu into ~/.codex/skills with repo path substitution",
+        "runTask in cua_repl calls Jev with English goals for best calibration per README",
+        "policy.mjs enforces app allowlists and sensitive op confirm",
+        "Offline npm run p0 evaluates element pick accuracy on AX fixtures",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states Jev sees interface text only; screenshots are not sent to the judge model.",
+          source: "github.com/Sac-Y/Jev-cu README",
+        },
+        {
+          claim:
+            "Public GitHub repo Sac-Y/Jev-cu had 587 stars and 59 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Sensitive operations including delete, send, and pay default to confirm in policy.mjs with dry-run as the default loop mode.",
+          source: "github.com/Sac-Y/Jev-cu README security section",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Sac splits responsibilities the way awlevin-typesafe-computer-use does on macOS: deterministic capture builds a finite menu, Jev chooses among typed options, and only the executor touches the UI. The difference is packaging for Codex CUA repl instead of a Python clicker CLI, and an explicit skill install path for agent operators. Compare lahfir-agent-desktop when you want Rust snapshot refs without Codex; compare awlevin when you want OCR plus macOS accessibility in one repo. Jev-cu is the Codex-native, text-only judge slice.",
+    keyFeatures: [
+      "Codex skill with install and uninstall npm scripts",
+      "runTask loop with dryRun and maxSteps controls",
+      "policy.mjs app allowlist and sensitive op confirm",
+      "Offline P0 AX fixture eval with npm run p0",
+      "MIT licensed scripts and tests",
+    ],
+    stack: [
+      "Node.js ESM",
+      "Codex Computer Use driver",
+      "TypeSafe System One",
+      "Accessibility snapshots",
+    ],
+    links: {
+      repo: "https://github.com/Sac-Y/Jev-cu",
+      docs: "https://github.com/Sac-Y/Jev-cu#使用",
+    },
+    pricingNote:
+      "Open source; TypeSafe API key via .env.local or TYPESAFE_API_KEY per README.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "awlevin-typesafe-computer-use",
+      "lahfir-agent-desktop",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Jev see my screen pixels?",
+        answer:
+          "No. README emphasizes text-only candidates from accessibility snapshots; Codex CUA reads the UI separately.",
+      },
+      {
+        question: "How is this different from typesafe-computer-use?",
+        answer:
+          "awlevin/typesafe-computer-use is a macOS Python clicker with OCR. Jev-cu is a Codex skill plus policy layer over CUA with AX text fed to Jev.",
+      },
+      {
+        question: "Can it run without Codex desktop?",
+        answer:
+          "The documented hot path imports runTask inside Codex cua_repl. Tests and p0 fixtures run offline without live UI per README.",
+      },
+    ],
+    metaTitle: "Jev-cu: text-only Jev steps for Codex Computer Use",
+    metaDescription:
+      "Sac-Y/Jev-cu Codex skill routes AX text candidates through Jev Choice with dry-run defaults and confirm gates. Distinct from awlevin and lahfir desktop listings.",
+  },
+
+  "jkudish-jev-mcp": {
+    slug: "jkudish-jev-mcp",
+    status: "published",
+    problem:
+      "Agents skip cheap verification, rerank, and gate steps because calling a frontier model on every page or claim is too slow and too expensive.",
+    targetUser:
+      "Claude Code, Codex, OpenCode, and other MCP hosts that want ten typed Jev tools with explicit schemas instead of ad hoc evaluate HTTP.",
+    overview:
+      "jev-mcp (github.com/jkudish/jev-mcp, npm @jkudish/jev-mcp) exposes ten MCP tools backed by TypeSafe Jev: jev_verify, jev_screen, jev_find, jev_rerank, jev_classify, jev_decide, jev_compare, jev_extract, jev_review, and jev_gate. README positions each call at roughly 150 to 500 ms for a fraction of a cent, returning probabilities and confidence instead of prose essays. Install with npx -y @jkudish/jev-mcp and register the server in your MCP client; pass TYPESAFE_API_KEY explicitly when the host strips environment variables.",
+    creator: {
+      name: "Joey Kudish",
+      handle: "jkudish",
+      xUrl: "https://x.com/jkudish",
+      githubUrl: "https://github.com/jkudish",
+      companyUrl: "https://jkudish.com",
+    },
+    jevUsage: {
+      flowRole:
+        "MCP tool transport for parallel verify, screen, find, rerank, classify, decide, compare, extract, review, and gate judgments",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Tool JSON payloads: claims with evidence text, candidate lists, label sets, diffs, or patch plus completion claims per tool schema in README.",
+      decisionOut:
+        "Typed verdicts, ranked lists, label probabilities, field extractions, or combined patch review plus completion gate scores with confidence and suggested actions.",
+      flowSteps: [
+        "Agent registers npx -y @jkudish/jev-mcp as a local MCP server",
+        "Each tool maps to one focused System One question batch",
+        "Agent thresholds probabilities in code instead of parsing chat",
+        "jev_gate merges patch review with completion claim verification in one call",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README cites roughly 150 to 500 ms latency and fractional cent cost per judgment call.",
+          source: "github.com/jkudish/jev-mcp README",
+        },
+        {
+          claim:
+            "Public GitHub repo jkudish/jev-mcp had 316 stars and 34 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "Package name @jkudish/jev-mcp on npm with server command npx -y @jkudish/jev-mcp documented for multiple MCP clients.",
+          source: "github.com/jkudish/jev-mcp README install section",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Joey packages the boring agent checks as first-class tools so hosts can call them on every retrieval page, inbox row, or PR hunk without spinning up a separate microservice. jev_verify and jev_screen cover claim and prompt-injection hygiene; jev_find and jev_rerank replace embedding maintenance for many workflows; jev_review and jev_gate mirror staged code review patterns documented elsewhere in this directory but as drop-in MCP calls. classifier-dev-mcp remains the path when you want hosted classify_texts on classifier.dev rather than general judgment tools on your key.",
+    keyFeatures: [
+      "Ten documented MCP tools with JSON examples",
+      "Node.js 20 plus and TypeSafe API key",
+      "Install snippets for Claude Code, Codex, OpenCode, and Amp",
+      "Agent-install prompt block in README for guided setup",
+      "MIT licensed TypeScript server with CI badge",
+    ],
+    stack: ["TypeScript", "MCP", "Node.js 20+", "TypeSafe System One"],
+    links: {
+      website: "https://www.npmjs.com/package/@jkudish/jev-mcp",
+      repo: "https://github.com/jkudish/jev-mcp",
+      docs: "https://github.com/jkudish/jev-mcp#the-tools",
+    },
+    pricingNote:
+      "Open source server; TypeSafe usage billed per README latency class on your API key.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "classifier-dev-mcp",
+      "kerpopule-hermes-jev-skills",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["jev-typesafe", "use-cases"],
+    faq: [
+      {
+        question: "How is jev-mcp different from classifier.dev MCP?",
+        answer:
+          "classifier-dev-mcp wraps hosted classify_texts on classifier.dev. jkudish/jev-mcp ships general verify, rerank, gate, and review tools on your TypeSafe key.",
+      },
+      {
+        question: "Why does my client say the API key is missing?",
+        answer:
+          "README warns some MCP hosts filter environment variables. Pass TYPESAFE_API_KEY in the server env block explicitly.",
+      },
+      {
+        question: "Is jev_gate the same as jev_review?",
+        answer:
+          "jev_review scores a diff against rubric dimensions. jev_gate combines patch review with verification of completion claims in one tool per README.",
+      },
+    ],
+    metaTitle: "jkudish jev-mcp: ten typed Jev tools over MCP",
+    metaDescription:
+      "Joey Kudish @jkudish/jev-mcp npm package exposes verify, screen, rerank, classify, review, and gate MCP tools on TypeSafe Jev with README latency notes.",
+  },
+
+  "dbreunig-building-with-jev-skill": {
+    slug: "dbreunig-building-with-jev-skill",
+    status: "published",
+    problem:
+      "Teams new to System One keep stuffing multi-factor questions into one prompt and then wonder why thresholds feel random in production.",
+    targetUser:
+      "Claude Code, Codex, and Cursor users who want a maintained skill that teaches Choice, Score, and Noul design for jev-1.13.",
+    overview:
+      "building-with-jev-skill (github.com/dbreunig/building-with-jev-skill) is Drew Breunig's agent skill for writing programs that call Jev well: state shape, single-factor questions, composing answers in TypeScript or Python, confidence thresholds, and debugging low-confidence failures. Content lives in skills/jev/SKILL.md and targets jev-1.13. Install via Claude Code marketplace plugin jev@building-with-jev, npx skills add dbreunig/building-with-jev-skill, or manual copy into ~/.claude/skills/jev.",
+    creator: {
+      name: "Drew Breunig",
+      handle: "dbreunig",
+      xUrl: "https://x.com/dbreunig",
+      githubUrl: "https://github.com/dbreunig",
+      companyUrl: "https://www.dbreunig.com/",
+    },
+    jevUsage: {
+      flowRole:
+        "Pedagogical skill invoked on Jev integration tasks; not a runtime gate itself",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "SKILL.md patterns for structuring state text and splitting questions documented against TypeSafe docs links in the repo.",
+      decisionOut:
+        "Teaches how to read probability vectors and set thresholds in application code rather than in model prose.",
+      flowSteps: [
+        "Install skill via plugin, skills CLI, or manual copy",
+        "Claude loads SKILL.md when tasks mention Jev or TypeSafe questions",
+        "Invoke explicitly with /jev when you want the rubric on demand",
+        "SKILL.md references specific docs.typesafe.ai pages for primitives",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states the skill targets jev-1.13 and covers question design, state structure, thresholds, and diagnosis.",
+          source: "github.com/dbreunig/building-with-jev-skill README",
+        },
+        {
+          claim:
+            "Public GitHub repo dbreunig/building-with-jev-skill had 131 stars and 5 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+        {
+          claim:
+            "skills/jev/SKILL.md is the canonical skill body with install paths for Claude Code plugin and vercel-labs skills CLI.",
+          source: "github.com/dbreunig/building-with-jev-skill README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This repo is meta tooling: it does not call Jev on your traffic by itself. Instead it trains whichever agent is coding your integration to stop asking should we proceed style chat prompts and start asking decomposed nouls and Choices with testable thresholds. Pair it with kerpopule-hermes-jev-skills when you want runtime routing skills, or devagrawal09-jev-review when you want a staged review dashboard. The value is consistent question grammar across teammates who might otherwise copy brittle examples from random gists.",
+    keyFeatures: [
+      "SKILL.md focused on System One question design",
+      "Claude Code plugin marketplace install path",
+      "npx skills add for Codex, Cursor, and other agents",
+      "Manual copy instructions for ~/.claude/skills/jev",
+      "Sources cite docs.typesafe.ai pages inside SKILL.md",
+    ],
+    stack: [
+      "Agent skills format",
+      "Claude Code plugins",
+      "vercel-labs skills CLI",
+    ],
+    links: {
+      repo: "https://github.com/dbreunig/building-with-jev-skill",
+      docs: "https://github.com/dbreunig/building-with-jev-skill/blob/main/skills/jev/SKILL.md",
+      website: "https://www.dbreunig.com/",
+    },
+    pricingNote:
+      "Open source skill; TypeSafe usage depends on the apps you build after reading it.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "kerpopule-hermes-jev-skills",
+      "classifier-dev",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["primitives", "patterns", "jev-typesafe"],
+    faq: [
+      {
+        question: "Does this skill call Jev for me?",
+        answer:
+          "No. It teaches how to write calls. Your application or agent runtime still needs a TypeSafe key for live inference.",
+      },
+      {
+        question: "Which Jev version does it target?",
+        answer:
+          "README and SKILL.md target jev-1.13. Check SKILL.md when TypeSafe ships newer model notes.",
+      },
+      {
+        question: "How do I invoke it in Claude Code?",
+        answer:
+          "Install the jev@building-with-jev plugin or copy skills/jev manually, then use /jev or let Claude auto-load on Jev tasks per README.",
+      },
+    ],
+    metaTitle: "building-with-jev-skill: Drew Breunig Jev question design skill",
+    metaDescription:
+      "dbreunig/building-with-jev-skill SKILL.md teaches Choice, Score, Noul, state, and thresholds for jev-1.13. Claude plugin and skills CLI install.",
+  },
+
+  "y0usaf-pi-jev": {
+    slug: "y0usaf-pi-jev",
+    status: "published",
+    problem:
+      "Pi agents can run destructive bash, exfiltrate secrets, or wander off-scope before you notice, and regex guards miss paraphrased risk.",
+    targetUser:
+      "Pi coding agent users who want measured Noul and Score gates on bash, write, and edit plus optional output judging on bash results.",
+    overview:
+      "pi-jev (github.com/y0usaf/pi-jev, npm @y0usaf/pi-jev) is Sami Ansari's Pi extension that batches four gate nouls and an impact Score on bash, write, and edit calls, judges bash output for leaks and failure class, and exposes a jev_ask tool for typed questions the model requests. Shadow mode is default: flagged calls notify without blocking until you switch to enforce. README documents fail-open behavior on missing keys, timeouts, 429s, and malformed responses so tool calls proceed when Jev is unavailable.",
+    creator: {
+      name: "Sami Ansari",
+      handle: "realy0usaf",
+      githubUrl: "https://github.com/y0usaf",
+    },
+    jevUsage: {
+      flowRole:
+        "Pre-tool gate on bash, write, and edit; post-tool output judge on bash; optional jev_ask for model-initiated judgments",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Working directory, tool name, truncated arguments, last user message slice, and bash stdout snippets per README privacy section.",
+      decisionOut:
+        "Gate: destructive, exfiltration, beyond_scope nouls plus impact Score against documented blockOn thresholds. Output: leaks_secret noul and failure_class Choice with appended advice strings.",
+      flowSteps: [
+        "pi install npm:@y0usaf/pi-jev loads extension with shadow gate default",
+        "Four gate questions plus impact Score in one request (~300 ms README)",
+        "tool_result hook runs leak and failure_class questions on bash output",
+        "jev_ask accepts structured state plus question arrays for custom nouls and Choices",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Gate batches four nouls and impact Score in one request for about 300 ms instead of four round trips per README.",
+          source: "github.com/y0usaf/pi-jev README",
+        },
+        {
+          claim:
+            "Shadow mode is default; enforce mode prompts unless headless runs where gate.blockWithoutUI applies per README.",
+          source: "github.com/y0usaf/pi-jev README",
+        },
+        {
+          claim:
+            "Every error path fails open: missing key, timeout, 429, or malformed response lets the tool call proceed with throttled error reporting.",
+          source: "github.com/y0usaf/pi-jev README",
+        },
+        {
+          claim:
+            "Public GitHub repo y0usaf/pi-jev had 141 stars and 9 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "y0usaf treats Jev as a measured safety layer rather than an auto-approve toy: thresholds in blockOn come from README calibration tables on git status, rm -rf, curl exfil, and scoped edits, not guessed round numbers. Output judging catches secrets echoed after bash even when the gate cleared intent. Fail-open is honest product design for local dev, but operators should read What leaves the machine before pointing at production repos. Other Pi packages exist; this listing tracks y0usaf/pi-jev only. jomatsu-pi-jev-auto-mode focuses on auto-approve patterns; pi-warden supervises broader rule sets.",
+    keyFeatures: [
+      "Gate on bash, write, edit with shadow default",
+      "Output judge on bash with CLASS_ADVICE table",
+      "jev_ask tool for typed Choice, Score, and Noul arrays",
+      "Config at ~/.pi/agent/pi-jev.json with project overrides",
+      "Slash commands /jev, /jev mode, /jev last, /jev check",
+    ],
+    stack: [
+      "TypeScript Pi extension",
+      "TypeSafe System One",
+      "npm @y0usaf/pi-jev",
+    ],
+    links: {
+      repo: "https://github.com/y0usaf/pi-jev",
+      docs: "https://github.com/y0usaf/pi-jev#the-gate",
+      website: "https://www.npmjs.com/package/@y0usaf/pi-jev",
+    },
+    pricingNote:
+      "Open source extension; TypeSafe API key via env, config, or apiKeyFile per README.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "devmortimer-pi-warden",
+      "jomatsu-pi-jev-auto-mode",
+      "devagrawal09-jev-review",
+    ],
+    relatedLearnSlugs: ["use-cases", "primitives"],
+    faq: [
+      {
+        question: "Does pi-jev block tools when Jev errors?",
+        answer:
+          "No. README states fail-open behavior on errors so development is not bricked by a dead endpoint.",
+      },
+      {
+        question: "What is shadow versus enforce?",
+        answer:
+          "Shadow notifies on flagged calls. Enforce asks for confirmation before running flagged tools when UI is available.",
+      },
+      {
+        question: "Is this the same as jomatsu pi-jev-auto-mode?",
+        answer:
+          "No. jomatsu focuses on auto-approve thresholds for tool calls. y0usaf/pi-jev documents destructive, exfiltration, scope, and impact scoring with output judging.",
+      },
+    ],
+    metaTitle: "pi-jev (y0usaf): shadow gate and output judge for Pi",
+    metaDescription:
+      "y0usaf/pi-jev Pi extension batches gate nouls and impact Score, judges bash output, exposes jev_ask. Shadow default, fail-open on errors per README.",
+  },
+
 };
