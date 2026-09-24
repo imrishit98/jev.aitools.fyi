@@ -6475,7 +6475,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Von: open non-autoregressive System One decision model",
     metaDescription:
-      "wfzyx/von scores Choice, Noul, and Score in one forward pass with Apache-2.0 weights. Sub-25 ms local claims, order-invariant 1.2, contrast with hosted Jev and Kev.",
+      "wfzyx/von scores Choice, Noul, and Score in one forward pass with Apache-2.0 weights. Claims sub-25 ms local runs and order invariance, unlike hosted Jev.",
   },
 
   "monteduro-killmyidea": {
