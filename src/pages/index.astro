@@ -23,6 +23,7 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
   path="/"
   ogImagePath={seo.imagePath}
   remoteShowcaseVideos
+  showSponsors={false}
   jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq), ...videoJsonLd]}
 >
   <HomeHero client:load />

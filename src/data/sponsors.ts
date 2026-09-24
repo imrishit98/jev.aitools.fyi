@@ -5,6 +5,13 @@ export type Sponsor = {
   logoUrl: string;
 };
 
+export function sponsorInitial(name: string): string {
+  const trimmed = name.trim();
+  if (!trimmed) return "?";
+  const first = trimmed[0];
+  return first?.toUpperCase() ?? "?";
+}
+
 /** Static homepage and footer sponsors. Edit this list to change placements. */
 export const sponsors: Sponsor[] = [
   {

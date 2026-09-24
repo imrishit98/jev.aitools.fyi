@@ -1,0 +1,68 @@
+---
+import { sponsors, sponsorInitial } from "@/data/sponsors";
+import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
+
+const LOGO_SIZE = 28;
+---
+
+<aside
+  class="border-t border-border/80 bg-muted/20"
+  aria-labelledby="global-sponsors-heading"
+>
+  <div class="mx-auto max-w-6xl px-4 py-8 sm:px-6 sm:py-9">
+    <h2
+      id="global-sponsors-heading"
+      class="font-heading text-sm font-semibold tracking-tight text-foreground"
+    >
+      Sponsors
+    </h2>
+    <ul
+      class="mt-4 flex snap-x snap-mandatory gap-3 overflow-x-auto pb-1 [-ms-overflow-style:none] [scrollbar-width:none] lg:grid lg:grid-cols-3 lg:overflow-visible lg:pb-0 lg:snap-none [&::-webkit-scrollbar]:hidden"
+    >
+      {
+        sponsors.map((sponsor) => (
+          <li class="min-w-[16.5rem] shrink-0 snap-start sm:min-w-[18rem] lg:min-w-0">
+            <a
+              href={sponsorHref(sponsor.url)}
+              target="_blank"
+              rel={sponsorLinkRel(sponsor.url)}
+              class="flex h-full gap-2.5 rounded-md border border-border/80 bg-card/80 p-3 shadow-sm transition-[border-color,box-shadow] hover:border-primary/20 hover:shadow-md"
+            >
+              <span
+                class="inline-flex size-7 shrink-0 items-center justify-center overflow-hidden rounded-md border border-border bg-muted/50"
+                style={`width:${LOGO_SIZE}px;height:${LOGO_SIZE}px`}
+              >
+                <img
+                  src={sponsor.logoUrl}
+                  alt=""
+                  width={LOGO_SIZE}
+                  height={LOGO_SIZE}
+                  class="size-full object-contain"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.style.display='none';const f=this.nextElementSibling;if(f)f.style.display='flex'"
+                />
+                <span
+                  class="hidden size-full items-center justify-center font-heading text-[10px] font-semibold text-primary"
+                  aria-hidden="true"
+                >
+                  {sponsorInitial(sponsor.name)}
+                </span>
+              </span>
+              <div class="min-w-0 flex-1">
+                <p class="font-heading text-sm font-semibold leading-tight text-foreground">
+                  {sponsor.name}
+                </p>
+                <p
+                  class="mt-0.5 line-clamp-2 text-xs leading-snug text-muted-foreground"
+                >
+                  {sponsor.tagline}
+                </p>
+              </div>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </div>
+</aside>

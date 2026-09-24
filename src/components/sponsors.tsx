@@ -1,16 +1,9 @@
 import { useState, type ReactNode } from "react";
-import { sponsors, type Sponsor } from "@/data/sponsors";
+import { sponsors, sponsorInitial, type Sponsor } from "@/data/sponsors";
 import { sponsorHref, sponsorLinkRel } from "@/lib/outbound-attribution";
 import { cn } from "cn";
 
 const LOGO_SIZE = 32;
-
-function sponsorInitial(name: string): string {
-  const trimmed = name.trim();
-  if (!trimmed) return "?";
-  const first = trimmed[0];
-  return first?.toUpperCase() ?? "?";
-}
 
 export function SponsorLogo({
   sponsor,
