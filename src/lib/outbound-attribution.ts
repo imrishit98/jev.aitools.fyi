@@ -62,3 +62,9 @@ export function externalLinkRel(href: string): string {
   if (shouldSkipOutboundRef(href)) return "noopener noreferrer";
   return "noopener";
 }
+
+/** rel for paid sponsor outbound links (keeps ref attribution via noopener, not noreferrer). */
+export function sponsorLinkRel(href: string): string {
+  if (shouldSkipOutboundRef(href)) return "sponsored noopener noreferrer";
+  return "sponsored noopener";
+}
