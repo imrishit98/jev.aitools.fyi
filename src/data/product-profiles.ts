@@ -7246,7 +7246,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "TypeLLM: type-safe SGLang generation with JevBench evals",
     metaDescription:
-      "TypeLLM/TypeLLM adds JSON Schema constrained decoding on SGLang, depends_on graphs, and public JevBench 228/231 with thinking. typellm.ai docs, pip install typellm.",
+      "TypeLLM adds type-safe SGLang generation with JSON Schema, depends_on graphs, and enums. JevBench 228/231 with thinking; pip install typellm.",
   },
 
   "rizzo-ai-academy-rizzo-flow": {
@@ -7538,7 +7538,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "ollaya: Ollama-style CLI for open decision models",
     metaDescription:
-      "ollaya-dev/ollaya pulls ONNX decision graphs, serves POST /v1/systemone on :11435, bundles laya kev von decider MCP. Weights verified from author Hugging Face repos.",
+      "ollaya pulls ONNX decision graphs and serves POST /v1/systemone on :11435 for Laya, Kev, Von, and Decider. Verified Hugging Face weights and MCP.",
   },
 
   "liuziyu77-valen": {
