@@ -7155,4 +7155,490 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "githubnext/localjev serves POST /v1/systemone over oMLX DiffusionGemma chat. Wire-compatible Jev JSON with README honesty about calibration vs OpenJev.",
   },
 
+  "typellm-typellm": {
+    slug: "typellm-typellm",
+    status: "published",
+    problem:
+      "Autoregressive LLMs excel at prose but leak invalid JSON, wrong enum labels, and option-order bias when you force them to behave like classifiers.",
+    targetUser:
+      "Engineers already serving open models on SGLang who want schema-guaranteed fields without swapping to a dedicated System One checkpoint.",
+    overview:
+      "TypeLLM (github.com/TypeLLM/TypeLLM, Apache-2.0, typellm.ai) adds type-safe generation on top of existing autoregressive weights via SGLang constrained decoding and JSON Schema. pip install typellm exposes TypeLLMClient against an HTTP SGLang endpoint: string, integer, number, boolean, and enum fields with optional thinking budgets, image input for VLMs, depends_on dependency graphs with shared-prefix KV reuse, and permutation averaging on enum questions. It is inspired by TypeSafe Jev interface ideas but is not a one-step decision head: you keep native generation while outputs stay in schema. Public JevBench evals report 195/231 tasks without thinking and 228/231 with thinking on 231 public tasks (see evals/jevbench in the repo).",
+    creator: {
+      name: "TypeLLM",
+      handle: "TypeLLM",
+      githubUrl: "https://github.com/TypeLLM",
+      companyUrl: "https://typellm.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Constrained autoregressive decode over shared context instead of POST /v1/systemone on a decision model",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Free-form context string (plus optional images for vision models) and a questions map with JSON Schema types, instructions, enums, and depends_on edges per typellm.ai docs.",
+      decisionOut:
+        "Schema-valid values and enum distributions; JevBench-style tasks map enums to choices and numeric rubrics to scores without answer-token prose.",
+      flowSteps: [
+        "Serve a compatible model with SGLang prefix caching enabled",
+        "pip install -U typellm and point TypeLLMClient at the SGLang base URL",
+        "Declare questions with types, optional thinking, and dependency graphs",
+        "Run generate(); reuse KV for shared prefixes and optional permutation averaging on enums",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "JevBench README reports 195/231 public tasks correct without thinking and 228/231 with thinking on Qwen3.8-27B configuration documented in evals/jevbench.",
+          source: "github.com/TypeLLM/TypeLLM evals/jevbench/README.md",
+        },
+        {
+          claim:
+            "README lists negligible output-token cost for categorical fields, depends_on graphs, image input, and permutation averaging blog at typellm.ai/blog/fair-die.",
+          source: "github.com/TypeLLM/TypeLLM README",
+        },
+        {
+          claim:
+            "Public GitHub repo TypeLLM/TypeLLM had about 606 stars when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "TypeLLM competes in the same mental lane as typed decisions but through constrained AR on models you already host, not a frozen decision checkpoint. nokia-applied-research-anyjev and featherless-simple-jev chase logit-native or head-fitted probabilities on vLLM; githubnext-localjev fakes System One with chat JSON. TypeLLM is for teams that refuse a second model class yet still want JevBench-shaped guarantees on enums and rubrics. Read evals/jevbench/METHOD.md before you equate bench accuracy with production calibration on your tickets.",
+    keyFeatures: [
+      "TypeLLMClient over SGLang with string, int, number, boolean, and enum outputs",
+      "depends_on graphs and shared-prefix reuse documented September 2026",
+      "Optional thinking mode and vision image input for Qwen VL checkpoints",
+      "Permutation averaging for fairer enum distributions",
+      "Published JevBench per-task answers and METHOD.md in the repo",
+    ],
+    stack: ["Python", "SGLang", "JSON Schema", "typellm PyPI package"],
+    links: {
+      website: "https://typellm.ai",
+      repo: "https://github.com/TypeLLM/TypeLLM",
+      docs: "https://typellm.ai/docs",
+    },
+    pricingNote:
+      "Open source Apache-2.0 client; you pay for your own SGLang GPU hosting.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "nokia-applied-research-anyjev",
+      "featherless-simple-jev",
+      "githubnext-localjev",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is TypeLLM a System One server?",
+        answer:
+          "No. It constrains autoregressive generation via SGLang. You do not get POST /v1/systemone unless you wrap it yourself.",
+      },
+      {
+        question: "How does it relate to JevBench?",
+        answer:
+          "The repo ships a full JevBench run with per-task logs. Scores measure schema-typed answers on public tasks, not hosted api.typesafe.ai latency.",
+      },
+      {
+        question: "Do I need to retrain my LLM?",
+        answer:
+          "README emphasizes no architecture or weight changes; compatibility depends on serving the base model through SGLang with the documented features.",
+      },
+    ],
+    metaTitle: "TypeLLM: type-safe SGLang generation with JevBench evals",
+    metaDescription:
+      "TypeLLM/TypeLLM adds JSON Schema constrained decoding on SGLang, depends_on graphs, and public JevBench 228/231 with thinking. typellm.ai docs, pip install typellm.",
+  },
+
+  "rizzo-ai-academy-rizzo-flow": {
+    slug: "rizzo-ai-academy-rizzo-flow",
+    status: "published",
+    problem:
+      "Developers want Jev-shaped probabilities on localhost without api.typesafe.ai bills, but chat-json bridges and unrelated classifiers do not ship open decision weights.",
+    targetUser:
+      "Builders with Python 3.11+, uv, and a GPU or CPU backend who want POST /v1/systemone and /v1/decisions against Spark-X2.5 on llama.cpp.",
+    overview:
+      "Rizzo Flow (github.com/Rizzo-AI-Academy/rizzo-flow, Apache-2.0) is an independent local server that maps unstructured state plus Choice, Score, and Noul questions to probabilities with zero generated answer tokens on llama.cpp. README states it is not affiliated with TypeSafe and does not reproduce proprietary Jev architecture; it follows the interface pattern with Spark-X2.5 plus a September 2026 LoRA fine-tune for typed decisions. uv sync, rizzo download, and rizzo serve default to http://127.0.0.1:8017 with a playground UI. curl examples hit POST /v1/systemone; rizzo decide runs one-off JSON. Backends include Metal, CUDA, Vulkan, ROCm, SYCL, and CPU. Fine-tune tables on LocalLLaMA/typed-decisions show accuracy 0.648 vs 0.574 base Spark at Q8_0, with explicit uncalibrated probability warnings unless you calibrate locally.",
+    creator: {
+      name: "Rizzo AI Academy",
+      handle: "Rizzo-AI-Academy",
+      githubUrl: "https://github.com/Rizzo-AI-Academy",
+      companyUrl: "https://www.rizzoaiacademy.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Local llama.cpp inference exposing TypeSafe-compatible System One HTTP on port 8017",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSON state string plus questions map with type choice, score, or noul, instructions, and criteria per README curl and playground examples.",
+      decisionOut:
+        "Parallel typed answers with probability vectors; README emphasizes 0 generated tokens on the decision path.",
+      flowSteps: [
+        "git clone, uv sync --locked, uv run rizzo download for runtime plus Q8_0 weights",
+        "uv run rizzo serve for daemon and playground on :8017",
+        "POST /v1/systemone or /v1/decisions from TypeSafe-shaped clients",
+        "Optional rizzo decide path for single JSON files without keeping the server up",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "typed-decisions benchmark table documents Rizzo Flow 4B fine-tune at accuracy 0.648, KL 0.452, Brier 0.205, ECE 0.112 vs base Spark 0.574 accuracy at same Q8_0 GPU setup.",
+          source: "github.com/Rizzo-AI-Academy/rizzo-flow README fine-tuning section",
+        },
+        {
+          claim:
+            "Badge and Snake demo cite about 50 ms per decision at Q8_0 on RTX 5060 Ti and about 150 ms round trip in recorded Snake gameplay with caveats on hardware.",
+          source: "github.com/Rizzo-AI-Academy/rizzo-flow README",
+        },
+        {
+          claim:
+            "Public GitHub repo had about 489 stars when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Rizzo Flow is the open-weights counterpoint to hosted System One: same HTTP verbs, different training story than Jared Palmer Kev or Together tev1. githubnext-localjev still prompts a chat model for JSON; Rizzo runs a dedicated fine-tuned Spark head on llama.cpp. wfzyx-von and jaredpalmer-kev are alternative checkpoints; theoleecj-semif documents another local server narrative. nokia-applied-research-anyjev fits heads on models you already serve on vLLM. Treat README calibration disclaimers seriously before you wire refund gates.",
+    keyFeatures: [
+      "POST /v1/systemone and /v1/decisions on llama.cpp with playground UI",
+      "Spark-X2.5 4B and 1.7B downloads with resumable rizzo download",
+      "September 2026 LoRA fine-tune with published typed-decisions metrics",
+      "Snake and ticket demos at real-time latencies with documented caveats",
+      "Explicit not affiliated with TypeSafe disclaimer and uncalibrated probability notes",
+    ],
+    stack: [
+      "Python 3.11+",
+      "uv",
+      "llama.cpp",
+      "Spark-X2.5",
+      "LoRA fine-tune",
+    ],
+    links: {
+      website: "https://rizzo-ai-academy.github.io/rizzo-flow/",
+      repo: "https://github.com/Rizzo-AI-Academy/rizzo-flow",
+      docs: "https://rizzo-ai-academy.github.io/rizzo-flow/",
+    },
+    pricingNote:
+      "Apache-2.0 open source; inference cost is your local hardware and electricity.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "githubnext-localjev",
+      "wfzyx-von",
+      "jaredpalmer-kev",
+      "theoleecj-semif",
+      "nokia-applied-research-anyjev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is Rizzo Flow official TypeSafe Jev?",
+        answer:
+          "No. README labels the project independent, inspired by SemIf, with open Spark weights and interface compatibility only.",
+      },
+      {
+        question: "Which endpoint should TypeSafe SDK clients use?",
+        answer:
+          "Point TYPESAFE_BASE_URL at http://127.0.0.1:8017 and call the same System One shapes documented in README curl examples.",
+      },
+      {
+        question: "Are the probabilities production calibrated?",
+        answer:
+          "README states they are uncalibrated unless you calibrate on your data. Compare ECE on your holdout before hard thresholds.",
+      },
+    ],
+    metaTitle: "Rizzo Flow: local llama.cpp Jev-compatible decision server",
+    metaDescription:
+      "Rizzo-AI-Academy/rizzo-flow serves Spark-X2.5 LoRA on :8017 with POST /v1/systemone, zero answer tokens, typed-decisions bench tables, and playground UI.",
+  },
+
+  "tianyucodings-jevharness": {
+    slug: "tianyucodings-jevharness",
+    status: "published",
+    problem:
+      "Agent loops that ask a large LLM to reason on every action are too slow and too expensive for tight control tasks, yet hand-written Jev criteria rot when the task changes.",
+    targetUser:
+      "Teams using Claude Code or Codex plugins who want an LLM to author a task harness once, then rely on fast Jev calls at runtime with optional GEPA-style evolution.",
+    overview:
+      "JevHarness (github.com/TianyuCodings/JevHarness) lets an authoring LLM write Python harness code: feature extractors, Jev question graphs, and control flow that turns observations into actions. After you freeze the selected harness, execution calls Jev for fuzzy decisions without invoking the authoring model each step. Optional reward reflection and GEPA integration compare parent and child harnesses on training batches and evaluate accepted proposals on Eval. The shipped Pokémon demo archives a full evolution tree: README reports Eval win rate improving from 25% (3/12) to 75% (9/12) after five reflection rounds on the selection set, with latency tables for the archived harness. Companion research to NanoJev on game decisions, but this product is harness authoring, not training a 0.6B unified head. Site: jev-harness.tianyuchen99.chatgpt.site with offline archive viewer.",
+    creator: {
+      name: "Tianyu Codings",
+      handle: "TianyuCodings",
+      githubUrl: "https://github.com/TianyuCodings",
+      companyUrl: "https://jev-harness.tianyuchen99.chatgpt.site",
+    },
+    jevUsage: {
+      flowRole:
+        "Frozen harness code batches choice, score, and noul Jev requests per observation",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Task-specific JSON state built by harness features plus parallel questions with instructions and criteria, as in docs/examples/pokemon-turn12-jev.json.",
+      decisionOut:
+        "Typed answers with probability maps and confidence; harness maps the winning action ID to environment commands.",
+      flowSteps: [
+        "Install jev-harness Claude Code plugin or skill for your task contract",
+        "Authoring LLM proposes PipelineSpec harness code and Jev graphs",
+        "Optional reflection uses full trajectories and rewards to mutate harnesses",
+        "Freeze selected harness; PipelineRuntime executes Jev nodes on each observation",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Pokémon Eval example: win rate 25% (3/12) initial harness vs 75% (9/12) selected harness after five reflection rounds on the documented selection set.",
+          source: "github.com/TianyuCodings/JevHarness README",
+        },
+        {
+          claim:
+            "Archived Eval timings: selected harness full decision median 568 ms, individual Jev request median 269 ms, with cache-excluded samples documented.",
+          source: "github.com/TianyuCodings/JevHarness README Latency section",
+        },
+        {
+          claim:
+            "Public GitHub repo had about 255 stars when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "JevHarness treats hosted or local System One as the fast judge inside code the LLM wrote for your task. tianyucodings-nanojev trains tiny parallel heads on game trajectories; JevHarness keeps the general LLM for authoring and uses stock Jev for runtime fuzzy picks. sutro-sh-jev-align optimizes TypeSafe AI Functions on labeled rows; JevHarness evolves whole harness programs with GEPA on episodic rewards. Do not duplicate NanoJev as a tools page: link the benchmark for model research, use this listing for harness workflows.",
+    keyFeatures: [
+      "Claude Code plugin marketplace install jev-harness@jevharness",
+      "PipelineSpec validation and PipelineRuntime execution path",
+      "Optional GEPA parent selection with recorded ancestry and rejects",
+      "Pokémon archived battles, evolution tree, and latency API on the demo site",
+      "Lossless trace archives for reflection without truncating oversized inputs",
+    ],
+    stack: [
+      "Python harness runtime",
+      "TypeSafe Jev API",
+      "GEPA integration",
+      "Claude Code plugin",
+      "Node static site viewer",
+    ],
+    links: {
+      website: "https://jev-harness.tianyuchen99.chatgpt.site",
+      repo: "https://github.com/TianyuCodings/JevHarness",
+      docs: "https://github.com/TianyuCodings/JevHarness#how-it-works",
+      demo: "https://jev-harness.tianyuchen99.chatgpt.site/?autoplay=1#paired-archive",
+    },
+    pricingNote:
+      "Open repository; Jev API usage bills per your TypeSafe or compatible endpoint during harness runs.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: ["tianyucodings-nanojev", "sutro-sh-jev-align", "nokia-applied-research-anyjev"],
+    relatedLearnSlugs: ["system-one", "use-cases"],
+    faq: [
+      {
+        question: "Is this the same product as NanoJev?",
+        answer:
+          "No. NanoJev trains a small unified decision model on games. JevHarness authors task code that calls Jev. NanoJev stays on /benchmarks/tianyucodings-nanojev.",
+      },
+      {
+        question: "Does the authoring LLM run every turn in production?",
+        answer:
+          "No. README emphasizes freeze the selected harness so runtime is harness code plus Jev calls only.",
+      },
+      {
+        question: "Are the Pokémon win rates universal?",
+        answer:
+          "README labels them example results on the Eval selection set, not independent OOD guarantees.",
+      },
+    ],
+    metaTitle: "JevHarness: LLM-authored Jev harnesses with GEPA evolution",
+    metaDescription:
+      "TianyuCodings/JevHarness freezes task harnesses that batch Jev choice, score, and noul calls. Pokémon demo 25% to 75% Eval wins, latency tables, Claude plugin.",
+  },
+
+  "ollaya-dev-ollaya": {
+    slug: "ollaya-dev-ollaya",
+    status: "published",
+    problem:
+      "Pulling each open decision checkpoint by hand means different serve flags, ONNX exports, and SDK base URLs for Laya, Kev, Von, and friends.",
+    targetUser:
+      "Developers who want Ollama-like pull and run for decision models with TypeSafe SDK compatibility on localhost:11435.",
+    overview:
+      "ollaya (github.com/ollaya-dev/ollaya, Apache-2.0, ollaya.dev) is a Rust CLI and daemon that downloads small ONNX graphs (about 3 MB each), verifies upstream Hugging Face weight blobs by sha256, and serves choice, score, and noul questions over POST /v1/systemone, /v1/decisions, and GET /v1/models. curl install.sh, then ollaya run laya --preset triage on a ticket string prints intent bars in milliseconds. TYPESAFE_BASE_URL=http://localhost:11435 works with the official SDK unchanged. Registry includes laya routers, decider, kev, von, nli, gliclass, and qwen3guard without re-hosting author weights. ollaya mcp and the ollaya-decisions skill target agent clients. Modelfiles bake question sets into custom tags.",
+    creator: {
+      name: "ollaya",
+      handle: "ollaya-dev",
+      githubUrl: "https://github.com/ollaya-dev",
+      companyUrl: "https://ollaya.dev",
+    },
+    jevUsage: {
+      flowRole:
+        "Local ONNX decision runtime exposing TypeSafe wire-identical System One HTTP",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSON state plus typed questions; CLI presets and Modelfile QUESTIONS JSON for bundled triage sets per README.",
+      decisionOut:
+        "Calibrated probability bars per question in one forward pass without text generation.",
+      flowSteps: [
+        "Install via ollaya.dev/install.sh and start ollaya serve on port 11435",
+        "ollaya pull kev or ollaya run laya --preset triage on sample text",
+        "Point TypeSafe clients at TYPESAFE_BASE_URL=http://localhost:11435",
+        "Optional ollaya mcp for Claude Code, Cursor, and Desktop agent tooling",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README documents laya:en at 8 to 10 ms for five questions on RTX 4090 and fp32 parity with PyTorch on 100% of 2,383 questions per checkpoint.",
+          source: "github.com/ollaya-dev/ollaya README Models and Features",
+        },
+        {
+          claim:
+            "decider:0.8b listed at 0.591 accuracy on typed-decisions in the model table.",
+          source: "github.com/ollaya-dev/ollaya README Models table",
+        },
+        {
+          claim:
+            "Public GitHub repo had about 153 stars when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "ollaya is infrastructure, not another Laya marketing page: one daemon serves many open decision checkpoints with the same HTTP shape. jaredpalmer-kev and wfzyx-von remain the authoritative repos for those models; ollaya pulls verified ONNX wrappers. togethercomputer-tev1 is a training recipe on Together; ollaya is local pull and serve. githubnext-localjev bridges chat JSON on Mac; ollaya runs native decision graphs. Do not list Laya itself again here; use ollaya when the story is runtime packaging.",
+    keyFeatures: [
+      "Ollama-style pull, list, ps, run, and Modelfile create workflow",
+      "TypeSafe-compatible /v1/systemone on default port 11435",
+      "Weights stay on author HF repos; ollaya ships pinned ONNX graphs only",
+      "MCP server and ollaya-decisions agent skill",
+      "Desktop app and Docker cuda images on ollaya.dev/download",
+    ],
+    stack: ["Rust", "ONNX Runtime", "CUDA and CPU", "TypeSafe HTTP contract"],
+    links: {
+      website: "https://ollaya.dev",
+      repo: "https://github.com/ollaya-dev/ollaya",
+      docs: "https://ollaya.dev/docs",
+      demo: "https://ollaya.dev/search",
+    },
+    pricingNote:
+      "Apache-2.0 binary; model licenses follow each upstream author listed in README.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "wfzyx-von",
+      "togethercomputer-tev1",
+      "githubnext-localjev",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Does ollaya replace downloading Kev or Von directly?",
+        answer:
+          "It wraps upstream weights with ONNX graphs and a unified CLI. Author repos remain the source of truth for training details.",
+      },
+      {
+        question: "Will this create a duplicate Laya tools page?",
+        answer:
+          "This listing covers the ollaya runtime only. It does not re-publish Convai Laya as a separate product profile.",
+      },
+      {
+        question: "Which port should SDK users set?",
+        answer:
+          "README documents TYPESAFE_BASE_URL=http://localhost:11435 for wire-identical System One calls.",
+      },
+    ],
+    metaTitle: "ollaya: Ollama-style CLI for open decision models",
+    metaDescription:
+      "ollaya-dev/ollaya pulls ONNX decision graphs, serves POST /v1/systemone on :11435, bundles laya kev von decider MCP. Weights verified from author Hugging Face repos.",
+  },
+
+  "liuziyu77-valen": {
+    slug: "liuziyu77-valen",
+    status: "published",
+    problem:
+      "Text-only Von, Kev, and tev1 checkpoints cannot score visual state, yet multimodal agents still need thresholdable probabilities instead of long reasoning traces.",
+    targetUser:
+      "Researchers and builders training or serving Qwen3.5-backed System One models with image and video inputs via Hugging Face Valen-Preview-0923.",
+    overview:
+      "Valen (github.com/Liuziyu77/Valen, Apache-2.0) trains multimodal System One models: text, images, and video in; choice, score, and noul style probabilities out without answer-token decoding. Qwen3.5-0.8B or 2B backbones share a decision head; Valen-Preview-0923 ships on Hugging Face Valen-Team/Valen-Preview-0923 with Spaces demo, General 100k training data, and game eval sets. README Sokoban comparison claims Valen solves a level in 9 decisions with 1.13 s cumulative latency vs Qwen3.8-27B-FP8 at 198.05 s in thinking mode on the same puzzle (project demo, not independent lab proof). Blur-confidence GIF documents 91.6% confidence clear vs 19.2% at strongest blur. Repo includes SFT and experimental RLCD configs, valen.train, valen.inference, and valen.evaluate CLIs.",
+    creator: {
+      name: "Valen Team",
+      handle: "Liuziyu77",
+      githubUrl: "https://github.com/Liuziyu77",
+      companyUrl: "https://huggingface.co/Valen-Team",
+    },
+    jevUsage: {
+      flowRole:
+        "Multimodal forward pass scoring supplied candidates with a shared decision head",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSONL records with messages content arrays for text, image_url, or video plus questions maps per README smoke and eval schemas.",
+      decisionOut:
+        "Probability distributions over listed criteria keys; zero generated answer tokens on the decision path.",
+      flowSteps: [
+        "hf download Valen-Preview-0923 and matching Qwen3.5-2B base weights",
+        "python -m valen.inference --checkpoint models/Valen-Preview-0923 on JSONL tasks",
+        "python -m valen.evaluate for General 5k or game sets documented in README",
+        "Optional SFT or RLCD training via configs/train per docs/technical.md",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Sokoban demo: Valen-Preview-0923 9 decisions and 1.13 s cumulative latency vs Qwen3.8-27B-FP8 198.05 s thinking on the same level (project-reported).",
+          source: "github.com/Liuziyu77/Valen README demo comparison",
+        },
+        {
+          claim:
+            "Blur demo reports 91.6% decision confidence on clear image vs 19.2% at strongest Gaussian blur in project GIF.",
+          source: "github.com/Liuziyu77/Valen README blur-confidence section",
+        },
+        {
+          claim:
+            "Public GitHub repo Liuziyu77/Valen had about 164 stars when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Valen extends the open decision model lane into vision: same candidate scoring story as jaredpalmer-kev and togethercomputer-tev1, but tensors include frames. tianyucodings-nanojev benchmarks tiny parallel heads on games; Valen targets general multimodal VQA plus Sokoban eval sets with published datasets. wfzyx-von remains text encoder speed king; Valen trades modality breadth for training complexity. Use the HF Space before you commit GPUs to a custom SFT run.",
+    keyFeatures: [
+      "Valen-Preview-0923 weights and Qwen3.5 base pairing documented on HF",
+      "Hugging Face Space demo and General 100k plus game dataset cards",
+      "python -m valen.train, inference, and evaluate entry points",
+      "SFT warmup and experimental RLCD configs under configs/train",
+      "Project demos for Sokoban latency, blur confidence, and four parallel games",
+    ],
+    stack: [
+      "Python 3.10+",
+      "Qwen3.5-0.8B and 2B",
+      "Hugging Face weights",
+      "SFT and RLCD training",
+    ],
+    links: {
+      repo: "https://github.com/Liuziyu77/Valen",
+      docs: "https://github.com/Liuziyu77/Valen/blob/main/docs/technical.md",
+      demo: "https://huggingface.co/spaces/yuhangzang/Valen-Preview-0923",
+      website: "https://huggingface.co/Valen-Team/Valen-Preview-0923",
+    },
+    pricingNote:
+      "Apache-2.0 code; inference and training spend your own GPU hours and HF bandwidth.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "tianyucodings-nanojev",
+      "jaredpalmer-kev",
+      "togethercomputer-tev1",
+      "wfzyx-von",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Which base model do I need for Preview 0923?",
+        answer:
+          "README quick start downloads Valen-Preview-0923 and Qwen/Qwen3.5-2B into local models paths before inference.",
+      },
+      {
+        question: "Is Valen a hosted TypeSafe product?",
+        answer:
+          "No. It is an open training and inference stack inspired by Jev with HF weights you serve yourself.",
+      },
+      {
+        question: "How is this different from text-only Kev?",
+        answer:
+          "Valen accepts image and video content in state messages and scores candidates with a shared multimodal decision head.",
+      },
+    ],
+    metaTitle: "Valen: multimodal System One with Qwen3.5 decision head",
+    metaDescription:
+      "Liuziyu77/Valen ships Valen-Preview-0923 on Hugging Face: vision and video in, choice probabilities out, SFT and RLCD training, Sokoban and blur demos.",
+  },
+
 };

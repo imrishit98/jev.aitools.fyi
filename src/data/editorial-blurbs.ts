@@ -189,6 +189,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Nokia's AnyJev is the spreadsheet your option-order nightmares deserve: L0 kills flip rate with zero labels, L2 adds a tiny head, and the README prints ECE instead of vibes.",
   "githubnext-localjev":
     "GitHub Next wired System One-shaped HTTP to oMLX DiffusionGemma and admitted the probabilities are chat JSON, not OpenJev logits. Refreshingly rude, refreshingly useful on a Mac.",
+  "typellm-typellm":
+    "Keep your SGLang fleet and still make enums behave: TypeLLM pins outputs to JSON Schema, then drags the receipts through public JevBench so you cannot pretend calibration is vibes.",
+  "rizzo-ai-academy-rizzo-flow":
+    "Spark on llama.cpp with a hedgehog mascot, POST /v1/systemone on localhost, and README honesty about uncalibrated bars. The open stack SemIf fans were waiting to actually download.",
+  "tianyucodings-jevharness":
+    "Let Claude write the harness, freeze the Python, and let Jev play Pokémon at hundreds of milliseconds while GEPA argues about ancestry in the archive viewer.",
+  "ollaya-dev-ollaya":
+    "One pull command for laya, kev, and von without re-hosting weights: ONNX slivers, :11435 System One wire, and an MCP hook for agents that refuse another bespoke Dockerfile.",
+  "liuziyu77-valen":
+    "Sokoban frames go in, probability bars come out, and the README makes Qwen3.8-27B thinking mode look slow on purpose. Multimodal System One you can actually train from HF cards.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
