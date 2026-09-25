@@ -183,6 +183,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Rare agent repo that documents exactly which consult Jev approves and which tool permissions stay in Rust. Read jev-routing.md before your next token audit.",
   "jev-chat-jev-chat-windows":
     "Same judge-first chat assist as Jarvis, but for Windows OCR nerds: three ranked drafts, probabilities on screen, your finger still owns send.",
+  "sutro-sh-jev-align":
+    "Sutro built the CLI that treats Jev like a gym membership: uncertain rows show up, you label them, GEPA proposes a diff, and you still get veto power before ai-functions.dev sees it.",
+  "nokia-applied-research-anyjev":
+    "Nokia's AnyJev is the spreadsheet your option-order nightmares deserve: L0 kills flip rate with zero labels, L2 adds a tiny head, and the README prints ECE instead of vibes.",
+  "githubnext-localjev":
+    "GitHub Next wired System One-shaped HTTP to oMLX DiffusionGemma and admitted the probabilities are chat JSON, not OpenJev logits. Refreshingly rude, refreshingly useful on a Mac.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
