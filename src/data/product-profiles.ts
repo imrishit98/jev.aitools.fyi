@@ -6851,4 +6851,308 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "jev-chat/jev-chat-windows OCR plus Jev judge ranks three reply drafts on Windows. OpenRouter or TypeSafe judge, DeepSeek draft, fill-only never auto-send.",
   },
 
+  "sutro-sh-jev-align": {
+    slug: "sutro-sh-jev-align",
+    status: "published",
+    problem:
+      "Shipping a typed classifier is easy; keeping it calibrated when labels drift, options shuffle, and production rows look nothing like your first CSV is not.",
+    targetUser:
+      "ML and product engineers who want Sutro-style AI Functions on TypeSafe Jev with human-in-the-loop GEPA rounds, not another skill-router repo.",
+    overview:
+      "jev-align (github.com/sutro-sh/jev-align, Apache-2.0, PyPI jev-align 0.1.4) is Sutro's experimental CLI for building portable AI Functions with TypeSafe Jev. Run `jeva` or `jev-align` after `uv tool install jev-align`: guided setup discovers local CSV, Parquet, and JSONL, walks Binary, Multiclass, Multilabel, and Score task types, and loops evaluate, label uncertain rows, GEPA optimize, accept or reject diffs. Jev can run through TYPESAFE_API_KEY, Vercel AI Gateway, or Cloudflare Workers AI; GEPA's reflection model is separate (OpenAI, Anthropic, Gemini, or LiteLLM providers including local vLLM). Finished functions publish through ai-functions.dev.",
+    creator: {
+      name: "Sutro",
+      handle: "sutro-sh",
+      githubUrl: "https://github.com/sutro-sh",
+      company: "Sutro",
+      companyUrl: "https://sutro.sh",
+    },
+    jevUsage: {
+      flowRole:
+        "Iterative calibration loop: Jev scores rows, humans label ambiguity, GEPA proposes definition updates",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Tabular rows (concatenated or selected columns) plus natural-language question and class or score-level definitions from guided setup or `jeva optimize` flags.",
+      decisionOut:
+        "Task-typed predictions with uncertainty metrics per round; accepted proposals become portable AI Function definitions for runtime Jev calls.",
+      flowSteps: [
+        "Install jev-align and configure Jev provider (TypeSafe, Vercel, or Cloudflare) plus reflection LLM",
+        "Pick dataset, task type, and training annotations per round (5 to 20 in Advanced menu)",
+        "Label ambiguous rows and optional audit sample; GEPA runs within metric-call budget (default 300)",
+        "Review score, certainty delta, and definition diff; accept, reject, rewind, or resume later",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states each round evaluates uncertainty, selects ambiguous rows plus a random audit sample, runs GEPA on accumulated labels, and never auto-accepts on score alone.",
+          source: "github.com/sutro-sh/jev-align README How it works",
+        },
+        {
+          claim:
+            "PyPI package jev-align version 0.1.4 listed when this listing was drafted.",
+          source: "pypi.org/project/jev-align",
+        },
+        {
+          claim:
+            "Public GitHub repo sutro-sh/jev-align had 287 stars and 23 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-align is the opposite of a one-shot router: Jev is the scoring engine inside an active-learning factory. nidhi-singh02-agent-router and leepokai-jev-guard decide which agent or tool runs next; this CLI teaches a function definition until uncertain rows stop embarrassing you in prod. featherless-simple-jev and jaredpalmer-kev ship open inference; jev-align assumes you are fine with TypeSafe, Vercel, or Cloudflare Jev routes while GEPA rewrites prompts and class maps. Pair with classifier.dev when you only need a hosted gate, or cross-read nokia-applied-research-anyjev when your bottleneck is open-weight calibration instead of function authoring.",
+    keyFeatures: [
+      "Interactive `jeva` CLI with guided setup and three bundled examples",
+      "Binary, Multiclass, Multilabel, and Score task types with flag parity",
+      "GEPA optimization with separate reflection model configuration",
+      "TypeSafe, Vercel AI Gateway, or Cloudflare Workers AI Jev backends",
+      "Portable AI Functions shareable via ai-functions.dev",
+    ],
+    stack: [
+      "Python 3.11+",
+      "uv or pip",
+      "TypeSafe Jev or gateway backends",
+      "GEPA",
+      "LiteLLM-compatible reflection models",
+    ],
+    links: {
+      repo: "https://github.com/sutro-sh/jev-align",
+      docs: "https://github.com/sutro-sh/jev-align#quick-start",
+      website: "https://ai-functions.dev",
+    },
+    pricingNote:
+      "Open source CLI; you pay TypeSafe, gateway, and reflection LLM usage per optimize round and runtime calls.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "classifier-dev",
+      "togethercomputer-tev1",
+      "nokia-applied-research-anyjev",
+      "githubnext-localjev",
+      "featherless-simple-jev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is jev-align the same as the jeva chat skill router?",
+        answer:
+          "No. This repo is Sutro's dataset-driven GEPA loop for AI Functions on Jev. Skill routers pick tools; jev-align improves a single typed function from labels.",
+      },
+      {
+        question: "Do I need TYPESAFE_API_KEY?",
+        answer:
+          "Not if you configure Vercel AI Gateway or Cloudflare Workers AI backends. README says the chosen provider is saved with the function for later runtime calls.",
+      },
+      {
+        question: "What does GEPA change?",
+        answer:
+          "GEPA proposes definition diffs from your labels and rationales. You review every proposal; README explicitly rejects auto-accept on training score alone.",
+      },
+    ],
+    metaTitle: "jev-align: Sutro CLI to calibrate Jev AI Functions with GEPA",
+    metaDescription:
+      "sutro-sh/jev-align (PyPI jev-align) labels uncertain rows, runs GEPA, and ships portable AI Functions on TypeSafe, Vercel, or Cloudflare Jev backends.",
+  },
+
+  "nokia-applied-research-anyjev": {
+    slug: "nokia-applied-research-anyjev",
+    status: "published",
+    problem:
+      "Raw next-token logits from general LLMs flip when you shuffle options and lie about confidence, so automation thresholds become roulette.",
+    targetUser:
+      "Teams serving open weights on vLLM or Hugging Face who want Jev-style typed decisions with real probabilities and optional 100 to 300 label head fits, without a full Qwen fine-tune.",
+    overview:
+      "AnyJev (github.com/nokia-applied-research/AnyJev, Apache-2.0, PyPI anyjev 0.0.2) from Nokia Applied Research with Tencent Hunyuan coauthors turns hub models into typed deciders: `Question.choice`, yes/no, and score rubrics return distributions you can threshold. Levels raw, L0, L1, and L2 add position-bias fixes and calibration; L2 fits a closed-form head on hidden states (often after `python -m anyjev.truncate`). README banner on BANKING77 cites order-flip rate 0.230 to 0.073 at L0 with zero labels and auto-decidable share at 5% error rising from 7.7% raw to 52.0% with labels. `python -m anyjev.pipeline` truncates, serves, fits, and measures accuracy, ECE, and latency on your machine.",
+    creator: {
+      name: "Nokia Applied Research",
+      handle: "nokia-applied-research",
+      githubUrl: "https://github.com/nokia-applied-research",
+      company: "Nokia",
+    },
+    jevUsage: {
+      flowRole:
+        "Decider over vLLM or HF backends: cyclic option shifts at L0, temperature at L1, linear head on hidden states at L2",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Plain-text state strings plus `Question` definitions with named criteria lists or rubric levels per README Python API.",
+      decisionOut:
+        "Per-question probability maps (for example route.distribution on billing vs technical) with documented calibration metrics on held-out sets.",
+      flowSteps: [
+        "pip install anyjev[hf] and optionally truncate blocks with python -m anyjev.truncate",
+        "Serve with vLLM embed pooler for L2 or generate task for raw/L0/L1",
+        "Decider.fit_head on 100 to 300 labels for L2, or run zero-label L0",
+        "decide() on live traffic; optional unlabelled maintenance per README routing docs",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README BANKING77 table lists raw order-flip 0.230 vs L0 0.073 with zero labels, ECE 0.240 raw vs 0.095 L1, and auto-decidable at 5% error 7.7% raw vs 52.0% with labels.",
+          source: "github.com/nokia-applied-research/AnyJev README banner and results table",
+        },
+        {
+          claim:
+            "README states L2 head fit on 100 to 300 labels is a closed-form solve with no gradient updates to base weights.",
+          source: "github.com/nokia-applied-research/AnyJev README With labels L2",
+        },
+        {
+          claim:
+            "Public GitHub repo nokia-applied-research/AnyJev had 601 stars and 84 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "AnyJev is the research-grade open stack when you refuse Jared Palmer-sized fine-tunes but still want probabilities that survive option reordering. jaredpalmer-kev and togethercomputer-tev1 bet on trained Qwen checkpoints; featherless-simple-jev assembles logits from arbitrary HF models without Nokia's L0 rotation math. wfzyx-von is a purpose-built encoder; AnyJev wraps models you already host. theoleecj-semif chases full System One servers; AnyJev's Decider API targets pipeline operators measuring ECE on BANKING77 before they wire agents. Cross-link githubnext-localjev for Mac bridges that fake System One with chat JSON instead of logit reads.",
+    keyFeatures: [
+      "Decider + Question.choice Python API with vLLM and HF backends",
+      "L0/L1/L2 levels documented with flip-rate and calibration tables",
+      "truncate and pipeline CLIs for serve-measure loops on your hardware",
+      "Prebuilt heads in anyjev-heads (~100 KB each) for select Qwen3 sizes",
+      "Apache-2.0 with PyPI anyjev and CI workflow in repo",
+    ],
+    stack: [
+      "Python",
+      "vLLM embed and generate servers",
+      "Hugging Face transformers",
+      "PyPI anyjev",
+    ],
+    links: {
+      repo: "https://github.com/nokia-applied-research/AnyJev",
+      docs: "https://github.com/nokia-applied-research/AnyJev#-serve-it",
+      website: "https://pypi.org/project/anyjev/",
+    },
+    pricingNote:
+      "Open source library; you pay for GPUs, vLLM hosting, and label collection.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "wfzyx-von",
+      "featherless-simple-jev",
+      "togethercomputer-tev1",
+      "theoleecj-semif",
+      "sutro-sh-jev-align",
+      "githubnext-localjev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "How is AnyJev different from featherless-simple-jev?",
+        answer:
+          "Simple Jev builds classifier HTTP from logits on Featherless or your HF server. AnyJev adds L0 rotation debiasing, optional L2 heads, and pipeline measurement focused on calibration, not just API shape.",
+      },
+      {
+        question: "Do I need labels?",
+        answer:
+          "L0 works with zero labels for large flip-rate gains per README. L1 and L2 expect on the order of 100 to 500 labels for temperature and head fits.",
+      },
+      {
+        question: "Is this TypeSafe hosted Jev?",
+        answer:
+          "No. AnyJev is Nokia's open research code on models you serve. Compare numbers locally with python -m anyjev.pipeline before trusting banner benchmarks.",
+      },
+    ],
+    metaTitle: "AnyJev: turn open LLMs into calibrated Jev-style deciders",
+    metaDescription:
+      "nokia-applied-research/AnyJev fits heads on vLLM hidden states, fixes option-order flips at L0, and documents BANKING77 calibration tables. PyPI anyjev.",
+  },
+
+  "githubnext-localjev": {
+    slug: "githubnext-localjev",
+    status: "published",
+    problem:
+      "Mac builders want System One-shaped HTTP without shipping screenshots to TypeSafe, but DiffusionGemma on oMLX lacks OpenJev's structured logit read primitives.",
+    targetUser:
+      "Developers running Bun 1.2+, oMLX with diffusiongemma-26B-A4B-it-4bit, and TypeSafe SDK clients pointed at localhost.",
+    overview:
+      "LocalJev (github.com/githubnext/localjev, MIT) is GitHub Next's TypeScript bridge that exposes POST /v1/systemone on port 8080 by default. It translates shared state plus Choice, Score, and Noul questions into classification prompts, asks an OpenAI-compatible chat endpoint (defaults: upstream http://127.0.0.1:8000, model diffusiongemma-26B-A4B-it-4bit), validates JSON probability output with retries, normalizes vectors, and returns Jev-compatible envelopes. README is explicit: wire-compatible with System One, not logit-equivalent to OpenJev's one-step structured read. GET /ready checks upstream model availability; jev-latest and jev-preview aliases satisfy SDK defaults.",
+    creator: {
+      name: "GitHub Next",
+      handle: "githubnext",
+      githubUrl: "https://github.com/githubnext",
+    },
+    jevUsage: {
+      flowRole:
+        "Local Bun server maps System One JSON to chat prompts and back with schema validation",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Standard System One body: model alias, state string, and questions map with choice, score, or noul criteria per README curl.",
+      decisionOut:
+        "Jev-shaped choices, expected scores, and entropy-based confidence from model-reported JSON probabilities after normalize and retry logic.",
+      flowSteps: [
+        "Run oMLX (or other OpenAI-compatible server) with configured DiffusionGemma checkpoint",
+        "bun install, copy .env, set LOCALJEV_UPSTREAM_API_KEY, bun run start on :8080",
+        "curl /ready then POST /v1/systemone or point typesafe_sdk at TYPESAFE_BASE_URL",
+        "Tune LOCALJEV_QUESTIONS_PER_CALL and MALFORMED_RETRIES for your workload calibration",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README states probabilities are generated or self-reported by the model, not read from logits, and recommends evaluating calibration before consequential gates.",
+          source: "github.com/githubnext/localjev README Why a bridge is needed",
+        },
+        {
+          claim:
+            "Defaults document upstream :8000, LocalJev :8080, LOCALJEV_MAX_INFLIGHT 2, LOCALJEV_MALFORMED_RETRIES 2, and chunking limits 16 questions / 128 outcomes per call.",
+          source: "github.com/githubnext/localjev README Configuration table",
+        },
+        {
+          claim:
+            "Public GitHub repo githubnext/localjev had 771 stars and 49 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "LocalJev is the honest Mac compromise: keep TypeSafe SDK code, accept that probabilities came from a prompted JSON scalar instead of OpenJev's diffusion read. featherless-simple-jev and jaredpalmer-kev chase logit-native servers; githubnext-localjev meets oMLX where it is today. theoleecj-semif and wfzyx-von are alternative open stacks if you can leave DiffusionGemma. nokia-applied-research-anyjev is for vLLM operators measuring ECE; LocalJev is for curl-friendly localhost demos with documented limitations. Read docs/evaluation-results-2026-09-18.md before you trust bake-off rankings on your ticket queue.",
+    keyFeatures: [
+      "POST /v1/systemone and /ready on Bun with .env driven config",
+      "TypeSafe Python SDK works with TYPESAFE_BASE_URL and dummy API key",
+      "Malformed JSON retries and per-call question chunking",
+      "OpenJev vs oMLX gap explained with LM Studio status notes in README",
+      "Evaluation guide and September 2026 bake-off report in docs/",
+    ],
+    stack: [
+      "TypeScript",
+      "Bun 1.2+",
+      "oMLX OpenAI-compatible chat",
+      "DiffusionGemma",
+      "typesafe_sdk client",
+    ],
+    links: {
+      repo: "https://github.com/githubnext/localjev",
+      docs: "https://github.com/githubnext/localjev#run-with-omlx",
+    },
+    pricingNote:
+      "Open source MIT server; inference cost is your local oMLX GPU time, not TypeSafe tokens.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "featherless-simple-jev",
+      "theoleecj-semif",
+      "wfzyx-von",
+      "nokia-applied-research-anyjev",
+      "sutro-sh-jev-align",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is LocalJev the same as OpenJev?",
+        answer:
+          "No. README contrasts OpenJev's patched vLLM structured read with this chat-prompt bridge. Expect similar JSON shape, different probability semantics.",
+      },
+      {
+        question: "Which upstream server works?",
+        answer:
+          "Defaults target oMLX on port 8000. Any OpenAI-compatible chat API works if you set LOCALJEV_UPSTREAM and model env vars.",
+      },
+      {
+        question: "Can I use the TypeSafe SDK?",
+        answer:
+          "Yes. README shows TypeSafeClient with TYPESAFE_BASE_URL http://127.0.0.1:8080 and any API key unless LOCALJEV_API_KEY is set.",
+      },
+    ],
+    metaTitle: "LocalJev: GitHub Next Bun bridge for local System One API",
+    metaDescription:
+      "githubnext/localjev serves POST /v1/systemone over oMLX DiffusionGemma chat. Wire-compatible Jev JSON with README honesty about calibration vs OpenJev.",
+  },
+
 };
