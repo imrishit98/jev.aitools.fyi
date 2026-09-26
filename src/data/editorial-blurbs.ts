@@ -199,6 +199,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "One pull command for laya, kev, and von without re-hosting weights: ONNX slivers, :11435 System One wire, and an MCP hook for agents that refuse another bespoke Dockerfile.",
   "liuziyu77-valen":
     "Sokoban frames go in, probability bars come out, and the README makes Qwen3.8-27B thinking mode look slow on purpose. Multimodal System One you can actually train from HF cards.",
+  "jevdoom-jev-arcade":
+    "A coin-op hall for links where bots actually played the game. Paste a URL, let the cabinet scrape the poster art, spam coins on your favorites, and flex three initials on the high-score board. Born after Jev got scary good at Doom; still fan-made, still not TypeSafe official.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

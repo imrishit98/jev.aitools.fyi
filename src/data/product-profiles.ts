@@ -7957,4 +7957,98 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "wy-coliney/jev-browser-use routes browser clicks through TypeSafe Jev while Codex types and verifies. Install with npx skills add; TypeSafe or OpenRouter.",
   },
 
+  "jevdoom-jev-arcade": {
+    slug: "jevdoom-jev-arcade",
+    status: "published",
+    problem:
+      "Browser games where Jev or other agents actually played get buried in threads. Fans want one retro hall to submit links, compare votes, and brag with arcade initials.",
+    targetUser:
+      "Jev curious players, doom fans, and builders who want their AI playthrough page in a community cabinet without running another Discord bot.",
+    overview:
+      "Jev Arcade at arcade.jevdoom.com is a fan-made coin-op index from the jevdoom.com team. Cabinets list browser games where Jev or other AI models were the player. You paste a game URL in NEW CHALLENGER; the arcade reads the page and pulls title, description, and preview image (the same pattern it uses for og art on submissions). TOP and NEW tabs sort the floor. Insert a coin to upvote a cabinet; the side panel tracks high scores with 3-letter initials and no accounts. The project grew after Jev did well at Doom; jevdoom.com/play hosts the shareware episode for humans in the browser. Footer copy states the site is fan-made and unofficial, not affiliated with Typesafe.",
+    creator: {
+      name: "jevdoom.com",
+      handle: "jevdoom",
+    },
+    jevUsage: {
+      flowRole:
+        "Ecosystem showcase: the arcade shell curates links; Jev and other models run inside each linked game, not on every coin click",
+      primitives: ["Choice"],
+      stateIn:
+        "Per linked game: whatever structured loop that creator documented (Doom agents, emulators, browser sims). The arcade UI only stores URL, scraped metadata, votes, initials, and timestamps.",
+      decisionOut:
+        "On the arcade site: vote totals and leaderboard rows. On linked demos: each game's own typed action picks (for example Jev movement in Doom playthroughs).",
+      flowSteps: [
+        "Visitor browses cabinets sorted by coins or recency",
+        "Submitter pastes a URL where an AI model plays a browser game",
+        "Backend ingests title, description, and preview image from the page",
+        "Readers insert coins to upvote; optional 3-letter initials hit the high-score list",
+        "Play links open the original game site in a new tab",
+      ],
+    },
+    howJevIsUsed:
+      "Treat arcade.jevdoom.com as a fan directory, not a new Jev inference product. Coins and sorting are ordinary web app logic. The Jev story lives in the linked cabinets: jevdoom.com documents an AI model clearing Doom, and the hall welcomes other agents too. That is different from jev-arcade.vercel.app, where Jev picks FPS moves at about 9 Hz, and from jevarcade.netlify.app, where KP runs seven Netlify gateway mini games. This listing does not add a separate jevdoom.com product row; use the Live demo link for human shareware play. Public og:image for sharers is https://arcade.jevdoom.com/og.jpg at 1200x630 (hosted on the arcade domain, not copied into this repo).",
+    keyFeatures: [
+      "TOP and NEW sort tabs on the cabinet grid",
+      "Submit form with URL plus optional 3-letter initials",
+      "Coin button upvotes with live vote counts",
+      "High-score sidebar with arcade initials",
+      "Scraped title, description, and preview image per submission",
+      "Unlimited credits label in the UI (free play)",
+      "Remote social preview at arcade.jevdoom.com/og.jpg (1200x630)",
+    ],
+    stack: [
+      "Static HTML, CSS, and client JS on Cloudflare",
+      "JSON API under /api/games on arcade.jevdoom.com",
+      "Umami analytics (cloud.umami.is)",
+      "Press Start 2P and VT323 fonts",
+    ],
+    links: {
+      website: "https://arcade.jevdoom.com",
+      demo: "https://jevdoom.com/play",
+    },
+    pricingNote:
+      "Free to browse and vote on the arcade; linked games may bill their own APIs.",
+    firstSeen: "2026-09-23",
+    relatedSlugs: [
+      "lukaske-jev-doom-agent",
+      "jev-arcade",
+      "thumay9700-jev-plays",
+      "fhshaik-typesafe-mario",
+      "muratcanberber-jev-the-fish-game",
+      "thisiskp-jevarcade",
+    ],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "Is this the same Jev Arcade as jev-arcade.vercel.app?",
+        answer:
+          "No. Neel490's listing is a Krunker-style 1v1 FPS where Jev picks move, aim, and fire. arcade.jevdoom.com is a link hall for many browser games.",
+      },
+      {
+        question: "Is jevdoom.com listed separately?",
+        answer:
+          "Not in this directory yet. This profile links jevdoom.com/play as the human Doom demo. The main jevdoom.com site can be submitted later if the authors want a full product page.",
+      },
+      {
+        question: "Does inserting a coin call TypeSafe Jev?",
+        answer:
+          "No. Coins hit the arcade vote API. Jev shows up inside the games you link to, not inside the upvote button.",
+      },
+      {
+        question: "Is it official?",
+        answer:
+          "No. Site footer says fan-made and unofficial, not affiliated with Typesafe. Game rights stay with each linked creator.",
+      },
+      {
+        question: "Who can I contact?",
+        answer:
+          "Listing submitter left hello@jevdoom.com on the GitHub issue for corrections.",
+      },
+    ],
+    metaTitle: "Jevdoom Arcade: AI-played browser game hall",
+    metaDescription:
+      "arcade.jevdoom.com lists games Jev and other models played. Submit URLs, coin-vote, sort Top or New. Fan-made; demo at jevdoom.com/play.",
+  },
+
 };
