@@ -6051,7 +6051,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "How is this different from gargpratyush-jev-router?",
         answer:
-          "Agent Router picks among Cursor, Claude Code, Codex, and OpenCode with quota rules and Herdr launch. gargpratyush-jev-router targets cheapest model choice inside Claude Code only and remains a thin catalog row here.",
+          "Agent Router picks among Cursor, Claude Code, Codex, and OpenCode with quota rules and Herdr launch. gargpratyush-jev-router wraps Claude Code or Codex only and routes the cheapest sufficient model per fresh user turn; see its product profile for npm install and status line behavior.",
       },
       {
         question: "Can router run without Herdr?",
@@ -7639,6 +7639,322 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "Valen: multimodal System One with Qwen3.5 decision head",
     metaDescription:
       "Liuziyu77/Valen ships Valen-Preview-0923 on Hugging Face: vision and video in, choice probabilities out, SFT and RLCD training, Sokoban and blur demos.",
+  },
+
+  "droidrun-mobile-jev": {
+    slug: "droidrun-mobile-jev",
+    status: "published",
+    problem:
+      "Desktop browser and macOS computer-use demos dominate the Jev directory, while real Android automation still gets treated like a remote ADB script with no typed action menu.",
+    targetUser:
+      "Mobilerun operators who want a localhost React studio or CLI where Jev picks bounded mobile UI actions from device observations, not prose plans.",
+    overview:
+      "mobile-jev (github.com/droidrun/mobile-jev) is Droidrun's standalone agent for Mobilerun Android devices. Each loop observes accessibility state and installed apps, sends one TypeSafe request with operation plus speculative target heads, validates the winning branch, then executes through the Mobilerun API. A React studio on port 3040 streams the device, surfaces per-step latency, and keeps API keys server-side. The packaged dark-theme demo verifies the real Settings switch; the README Uber clip shows about 21 seconds for nine actions without claiming a completed booking.",
+    creator: {
+      name: "Droidrun",
+      handle: "droidrun",
+      githubUrl: "https://github.com/droidrun",
+      company: "Mobilerun",
+      companyUrl: "https://mobilerun.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-step mobile control routing (operation plus compatible target selection over observed UI)",
+      primitives: ["Choice"],
+      stateIn:
+        "Indexed controls, installed-app inventory (up to 200 apps when not name-filtered), goal text, and prior executed actions from Mobilerun observations.",
+      decisionOut:
+        "OPEN_APP, TAP, TYPE_TEXT, scroll, navigation, WAIT, DONE, or BLOCKED with validated target indices; text spans are copied verbatim from the goal, not generated.",
+      flowSteps: [
+        "Observe device UI and app list through Mobilerun",
+        "One Jev request chooses operation and speculative targets",
+        "Executor rejects stale targets and records actions before the next read",
+        "Mobilerun mutates the device; loop continues until stop, failure, or cancellation",
+        "Demo runner re-observes to verify state (DONE alone is not proof)",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Uber recording: about 21 seconds for 9 actions from SFO airport to Golden Gate Bridge payment screen; completed booking not demonstrated.",
+          source: "github.com/droidrun/mobile-jev README",
+        },
+        {
+          claim:
+            "docs/DEMO.md exploratory dark-theme run: 8.685 seconds with three executed actions, five Jev calls, one stale decision rejected.",
+          source: "github.com/droidrun/mobile-jev docs/DEMO.md",
+        },
+        {
+          claim:
+            "Public GitHub repo droidrun/mobile-jev had about 402 stars and 50 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Mobile Jev mirrors the Browser Use ultrafast split on a phone: finite operations over structured observations, with TYPE_TEXT fed from exact goal spans instead of a second generative model. Mobilerun owns transport and gestures; Jev owns which legal branch fires. The executor never retries a device mutation after an uncertain transport failure and treats Jev DONE as a hint, not QA. docs/DEMO.md documents why clock and travel flows need independent verifiers before you quote speed wins. Compare browser-use-jev-ultrafast for DOM tables in Chromium, awlevin-typesafe-computer-use for macOS accessibility loops, and moritzkremb-jev-voice-browser when the input is partial speech instead of a typed goal.",
+    keyFeatures: [
+      "React studio with @mobilerun/react stream, stop control, and in-memory run history",
+      "CLI agent run, observe, screenshot, profile, and direct tap or type debug commands",
+      "pnpm demo dark-theme with optional --reset baseline and --repeat batches",
+      "Connection reuse, brief device readiness cache, and split request timing in traces",
+      "Optional --confidence cutoff; MOBILERUN_TEXT_COMPLETION_MODE for field verification",
+    ],
+    stack: [
+      "Node.js 22.16+ (24 recommended)",
+      "pnpm 10.30.1",
+      "Mobilerun API and React SDK",
+      "TypeSafe Jev",
+    ],
+    links: {
+      repo: "https://github.com/droidrun/mobile-jev",
+      docs: "https://github.com/droidrun/mobile-jev/blob/main/docs/DEMO.md",
+      demo: "https://github.com/droidrun/mobile-jev/blob/main/docs/media/uber-demo.mp4",
+      website: "https://mobilerun.ai",
+    },
+    pricingNote:
+      "Open source studio and agent; Mobilerun device usage and TypeSafe Jev calls bill to your keys.",
+    firstSeen: "2026-09-26",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "awlevin-typesafe-computer-use",
+      "moritzkremb-jev-voice-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does Mobile Jev require ADB?",
+        answer:
+          "No. README states Mobilerun API control with no ADB connection required.",
+      },
+      {
+        question: "Does Jev DONE mean the task succeeded?",
+        answer:
+          "README and docs/DEMO.md say DONE is not independent proof. The dark-theme demo re-reads the switch state; Uber demo stops before purchase.",
+      },
+      {
+        question: "Can Jev invent passenger names or payment details?",
+        answer:
+          "No. README: text comes from exact spans in the goal or --text overrides; the agent does not generate arbitrary prose.",
+      },
+      {
+        question: "Is the studio safe to expose on the public internet?",
+        answer:
+          "README binds to localhost and expects a single local operator. Public hosting needs your own auth and device authorization.",
+      },
+    ],
+    metaTitle: "Mobile Jev: Mobilerun Android agent with typed Jev steps",
+    metaDescription:
+      "droidrun/mobile-jev runs TypeSafe Jev over Mobilerun observations with a React studio, CLI traces, and a verified dark-theme demo. Uber clip shows its limits.",
+  },
+
+  "gargpratyush-jev-router": {
+    slug: "gargpratyush-jev-router",
+    status: "published",
+    problem:
+      "Claude Code and Codex users on subscription tiers still default every fresh turn to the strongest model, paying latency and quota for tasks a fast tier could finish.",
+    targetUser:
+      "Developers already logged into Claude Code or OpenAI Codex who want jev-claude or jev-codex wrappers that route each new user turn to the cheapest sufficient model.",
+    overview:
+      "jev-router (github.com/gargpratyush/jev-router, npm jev-router v0.3.0) launches the real upstream CLIs unchanged. Before the first request of each user turn, it asks TypeSafe Jev which tier fits the prompt, rewrites the model field, and leaves tools, sessions, permissions, and auth with the native binary. jev-claude injects a status line in the model picker; jev-codex adds commentary lines and a temporary Jev Router provider entry. Manual model picks pause routing until you select Jev Router again.",
+    creator: {
+      name: "Pratyush Garg",
+      handle: "gargpratyush",
+      githubUrl: "https://github.com/gargpratyush",
+    },
+    jevUsage: {
+      flowRole:
+        "Per fresh user turn model tier Choice using task complexity, reasoning, tool, and context signals",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "User prompt text for the new turn plus catalog metadata from the signed-in CLI (model ids, context token estimates). Tool-loop continuations skip routing.",
+      decisionOut:
+        "Selected fast, balanced, strong, or optional long tier mapped to account-native model ids; confidence and factors stored for /jev-explain.",
+      flowSteps: [
+        "Detect start of a fresh user turn in Claude Code or Codex",
+        "Send prompt and tier catalog to TypeSafe per src/config.mjs",
+        "Rewrite outgoing request model to chosen tier",
+        "Surface decision on status line or Codex commentary",
+        "Retain last 20 exchanges per session under OS temp for explain skill",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README: only the user's prompt text is sent to TypeSafe for routing; Jev adds latency on the first request of a turn, not tool-loop continuations.",
+          source: "github.com/gargpratyush/jev-router README",
+        },
+        {
+          claim:
+            "README documents fail-open behavior: Jev failure never blocks the CLI.",
+          source: "github.com/gargpratyush/jev-router README",
+        },
+        {
+          claim:
+            "Public GitHub repo gargpratyush/jev-router had about 427 stars and 50 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-router is the product-name answer for Claude Code model routing with Jev: wrap the CLI you already trust, do not replace it. nidhi-singh02-agent-router is the multi-agent desk with Herdr launches and quota policy filters before TypeSafe ranks Cursor, Codex, Claude Code, or OpenCode. miuuyy-astra-ares instead toggles reasoning effort inside a patched Codex binary. jev-router stays inside one CLI and optimizes model tier per turn. Use dbreunig-building-with-jev-skill when teammates need vocabulary for routing questions, and typesafe-ai-skills for maintained install patterns.",
+    keyFeatures: [
+      "Global npm jev-router with jev-claude and jev-codex entry points",
+      "Bundled /jev-explain and $jev-explain from saved System One request bodies",
+      "JEV_API_KEY or TYPESAFE_API_KEY via ~/.jev-router.env",
+      "Preserves custom Claude statusLine unless JEV_NO_STATUSLINE=1",
+      "Restores prior Claude default model on exit so plain claude stays untouched",
+    ],
+    stack: [
+      "Node.js 20.12+",
+      "Claude Code and OpenAI Codex CLIs",
+      "TypeSafe System One",
+      "npm package jev-router",
+    ],
+    links: {
+      repo: "https://github.com/gargpratyush/jev-router",
+      docs: "https://github.com/gargpratyush/jev-router#quick-start",
+      website: "https://www.npmjs.com/package/jev-router",
+    },
+    pricingNote:
+      "MIT open source; TypeSafe bills per routing decision; CLI usage still follows your Anthropic or OpenAI subscription.",
+    firstSeen: "2026-09-26",
+    relatedSlugs: [
+      "nidhi-singh02-agent-router",
+      "miuuyy-astra-ares",
+      "dbreunig-building-with-jev-skill",
+      "typesafe-ai-skills",
+    ],
+    relatedLearnSlugs: ["patterns", "use-cases"],
+    faq: [
+      {
+        question: "Do I need separate Anthropic or OpenAI API keys?",
+        answer:
+          "README: no API keys required when the corresponding CLI is already logged in with a subscription.",
+      },
+      {
+        question: "What gets sent to TypeSafe?",
+        answer:
+          "README limitations section: only the user prompt text for the routing decision on that turn.",
+      },
+      {
+        question: "How is this different from Agent Router?",
+        answer:
+          "Agent Router (nidhi-singh02-agent-router) applies quota policy then ranks among four agent CLIs launched via Herdr. jev-router stays inside Claude Code or Codex and picks the cheapest sufficient model per turn.",
+      },
+      {
+        question: "Where are explain reports stored?",
+        answer:
+          "README: up to 20 recent exchanges per session under the OS temp jev-claude directory with mode 600 files and seven-day cleanup.",
+      },
+    ],
+    metaTitle: "jev-router: Jev model routing for Claude Code and Codex",
+    metaDescription:
+      "gargpratyush/jev-router npm package wraps jev-claude and jev-codex. TypeSafe picks fast or strong tiers per user turn with status lines and /jev-explain.",
+  },
+
+  "wy-coliney-jev-browser-use": {
+    slug: "wy-coliney-jev-browser-use",
+    status: "published",
+    problem:
+      "Codex Computer Use sessions spend full model turns on repetitive clicks and scrolls when the host model plans every micro-action in prose.",
+    targetUser:
+      "Codex (and Claude Code skill) users who want Jev to drive navigation and controls over accessibility text while the main agent types, judges visuals, and verifies outcomes.",
+    overview:
+      "jev-browser-use (github.com/wy-coliney/jev-browser-use) installs as a Codex skill or plugin. Jev receives accessibility text from the existing Computer Use connection, chooses clicks, navigation, toggles, and scrolls, then hands back to Codex for typing, images, and final verification. README attributes roughly 5 to 10 times faster browser operations in EZCollegeApp workflows as an author claim. Provider config supports TypeSafe or OpenRouter Decisions with keys kept in a local dotenv file named by ~/.config/jev-browser-use/config.json.",
+    creator: {
+      name: "Coliney",
+      handle: "wy-coliney",
+      githubUrl: "https://github.com/wy-coliney",
+      company: "EZCollegeApp",
+      companyUrl: "https://ezcollegeapp.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Browser action Choice loop inside Codex Computer Use without a separate driver",
+      primitives: ["Choice"],
+      stateIn:
+        "Accessibility text and control inventory from the connected Chrome or in-app browser session, plus the active goal from Codex.",
+      decisionOut:
+        "Next browser operation executed through Computer Use; Jev completion signal returns control to Codex for verification.",
+      flowSteps: [
+        "Codex sets a browser goal and invokes the skill",
+        "Observe controls through the existing Computer Use channel",
+        "Jev selects the next action from structured candidates",
+        "Browser executes; session retains progress across handoffs",
+        "Codex verifies page state before trusting completion",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README author claim: about 5 to 10 times faster browser operations in EZCollegeApp workflows (server-side processing excluded).",
+          source: "github.com/wy-coliney/jev-browser-use README",
+        },
+        {
+          claim:
+            "README cost table: Jev 1.13 at $0.042 per 1M input tokens versus GPT-5.6 Terra at $2.00 per 1M input (48x) as of September 18, 2026.",
+          source: "github.com/wy-coliney/jev-browser-use README",
+        },
+        {
+          claim:
+            "Public GitHub repo wy-coliney/jev-browser-use had about 545 stars and 33 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is the Codex plus Jev browser skill lane, distinct from browser-use-jev-ultrafast, which is Browser Use's Python hybrid with DOM tables and a tiny LLM only on TYPE_TEXT. Here the split is intentional teamwork: Jev burns cheap decisions on controls; Codex keeps judgment on text and visuals. sac-y-jev-cu is the parallel Codex skill with explicit dry-run and risk gates on sensitive ops. moritzkremb-jev-voice-browser adds microphone debouncing. Install with npx skills add wy-coliney/jev-browser-use; no extra npm driver beyond Node 22+ and an existing Computer Use browser connection.",
+    keyFeatures: [
+      "npx skills add wy-coliney/jev-browser-use for Codex or Claude Code agents",
+      "Optional codex plugin marketplace path documented in README",
+      "Shared ~/.config/jev-browser-use/config.json across install methods",
+      "TypeSafe or OpenRouter provider docs under skills/jev-browser-use/references",
+      "INSTALL.md agent-driven setup without pasting keys into chat",
+    ],
+    stack: [
+      "Node.js 22+",
+      "Codex Computer Use",
+      "TypeSafe or OpenRouter Jev",
+      "Agent skills CLI",
+    ],
+    links: {
+      repo: "https://github.com/wy-coliney/jev-browser-use",
+      docs: "https://github.com/wy-coliney/jev-browser-use/blob/main/skills/jev-browser-use/references/provider-configuration.md",
+      website: "https://ezcollegeapp.com",
+    },
+    pricingNote:
+      "MIT skill; Jev input pricing per README table; Codex usage bills separately.",
+    firstSeen: "2026-09-26",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "sac-y-jev-cu",
+      "socai-io-jev-social",
+      "moritzkremb-jev-voice-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does this add a second browser driver?",
+        answer:
+          "README: it uses your existing Computer Use connection to Chrome or the in-app browser; no extra driver npm dependencies.",
+      },
+      {
+        question: "Can I use OpenRouter instead of TypeSafe?",
+        answer:
+          "Yes. provider-configuration.md documents typesafe versus openrouter keys; they are not interchangeable even though both expose Jev.",
+      },
+      {
+        question: "Is the 5 to 10x speedup a benchmark guarantee?",
+        answer:
+          "No. README labels it an approximate author claim from EZCollegeApp workflows with server-side processing excluded.",
+      },
+      {
+        question: "Does Jev see screenshots?",
+        answer:
+          "README how-it-works: Jev receives accessibility text; Codex handles visual interpretation and typing.",
+      },
+    ],
+    metaTitle: "Jev Browser Use: Codex skill, Jev clicks, Codex verifies",
+    metaDescription:
+      "wy-coliney/jev-browser-use routes browser clicks through TypeSafe Jev while Codex types and verifies. Install with npx skills add; TypeSafe or OpenRouter.",
   },
 
 };
