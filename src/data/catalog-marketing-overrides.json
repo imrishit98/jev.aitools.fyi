@@ -711,7 +711,7 @@
   },
   "jevdoom-jev-arcade": {
     "oneLiner": "Jev Arcade at arcade.jevdoom.com: a fan cabinet of browser games Jev and other AI models have played.",
-    "description": "Jev Arcade at arcade.jevdoom.com is a fan-made hall of fame for browser games where Jev or other AI models were the player. Submit a game URL; the site pulls title, description, and preview art. Insert coins to upvote, sort Top or New, and post 3-letter initials on the high-score board. No accounts. Footer copy says fan-made and unofficial, not affiliated with Typesafe. From the team behind jevdoom.com (shareware Doom in the browser at jevdoom.com/play). Distinct from jev-arcade.vercel.app and jevarcade.netlify.app Jev Arcade listings. Playable proof that discrete Jev choices beat joystick LLM improv. Fun demo, serious latency lesson. Tags in the wild: games, arcade, doom, ai-agents, community. Follow the primary link for the author's latest notes and setup quirks."
+    "description": "Jev Arcade at arcade.jevdoom.com is a fan-made hall of fame for browser games where Jev or other AI models were the player. Submit a game URL; the site pulls title, description, and preview art. Insert coins to upvote, sort Top or New, and post 3-letter initials on the high-score board. No accounts. Footer copy says fan-made and unofficial, not affiliated with Typesafe. From the team behind jevdoom.com; you can play the Doom shareware episode yourself at jevdoom.com/play. Distinct from jev-arcade.vercel.app (Krunker FPS) and jevarcade.netlify.app (Netlify gateway mini games)."
   },
   "virlo-ai": {
     "oneLiner": "Virlo (virlo.",

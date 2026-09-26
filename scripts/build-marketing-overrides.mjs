@@ -59,6 +59,12 @@ const HAND_DESCRIPTIONS = {
     description:
       "pip install typesafe-sdk and get maintained wrappers around POST /v1/systemone with Python-native ergonomics for Choice, Score, and Noul. Same contract as the JavaScript SDK, different packaging, equally allergic to stringly-typed agent output. Sync or async, notebooks or services, pick your poison.",
   },
+  "jevdoom-jev-arcade": {
+    oneLiner:
+      "Jev Arcade at arcade.jevdoom.com: a fan cabinet of browser games Jev and other AI models have played.",
+    description:
+      "Jev Arcade at arcade.jevdoom.com is a fan-made hall of fame for browser games where Jev or other AI models were the player. Submit a game URL; the site pulls title, description, and preview art. Insert coins to upvote, sort Top or New, and post 3-letter initials on the high-score board. No accounts. Footer copy says fan-made and unofficial, not affiliated with Typesafe. From the team behind jevdoom.com; you can play the Doom shareware episode yourself at jevdoom.com/play. Distinct from jev-arcade.vercel.app (Krunker FPS) and jevarcade.netlify.app (Netlify gateway mini games).",
+  },
 };
 
 const existingPath = resolve(root, "src/data/catalog-marketing-overrides.json");

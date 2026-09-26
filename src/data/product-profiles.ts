@@ -7987,7 +7987,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Treat arcade.jevdoom.com as a fan directory, not a new Jev inference product. Coins and sorting are ordinary web app logic. The Jev story lives in the linked cabinets: jevdoom.com documents an AI model clearing Doom, and the hall welcomes other agents too. That is different from jev-arcade.vercel.app, where Jev picks FPS moves at about 9 Hz, and from jevarcade.netlify.app, where KP runs seven Netlify gateway mini games. This listing does not add a separate jevdoom.com product row; use the Live demo link for human shareware play. Public og:image for sharers is https://arcade.jevdoom.com/og.jpg at 1200x630 (hosted on the arcade domain, not copied into this repo).",
+      "Treat arcade.jevdoom.com as a fan directory, not a new Jev inference product. Coins and sorting are ordinary web app logic. The Jev story lives in the linked cabinets: jevdoom.com documents an AI model clearing Doom, and the hall welcomes other agents too. That is different from jev-arcade.vercel.app, where Jev picks FPS moves at about 9 Hz, and from jevarcade.netlify.app, where KP runs seven Netlify gateway mini games. This listing does not add a separate jevdoom.com product row; use the Live demo link for human shareware play.",
     keyFeatures: [
       "TOP and NEW sort tabs on the cabinet grid",
       "Submit form with URL plus optional 3-letter initials",
@@ -7995,7 +7995,6 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "High-score sidebar with arcade initials",
       "Scraped title, description, and preview image per submission",
       "Unlimited credits label in the UI (free play)",
-      "Remote social preview at arcade.jevdoom.com/og.jpg (1200x630)",
     ],
     stack: [
       "Static HTML, CSS, and client JS on Cloudflare",
@@ -8039,11 +8038,6 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         question: "Is it official?",
         answer:
           "No. Site footer says fan-made and unofficial, not affiliated with Typesafe. Game rights stay with each linked creator.",
-      },
-      {
-        question: "Who can I contact?",
-        answer:
-          "Listing submitter left hello@jevdoom.com on the GitHub issue for corrections.",
       },
     ],
     metaTitle: "Jevdoom Arcade: AI-played browser game hall",

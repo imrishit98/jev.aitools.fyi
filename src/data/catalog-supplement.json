@@ -1530,7 +1530,7 @@
     "slug": "jevdoom-jev-arcade",
     "title": "Jev Arcade (jevdoom)",
     "oneLiner": "A retro arcade for browser games played by Jev and other AI models.",
-    "description": "Jev Arcade at arcade.jevdoom.com collects browser games that Jev and other AI models have played. Paste a link to submit a game; the arcade pulls in its title, description, and preview image. Upvote by inserting coins, sort by Top or New, and climb the high-score table. There are no accounts, just 3-letter initials like an old cabinet. Fan-made and unofficial. Distinct from jev-arcade.vercel.app (Krunker FPS) and jevarcade.netlify.app (Netlify gateway mini games). Demo play at jevdoom.com/play for human Doom shareware.",
+    "description": "Jev Arcade at arcade.jevdoom.com collects browser games that Jev and other AI models have played. Paste a link to submit a game; the arcade pulls in its title, description, and preview image. Upvote by inserting coins, sort by Top or New, and climb the high-score table. There are no accounts, just 3-letter initials like an old cabinet. Fan-made and unofficial. Distinct from jev-arcade.vercel.app (Krunker FPS) and jevarcade.netlify.app (Netlify gateway mini games). You can also play the Doom shareware episode yourself at jevdoom.com/play.",
     "category": "games",
     "tags": ["games", "arcade", "doom", "ai-agents", "community"],
     "url": "https://arcade.jevdoom.com",
