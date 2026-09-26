@@ -7744,7 +7744,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Mobile Jev: Mobilerun Android agent with typed Jev steps",
     metaDescription:
-      "droidrun/mobile-jev runs TypeSafe Jev over Mobilerun observations with a React studio, CLI traces, and verified dark-theme demo. Uber clip documented with limits.",
+      "droidrun/mobile-jev runs TypeSafe Jev over Mobilerun observations with a React studio, CLI traces, and a verified dark-theme demo. Uber clip shows its limits.",
   },
 
   "gargpratyush-jev-router": {
@@ -7846,7 +7846,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "README: up to 20 recent exchanges per session under the OS temp jev-claude directory with mode 600 files and seven-day cleanup.",
       },
     ],
-    metaTitle: "jev-router: per-turn Jev model routing for Claude Code and Codex",
+    metaTitle: "jev-router: Jev model routing for Claude Code and Codex",
     metaDescription:
       "gargpratyush/jev-router npm package wraps jev-claude and jev-codex. TypeSafe picks fast or strong tiers per user turn with status lines and /jev-explain.",
   },
@@ -7952,9 +7952,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "README how-it-works: Jev receives accessibility text; Codex handles visual interpretation and typing.",
       },
     ],
-    metaTitle: "Jev Browser Use: Codex skill with Jev clicks and Codex verify",
+    metaTitle: "Jev Browser Use: Codex skill, Jev clicks, Codex verifies",
     metaDescription:
-      "wy-coliney/jev-browser-use skill routes browser clicks through TypeSafe Jev while Codex types and verifies. npx skills add install, TypeSafe or OpenRouter config.",
+      "wy-coliney/jev-browser-use routes browser clicks through TypeSafe Jev while Codex types and verifies. Install with npx skills add; TypeSafe or OpenRouter.",
   },
 
 };
