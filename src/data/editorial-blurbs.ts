@@ -38,7 +38,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "y0usaf-pi-jev":
     "Pi agent integration with Jev on the hot path for approvals and routing. Check the README for how state is shaped before you paste production logs into it.",
   "gargpratyush-jev-router":
-    "Model and tool routing with sub-200ms System One calls. A solid template for anyone building a catalog of models and needing deterministic picks.",
+    "Stop paying Sonnet prices to rename a variable. jev-claude and jev-codex keep your real CLI, let Jev pick the tier each fresh turn, and stash receipts for /jev-explain when finance asks questions.",
   "typesafe-ai-typesafe-sdk-js":
     "The official JavaScript SDK for POST /v1/systemone. Typed questions, probability vectors, and the primitives you actually use in production TypeScript services.",
   "http-api-reference":
@@ -64,7 +64,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "typesafe-ai-system-one-adapter-python":
     "Official Python adapter surface for System One clients. Use it when your stack is Python-first and you want maintained types around Choice, Score, and Noul.",
   "droidrun-mobile-jev":
-    "Mobile automation with Jev selecting actions on device UI state. Demos help you sanity-check latency before you point it at real accounts.",
+    "Android automation without ADB theater: Mobilerun observations in, Jev operation plus target out, studio on localhost so your API keys never hit the browser. Dark-theme demo verifies the real switch; Uber clip shows speed with honest booking limits.",
   "hr98w-jev-visual":
     "Visual tooling to inspect Jev outputs and confidence over UI or screenshots. Handy for debugging thresholds when text logs are not enough.",
   "mapika-decider":
@@ -106,7 +106,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "dicklesworthstone-skillranker":
     "Skill ranking with structured scores over agent capabilities. Interesting if you maintain a library of skills and need ordering that survives audits.",
   "wy-coliney-jev-browser-use":
-    "Browser Use integration focused on Jev-driven action selection. Read alongside Ultrafast if you are picking a computer-use stack.",
+    "Codex keeps the brain; Jev keeps the finger on repetitive browser ops. One npx skills add, accessibility text only to Jev, and Codex still owns typing plus the final sanity check. EZCollegeApp builders claim a chunky speedup; treat it as their README story, not your SLA.",
   "moritzkremb-jev-voice-browser":
     "Voice-controlled browsing where Jev picks the next action from heard intent plus page state. Wild demo, clear pattern for multimodal Choice questions.",
   "iammrduncan-typesafe-ai-benchmark":
