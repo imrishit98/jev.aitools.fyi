@@ -87,6 +87,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Kitze turned Jev into a declutter button: classify the junk, store template hides locally, and demand 0.9 on both probability and confidence before you ghost a pixel. BYOK, no full HTML upload theater.",
   "receptron-laya":
     "When your agent stack is Node-only but the ticket queue wants Laya probabilities, receptron downloads the ONNX bundle and batches Choice, Score, and Noul like the Python reference. ollaya still wins for pull-many-models ops; this wins for one typed import.",
+  "dzhng-jevgrep":
+    "Ask where the auth bug lives and jevgrep walks folders, files, and declarations until Jev says stop, then prints the exact lines your coding agent should read next. Not line grep, not per-function every: hierarchical retrieval with receipts and README cost math.",
+  "openbyteinc-quantdinger":
+    "A full self-hosted trading OS with an optional TypeSafe gate before entries hit the exchange: typed Choice with confidence, auditable timeline, fail-open when Jev is down so you are not trapped in a position. Not Jarrod's Monad demo; this is research through live execution at scale.",
+  "logan-markewich-jeff":
+    "Point typesafe-sdk at jeff and keep the same POST /v1/systemone contract while GLiFormer runs on your metal or Modal. README is blunt about accuracy versus hosted Jev and smug about dollars per million requests.",
   "pithings-advocaat":
     "Legal-adjacent triage patterns with System One gates. Interesting reference for document-heavy workflows that still need thresholdable scores.",
   "itsmostafa-typesafe-mcp":
