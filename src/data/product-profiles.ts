@@ -8480,7 +8480,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       sourcedMetrics: [
         {
           claim:
-            "README eval on ten tuned Python SWE-bench tasks: with and without Jevgrep both solved 8/10; Sol-only total cost $7.62 versus $5.44 with Jevgrep (~28.6% lower on the cost graphic).",
+            "README eval on 10 tuned Python SWE-bench tasks: with and without Jevgrep both solved 8/10; Sol-only total cost $7.62 versus $5.44 with Jevgrep (~28.6% lower on the cost graphic).",
           source: "github.com/dzhng/jevgrep README and evals/results/relevance-threshold-2026-09-27.md",
         },
         {
@@ -8560,7 +8560,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Operators self-hosting OpenByteInc QuantDinger for research, backtest, paper, or live crypto and equities workflows who may enable the optional TypeSafe pre-trade gate.",
     overview:
-      "QuantDinger (github.com/OpenByteInc/QuantDinger, Apache-2.0 backend, ai.quantdinger.com and quantdinger.com) is an open-source AI Trading OS: research to Python strategies to backtest to paper or live execution to monitoring, with Agent Gateway and MCP. The stack is multi-tenant SaaS-capable across crypto and stock or forex brokers. GitHub topics include jev, typesafe-ai, mcp-server, trading, and quant. Public star count was about twelve thousand two hundred sixty-eight when this listing was drafted.",
+      "QuantDinger (github.com/OpenByteInc/QuantDinger, Apache-2.0 backend, ai.quantdinger.com and quantdinger.com) is an open-source AI Trading OS: research to Python strategies to backtest to paper or live execution to monitoring, with Agent Gateway and MCP. The stack is multi-tenant SaaS-capable across crypto and stock or forex brokers. GitHub topics include jev, typesafe-ai, mcp-server, trading, and quant. Public star count was about 12,268 when this listing was drafted.",
     creator: {
       name: "Open Byte Inc.",
       handle: "OpenByteInc",
@@ -8702,7 +8702,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "jeff speaks the Jev wire format so existing SDK clients keep working; it does not pretend to be identical hosted Jev. jaredpalmer-kev ships Qwen-trained checkpoints with full fine-tune story; wfzyx-von optimizes non-autoregressive encoder latency; githubnext-localjev proxies chat JSON on Mac; ollaya-dev-ollaya pulls many ONNX decision checkpoints behind one daemon; receptron-laya embeds Convai Laya in Node. jeff is the GLiFormer encoder path with Modal deploy and honest accuracy versus cost tables in README. Hosted Jev remains the accuracy leader in upstream benchmarks; jeff targets operators who accept the gap for roughly five times lower per-million request cost in README math. Cite logan-markewich/jeff README and bench/RESULTS.md only.",
+      "jeff speaks the Jev wire format so existing SDK clients keep working; it does not pretend to be identical hosted Jev. jaredpalmer-kev ships Qwen-trained checkpoints with full fine-tune story; wfzyx-von optimizes non-autoregressive encoder latency; githubnext-localjev proxies chat JSON on Mac; ollaya-dev-ollaya pulls many ONNX decision checkpoints behind one daemon; receptron-laya embeds Convai Laya in Node. jeff is the GLiFormer encoder path with Modal deploy and honest accuracy versus cost tables in README. Hosted Jev remains the accuracy leader in upstream benchmarks; jeff targets operators who accept the gap for roughly 5x lower per-million request cost in README math. Cite logan-markewich/jeff README and bench/RESULTS.md only.",
     keyFeatures: [
       "POST /v1/systemone compatible with typesafe-sdk via TYPESAFE_BASE_URL",
       "knowledgator/gliformer-large-v1 (~400M) GLiFormer backend",

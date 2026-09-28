@@ -1616,7 +1616,7 @@
     "slug": "dzhng-jevgrep",
     "title": "jevgrep",
     "oneLiner": "npm @dzhng/jevgrep (`jg`): coding-agent CLI for hierarchical semantic repo search with Jev relevance, verbatim excerpts, and `jg skill` installer.",
-    "description": "jevgrep (github.com/dzhng/jevgrep, MIT, Node 22+) asks a natural-language repo question; `jg` walks folders, files, and declarations, returns reading leads and source excerpts on stdout. Auth via jg auth for Vercel AI Gateway, TypeSafe, OpenRouter, or OpenCode Zen (provider pick needs package >=0.3.0). README evals on ten Python SWE-bench tasks: 8/10 solved with or without Jevgrep; Sol-only cost about $7.62 to $5.44 (~28.6%); total-cost rerun with Jev measured 25.8% lower, still 8/10. Distinct from uehaj-jev-semgrep line filters and sufianetaouil-every per-function scoring.",
+    "description": "jevgrep (github.com/dzhng/jevgrep, MIT, Node 22+) asks a natural-language repo question; `jg` walks folders, files, and declarations, returns reading leads and source excerpts on stdout. Auth via jg auth for Vercel AI Gateway, TypeSafe, OpenRouter, or OpenCode Zen (provider pick needs package >=0.3.0). README evals on 10 Python SWE-bench tasks: 8/10 solved with or without Jevgrep; Sol-only cost about $7.62 to $5.44 (~28.6%); total-cost rerun with Jev measured 25.8% lower, still 8/10. Distinct from uehaj-jev-semgrep line filters and sufianetaouil-every per-function scoring.",
     "category": "agent-tooling",
     "tags": ["agent-tooling", "cli", "code-search", "coding-agent", "semantic-search"],
     "language": "TypeScript",
