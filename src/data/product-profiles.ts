@@ -8448,4 +8448,314 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "receptron/laya npm package runs Convai Laya ONNX in Node 20+ with typed systemOne, HF cache, and Choice, Score, Noul batching.",
   },
 
+  "dzhng-jevgrep": {
+    slug: "dzhng-jevgrep",
+    status: "published",
+    problem:
+      "Coding agents burn context and API budget reading whole repos when a human would skim folders, open two files, and jump to the right declaration.",
+    targetUser:
+      "Developers running Claude Code, Codex, or custom agents who want a CLI that turns a natural-language repo question into ranked files, reading leads, and verbatim excerpts on stdout.",
+    overview:
+      "jevgrep (github.com/dzhng/jevgrep, npm @dzhng/jevgrep, MIT) installs the `jg` command for Node 22+ on macOS and Linux. You ask a question; the tool walks hierarchy from folders to files to declarations, uses Jev to judge relevance at each level, caches evaluation answers locally by default, and prints source excerpts for the agent to implement against. `jg auth` wires Vercel AI Gateway, TypeSafe, OpenRouter, or OpenCode Zen (provider selection needs package version 0.3.0 or newer). `jg skill` and `npx skills add dzhng/jevgrep` ship an agent skill installer. Repo created 2026-09-26 with active pushes through 2026-09-28.",
+    creator: {
+      name: "dzhng",
+      handle: "dzhng",
+      githubUrl: "https://github.com/dzhng",
+    },
+    jevUsage: {
+      flowRole:
+        "Hierarchical relevance scoring and retrieval across folders, files, and declarations before the agent edits code",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Natural-language question plus bounded tree context (paths, summaries, declaration snippets) respecting ignore, hidden, and dependency filters per README.",
+      decisionOut:
+        "Ranked files and reading leads with verbatim excerpts on stdout; agent keeps research and implementation decisions.",
+      flowSteps: [
+        "Parse repo question and start from top-level folder candidates",
+        "Jev scores which branches merit deeper traversal",
+        "Drill into files and declarations with cached evaluation answers when repeats occur",
+        "Emit ranked paths, leads, and source excerpts for the coding agent",
+        "Optional: install jevgrep skill for agent-driven `jg` invocations",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README eval on ten tuned Python SWE-bench tasks: with and without Jevgrep both solved 8/10; Sol-only total cost $7.62 versus $5.44 with Jevgrep (~28.6% lower on the cost graphic).",
+          source: "github.com/dzhng/jevgrep README and evals/results/relevance-threshold-2026-09-27.md",
+        },
+        {
+          claim:
+            "Later total-cost rerun including Jev measured 25.8% lower total cost with the same 8/10 solve rate.",
+          source: "github.com/dzhng/jevgrep evals/results/total-cost-2026-09-28.md",
+        },
+        {
+          claim:
+            "Public GitHub repo dzhng/jevgrep had about 1148 stars and 67 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevgrep is the coding-agent search lane, not line-at-a-time meaning grep and not per-function yes/no scans. uehaj-jev-semgrep batches Noul questions on individual lines; sufianetaouil-every scores every function for a boolean question. jevgrep instead orchestrates a tree walk where Jev answers which folder, file, or declaration deserves the next hop, then returns exact text for the agent to read. gargpratyush-jev-router spends Jev on model tier picks; jevgrep spends it on repo cartography. tamaratran-fast-jev-compaction is transcript hygiene, not retrieval. Eligible source ships through your configured provider; README documents filters but not a secrets guarantee. Cite dzhng/jevgrep README and eval markdown for cost claims, not third-party blogs.",
+    keyFeatures: [
+      "Global npm @dzhng/jevgrep with `jg` CLI",
+      "`jg auth` for Gateway, TypeSafe, OpenRouter, or OpenCode Zen",
+      "`jg skill` and npx skills add dzhng/jevgrep agent installer",
+      "Local evaluation answer cache by default",
+      "Hierarchy walk with verbatim stdout excerpts for agents",
+    ],
+    stack: [
+      "Node.js 22+",
+      "TypeScript",
+      "Vercel AI Gateway or TypeSafe or OpenRouter or OpenCode Zen",
+      "Agent skills CLI",
+    ],
+    links: {
+      repo: "https://github.com/dzhng/jevgrep",
+      docs: "https://github.com/dzhng/jevgrep#readme",
+      website: "https://www.npmjs.com/package/@dzhng/jevgrep",
+    },
+    pricingNote:
+      "MIT open source; Jev or gateway bills per relevance evaluation; README evals quantify agent total-cost savings on SWE-bench subset.",
+    firstSeen: "2026-09-28",
+    relatedSlugs: [
+      "uehaj-jev-semgrep",
+      "tamaratran-fast-jev-compaction",
+      "gargpratyush-jev-router",
+      "ellipsis-dev-blink",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "How is jevgrep different from jev-semgrep?",
+        answer:
+          "jev-semgrep filters lines by meaning with boolean composition. jevgrep walks repo hierarchy and returns file-level reading leads plus excerpts for coding agents.",
+      },
+      {
+        question: "Which providers does `jg auth` support?",
+        answer:
+          "README documents Vercel AI Gateway, TypeSafe, OpenRouter, and OpenCode Zen. Picking among them requires @dzhng/jevgrep version 0.3.0 or newer.",
+      },
+      {
+        question: "Does jevgrep replace my coding agent?",
+        answer:
+          "No. jevgrep is research infrastructure on stdout. The agent still chooses what to edit after reading the excerpts.",
+      },
+      {
+        question: "Where are the cost savings numbers from?",
+        answer:
+          "Upstream README and evals/results/relevance-threshold-2026-09-27.md, total-cost-2026-09-28.md, and speed-2026-09-28.md in the dzhng/jevgrep repo.",
+      },
+    ],
+    metaTitle: "jevgrep: Jev hierarchical repo search for coding agents",
+    metaDescription:
+      "dzhng/jevgrep `jg` CLI uses Jev to walk repos, print excerpts, and install agent skills. README SWE-bench evals cite about 26% lower agent cost at 8/10 solves.",
+  },
+
+  "openbyteinc-quantdinger": {
+    slug: "openbyteinc-quantdinger",
+    status: "published",
+    problem:
+      "Quant teams want AI-assisted entries without letting a chat model narrate trades into the exchange, and without trapping open positions when the inference provider blips.",
+    targetUser:
+      "Operators self-hosting OpenByteInc QuantDinger for research, backtest, paper, or live crypto and equities workflows who may enable the optional TypeSafe pre-trade gate.",
+    overview:
+      "QuantDinger (github.com/OpenByteInc/QuantDinger, Apache-2.0 backend, ai.quantdinger.com and quantdinger.com) is an open-source AI Trading OS: research to Python strategies to backtest to paper or live execution to monitoring, with Agent Gateway and MCP. The stack is multi-tenant SaaS-capable across crypto and stock or forex brokers. GitHub topics include jev, typesafe-ai, mcp-server, trading, and quant. Public star count was about twelve thousand two hundred sixty-eight when this listing was drafted.",
+    creator: {
+      name: "Open Byte Inc.",
+      handle: "OpenByteInc",
+      githubUrl: "https://github.com/OpenByteInc",
+    },
+    jevUsage: {
+      flowRole:
+        "Optional pre-trade entry filter: typed Choice with confidence before regular live strategies and Quick Trade orders reach the exchange",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Order intent plus strategy context, exposure, open positions, and budget state sent to TypeSafe Jev via POST /v1/systemone per README JEV-powered pre-trade decisions section.",
+      decisionOut:
+        "Typed Choice results with probabilities and confidence (not prose); independent checks on evidence quality, signal consistency, market regime, account risk, execution quality, and entry pass or reject; auditable decision timeline with provider, checks, result, confidence, latency, and reason in the app.",
+      flowSteps: [
+        "Strategy or Quick Trade proposes an entry order",
+        "When AI Decision Filter is enabled, QuantDinger assembles context and calls TypeSafe Jev",
+        "Jev returns structured pass or reject with confidence and check breakdown",
+        "Rejected entries never reach the exchange; exits, stop-loss, take-profit, and emergency paths bypass the filter",
+        "On provider failure, policy fails open with audit log; if Jev unset, configured LLM fallback; if no AI, allow and log fail-open",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README documents grid, DCA, and martingale strategies excluded from the first AI Decision Filter version.",
+          source: "github.com/OpenByteInc/QuantDinger README JEV-powered pre-trade decisions",
+        },
+        {
+          claim:
+            "Public GitHub repo OpenByteInc/QuantDinger had about 12268 stars and 2510 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "QuantDinger puts Jev on the money path as an optional gate, not as the strategy brain. jarrodwatts-jev-trader is a compact Monad demo that Chooses buy or sell each block; QuantDinger is a full trading OS with research, execution, and monitoring. The README section JEV-powered pre-trade decisions is explicit: entries can be blocked before they hit the broker; risk exits and emergencies skip the filter so you are not stuck. Provider outage fails open with auditing so AI downtime cannot trap a position. Configure JEV_API_KEY, JEV_BASE_URL, JEV_MODEL, and JEV_TIMEOUT_SECONDS under System Settings AI or LLM. Live trading carries real loss risk; this listing is not investment advice; follow local law. Cite OpenByteInc/QuantDinger README for behavior, not rumor posts.",
+    keyFeatures: [
+      "End-to-end quant stack: research, Python strategies, backtest, execution, monitoring",
+      "Agent Gateway plus MCP server topics in repo metadata",
+      "Optional TypeSafe Jev AI Decision Filter on entries with auditable timeline UI",
+      "Fail-open provider failure handling documented in README",
+      "Multi-broker crypto and stocks or forex support in product positioning",
+    ],
+    stack: [
+      "Python Apache-2.0 backend",
+      "TypeSafe System One POST /v1/systemone",
+      "Agent Gateway and MCP",
+      "Self-hosted or SaaS-capable deployment",
+    ],
+    links: {
+      repo: "https://github.com/OpenByteInc/QuantDinger",
+      docs: "https://github.com/OpenByteInc/QuantDinger#readme",
+      website: "https://ai.quantdinger.com",
+    },
+    pricingNote:
+      "Open-source core; live trading spends real capital and TypeSafe usage when the Jev filter is enabled. Jev filter is optional.",
+    firstSeen: "2026-09-28",
+    relatedSlugs: [
+      "jarrodwatts-jev-trader",
+      "chetaslua-jevmeter",
+      "realzachi-pg-jev",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Is the Jev filter required?",
+        answer:
+          "No. README describes it as optional on regular live strategies and Quick Trade entries. Exits and emergency actions bypass it.",
+      },
+      {
+        question: "What happens if TypeSafe is down?",
+        answer:
+          "README policy: provider failure is audited and fails open; if Jev is unset the app tries a configured LLM; if no AI is available it allows the order and logs fail-open so outages cannot trap positions.",
+      },
+      {
+        question: "How is this different from jev-trader?",
+        answer:
+          "jev-trader is Jarrod Watts Monad block demo on Kuru MON-USDC. QuantDinger is a full trading operating system with research, backtest, multi-broker execution, and a production-shaped pre-trade gate.",
+      },
+      {
+        question: "Which environment variables configure Jev?",
+        answer:
+          "README lists JEV_API_KEY, JEV_BASE_URL, JEV_MODEL, and JEV_TIMEOUT_SECONDS in System Settings under AI or LLM.",
+      },
+    ],
+    metaTitle: "QuantDinger: Jev pre-trade filter on an AI Trading OS",
+    metaDescription:
+      "OpenByteInc QuantDinger optional TypeSafe entry gate: typed Choice, auditable timeline, fail-open on provider errors. Full quant stack at ai.quantdinger.com.",
+  },
+
+  "logan-markewich-jeff": {
+    slug: "logan-markewich-jeff",
+    status: "published",
+    problem:
+      "Teams want System One SDK compatibility without per-call hosted Jev bills, but chat-model JSON hacks break calibration and void comparisons to api.typesafe.ai.",
+    targetUser:
+      "Python engineers who can run uv locally or deploy Modal and want a self-hosted POST /v1/systemone endpoint backed by the GLiFormer encoder (~400M params).",
+    overview:
+      "jeff (github.com/logan-markewich/jeff, MIT) is Logan Markewich's drop-in System One server compatible with TypeSafe POST /v1/systemone and the official typesafe-sdk when you set TYPESAFE_BASE_URL to your jeff host. It serves knowledgator/gliformer-large-v1 with Choice, Score, and Noul support, temperature-scaled normalized sigmoids, and optional noul isolation modes documented in README. Run locally with uv run jeff or deploy CPU or GPU on Modal. Auth uses JEFF_API_KEYS. Token counts are not comparable to Jev billing per upstream README.",
+    creator: {
+      name: "Logan Markewich",
+      handle: "logan-markewich",
+      githubUrl: "https://github.com/logan-markewich",
+    },
+    jevUsage: {
+      flowRole:
+        "Self-hosted System One wire compatibility: same SDK clients, GLiFormer inference instead of hosted Jev",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Standard System One JSON bodies from typesafe-sdk or curl, matching hosted Jev request shape per README.",
+      decisionOut:
+        "Typed answers with probabilities or scores; behavior differs from hosted Jev (sigmoid scaling, noul isolation options) as documented upstream.",
+      flowSteps: [
+        "Configure TYPESAFE_BASE_URL to jeff host and JEFF_API_KEYS",
+        "uv run jeff locally or deploy Modal template from README",
+        "POST /v1/systemone from existing SDK clients unchanged",
+        "Compare latency, cost, and accuracy using README and bench/RESULTS.md tables",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README benchmarks on 1600 labeled items: sequential p50 about 151 ms on L4 Modal versus hosted Jev about 129 ms.",
+          source: "github.com/logan-markewich/jeff README",
+        },
+        {
+          claim:
+            "README cost table: about $2.6 versus about $15.6 per 1M single-question requests (jeff vs hosted Jev).",
+          source: "github.com/logan-markewich/jeff README",
+        },
+        {
+          claim:
+            "README JevBench v1.2.2 total score 66.9 (rank #9) versus hosted Jev 75.3 (rank #2); AG News 75.5% vs 90.5%; Intelligence 63.9 vs 90.4.",
+          source: "github.com/logan-markewich/jeff README and bench/RESULTS.md",
+        },
+        {
+          claim:
+            "Public GitHub repo logan-markewich/jeff had about 256 stars and 20 forks when this listing was drafted.",
+          source: "GitHub API September 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jeff speaks the Jev wire format so existing SDK clients keep working; it does not pretend to be identical hosted Jev. jaredpalmer-kev ships Qwen-trained checkpoints with full fine-tune story; wfzyx-von optimizes non-autoregressive encoder latency; githubnext-localjev proxies chat JSON on Mac; ollaya-dev-ollaya pulls many ONNX decision checkpoints behind one daemon; receptron-laya embeds Convai Laya in Node. jeff is the GLiFormer encoder path with Modal deploy and honest accuracy versus cost tables in README. Hosted Jev remains the accuracy leader in upstream benchmarks; jeff targets operators who accept the gap for roughly five times lower per-million request cost in README math. Cite logan-markewich/jeff README and bench/RESULTS.md only.",
+    keyFeatures: [
+      "POST /v1/systemone compatible with typesafe-sdk via TYPESAFE_BASE_URL",
+      "knowledgator/gliformer-large-v1 (~400M) GLiFormer backend",
+      "Local uv run jeff or Modal GPU and CPU deploy paths",
+      "JEFF_API_KEYS authentication",
+      "Published latency, cost, and JevBench comparison tables",
+    ],
+    stack: [
+      "Python",
+      "uv",
+      "GLiFormer weights on Hugging Face",
+      "Modal optional",
+      "typesafe-sdk",
+    ],
+    links: {
+      repo: "https://github.com/logan-markewich/jeff",
+      docs: "https://github.com/logan-markewich/jeff#readme",
+    },
+    pricingNote:
+      "MIT open source; you pay Modal or your own GPUs. README documents lower per-request cost than hosted Jev with lower benchmark scores.",
+    firstSeen: "2026-09-28",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "githubnext-localjev",
+      "wfzyx-von",
+      "ollaya-dev-ollaya",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is jeff API-identical to hosted Jev?",
+        answer:
+          "Wire compatible for typesafe-sdk clients, but README documents different sigmoid behavior, noul isolation options, and non-comparable token billing.",
+      },
+      {
+        question: "How do I point the SDK at jeff?",
+        answer:
+          "Set TYPESAFE_BASE_URL to your jeff server and configure JEFF_API_KEYS per README quick start.",
+      },
+      {
+        question: "How does accuracy compare to api.typesafe.ai?",
+        answer:
+          "README and bench/RESULTS.md publish JevBench and task tables where hosted Jev leads; jeff trades accuracy for cost and self-hosting control.",
+      },
+      {
+        question: "How is jeff different from Kev?",
+        answer:
+          "Kev (jaredpalmer-kev) fine-tunes Qwen checkpoints with a training and serve story. jeff serves GLiFormer as a drop-in encoder server with Modal deploy.",
+      },
+    ],
+    metaTitle: "jeff: self-hosted GLiFormer System One server",
+    metaDescription:
+      "logan-markewich/jeff serves POST /v1/systemone with GLiFormer for typesafe-sdk. README cites lower cost than hosted Jev with published JevBench gap.",
+  },
+
 };
