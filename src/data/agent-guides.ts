@@ -32,7 +32,7 @@ export const agentGuidesHub = {
     "Let the chat model write prose. Let Jev decide which shell command, skill, route, or gate fires next.",
   seoTitle: "Jev with AI agents: LangChain, Cline, Copilot, more",
   seoDescription:
-    "Setup guides for pairing Jev (System One decide) with Hermes, OpenClaw, Claude, Codex, Cursor, LangChain, Cline, Roo, GitHub Copilot Agent, Devin Desktop, and browser agents via MCP, langchain-typesafe, and skills.",
+    "Setup guides for Jev with Hermes, OpenClaw, Claude, Codex, Cursor, Copilot, LangChain, Cline, Roo, Devin, and browser agents.",
   intro:
     "Generative agents are brilliant at language and terrible at pretending to be a calibrated classifier. Jev answers fixed-shape questions with probabilities you can threshold in code. These guides map verified integrations from the ecosystem: Python harness middleware, reflex MCP servers, plugins, and agent skills that call POST /v1/systemone (or gateway equivalents) while your main model keeps the microphone.",
   faq: [
@@ -101,9 +101,9 @@ const agentGuidesBatch1: Record<AgentGuideBatch1Slug, AgentGuide> = {
     slug: "hermes",
     title: "Hermes Agent + Jev",
     tagline: "Smart approvals, skill routing, and MCP without asking Hermes to fake a classifier.",
-    seoTitle: "Hermes Agent + Jev: approvals, MCP, routing",
+    seoTitle: "Hermes Jev: Jev with Hermes, setup guide",
     seoDescription:
-      "Install hermes-jev-approvals, typesafe-skill-router, and Jev MCP servers on Hermes Agent. Typed APPROVE/DENY/ESCALATE, parallel nouls, and catalog links with sources.",
+      "Hermes jev, jev hermes, and jev with hermes: smart approvals, skill routing, and Jev MCP on Hermes Agent.",
     whyJev:
       "Hermes smart mode already sends flagged shell commands to an auxiliary reviewer that must answer APPROVE, DENY, or ESCALATE. A chat model burns tokens on reasoning you discard. Jev returns that shape natively, often alongside policy and safety nouls in one parallel call.",
     sections: [
@@ -304,7 +304,7 @@ systemctl --user restart hermes-gateway`,
     tagline: "Plugins, MCP connectors, and TypeSafe skills on Anthropic's agent stack.",
     seoTitle: "Claude Code and Cowork + Jev: MCP and skills",
     seoDescription:
-      "Wire Jev into Claude Code and Cowork using typesafe-ai/skills, jev-judge-mcp, typesafe-mcp evaluate, and jevwire. Env keys, install commands, and Cowork Customize notes.",
+      "Wire Jev into Claude Code and Cowork with typesafe-ai/skills, jev-judge-mcp, typesafe-mcp, and jevwire. Keys, install commands, and Cowork notes.",
     whyJev:
       "Claude products already support MCP connectors and skills. Jev fits where Claude would otherwise guess a label in prose: moderation, routing, verification, and pre-tool gates. TypeSafe publishes an official agent skill; community MCP servers expose evaluate or judge tools.",
     sections: [
@@ -418,7 +418,7 @@ TYPESAFE_API_KEY=your-key evaluate setup mcp`,
     tagline: "jev-judge on the CLI, evaluate setup, and routers that treat Jev as traffic control.",
     seoTitle: "Codex and OpenCode + Jev: judge MCP and routers",
     seoDescription:
-      "Add jev-judge-mcp to Codex and OpenCode, use typesafe-mcp evaluate setup, and explore jev-codex-router. MCP config shapes, skills, and fail-open routing patterns.",
+      "Add jev-judge-mcp to Codex and OpenCode, plus typesafe-mcp evaluate and jev-codex-router. MCP config, skills, and fail-open routing.",
     whyJev:
       "Codex and OpenCode spend quota on big models for small forks in the road. Jev classifies the next step, scores skill relevance, or judges evidence before you pay for another full reasoning pass.",
     sections: [

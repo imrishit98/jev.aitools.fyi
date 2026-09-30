@@ -5,6 +5,8 @@ import type { AgentGuide } from "@/data/agent-guides";
 import { agentGuides, agentGuidePath } from "@/data/agent-guides";
 import { getItemBySlug } from "@/lib/items";
 import { splitIntoParagraphs } from "@/lib/prose";
+import DirectoryLinks from "@/components/directory-links.astro";
+import { linksForAgentGuide } from "@/lib/directory-links";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 interface Props {
@@ -19,6 +21,7 @@ const relatedAgents = (guide.relatedAgentSlugs ?? [])
 const relatedItems = guide.relatedCatalogSlugs
   .map((slug) => getItemBySlug(slug))
   .filter(Boolean);
+const directoryLinks = linksForAgentGuide(guide);
 ---
 
 <article>
@@ -29,6 +32,8 @@ const relatedItems = guide.relatedCatalogSlugs
       {whyParagraphs.map((para) => <p>{para}</p>)}
     </div>
   </aside>
+
+  <DirectoryLinks links={directoryLinks} />
 
   <div class="mt-10 space-y-10">
     {

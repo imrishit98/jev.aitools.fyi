@@ -20,6 +20,7 @@ const vite = await createServer({
 
 const agent = await vite.ssrLoadModule("/src/lib/agent-surface.ts");
 const neg = await vite.ssrLoadModule("/src/lib/markdown-negotiation.ts");
+const guides = await vite.ssrLoadModule("/src/lib/guide-markdown.ts");
 await vite.close();
 
 const home = agent.homeMarkdownBody();
@@ -50,6 +51,28 @@ const nfRes = neg.tryNotFoundMarkdownResponse(
 if (!nfRes || nfRes.status !== 404) throw new Error("tryNotFoundMarkdownResponse failed");
 if (nfRes.headers.get("X-Robots-Tag") !== "noindex, follow") {
   throw new Error("markdown 404 missing X-Robots-Tag");
+}
+
+const hermesMd = guides.agentGuideMarkdown("hermes");
+if (!hermesMd?.includes("Hermes jev, jev hermes, and jev with hermes")) {
+  throw new Error("hermes markdown missing query phrases");
+}
+if (hermesMd.includes("\u2014") || hermesMd.includes("\u2013")) {
+  throw new Error("hermes markdown contains a dash");
+}
+if (!guides.markdownForPath("/guides/jev-with-ai-agents/hermes")) {
+  throw new Error("markdownForPath missed hermes");
+}
+const hermesReq = new Request(
+  "https://jev.aitools.fyi/guides/jev-with-ai-agents/hermes",
+  { headers: { Accept: "text/markdown" } },
+);
+const hermesRes = neg.tryContentMarkdownResponse(hermesReq, new URL(hermesReq.url));
+if (!hermesRes || hermesRes.status !== 200) {
+  throw new Error("tryContentMarkdownResponse failed for hermes");
+}
+if (!hermesRes.headers.get("Content-Type")?.includes("text/markdown")) {
+  throw new Error("hermes negotiated markdown missing content-type");
 }
 
 console.log("verify-markdown-negotiation: ok");

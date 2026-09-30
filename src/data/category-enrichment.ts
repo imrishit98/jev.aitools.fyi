@@ -278,9 +278,9 @@ export const categoryEnrichmentBySlug: Partial<
 
   "browser-computer-use": {
     slug: "browser-computer-use",
-    seoTitle: "Jev browser and computer use: ultrafast agents and desktop loops",
+    seoTitle: "Jev browser and computer use: ultrafast desktop loops",
     seoDescription:
-      "Browser Use ultrafast, extensions, voice control, and desktop automation where Jev chooses the next action from a finite catalog. Compare demos, security notes, and latency.",
+      "Browser Use, extensions, voice control, and desktop automation where Jev picks the next action from a finite catalog. Compare demos, security, and latency.",
     whoItsFor:
       "Builders automating browsers or desktops who want each step to be a Choice over known actions instead of open-ended click coordinates in prose.",
     howToChoose:
@@ -409,7 +409,7 @@ export const categoryEnrichmentBySlug: Partial<
 
   applications: {
     slug: "applications",
-    seoTitle: "Jev applications: moderation, triage, trading, and code search",
+    seoTitle: "Jev applications: moderation, triage, trading, search",
     seoDescription:
       "Shipped products and serious demos running System One in user-visible paths: trust and safety, trading, log triage, RAG verify, and function-level code search.",
     whoItsFor:

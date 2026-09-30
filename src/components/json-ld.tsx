@@ -124,6 +124,9 @@ export function softwareApplicationJsonLd(
       url: siteConfig.url,
     },
     ...(item.repoUrl ? { codeRepository: item.repoUrl } : {}),
+    ...(item.updatedAt && /^\d{4}-\d{2}-\d{2}/.test(item.updatedAt)
+      ? { dateModified: item.updatedAt.slice(0, 10) }
+      : {}),
     author: item.creatorName
       ? { "@type": "Person", name: item.creatorName }
       : undefined,
@@ -151,72 +154,96 @@ export function listingJsonLd(
   return softwareApplicationJsonLd(item, options);
 }
 
-export function learnArticleJsonLd(guide: {
-  title: string;
+function articleJsonLd(options: {
+  headline: string;
   description: string;
-  slug: string;
+  url: string;
+  dateModified?: string;
 }) {
-  const url = absoluteUrl(`/learn/${guide.slug}`);
   return {
     "@context": "https://schema.org",
     "@type": "Article",
+    headline: options.headline,
+    description: options.description,
+    url: options.url,
+    mainEntityOfPage: options.url,
+    ...(options.dateModified ? { dateModified: options.dateModified } : {}),
+    author: {
+      "@type": "Person",
+      name: "Rishit Patel",
+      url: "https://twitter.com/imrishit98",
+    },
+    publisher: publisherOrg,
+    inLanguage: "en-US",
+  };
+}
+
+export function learnArticleJsonLd(
+  guide: {
+    title: string;
+    description: string;
+    slug: string;
+  },
+  dateModified?: string,
+) {
+  return articleJsonLd({
     headline: guide.title,
     description: guide.description,
-    url,
-    mainEntityOfPage: url,
-    author: {
-      "@type": "Person",
-      name: "Rishit Patel",
-      url: "https://twitter.com/imrishit98",
-    },
-    publisher: publisherOrg,
-    inLanguage: "en-US",
-  };
+    url: absoluteUrl(`/learn/${guide.slug}`),
+    dateModified,
+  });
 }
 
-export function agentGuideArticleJsonLd(guide: {
-  title: string;
-  tagline: string;
-  slug: string;
-}) {
-  const url = absoluteUrl(`/guides/jev-with-ai-agents/${guide.slug}`);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
+export function agentGuideArticleJsonLd(
+  guide: {
+    title: string;
+    tagline: string;
+    slug: string;
+  },
+  dateModified?: string,
+) {
+  return articleJsonLd({
     headline: guide.title,
     description: guide.tagline,
-    url,
-    mainEntityOfPage: url,
-    author: {
-      "@type": "Person",
-      name: "Rishit Patel",
-      url: "https://twitter.com/imrishit98",
-    },
-    publisher: publisherOrg,
-    inLanguage: "en-US",
-  };
+    url: absoluteUrl(`/guides/jev-with-ai-agents/${guide.slug}`),
+    dateModified,
+  });
 }
 
-export function layaVsJevArticleJsonLd(guide: {
-  title: string;
-  tagline: string;
-  slug: string;
-}) {
-  const url = absoluteUrl(`/learn/laya-vs-jev/${guide.slug}`);
-  return {
-    "@context": "https://schema.org",
-    "@type": "Article",
+export function layaVsJevArticleJsonLd(
+  guide: {
+    title: string;
+    tagline: string;
+    slug: string;
+  },
+  dateModified?: string,
+) {
+  return articleJsonLd({
     headline: guide.title,
     description: guide.tagline,
+    url: absoluteUrl(`/learn/laya-vs-jev/${guide.slug}`),
+    dateModified,
+  });
+}
+
+export function articleListJsonLd(options: {
+  name: string;
+  path: string;
+  items: { name: string; path: string }[];
+}) {
+  const url = absoluteUrl(options.path);
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    name: options.name,
     url,
-    mainEntityOfPage: url,
-    author: {
-      "@type": "Person",
-      name: "Rishit Patel",
-      url: "https://twitter.com/imrishit98",
-    },
-    publisher: publisherOrg,
-    inLanguage: "en-US",
+    numberOfItems: options.items.length,
+    itemListElement: options.items.map((item, index) => ({
+      "@type": "ListItem",
+      position: index + 1,
+      name: item.name,
+      url: absoluteUrl(item.path),
+    })),
   };
 }
 

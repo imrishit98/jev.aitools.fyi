@@ -25,6 +25,8 @@ export interface Props {
   includeCanonical?: boolean;
   /** Featured sponsor block at top of main. Default true; off on home, 404, privacy. */
   showSponsors?: boolean;
+  /** Markdown alternate for the same document. Path only, no trailing slash. */
+  markdownAlternate?: string;
 }
 
 const {
@@ -39,6 +41,7 @@ const {
   robots = "index, follow",
   includeCanonical = true,
   showSponsors = true,
+  markdownAlternate,
 } = Astro.props;
 const canonical = absoluteUrl(canonicalPath ?? path);
 const ogImage = absoluteUrl(ogImagePath);
@@ -73,6 +76,15 @@ const cloudflareWebAnalyticsToken =
     <title>{fullTitle}</title>
     <meta name="description" content={description} />
     {includeCanonical && <link rel="canonical" href={canonical} />}
+    {
+      markdownAlternate && (
+        <link
+          rel="alternate"
+          type="text/markdown"
+          href={absoluteUrl(markdownAlternate)}
+        />
+      )
+    }
     <meta name="robots" content={robots} />
     <meta name="author" content="Rishit Patel" />
     <meta property="og:type" content={type} />

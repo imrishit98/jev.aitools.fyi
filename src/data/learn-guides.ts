@@ -28,7 +28,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "What Jev is, how System One fits your stack, and where this directory ends and TypeSafe docs begin.",
     seoTitle: "What is TypeSafe Jev? System One primer for builders",
     seoDescription:
-      "Learn what Jev is, how System One returns typed probabilities, and where official TypeSafe docs beat this directory. A short primer before you browse SDKs and tools.",
+      "Learn what Jev is, how System One returns typed probabilities, and where TypeSafe docs beat this directory. A primer before you browse SDKs and tools.",
     definition:
       "Jev is TypeSafe's System One decision model for software: structured state in, typed parallel questions, probability-backed answers out.",
     exploreHref: "/explore?category=official",
@@ -66,7 +66,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "The model family behind Jev: parallel typed questions, one forward pass, probabilities you can threshold.",
     seoTitle: "System One model: parallel typed Jev questions explained",
     seoDescription:
-      "Understand System One: batch typed questions in one forward pass, threshold calibrated probabilities, and patterns like routing and composite scoring. Not a chat LLM.",
+      "System One batches typed questions in one forward pass, with probabilities you can threshold. Routing and composite scoring. Not a chat LLM.",
     definition:
       "System One is TypeSafe's model family for parallel typed evaluation: many questions, one forward pass, calibrated probabilities.",
     exploreHref: "/learn/jev-typesafe",
@@ -104,7 +104,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "When to gate with System One probabilities instead of asking a chat model to label things.",
     seoTitle: "Jev vs LLM classification: when to gate with probabilities",
     seoDescription:
-      "Compare Jev and chat classifiers for moderation, fraud, and routing. See when fixed option sets and thresholdable scores beat parsing YES/NO from generated text.",
+      "Compare Jev and chat classifiers for moderation, fraud, and routing. Fixed options and scores you can threshold beat parsing YES/NO from chat text.",
     definition:
       "Use Jev when you need thresholdable probabilities over a fixed option set; use LLMs when you need open-ended language generation.",
     exploreHref: "/explore?q=moderation",
@@ -142,7 +142,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "Try typesafe-ai/jev through Vercel's gateway and the AI SDK evaluate path.",
     seoTitle: "Vercel AI Gateway Jev: AI SDK evaluate path setup",
     seoDescription:
-      "Run typesafe-ai/jev through Vercel AI Gateway and eve's experimental evaluate APIs. Learn model ids, secrets hygiene, and when to move to direct TypeSafe credentials.",
+      "Run typesafe-ai/jev through Vercel AI Gateway and eve's evaluate APIs. Model ids, secrets hygiene, and when to use direct TypeSafe credentials.",
     definition:
       "Vercel AI Gateway exposes typesafe-ai/jev so AI SDK apps can run System One evaluate paths without wiring a separate TypeSafe stack first.",
     exploreHref: "/explore?category=integrations",
@@ -180,7 +180,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "Compare official TypeSafe, Vercel AI Gateway, OpenRouter, Cloudflare Workers AI, and classifier.dev with a fact table.",
     seoTitle: "Where to run Jev: gateways, APIs, and classifier.dev",
     seoDescription:
-      "Fact table of Jev inference surfaces: TypeSafe POST /v1/systemone, typesafe-ai/jev on Vercel AI Gateway, OpenRouter Decisions, Cloudflare Workers AI, and classifier.dev HTTP classification.",
+      "Where Jev runs: TypeSafe POST /v1/systemone, Vercel AI Gateway, OpenRouter Decisions, Cloudflare Workers AI, and classifier.dev HTTP.",
     definition:
       "The same Jev model shows up on multiple gateways and APIs. Pick the surface that matches your auth, billing, and question shape.",
     exploreHref: "/explore?category=integrations",
@@ -218,7 +218,7 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       "The patterns builders actually search for: moderation, routing, triage, RAG verify, and agent gates.",
     seoTitle: "Jev use cases: moderation, routing, triage, and agent gates",
     seoDescription:
-      "Explore real Jev patterns: trust and safety gates, model routers, support triage, RAG verify, compaction, and browser automation. Jump to matching directory listings next.",
+      "Real Jev patterns: safety gates, model routers, support triage, RAG checks, compaction, and browser automation. Then jump to matching listings.",
     definition:
       "Common Jev use cases include moderation gates, model routing, support triage, RAG verify, and agent tool approval.",
     exploreHref: "/explore?category=applications",

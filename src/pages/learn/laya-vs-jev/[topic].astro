@@ -11,6 +11,7 @@ import {
   layaVsJevHub,
   getLayaVsJevGuide,
 } from "@/data/laya-vs-jev-guides";
+import { layaGuideDate } from "@/lib/content-dates";
 import { layaVsJevGuidePageSeo } from "@/lib/seo";
 
 export function getStaticPaths() {
@@ -31,6 +32,7 @@ const path = `/learn/laya-vs-jev/${topic}`;
   path={path}
   type="article"
   ogImagePath={seo.imagePath}
+  markdownAlternate={`${path}.md`}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -38,7 +40,7 @@ const path = `/learn/laya-vs-jev/${topic}`;
       { name: layaVsJevHub.title, path: "/learn/laya-vs-jev" },
       { name: guide.title, path },
     ]),
-    layaVsJevArticleJsonLd(guide),
+    layaVsJevArticleJsonLd(guide, layaGuideDate(guide.slug)),
     faqPageJsonLd(guide.faq),
   ]}
 >

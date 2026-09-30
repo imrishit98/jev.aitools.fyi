@@ -182,7 +182,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "classifier.dev: Jev fast tier and smart escalation API",
     metaDescription:
-      "Hosted zero-shot labels with Jev on the fast tier, 0.7 confidence escalation, and HTTP plus CLI surfaces. Sourced from the open classifier.dev Worker repository.",
+      "Hosted zero-shot labels with Jev on the fast tier, 0.7 confidence escalation, and HTTP plus CLI. Sourced from the classifier.dev Worker repo.",
   },
 
   "classifier-dev-mcp": {
@@ -2175,7 +2175,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Virlo: Jev Clearance for TikTok and Reels research",
     metaDescription:
-      "Virlo content research SaaS uses TypeSafe Jev Clearance before eighty-signal tagging. Noul niche gates, Calibration A/B, MCP on dev.virlo.ai. Sourced from jaffa launch clip.",
+      "Virlo content research uses TypeSafe Jev Clearance before eighty-signal tagging. Noul niche gates, Calibration A/B, and MCP on dev.virlo.ai.",
   },
 
   "stealads-ai": {
@@ -2252,7 +2252,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "StealAds: Jev labels for competitor ad libraries",
     metaDescription:
-      "StealAds uses Jev to label hooks, offers, CTAs, and landing mismatches across hundreds of live competitor ads. Demo clip and app.stealads.ai/demo on Jev Directory.",
+      "StealAds uses Jev to label hooks, offers, CTAs, and mismatches across hundreds of competitor ads. Demo at app.stealads.ai/demo.",
   },
 
   "marcelpociot-wordshift": {
@@ -2554,7 +2554,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Start with /jev routing shadow on Hermes. It logs Jev decisions without switching models until you trust the pools.",
       },
     ],
-    metaTitle: "Hermes Jev Skills: routing, memory, compaction, and GUI Choice",
+    metaTitle: "Hermes Jev Skills: routing, memory, and GUI Choice",
     metaDescription:
       "kerpopule/hermes-jev-skills wires Jev into Hermes, Claude Code, and Codex. Not fast-jev-compaction or hermes-jev-approvals. Aayan top-ten listing.",
   },
@@ -3445,7 +3445,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "foreman: Jev supervisor for Codex and OpenCode factories",
     metaDescription:
-      "thruwire foreman watches software factory evidence with TypeSafe Jev responsibilities, then continue, steer, verify, or escalate. Repo, thruwire.ai, and launch post.",
+      "thruwire foreman watches factory evidence with TypeSafe Jev, then continue, steer, verify, or escalate. Repo, thruwire.ai, and launch post.",
   },
 
   "dicklesworthstone-skillranker": {
@@ -4069,7 +4069,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "They come from Aaron's README comparison table on the same goal and screenshot. Reproduce with the documented harness before quoting in prod decks.",
       },
     ],
-    metaTitle: "typesafe-computer-use: macOS Jev clicker without screenshot tax",
+    metaTitle: "typesafe-computer-use: macOS Jev clicker, no screenshot tax",
     metaDescription:
       "awlevin typesafe-computer-use uses TypeSafe Jev Choices on OCR action lists, dry-run clicker, author cost tables, and X demo clip.",
   },
@@ -5196,7 +5196,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Jev WebMCP extension: typed tool picks in Chrome",
     metaDescription:
-      "sdras jev-webmcp-extension maps WebMCP schemas to Jev Choice and Noul batches, screens manifests, and executes with confirmation policy. GitHub plus Chrome Web Store.",
+      "sdras jev-webmcp-extension maps WebMCP schemas to Jev Choice and Noul batches, screens manifests, then confirms before it runs. GitHub and Chrome Web Store.",
   },
 
   "jev-chat-jev-chat-jarvis": {
@@ -5296,7 +5296,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Jev Chat Jarvis: judge-first Android chat co-pilot",
     metaDescription:
-      "jev-chat/jev-chat-jarvis overlay reads on-screen QQ, X, and Lark threads, runs intent and danger judgments, ranks three replies, fill-only never auto-send. chatjevs.com.",
+      "jev-chat-jarvis reads on-screen QQ, X, and Lark threads, judges intent and danger, ranks 3 replies, and fills text without auto-send. chatjevs.com.",
   },
 
   "sac-y-jev-cu": {
@@ -5393,7 +5393,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Jev-cu: text-only Jev steps for Codex Computer Use",
     metaDescription:
-      "Sac-Y/Jev-cu Codex skill routes AX text candidates through Jev Choice with dry-run defaults and confirm gates. Distinct from awlevin and lahfir desktop listings.",
+      "Sac-Y/Jev-cu routes AX text through Jev Choice with dry-run defaults and confirm gates. Distinct from awlevin and lahfir desktop listings.",
   },
 
   "jkudish-jev-mcp": {
@@ -5583,7 +5583,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Install the jev@building-with-jev plugin or copy skills/jev manually, then use /jev or let Claude auto-load on Jev tasks per README.",
       },
     ],
-    metaTitle: "building-with-jev-skill: Drew Breunig Jev question design skill",
+    metaTitle: "building-with-jev-skill: Drew Breunig question design",
     metaDescription:
       "dbreunig/building-with-jev-skill SKILL.md teaches Choice, Score, Noul, state, and thresholds for jev-1.13. Claude plugin and skills CLI install.",
   },

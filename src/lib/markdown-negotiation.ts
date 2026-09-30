@@ -4,6 +4,7 @@ import {
   notFoundMarkdownBody,
   prefersMarkdownAccept,
 } from "@/lib/agent-surface";
+import { isMarkdownNegotiatedPath, markdownForPath } from "@/lib/guide-markdown";
 import { NOINDEX_FOLLOW_ROBOTS } from "@/lib/not-found-seo";
 
 export function isHomePath(pathname: string): boolean {
@@ -54,6 +55,24 @@ function homeMarkdownBodyForUrl(url: URL): string {
   return view === "agent" || view === "agents"
     ? forAgentsMarkdownBody()
     : homeMarkdownBody();
+}
+
+export { isMarkdownNegotiatedPath };
+
+/** GET/HEAD on a guide or learn URL when Accept prefers Markdown. */
+export function tryContentMarkdownResponse(request: Request, url: URL): Response | null {
+  if (request.method !== "GET" && request.method !== "HEAD") return null;
+  if (!prefersMarkdownAccept(request.headers.get("Accept"))) return null;
+  const body = markdownForPath(url.pathname);
+  if (!body) return null;
+
+  if (request.method === "HEAD") {
+    return new Response(null, {
+      status: 200,
+      headers: markdownResponseHeaders(200),
+    });
+  }
+  return markdownResponse(body);
 }
 
 /** Handle GET/HEAD `/` when Accept prefers Markdown. Returns null to fall through. */

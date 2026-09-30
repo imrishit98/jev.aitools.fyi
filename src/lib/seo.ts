@@ -22,6 +22,7 @@ import {
   productProfileSeoTitle,
 } from "@/lib/product-profiles";
 import { getListingEnrichment } from "@/lib/listing-enrichment";
+import { LISTING_LASTMOD_FALLBACK, parseIsoDay } from "@/lib/content-dates";
 import { siteConfig } from "@/lib/site";
 
 export type PageSeo = {
@@ -343,7 +344,7 @@ export function showcasePageSeo() {
   return pageSeo({
     title: "Jev demo showcase: seven real builder clips",
     description:
-      "Watch curated X demos of Jev in the wild: generative UI, Zillow search, design experiments, geo maps, lurk.so, and SEO workflows. Clips hosted for fast playback.",
+      "Watch curated X demos of Jev in the wild: generative UI, Zillow search, design experiments, geo maps, lurk.so, and SEO workflows. Hosted for fast playback.",
     path: "/showcase",
     imagePath: ogImagePaths.showcase,
   });
@@ -432,7 +433,7 @@ export function guidesIndexPageSeo() {
   return pageSeo({
     title: "Guides: Jev with AI agents (LangChain, Cursor, Copilot)",
     description:
-      "How-to guides for wiring TypeSafe Jev into coding agents and frameworks. Hermes, LangChain, Cline, Copilot, Cursor, and more. System One primers live on /learn; catalog articles live under /categories/guides.",
+      "Guides for wiring Jev into coding agents: Hermes, Copilot, Cursor, LangChain, and more. Primers are on /learn. Catalog articles are on /categories/guides.",
     path: "/guides",
     imagePath: ogImagePaths.learnHub,
   });
@@ -442,7 +443,7 @@ export function learnIndexPageSeo() {
   return pageSeo({
     title: "Learn TypeSafe Jev: System One primers and comparisons",
     description:
-      "Educational hubs on Choice, Score, and Noul, System One architecture, Jev vs chat labels, Laya vs Jev, and gateway wiring. Agent tool setup guides are on /guides.",
+      "Hubs on Choice, Score, and Noul, System One, Jev vs chat labels, Laya vs Jev, and gateway wiring. Agent setup guides are on /guides.",
     path: "/learn",
     imagePath: ogImagePaths.learnHub,
   });
@@ -503,11 +504,12 @@ export function layaVsJevGuidePageSeo(guide: LayaVsJevGuide) {
 }
 
 export function parseItemLastModified(updatedAt?: string): Date {
-  if (updatedAt) {
-    const parsed = new Date(updatedAt);
+  const day = updatedAt?.slice(0, 10) ?? "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+    const parsed = parseIsoDay(day);
     if (!Number.isNaN(parsed.getTime())) return parsed;
   }
-  return new Date();
+  return parseIsoDay(LISTING_LASTMOD_FALLBACK);
 }
 
 /** All indexable routes for uniqueness checks (build script). */

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
-import { breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
+import { articleListJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
 import {
   layaVsJevGuideSlugs,
   layaVsJevGuides,
@@ -22,6 +22,7 @@ const cards = layaVsJevGuideSlugs.map((slug) => layaVsJevGuides[slug]);
   path="/learn/laya-vs-jev"
   type="article"
   ogImagePath={seo.imagePath}
+  markdownAlternate="/learn/laya-vs-jev.md"
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -29,6 +30,14 @@ const cards = layaVsJevGuideSlugs.map((slug) => layaVsJevGuides[slug]);
       { name: layaVsJevHub.title, path: "/learn/laya-vs-jev" },
     ]),
     faqPageJsonLd(layaVsJevHub.faq),
+    articleListJsonLd({
+      name: layaVsJevHub.title,
+      path: "/learn/laya-vs-jev",
+      items: layaVsJevGuideSlugs.map((slug) => ({
+        name: layaVsJevGuides[slug].title,
+        path: `/learn/laya-vs-jev/${slug}`,
+      })),
+    }),
   ]}
 >
   <div class="max-w-6xl page-shell-breadcrumb">

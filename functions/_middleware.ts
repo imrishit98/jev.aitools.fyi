@@ -1,6 +1,8 @@
 import { tryExploreSeoResponse } from "../src/lib/explore-seo";
 import {
   isHomePath,
+  isMarkdownNegotiatedPath,
+  tryContentMarkdownResponse,
   tryHomeMarkdownResponse,
   tryNotFoundMarkdownResponse,
   withVaryAccept,
@@ -13,6 +15,9 @@ export const onRequest: PagesFunction = async (context) => {
 
   const markdownHome = tryHomeMarkdownResponse(request, url);
   if (markdownHome) return markdownHome;
+
+  const markdownContent = tryContentMarkdownResponse(request, url);
+  if (markdownContent) return markdownContent;
 
   const exploreResponse = await tryExploreSeoResponse(request, url, () =>
     next(
@@ -33,7 +38,7 @@ export const onRequest: PagesFunction = async (context) => {
   if (html404) return html404;
 
   if (
-    isHomePath(url.pathname) &&
+    (isHomePath(url.pathname) || isMarkdownNegotiatedPath(url.pathname)) &&
     (request.method === "GET" || request.method === "HEAD")
   ) {
     return withVaryAccept(response);

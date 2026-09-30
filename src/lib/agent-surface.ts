@@ -190,6 +190,20 @@ export function buildOpenApiSpec() {
           },
         },
       },
+      "/llms-full.txt": {
+        get: {
+          operationId: "getLlmsFullTxt",
+          summary: "Longer LLM citation file with dated facts and guide text",
+          responses: {
+            "200": {
+              description: "Plain-text llms-full.txt",
+              content: {
+                "text/plain": { schema: { type: "string" } },
+              },
+            },
+          },
+        },
+      },
       "/sitemap.xml": {
         get: {
           operationId: "getSitemap",
