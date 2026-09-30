@@ -9115,14 +9115,14 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         "Per-turn decide and save, per-prompt recall, foreign-line poisoning check, and optional PreToolUse guard on tool calls",
       primitives: ["Choice", "Score", "Noul"],
       stateIn:
-        "Scrubbed user and assistant turns, prior two turns, live JEVMEM.md lines, and for guard checks the tool name plus scrubbed command or edit snippet when it overlaps a saved rule.",
+        "Scrubbed user and assistant turns, prior 2 turns, live JEVMEM.md lines, and for guard checks the tool name plus scrubbed command or edit snippet when it overlaps a saved rule.",
       decisionOut:
         "Save or skip with line kind; supersede targets by id; recall injects wanted lines; guard maps risk to ask, block, or allow; poisoning gate withholds foreign instruction lines.",
       flowSteps: [
         "Stop hook or MCP add_memory scrubs secrets and emails, then asks Jev typed questions per docs/how-it-works.md",
         "Thresholds in jevmem.config.json decide save, kind, and contradiction handling in code",
-        "Writer off: up to two sentences from Jev-picked lines; writer on: optional small LLM condenses the turn",
-        "UserPromptSubmit recalls by asking each live line (word overlap fallback after one second)",
+        "Writer off: up to 2 sentences from Jev-picked lines; writer on: optional small LLM condenses the turn",
+        "UserPromptSubmit recalls by asking each live line (word overlap fallback after 1 second)",
         "PreToolUse guard batches risk questions on Bash, Edit, and Write; audit --security --ci replays poisoning checks",
       ],
       sourcedMetrics: [
@@ -9214,7 +9214,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Home Assistant 2026.9+ operators who want TypeSafe Jev questions as sensors, service actions, AI Task fields, Assist conversation, and blueprint-ready automations with daily cost visibility.",
     overview:
-      "HA-Jev (github.com/AboveColin/HA-Jev, HACS custom integration, hassfest and HACS CI) brings TypeSafe Jev into Home Assistant as AboveColin's Jev (TypeSafe) integration. Each configured question becomes a sensor exposing noul probability, choice distribution, or score value. Services jev.noul, jev.choice, jev.score, and jev.ask return response variables inside automations. An AI Task entity answers ai_task.generate_data when called. A conversation agent routes Assist through the same model. House check opens Repairs for week-long unavailable entities, low batteries, and suspicious states with one-click fixes. Daily token spend and budget sensors sit beside entities. Twenty five blueprints and fifteen examples ship in repo; full docs live at jev.cdevries.dev. API client is github.com/AboveColin/jevclient. README states not affiliated with TypeSafe. Public GitHub counts were 68 stars when this listing was drafted.",
+      "HA-Jev (github.com/AboveColin/HA-Jev, HACS custom integration, hassfest and HACS CI) brings TypeSafe Jev into Home Assistant as AboveColin's Jev (TypeSafe) integration. Each configured question becomes a sensor exposing noul probability, choice distribution, or score value. Services jev.noul, jev.choice, jev.score, and jev.ask return response variables inside automations. An AI Task entity answers ai_task.generate_data when called. A conversation agent routes Assist through the same model. House check opens Repairs for week-long unavailable entities, low batteries, and suspicious states with one-click fixes. Daily token spend and budget sensors sit beside entities. 25 blueprints and 15 examples ship in repo; full docs live at jev.cdevries.dev. API client is github.com/AboveColin/jevclient. README states not affiliated with TypeSafe. Public GitHub counts were 68 stars when this listing was drafted.",
     creator: {
       name: "Colin",
       handle: "AboveColin",
@@ -9238,7 +9238,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       sourcedMetrics: [
         {
           claim:
-            "jev.cdevries.dev documents 25 importable blueprints (7 question-driven, 18 situational) and 15 worked examples, four pairing Jev with an LLM.",
+            "jev.cdevries.dev documents 25 importable blueprints (7 question-driven, 18 situational) and 15 worked examples, 4 pairing Jev with an LLM.",
           source: "jev.cdevries.dev blueprints and examples index",
         },
         {
@@ -9306,9 +9306,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "README points to github.com/AboveColin/jevclient as the API client used by the integration.",
       },
     ],
-    metaTitle: "HA-Jev: TypeSafe Jev sensors and automations in Home Assistant",
+    metaTitle: "HA-Jev: TypeSafe Jev sensors for Home Assistant",
     metaDescription:
-      "AboveColin/HA-Jev HACS integration turns Jev questions into Home Assistant entities, actions, AI Task, Assist, house check, and blueprints. Docs at jev.cdevries.dev.",
+      "AboveColin/HA-Jev HACS turns Jev questions into HA entities, jev.* actions, AI Task, Assist, house check, and blueprints. Docs at jev.cdevries.dev.",
   },
 
   "hitsz-tmg-jevembed": {
@@ -9348,7 +9348,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Fine-tuning recipe: one epoch on 1,601,157 training questions, BF16, effective batch 512, LoRA rank 64, learning rate 2e-4, 1024 token truncation.",
+            "Fine-tuning recipe: 1 epoch on 1,601,157 training questions, BF16, effective batch 512, LoRA rank 64, learning rate 2e-4, 1024 token truncation.",
           source: "github.com/HITsz-TMG/JevEmbed README LoRA fine-tuning",
         },
         {
