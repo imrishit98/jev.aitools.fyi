@@ -217,6 +217,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "An alloy spine that leaves the session with your host agent. JevSift cuts weak plans, JevLoop refuses done without replayable evidence, and JevLong watches stalls from the side. The JSONL case is the receipt: regex looked equally fast and failed the malformed-line contract.",
   "agricidaniel-jev-seo":
     "One homepage URL, a real crawl, 52 Search Central rules, and Jev judgments with the probabilities still attached. PDF for the client, XLSX for the tracker, Markdown for the repo. Scores rank the work. The README is clear they do not predict your rankings.",
+  "avinash-jetwani-jevmem":
+    "Stop hook decides, UserPromptSubmit recalls, and JEVMEM.md keeps the receipts with supersede chains and dead ends that actually show up again. Guard on Bash and edits, poisoning check on lines you did not write, and README eval tables that admit what is still author-held-out.",
+  "abovecolin-ha-jev":
+    "Finally a smart-home row that is not a chat wrapper: questions become entities, automations get jev.choice variables, and house check opens Repairs when the house looks wrong. HACS, hassfest, and docs thick enough to wire laundry guilt without inventing template soup.",
+  "hitsz-tmg-jevembed":
+    "Embeddings in, calibrated Choice and Noul out, with a million-label dataset and HF releases that move test accuracy by tens of points. Playground, /v1/systemone, and benchmark JSON you can rerun without pretending logits came from a chat completion.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

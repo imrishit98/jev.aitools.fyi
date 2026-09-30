@@ -9096,4 +9096,329 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "AgriciDaniel/jev-seo crawls one homepage URL, asks Jev typed SEO questions, and renders PDF, XLSX, and Markdown. README v0.1.1, about a cent in Jev.",
   },
 
+  "avinash-jetwani-jevmem": {
+    slug: "avinash-jetwani-jevmem",
+    status: "published",
+    problem:
+      "Coding agents forget project decisions between sessions, and local memory tools that only embed and rerank still miss the line you actually needed.",
+    targetUser:
+      "Claude Code, Cursor, and Codex users who want automatic JEVMEM.md project memory with typed decide, recall, and optional PreToolUse guardrails without hand-maintaining CLAUDE.md walls.",
+    overview:
+      "jevmem (github.com/Avinash-jetwani/jevmem, npm jevmem, MIT, 0.6.1 on 2026-09-30, GitHub Actions CI) is Avinash Jetwani's automatic project memory for Claude Code, with Cursor and Codex paths via init and MCP. Stop hooks run async decide on each turn; UserPromptSubmit injects recalled lines. JEVMEM.md stores decision, constraint, bug, todo, dead end, and superseded kinds with stable ids. Code applies thresholds from jevmem.config.json over Jev probabilities, not prompt prose. Optional writer condenses a turn with OpenAI or Anthropic. PreToolUse guard scores Bash, Edit, and Write against saved rules. Foreign lines from git pulls pass a memory-poisoning noul gate before recall. Listed in Anthropic's Claude plugin directory; marketplace and npm init cover Cursor and Codex. Public GitHub counts were 100 stars when this listing was drafted.",
+    creator: {
+      name: "Avinash Jetwani",
+      handle: "Avinash-jetwani",
+      githubUrl: "https://github.com/Avinash-jetwani",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-turn decide and save, per-prompt recall, foreign-line poisoning check, and optional PreToolUse guard on tool calls",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Scrubbed user and assistant turns, prior two turns, live JEVMEM.md lines, and for guard checks the tool name plus scrubbed command or edit snippet when it overlaps a saved rule.",
+      decisionOut:
+        "Save or skip with line kind; supersede targets by id; recall injects wanted lines; guard maps risk to ask, block, or allow; poisoning gate withholds foreign instruction lines.",
+      flowSteps: [
+        "Stop hook or MCP add_memory scrubs secrets and emails, then asks Jev typed questions per docs/how-it-works.md",
+        "Thresholds in jevmem.config.json decide save, kind, and contradiction handling in code",
+        "Writer off: up to two sentences from Jev-picked lines; writer on: optional small LLM condenses the turn",
+        "UserPromptSubmit recalls by asking each live line (word overlap fallback after one second)",
+        "PreToolUse guard batches risk questions on Bash, Edit, and Write; audit --security --ci replays poisoning checks",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README benchmark table on 66 held-out turns (2026-09-30, jevmem 0.6.0 auto): 98.5% save/skip, 95.5% save+kind, 5/5 contradictions, p50 276 ms, about $0.000157 per decision.",
+          source: "github.com/Avinash-jetwani/jevmem README and results/eval-heldout-2026-09-30-v060.json",
+        },
+        {
+          claim:
+            "Recall held-out v2 (README 0.6 section): 75/78 wanted lines versus 0.5.9 at 55/78; unrelated prompts that got a line 1/18 versus 5/18; superseded lines injected 0/90 in both builds.",
+          source: "github.com/Avinash-jetwani/jevmem README What's new in 0.6",
+        },
+        {
+          claim:
+            "Security eval (README Privacy): planted instruction lines blocked 20/22 with 0 false blocks on 22 legitimate rules (2026-09-25 test set).",
+          source: "github.com/Avinash-jetwani/jevmem README Privacy and SECURITY.md",
+        },
+        {
+          claim:
+            "Public GitHub repo Avinash-jetwani/jevmem had 100 stars when this listing was drafted. npm jevmem 0.6.1 released 2026-09-30 per CHANGELOG.",
+          source: "GitHub API and CHANGELOG 2026-09-30",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevmem is end-to-end project memory, not a reranker on an existing store. kitfunso-hippo-memory retrieves local rows and optionally reranks candidates with Jev. leepokai-jev-guard risk-scores every tool call and scans untrusted results for injection. tamaratran-jev-pruner compacts Bash stdout in hooks. jevmem owns decide on Stop, recall on UserPromptSubmit, dead ends that surface as Already tried, supersede instead of delete, and a guard backstop on edits and shell. Cite Avinash-jetwani/jevmem README, docs/how-it-works.md, docs/guardrails.md, docs/dead-ends.md, docs/benchmark.md, CHANGELOG, PRIVACY.md, and SECURITY.md only.",
+    keyFeatures: [
+      "Claude Code plugin directory listing plus npm global CLI",
+      "JEVMEM.md line kinds with supersede chains and dead end recall",
+      "Configurable Jev thresholds and optional OpenAI or Anthropic writer",
+      "PreToolUse guard on Bash, Edit, and Write with session policy",
+      "Memory-poisoning check on foreign lines before context injection",
+      "Cursor, Codex, and Claude Desktop MCP paths documented in docs/mcp.md",
+    ],
+    stack: [
+      "TypeScript",
+      "npm jevmem",
+      "TypeSafe Jev",
+      "Claude Code Stop and UserPromptSubmit hooks",
+      "MCP server for Cursor and Codex",
+    ],
+    links: {
+      repo: "https://github.com/Avinash-jetwani/jevmem",
+      docs: "https://github.com/Avinash-jetwani/jevmem/blob/main/docs/how-it-works.md",
+      website: "https://www.npmjs.com/package/jevmem",
+    },
+    pricingNote:
+      "MIT CLI. Jev calls bill per TypeSafe or gateway pricing documented in docs/cost.md; optional writer adds OpenAI or Anthropic usage.",
+    firstSeen: "2026-09-30",
+    relatedSlugs: [
+      "kitfunso-hippo-memory",
+      "leepokai-jev-guard",
+      "tamaratran-jev-pruner",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "How is jevmem different from Hippo Memory?",
+        answer:
+          "Hippo is a local recall index with optional Jev reranking on candidates. jevmem captures turns into JEVMEM.md, recalls with per-line Jev questions, and ships guard and poisoning gates on the memory file itself.",
+      },
+      {
+        question: "Does recall run on every prompt in Claude Code?",
+        answer:
+          "README: UserPromptSubmit injects relevant live lines automatically when hooks are enabled via the plugin or jevmem init --tool claude.",
+      },
+      {
+        question: "What does the guard check?",
+        answer:
+          "docs/guardrails.md: PreToolUse on Bash, Edit, and Write compares the call against saved constraint lines with Jev risk scoring and can ask or block per policy.",
+      },
+      {
+        question: "Is capture automatic in Cursor?",
+        answer:
+          "README Works with table: Cursor relies on agent-initiated MCP add_memory and search_memory prompted by .cursor/rules/jevmem.mdc, not Stop hooks.",
+      },
+    ],
+    metaTitle: "jevmem: automatic Claude Code project memory with Jev",
+    metaDescription:
+      "Avinash-jetwani/jevmem npm hooks decide, recall, guard, and poisoning checks on JEVMEM.md with TypeSafe Jev. Plugin directory, 0.6.1, published evals in README.",
+  },
+
+  "abovecolin-ha-jev": {
+    slug: "abovecolin-ha-jev",
+    status: "published",
+    problem:
+      "Home Assistant automations excel at sensors and scripts, but house-level judgments still get wedged into brittle template logic or a chat model with no calibrated entity to automate on.",
+    targetUser:
+      "Home Assistant 2026.9+ operators who want TypeSafe Jev questions as sensors, service actions, AI Task fields, Assist conversation, and blueprint-ready automations with daily cost visibility.",
+    overview:
+      "HA-Jev (github.com/AboveColin/HA-Jev, HACS custom integration, hassfest and HACS CI) brings TypeSafe Jev into Home Assistant as AboveColin's Jev (TypeSafe) integration. Each configured question becomes a sensor exposing noul probability, choice distribution, or score value. Services jev.noul, jev.choice, jev.score, and jev.ask return response variables inside automations. An AI Task entity answers ai_task.generate_data when called. A conversation agent routes Assist through the same model. House check opens Repairs for week-long unavailable entities, low batteries, and suspicious states with one-click fixes. Daily token spend and budget sensors sit beside entities. Twenty five blueprints and fifteen examples ship in repo; full docs live at jev.cdevries.dev. API client is github.com/AboveColin/jevclient. README states not affiliated with TypeSafe. Public GitHub counts were 68 stars when this listing was drafted.",
+    creator: {
+      name: "Colin",
+      handle: "AboveColin",
+      githubUrl: "https://github.com/AboveColin",
+    },
+    jevUsage: {
+      flowRole:
+        "Home entity sensors from standing questions, on-demand actions, AI Task and Assist conversation paths, and house-check repair prompts",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Question text plus Home Assistant state context documented at jev.cdevries.dev/writing-questions/, including entity attributes the integration attaches per question type.",
+      decisionOut:
+        "Sensor state as probability, labeled choice with distribution, or numeric score; automation response variables from jev.* actions; AI Task typed fields; conversation agent replies.",
+      flowSteps: [
+        "Install via HACS custom repository or copy custom_components/jev from latest release",
+        "Config flow with TypeSafe API key; optional OpenRouter address and ~typesafe/jev-latest model per install docs",
+        "Define questions in UI or YAML; integration polls or triggers updates per question config",
+        "Automations call jev.noul, jev.choice, jev.score, or jev.ask, or trigger on binary_sensor.jev_* entities",
+        "House check batches repair candidates; cost sensors aggregate calls and tokens against daily budget",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "jev.cdevries.dev documents 25 importable blueprints (7 question-driven, 18 situational) and 15 worked examples, four pairing Jev with an LLM.",
+          source: "jev.cdevries.dev blueprints and examples index",
+        },
+        {
+          claim:
+            "README requires Home Assistant 2026.9 or newer; hassfest, tests, and HACS GitHub Actions badges on main.",
+          source: "github.com/AboveColin/HA-Jev README Installation",
+        },
+        {
+          claim:
+            "Public GitHub repo AboveColin/HA-Jev had 68 stars when this listing was drafted.",
+          source: "GitHub API 2026-09-30",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is the first Home Assistant integration on the directory: Jev is not generating chat prose, it is answering typed questions whose outputs become entities and service responses you can put in YAML automations. classifier-dev is the hosted API product when you only need HTTP gates outside HA. browser-use-jev-ultrafast shows Jev driving another automation surface (the browser) with different state. docjev classifies documents from rules, not house sensors. Cite jev.cdevries.dev (questions UI and YAML, actions, AI Task, conversation, house check, cost, measurements, limitations) and AboveColin/HA-Jev README. Not a TypeSafe official release.",
+    keyFeatures: [
+      "Question sensors for noul, choice, and score with confidence semantics",
+      "jev.noul, jev.choice, jev.score, and jev.ask automation actions",
+      "AI Task and Assist conversation agent integrations",
+      "House check Repairs card with quick fixes",
+      "Daily cost and token budget reporting",
+      "HACS install path with 25 blueprints",
+    ],
+    stack: [
+      "Python",
+      "Home Assistant 2026.9+",
+      "jevclient",
+      "TypeSafe Jev API",
+      "HACS custom integration",
+    ],
+    links: {
+      repo: "https://github.com/AboveColin/HA-Jev",
+      docs: "https://jev.cdevries.dev",
+      website: "https://jev.cdevries.dev/install/",
+    },
+    pricingNote:
+      "Integration is open source; Jev API usage bills to your TypeSafe or OpenRouter key per jev.cdevries.dev/cost/ daily budget docs.",
+    firstSeen: "2026-09-30",
+    relatedSlugs: [
+      "classifier-dev",
+      "docjev",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is this an official TypeSafe or Home Assistant integration?",
+        answer:
+          "README and docs state it is not affiliated with TypeSafe. It is a community HACS custom repository maintained by AboveColin.",
+      },
+      {
+        question: "What Home Assistant version is required?",
+        answer:
+          "README: 2026.9 or newer, plus an API key from typesafe.ai or OpenRouter per install page.",
+      },
+      {
+        question: "How do I add the first question?",
+        answer:
+          "jev.cdevries.dev/first-question/ walks through UI or YAML after the config flow completes.",
+      },
+      {
+        question: "Where is the Python client documented?",
+        answer:
+          "README points to github.com/AboveColin/jevclient as the API client used by the integration.",
+      },
+    ],
+    metaTitle: "HA-Jev: TypeSafe Jev sensors and automations in Home Assistant",
+    metaDescription:
+      "AboveColin/HA-Jev HACS integration turns Jev questions into Home Assistant entities, actions, AI Task, Assist, house check, and blueprints. Docs at jev.cdevries.dev.",
+  },
+
+  "hitsz-tmg-jevembed": {
+    slug: "hitsz-tmg-jevembed",
+    status: "published",
+    problem:
+      "Embedding models return vectors, not calibrated Choice, Score, or Noul decisions, so teams either call hosted System One or bolt chat JSON on top of retrieval.",
+    targetUser:
+      "ML engineers and researchers who want open-weight embedding backends fine-tuned into Jev-style decisions with synthesis, LoRA training, HTTP serve, playground, and published JevEmbed-Data benchmarks.",
+    overview:
+      "JevEmbed (github.com/HITsz-TMG/JevEmbed, Apache-2.0) is HITsz-TMG's toolkit to turn embedding models into System One shaped Choice, Score, and Noul outputs without autoregressive decoding. Hugging Face collection HIT-TMG/lychee-jevembed ships merged and LoRA adapters such as JevEmbed-Qwen3-Embedding-0.6B and 4B; dataset HIT-TMG/JevEmbed-Data lists about 1.67 million labeled questions. CLI python -m jevembed runs inference; --serve exposes POST /v1/systemone; --playground opens an interactive UI. Docs cover synthesis, LoRA fine-tune on 1,601,157 training questions, benchmark JSONL, and HTTP backends including external /v1/embeddings. README reports held-out JevEmbed-Data test accuracy up to 85.86% overall for the 4B fine-tune versus 36.29% base Qwen3-Embedding-4B. Independent of TypeSafe; not claiming official affiliation. Public GitHub counts were 60 stars when this listing was drafted.",
+    creator: {
+      name: "HITsz-TMG",
+      handle: "HITsz-TMG",
+      githubUrl: "https://github.com/HITsz-TMG",
+    },
+    jevUsage: {
+      flowRole:
+        "Embedding forward pass plus decision heads for Choice, Score, and Noul; training, benchmark, HTTP API, and playground exploration",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "System One request JSON with state text and questions map per examples/ and docs/examples-and-scoring.md; configs select base or JevEmbed fine-tuned weights.",
+      decisionOut:
+        "Probability distributions and labels matching System One response shape from local inference or HTTP /v1/systemone.",
+      flowSteps: [
+        "Load ModelConfig YAML for a base encoder or HIT-TMG JevEmbed release",
+        "JevEmbed.evaluate or CLI --input runs Choice, Score, or Noul heads on embeddings",
+        "jevembed-benchmark writes per-model results.json and summary.json on JSONL suites",
+        "LoRA train on JevEmbed-Data JSONL with documented BF16 batch 512 and rank 64 recipe",
+        "python -m jevembed --serve listens for curl POST /v1/systemone clients",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README JevEmbed-Data test table: JevEmbed-Qwen3-Embedding-4B reaches 90.31% Choice, 73.41% Score, 95.88% Noul, 85.86% overall on 64,110 hard-labeled questions of 66,482 total test rows.",
+          source: "github.com/HITsz-TMG/JevEmbed README and reports/JEVEMBED_DATA_TEST.md",
+        },
+        {
+          claim:
+            "Fine-tuning recipe: one epoch on 1,601,157 training questions, BF16, effective batch 512, LoRA rank 64, learning rate 2e-4, 1024 token truncation.",
+          source: "github.com/HITsz-TMG/JevEmbed README LoRA fine-tuning",
+        },
+        {
+          claim:
+            "Dataset HIT-TMG/JevEmbed-Data documents about 1.67 million labeled Choice, Score, and Noul questions for training.",
+          source: "github.com/HITsz-TMG/JevEmbed README News and Hugging Face dataset card",
+        },
+        {
+          claim:
+            "Public GitHub repo HITsz-TMG/JevEmbed had 60 stars when this listing was drafted.",
+          source: "GitHub API 2026-09-30",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "JevEmbed targets embedding checkpoints, not Apple Neural Engine ports. mizorewww-laya-coreml runs open Laya on Core ML with ANE bundles and Snake demos. togethercomputer-tev1 fine-tunes Qwen for letter Choice on Together. logan-markewich-jeff self-hosts GLiFormer System One HTTP. featherless-simple-jev assembles logits from arbitrary HF models without HIT-TMG's JevEmbed-Data recipe. Use JevEmbed when the story is turn my embedder into decisions with published HF weights and academic citations. Cite HITsz-TMG/JevEmbed README, docs/benchmark.md, docs/training.md, docs/http.md, docs/playground.md, and reports/JEVEMBED_DATA_TEST.md only.",
+    keyFeatures: [
+      "Choice, Score, and Noul heads on multiple embedding backends",
+      "Hugging Face JevEmbed model collection and JevEmbed-Data dataset",
+      "Supervised synthesis pipeline for new question schemas",
+      "LoRA fine-tune with merged releases and adapter cards",
+      "HTTP POST /v1/systemone server and interactive playground",
+      "jevembed-benchmark JSONL runner with summary comparison",
+    ],
+    stack: [
+      "Python 3.10 to 3.12",
+      "Sentence Transformers and configurable backends",
+      "Hugging Face weights under HIT-TMG",
+      "Apache-2.0",
+    ],
+    links: {
+      repo: "https://github.com/HITsz-TMG/JevEmbed",
+      docs: "https://github.com/HITsz-TMG/JevEmbed/blob/main/docs/http.md",
+      website: "https://huggingface.co/collections/HIT-TMG/lychee-jevembed",
+    },
+    pricingNote:
+      "Open source toolkit; inference cost is your GPU, electricity, and optional external embedding HTTP fees documented in docs/http.md.",
+    firstSeen: "2026-09-30",
+    relatedSlugs: [
+      "mizorewww-laya-coreml",
+      "togethercomputer-tev1",
+      "logan-markewich-jeff",
+      "featherless-simple-jev",
+    ],
+    relatedLearnSlugs: ["where-to-run-jev", "system-one"],
+    faq: [
+      {
+        question: "Is JevEmbed a TypeSafe or System One host?",
+        answer:
+          "It implements System One shaped requests and responses on embedding models. It is an independent HITsz-TMG research toolkit, not a TypeSafe product.",
+      },
+      {
+        question: "How do I try a released model quickly?",
+        answer:
+          "README Quick start: python -m jevembed with a configs/jevembed-qwen3-embedding-0.6b.yaml config, or --playground for the browser UI.",
+      },
+      {
+        question: "What data was used for the published accuracy jumps?",
+        answer:
+          "README cites JevEmbed-Data with 1,601,157 training questions and the 66,482 question test split in reports/JEVEMBED_DATA_TEST.md.",
+      },
+      {
+        question: "How is this different from Laya-CoreML?",
+        answer:
+          "Laya-CoreML ports Convai Laya to Apple Silicon Core ML. JevEmbed fine-tunes general embedding encoders on JevEmbed-Data and serves /v1/systemone from Python.",
+      },
+    ],
+    metaTitle: "JevEmbed: embedding models as Choice, Score, Noul decisions",
+    metaDescription:
+      "HITsz-TMG/JevEmbed fine-tunes embedders on JevEmbed-Data, serves POST /v1/systemone, and publishes HF models to 85.86% overall test accuracy on the 4B release.",
+  },
+
 };
