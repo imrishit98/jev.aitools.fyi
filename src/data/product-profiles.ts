@@ -8758,4 +8758,342 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "logan-markewich/jeff serves POST /v1/systemone with GLiFormer for typesafe-sdk. README cites lower cost than hosted Jev with published JevBench gap.",
   },
 
+  "mizorewww-laya-coreml": {
+    slug: "mizorewww-laya-coreml",
+    status: "published",
+    problem:
+      "Short Laya decisions on a Mac still default to MLX or a CPU ONNX session, even when the Neural Engine is the chip you actually paid for.",
+    targetUser:
+      "Apple Silicon developers on macOS 15+ and Python 3.11 to 3.13 who want local choice, score, and noul calls from published Core ML bundles, plus a terminal Snake loop that shows the probabilities.",
+    overview:
+      "Laya-CoreML (github.com/mizorewww/laya-coreml, Apache-2.0, PyPI laya-coreml) is an independent Core ML port of Convai Innovations Laya, written beside the mizorewww/laya-mlx sibling. pip install laya-coreml, then laya.load pulls a Hugging Face bundle such as aac6fef/laya-multilingual-coreml-ane. predict() returns probabilities for choice, ordinal score, and boolean noul. There is no autoregressive decode and no JSON to parse. The ANE FP16 bundle caps the whole request at 96 tokens, counting question, options, and state. Longer text raises a capacity error. The general multilingual CPU and GPU bundle aac6fef/laya-multilingual-coreml keeps a 1024 token window. README hardware note: M3 Max, 40-core GPU, 128 GiB, macOS 27.2. One 91-token question padded to 96, with prompt prep through formatting and with load excluded, measured 4.98 ms P50 and 5.31 ms P95 on ANE FP16 versus 6.94 ms and 7.39 ms for compiled MLX FP16, over 65,598 stable calls. Whole-system energy per decision was 0.1540 J versus 0.4288 J (2.78x), from SMC PSTR samples with anomaly rejection. A W8 palette variant reached 4.88 ms P50 and 3.19x energy. README states the requested 10x speedup was not achieved. Following upstream v0.3.5, fitted calibration temperatures are clamped to the range 0.5 through 5.0 because the shipped choice:11+ bucket is 0.1006, which would report a coin flip as near certainty. Raw buckets stay on agent.temperature_raw. Public GitHub counts were 1,527 stars and 128 forks when this listing was drafted. The project states it is not an official Convai Innovations or Apple release.",
+    creator: {
+      name: "mizorewww",
+      handle: "mizorewww",
+      githubUrl: "https://github.com/mizorewww",
+    },
+    jevUsage: {
+      flowRole:
+        "On-device Core ML System One: one forward pass for choice, score, and noul on Apple Silicon, with an ANE path for short requests",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Plain text or structured state plus a questions map (choice, score, or noul). ANE bundles enforce a 96 token total budget across question, options, and state.",
+      decisionOut:
+        "Probability answers per question key. No generated tokens. Calibration temperatures outside 0.5 to 5.0 are clamped, with a RuntimeWarning naming each bucket.",
+      flowSteps: [
+        "pip install laya-coreml on Apple Silicon, macOS 15+, Python 3.11 to 3.13",
+        "laya.load a Hugging Face id such as aac6fef/laya-multilingual-coreml-ane, or a local directory with local_files_only",
+        "Call predict with state text and a questions dict for choice, score, or noul",
+        "For the Snake loop, pip install laya-coreml[demo], hf download the snake bundle, then laya-coreml-snake",
+        "Export your own graph with laya-coreml[convert] and laya-coreml convert when you need a custom bundle",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "ANE FP16 P50/P95 4.98/5.31 ms versus compiled MLX FP16 6.94/7.39 ms on one short multilingual question; system energy 0.1540 J versus 0.4288 J (2.78x). W8 palette: 4.88/5.23 ms and 3.19x energy. 65,598 stable calls on M3 Max. The 10x target was not met.",
+          source: "github.com/mizorewww/laya-coreml README Measured on M3 Max",
+        },
+        {
+          claim:
+            "Three general-purpose FP16 checkpoints match upstream selected answers on 189/189 validation questions. ANE FP16 L96 passes 59/59 fitting questions with max calibrated-probability drift 0.002925. W8 drift is 0.014393 under a 0.02 gate. Six-bit and four-bit packs failed that gate and are not published.",
+          source: "github.com/mizorewww/laya-coreml README Port fidelity and limits",
+        },
+        {
+          claim:
+            "Snake loop: 49.1 to 50.0 decisions/s across three uncapped 600-step episodes, zero deaths, two safety interventions. A paired 600-step check matches 600/600 actions. A 1024-token ANE request is about 91.7 ms in its serial screen.",
+          source: "github.com/mizorewww/laya-coreml README and docs/SNAKE_BENCHMARKS.md",
+        },
+        {
+          claim:
+            "Public GitHub repo mizorewww/laya-coreml had 1527 stars and 128 forks when this listing was drafted.",
+          source: "GitHub API 2026-09-29",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This page is the Core ML and Neural Engine runtime. receptron-laya embeds Convai Laya ONNX inside Node. ollaya-dev-ollaya pulls many open decision graphs and serves POST /v1/systemone on port 11435. The learn guide at /learn/laya-vs-jev/laya-mlx-apple-silicon covers the MLX sibling (github.com/mizorewww/laya-mlx), including its own 7 to 16 ms short-decision notes. Laya-CoreML ships separate Hugging Face bundles: English 421M at 512 tokens, multilingual 322M at 1024, typed-decisions 421M at 1024, a Snake GPU pack, and two 96-token ANE packs (FP16 and approximate W8). Ordinary SDPA export stays on CPU plus GPU after RangeDim GPU shapes failed local fidelity checks. The ANE rewrite uses BC1L activations, 1x1 projections, and per-head attention. CPU still handles input and output boundaries. Cite mizorewww/laya-coreml README, docs/ANE_BENCHMARKS.md, and docs/USAGE.md. Upstream weights trace to Convai Innovations Laya (github.com/NandhaKishorM/laya).",
+    keyFeatures: [
+      "PyPI package laya-coreml with predict() for choice, score, and noul",
+      "Hugging Face bundles with tokenizer, model card, checksums, and packaging-time validation",
+      "ANE FP16 and W8 short-context packs plus CPU and GPU packs up to 1024 tokens",
+      "Terminal Snake demo with visible probabilities, score, latency, and a cycle safety layer",
+      "Calibration clamp to 0.5 through 5.0, with raw temperatures still readable",
+      "Reproducible speed and energy benches under benchmarks/results",
+    ],
+    stack: [
+      "Python 3.11 to 3.13",
+      "Apple Core ML",
+      "Apple Neural Engine for short ANE bundles",
+      "Hugging Face weights under aac6fef",
+    ],
+    links: {
+      website: "https://pypi.org/project/laya-coreml/",
+      repo: "https://github.com/mizorewww/laya-coreml",
+      docs: "https://github.com/mizorewww/laya-coreml/blob/main/docs/USAGE.md",
+      demo: "https://raw.githubusercontent.com/mizorewww/laya-coreml/main/docs/assets/snake-demo.gif",
+    },
+    pricingNote:
+      "Apache-2.0 code. Inference stays on your Mac. Hub downloads are the bandwidth cost. README labels the port independent of Convai Innovations and Apple.",
+    firstSeen: "2026-09-29",
+    relatedSlugs: [
+      "receptron-laya",
+      "ollaya-dev-ollaya",
+      "githubnext-localjev",
+      "wfzyx-von",
+    ],
+    relatedLearnSlugs: ["where-to-run-jev", "system-one"],
+    faq: [
+      {
+        question: "Is this the Laya-MLX learn page or the Node client?",
+        answer:
+          "No. /learn/laya-vs-jev/laya-mlx-apple-silicon documents mizorewww/laya-mlx. receptron-laya is the npm ONNX library. ollaya-dev-ollaya is the multi-model daemon. This listing is the Core ML and Neural Engine product in mizorewww/laya-coreml.",
+      },
+      {
+        question: "Why did a long prompt fail on the ANE model?",
+        answer:
+          "README: the ANE bundle has a 96 token total limit, including question, options, and state. Use aac6fef/laya-multilingual-coreml for the 1024 token general model.",
+      },
+      {
+        question: "Did they hit a 10x speedup versus MLX?",
+        answer:
+          "README says the requested 10x improvement was not achieved. The published short-question gain is about 1.39x versus compiled MLX FP16, with about 2.78x better whole-system energy per decision on that same experiment.",
+      },
+      {
+        question: "Are the Snake frames a latency certificate?",
+        answer:
+          "README separates them. The 4.98 ms figure is one short question. The Snake loop includes rendering serialization and ran at 49.1 to 50.0 decisions per second in three 600-step episodes. A full-game ANE speedup over compiled MLX is not claimed.",
+      },
+    ],
+    metaTitle: "Laya-CoreML: Neural Engine typed decisions on Mac",
+    metaDescription:
+      "mizorewww/laya-coreml runs open-weight Laya on Core ML and the Neural Engine. README: 4.98 ms P50 on M3 Max, PyPI, and Hugging Face bundles.",
+  },
+
+  "alex314618-create-jevrev": {
+    slug: "alex314618-create-jevrev",
+    status: "published",
+    problem:
+      "A host agent that tries every idea in prose burns the token budget on weak branches, then declares victory when the demo merely looks finished.",
+    targetUser:
+      "Codex, Claude Code, OpenCode, and custom harness operators who want a CLI JSON protocol for approach sifting, round audits, and long-session watch, while the host agent keeps the session and writes the code.",
+    overview:
+      "JevRev (github.com/Alex314618-create/JevRev, npm package jevrev 0.2.0, MIT, Node 20+) is an LLM plus Jev alloy with three parts: JevSift, JevLoop, and JevLong. The LLM proposes and executes. Jev filters paths, scores rounds, and raises reminders. The CLI speaks JSON and leaves the session in the host agent's hands. JevSift ranks 2 to 12 candidate cards and emits work orders only for survivors. JevLoop audits recorded commands, tests, metrics, and artifacts, then returns a next action such as fix, verify, continue, replan, or human. JevLong tails JSONL for stalls, repeated failures, drift, tool trouble, and budget risk. Providers are hosted Jev (POST /v1/systemone, key JEVREV_JEV_API_KEY or TYPESAFE_API_KEY), local SemIf, or a replay file. jevrev activation runs a shadow cost policy and does not call Jev. README case Tidal City compares the same ChatGPT-6-Sol-Ultra prompt with and without the three parts: the JevRev city has named buildings, districts, time of day, camera switches, and WASD walk or swim. README case JSONL asks a Node 20 ingester to process 25,000 production-shaped events (about 2.3 MB, 184 malformed lines, 258 duplicate IDs) with isolation, first-seen order, dedupe, and at least 2x a conservative baseline. Public GitHub counts were 670 stars and 28 forks when this listing was drafted.",
+    creator: {
+      name: "renard",
+      handle: "Alex314618-create",
+      githubUrl: "https://github.com/Alex314618-create",
+    },
+    jevUsage: {
+      flowRole:
+        "Sideline decision layer: sift candidate approaches, audit each round against evidence, and watch long sessions, while the host LLM still owns execution",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Protocol v1 JSON: task goal, constraints, success checks, and 2 to 12 candidate cards for Sift. Loop specs freeze criteria and protected surfaces. Long reads JSONL events the agent already wrote.",
+      decisionOut:
+        "Sift statuses keep, review, or reject, plus next_action implement, ask_human, revise_candidates, or relax_constraints. Decide returns winner, merge, probe_more, no_winner, or human_review. Loop returns the next round action only after facts are checked.",
+      flowSteps: [
+        "npm install and npm run build, then node scripts/install-skill.mjs for codex, claude, agents, or dsh",
+        "jevrev sift --provider jev on a rank request; strict survivors become bounded work orders",
+        "Host agent implements only selected approaches and records a jevrev.evidence-bundle",
+        "jevrev decide or jevrev loop audits the round; completion requires replayable evidence",
+        "jevrev long watch and long status on .jevrev/long for stalls and protocol alerts",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "JSONL sift: batch-index 0.9243 kept, regex-shortcut 0.9240 kept, state-scan 0.7965 cut by budget, baseline-parse 0.6100 rejected, worker-shards 0.6043 review, external-index 0.4931 rejected. regex-shortcut failed correctness (expected 184 malformed, actual 65). batch-index passed and was the winner. Mean throughput about 180,318 events/s versus about 180,531 for the failing regex path.",
+          source: "github.com/Alex314618-create/JevRev README JSONL event ingestion",
+        },
+        {
+          claim:
+            "JevLoop on that case: round 1 returned fix_regression, round 2 verify, round 3 completed. Final state completed at round 3, 838 ms wall-clock, 1,628 tokens in replay provider accounting.",
+          source: "github.com/Alex314618-create/JevRev README JSONL event ingestion",
+        },
+        {
+          claim:
+            "JevLong on the same case accepted 13 events on the first import and 0 on the duplicate import (13 duplicates). It reported a high-severity failure_loop alert and a critical protocol alert. Loop reached completed while Long progress_index stayed 0.",
+          source: "github.com/Alex314618-create/JevRev README JSONL event ingestion",
+        },
+        {
+          claim:
+            "docs/PROTOCOL.md default-v1 thresholds include goal_fit 0.34, constraint_fit 0.55, feasibility 0.34, validation_quality 0.25, execution_value 0.45, confidence 0.2, duplicate 0.75. Example policy profile jev/jev-1.13.0.",
+          source: "github.com/Alex314618-create/JevRev docs/PROTOCOL.md",
+        },
+        {
+          claim:
+            "Public GitHub repo Alex314618-create/JevRev had 670 stars and 28 forks when this listing was drafted. package.json version is 0.2.0.",
+          source: "GitHub API 2026-09-29 and package.json",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "JevRev is the three-part alloy with a host-owned session. thruwire-foreman supervises a software factory above Codex or OpenCode workers and steers continue, stop, or finish. tianyucodings-jevharness lets an LLM author a harness, freezes the Python, and evolves it with GEPA. samuelfaj-distill routes consults inside a Rust TUI and keeps tool permissions in Distill. miuuyy-astra-ares sets reasoning effort inside a patched Codex binary. JevRev instead exposes jevrev sift, decide, loop, and long as JSON contracts (@typesafe-ai/sdk on the hosted path). Reason codes such as GOAL_MISMATCH, CONSTRAINT_RISK, and BUDGET_CUTOFF are policy rules, not a chain of thought. Hard-constraint failures can reject a card before the confidence route. Replay files must include candidate_order or JevRev refuses to apply answers to the wrong card. Builder notes are omitted from Decide judge state. The TUI (run jevrev) lists registered host sessions and shows Kanban evidence. Loop and Long switches persist per session and do not start an observer or steer the host. Cite Alex314618-create/JevRev README and docs/PROTOCOL.md.",
+    keyFeatures: [
+      "JevSift, JevLoop, and JevLong as separate CLI commands with JSON envelopes",
+      "Skill installer for Codex, Claude Code, agents, and dsh hosts",
+      "Hosted Jev, local SemIf (default 127.0.0.1:4878), and offline replay",
+      "Shadow activation policy that compares wrong-path cost with bounded probes and does not call Jev",
+      "Interactive cockpit for registered sessions, evidence, and monitor switches",
+      "README cases: Tidal City build comparison and a 25,000-event JSONL contract",
+    ],
+    stack: [
+      "Node.js 20+",
+      "TypeScript",
+      "@typesafe-ai/sdk",
+      "Optional local SemIf",
+    ],
+    links: {
+      repo: "https://github.com/Alex314618-create/JevRev",
+      docs: "https://github.com/Alex314618-create/JevRev/blob/main/docs/PROTOCOL.md",
+      website: "https://github.com/Alex314618-create/JevRev",
+    },
+    pricingNote:
+      "MIT package. Hosted Jev bills per System One call. SemIf and replay runs stay on your machine. README JSONL token figure is replay-provider accounting for that case, not a price quote.",
+    firstSeen: "2026-09-29",
+    relatedSlugs: [
+      "thruwire-foreman",
+      "tianyucodings-jevharness",
+      "samuelfaj-distill",
+      "miuuyy-astra-ares",
+    ],
+    relatedLearnSlugs: ["patterns", "use-cases"],
+    faq: [
+      {
+        question: "Does JevRev take over the coding session?",
+        answer:
+          "README and docs/AUTHORITY.md keep execution with the host agent. JevRev returns JSON decisions, work orders, and alerts. The TUI monitor switches do not steer the host.",
+      },
+      {
+        question: "What did the 25,000-event case actually prove?",
+        answer:
+          "README: regex-shortcut and batch-index both scored about 0.92 and both were fast (about 180k events/s). regex missed malformed lines (65 versus 184). batch-index passed the contract and was selected. That is a project case, not an independent lab certificate.",
+      },
+      {
+        question: "Does jevrev activation call TypeSafe?",
+        answer:
+          "No. docs/PROTOCOL.md says activation always returns shadow true. It does not call Jev, start work, or change the host's next action.",
+      },
+      {
+        question: "How is this different from Foreman or JevHarness?",
+        answer:
+          "Foreman supervises factory evidence above coding workers. JevHarness freezes an LLM-written harness and evolves it. JevRev is the Sift, Loop, and Long CLI that any host can call without handing over the session.",
+      },
+    ],
+    metaTitle: "JevRev: Sift, Loop, and Long beside the host LLM",
+    metaDescription:
+      "Alex314618-create/JevRev is a CLI JSON alloy: JevSift, JevLoop, and JevLong. Host agents keep the session. README includes a 25,000-event JSONL case.",
+  },
+
+  "agricidaniel-jev-seo": {
+    slug: "agricidaniel-jev-seo",
+    status: "published",
+    problem:
+      "SEO audits either dump a template checklist or ask a chat model for a vibe score, and neither keeps the probabilities next to the fix list.",
+    targetUser:
+      "Marketers and developers who want one homepage URL in, a live crawl plus Jev judgments, and the same findings as a client PDF, an XLSX tracker, and Markdown.",
+    overview:
+      "jev-seo (github.com/AgriciDaniel/jev-seo, MIT, Python 3.10+, README version badge 0.1.1, GitHub Actions CI on main) audits a live site from one homepage URL. It crawls, checks 52 rules tied to Google Search Central, pulls Core Web Vitals through PageSpeed Insights, and asks TypeSafe Jev typed questions about pages and the site. Code scores and ranks every fix. PDF, XLSX, and Markdown render from one audit.json. Run bin/jevseo or the Claude Code skill /jev-seo. Standard mode needs no SEO data subscription. README prices Jev at 0.042 USD per million input tokens, about 0.00015 USD per page, and about a cent per site. Optional --full adds DataForSEO rankings, keywords, and backlinks at about 0.30 USD per site. Hard caps default to 0.25 USD for Jev and 1.00 USD for DataForSEO, checked before each request. Without TYPESAFE_API_KEY the crawl still runs, Jev sections are marked not assessed, and the score is labelled a partial audit. Page cap defaults to 60. Homepage type is set by code and is never asked. Public GitHub counts were 169 stars and 41 forks when this listing was drafted. An example --full audit of claude-seo.md from 2026-09-22 ships under examples/claude-seo.md.",
+    creator: {
+      name: "Agrici.Daniel",
+      handle: "AgriciDaniel",
+      githubUrl: "https://github.com/AgriciDaniel",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-page and site-level typed judgments on a live crawl, with code owning rules, scores, and report rendering",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "One System One request per page carries every page question over shared state (page text capped at 6,000 characters). Site questions use homepage text, navigation, and up to 80 page titles. Model jev-latest, resolved to jev-1.13.0 on 2026-09-21 per references/judgments.md.",
+      decisionOut:
+        "Choice, Score, and Noul answers with probabilities kept in the workbook. Decisive band: Choice confidence at least 0.80; Score when at least 0.80 of probability sits on one side of the midpoint; Noul at P(yes) 0.80 or above, or 0.20 or below. Everything else is marked to verify.",
+      flowSteps: [
+        "Clone, pip install -r requirements.txt, and copy .env.example (TYPESAFE_API_KEY)",
+        "bin/jevseo doctor checks dependencies and keys without printing values",
+        "bin/jevseo audit URL writes audit.json and digest.md; optional Playwright for JS-only pages",
+        "Jev answers 13 page questions, 5 site questions, and cannibalization pairs (Jaccard overlap at least 0.4, at most 40 pairs)",
+        "bin/jevseo render writes report.pdf, report.xlsx, and report.md; narrative checks refuse unknown action IDs",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README cost table: Jev at 0.042 USD per million input tokens, about 0.00015 USD per page; --full DataForSEO about 0.30 USD per site. Defaults: --jev-budget 0.25 USD, --dfs-budget 1.00 USD.",
+          source: "github.com/AgriciDaniel/jev-seo README What runs where",
+        },
+        {
+          claim:
+            "references/judgments.md observed on typesafe.ai, 2026-09-21: 14 requests, 47,181 input tokens, 0.0020 USD. About 3,400 input tokens per page.",
+          source: "github.com/AgriciDaniel/jev-seo references/judgments.md",
+        },
+        {
+          claim:
+            "Evaluation dated 2026-09-22: same 59 pages twice, scores moved 0.03 or less on average, confident page types agreed 44/44. Blind second judge: helpfulness and specificity 28/29, opens with the point 23/23, next step 16/16, keyword relevance 27/30. The second judge is another model, not a human panel.",
+          source: "github.com/AgriciDaniel/jev-seo README How far to trust it",
+        },
+        {
+          claim:
+            "Public GitHub repo AgriciDaniel/jev-seo had 169 stars and 41 forks when this listing was drafted. README version badge is 0.1.1.",
+          source: "GitHub API 2026-09-29 and README",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-seo is the live SEO audit: one homepage URL, a crawl, 52 rules, Jev judgments, and three reports from one JSON file. iannuttall-internal-links crawls up to 500 pages and exports internal link pairs as CSV or JSON. docjev classifies and splits documents from natural-language rules. kylejeong-jev-as-judge scores writing on rubric dimensions. kraayenjon-ai-slop-detector flags low-effort pages. Here, code refuses to ask Jev what the crawl already knows: missing meta skips meta_fit, missing H1 skips h1_fit. Page questions cover type, intent, importance, action, helpfulness, specificity, trust, citability, answer-first, next step, title fit, meta fit, and H1 fit. Site questions cover business model, value prop, entity clarity, topical focus, and local-area service. Competing pages become a finding when Noul P(yes) is 0.6 or higher. Content quality is 70 percent importance-weighted helpfulness, specificity, and trust, plus 30 percent rules. Scores rank the work. README says they do not predict rankings or traffic, and that the tool is not a rank tracker or a Search Console replacement. Cite AgriciDaniel/jev-seo README, references/judgments.md, and references/evaluation.md.",
+    keyFeatures: [
+      "bin/jevseo audit, render, rescore, and doctor commands",
+      "Claude Code skill workflow in SKILL.md",
+      "52 rules across crawl, on-page, content, links, structured data, AI crawlers, performance, and security",
+      "PDF, XLSX action tracker with dropdowns, and Markdown with charts from one audit.json",
+      "Narrative gate: unknown action IDs refused, numbers missing from the audit flagged",
+      "Offline unittest suite with no network and no spend",
+    ],
+    stack: [
+      "Python 3.10+",
+      "TypeSafe System One (jev-latest)",
+      "Google PageSpeed Insights",
+      "Optional DataForSEO and Playwright",
+      "WeasyPrint (Pango) for PDF",
+    ],
+    links: {
+      repo: "https://github.com/AgriciDaniel/jev-seo",
+      docs: "https://github.com/AgriciDaniel/jev-seo/blob/main/references/judgments.md",
+      website: "https://github.com/AgriciDaniel/jev-seo",
+      demo: "https://github.com/AgriciDaniel/jev-seo/blob/main/examples/claude-seo.md/report.md",
+    },
+    pricingNote:
+      "MIT. Crawl, rules, and reports run locally. Jev and optional DataForSEO bill to your keys, with README default budgets of 0.25 USD and 1.00 USD.",
+    firstSeen: "2026-09-29",
+    relatedSlugs: [
+      "iannuttall-internal-links",
+      "docjev",
+      "kylejeong-jev-as-judge",
+      "kraayenjon-ai-slop-detector",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does this replace Google Search Console?",
+        answer:
+          "README says it is an evidence tool for one audit. It does not measure traffic, revenue, or rankings over time, and it is not a rank tracker.",
+      },
+      {
+        question: "What does a standard run cost?",
+        answer:
+          "README: about a cent in Jev per site at 0.042 USD per million input tokens, roughly 0.00015 USD per page. --full DataForSEO is about 0.30 USD per site. Caps are checked before each call.",
+      },
+      {
+        question: "What if I have no TypeSafe key?",
+        answer:
+          "The audit still crawls and scores rules. Jev sections are marked not assessed and the score is labelled a partial audit.",
+      },
+      {
+        question: "How is this different from the internal links tool?",
+        answer:
+          "iannuttall-internal-links classifies pages and exports which URLs should link. jev-seo runs a rule crawl, Jev content judgments, and PDF, XLSX, and Markdown reports from the same audit file.",
+      },
+    ],
+    metaTitle: "jev-seo: live site audit with Jev judgments",
+    metaDescription:
+      "AgriciDaniel/jev-seo crawls one homepage URL, asks Jev typed SEO questions, and renders PDF, XLSX, and Markdown. README v0.1.1, about a cent in Jev.",
+  },
+
 };

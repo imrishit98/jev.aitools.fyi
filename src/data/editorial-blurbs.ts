@@ -211,6 +211,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Sokoban frames go in, probability bars come out, and the README makes Qwen3.8-27B thinking mode look slow on purpose. Multimodal System One you can actually train from HF cards.",
   "jevdoom-jev-arcade":
     "A coin-op hall for links where bots actually played the game. Paste a URL, let the cabinet scrape the poster art, spam coins on your favorites, and flex three initials on the high-score board. Born after Jev got scary good at Doom; still fan-made, still not TypeSafe official.",
+  "mizorewww-laya-coreml":
+    "Snake on the Neural Engine, probabilities on the terminal, and a README honest enough to say the 10x dream did not land. What did land: 4.98 ms P50 on one short multilingual question on an M3 Max, 2.78x better system energy than compiled MLX, and conversion fixtures you can re-read.",
+  "alex314618-create-jevrev":
+    "An alloy spine that leaves the session with your host agent. JevSift cuts weak plans, JevLoop refuses done without replayable evidence, and JevLong watches stalls from the side. The JSONL case is the receipt: regex looked equally fast and failed the malformed-line contract.",
+  "agricidaniel-jev-seo":
+    "One homepage URL, a real crawl, 52 Search Central rules, and Jev judgments with the probabilities still attached. PDF for the client, XLSX for the tracker, Markdown for the repo. Scores rank the work. The README is clear they do not predict your rankings.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
