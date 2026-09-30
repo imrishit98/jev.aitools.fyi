@@ -54,8 +54,8 @@ if (nfRes.headers.get("X-Robots-Tag") !== "noindex, follow") {
 }
 
 const hermesMd = guides.agentGuideMarkdown("hermes");
-if (!hermesMd?.includes("Hermes jev, jev hermes, and jev with hermes")) {
-  throw new Error("hermes markdown missing query phrases");
+if (!hermesMd?.includes("quit faking a classifier")) {
+  throw new Error("hermes markdown missing answer-first description");
 }
 if (hermesMd.includes("\u2014") || hermesMd.includes("\u2013")) {
   throw new Error("hermes markdown contains a dash");

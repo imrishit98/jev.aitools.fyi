@@ -208,7 +208,7 @@ if (llmsFull.includes("\u2014") || llmsFull.includes("\u2013")) {
 if (!llmsFull.includes("Checked 2026-09-30")) {
   errors.push("llms-full.txt missing checked date");
 }
-if (!llmsFull.includes("Hermes jev")) {
+if (!llmsFull.includes("quit faking a classifier")) {
   errors.push("llms-full.txt missing Hermes answer");
 }
 if (!llmsFull.includes("/.well-known/jev-directory.json")) {
@@ -228,7 +228,7 @@ if (!hermesHtml.includes("/guides/jev-with-ai-agents/hermes.md")) {
 if (!hermesHtml.includes('"dateModified":"2026-09-30"')) {
   errors.push("Hermes Article JSON-LD missing dateModified");
 }
-if (!hermesHtml.includes("Hermes Jev: Jev with Hermes, setup guide")) {
+if (!hermesHtml.includes("Jev with Hermes Agent: approvals and routing setup")) {
   errors.push("Hermes title was not rewritten");
 }
 
@@ -240,7 +240,7 @@ const compareTitle = compareHtml.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
 if (compareTitle.includes("TypeSafe")) {
   errors.push("Laya compare title must not say TypeSafe");
 }
-if (!compareTitle.includes("Laya vs Jev and Jev vs Laya, compared")) {
+if (!compareTitle.includes("Laya vs Jev: open weights or a hosted API")) {
   errors.push(`Laya compare title mismatch: ${compareTitle}`);
 }
 if (!compareHtml.includes('aria-label="In the directory"')) {

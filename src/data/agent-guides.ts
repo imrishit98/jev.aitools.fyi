@@ -101,9 +101,9 @@ const agentGuidesBatch1: Record<AgentGuideBatch1Slug, AgentGuide> = {
     slug: "hermes",
     title: "Hermes Agent + Jev",
     tagline: "Smart approvals, skill routing, and MCP without asking Hermes to fake a classifier.",
-    seoTitle: "Hermes Jev: Jev with Hermes, setup guide",
+    seoTitle: "Jev with Hermes Agent: approvals and routing setup",
     seoDescription:
-      "Hermes jev, jev hermes, and jev with hermes: smart approvals, skill routing, and Jev MCP on Hermes Agent.",
+      "Set up approvals, skill routing, and Jev MCP on Hermes Agent. Typed approve, deny, or escalate, with catalog links, so Hermes can quit faking a classifier.",
     whyJev:
       "Hermes smart mode already sends flagged shell commands to an auxiliary reviewer that must answer APPROVE, DENY, or ESCALATE. A chat model burns tokens on reasoning you discard. Jev returns that shape natively, often alongside policy and safety nouls in one parallel call.",
     sections: [
