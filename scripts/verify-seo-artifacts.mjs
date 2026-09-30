@@ -118,6 +118,15 @@ if (uniqueLastmods.size < 3 && expectedDetail > 10) {
     "sitemap lastmod values look too uniform (expected mixed content dates)",
   );
 }
+for (const day of lastmods) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+    errors.push(`sitemap lastmod must be YYYY-MM-DD, got ${day}`);
+    break;
+  }
+}
+if (locs.some((l) => l.endsWith(".md") || l.includes("llms-full"))) {
+  errors.push("sitemap should not list markdown alternates or llms-full.txt");
+}
 
 const robots = readFileSync(join(distRoot, "robots.txt"), "utf8");
 if (!robots.includes("Allow: /")) {
@@ -125,6 +134,20 @@ if (!robots.includes("Allow: /")) {
 }
 if (!robots.includes("https://jev.aitools.fyi/sitemap.xml")) {
   errors.push("robots.txt missing sitemap URL");
+}
+for (const bot of [
+  "GPTBot",
+  "OAI-SearchBot",
+  "ClaudeBot",
+  "PerplexityBot",
+  "Google-Extended",
+]) {
+  if (!robots.includes(`User-agent: ${bot}`)) {
+    errors.push(`robots.txt missing User-agent: ${bot}`);
+  }
+}
+if (!robots.includes("llms-full.txt")) {
+  errors.push("robots.txt missing llms-full.txt pointer");
 }
 
 function walkHtml(dir, acc = []) {
@@ -172,6 +195,56 @@ if (!llms.includes(`Catalog listings (explore index): ${expectedCatalog}`)) {
 }
 if (!llms.includes(`Detail pages (indexable HTML): ${expectedDetail}`)) {
   errors.push("llms.txt missing detail page count");
+}
+if (!llms.includes("/llms-full.txt")) {
+  errors.push("llms.txt missing llms-full.txt link");
+}
+
+const llmsFullPath = join(distRoot, "llms-full.txt");
+const llmsFull = readFileSync(llmsFullPath, "utf8");
+if (llmsFull.includes("\u2014") || llmsFull.includes("\u2013")) {
+  errors.push("llms-full.txt contains an em or en dash");
+}
+if (!llmsFull.includes("Checked 2026-09-30")) {
+  errors.push("llms-full.txt missing checked date");
+}
+if (!llmsFull.includes("quit faking a classifier")) {
+  errors.push("llms-full.txt missing Hermes answer");
+}
+if (!llmsFull.includes("/.well-known/jev-directory.json")) {
+  errors.push("llms-full.txt missing directory manifest");
+}
+
+const hermesHtml = readFileSync(
+  join(distRoot, "guides/jev-with-ai-agents/hermes.html"),
+  "utf8",
+);
+if (!hermesHtml.includes('aria-label="In the directory"')) {
+  errors.push("Hermes guide missing directory link module");
+}
+if (!hermesHtml.includes("/guides/jev-with-ai-agents/hermes.md")) {
+  errors.push("Hermes guide missing markdown alternate");
+}
+if (!hermesHtml.includes('"dateModified":"2026-09-30"')) {
+  errors.push("Hermes Article JSON-LD missing dateModified");
+}
+if (!hermesHtml.includes("Jev with Hermes Agent: approvals and routing setup")) {
+  errors.push("Hermes title was not rewritten");
+}
+
+const compareHtml = readFileSync(
+  join(distRoot, "learn/laya-vs-jev/compare.html"),
+  "utf8",
+);
+const compareTitle = compareHtml.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
+if (compareTitle.includes("TypeSafe")) {
+  errors.push("Laya compare title must not say TypeSafe");
+}
+if (!compareTitle.includes("Laya vs Jev: open weights or a hosted API")) {
+  errors.push(`Laya compare title mismatch: ${compareTitle}`);
+}
+if (!compareHtml.includes('aria-label="In the directory"')) {
+  errors.push("Laya compare missing directory link module");
 }
 
 const openapiPath = join(distRoot, "openapi.json");
@@ -224,6 +297,46 @@ if (duplicateRedirectPaths.length > 0) {
 if (redirectLines.length !== expectedCatalog + extraRedirectRules) {
   errors.push(
     `_redirects line count: expected ${expectedCatalog + extraRedirectRules}, got ${redirectLines.length}`,
+  );
+}
+
+function listMarkdownFiles(dir, out = []) {
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) listMarkdownFiles(full, out);
+    else if (name.endsWith(".md")) out.push(full);
+  }
+  return out;
+}
+
+let headersFile = "";
+try {
+  headersFile = readFileSync(join(distRoot, "_headers"), "utf8");
+} catch {
+  errors.push("dist/_headers missing");
+}
+const headerPaths = [...headersFile.matchAll(/^(\/\S+\.md)$/gm)].map((m) => m[1]);
+const duplicateHeaderPaths = headerPaths.filter(
+  (path, index) => headerPaths.indexOf(path) !== index,
+);
+if (duplicateHeaderPaths.length > 0) {
+  errors.push(`_headers duplicate paths: ${[...new Set(duplicateHeaderPaths)].join(", ")}`);
+}
+if ([...headersFile.matchAll(/^(\/\S+)$/gm)].some((m) => !m[1].endsWith(".md"))) {
+  errors.push("_headers has a rule that is not a .md path");
+}
+const mdFiles = listMarkdownFiles(distRoot);
+for (const file of mdFiles) {
+  const mdPath = `/${file.slice(distRoot.length + 1).split("\\").join("/")}`;
+  const htmlPath = mdPath.slice(0, -".md".length);
+  const block = `${mdPath}\n  X-Robots-Tag: noindex, follow\n  Link: <https://jev.aitools.fyi${htmlPath}>; rel="canonical"\n  Content-Type: text/markdown; charset=utf-8\n`;
+  if (!headersFile.includes(block)) {
+    errors.push(`_headers missing rule for ${mdPath}`);
+  }
+}
+if (mdFiles.length !== headerPaths.length) {
+  errors.push(
+    `_headers rule count: expected ${mdFiles.length} markdown files, got ${headerPaths.length} rules`,
   );
 }
 

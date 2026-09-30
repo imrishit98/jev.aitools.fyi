@@ -1,0 +1,31 @@
+---
+import type { DirectoryLink } from "@/lib/directory-links";
+
+interface Props {
+  links: DirectoryLink[];
+}
+
+const { links } = Astro.props;
+---
+
+{
+  links.length > 0 && (
+    <nav class="mt-8" aria-label="In the directory">
+      <p class="text-[11px] font-medium uppercase tracking-widest text-muted-foreground">
+        In the directory
+      </p>
+      <ul class="mt-3 flex flex-wrap gap-2">
+        {links.map((link) => (
+          <li>
+            <a
+              href={link.href}
+              class="inline-flex rounded-md border border-border px-2.5 py-1 text-sm text-foreground hover:border-primary/40 hover:text-primary"
+            >
+              {link.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </nav>
+  )
+}

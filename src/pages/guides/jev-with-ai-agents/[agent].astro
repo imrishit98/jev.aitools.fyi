@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import AgentGuideView from "@/components/agent-guide-view.astro";
 import { breadcrumbJsonLd, faqPageJsonLd, agentGuideArticleJsonLd } from "@/components/json-ld";
 import { agentGuideSlugs, agentGuidesHub, getAgentGuide } from "@/data/agent-guides";
+import { agentGuideDate } from "@/lib/content-dates";
 import { agentGuidePageSeo } from "@/lib/seo";
 
 export function getStaticPaths() {
@@ -22,6 +23,7 @@ const seo = agentGuidePageSeo(guide);
   path={`/guides/jev-with-ai-agents/${agent}`}
   type="article"
   ogImagePath={seo.imagePath}
+  markdownAlternate={`/guides/jev-with-ai-agents/${agent}.md`}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -29,7 +31,7 @@ const seo = agentGuidePageSeo(guide);
       { name: agentGuidesHub.title, path: "/guides/jev-with-ai-agents" },
       { name: guide.title, path: `/guides/jev-with-ai-agents/${agent}` },
     ]),
-    agentGuideArticleJsonLd(guide),
+    agentGuideArticleJsonLd(guide, agentGuideDate(guide.slug)),
     faqPageJsonLd(guide.faq),
   ]}
 >

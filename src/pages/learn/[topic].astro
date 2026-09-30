@@ -3,6 +3,7 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
 import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
+import { learnGuideDate } from "@/lib/content-dates";
 import { learnTopicPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import { splitIntoParagraphs } from "@/lib/prose";
@@ -27,13 +28,14 @@ const definitionParagraphs = splitIntoParagraphs(guide.definition, 220);
   path={`/learn/${topic}`}
   type="article"
   ogImagePath={seo.imagePath}
+  markdownAlternate={`/learn/${topic}.md`}
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
       { name: "Learn", path: "/learn" },
       { name: guide.title, path: `/learn/${topic}` },
     ]),
-    learnArticleJsonLd(guide),
+    learnArticleJsonLd(guide, learnGuideDate(guide.slug)),
   ]}
 >
   <div class="max-w-3xl page-shell-breadcrumb">

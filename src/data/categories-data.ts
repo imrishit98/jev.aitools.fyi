@@ -16,9 +16,9 @@ export const categories: CategoryMeta[] = [
     title: "SDKs and clients",
     description:
       "Official JS and Python plus community ports. Typed questions in, probabilities out.",
-    seoTitle: "Jev SDKs and clients: TypeScript, Python, and community ports",
+    seoTitle: "Jev SDKs: TypeScript, Python, and community ports",
     seoDescription:
-      "Browse official and community SDKs that call POST /v1/systemone with typed Choice, Score, and Noul questions. Compare languages, stars, and install docs in one hub.",
+      "Browse official and community SDKs that call POST /v1/systemone with Choice, Score, and Noul. Compare languages, stars, and install docs in one hub.",
     intro:
       "Same POST /v1/systemone contract, different syntax sugar. Official TypeScript and Python sit next to Go, Rust, Elixir, Java, .NET, and the long tail. SDK listings wrap Choice, Score, and Noul with idiomatic types and retries. Favor repos with recent commits and clear install docs. Community clients are not audited here: verify auth, errors, and version pins before production.",
   },
@@ -27,9 +27,9 @@ export const categories: CategoryMeta[] = [
     title: "Integrations",
     description:
       "Vercel AI Gateway, eve, LangChain, Postgres, Home Assistant, n8n, and platform glue.",
-    seoTitle: "Jev integrations: Vercel AI Gateway, LangChain, and platforms",
+    seoTitle: "Jev integrations: AI Gateway, LangChain, platforms",
     seoDescription:
-      "Framework and platform glue that embeds TypeSafe Jev for routing, evals, and structured decisions. Find gateway routes, agents, and databases wired to System One.",
+      "Framework and platform glue that embeds TypeSafe Jev for routing, evals, and structured decisions. Find gateways, agents, and databases on System One.",
     intro:
       "Where Jev meets the stack you already run. Gateways, agents, databases, and home automation. These projects embed evaluate paths into the Vercel AI SDK, LangChain, or HA flows. Look for demos that show structured questions, not giant chat prompts. Gateway routes are great for prototypes; direct TypeSafe credentials may fit better at volume or with private networking.",
   },
@@ -40,7 +40,7 @@ export const categories: CategoryMeta[] = [
       "Routers, MCP servers, compaction, review gates, guards, and skills for coding agents.",
     seoTitle: "Jev agent tooling: MCP servers, routers, and review gates",
     seoDescription:
-      "Coding-agent accessories that use Jev to pick models, approve tool calls, compact context, and score diffs. Explore MCP servers and routers with documented latency budgets.",
+      "Coding-agent accessories that use Jev to pick models, approve tools, compact context, and score diffs. Explore MCP servers and routers.",
     intro:
       "The Claude Code accessory aisle. Routers, compaction, MCP, guards, and reviewers that speak probability. Agent tooling usually sits on the hot path: picking models, approving tool calls, compacting context, or scoring diffs. Favor READMEs that document latency budgets and failure modes. MCP listings should expose tool schemas so you know what state hits Jev.",
   },
@@ -49,9 +49,9 @@ export const categories: CategoryMeta[] = [
     title: "Browser and computer use",
     description:
       "Ultrafast browser agents, extensions, voice control, and desktop automation.",
-    seoTitle: "Jev browser and computer use: ultrafast agents and automation",
+    seoTitle: "Jev browser and computer use: ultrafast agents",
     seoDescription:
-      "Browser Use ultrafast, extensions, voice control, and desktop loops where Jev chooses the next action over a finite catalog. See demos before you automate logged-in flows.",
+      "Browser Use, extensions, voice control, and desktop loops where Jev picks the next action from a finite catalog. See demos before logged-in automation.",
     intro:
       "Click the right node, not the wrong paragraph. Browser Use ultrafast, voice browsers, OCR loops, and extensions. Computer-use listings treat UI state as structured input and actions as discrete choices. Demos are the fastest way to feel latency before you trust a loop on logged-in accounts. Read security notes: automation plus external APIs needs tight scopes and human confirmation for destructive steps.",
   },
@@ -84,7 +84,7 @@ export const categories: CategoryMeta[] = [
       "Interactive demos and sandboxes for Choice, Score, and Noul in the browser.",
     seoTitle: "Jev playgrounds: live Choice, Score, and Noul demos",
     seoDescription:
-      "Interactive sandboxes to paste state, run typed questions, and watch probabilities move. Ideal for skeptics, screenshots, and validating primitives before production gates.",
+      "Interactive sandboxes to paste state, run typed questions, and watch probabilities move. Handy before you trust a primitive in production.",
     intro:
       "Paste state, mash buttons, watch probabilities move. Demos for skeptics and screenshot collectors. Playgrounds help you validate primitive combos before Jev touches billing or safety code. Many entries are static sites or sandboxes: still valuable for learning even when they are not production services. Submit yours if it teaches a pattern we have not filed.",
   },
@@ -106,7 +106,7 @@ export const categories: CategoryMeta[] = [
       "Directory taxonomy for launch posts, essays, and awesome-list listings. Not the agent how-to hub.",
     seoTitle: "Jev articles and lists: community write-ups in the catalog",
     seoDescription:
-      "Catalog bucket for community essays, launch posts, and awesome lists indexed as listings. For agent setup walkthroughs use /guides; for System One primers use /learn.",
+      "Community essays, launch posts, and awesome lists indexed as listings. Agent setup lives on /guides. System One primers live on /learn.",
     intro:
       "This is a catalog category, not an editorial hub. Entries are single-link announcements, threads, and essays we index as listings. Many stay explore-only when the overview is too thin for a detail page. For LangChain, Cursor, and Copilot setup guides, open /guides. For Choice, Score, and Noul primers, open /learn.",
   },

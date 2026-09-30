@@ -47,7 +47,7 @@ export const layaVsJevHub = {
     "Run typed decisions on your own machine, or call hosted System One in the cloud. Same kind of question, very different homework.",
   seoTitle: "Laya vs Jev: open local decisions vs hosted System One",
   seoDescription:
-    "Compare Convai Laya (Apache 2.0 checkpoints, local inference) with hosted Jev (System One API). Jev vs Laya tradeoffs, latency caveats, benchmarks, Laya-MLX on Mac, migration patterns, and when to use both.",
+    "Compare Convai Laya (open checkpoints, local inference) with hosted Jev. Tradeoffs, latency caveats, benchmarks, Laya-MLX, and when to use both.",
   intro:
     "Laya is Convai's open-weight family of decision models. You ask Choice, Score, or Noul questions over structured state. One forward pass, no chat essay. TypeSafe Jev is the hosted System One API many teams already plug into agents, gateways, and moderation pipelines. Both help software make judgment calls. They differ in who hosts the GPU, what you can download, and how you pay. This hub is independent writing on jev.aitools.fyi. We are not TypeSafe or Convai. We link primary sources and say plainly when a vendor benchmark is not an independent audit.",
   faq: [
@@ -113,9 +113,9 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
     title: "Laya vs Jev: comparison overview",
     tagline:
       "Same typed primitives, different deployment. Read this before you rip out a working Jev integration on a Friday afternoon.",
-    seoTitle: "Laya vs Jev comparison: access, latency, cost, privacy",
+    seoTitle: "Laya vs Jev: open weights or a hosted API",
     seoDescription:
-      "Side-by-side Laya (open Apache 2.0 weights, self-host) vs Jev (hosted System One API): latency caveats, context, fine-tuning, ops, and when each fits routing and agent gates.",
+      "Searching Jev vs Laya? Laya is open weights you run yourself. Jev is the hosted decision API. Latency, cost, privacy, and when using both is the sane move.",
     keyPoint:
       "Pick Laya when you need on-prem or edge inference with open weights. Pick Jev when you want a managed System One API, gateway routing, and TypeSafe's hosted release cycle. Hybrid stacks are normal, not cheating.",
     sections: [
@@ -173,7 +173,7 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
       "Convai's open decision family: one forward pass, Choice / Score / Noul, Apache 2.0. Not a tiny chatbot wearing a trench coat.",
     seoTitle: "What is Laya? Open typed-decision models explained",
     seoDescription:
-      "Laya model family by Convai Innovations: ModernBERT and mmBERT checkpoints, Router mode, RLCD training, typed questions, and honest limits from the Hugging Face model card.",
+      "Laya, from Convai Innovations: ModernBERT and mmBERT checkpoints, Router mode, RLCD training, typed questions, and limits from the model card.",
     keyPoint:
       "Laya is a non-autoregressive decision stack. You define questions and options. The model returns structured answers with probabilities in one pass.",
     sections: [
@@ -379,9 +379,9 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
     title: "Migration and coexistence",
     tagline:
       "Map Jev-shaped gates to Laya checkpoints without breaking production. And know when not to migrate.",
-    seoTitle: "Migrate or pair Laya with Jev: hybrid typed-decision patterns",
+    seoTitle: "Migrate or pair Laya with Jev: hybrid patterns",
     seoDescription:
-      "Coexistence architectures: local Laya pre-filter plus hosted Jev escalation, schema mapping, calibration, and ops checklists when moving off API-only System One.",
+      "Local Laya as a pre-filter plus hosted Jev for escalation, with schema mapping, calibration, and ops checks when you leave API-only System One.",
     keyPoint:
       "Migration is a schema, calibration, and ops project. It is not a find-replace on endpoint URLs.",
     sections: [

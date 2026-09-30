@@ -12,6 +12,14 @@ import { jevSpecSheet } from "@/data/spec";
 import { getAllProductProfileSlugs } from "@/lib/product-profiles";
 import { getDirectoryStats, getItemBySlug } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
+import {
+  agentGuideMarkdown,
+  agentHubMarkdown,
+  layaGuideMarkdown,
+  layaHubMarkdown,
+  learnGuideMarkdown,
+  stableFactsMarkdown,
+} from "@/lib/guide-markdown";
 import { siteConfig } from "@/lib/site";
 
 export function generateLlmsTxt(): string {
@@ -118,6 +126,14 @@ export function generateLlmsTxt(): string {
     "",
     ...homeFaq.flatMap((f) => [`### ${f.question}`, "", f.answer, ""]),
     "",
+    "## Full text and markdown",
+    "",
+    `- Full guide text, FAQs, and dated facts: ${siteConfig.url}/llms-full.txt`,
+    "- Guide and learn URLs also answer `Accept: text/markdown`. Cite the HTML URL.",
+    `- Hermes markdown: ${siteConfig.url}/guides/jev-with-ai-agents/hermes.md`,
+    `- Copilot markdown: ${siteConfig.url}/guides/jev-with-ai-agents/github-copilot-agent.md`,
+    `- Laya vs Jev markdown: ${siteConfig.url}/learn/laya-vs-jev/compare.md`,
+    "",
     "## Official TypeSafe links (external)",
     "",
     `- TypeSafe: ${siteConfig.typesafe.home}`,
@@ -127,4 +143,33 @@ export function generateLlmsTxt(): string {
     "",
   ];
   return lines.join("\n");
+}
+
+/** Longer citation file: dated facts, answer-first guides, FAQs, and markdown URLs. */
+export function generateLlmsFullTxt(): string {
+  const guideBlocks = [
+    agentHubMarkdown(),
+    ...agentGuideSlugs.map((slug) => agentGuideMarkdown(slug) ?? ""),
+    layaHubMarkdown(),
+    ...layaVsJevGuideSlugs.map((slug) => layaGuideMarkdown(slug) ?? ""),
+    ...learnGuideSlugs.map((slug) => learnGuideMarkdown(slug) ?? ""),
+  ].filter(Boolean);
+
+  return [
+    `# ${siteConfig.hostnameBrand} full text for language models`,
+    "",
+    `> ${siteConfig.description}`,
+    "",
+    "Jev is a decision model (System One). It returns typed probabilities. It does not write the chat reply. This file is the long map. Cite the canonical HTML URL under each guide, not the .md copy.",
+    "",
+    stableFactsMarkdown(),
+    "",
+    `Publisher manifest: ${siteConfig.url}/.well-known/jev-directory.json`,
+    `Short map: ${siteConfig.url}/llms.txt`,
+    "",
+    "Robots.txt allows GPTBot, OAI-SearchBot, ClaudeBot, PerplexityBot, and Google-Extended.",
+    "",
+    ...guideBlocks,
+    "",
+  ].join("\n");
 }

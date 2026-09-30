@@ -5,6 +5,8 @@ import { layaVsJevGuides, layaVsJevGuidePath } from "@/data/laya-vs-jev-guides";
 import { learnGuides } from "@/data/learn-guides";
 import type { LearnGuideSlug } from "@/data/learn-guides";
 import { splitIntoParagraphs } from "@/lib/prose";
+import DirectoryLinks from "@/components/directory-links.astro";
+import { linksForLayaGuide } from "@/lib/directory-links";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 interface Props {
@@ -19,6 +21,7 @@ const relatedGuides = guide.relatedGuideSlugs
 const relatedLearn = guide.relatedLearnSlugs
   .map((slug) => learnGuides[slug as LearnGuideSlug])
   .filter(Boolean);
+const directoryLinks = linksForLayaGuide(guide.slug);
 ---
 
 <article>
@@ -29,6 +32,8 @@ const relatedLearn = guide.relatedLearnSlugs
       {keyPointParagraphs.map((para) => <p>{para}</p>)}
     </div>
   </aside>
+
+  <DirectoryLinks links={directoryLinks} />
 
   <div class="mt-10 space-y-10">
     {

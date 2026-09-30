@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
-import { breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
+import { articleListJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
 import {
   agentGuideSlugs,
   agentGuides,
@@ -26,6 +26,7 @@ const cards = agentGuideSlugs.map((slug) => agentGuides[slug]);
   path="/guides/jev-with-ai-agents"
   type="article"
   ogImagePath={seo.imagePath}
+  markdownAlternate="/guides/jev-with-ai-agents.md"
   jsonLd={[
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
@@ -33,6 +34,14 @@ const cards = agentGuideSlugs.map((slug) => agentGuides[slug]);
       { name: agentGuidesHub.title, path: "/guides/jev-with-ai-agents" },
     ]),
     faqPageJsonLd(agentGuidesHub.faq),
+    articleListJsonLd({
+      name: agentGuidesHub.title,
+      path: "/guides/jev-with-ai-agents",
+      items: agentGuideSlugs.map((slug) => ({
+        name: agentGuides[slug].title,
+        path: `/guides/jev-with-ai-agents/${slug}`,
+      })),
+    }),
   ]}
 >
   <div class="max-w-6xl page-shell-breadcrumb">

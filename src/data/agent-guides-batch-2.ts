@@ -19,7 +19,7 @@ export const agentGuidesBatch2: Record<AgentGuideBatch2Slug, AgentGuide> = {
       "TypeSafeClassifier in your graph, experimental middleware for routing and Auto Mode gates, no fake chat classifiers.",
     seoTitle: "LangChain + Jev: typesafe classifier and middleware",
     seoDescription:
-      "Install langchain-typesafe, use Choice, Score, and Noul with TypeSafeClassifier, and add ModelRouterMiddleware or AutoModeMiddleware. LangChain blog patterns, pitfalls, and catalog links.",
+      "Install langchain-typesafe and use Choice, Score, and Noul with TypeSafeClassifier, plus router or auto-mode middleware. Patterns, pitfalls, and catalog links.",
     whyJev:
       "LangGraph loops burn a full LLM call every time you need a label, a route, or a pre-tool risk check. Jev returns typed probabilities in one parallel request. The official langchain-typesafe package wraps that as a LangChain Runnable plus optional agent middleware, so your Python harness stays boring and your bills stay smaller.",
     sections: [
@@ -520,7 +520,7 @@ uvx system1-mcp doctor`,
     tagline: "Jev picks the next click or risk gate; the small LLM types only when the DOM demands it.",
     seoTitle: "Browser agents + Jev: ultrafast ops and gates",
     seoDescription:
-      "Pair Jev with Browser Use and computer-use stacks: typed next-action Choice, risk nouls, catalog demos browser-use-jev-ultrafast and awlevin-typesafe-computer-use.",
+      "Pair Jev with Browser Use and computer-use stacks: next-action Choice, risk nouls, and demos for ultrafast browser use and typesafe-computer-use.",
     whyJev:
       "Browser agents tempt you to let a frontier model read the entire DOM every step. That is slow, expensive, and oddly good at clicking the wrong button with confidence. Jev classifies the next operation, scores risk, and verifies success with parallel nouls while a tiny model handles literal typing.",
     sections: [

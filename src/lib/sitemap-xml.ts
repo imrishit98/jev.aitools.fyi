@@ -1,17 +1,23 @@
-import { statSync } from "node:fs";
-import { dirname, join } from "node:path";
-import { fileURLToPath } from "node:url";
 import { categories } from "@/data/categories";
 import type { CategorySlug } from "@/data/types";
 import { agentGuideSlugs } from "@/data/agent-guides";
 import { learnGuideSlugs } from "@/data/learn-guides";
 import { layaVsJevGuideSlugs } from "@/data/laya-vs-jev-guides";
+import {
+  agentGuideDate,
+  agentHubDate,
+  categoryEditorialDate,
+  formatIsoDay,
+  layaGuideDate,
+  layaHubDate,
+  learnGuideDate,
+  parseIsoDay,
+  staticRouteDates,
+} from "@/lib/content-dates";
 import { getItemsByCategory, getItemsWithDetailPages } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { absoluteUrl, parseItemLastModified } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
-
-const srcRoot = join(dirname(fileURLToPath(import.meta.url)), "..");
 
 export type SitemapUrl = {
   loc: string;
@@ -29,26 +35,22 @@ function xmlEscape(s: string) {
 }
 
 function formatLastmod(date: Date): string {
-  return date.toISOString();
-}
-
-/** Source file mtime for editorial routes (falls back to now). */
-export function sourceLastModified(relativeFromSrc: string): Date {
-  try {
-    return statSync(join(srcRoot, relativeFromSrc)).mtime;
-  } catch {
-    return new Date();
-  }
+  return formatIsoDay(date);
 }
 
 function categoryLastModified(slug: CategorySlug): Date {
   const items = getItemsByCategory(slug);
-  let max = sourceLastModified("data/categories-data.ts");
+  let max = parseIsoDay(categoryEditorialDate(slug));
   for (const item of items) {
     const d = parseItemLastModified(item.updatedAt);
     if (d.getTime() > max.getTime()) max = d;
   }
   return max;
+}
+
+function staticRouteDate(path: string): Date {
+  const key = path === "" ? "/" : path;
+  return parseIsoDay(staticRouteDates[key] ?? "2026-09-23");
 }
 
 function renderUrlset(entries: SitemapUrl[]): string {
@@ -89,25 +91,24 @@ const STATIC_ROUTE_META: {
   path: string;
   priority: number;
   changefreq: string;
-  source: string;
 }[] = [
-  { path: "", priority: 1, changefreq: "daily", source: "pages/index.astro" },
-  { path: "/explore", priority: 0.9, changefreq: "daily", source: "pages/explore/index.astro" },
-  { path: "/showcase", priority: 0.88, changefreq: "weekly", source: "pages/showcase/index.astro" },
-  { path: "/learn", priority: 0.85, changefreq: "weekly", source: "pages/learn/index.astro" },
-  { path: "/guides", priority: 0.84, changefreq: "weekly", source: "pages/guides/index.astro" },
-  { path: "/submit", priority: 0.6, changefreq: "monthly", source: "pages/submit.astro" },
-  { path: "/about", priority: 0.55, changefreq: "monthly", source: "pages/about.astro" },
-  { path: "/contact", priority: 0.52, changefreq: "monthly", source: "pages/contact.astro" },
-  { path: "/privacy", priority: 0.5, changefreq: "monthly", source: "pages/privacy.astro" },
-  { path: "/developers", priority: 0.62, changefreq: "monthly", source: "pages/developers.astro" },
-  { path: "/for-agents", priority: 0.58, changefreq: "monthly", source: "pages/for-agents.astro" },
+  { path: "", priority: 1, changefreq: "daily" },
+  { path: "/explore", priority: 0.9, changefreq: "daily" },
+  { path: "/showcase", priority: 0.88, changefreq: "weekly" },
+  { path: "/learn", priority: 0.85, changefreq: "weekly" },
+  { path: "/guides", priority: 0.84, changefreq: "weekly" },
+  { path: "/submit", priority: 0.6, changefreq: "monthly" },
+  { path: "/about", priority: 0.55, changefreq: "monthly" },
+  { path: "/contact", priority: 0.52, changefreq: "monthly" },
+  { path: "/privacy", priority: 0.5, changefreq: "monthly" },
+  { path: "/developers", priority: 0.62, changefreq: "monthly" },
+  { path: "/for-agents", priority: 0.58, changefreq: "monthly" },
 ];
 
 export function generateSitemapStaticXml(): string {
   const entries: SitemapUrl[] = STATIC_ROUTE_META.map((r) => ({
     loc: absoluteUrl(r.path),
-    lastmod: sourceLastModified(r.source),
+    lastmod: staticRouteDate(r.path),
     priority: r.priority,
     changefreq: r.changefreq,
   }));
@@ -123,7 +124,7 @@ export function generateSitemapStaticXml(): string {
 
   entries.push({
     loc: absoluteUrl("/demos/my-first-million/"),
-    lastmod: sourceLastModified("../public/demos/my-first-million/index.html"),
+    lastmod: staticRouteDate("/demos/my-first-million"),
     priority: 0.7,
     changefreq: "monthly",
   });
@@ -132,24 +133,22 @@ export function generateSitemapStaticXml(): string {
 }
 
 export function generateSitemapLearnXml(): string {
-  const learnMtime = sourceLastModified("data/learn-guides.ts");
-  const layaMtime = sourceLastModified("data/laya-vs-jev-guides.ts");
   const entries: SitemapUrl[] = [
     ...learnGuideSlugs.map((topic) => ({
       loc: absoluteUrl(`/learn/${topic}`),
-      lastmod: learnMtime,
+      lastmod: parseIsoDay(learnGuideDate(topic)),
       priority: 0.8,
       changefreq: "monthly",
     })),
     {
       loc: absoluteUrl("/learn/laya-vs-jev"),
-      lastmod: layaMtime,
+      lastmod: parseIsoDay(layaHubDate),
       priority: 0.85,
       changefreq: "monthly",
     },
     ...layaVsJevGuideSlugs.map((topic) => ({
       loc: absoluteUrl(`/learn/laya-vs-jev/${topic}`),
-      lastmod: layaMtime,
+      lastmod: parseIsoDay(layaGuideDate(topic)),
       priority: 0.82,
       changefreq: "monthly",
     })),
@@ -158,17 +157,16 @@ export function generateSitemapLearnXml(): string {
 }
 
 export function generateSitemapGuidesXml(): string {
-  const agentMtime = sourceLastModified("data/agent-guides.ts");
   const entries: SitemapUrl[] = [
     {
       loc: absoluteUrl("/guides/jev-with-ai-agents"),
-      lastmod: agentMtime,
+      lastmod: parseIsoDay(agentHubDate),
       priority: 0.82,
       changefreq: "monthly",
     },
     ...agentGuideSlugs.map((agent) => ({
       loc: absoluteUrl(`/guides/jev-with-ai-agents/${agent}`),
-      lastmod: agentMtime,
+      lastmod: parseIsoDay(agentGuideDate(agent)),
       priority: 0.8,
       changefreq: "monthly",
     })),
@@ -236,9 +234,19 @@ export function collectAllSitemapLocs(): string[] {
 }
 
 export function generateRobotsTxt(): string {
-  return `User-Agent: *
-Allow: /
+  const allow = `Allow: /
 
-Sitemap: ${siteConfig.url}/sitemap.xml
+`;
+  return `# LLM maps
+# ${siteConfig.url}/llms.txt
+# ${siteConfig.url}/llms-full.txt
+
+User-agent: GPTBot
+${allow}User-agent: OAI-SearchBot
+${allow}User-agent: ClaudeBot
+${allow}User-agent: PerplexityBot
+${allow}User-agent: Google-Extended
+${allow}User-agent: *
+${allow}Sitemap: ${siteConfig.url}/sitemap.xml
 `;
 }

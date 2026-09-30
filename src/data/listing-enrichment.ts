@@ -128,7 +128,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "itsmostafa-typesafe-mcp",
     metaTitle: "typesafe-mcp: Go MCP server and evaluate CLI for Jev",
     metaDescription:
-      "Install typesafe-mcp with one script: MCP tools for Claude Code, Desktop, Codex, and Pi. Typed Choice, Score, and Noul judgments instead of free-text evaluate hacks.",
+      "Install typesafe-mcp with 1 script: MCP tools for Claude Code, Desktop, Codex, and Pi. Typed Choice, Score, and Noul, not free-text hacks.",
     creatorHandle: "itsmostafa",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -172,7 +172,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "jomatsu-pi-jev-auto-mode",
     metaTitle: "pi-jev-auto-mode: Jev thresholds for Pi tool auto-approve",
     metaDescription:
-      "Pi coding agent extension that uses System One to auto-approve safe bash, write, and edit tool calls. Configurable thresholds; fails closed when Jev is undecided.",
+      "Pi extension that uses System One to auto-approve safe bash, write, and edit calls. Configurable thresholds. Fails closed when Jev is undecided.",
     creatorHandle: "jomatsu",
     jevPrimitives: ["Choice", "Noul"],
     jevUsageSummary:
@@ -288,7 +288,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "saibimajdi-typesafeai-dotnet-sdk",
     metaTitle: "typesafeai-dotnet-sdk: .NET client for System One",
     metaDescription:
-      "Community .NET SDK for TypeSafe Jev with net8/net10 support, XML docs, and a published documentation site. Choice, Score, and Noul with forward-compatible raw JSON escape hatches.",
+      "Community .NET SDK for TypeSafe Jev with net8 and net10, XML docs, and a docs site. Choice, Score, and Noul, plus raw JSON escape hatches.",
     creatorHandle: "saibimajdi",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -358,7 +358,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "bunsdev-clarity-judge",
     metaTitle: "clarity-judge: multi-axis writing checks with Jev",
     metaDescription:
-      "Playground app scoring hedging, clarity, filler, tone, passive voice, and actionability with separate Jev questions. Public demo at judge.jev.works uses simulated mode without API keys.",
+      "Playground that scores hedging, clarity, filler, tone, passive voice, and actionability with Jev. Demo at judge.jev.works can run simulated, with no API key.",
     creatorHandle: "BunsDev",
     jevPrimitives: ["Score", "Noul"],
     jevUsageSummary:
@@ -426,7 +426,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "antoniocoppe-jev-harness",
     metaTitle: "jev-harness: policy, shadow mode, and evals on Jev",
     metaDescription:
-      "TypeScript DecisionHarness for TypeSafe Jev: confidence gates, shadow mode, recipes for alerts and routing, and an offline eval CLI. OpenClaw jev-harness plugin builds on this library.",
+      "TypeScript DecisionHarness for TypeSafe Jev: confidence gates, shadow mode, alert and routing recipes, and an offline eval CLI. OpenClaw plugin included.",
     creatorHandle: "AntonioCoppe",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -469,7 +469,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "0xnatoshi-jev-codex-router",
     metaTitle: "jev-codex-router: per-turn Codex model routing with Jev",
     metaDescription:
-      "Codex Router extension that classifies each turn with Jev, picks Luna, Sol, or Astra plus thinking depth, fail-open on errors, and logs decisions locally for calibration.",
+      "Codex Router extension that classifies each turn with Jev, picks Luna, Sol, or Astra plus thinking depth, and fails open. Logs stay local.",
     creatorHandle: "0xLogicrw",
     jevPrimitives: ["Choice"],
     jevUsageSummary:
@@ -512,7 +512,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "keeltrace-hermes-jev",
     metaTitle: "hermes-jev: async Jev nervous system for Hermes",
     metaDescription:
-      "Community Hermes plugin: background Jev admission, adaptive context routing, bounded decision comparison, and high-confidence challenges without blocking ordinary Hermes execution.",
+      "Hermes plugin for background Jev admission, context routing, bounded comparisons, and high-confidence challenges. Ordinary Hermes turns are not blocked.",
     creatorHandle: "keeltrace",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -557,7 +557,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "jkudish-jev-browser",
     metaTitle: "jev-browser: MCP and CLI browser loops with Jev actions",
     metaDescription:
-      "Headless browser automation where Jev picks one action per step from clickable elements, scores goal progress and stuck risk, and code owns budgets and recovery.",
+      "Headless browser loop where Jev picks 1 action per step, scores progress and stuck risk, and your code owns budgets and recovery.",
     creatorHandle: "jkudish",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -597,7 +597,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
 
   "lahfir-agent-desktop": {
     slug: "lahfir-agent-desktop",
-    metaTitle: "agent-desktop: accessibility-tree desktop automation with Jev",
+    metaTitle: "agent-desktop: accessibility-tree automation with Jev",
     metaDescription:
       "lahfir/agent-desktop Rust CLI for macOS AX snapshots and ref actions. Pair with Jev Choice in your agent loop. Starred in Muhammad Aayan top-ten Jev repos.",
     creatorHandle: "lahfir",
@@ -621,7 +621,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "kerpopule-hermes-jev-skills",
     metaTitle: "Hermes Jev Skills: nine decision skills for agents",
     metaDescription:
-      "kerpopule/hermes-jev-skills: Jev model routing, memory filter, compaction select, skill pick, triage, mail lanes, computer and browser Choice. Distinct from fast-jev-compaction.",
+      "kerpopule/hermes-jev-skills: Jev routing, memory, compaction, skill pick, triage, mail, and GUI Choice. Not the same as fast-jev-compaction.",
     creatorHandle: "kerpopule",
     jevPrimitives: ["Choice", "Score", "Noul"],
     jevUsageSummary:
@@ -649,7 +649,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     slug: "socialwithaayan-ten-jev-repos",
     metaTitle: "10 Jev repos blowing up: Muhammad Aayan roundup",
     metaDescription:
-      "Muhammad Aayan (@socialwithaayan) ranks ten hot Jev GitHub projects with how each uses Choice, Score, and Noul. Directory deep links for every repo plus his Full Guide article.",
+      "Muhammad Aayan ranks 10 hot Jev GitHub projects and how each uses Choice, Score, and Noul. Directory links for every repo, plus his guide.",
     creatorHandle: "socialwithaayan",
     jevUsageSummary:
       "The thread is editorial, not a new integration: each numbered repo already embeds Jev on a specific hot path. Use this page as a map into our product profiles and tool listings rather than a substitute for upstream READMEs.",
