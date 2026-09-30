@@ -3,6 +3,7 @@ import { categoryEnrichmentBySlug } from "@/data/category-enrichment";
 import { categories } from "@/data/categories";
 import { learnGuideSlugs, learnGuides } from "@/data/learn-guides";
 import { listingEnrichmentBySlug } from "@/data/listing-enrichment";
+import { listingSeoCopy } from "@/data/listing-seo-copy";
 import {
   layaVsJevGuideSlugs,
   layaVsJevGuides,
@@ -41,6 +42,11 @@ export function collectRawMetaFields(): RawMetaField[] {
   for (const [slug, enrichment] of Object.entries(listingEnrichmentBySlug)) {
     push(fields, `listing:${slug}:metaTitle`, "title", enrichment.metaTitle);
     push(fields, `listing:${slug}:metaDescription`, "description", enrichment.metaDescription);
+  }
+
+  for (const [slug, copy] of Object.entries(listingSeoCopy)) {
+    push(fields, `listing-seo:${slug}:metaTitle`, "title", copy.metaTitle);
+    push(fields, `listing-seo:${slug}:metaDescription`, "description", copy.metaDescription);
   }
 
   for (const cat of categories) {

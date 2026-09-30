@@ -8,7 +8,7 @@ const GUIDE_PRIOR = "2026-09-26";
 const STATIC_PRIOR = "2026-09-23";
 
 export const staticRouteDates: Record<string, string> = {
-  "/": STATIC_PRIOR,
+  "/": TOUCHED,
   "/explore": STATIC_PRIOR,
   "/showcase": TOUCHED,
   "/learn": TOUCHED,

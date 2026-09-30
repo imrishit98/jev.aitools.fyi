@@ -99,7 +99,7 @@ export const agentGuidesHub = {
 const agentGuidesBatch1: Record<AgentGuideBatch1Slug, AgentGuide> = {
   hermes: {
     slug: "hermes",
-    title: "Hermes Agent + Jev",
+    title: "Jev with Hermes Agent",
     tagline: "Smart approvals, skill routing, and MCP without asking Hermes to fake a classifier.",
     seoTitle: "Jev with Hermes Agent: approvals and routing setup",
     seoDescription:
@@ -416,9 +416,9 @@ TYPESAFE_API_KEY=your-key evaluate setup mcp`,
     slug: "codex-and-opencode",
     title: "Codex and OpenCode + Jev",
     tagline: "jev-judge on the CLI, evaluate setup, and routers that treat Jev as traffic control.",
-    seoTitle: "Codex and OpenCode + Jev: judge MCP and routers",
+    seoTitle: "Jev with Codex and OpenCode: MCP and routing",
     seoDescription:
-      "Add jev-judge-mcp to Codex and OpenCode, plus typesafe-mcp evaluate and jev-codex-router. MCP config, skills, and fail-open routing.",
+      "Use Jev with Codex and OpenCode to judge tool calls and pick a route. MCP setup, skills, and a router that fails open if Jev errors.",
     whyJev:
       "Codex and OpenCode spend quota on big models for small forks in the road. Jev classifies the next step, scores skill relevance, or judges evidence before you pay for another full reasoning pass.",
     sections: [

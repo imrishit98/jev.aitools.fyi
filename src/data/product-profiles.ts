@@ -5779,9 +5779,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "README states saved cards live in browser localStorage until you delete them.",
       },
     ],
-    metaTitle: "Shapeshift: Jev intent fan-out for morphing text UI",
+    metaTitle: "Shapeshift: one box, many Jev intent cards",
     metaDescription:
-      "anishfn/shapeshift uses parallel Jev questions plus deterministic parsers for one-box UI morphing. Offline default, live at shapeshiftui.vercel.app.",
+      "Shapeshift fans one text box out into events, lists, and timers with parallel Jev questions. Offline by default. Live demo at shapeshiftui.vercel.app.",
   },
 
   "qkal-canny": {

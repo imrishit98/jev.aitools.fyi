@@ -246,6 +246,74 @@ if (!compareTitle.includes("Laya vs Jev: open weights or a hosted API")) {
 if (!compareHtml.includes('aria-label="In the directory"')) {
   errors.push("Laya compare missing directory link module");
 }
+const compareH1 = (compareHtml.match(/<h1[^>]*>([^<]*)<\/h1>/)?.[1] ?? "").trim();
+if (compareH1 !== "Laya vs Jev: open weights or a hosted API") {
+  errors.push(`Laya compare H1 mismatch: ${compareH1}`);
+}
+if (compareHtml.includes("TypeSafe's hosted release cycle")) {
+  errors.push("Laya compare key point still names TypeSafe");
+}
+if (!compareHtml.includes("Using both is normal.")) {
+  errors.push("Laya compare key point was not rewritten");
+}
+
+const homeHtml = readFileSync(join(distRoot, "index.html"), "utf8");
+const homeTitle = (homeHtml.match(/<title>([^<]*)<\/title>/)?.[1] ?? "").trim();
+if (homeTitle !== "Jev tools directory: SDKs, agents, and demos") {
+  errors.push(`Homepage title mismatch: ${homeTitle}`);
+}
+if (!homeHtml.includes("A curated map of Jev tools:")) {
+  errors.push("Homepage description was not rewritten");
+}
+
+const copilotHtml = readFileSync(
+  join(distRoot, "guides/jev-with-ai-agents/github-copilot-agent.html"),
+  "utf8",
+);
+if (!copilotHtml.includes("GitHub Copilot Agent + Jev: MCP in VS Code")) {
+  errors.push("Copilot guide title must stay unchanged");
+}
+
+const hermesH1 = (hermesHtml.match(/<h1[^>]*>([^<]*)<\/h1>/)?.[1] ?? "").trim();
+if (hermesH1 !== "Jev with Hermes Agent") {
+  errors.push(`Hermes H1 mismatch: ${hermesH1}`);
+}
+if (hermesH1.includes("Hermes Jev:")) {
+  errors.push("Hermes H1 is keyword stuffed");
+}
+
+const omnijevHtml = readFileSync(
+  join(distRoot, "guides/omnijev-awesome-jev.html"),
+  "utf8",
+);
+const omnijevDesc =
+  omnijevHtml.match(/<meta name="description" content="([^"]*)"/)?.[1] ?? "";
+if (omnijevDesc.endsWith("Reading queue from.") || omnijevDesc.includes("Reading queue from")) {
+  errors.push(`OmniJev description still chopped: ${omnijevDesc}`);
+}
+if (!omnijevHtml.includes("OmniJev: papers and evals behind Jev")) {
+  errors.push("OmniJev title was not rewritten");
+}
+
+const learnPrimers = [
+  "jev-typesafe",
+  "system-one",
+  "jev-vs-llm-classification",
+  "vercel-ai-gateway",
+  "where-to-run-jev",
+  "use-cases",
+];
+for (const slug of learnPrimers) {
+  const html = readFileSync(join(distRoot, `learn/${slug}.html`), "utf8");
+  const faqPages = html.match(/"@type":"FAQPage"/g) ?? [];
+  if (faqPages.length !== 1) {
+    errors.push(`${slug} FAQPage JSON-LD count is ${faqPages.length}, expected 1`);
+  }
+  const questions = html.match(/"@type":"Question"/g) ?? [];
+  if (questions.length !== 3) {
+    errors.push(`${slug} FAQ question count is ${questions.length}, expected 3`);
+  }
+}
 
 const openapiPath = join(distRoot, "openapi.json");
 try {
