@@ -223,6 +223,9 @@ export function learnGuideMarkdown(slug: string): string | null {
   const sections = guide.headings
     .map((section) => `## ${plain(section.h)}\n\n${plain(section.body)}`)
     .join("\n\n");
+  const faq = guide.faq
+    .map((entry) => `### ${plain(entry.question)}\n\n${plain(entry.answer)}`)
+    .join("\n\n");
   return [
     `# ${plain(guide.title)}`,
     "",
@@ -233,6 +236,10 @@ export function learnGuideMarkdown(slug: string): string | null {
     plain(guide.definition),
     "",
     sections,
+    "",
+    "## FAQ",
+    "",
+    faq,
     "",
     `Directory copy checked ${updated}. This directory is independent of TypeSafe AI unless a listing says it is official.`,
     `Canonical: ${absoluteUrl(path)}`,

@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
-import { breadcrumbJsonLd, learnArticleJsonLd } from "@/components/json-ld";
+import { breadcrumbJsonLd, faqPageJsonLd, learnArticleJsonLd } from "@/components/json-ld";
 import { learnGuideSlugs, getLearnGuide } from "@/data/learn-guides";
 import { learnGuideDate } from "@/lib/content-dates";
 import { learnTopicPageSeo } from "@/lib/seo";
@@ -36,6 +36,7 @@ const definitionParagraphs = splitIntoParagraphs(guide.definition, 220);
       { name: guide.title, path: `/learn/${topic}` },
     ]),
     learnArticleJsonLd(guide, learnGuideDate(guide.slug)),
+    ...(guide.faq.length > 0 ? [faqPageJsonLd(guide.faq)] : []),
   ]}
 >
   <div class="max-w-3xl page-shell-breadcrumb">
@@ -73,6 +74,19 @@ const definitionParagraphs = splitIntoParagraphs(guide.definition, 220);
         );
       })}
     </div>
+    {guide.faq.length > 0 && (
+      <section class="mt-14" id="faq">
+        <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+        <dl class="mt-6 space-y-6">
+          {guide.faq.map((entry) => (
+            <div>
+              <dt class="font-medium text-foreground">{entry.question}</dt>
+              <dd class="mt-2 leading-relaxed text-muted-foreground">{entry.answer}</dd>
+            </div>
+          ))}
+        </dl>
+      </section>
+    )}
     <LearnArticleShare
       client:visible
       topic={topic!}

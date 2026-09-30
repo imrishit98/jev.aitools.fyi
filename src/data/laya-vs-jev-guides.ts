@@ -110,14 +110,14 @@ const sharedSources: LayaVsJevSource[] = [
 const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
   compare: {
     slug: "compare",
-    title: "Laya vs Jev: comparison overview",
+    title: "Laya vs Jev: open weights or a hosted API",
     tagline:
       "Same typed primitives, different deployment. Read this before you rip out a working Jev integration on a Friday afternoon.",
     seoTitle: "Laya vs Jev: open weights or a hosted API",
     seoDescription:
       "Searching Jev vs Laya? Laya is open weights you run yourself. Jev is the hosted decision API. Latency, cost, privacy, and when using both is the sane move.",
     keyPoint:
-      "Pick Laya when you need on-prem or edge inference with open weights. Pick Jev when you want a managed System One API, gateway routing, and TypeSafe's hosted release cycle. Hybrid stacks are normal, not cheating.",
+      "Pick Laya when you need open weights on your own machines. Pick hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
     sections: [
       {
         h: "What both products do",

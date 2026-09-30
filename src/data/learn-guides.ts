@@ -1,3 +1,5 @@
+import type { FaqEntry } from "@/data/faq";
+
 export type LearnGuide = {
   slug: string;
   title: string;
@@ -6,6 +8,7 @@ export type LearnGuide = {
   seoDescription: string;
   definition: string;
   headings: { h: string; body: string }[];
+  faq: FaqEntry[];
   exploreHref?: string;
 };
 
@@ -58,6 +61,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         body: "Skip Jev when you need long-form copy, open-ended brainstorming, or narrative reasoning. Reach for an LLM or a template engine there. Many teams pair both: Jev for gates and routing, generative models for user-visible language.",
       },
     ],
+    faq: [
+      {
+        question: "What is Jev?",
+        answer:
+          "Jev is TypeSafe's flagship System One model. You send structured state and typed questions, and the API returns discrete answers with per-option probabilities and confidence scores.",
+      },
+      {
+        question: "Will Jev write the email?",
+        answer:
+          "Skip Jev when you need long-form copy, open-ended brainstorming, or narrative reasoning. Many teams pair both: Jev for gates and routing, generative models for user-visible language.",
+      },
+      {
+        question: "Are these the official TypeSafe docs?",
+        answer:
+          "jev.aitools.fyi is an independent curated directory by aitools.fyi. Read the introduction at typesafe.ai and follow the quick start on docs.typesafe.ai.",
+      },
+    ],
   },
   "system-one": {
     slug: "system-one",
@@ -94,6 +114,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "Operational footprint",
         body: "Because outputs are discrete, logging and replay are straightforward: store the state hash, questions, and probability vector. Incident review does not require reading pages of generated prose.",
+      },
+    ],
+    faq: [
+      {
+        question: "Does System One chat?",
+        answer:
+          "System One models do not freely generate prose. They answer constrained questions, such as which option, what score, or how true, with calibrated probabilities.",
+      },
+      {
+        question: "Why ask so many questions at once?",
+        answer:
+          "System One shines when you ask many small questions about the same snapshot of state. One forward pass keeps latencies predictable compared with serial chat calls that repeat the same preamble.",
+      },
+      {
+        question: "What do I do with the probabilities?",
+        answer:
+          "Probabilities are meant to be thresholded. If your pipeline needs a 0.95 bar for auto-approval, you can tune policies in code and measure drift over time.",
       },
     ],
   },
@@ -134,6 +171,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         body: "Browse moderation and routing listings in this directory for repos that publish benchmarks against chat baselines. Treat them as patterns, not endorsements. Always read the linked source for maintenance status.",
       },
     ],
+    faq: [
+      {
+        question: "When do I pick Jev instead of a chat label?",
+        answer:
+          "Use Jev when you need thresholdable probabilities over a fixed option set. Use an LLM when you need open-ended language generation.",
+      },
+      {
+        question: "Can I just parse YES or NO?",
+        answer:
+          "Jev returns explicit probability mass over options. You set if (confidence > 0.9) in code instead of parsing YES/NO from chat output.",
+      },
+      {
+        question: "When does the chat model still win?",
+        answer:
+          "Open-ended drafting, long reasoning chains, and novel text generation remain LLM territory. Many production stacks use Jev for discrete decisions and LLMs for language-heavy steps.",
+      },
+    ],
   },
   "vercel-ai-gateway": {
     slug: "vercel-ai-gateway",
@@ -172,6 +226,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         body: "Teams often prototype on the gateway, then move to direct TypeSafe credentials when they need private networking or custom quotas. SDK listings in this directory show both styles so you can compare wiring.",
       },
     ],
+    faq: [
+      {
+        question: "Can I try Jev on Vercel without a new stack?",
+        answer:
+          "Vercel AI Gateway exposes typesafe-ai/jev so AI SDK apps can run System One evaluate paths without wiring a separate TypeSafe stack first.",
+      },
+      {
+        question: "Where should the API key live?",
+        answer:
+          "Keep environment secrets in Vercel or your CI vault, not in client bundles. Rotate keys the same way you would for any hosted model route.",
+      },
+      {
+        question: "What if the gateway is only a prototype?",
+        answer:
+          "Teams often prototype on the gateway, then move to direct TypeSafe credentials when they need private networking or custom quotas.",
+      },
+    ],
   },
   "where-to-run-jev": {
     slug: "where-to-run-jev",
@@ -208,6 +279,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "What we did not guess",
         body: "Rate limits like 250,000 tokens per second on the official API are omitted here unless docs.typesafe.ai/models states them in your checkout. Context limits vary by gateway (32k on Vercel, OpenRouter, and Cloudflare model pages). Always confirm aliases on the provider page you ship against.",
+      },
+    ],
+    faq: [
+      {
+        question: "Where is the official API?",
+        answer:
+          "POST https://api.typesafe.ai/v1/systemone with TYPESAFE_AI_API_KEY, or TYPESAFE_API_KEY on some community tools.",
+      },
+      {
+        question: "Is classifier.dev the same API?",
+        answer:
+          "No. classifier.dev is zero-shot text classification over HTTP, with a fast tier on Jev and smart tier escalation below 0.7 confidence.",
+      },
+      {
+        question: "Which numbers did this page skip?",
+        answer:
+          "Rate limits like 250,000 tokens per second on the official API are omitted here unless docs.typesafe.ai/models states them in your checkout. Context limits vary by gateway, so always confirm aliases on the provider page you ship against.",
       },
     ],
   },
@@ -254,6 +342,23 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       {
         h: "How to explore further",
         body: "Use category filters on Explore to narrow listings by pattern. Favor repos with demos or recent commits when you are evaluating fit. Submit your own project if you ship something missing here.",
+      },
+    ],
+    faq: [
+      {
+        question: "What do people use Jev for?",
+        answer:
+          "Common Jev use cases include moderation gates, model routing, support triage, RAG verify, and agent tool approval.",
+      },
+      {
+        question: "How do moderation gates work here?",
+        answer:
+          "Discord bots, comment guard demos, indie media trust gates, and scam filters use parallel Noul and Choice questions to escalate or block content with explicit confidence.",
+      },
+      {
+        question: "Can Jev pick the next click?",
+        answer:
+          "Computer-use demos treat the next click or keypress as a Choice over a finite action catalog. Pair with vision or DOM snapshots as your state payload.",
       },
     ],
   },

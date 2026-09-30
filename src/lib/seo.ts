@@ -1,4 +1,5 @@
 import { categories } from "@/data/categories-data";
+import { listingSeoCopy } from "@/data/listing-seo-copy";
 import { getCategoryEnrichment } from "@/lib/category-enrichment";
 import {
   agentGuideSlugs,
@@ -240,15 +241,20 @@ function buildUniqueListingMetaMap(): Map<string, ListingMetaDraft> {
   for (const item of items) {
     const profile = getProductProfile(item.slug);
     const enrichment = getListingEnrichment(item.slug);
+    const seoCopy = listingSeoCopy[item.slug];
     map.set(item.slug, {
       titleCore: profile
         ? productProfileSeoTitle(item, profile)
         : enrichment?.metaTitle
           ? stripEmDash(enrichment.metaTitle)
-          : draftItemTitleCore(item),
+          : seoCopy?.metaTitle
+            ? stripEmDash(seoCopy.metaTitle)
+            : draftItemTitleCore(item),
       description: enrichment?.metaDescription
         ? trimMetaDescription(stripEmDash(enrichment.metaDescription))
-        : draftItemDescription(item),
+        : seoCopy?.metaDescription
+          ? trimMetaDescription(stripEmDash(seoCopy.metaDescription))
+          : draftItemDescription(item),
     });
   }
 
@@ -284,20 +290,26 @@ function buildUniqueListingMetaMap(): Map<string, ListingMetaDraft> {
 
   resolveDuplicates(
     (d) => withBrand(d.titleCore),
-    (item, draft) => ({
-      ...draft,
-      titleCore: draftItemTitleCore(item, slugDisambiguator(item.slug)),
-    }),
+    (item, draft) => {
+      if (listingSeoCopy[item.slug]?.metaTitle) return draft;
+      return {
+        ...draft,
+        titleCore: draftItemTitleCore(item, slugDisambiguator(item.slug)),
+      };
+    },
   );
 
   resolveDuplicates(
     (d) => d.description,
-    (item, draft) => ({
-      ...draft,
-      description: trimMetaDescription(
-        `${stripEmDash(item.oneLiner)} Listing id ${item.slug.replace(/-/g, " ")} on Jev Directory.`,
-      ),
-    }),
+    (item, draft) => {
+      if (listingSeoCopy[item.slug]?.metaDescription) return draft;
+      return {
+        ...draft,
+        description: trimMetaDescription(
+          `${stripEmDash(item.oneLiner)} Listing id ${item.slug.replace(/-/g, " ")} on Jev Directory.`,
+        ),
+      };
+    },
   );
 
   return map;
@@ -332,9 +344,9 @@ export function itemListingSeo(item: DirectoryItem) {
 
 export function homePageSeo() {
   return pageSeo({
-    title: "Jev Directory: demos, tools, and featured listings",
+    title: "Jev tools directory: SDKs, agents, and demos",
     description:
-      "Browse SDKs, integrations, and demos built on TypeSafe Jev. Watch builder clips, skim featured listings, and explore the curated tool map.",
+      "A curated map of Jev tools: SDKs, MCP servers, agent guides, and demos. Independent of TypeSafe. Start with Copilot, Hermes, or the full catalog.",
     path: "/",
     imagePath: ogImagePaths.home,
   });
