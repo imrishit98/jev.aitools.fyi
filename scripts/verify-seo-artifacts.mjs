@@ -300,6 +300,46 @@ if (redirectLines.length !== expectedCatalog + extraRedirectRules) {
   );
 }
 
+function listMarkdownFiles(dir, out = []) {
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) listMarkdownFiles(full, out);
+    else if (name.endsWith(".md")) out.push(full);
+  }
+  return out;
+}
+
+let headersFile = "";
+try {
+  headersFile = readFileSync(join(distRoot, "_headers"), "utf8");
+} catch {
+  errors.push("dist/_headers missing");
+}
+const headerPaths = [...headersFile.matchAll(/^(\/\S+\.md)$/gm)].map((m) => m[1]);
+const duplicateHeaderPaths = headerPaths.filter(
+  (path, index) => headerPaths.indexOf(path) !== index,
+);
+if (duplicateHeaderPaths.length > 0) {
+  errors.push(`_headers duplicate paths: ${[...new Set(duplicateHeaderPaths)].join(", ")}`);
+}
+if ([...headersFile.matchAll(/^(\/\S+)$/gm)].some((m) => !m[1].endsWith(".md"))) {
+  errors.push("_headers has a rule that is not a .md path");
+}
+const mdFiles = listMarkdownFiles(distRoot);
+for (const file of mdFiles) {
+  const mdPath = `/${file.slice(distRoot.length + 1).split("\\").join("/")}`;
+  const htmlPath = mdPath.slice(0, -".md".length);
+  const block = `${mdPath}\n  X-Robots-Tag: noindex, follow\n  Link: <https://jev.aitools.fyi${htmlPath}>; rel="canonical"\n  Content-Type: text/markdown; charset=utf-8\n`;
+  if (!headersFile.includes(block)) {
+    errors.push(`_headers missing rule for ${mdPath}`);
+  }
+}
+if (mdFiles.length !== headerPaths.length) {
+  errors.push(
+    `_headers rule count: expected ${mdFiles.length} markdown files, got ${headerPaths.length} rules`,
+  );
+}
+
 if (errors.length) {
   console.error("SEO artifact verification failed:\n");
   for (const e of errors) console.error(`  - ${e}`);
