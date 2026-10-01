@@ -9429,7 +9429,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Python teams who want an Apache-2.0 local decision stack with an automatic English, multilingual, or typed-decisions router, and who will read the README limits on high-cardinality labels and zero-shot typed workflows.",
     overview:
-      "DeepOpen (github.com/deepopen-com/deepopen, Apache-2.0, pip install deepopen) is an open multilingual non-autoregressive System 1 decision engine built on Laya. One forward pass answers choice, score, and noul over text, email, ticket, or JSON state. The Router detects script and language in pure Python, under 0.5 ms per the README, and sends the request to one of three Hugging Face checkpoints: convaiinnovations/deepopen (ModernBERT-large, 421M, 512 context, English), convaiinnovations/deepopen-multilingual (mmBERT-base, 322M, 1024 context, 100+ languages, README says about 2x the English checkpoint on speed), and convaiinnovations/deepopen-typed-decisions (ModernBERT-large, 421M, 1024 context, fine-tuned on typed workflows). You can also call deepopen.load on the root repo with subfolder multilingual or typed-decisions. README speed tables on a Tesla T4 put one multilingual question at 32.8 ms and a 10-question batch at 72.3 ms (7.2 ms per question). Preload keeps checkpoints resident. The default max_loaded of 1 rebuilds a model on every language switch, measured at a 7.4 s median on CPU and 10.3 s on T4. The GitHub repo lists www.deepopen.com as its homepage. Public counts were 1,633 stars and 217 forks when this listing was drafted.",
+      "DeepOpen (github.com/deepopen-com/deepopen, Apache-2.0, pip install deepopen) is an open multilingual non-autoregressive System 1 decision engine built on Laya. 1 forward pass answers choice, score, and noul over text, email, ticket, or JSON state. The Router detects script and language in pure Python, under 0.5 ms per the README, and sends the request to one of 3 Hugging Face checkpoints: convaiinnovations/deepopen (ModernBERT-large, 421M, 512 context, English), convaiinnovations/deepopen-multilingual (mmBERT-base, 322M, 1024 context, 100+ languages, README says about 2x the English checkpoint on speed), and convaiinnovations/deepopen-typed-decisions (ModernBERT-large, 421M, 1024 context, fine-tuned on typed workflows). You can also call deepopen.load on the root repo with subfolder multilingual or typed-decisions. README speed tables on a Tesla T4 put one multilingual question at 32.8 ms and a 10-question batch at 72.3 ms (7.2 ms per question). Preload keeps checkpoints resident. The default max_loaded of 1 rebuilds a model on every language switch, measured at a 7.4 s median on CPU and 10.3 s on T4. The GitHub repo lists www.deepopen.com as its homepage. Public counts were 1,633 stars and 217 forks when this listing was drafted.",
     creator: {
       name: "Deep Open",
       handle: "deepopen-com",
@@ -9444,7 +9444,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     jevUsage: {
       flowRole:
-        "Script-aware Router picks one of three non-autoregressive checkpoints, then one forward pass answers Choice, Score, and Noul",
+        "Script-aware Router picks one of 3 non-autoregressive checkpoints, then 1 forward pass answers Choice, Score, and Noul",
       primitives: ["Choice", "Score", "Noul"],
       stateIn:
         "Any state object (email fields, ticket text, or JSON) plus a questions map of choice criteria, score rubrics, or noul instructions. router.route inspects script and language without a forward pass.",
@@ -9454,7 +9454,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         "pip install deepopen, then Router(preload=True) or deepopen.load on convaiinnovations/deepopen",
         "Pass state and a questions map of choice, score, and noul items, or a preset such as triage_questions()",
         "Router detects script in pure Python and dispatches to english, multilingual, or an explicit typed-decisions override",
-        "One forward pass returns answers and routing.reason. README example gates automated action at confidence 0.85 and escalates the rest",
+        "1 forward pass returns answers and routing.reason. README example gates automated action at confidence 0.85 and escalates the rest",
         "For a dedicated pipeline, load one subfolder and skip the router. Raise head_max_len when a choice has dozens of options",
       ],
       sourcedMetrics: [
@@ -9486,11 +9486,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "DeepOpen is the multilingual router plus three checkpoints, built on Laya. The product is that router and those weights, not a second copy of an existing open model page. wfzyx-von is the English encoder aimed at order-invariant option scores and local speed. receptron-laya is the Node ONNX runtime for upstream Laya weights, and these three DeepOpen checkpoints are a different release line on convaiinnovations. nokia-applied-research-anyjev fits a Decider on hub LLMs you already serve and prints BANKING77 ECE. tianyucodings-nanojev trains 0.6B parallel heads on public game tasks. theoleecj-semif documents another open System One server. ollaya-dev-ollaya pulls and serves laya, kev, von, and decider ONNX on port 11435. githubnext-localjev bridges chat JSON on a Mac. rizzo-ai-academy-rizzo-flow serves a Spark head through llama.cpp. Hosted TypeSafe Jev remains the closed API. README comparison on 2,000 typed decisions: deepopen-typed-decisions argmax 0.766 against published Jev 1.13.0 at 0.727, with soft accuracy still behind at 0.471 against 0.580, and raw ECE 0.213 against 0.144 before temperature fitting. A separate README row lists post-temperature ECE at 0.081 against a third-party Jev ECE of 0.246. The same README gives Jev Banking77, 0.870 on 72 labels against 0.425 on 77 labels at the default head budget, and says the base checkpoints sit near chance on the typed-decisions set until you fine-tune. The Fine-Tuning section describes a Kaggle 2xT4 RLCD loop, about 4 to 5 hours for 4 epochs over about 30k questions. The notebook in the tree is notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb. Reproduction trees live at banking77/ and clinc150/. Cite github.com/deepopen-com/deepopen README, BENCHMARKS.md, those trees, and the Hugging Face repos convaiinnovations/deepopen, deepopen-multilingual, and deepopen-typed-decisions.",
+      "DeepOpen is the multilingual router plus 3 checkpoints, built on Laya. The product is that router and those weights, not a second copy of an existing open model page. wfzyx-von is the English encoder aimed at order-invariant option scores and local speed. receptron-laya is the Node ONNX runtime for upstream Laya weights, and these 3 DeepOpen checkpoints are a different release line on convaiinnovations. nokia-applied-research-anyjev fits a Decider on hub LLMs you already serve and prints BANKING77 ECE. tianyucodings-nanojev trains 0.6B parallel heads on public game tasks. theoleecj-semif documents another open System One server. ollaya-dev-ollaya pulls and serves laya, kev, von, and decider ONNX on port 11435. githubnext-localjev bridges chat JSON on a Mac. rizzo-ai-academy-rizzo-flow serves a Spark head through llama.cpp. Hosted TypeSafe Jev remains the closed API. README comparison on 2,000 typed decisions: deepopen-typed-decisions argmax 0.766 against published Jev 1.13.0 at 0.727, with soft accuracy still behind at 0.471 against 0.580, and raw ECE 0.213 against 0.144 before temperature fitting. A separate README row lists post-temperature ECE at 0.081 against a third-party Jev ECE of 0.246. The same README gives Jev Banking77, 0.870 on 72 labels against 0.425 on 77 labels at the default head budget, and says the base checkpoints sit near chance on the typed-decisions set until you fine-tune. The Fine-Tuning section describes a Kaggle 2xT4 RLCD loop, about 4 to 5 hours for 4 epochs over about 30k questions. The notebook in the tree is notebooks/laya_finetune_typed_decisions_2xT4_kaggle.ipynb. Reproduction trees live at banking77/ and clinc150/. Cite github.com/deepopen-com/deepopen README, BENCHMARKS.md, those trees, and the Hugging Face repos convaiinnovations/deepopen, deepopen-multilingual, and deepopen-typed-decisions.",
     keyFeatures: [
       "Router with preload, max_loaded, attach, and unload",
-      "Three checkpoints, plus direct deepopen.load with subfolders",
-      "choice, score, and noul in one forward pass, with routing.reason",
+      "3 checkpoints, plus direct deepopen.load with subfolders",
+      "choice, score, and noul in 1 forward pass, with routing.reason",
       "Preset packs: router_questions, guard_questions, moderation_questions, triage_questions",
       "Banking77 and CLINC150 reproduction directories",
       "BENCHMARKS.md plus temperature-calibration notes and a typed-decisions fine-tune notebook",
@@ -9524,7 +9524,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Is this the same product as receptron/laya or Von?",
         answer:
-          "No. receptron/laya is a Node ONNX client for upstream Laya weights. Von is an English non-autoregressive encoder focused on order-invariant scores. DeepOpen ships three checkpoints and a script-aware Router. The README says it is built on Laya.",
+          "No. receptron/laya is a Node ONNX client for upstream Laya weights. Von is an English non-autoregressive encoder focused on order-invariant scores. DeepOpen ships 3 checkpoints and a script-aware Router. The README says it is built on Laya.",
       },
       {
         question: "Does 0.766 mean DeepOpen beats hosted Jev with no fine-tune?",
@@ -9599,7 +9599,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Hive example in the README: three bees, nine minutes, 117 candidates judged, 27 notes on the board, 16 delivered to the bee that needed them. Bees do not edit.",
+            "Hive example in the README: 3 bees, 9 minutes, 117 candidates judged, 27 notes on the board, 16 delivered to the bee that needed them. Bees do not edit.",
           source: "github.com/qybaihe/mu README The hive",
         },
         {
@@ -9610,7 +9610,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "mu is the agent: CLI, desktop, and a judgment kernel inside the turn. y0usaf-pi-jev is a Pi extension that batches gate nouls on bash, write, and edit. devmortimer-pi-warden steers a Pi session with guardrails. leepokai-jev-guard risk-scores tool calls and scans results across several hosts. samuelfaj-distill keeps Jev on consult, effort, and compression inside a Rust TUI, and Distill owns permissions. tianyucodings-jevharness lets an LLM write a harness and then calls Jev for fast task decisions. kitfunso-hippo-memory reranks local memory rows. kerpopule-hermes-jev-skills is a Hermes skill drawer for routing, memory, compaction, and GUI steps. mu owns the session. About 35 points run from input.preflight through hive.relate. board.read feeds a plain-language board written by a model picked only because it speaks plainly. Bees (two to six) read code, run commands, and browse. They do not edit. The main model makes the change. Rules still catch a dangerous-looking command first. The judge only vouches that you asked for it, and an unsure tool.risk verdict asks you. In Jev approves mode, tool.approval runs only what it is sure the task needs. README is explicit about what the test-log numbers are not: they measure what reaches the model, the goals and labels are the authors', the repeat chart is 7 Vitest logs from one developer, and there is no end-to-end comparison with pi, Claude Code, or Codex yet. Cite github.com/qybaihe/mu README, kyrn/docs/09-test-log-admission.md, and kyrn/npm/CHANGELOG.md.",
+      "mu is the agent: CLI, desktop, and a judgment kernel inside the turn. y0usaf-pi-jev is a Pi extension that batches gate nouls on bash, write, and edit. devmortimer-pi-warden steers a Pi session with guardrails. leepokai-jev-guard risk-scores tool calls and scans results across several hosts. samuelfaj-distill keeps Jev on consult, effort, and compression inside a Rust TUI, and Distill owns permissions. tianyucodings-jevharness lets an LLM write a harness and then calls Jev for fast task decisions. kitfunso-hippo-memory reranks local memory rows. kerpopule-hermes-jev-skills is a Hermes skill drawer for routing, memory, compaction, and GUI steps. mu owns the session. About 35 points run from input.preflight through hive.relate. board.read feeds a plain-language board written by a model picked only because it speaks plainly. Bees (2 to 6) read code, run commands, and browse. They do not edit. The main model makes the change. Rules still catch a dangerous-looking command first. The judge only vouches that you asked for it, and an unsure tool.risk verdict asks you. In Jev approves mode, tool.approval runs only what it is sure the task needs. README is explicit about what the test-log numbers are not: they measure what reaches the model, the goals and labels are the authors', the repeat chart is 7 Vitest logs from one developer, and there is no end-to-end comparison with pi, Claude Code, or Codex yet. Cite github.com/qybaihe/mu README, kyrn/docs/09-test-log-admission.md, and kyrn/npm/CHANGELOG.md.",
     keyFeatures: [
       "35 decision points with per-point judge and active, shadow, or off",
       "Hosted Jev, local Laya, or an LLM tier, including cascades",
@@ -9657,7 +9657,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Do hive bees edit the repo?",
         answer:
-          "README: a hive is two to six bees. They read code, run commands, and browse. They never edit. The main model makes the change. hive.publish asks whether a finding is worth the shared board.",
+          "README: a hive is 2 to 6 bees. They read code, run commands, and browse. They never edit. The main model makes the change. hive.publish asks whether a finding is worth the shared board.",
       },
       {
         question: "What do the test-log savings measure?",

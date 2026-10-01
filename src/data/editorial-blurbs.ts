@@ -224,7 +224,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "hitsz-tmg-jevembed":
     "Embeddings in, calibrated Choice and Noul out, with a million-label dataset and HF releases that move test accuracy by tens of points. Playground, /v1/systemone, and benchmark JSON you can rerun without pretending logits came from a chat completion.",
   "deepopen-com-deepopen":
-    "Three Apache-2.0 checkpoints and a router that reads the script before the forward pass, so a non-Latin ticket is not scored by an English model that stays confident while wrong. The README puts 0.766 on the typed-decisions fine-tune and still gives Banking77 to hosted Jev.",
+    "3 Apache-2.0 checkpoints and a router that reads the script before the forward pass, so a non-Latin ticket is not scored by an English model that stays confident while wrong. The README puts 0.766 on the typed-decisions fine-tune and still gives Banking77 to hosted Jev.",
   "qybaihe-mu":
     "A coding agent with a judgment kernel: about 35 bounded judge calls per turn, a hive of bees that read and report, and desktop builds that ship the runtime. The big model still writes the code. Shadow mode fills the ledger before a point is allowed to change the turn.",
 };

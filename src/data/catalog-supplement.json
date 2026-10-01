@@ -1773,7 +1773,7 @@
     "slug": "deepopen-com-deepopen",
     "title": "DeepOpen",
     "oneLiner": "Open multilingual non-autoregressive System 1 engine: a script-aware Router picks English, multilingual, or typed-decisions checkpoints, then one forward pass returns Choice, Score, and Noul.",
-    "description": "DeepOpen (github.com/deepopen-com/deepopen, Apache-2.0, pip install deepopen) is a Laya-based decision engine with three Hugging Face checkpoints and a Router that detects script before the forward pass. English ModernBERT-large (421M), multilingual mmBERT-base (322M, 100+ languages), and a typed-decisions fine-tune. README T4 tables, Banking77 and CLINC150 reproduction trees, and published limits on high-cardinality labels. Separate product from Von, receptron Laya, AnyJev, NanoJev, SemIf, and ollaya.",
+    "description": "DeepOpen (github.com/deepopen-com/deepopen, Apache-2.0, pip install deepopen) is a Laya-based decision engine with 3 Hugging Face checkpoints and a Router that detects script before the forward pass. English ModernBERT-large (421M), multilingual mmBERT-base (322M, 100+ languages), and a typed-decisions fine-tune. README T4 tables, Banking77 and CLINC150 reproduction trees, and published limits on high-cardinality labels. Separate product from Von, receptron Laya, AnyJev, NanoJev, SemIf, and ollaya.",
     "category": "integrations",
     "tags": ["integrations", "open-source", "decision-model", "system-one", "multilingual"],
     "language": "Python",
