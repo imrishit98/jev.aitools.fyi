@@ -9670,4 +9670,391 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "qybaihe/mu on pi and AionUi. A small judge covers 35 decision points per turn. npm mu-agent, desktop builds, and shadow mode that only logs.",
   },
 
+  "mode-io-vllm-jev": {
+    slug: "mode-io-vllm-jev",
+    status: "published",
+    problem:
+      "Open Jev-style checkpoints already exist, and teams still serve them through each author's own HTTP wrapper, so batching, compilation, and a shared POST /v1/systemone contract get reinvented per model.",
+    targetUser:
+      "Linux NVIDIA and Apple Silicon operators who want one launcher for Open-Jev, Laya, Tiny-Jev, Valen, and a short list of experimental decision checkpoints, and who will read the README notes when labels move under concurrency.",
+    overview:
+      "vLLM Jev (github.com/mode-io/vllm-jev, Apache-2.0) is native vLLM serving for compatible Jev-style decision checkpoints. You give it a question and candidate answers. It returns a label and a probability for each candidate. Linux with an NVIDIA GPU uses uv pip install . and vllm-jev serve, which prepares a Hugging Face checkpoint and starts native vLLM at http://127.0.0.1:8795. Apple Silicon (macOS 15 or newer) uses source scripts/install_mac.sh, then the same serve command. The README says Linux is native vLLM (scheduling, batching, compilation, KV cache, metrics). Apple Silicon text models run through MLX, or PyTorch MPS for Laya, and Valen multimodal decisions run through MLX. The plugin targets vLLM 0.29.0 and Python 3.12+. Serving does not train. The supported table lists ZefanCai/Open-Jev-2B (text, Linux and Mac), ZefanCai/Open-Jev-9B (text, Linux), convaiinnovations/laya, laya-multilingual, and laya-typed-decisions (text, Linux and Mac), IamBusy/OpenJev-0.6B (text, Linux and Mac), lostargon/Tiny-Jev (text, Linux and Mac), Valen-Team/Valen-Preview-0923 (text, images, and video, Linux and Mac), and yah01/vjev-vision plus vjev-vision-pilot (text and images, Linux). An experimental table adds Kev, Decider, Mica, This-That, and JevK5, with tested platforms called out per row. README contributing links Issues to github.com/Egbertjing/vllm-jev. Public counts were 198 stars and 7 forks when this listing was drafted.",
+    creator: {
+      name: "mode-io",
+      handle: "mode-io",
+      githubUrl: "https://github.com/mode-io",
+    },
+    creatorQuote: {
+      text: "Give it a question and candidate answers; it returns a label and a probability for each candidate.",
+      attributedTo: "vLLM Jev README",
+      sourceUrl: "https://github.com/mode-io/vllm-jev/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Local System One runtime: one vllm-jev serve process scores Choice, Noul, and Score on a supported open checkpoint",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSON state plus a questions map. Choice sends criteria labels. Noul is yes/no. Score is ordered levels. Valen accepts text, images, and short MP4 video. vjev accepts text and images. Text models take text only.",
+      decisionOut:
+        "answers.<id>.choice and probabilities for the labels you supplied, or the Noul and Score fields documented in the user guide. The server does not generate a free-form answer.",
+      flowSteps: [
+        "On Linux, uv pip install . from the repo. On Apple Silicon, source scripts/install_mac.sh once (macOS 15 or newer)",
+        "vllm-jev serve with a supported Hugging Face id, for example ZefanCai/Open-Jev-2B or Valen-Team/Valen-Preview-0923. First run downloads and prepares the checkpoint",
+        "POST http://127.0.0.1:8795/v1/systemone with state and questions. CUDA_VISIBLE_DEVICES, --gpu-memory-utilization, and --port override the defaults",
+        "Read answers.intent.choice and answers.intent.probabilities. Image and short-video requests use a vision model from the supported table",
+        "Treat the experimental Kev, Decider, Mica, This-That, and JevK5 rows as tested adapters with the consistency limits in the README",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Valen video live run: 24 structured questions, 8 sampled frames, one A800 per runtime. PyTorch reference 5.31 s. vLLM Jev 1.22 s (4.3x). All 24 selected answers agreed. Model loading is excluded.",
+          source: "github.com/mode-io/vllm-jev README Demos, video understanding",
+        },
+        {
+          claim:
+            "Open-Jev-2B on one A800, short input, concurrency 8: latency 4360.5 ms to 100.5 ms, throughput 1.83 to 78.83 req/s, 43.4x. Concurrency 1 on the same row: 546.6 ms to 73.0 ms, 7.5x. Open-Jev-9B short concurrency 8: 5337.6 ms to 205.2 ms, 26.0x.",
+          source: "github.com/mode-io/vllm-jev README Inference performance, NVIDIA GPUs",
+        },
+        {
+          claim:
+            "Valen-Preview-0923 image row: median latency 231.9 ms to 77.3 ms (3.0x) on 500 image questions. Both paths reached 86.8% target-support accuracy. Choices agreed on 98.8%. Largest per-question probability difference 0.295. A separate 500-request HTTP run at concurrency 8 reached 40.6 req/s (193.4 ms median). HTTP time is excluded from the offline 500-question comparison.",
+          source: "github.com/mode-io/vllm-jev README benchmark notes, Valen",
+        },
+        {
+          claim:
+            "Apple M5, 16 GB unified memory, MLX, sequential after warmup: OpenJev-0.6B text 67.9 ms (P95 120.2, 12.02 req/s) over 96 Choice requests. Valen image 205.9 ms (P95 249.7, 4.64 req/s) over 42 GameQA Maze questions. Valen matched the Linux reference answers on all 42 questions. Both answered 17 correctly. Probability values differ between backends. Mac runs one model request at a time.",
+          source: "github.com/mode-io/vllm-jev README Inference performance, Apple Silicon",
+        },
+        {
+          claim:
+            "Laya English versus published laya-serve 0.3.20, same A800, 500 four-choice MMLU questions: concurrency 16 latency 404.5 ms to 77.5 ms (5.2x). Labels differed on 6 of 500. Largest option-probability difference 0.0222. README says Laya's direct predict_batch path can be faster when many states share one schema, and these HTTP figures do not measure that bulk path. JevK5 supports 2 to 16 options. In concurrent Linux batches, Kev-0.8B can change its selected label. This-That and Decider-2B can change the most likely Score level.",
+          source: "github.com/mode-io/vllm-jev README benchmark notes and experimental model limits",
+        },
+        {
+          claim:
+            "Updates: 2026-09-25 fused Tiny-Jev head, 12.1% higher throughput on the measured 16-option, 16-concurrent workload, plus multimodal text and images. 2026-09-26 added all 3 Laya checkpoints, Tiny-Jev and Open-Jev-2B on Apple Silicon, and OpenJev-0.6B plus Valen on Mac. 2026-09-28 added experimental Valen video, including variable-frame-rate clips. 2026-09-29 added experimental Kev, Decider, Mica, This-That, and JevK5 adapters.",
+          source: "github.com/mode-io/vllm-jev README Updates",
+        },
+        {
+          claim:
+            "Public GitHub repo mode-io/vllm-jev had 198 stars and 7 forks on 2026-10-02. License Apache-2.0. Created 2026-09-24. Last push 2026-09-29. Language Python.",
+          source: "GitHub API 2026-10-02",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "vLLM Jev is the server, not a new weight family. githubnext-localjev keeps TypeSafe SDK calls on a Mac by asking oMLX DiffusionGemma for chat JSON, and the LocalJev README says those probabilities are not an OpenJev logit read. ollaya-dev-ollaya pulls small ONNX graphs and serves POST /v1/systemone on port 11435 for laya, kev, von, and decider. receptron-laya embeds Convai Laya ONNX inside Node. wfzyx-von is the English encoder checkpoint. liuziyu77-valen is the training and eval repo for Valen-Preview-0923. deepopen-com-deepopen is a pip package with a script-aware router over 3 Laya-based checkpoints. vLLM Jev takes those kinds of Hugging Face ids, verifies a native protocol, and serves Choice, Noul, and Score. The README also shows a live Open-Jev-2B comparison: the author HTTP server and vLLM Jev received the same 40 text-only Choice requests at once, one A800 each. Decision readouts in the About section are scalar candidate branches, marker scores, and Laya's trained decision head. A 2026-09-25 note says the fused Tiny-Jev head raised throughput 12.1% on a 16-option, 16-concurrent workload. Cite github.com/mode-io/vllm-jev README and docs/guide.md. The Choice prompt follows MIT-licensed Open-Jev, noted in THIRD_PARTY_NOTICES.md.",
+    keyFeatures: [
+      "vllm-jev serve for a supported Hugging Face model id, default port 8795",
+      "Linux native vLLM and an Apple Silicon preview via MLX or PyTorch MPS",
+      "Choice, Noul, and Score over POST /v1/systemone",
+      "Valen text, image, and short video. vjev text and images on Linux",
+      "Open-Jev-2B and 9B, 3 Laya checkpoints, OpenJev-0.6B, Tiny-Jev",
+      "Experimental adapters for Kev, Decider, Mica, This-That, and JevK5, with published consistency limits",
+    ],
+    stack: [
+      "Python 3.12+",
+      "vLLM 0.29.0",
+      "Apache-2.0",
+      "MLX and PyTorch MPS on Apple Silicon",
+      "Hugging Face decision checkpoints",
+    ],
+    links: {
+      repo: "https://github.com/mode-io/vllm-jev",
+      docs: "https://github.com/mode-io/vllm-jev/blob/main/docs/guide.md",
+    },
+    pricingNote:
+      "Apache-2.0 code. Inference cost is your GPU or Apple Silicon machine. Upstream checkpoints keep their own licenses. The README says serving does not train.",
+    firstSeen: "2026-10-02",
+    relatedSlugs: [
+      "githubnext-localjev",
+      "ollaya-dev-ollaya",
+      "receptron-laya",
+      "liuziyu77-valen",
+      "wfzyx-von",
+      "deepopen-com-deepopen",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is this LocalJev or ollaya?",
+        answer:
+          "githubnext-localjev is a Mac bridge from System One-shaped HTTP to oMLX DiffusionGemma, and its README says the probabilities come from prompted JSON. ollaya-dev-ollaya is a Rust daemon that pulls ONNX graphs and listens on port 11435. vLLM Jev is a vLLM plugin: Linux NVIDIA uses native vLLM, Apple Silicon uses MLX or PyTorch MPS, and the default listen address in the README is http://127.0.0.1:8795.",
+      },
+      {
+        question: "Which checkpoints does the README mark as supported?",
+        answer:
+          "The supported table lists Open-Jev-2B, Open-Jev-9B (Linux only), Laya English, Laya multilingual, Laya typed-decisions, OpenJev-0.6B, Tiny-Jev, Valen-Preview-0923, and vjev-vision plus vjev-vision-pilot (Linux only). Kev, Decider, Mica, This-That, and JevK5 sit in a separate experimental table.",
+      },
+      {
+        question: "Does the 4.3x Valen video figure include model loading?",
+        answer:
+          "README Demos: model loading is excluded. The same Valen checkpoint answered 24 questions about one video, using 8 sampled frames and one A800 per runtime. PyTorch took 5.31 s. vLLM Jev took 1.22 s. All 24 selected answers agreed.",
+      },
+      {
+        question: "Can experimental Kev or Decider labels change under load?",
+        answer:
+          "README: JevK5 currently supports 2 to 16 options per question. In concurrent Linux batches, Kev-0.8B can change its selected label. This-That and Decider-2B can also change the most likely Score level. The README says those consistency limits remain under investigation.",
+      },
+    ],
+    metaTitle: "vLLM Jev: System One serving on NVIDIA and Mac",
+    metaDescription:
+      "mode-io/vllm-jev serves Open-Jev, Laya, Valen, and Tiny-Jev. Linux uses native vLLM. Apple Silicon uses MLX. POST /v1/systemone. README Valen video: 4.3x.",
+  },
+
+  "disler-ten-levels-of-jev": {
+    slug: "disler-ten-levels-of-jev",
+    status: "published",
+    problem:
+      "Agent code is full of small judgments, and teams either keep patching a regex or spend a chat model call to get prose they still have to parse.",
+    targetUser:
+      "Agentic engineers who want a ladder of 30 runnable Jev examples, from one Noul in plain TypeScript up through live pi sessions where the agent writes the questions.",
+    overview:
+      "Ten levels of Jev (github.com/disler/ten-levels-of-jev, MIT) is IndyDevDan's curriculum repo: a live Vue lab, a terminal runner, real pi agent sessions, and a hyper-jev skill you can hand an agent. The README frames Jev as JSON in, decisions out. You send a state (string, object, or array) and a map of questions. About 300 ms later you get typed answers with probabilities. The repo arranges 30 concrete uses into 10 levels, 3 options each. Levels 1 to 5 call Jev from plain code (just jev1 through just jev5). Levels 6 to 10 put Jev inside the pi coding agent (pi 0.85.1+): hooks the agent never sees, then tools the agent chooses, until level 10's ask_jev tool lets the agent write the questions. Prereqs in the README: Node 24, bun, just, and an OpenRouter key for live runs. just test runs 201 offline tests on a deterministic mock. just web builds the lab and opens http://127.0.0.1:4399. The walkthrough video is https://youtu.be/_U-O5lYhJ7Q. Public counts were 147 stars and 45 forks when this listing was drafted.",
+    creator: {
+      name: "IndyDevDan",
+      handle: "disler",
+      githubUrl: "https://github.com/disler",
+      company: "IndyDevDan",
+      companyUrl: "https://www.youtube.com/@indydevdan",
+    },
+    creatorQuote: {
+      text: "Ten levels of Jev, from one smart if statement to a coding agent that reaches for Jev on its own.",
+      attributedTo: "ten-levels-of-jev README",
+      sourceUrl: "https://github.com/disler/ten-levels-of-jev/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Pedagogical ladder: code calls Jev in levels 1 to 5, then pi hooks and tools call it in levels 6 to 10, ending with the agent authoring the questions",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "A state string, object, or array, plus questions keyed by ids you choose. Noul is yes or no, with optional true and false criteria. Choice is one of up to 255 declared options. Score is a position on 2 to 10 levels you describe. From level 8 on, code can attach file content, a glob, or a command the extension runs before the call.",
+      decisionOut:
+        "Typed answers with probabilities the option file thresholds in code. A Choice answer is one of your options. Level 4 uses confidence as a second gate: below 0.5 a person decides, above 0.9 a destructive action can skip confirmation.",
+      flowSteps: [
+        "just install, or the manual path: bun install in apps/ten-levels/web, copy .env.sample, set OPENROUTER_API_KEY, install pi for levels 6 to 10",
+        "just test for 201 offline tests on the mock. Levels 1 to 5 still run with no key. Levels 6 to 10 need pi and the key",
+        "just web opens the Vue lab on http://127.0.0.1:4399. just jev1 through just jev10 run one level in the terminal. just jev4 b runs one option",
+        "Levels 6 and 7 hook tool_call, tool_result, and turn end. The agent does not ask. Levels 8 and 9 expose file tools. Level 10 exposes one ask_jev tool",
+        "Each option is one TypeScript file that holds its questions and thresholds together, which the README says is the part a human reviews",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Ladder: 10 levels, 3 options each, 30 concrete uses. Level 1 is one Noul (injection gate, urgency gate, ticket classifier). Level 10 is one ask_jev tool over state, paths, and a command (triage a failure, judge a diff, classify a request).",
+          source: "github.com/disler/ten-levels-of-jev README The ladder",
+        },
+        {
+          claim:
+            "README price contrast: a million yes or no calls cost $3,500 on an expensive SOTA model and $16.80 on Jev. The same section says a call returns in about 300 ms.",
+          source: "github.com/disler/ten-levels-of-jev README Why this exists",
+        },
+        {
+          claim:
+            "Level 1 injection gate, five input sets in the README: 0.99, 0.83, 0.61, 0.27, and 0.01 on the same question. Level 4 bash table: git push --force origin main is irreversible at 0.99 and blocked. ls -la src is read only at 1.00 and runs. rm -rf node_modules && npm install is reversible at 0.35 and asks a human. Thresholds live in level04/confidence.ts: below 0.5 a person decides, above 0.9 a destructive action skips confirmation.",
+          source: "github.com/disler/ten-levels-of-jev README Levels 1 and 4",
+        },
+        {
+          claim:
+            "Level 8 live lab quote: ask_jev_file_bool on session.ts and seed.ts returned yes 0.98 and no 0.12 while agent context sat at 2k tokens. Jev judged 9,089 tokens for $0.00049. README prices one read of the same files at $0.091 on an expensive SOTA input price, 187x more. Level 9: 17 files, two yes answers at 0.93 and 0.96, pick_first_file chose src/domain/billing.ts at 0.93. The file cap is 255.",
+          source: "github.com/disler/ten-levels-of-jev README Levels 8 and 9",
+        },
+        {
+          claim:
+            "Level 10 live run in the README: told the tests are red, the agent ran npm test through ask_jev, got bug_in_code at 0.99, fixed rounding, scored its own diff at risk 0.53, and confirmed tests pass at 0.99. Ledger: 3 Jev calls, 4 questions, $0.000084. Level 6 block example: rm -rf node_modules .sessions was irreversible 0.86 and destructive intent 0.99.",
+          source: "github.com/disler/ten-levels-of-jev README Levels 6 and 10",
+        },
+        {
+          claim:
+            "Test commands: just test is 201 offline tests on the deterministic mock. just test-live is 10 live tests, one per level. README failure notes: the mock decides by word overlap. One live level 6 run routed around a write gate with a bash heredoc. Level 10 gates ask_jev's command, and the agent's own bash tool on that level is not gated.",
+          source: "github.com/disler/ten-levels-of-jev README Commands and Where it can still fail",
+        },
+        {
+          claim:
+            "Public GitHub repo disler/ten-levels-of-jev had 147 stars and 45 forks on 2026-10-02. License MIT. Created 2026-09-27. Last push 2026-09-27. Language TypeScript. Homepage field is the YouTube walkthrough.",
+          source: "GitHub API 2026-10-02",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This repo is a ladder you can run, plus a skill that copies the pattern. dbreunig-building-with-jev-skill is Drew Breunig's SKILL.md for question design, state shape, and thresholds on jev-1.13. It does not ship 30 option files or a pi session runner. y0usaf-pi-jev is a Pi extension that batches gate nouls on bash, write, and edit. Level 6 here is a teaching hook inside this lab's sandbox, with its own jev-guard.ts. tianyucodings-jevharness lets a model write a harness and then calls Jev for fast task decisions. jkudish-jev-mcp exposes ten typed MCP tools. Ten levels keeps the client in apps/ten-levels/src/core/client.ts, which the folder map describes as mock, OpenRouter, and TypeSafe. .claude/skills/hyper-jev/ packages that client, the 30 examples, and a cookbook. The README's own rule set: reach for Jev when you can describe the state and the outcomes, keep numbers and counting in code, and treat a security gate as one signal. Cite github.com/disler/ten-levels-of-jev README and the YouTube walkthrough at https://youtu.be/_U-O5lYhJ7Q.",
+    keyFeatures: [
+      "10 levels, 3 options each, questions and thresholds in one TypeScript file per option",
+      "Vue lab on port 4399 with request bodies, probability bars, and a cost table",
+      "pi extensions for guard hooks, compaction, cheap file reads, fan-out, and ask_jev",
+      "201 offline tests on the mock and 10 live tests, one per level",
+      "hyper-jev skill with SKILL.md, cookbook, and a standalone starter",
+      "README failure notes: mock word overlap, a write-gate bypass, and an ungated bash tool on level 10",
+    ],
+    stack: [
+      "TypeScript",
+      "Vue lab",
+      "bun, just, and Node 24",
+      "pi coding agent 0.85.1+",
+      "OpenRouter or TypeSafe for live runs",
+      "MIT",
+    ],
+    links: {
+      repo: "https://github.com/disler/ten-levels-of-jev",
+      docs: "https://github.com/disler/ten-levels-of-jev/blob/main/README.md",
+      website: "https://youtu.be/_U-O5lYhJ7Q",
+    },
+    pricingNote:
+      "MIT code. Live levels spend your OpenRouter or TypeSafe key. README contrast: a million yes or no calls at $16.80 on Jev versus $3,500 on an expensive SOTA model. Offline levels 1 to 5 run on the mock with no key.",
+    firstSeen: "2026-10-02",
+    relatedSlugs: [
+      "dbreunig-building-with-jev-skill",
+      "y0usaf-pi-jev",
+      "tianyucodings-jevharness",
+      "jkudish-jev-mcp",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is this the same as building-with-jev-skill?",
+        answer:
+          "dbreunig/building-with-jev-skill is a SKILL.md that teaches Choice, Score, and Noul design for jev-1.13. ten-levels-of-jev is a 10-level lab: 30 TypeScript options, a Vue UI on port 4399, pi sessions for levels 6 to 10, and a separate hyper-jev skill that copies the client and the examples.",
+      },
+      {
+        question: "Which levels run without an API key?",
+        answer:
+          "README Install: with no key, levels 1 to 5 still run on the offline mock. Levels 6 to 10 need both pi 0.85.1+ and the key. just test runs 201 offline tests on that mock. just test-live runs 10 live tests, one per level.",
+      },
+      {
+        question: "What changes at level 10?",
+        answer:
+          "Levels 6 and 7 are hooks. The agent never asks, and Jev runs on the tool call, the tool result, and the turn end. Levels 8 and 9 are file tools the agent chooses. Level 10 is one ask_jev tool: the agent passes state, paths, a command, and its own question block. The README's example ledger is 3 Jev calls, 4 questions, $0.000084.",
+      },
+      {
+        question: "What do the README dollar figures measure?",
+        answer:
+          "They are the author's live-lab quotes, not a third-party invoice. The opening contrast is $3,500 versus $16.80 for a million yes or no calls. Level 8 prices 9,089 judged tokens at $0.00049 against a $0.091 file read. Level 10's ledger line is $0.000084. Your bill follows whichever key the lab is pointed at.",
+      },
+    ],
+    metaTitle: "Ten levels of Jev: one Noul to agent questions",
+    metaDescription:
+      "disler/ten-levels-of-jev: 10 levels and 30 options, from one Noul to a pi agent that writes its own questions. Vue lab, YouTube, and 201 offline tests.",
+  },
+
+  "charlesfeng0314-jev-sees": {
+    slug: "charlesfeng0314-jev-sees",
+    status: "published",
+    problem:
+      "Hosted Jev already returns Choice, Noul, and Score, and a camera frame is still stuck in front of a captioning model when the question was a closed judgment about the objects in view.",
+    targetUser:
+      "Python teams who want a local vision front end for hosted TypeSafe Jev: images, video, or RGB-D in, official Choice and Noul questions out, with one call covering many tracked objects.",
+    overview:
+      "JEV Sees (github.com/CharlesFeng0314/JEV_sees, MIT, v0.1.0) is a visual front end for hosted TypeSafe Jev. The README line is one frame, many objects, one JEV call. Sees() is the image and video entry point. observe() tracks objects locally. state() builds the text Jev reads. Choice, Noul, Score, and TypeSafeClient are re-exported from the official typesafe-sdk, so the call is still client.system_one and the answers still live on response.choices, response.nouls, and response.scores. Python 3.10+. pip install -e . from a clone. TYPESAFE_API_KEY is required for system_one. observe() and state() stay local. RGB-only perception starts from Florence-2 dense-region captions (default microsoft/Florence-2-base-ft). Callers do not pass an object vocabulary. RGB-D mode lets depth clusters decide which physical objects exist, and overlapping Florence regions supply free-text names. Color stays evidence: a CV measurement, CLIP's color distribution, and Florence's region caption, so Jev can judge agreement instead of receiving one preselected color string. The README says an earlier YOLO latency table was removed and that a new image and video benchmark is required before publishing latency claims for this backend. Created 2026-09-30. Public counts were 113 stars and 6 forks when this listing was drafted.",
+    creator: {
+      name: "CharlesFeng0314",
+      handle: "CharlesFeng0314",
+      githubUrl: "https://github.com/CharlesFeng0314",
+    },
+    creatorQuote: {
+      text: "One frame. Many objects. One JEV call.",
+      attributedTo: "JEV Sees README",
+      sourceUrl: "https://github.com/CharlesFeng0314/JEV_sees/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Local perception builds a scene state, then one hosted TypeSafe system_one call judges many named objects",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "sees.state(question) after observe() on an image, a video sample, or an RGB-D frame. Tracked objects carry object_id, label, confidence, bbox_xyxy, centroid, and color evidence. Video can add frame_index, media time, and the two most recent time-aware poses. RGB-D can add position_m and metric gaps when camera intrinsics are available.",
+      decisionOut:
+        "Official typed answers. A bus-color Choice returns response.choices['bus_color'].choice (the included image is expected to print blue). A per-pedestrian Noul returns response.nouls[object_id].noul. Video results are frame-primary in result.frames, with result.rows kept as a per-object peak summary.",
+      flowSteps: [
+        "Clone the repo and python -m pip install -e . on Python 3.10 or newer",
+        "Export TYPESAFE_API_KEY. Create the key at console.typesafe.ai. observe() and state() do not need it",
+        "Sees(), observe a path, then TypeSafeClient.system_one with Choice, Noul, or Score objects you construct. JEV Sees does not infer a question type from prose",
+        "For video, pass questions= as a callable that receives current tracks and returns official questions, as examples/traffic_relations.py does for one Noul per pedestrian",
+        "For RGB-D, depth clusters decide which objects exist. Florence names overlapping regions. Weights download on first use and are not stored in the repo",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README product line: one frame, many objects, one JEV call. The traffic demo caption says every visible pedestrian gets an accident-risk probability from the same JEV call. Question objects are official Noul or Choice values, one per object id.",
+          source: "github.com/CharlesFeng0314/JEV_sees README",
+        },
+        {
+          claim:
+            "Perception: RGB-only mode starts from Florence-2 dense-region captions. Default checkpoint microsoft/Florence-2-base-ft, overridable with Sees(florence_model=...). RGB-D mode lets depth clusters decide which physical objects exist. With camera intrinsics, observations can include position_m. CLIP color evidence uses weights/clip/ViT-B-32.pt when JEV_SEES_ROBO_ROOT points at it, otherwise CLIP downloads on first use.",
+          source: "github.com/CharlesFeng0314/JEV_sees README Models and weights and RGB-D",
+        },
+        {
+          claim:
+            "Scene memory: object ids stay stable when possible. Samples reuse pose_history and add frame_index plus media time. The two most recent time-aware poses of each visible object enter the Jev state. Color evidence keeps the CV measurement, the CLIP distribution, and Florence's region caption side by side.",
+          source: "github.com/CharlesFeng0314/JEV_sees README Perception, tracking, and scene memory",
+        },
+        {
+          claim:
+            "Status v0.1.0, intentionally experimental. Python 3.10+. License MIT. The README says the earlier YOLO benchmark does not describe the Florence-2 pipeline and was removed. A new image and video benchmark is required before publishing latency claims for this backend.",
+          source: "github.com/CharlesFeng0314/JEV_sees README Performance and Status",
+        },
+        {
+          claim:
+            "Public GitHub repo CharlesFeng0314/JEV_sees had 113 stars and 6 forks on 2026-10-02. Created 2026-09-30. Last push 2026-10-02. Language Python.",
+          source: "GitHub API 2026-10-02",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "JEV Sees builds the state. Hosted TypeSafe Jev makes the judgment. liuziyu77-valen trains a multimodal decision head (Valen-Preview-0923) and serves it yourself. tianyucodings-nanojev trains 0.6B parallel heads on Maze, Snake, and ViZDoom frames. deepopen-com-deepopen routes text across 3 local checkpoints. nokia-applied-research-anyjev fits calibration heads on text models you already host. This repo publishes no decision checkpoint. Florence-2 and CLIP load from Hugging Face or a local CLIP file, and system_one still goes to TypeSafe. The README also points at a sibling, JEV Control (github.com/CharlesFeng0314/JEV_control_your_roboarm), for turning judgments into robot-arm actions. That sibling is a separate repo. examples/bus_color.py is the smallest Choice. examples/traffic_relations.py builds one official Noul per current pedestrian and requires TYPESAFE_API_KEY. Cite github.com/CharlesFeng0314/JEV_sees README only.",
+    keyFeatures: [
+      "Sees, observe, and state as the local visual layer",
+      "Official Choice, Noul, Score, and TypeSafeClient re-exported for one import line",
+      "One system_one call over many named objects in a frame",
+      "Florence-2 region captions, CLIP color evidence, and optional RGB-D depth clusters",
+      "Video questions as a callable, with frame-primary probabilities",
+      "v0.1.0 experimental status and an explicit refusal to publish a latency number for the Florence-2 path",
+    ],
+    stack: [
+      "Python 3.10+",
+      "MIT",
+      "typesafe-sdk TypeSafeClient",
+      "Florence-2",
+      "CLIP ViT-B-32",
+      "RGB, video, and RGB-D",
+    ],
+    links: {
+      repo: "https://github.com/CharlesFeng0314/JEV_sees",
+      docs: "https://github.com/CharlesFeng0314/JEV_sees/blob/main/README.md",
+    },
+    pricingNote:
+      "MIT code. Perception weights download on first use (Florence-2 from Hugging Face, CLIP unless a local ViT-B-32 file is set). system_one calls spend your TypeSafe key. The README publishes no latency or price table for this backend.",
+    firstSeen: "2026-10-02",
+    relatedSlugs: [
+      "liuziyu77-valen",
+      "tianyucodings-nanojev",
+      "deepopen-com-deepopen",
+      "nokia-applied-research-anyjev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is JEV Sees a multimodal model like Valen?",
+        answer:
+          "liuziyu77-valen trains Valen-Preview-0923, a Qwen3.5 decision head over text, images, and video. JEV Sees does not ship a decision checkpoint. It tracks a scene locally and calls hosted TypeSafe Jev. Weights in this repo's README are Florence-2 and CLIP, used as perception, and they are downloaded rather than stored in the tree.",
+      },
+      {
+        question: "How does one call cover many objects?",
+        answer:
+          "Your code builds one official question per object id. The traffic example selects current pedestrians and creates a Noul for each. JEV Sees passes a single state from the frame. response.nouls[object_id] is that pedestrian's probability. The README says the library does not invent questions from the prompt.",
+      },
+      {
+        question: "Why is there no latency number on this page?",
+        answer:
+          "The Performance section says the earlier YOLO benchmark does not describe the Florence-2 pipeline and was removed on purpose. It asks for a new image and video benchmark before any latency claim for this backend. This listing does not fill that gap.",
+      },
+      {
+        question: "Is this a browser or computer-use agent?",
+        answer:
+          "It is a camera front end: RGB, video, and RGB-D. It does not pick DOM actions or desktop clicks. The README's sibling for action is JEV Control, a separate robot-arm repo. This page covers JEV Sees only.",
+      },
+    ],
+    metaTitle: "JEV Sees: RGB, video, and RGB-D eyes for Jev",
+    metaDescription:
+      "JEV Sees gives hosted TypeSafe Jev eyes: one frame, many objects, one call. Florence-2, video, and RGB-D depth. The README publishes no latency table.",
+  },
+
 };
