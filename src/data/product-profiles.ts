@@ -9727,7 +9727,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Laya English versus published laya-serve 0.3.20, same A800, 500 four-choice MMLU questions: concurrency 16 latency 404.5 ms to 77.5 ms (5.2x). Labels differed on 6 of 500. Largest option-probability difference 0.0222. README says Laya's direct predict_batch path can be faster when many states share one schema, and these HTTP figures do not measure that bulk path. JevK5 supports 2 to 16 options. In concurrent Linux batches, Kev-0.8B can change its selected label. This-That and Decider-2B can change the most likely Score level.",
+            "Laya English versus published laya-serve 0.3.20, same A800, 500 4-choice MMLU questions: concurrency 16 latency 404.5 ms to 77.5 ms (5.2x). Labels differed on 6 of 500. Largest option-probability difference 0.0222. README says Laya's direct predict_batch path can be faster when many states share one schema, and these HTTP figures do not measure that bulk path. JevK5 supports 2 to 16 options. In concurrent Linux batches, Kev-0.8B can change its selected label. This-That and Decider-2B can change the most likely Score level.",
           source: "github.com/mode-io/vllm-jev README benchmark notes and experimental model limits",
         },
         {
@@ -9846,17 +9846,17 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "README price contrast: a million yes or no calls cost $3,500 on an expensive SOTA model and $16.80 on Jev. The same section says a call returns in about 300 ms.",
+            "README price contrast: 1 million yes or no calls cost $3,500 on an expensive SOTA model and $16.80 on Jev. The same section says a call returns in about 300 ms.",
           source: "github.com/disler/ten-levels-of-jev README Why this exists",
         },
         {
           claim:
-            "Level 1 injection gate, five input sets in the README: 0.99, 0.83, 0.61, 0.27, and 0.01 on the same question. Level 4 bash table: git push --force origin main is irreversible at 0.99 and blocked. ls -la src is read only at 1.00 and runs. rm -rf node_modules && npm install is reversible at 0.35 and asks a human. Thresholds live in level04/confidence.ts: below 0.5 a person decides, above 0.9 a destructive action skips confirmation.",
+            "Level 1 injection gate, 5 input sets in the README: 0.99, 0.83, 0.61, 0.27, and 0.01 on the same question. Level 4 bash table: git push --force origin main is irreversible at 0.99 and blocked. ls -la src is read only at 1.00 and runs. rm -rf node_modules && npm install is reversible at 0.35 and asks a human. Thresholds live in level04/confidence.ts: below 0.5 a person decides, above 0.9 a destructive action skips confirmation.",
           source: "github.com/disler/ten-levels-of-jev README Levels 1 and 4",
         },
         {
           claim:
-            "Level 8 live lab quote: ask_jev_file_bool on session.ts and seed.ts returned yes 0.98 and no 0.12 while agent context sat at 2k tokens. Jev judged 9,089 tokens for $0.00049. README prices one read of the same files at $0.091 on an expensive SOTA input price, 187x more. Level 9: 17 files, two yes answers at 0.93 and 0.96, pick_first_file chose src/domain/billing.ts at 0.93. The file cap is 255.",
+            "Level 8 live lab quote: ask_jev_file_bool on session.ts and seed.ts returned yes 0.98 and no 0.12 while agent context sat at 2k tokens. Jev judged 9,089 tokens for $0.00049. README prices one read of the same files at $0.091 on an expensive SOTA input price, 187x more. Level 9: 17 files, 2 yes answers at 0.93 and 0.96, pick_first_file chose src/domain/billing.ts at 0.93. The file cap is 255.",
           source: "github.com/disler/ten-levels-of-jev README Levels 8 and 9",
         },
         {
@@ -9866,7 +9866,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Test commands: just test is 201 offline tests on the deterministic mock. just test-live is 10 live tests, one per level. README failure notes: the mock decides by word overlap. One live level 6 run routed around a write gate with a bash heredoc. Level 10 gates ask_jev's command, and the agent's own bash tool on that level is not gated.",
+            "Test commands: just test is 201 offline tests on the deterministic mock. just test-live is 10 live tests, 1 per level. README failure notes: the mock decides by word overlap. One live level 6 run routed around a write gate with a bash heredoc. Level 10 gates ask_jev's command, and the agent's own bash tool on that level is not gated.",
           source: "github.com/disler/ten-levels-of-jev README Commands and Where it can still fail",
         },
         {
@@ -9877,12 +9877,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "This repo is a ladder you can run, plus a skill that copies the pattern. dbreunig-building-with-jev-skill is Drew Breunig's SKILL.md for question design, state shape, and thresholds on jev-1.13. It does not ship 30 option files or a pi session runner. y0usaf-pi-jev is a Pi extension that batches gate nouls on bash, write, and edit. Level 6 here is a teaching hook inside this lab's sandbox, with its own jev-guard.ts. tianyucodings-jevharness lets a model write a harness and then calls Jev for fast task decisions. jkudish-jev-mcp exposes ten typed MCP tools. Ten levels keeps the client in apps/ten-levels/src/core/client.ts, which the folder map describes as mock, OpenRouter, and TypeSafe. .claude/skills/hyper-jev/ packages that client, the 30 examples, and a cookbook. The README's own rule set: reach for Jev when you can describe the state and the outcomes, keep numbers and counting in code, and treat a security gate as one signal. Cite github.com/disler/ten-levels-of-jev README and the YouTube walkthrough at https://youtu.be/_U-O5lYhJ7Q.",
+      "This repo is a ladder you can run, plus a skill that copies the pattern. dbreunig-building-with-jev-skill is Drew Breunig's SKILL.md for question design, state shape, and thresholds on jev-1.13. It does not ship 30 option files or a pi session runner. y0usaf-pi-jev is a Pi extension that batches gate nouls on bash, write, and edit. Level 6 here is a teaching hook inside this lab's sandbox, with its own jev-guard.ts. tianyucodings-jevharness lets a model write a harness and then calls Jev for fast task decisions. jkudish-jev-mcp exposes 10 typed MCP tools. Ten levels keeps the client in apps/ten-levels/src/core/client.ts, which the folder map describes as mock, OpenRouter, and TypeSafe. .claude/skills/hyper-jev/ packages that client, the 30 examples, and a cookbook. The README's own rule set: reach for Jev when you can describe the state and the outcomes, keep numbers and counting in code, and treat a security gate as one signal. Cite github.com/disler/ten-levels-of-jev README and the YouTube walkthrough at https://youtu.be/_U-O5lYhJ7Q.",
     keyFeatures: [
       "10 levels, 3 options each, questions and thresholds in one TypeScript file per option",
       "Vue lab on port 4399 with request bodies, probability bars, and a cost table",
       "pi extensions for guard hooks, compaction, cheap file reads, fan-out, and ask_jev",
-      "201 offline tests on the mock and 10 live tests, one per level",
+      "201 offline tests on the mock and 10 live tests, 1 per level",
       "hyper-jev skill with SKILL.md, cookbook, and a standalone starter",
       "README failure notes: mock word overlap, a write-gate bypass, and an ungated bash tool on level 10",
     ],
@@ -9900,7 +9900,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       website: "https://youtu.be/_U-O5lYhJ7Q",
     },
     pricingNote:
-      "MIT code. Live levels spend your OpenRouter or TypeSafe key. README contrast: a million yes or no calls at $16.80 on Jev versus $3,500 on an expensive SOTA model. Offline levels 1 to 5 run on the mock with no key.",
+      "MIT code. Live levels spend your OpenRouter or TypeSafe key. README contrast: 1 million yes or no calls at $16.80 on Jev versus $3,500 on an expensive SOTA model. Offline levels 1 to 5 run on the mock with no key.",
     firstSeen: "2026-10-02",
     relatedSlugs: [
       "dbreunig-building-with-jev-skill",
@@ -9918,7 +9918,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Which levels run without an API key?",
         answer:
-          "README Install: with no key, levels 1 to 5 still run on the offline mock. Levels 6 to 10 need both pi 0.85.1+ and the key. just test runs 201 offline tests on that mock. just test-live runs 10 live tests, one per level.",
+          "README Install: with no key, levels 1 to 5 still run on the offline mock. Levels 6 to 10 need both pi 0.85.1+ and the key. just test runs 201 offline tests on that mock. just test-live runs 10 live tests, 1 per level.",
       },
       {
         question: "What changes at level 10?",
@@ -9928,7 +9928,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "What do the README dollar figures measure?",
         answer:
-          "They are the author's live-lab quotes, not a third-party invoice. The opening contrast is $3,500 versus $16.80 for a million yes or no calls. Level 8 prices 9,089 judged tokens at $0.00049 against a $0.091 file read. Level 10's ledger line is $0.000084. Your bill follows whichever key the lab is pointed at.",
+          "They are the author's live-lab quotes, not a third-party invoice. The opening contrast is $3,500 versus $16.80 for 1 million yes or no calls. Level 8 prices 9,089 judged tokens at $0.00049 against a $0.091 file read. Level 10's ledger line is $0.000084. Your bill follows whichever key the lab is pointed at.",
       },
     ],
     metaTitle: "Ten levels of Jev: one Noul to agent questions",
@@ -9960,7 +9960,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         "Local perception builds a scene state, then one hosted TypeSafe system_one call judges many named objects",
       primitives: ["Choice", "Score", "Noul"],
       stateIn:
-        "sees.state(question) after observe() on an image, a video sample, or an RGB-D frame. Tracked objects carry object_id, label, confidence, bbox_xyxy, centroid, and color evidence. Video can add frame_index, media time, and the two most recent time-aware poses. RGB-D can add position_m and metric gaps when camera intrinsics are available.",
+        "sees.state(question) after observe() on an image, a video sample, or an RGB-D frame. Tracked objects carry object_id, label, confidence, bbox_xyxy, centroid, and color evidence. Video can add frame_index, media time, and the 2 most recent time-aware poses. RGB-D can add position_m and metric gaps when camera intrinsics are available.",
       decisionOut:
         "Official typed answers. A bus-color Choice returns response.choices['bus_color'].choice (the included image is expected to print blue). A per-pedestrian Noul returns response.nouls[object_id].noul. Video results are frame-primary in result.frames, with result.rows kept as a per-object peak summary.",
       flowSteps: [
@@ -9983,7 +9983,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Scene memory: object ids stay stable when possible. Samples reuse pose_history and add frame_index plus media time. The two most recent time-aware poses of each visible object enter the Jev state. Color evidence keeps the CV measurement, the CLIP distribution, and Florence's region caption side by side.",
+            "Scene memory: object ids stay stable when possible. Samples reuse pose_history and add frame_index plus media time. The 2 most recent time-aware poses of each visible object enter the Jev state. Color evidence keeps the CV measurement, the CLIP distribution, and Florence's region caption side by side.",
           source: "github.com/CharlesFeng0314/JEV_sees README Perception, tracking, and scene memory",
         },
         {
