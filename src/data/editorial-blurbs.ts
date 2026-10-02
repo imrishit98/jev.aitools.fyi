@@ -227,6 +227,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "3 Apache-2.0 checkpoints and a router that reads the script before the forward pass, so a non-Latin ticket is not scored by an English model that stays confident while wrong. The README puts 0.766 on the typed-decisions fine-tune and still gives Banking77 to hosted Jev.",
   "qybaihe-mu":
     "A coding agent with a judgment kernel: about 35 bounded judge calls per turn, a hive of bees that read and report, and desktop builds that ship the runtime. The big model still writes the code. Shadow mode fills the ledger before a point is allowed to change the turn.",
+  "mode-io-vllm-jev":
+    "One serve command for Open-Jev, Laya, Tiny-Jev, and Valen. Linux gets native vLLM. A Mac gets MLX. The README's archery video is the receipt: 24 questions, 1.22 s against 5.31 s, and the selected answers still match.",
+  "disler-ten-levels-of-jev":
+    "Ten levels, 30 options, from one Noul smart-if to a pi agent that writes its own Jev questions. The Vue lab prices the call. The YouTube walkthrough shows the ladder. 201 offline tests keep the mock honest.",
+  "charlesfeng0314-jev-sees":
+    "One frame, many objects, one hosted Jev call. Florence-2 and RGB-D depth clusters build the state. Choice and Noul stay official TypeSafe types. The README pulled the old YOLO timing table and left the speed claim blank on purpose.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
