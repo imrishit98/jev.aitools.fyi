@@ -10057,4 +10057,385 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "JEV Sees gives hosted TypeSafe Jev eyes: one frame, many objects, one call. Florence-2, video, and RGB-D depth. The README publishes no latency table.",
   },
 
+  "uditakhourii-quicksilver": {
+    slug: "uditakhourii-quicksilver",
+    status: "published",
+    problem:
+      "A large share of a Claude Code session is spent reading only to decide whether something matters: which of 187 files handle auth, which of 3,000 log lines are real failures, which of 200 tickets are refunds. Claude reads it, pays for it, and the context fills with noise.",
+    targetUser:
+      "Claude Code users who want bulk filter, classify, rank, find, and ask calls handed to TypeSafe Jev, and who will read the README misses before they trust a shortlist.",
+    overview:
+      "Quicksilver (github.com/UditAkhourii/quicksilver, MIT) is a Claude Code skill that hands those bulk judgments to TypeSafe Jev. Jev returns a yes/no, a label, or a score. Claude gets a shortlist and spends tokens on the thinking only it can do. Install is 1 command: npx github:UditAkhourii/quicksilver. The installer copies the skill into ~/.claude/skills/quicksilver and asks for a Jev key once, from console.typesafe.ai. Restart Claude Code. The same skill installs as a plugin, or from a clone with install.sh or install.ps1. Pass the key with install --key, or set JEV_API_KEY or TYPESAFE_API_KEY. Node 18+. No npm dependencies. The qs CLI is filter, classify, rank, find, ask, and status. The README's 12-task bench says Quicksilver cuts the tokens Claude spends by 86% (median 82%), matches Claude on 8 of 12 tasks, and runs up to 20x faster, at a median of $0.004 of Jev per task. Public counts were 98 stars and 5 forks when this listing was drafted.",
+    creator: {
+      name: "Udit Akhouri",
+      handle: "UditAkhourii",
+      githubUrl: "https://github.com/UditAkhourii",
+    },
+    creatorQuote: {
+      text: "Stop paying Claude to skim.",
+      attributedTo: "Quicksilver README",
+      sourceUrl: "https://github.com/UditAkhourii/quicksilver/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Claude Code skill and qs CLI: bulk filter, classify, rank, find, and ask calls go to TypeSafe Jev, and Claude reads the shortlist",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "One narrow question plus the files, log lines, tickets, or a state file. filter is a yes/no over paths or lines. classify takes a closed label list. rank and find take a relevance question. ask takes one question and a --state file.",
+      decisionOut:
+        "One line per hit, written for an LLM to read. Repeated log patterns collapse into line-number ranges. Classify results come back as id lists. A ? marks a borderline item. Every run ends with a receipt: scanned, matched, borderline, seconds, Jev tokens and dollars, and Claude tokens not read.",
+      flowSteps: [
+        "npx github:UditAkhourii/quicksilver, or install --key, or the Claude Code plugin marketplace command, or install.sh from a clone. Node 18+, no npm dependencies",
+        "Provide a key once from console.typesafe.ai, or export JEV_API_KEY or TYPESAFE_API_KEY. The file copy lives in ~/.quicksilver/config.json with user-only permissions",
+        "Restart Claude Code. The skill runs when a task looks like reading a lot to decide a little",
+        "qs filter, qs classify --labels, qs rank --top, qs find, or qs ask --state. --fast packs items when the needles are obvious",
+        "Read the shortlist and the receipt. Review ? rows in Claude. qs status checks the key and lifetime tokens saved",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README claim on the 12-task bench: Quicksilver cuts the tokens Claude spends by 86% (median 82%). It matches Claude's accuracy on 8 of 12 tasks (bold in the table means within 2 points) and runs up to 20x faster, for a median of $0.004 of Jev per task. The whole bench cost $0.45 of Jev. Jev is $0.042 per million input tokens, and output is free.",
+          source: "github.com/UditAkhourii/quicksilver README The benchmark and FAQ",
+        },
+        {
+          claim:
+            "Table rows the README marks as matches: noisy 3,000-line log F1 100% to 100%, Claude tokens 53.5k to 2.5k (-95%), time 56s to 64s, Jev $0.044. Banking77, 8 intents, accuracy 100% to 99%, 15.0k to 2.7k (-82%), 60s to 6s, $0.003. Hono codebase discovery, 187 files, F1 100% to 100%, 26.4k to 2.4k (-91%), 43s to 6s, $0.013. CI failure triage, 80 logs, accuracy 100% to 100%, 9.1k to 2.5k (-72%), 30s to 3s, $0.002. Commit classification, 181 real commits, went from 106s to 5s at accuracy 83% to 76%.",
+          source: "github.com/UditAkhourii/quicksilver README benchmark table",
+        },
+        {
+          claim:
+            "README misses: BGL supercomputer log, 2k lines, F1 54% to 23%, tokens 84.4k to 12.5k (-85%), 105s to 44s, $0.033. Security review of 40 files, F1 100% to 89%, tokens -74%. Spam filtering F1 97% to 92%. Commit types 83% to 76%. The README says look-alike safe files landed near p 0.5 to 0.65 and are the ? rows. On huge scans, wall-clock time is about the same as Claude. The win there is tokens and context.",
+          source: "github.com/UditAkhourii/quicksilver README benchmark table and Where it shines",
+        },
+        {
+          claim:
+            "bench/README.md token rules: Claude-alone totals subtract a 68.5k-token fixed floor, measured with a control agent that reads 1 tiny file and writes 1 line. Quicksilver is charged the full SKILL.md on every situation, plus each command, its full stdout, and 40 wrapper tokens per call. Counts use characters divided by 4. Claude-alone agents used Sonnet. 8 tasks use public data. Synthetic sets S02, S07, S08, and S12 were written by the author. S12 is a numeric negative control. The main table still shows F1 100% to 100% and -76% tokens on that row, and bench/README.md says plain awk wins there.",
+          source: "github.com/UditAkhourii/quicksilver bench/README.md",
+        },
+        {
+          claim:
+            "Safety: the skill never sends .env files, private keys, certificates, or credential files. It respects .gitignore and skips binaries and files over 2 MB. Content goes to api.typesafe.ai. The README says TypeSafe states that Jev is not trained on customer data. npx github:UditAkhourii/quicksilver setup --remove deletes the local key. The project says it is independent and not affiliated with Anthropic or TypeSafe AI.",
+          source: "github.com/UditAkhourii/quicksilver README Safety and FAQ",
+        },
+        {
+          claim:
+            "Public GitHub repo UditAkhourii/quicksilver had 98 stars and 5 forks on 2026-10-03. License MIT. Language JavaScript. Created 2026-09-25. Last push 2026-09-25. README copyright line names Udit Akhouri.",
+          source: "GitHub API 2026-10-03 and the Quicksilver README license line",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Quicksilver is the Claude Code skill and the qs CLI. dbreunig-building-with-jev-skill is Drew Breunig's SKILL.md for Choice, Score, and Noul question design on jev-1.13. It does not ship qs or a 12-task bench. kerpopule-hermes-jev-skills is a Hermes skill drawer for routing, memory, compaction, and GUI steps. dzhng-jevgrep walks a repository and returns excerpts for the agent to read. tamaratran-fast-jev-compaction scores tool-result rows so a transcript can drop junk. Quicksilver spends Jev on the bulk call before Claude reads: filter, classify, rank, find, and ask. The README's own limits stay in the page. BGL alert labels fell from 54% F1 to 23%. Security look-alikes are marked ?. Commit types scored 76% against Claude's 83%. Huge scans can tie Claude on the clock and still cut tokens. Cite github.com/UditAkhourii/quicksilver README and bench/README.md.",
+    keyFeatures: [
+      "1-command npx install into ~/.claude/skills/quicksilver, plus a Claude Code plugin path",
+      "qs filter, classify, rank, find, ask, and status",
+      "Shortlist output with collapsed repeats, id lists, and a ? on borderline rows",
+      "12-task bench with a reproducible bench/ directory and a published token-counting rule",
+      "Skip rules for secrets, gitignored paths, binaries, and files over 2 MB",
+      "Receipt on every run: Jev dollars and Claude tokens not read",
+    ],
+    stack: [
+      "JavaScript",
+      "Node 18+",
+      "Claude Code skill",
+      "TypeSafe Jev",
+      "MIT",
+    ],
+    links: {
+      repo: "https://github.com/UditAkhourii/quicksilver",
+      docs: "https://github.com/UditAkhourii/quicksilver/blob/main/bench/README.md",
+    },
+    pricingNote:
+      "MIT code. Jev calls spend your TypeSafe key. README price: $0.042 per million input tokens, output free. The 12-task bench cost $0.45 of Jev, with a median of $0.004 per task.",
+    firstSeen: "2026-10-03",
+    relatedSlugs: [
+      "dbreunig-building-with-jev-skill",
+      "kerpopule-hermes-jev-skills",
+      "dzhng-jevgrep",
+      "tamaratran-fast-jev-compaction",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-typesafe"],
+    faq: [
+      {
+        question: "Is Quicksilver an official TypeSafe or Anthropic skill?",
+        answer:
+          "README FAQ: no. It is an independent open-source project, and the README says it is not affiliated with Anthropic or TypeSafe AI. The install path is npx github:UditAkhourii/quicksilver, and the key is your own TypeSafe key.",
+      },
+      {
+        question: "Does the 86% figure mean every task got cheaper and faster?",
+        answer:
+          "The README states 86% fewer Claude tokens, median 82%, a match on 8 of 12 tasks, up to 20x faster, and a median of $0.004 of Jev. The same table shows the BGL log falling from 54% F1 to 23%, and the 3,000-line needle task moving from 56s to 64s. Huge scans save tokens. They do not always save wall-clock time.",
+      },
+      {
+        question: "How does the bench count a Claude token?",
+        answer:
+          "bench/README.md: Claude-alone totals subtract a 68.5k fixed floor from a control agent. Quicksilver is charged the full SKILL.md on every situation, plus each command, the full stdout, and 40 wrapper tokens. The count is characters divided by 4. Agents on the Claude-alone side used Sonnet.",
+      },
+      {
+        question: "What should stay on Claude or on grep?",
+        answer:
+          "README: writing, editing, multi-step reasoning, and anything grep answers exactly. Let Claude check the ? rows on look-alike code and on house-style labels. S12 is the numeric negative control, and bench/README.md says plain awk wins there.",
+      },
+    ],
+    metaTitle: "Quicksilver: bulk Jev calls for Claude Code",
+    metaDescription:
+      "Claude Code skill that hands filter, classify, rank, find, and ask to TypeSafe Jev. README 12-task bench: 86% fewer Claude tokens, median 82%.",
+  },
+
+  "aurorainfra-grev": {
+    slug: "aurorainfra-grev",
+    status: "published",
+    problem:
+      "grep, sort, and cut match strings. The line you want is often a meaning: the crash, the refund, the vegan meal, the column that is an email. A chat model answers with a paraphrase. A pipeline still needs the original line.",
+    targetUser:
+      "Shell users and coding agents who want Unix-style filters that keep the input text, add labels or scores only as explicit columns, and stop a run before it overspends.",
+    overview:
+      "grev (github.com/aurorainfra/grev, Apache-2.0 or MIT, your choice) is a Go suite of Unix filters that ask TypeSafe Jev a typed question instead of matching a pattern. The README rule is that output is always your input. Labels and scores appear only as explicit columns. The tools are grev, isv, oneof, tagv, sortv, rank, pickv, uniqv, unwrap, seg, cutv, seek, trv, lookv, probev, and grev-settings. Each has --help and a man page. Install from GitHub Releases (deb, rpm, apk, Arch packages, and archives for Linux, macOS, FreeBSD, and Windows), with go install github.com/aurorainfra/grev/cmd/...@latest, or with make and sudo make install, which also installs man pages and bash, zsh, and fish completions. grev-settings skill install copies an agent skill into ~/.claude/skills and ~/.agents/skills. npx skills add aurorainfra/grev works too. The default endpoint is TypeSafe. OpenRouter and Fastino are documented alternates. Public counts were 55 stars and 1 fork when this listing was drafted.",
+    creator: {
+      name: "aurorainfra",
+      handle: "aurorainfra",
+      githubUrl: "https://github.com/aurorainfra",
+    },
+    creatorQuote: {
+      text: "Unix filters that ask questions instead of matching patterns.",
+      attributedTo: "grev README",
+      sourceUrl: "https://github.com/aurorainfra/grev/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Semantic coreutils: each tool asks Jev a typed question and prints the user's own records, with labels or scores only when a flag asks for a column",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "The user's records. grev asks one yes/no per record, a line by default, and --about tells the model what the lines are. A {} in the question, or {1} and {2} after -d, names a field. isv and oneof judge the whole input once. Relational tools such as unwrap, seg, and pickv put a window of line-tagged text in the state.",
+      decisionOut:
+        "The selected input lines, verbatim and in input order. -s prints P(yes). -n prints the line number. probev -H prints probability columns for awk. tagv --split writes records into files. isv answers with the exit status. Counting stays in code, one answer per line. DESIGN.md names 2 normalizations: CRLF comes out as LF, and cutv re-encodes CSV quoting while TSV passes through byte for byte.",
+      flowSteps: [
+        "Install a release package, go install github.com/aurorainfra/grev/cmd/...@latest, or make and sudo make install",
+        "grev-settings key set writes the TypeSafe key into ~/.grevconfig with mode 0600. CI can set TYPESAFE_API_KEY and skip the file",
+        "Optional: point api.endpoint at OpenRouter or https://api.fastino.ai and set the model. OpenRouter does not serve the default jev-1.13.0. Fastino uses fastino/GLiDE",
+        "Run grev, tagv, rank, cutv, seek, or the rest of the suite. -Q quotes first. --max-cost and the daily and monthly caps stop a run. Closing the output pipe stops spending",
+        "grev-settings skill install for Claude Code and for ~/.agents/skills, which the README says Codex, Gemini CLI, GitHub Copilot, Cursor, OpenCode, Goose, and Amp read",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README tool table: grev filters like grep, isv answers yes/no like test, oneof picks a label like case, tagv labels every record, sortv sorts by a described order, rank sorts by fit or by ordered levels, pickv returns the one best line, uniqv collapses adjacent records that mean the same thing, unwrap rejoins hard-wrapped lines, seg splits a stream into topic segments, cutv cuts columns by description, seek walks a tree, trv translates where an instruction applies, lookv finds where an ordered answer flips, probev prints probability columns, and grev-settings holds config, the key, spend, and the skill.",
+          source: "github.com/aurorainfra/grev README tool table",
+        },
+        {
+          claim:
+            "docs/tools/grev.md example: 16-line examples/app.log, 1 request, 1,388 tokens, $0.000058, 0.6 seconds, model jev-1.13.0. The printed lines were the panic, the fatal concurrent map write, the OOM kill, and the supervisor restarts. A 502 retry and a delayed email stayed out. -v selects the no rows as 1 minus P(yes), not as a negated question. Default threshold is 0.5. Exit status: 0 if a record was selected, 1 if none, 2 on error, 3 if only uncertain records, 4 if declined at -Q or stopped by --max-cost.",
+          source: "github.com/aurorainfra/grev docs/tools/grev.md",
+        },
+        {
+          claim:
+            "README cost: Jev is $0.042 per million input tokens and output is free. Grepping a 4,000-line source file costs about $0.008. A quote above confirmAbove asks first and refuses without a terminal. The built-in confirmAbove is $1. The sample config sets it to $0.25, with daily 5 and monthly 50 USD caps. Fastino GLiDE is $0.30 per million input tokens and bills the shared context once per question, so those runs cost several times more. Quotes include that.",
+          source: "github.com/aurorainfra/grev README Cost and safety and Through Fastino",
+        },
+        {
+          claim:
+            "DESIGN.md: a request carries about 262 tokens of framing plus about 7 per question, plus the text. Choice allows up to 255 options. Score uses 2 to 10 ordered levels. Putting each record inside its own question scored 94% against 91% for a state array on labelled sets, and the doc points at eval/RESULTS.md. --about adds 3 to 5 points. Packing limits: the whole request stays at or under 64k tokens, the state plus its longest question at or under 32k, with a 15% margin and 128 questions per request. The scheduler respects 1,200 requests per minute and 250k tokens per second.",
+          source: "github.com/aurorainfra/grev docs/DESIGN.md",
+        },
+        {
+          claim:
+            "README lookv example comment: the first health check that reports a failure takes 3 requests for 600 lines. OpenRouter setup uses jev-latest or jev-1.13 because the default jev-1.13.0 is not served there. Package upgrades keep the agent skill current when the deb, rpm, apk, or Arch package links it to /usr/share/grev/skills/grev.",
+          source: "github.com/aurorainfra/grev README examples and Use with coding agents",
+        },
+        {
+          claim:
+            "Public GitHub repo aurorainfra/grev had 55 stars and 1 fork on 2026-10-03. License Apache-2.0 or MIT. Language Go. Created 2026-09-24. Last push 2026-10-02.",
+          source: "GitHub API 2026-10-03",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "grev is the shell suite. dzhng-jevgrep is the coding-agent search CLI: it walks a repo and returns excerpts, and the lines on stdout are leads for the agent to open. iurysza-logview-jev is an Android log viewer whose semantic mode scores retained lines inside the TUI. leepokai-jev-guard scores tool calls and scans results for coding agents. kitfunso-hippo-memory reranks local notes on recall. grev stays on the pipe. docs/tools/grev.md says the match is the original record. DESIGN.md adds the 2 output normalizations, CRLF to LF and CSV re-encoding in cutv, and still keeps labels in columns. The Go rows already in this catalog are mostly API clients. marcus-frost is a Go CLI that routes models. grev's job is the filter. Cite github.com/aurorainfra/grev README, docs/tools/grev.md, and docs/DESIGN.md.",
+    keyFeatures: [
+      "16 tools from grev and isv through seek, trv, lookv, probev, and grev-settings",
+      "Output contract: your lines back, scores and labels only as columns",
+      "Man pages, shell completions, and deb, rpm, apk, Arch, and archive packages",
+      "Spend quote, confirmAbove, --max-cost, and daily and monthly caps",
+      "OpenRouter and Fastino endpoints beside the TypeSafe default",
+      "Agent skill installer for Claude Code and ~/.agents/skills",
+    ],
+    stack: [
+      "Go",
+      "Apache-2.0 or MIT",
+      "TypeSafe Jev, OpenRouter, or Fastino GLiDE",
+      "man pages and shell completions",
+    ],
+    links: {
+      repo: "https://github.com/aurorainfra/grev",
+      docs: "https://github.com/aurorainfra/grev/blob/main/docs/tools/grev.md",
+    },
+    pricingNote:
+      "Dual-licensed code. Jev calls spend your key at the README rate of $0.042 per million input tokens, output free. A 4,000-line grep is about $0.008. Fastino GLiDE is $0.30 per million on that endpoint. The built-in confirm prompt sits at $1.",
+    firstSeen: "2026-10-03",
+    relatedSlugs: [
+      "dzhng-jevgrep",
+      "iurysza-logview-jev",
+      "leepokai-jev-guard",
+      "kitfunso-hippo-memory",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does grev rewrite the lines it keeps?",
+        answer:
+          "docs/tools/grev.md: grev prints the records the model says yes to, verbatim and in input order. The README says labels and scores appear only as explicit columns, for example -s or probev -H. DESIGN.md adds 2 normalizations: CRLF comes out as LF, and cutv re-encodes CSV quoting. TSV passes through byte for byte.",
+      },
+      {
+        question: "How is this different from jevgrep?",
+        answer:
+          "dzhng-jevgrep searches a repository for a coding agent and returns excerpts. grev is a pipe filter over lines you already have, with man pages and an exit status. The docs example on a 16-line log printed the original crash lines and left the rest out.",
+      },
+      {
+        question: "What stops a long run from spending?",
+        answer:
+          "README and DESIGN.md: a quote above confirmAbove asks on a terminal and refuses without one. The built-in value is $1. --max-cost and the daily and monthly caps refuse a quote that does not fit, and they keep checking during the run. Closing the output pipe cancels the run. A failed request on a big terminal run asks whether to retry, skip, or stop.",
+      },
+      {
+        question: "Can the same binaries call OpenRouter or Fastino?",
+        answer:
+          "README: set api.endpoint and api.model, then grev-settings key set. OpenRouter wants jev-latest or jev-1.13, because the default jev-1.13.0 is not served there. Fastino uses fastino/GLiDE at $0.30 per million input tokens, and DESIGN.md says a Score of 3 or more levels can take extra passes that the quote includes.",
+      },
+    ],
+    metaTitle: "grev: Unix filters that ask Jev questions",
+    metaDescription:
+      "Go coreutils that filter, label, sort, and cut by meaning with TypeSafe Jev. Output is your own lines. Packages, man pages, spend caps, and a skill.",
+  },
+
+  "peterfriese-system-one-foundation-models": {
+    slug: "peterfriese-system-one-foundation-models",
+    status: "published",
+    problem:
+      "Apple's Foundation Models session wants a LanguageModel that can fill @Generable structs. Hosted Jev, a self-hosted laya-serve process, and an on-device Laya Core ML bundle are 3 different runtimes. A phone build also cannot ship a cloud API key inside the binary.",
+    targetUser:
+      "Swift teams who want LanguageModelSession, @Generable types, and the session.probability, choice, and score shortcuts on hosted Jev, laya-serve, or on-device Laya, and who will follow the README proxy rules before a mobile app calls the cloud.",
+    overview:
+      "System One for Apple Foundation Models (github.com/peterfriese/system-one-foundation-models, Apache-2.0) is Peter Friese's native Swift 6 bridge from System One decision models into Apple's Foundation Models types: LanguageModel, LanguageModelExecutor, and @Generable. The README example depends on the package from version 0.2.0. Package.swift sets swift-tools-version 6.1 and declares platforms iOS 27.0, macOS 27.0, and visionOS 27.0. The README badges also say Swift 6, Xcode 27.0+, iOS 27.0+, and macOS 27.0+. This listing quotes those declarations. It does not add a separate check that those OS versions are shipping. Swift package traits pick a backend. Jev is the default. OnDevice enables Laya. Remote enables Jev and LayaServe. All enables every backend. LayaOnDevice runs Core ML on the Apple Neural Engine and GPU. The README describes a 322M multilingual mmBERT and a 421M English and typed-decisions ModernBERT, with no network and no API key. LayaFoundationModels talks to laya-serve on localhost port 8000, localhost port 8770, or the hosted endpoint the README names as api.impossibl.com. JevFoundationModels calls hosted TypeSafe with RetryPolicy. MailTriageApp is the reference mail client, with 5 selectable backends including an offline mock. Public counts were 63 stars and 2 forks when this listing was drafted.",
+    creator: {
+      name: "Peter Friese",
+      handle: "peterfriese",
+      githubUrl: "https://github.com/peterfriese",
+    },
+    creatorQuote: {
+      text: "A lightweight, native Swift 6 bridge integrating System One decision models into Apple's Foundation Models framework.",
+      attributedTo: "System One for Apple Foundation Models README",
+      sourceUrl:
+        "https://github.com/peterfriese/system-one-foundation-models/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "LanguageModelSession backend: a @Generable schema becomes System One questions, and Laya on device, laya-serve, or hosted Jev returns probabilities the session can route on",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "A prompt or application state plus a @Generable struct or enum. The README maps Bool to noul, an enum or String to choice, and a ranged Guide to score. Shortcuts skip the struct: session.probability, session.choice over a Choosable enum or a string list, and session.score over ordered levels.",
+      decisionOut:
+        "response.content is the decoded struct. response.decision and response.judgement apply a RoutingPolicy and return auto, confirm, or escalate. A choice result carries the winning value, confidence, and the distribution. A score result carries a continuous mean, the most likely level, and per-level probabilities.",
+      flowSteps: [
+        "Add the package from 0.2.0 and pick a trait: the Jev default, OnDevice, Remote, or All",
+        "On device: build a LayaCoreMLEngine from a compiled mlmodelc and ModernBERTTokenizer, then open LanguageModelSession with LayaOnDeviceLanguageModel",
+        "Self-hosted HTTP: LayaLanguageModel with endpoint .localDefault, .local(port: 8770), or .hosted",
+        "Cloud from a server or CLI: JevLanguageModel reads TYPESAFE_API_KEY from the environment and takes a RetryPolicy. A mobile app uses ProxyTransport and does not bundle the key",
+        "Call session.respond(to:generating:) or the probability, choice, and score shortcuts. The README sample RoutingPolicy escalates below 0.60 and auto-accepts at or above 0.85",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README trait table: Jev (default) enables JevFoundationModels. Laya enables LayaOnDevice. LayaServe enables LayaFoundationModels. OnDevice activates Laya. Remote activates Jev and LayaServe. All activates Jev, Laya, and LayaServe. SystemOneCore holds schema translation, RoutingPolicy, and offline mocks and lists no network and no API key.",
+          source: "github.com/peterfriese/system-one-foundation-models README traits and target table",
+        },
+        {
+          claim:
+            "README type map: Bool is noul, enum or String is choice, a Guide description is instructions, a ranged Guide is score, and response metadata exposes confidence and probabilities. Shortcut samples: session.probability returns a value from 0.0 to 1.0, with optional whenTrue and whenFalse criteria. session.choice returns value, confidence, distribution, and probability(of:). session.score returns a continuous mean, mostLikelyLevel, mostLikelyIndex, and per-level probabilities.",
+          source: "github.com/peterfriese/system-one-foundation-models README type map and shortcuts",
+        },
+        {
+          claim:
+            "README timing sentence: evaluate strongly typed @Generable structs and enums against application state in 15 to 150 ms. The README does not attach a measurement table to that range. On-device copy names Laya's 322M multilingual mmBERT and 421M English and typed-decisions ModernBERT, with zero network calls. The sample RoutingPolicy uses escalateBelow 0.60 and autoAtOrAbove 0.85.",
+          source: "github.com/peterfriese/system-one-foundation-models README opening and quick start",
+        },
+        {
+          claim:
+            "MailTriageApp, listed in the README, is a macOS and iOS reference app with 5 backends: Laya Core ML, Laya local at http://127.0.0.1:8000, Laya remote at https://api.impossibl.com, Jev Cloud at https://api.typesafe.ai, and an offline mock. Package.swift also declares executable targets TicketTriageDemo, DuplicateArticleDemo, FileOrganizerDemo, and LayaDemo.",
+          source: "github.com/peterfriese/system-one-foundation-models README MailTriageApp and Package.swift",
+        },
+        {
+          claim:
+            "README security warning: never hardcode or bundle TYPESAFE_API_KEY in an iOS, iPadOS, watchOS, or visionOS binary. Safe patterns in that warning: on-device Laya with no secret, a server or CLI that keeps the key in the environment, or ProxyTransport through your own proxy with Apple App Attest or Firebase App Check. The longer notes are docs/mobile-security.md and tech note 0010.",
+          source: "github.com/peterfriese/system-one-foundation-models README security advisory",
+        },
+        {
+          claim:
+            "Package.swift platforms array: iOS 27.0, macOS 27.0, and visionOS 27.0, with swift-tools-version 6.1. README badges say Xcode 27.0+, iOS 27.0+, and macOS 27.0+. This listing quotes the repo and does not confirm those version numbers against a shipping OS catalog.",
+          source: "github.com/peterfriese/system-one-foundation-models Package.swift and README badges",
+        },
+        {
+          claim:
+            "Public GitHub repo peterfriese/system-one-foundation-models had 63 stars and 2 forks on 2026-10-03. License Apache-2.0. Language Swift. Created 2026-09-21. Last push 2026-10-02. The GitHub account name is Peter Friese.",
+          source: "GitHub API 2026-10-03",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This package is the Swift adapter for LanguageModelSession. mizorewww-laya-coreml is the Python Core ML runtime for open-weight Laya, with its own Snake loop and a published latency table. receptron-laya is the Node ONNX client for Convai Laya weights. typesafe-ai-typesafe-sdk-js is the official JavaScript SDK for the hosted API. ollaya-dev-ollaya pulls ONNX graphs and serves POST /v1/systemone for agents that want a local daemon. System One Foundation Models keeps the call inside Apple's session type. Hosted traffic uses JevFoundationModels. On-device traffic uses LayaOnDevice. laya-serve traffic uses LayaFoundationModels. The README's 15 to 150 ms line is a range in the introduction, and this page does not turn it into a benchmark. Cite the README, Package.swift, and docs/mobile-security.md.",
+    keyFeatures: [
+      "Swift 6 package traits: Jev, OnDevice, Remote, and All",
+      "LayaOnDevice, LayaFoundationModels, and JevFoundationModels targets",
+      "LanguageModelSession plus @Generable structs and enums",
+      "session.probability, session.choice, and session.score shortcuts",
+      "RoutingPolicy example at 0.60 and 0.85",
+      "MailTriageApp reference and ProxyTransport for mobile cloud calls",
+    ],
+    stack: [
+      "Swift 6",
+      "Apache-2.0",
+      "Apple Foundation Models",
+      "TypeSafe Jev",
+      "laya-serve HTTP",
+      "Core ML Laya",
+    ],
+    links: {
+      repo: "https://github.com/peterfriese/system-one-foundation-models",
+      docs: "https://github.com/peterfriese/system-one-foundation-models/blob/main/docs/getting-started.md",
+    },
+    pricingNote:
+      "Apache-2.0 code. On-device Laya needs no API key. Hosted Jev calls spend a TypeSafe key that the README says must stay off the mobile binary. laya-serve cost is the machine you run. The README does not publish a price table.",
+    firstSeen: "2026-10-03",
+    relatedSlugs: [
+      "mizorewww-laya-coreml",
+      "receptron-laya",
+      "typesafe-ai-typesafe-sdk-js",
+      "ollaya-dev-ollaya",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is this the Python Laya Core ML package?",
+        answer:
+          "mizorewww-laya-coreml is a Python runtime with a Snake demo and its own timing table. This repo is Swift. The on-device target is LayaOnDevice, and the session type is Apple's LanguageModelSession. Hosted Jev is a separate target, JevFoundationModels.",
+      },
+      {
+        question: "Do the iOS 27 and Xcode 27 badges mean those releases are shipping?",
+        answer:
+          "Package.swift declares iOS 27.0, macOS 27.0, and visionOS 27.0. The README badges say Xcode 27.0+, iOS 27.0+, and macOS 27.0+. This directory quotes those lines. It does not add an availability check of its own.",
+      },
+      {
+        question: "Where should a phone keep the TypeSafe key?",
+        answer:
+          "README warning: do not hardcode or bundle TYPESAFE_API_KEY in an iOS, iPadOS, watchOS, or visionOS binary. On-device Laya needs no key. A cloud mobile app uses ProxyTransport through your own proxy, with Apple App Attest or Firebase App Check. Server and CLI samples read the key from the environment.",
+      },
+      {
+        question: "What do session.probability, choice, and score return?",
+        answer:
+          "README shortcuts: probability is a 0.0 to 1.0 truth value, with optional whenTrue and whenFalse criteria. choice returns the winning case, confidence, and the distribution. score returns a continuous mean, the most likely rubric level, and the per-level probabilities. The sample RoutingPolicy escalates below 0.60 and auto-accepts at or above 0.85.",
+      },
+    ],
+    metaTitle: "System One for Apple Foundation Models",
+    metaDescription:
+      "Swift 6 bridge: LanguageModelSession over hosted Jev, laya-serve, or on-device Laya. Package.swift declares iOS, macOS, and visionOS 27.0.",
+  },
+
 };
