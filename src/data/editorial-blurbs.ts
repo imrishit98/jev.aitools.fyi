@@ -233,6 +233,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Ten levels, 30 options, from one Noul smart-if to a pi agent that writes its own Jev questions. The Vue lab prices the call. The YouTube walkthrough shows the ladder. 201 offline tests keep the mock honest.",
   "charlesfeng0314-jev-sees":
     "One frame, many objects, one hosted Jev call. Florence-2 and RGB-D depth clusters build the state. Choice and Noul stay official TypeSafe types. The README pulled the old YOLO timing table and left the speed claim blank on purpose.",
+  "uditakhourii-quicksilver":
+    "Stop paying Claude to skim 187 files. Quicksilver asks Jev the typed question and hands back a shortlist with a receipt. The 12-task README bench is the evidence, and the BGL miss stays on the page.",
+  "aurorainfra-grev":
+    "grep for a meaning, and the line that comes back is still your line. A Go drawer of filters, man pages, spend caps, and a skill a coding agent can install.",
+  "peterfriese-system-one-foundation-models":
+    "LanguageModelSession, with the model swapped for hosted Jev, laya-serve, or Laya on the Neural Engine. Read the README security box before a phone build ever sees an API key.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
