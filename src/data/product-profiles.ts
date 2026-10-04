@@ -10460,7 +10460,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       stateIn:
         "Permission-filtered folder menus, document structural outlines, and overlapping source passages from parsed uploads (see docs/retrieval.md).",
       decisionOut:
-        "Route log-probability scores across up to four beam paths; passage usefulness on a four-level rubric with 1.5 floor and 2.75 early-stop threshold per retrieval doc.",
+        "Route log-probability scores across up to 4 beam paths; passage usefulness on a 4-level rubric with 1.5 floor and 2.75 early-stop threshold per retrieval doc.",
       flowSteps: [
         "Parse uploads with Extend API or local text decoders; store sections and passages without generative summaries",
         "On upload, Jev classifies into existing folders or validates model-proposed branches (docs/organization.md)",
@@ -10470,7 +10470,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       sourcedMetrics: [
         {
           claim:
-            "docs/retrieval.md: beam retains four routes; Choice menus up to 64 children plus none; exploration capped at 96 node expansions and 96 passage scores per query.",
+            "docs/retrieval.md: beam retains 4 routes; Choice menus up to 64 children plus none; exploration capped at 96 node expansions and 96 passage scores per query.",
           source: "github.com/extend-hq/jevbox docs/retrieval.md",
         },
         {
@@ -10480,12 +10480,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo extend-hq/jevbox had about four hundred one stars when this listing was drafted.",
+            "Public GitHub repo extend-hq/jevbox had about 401 stars when this listing was drafted.",
           source: "GitHub star count October 2026",
         },
         {
           claim:
-            "Extend's October 2026 launch post on X passed nine hundred likes overnight per ModelSystem.One news summary; treat engagement as social signal, not a benchmark.",
+            "Extend's October 2026 launch post on X passed 900 likes overnight per ModelSystem.One news summary; treat engagement as social signal, not a benchmark.",
           source: "modelsystem.one/news/extend-jevbox-document-drive",
         },
       ],
@@ -10566,30 +10566,30 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         "Per code-unit Noul-style pass or fail judgments on natural-language rule descriptions, with optional localize second pass",
       primitives: ["Noul"],
       stateIn:
-        "Extracted source for one Tree-sitter unit plus rule text, exceptions, and optional callee context (up to twelve project-local callees).",
+        "Extracted source for one Tree-sitter unit plus rule text, exceptions, and optional callee context (up to 12 project-local callees).",
       decisionOut:
         "pass, fail, skip, or abstain per unit with confidence; failures below minConfidence stay hidden; localize reruns focused regions on fail.",
       flowSteps: [
         "jevlint init detects languages and writes jevlint.json",
-        "check walks include globs, batches applicable rules per unit (default concurrency four)",
-        "Failed function or type rules may trigger localize passes up to twenty-four regions",
+        "check walks include globs, batches applicable rules per unit (default concurrency 4)",
+        "Failed function or type rules may trigger localize passes up to 24 regions",
         "Results cache in the OS user cache keyed by endpoint, model, credential fingerprint, and request body",
       ],
       sourcedMetrics: [
         {
           claim:
-            "README: default concurrency four parallel Jev requests; network failures retry up to twice.",
+            "README: default concurrency 4 parallel Jev requests; network failures retry up to 2 times.",
           source: "github.com/codegirl-007/jevlint README How it works",
         },
         {
           claim:
-            "Public GitHub repo codegirl-007/jevlint had about one hundred twenty five stars when this listing was drafted.",
+            "Public GitHub repo codegirl-007/jevlint had about 125 stars when this listing was drafted.",
           source: "GitHub star count October 2026",
         },
       ],
     },
     howJevIsUsed:
-      "jevlint sits between classic linters and agent guardrails. Abide compiles AGENTS.md rubrics on every edit diff; jev-codes scores hunks against YAML standards packs; grev filters arbitrary line streams on the shell. jevlint instead targets repository taste with Tree-sitter precision across a dozen language presets, rule packs shared like owner/name modules, and jevlint eval fixtures that require explicit pass or fail outcomes. Clef and OpenRouter paths reuse the same System One request shape, so switching providers does not rewrite rules. Use uehaj-jev-semgrep when you only need line-level meaning grep, or aurorainfra-grev when the job is Unix filters on logs and CSVs.",
+      "jevlint sits between classic linters and agent guardrails. Abide compiles AGENTS.md rubrics on every edit diff; jev-codes scores hunks against YAML standards packs; grev filters arbitrary line streams on the shell. jevlint instead targets repository taste with Tree-sitter precision across 12 language presets, rule packs shared like owner/name modules, and jevlint eval fixtures that require explicit pass or fail outcomes. Clef and OpenRouter paths reuse the same System One request shape, so switching providers does not rewrite rules. Use uehaj-jev-semgrep when you only need line-level meaning grep, or aurorainfra-grev when the job is Unix filters on logs and CSVs.",
     keyFeatures: [
       "init, doctor, check, eval, plugin, and version commands with JSON output flags",
       "Rule packs with pack.json, shared rules.json, and bundled eval fixtures",
@@ -10680,7 +10680,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo JunMa11/MedJev had about one hundred eleven stars when this listing was drafted.",
+            "Public GitHub repo JunMa11/MedJev had about 111 stars when this listing was drafted.",
           source: "GitHub star count October 2026",
         },
       ],
@@ -10689,7 +10689,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "MedJev is a domain fine-tune, not a hosted gate you paste into agents. It inherits kev's question isolation and System One request format so each clinical field is a typed branch reading a shared encoded note state. That keeps answers inside clinician-defined option sets with explicit confidences for triage to human review. Hosted TypeSafe Jev appears only as an optional baseline replay in serve_compare (answers loaded from data/results/jev JSONL, not re-purchased per click). Contrast jaredpalmer-kev for general open weights, classifier.dev for HTTP zero-shot labels, or docjev for document splitting. Cite github.com/JunMa11/MedJev, github.com/jaredpalmer/kev, the Augmented Clinical Notes dataset, and the PMC-Patients paper linked in README acknowledgements.",
     keyFeatures: [
       "Train, evaluate, compare, bench_runtime, and serve_compare modules",
-      "Eleven default question specs in medjev.labels.QUESTIONS or custom schemas",
+      "11 default question specs in medjev.labels.QUESTIONS or custom schemas",
       "Single-GPU recipe with bf16 and gradient checkpointing documented",
       "Optional TYPESAFE_API_KEY for hosted Jev baseline experiments only",
       "On-prem inference: patient text stays on your hardware per README positioning",
