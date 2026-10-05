@@ -70,15 +70,17 @@ function SponsorExternalLink({
 }
 
 export function HomeSponsors() {
+  const heading = sponsors.length === 1 ? "Sponsor" : "Sponsors";
+
   return (
     <section aria-labelledby="sponsors-heading" className="space-y-6">
       <h2
         id="sponsors-heading"
         className="font-heading text-xl font-semibold sm:text-2xl"
       >
-        Sponsors
+        {heading}
       </h2>
-      <ul className="grid gap-4 sm:grid-cols-1 lg:grid-cols-3">
+      <ul className="grid max-w-xl gap-4">
         {sponsors.map((sponsor) => (
           <li key={sponsor.url}>
             <SponsorExternalLink
