@@ -10866,7 +10866,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Developers who want an XState machine to define the legal moves, and Jev to pick one of those moves.",
     overview:
-      "Jevspresso (github.com/statelyai/jevspresso, jevspresso.dev) is Stately's simulated espresso bar. You type an order in plain English, such as a cap with almond milk, and Jev grinds, tamps, pulls shots, steams milk, and serves. You can also break equipment and watch Jev cope. An XState v6 machine models what is physically possible. Jev only picks an event the machine accepts right now. Jev never writes an action or a payload. The helper package @xstate/jev lives in packages/jev of this repo. On 2026-10-05 the npm registry returned Not found for @xstate/jev, and the package.json in the repo is private. This listing does not claim a license: the GitHub API reports none, and the repo root has no LICENSE file.",
+      "Jevspresso (github.com/statelyai/jevspresso, jevspresso.dev) is Stately's simulated espresso bar. You type an order in plain English, such as a cap with almond milk, and Jev grinds, tamps, pulls shots, steams milk, and serves. You can also break equipment and watch Jev cope. An XState v6 (alpha) machine models what is physically possible. Jev only picks an event the machine accepts right now. Jev never writes an action or a payload. The helper package @xstate/jev lives in packages/jev of this repo. On 2026-10-05 the npm registry returned Not found for @xstate/jev, and the package.json in the repo is private. This listing does not claim a license: the GitHub API reports none, and the repo root has no LICENSE file.",
     creator: {
       name: "Stately",
       handle: "statelyai",
@@ -10883,7 +10883,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       decisionOut:
         "One event from the closed set, or a noop, or no send when confidence is low or the machine moved on. Order fields come back as Choice and Noul answers in the same call.",
       flowSteps: [
-        "createJevLogic collects event types the active state handles, builds payloads, and fills finite fields from Zod (Standard Schema) runtime schemas.",
+        "decide() collects event types the active state handles, builds payloads, and fills finite fields from Zod (Standard Schema) runtime schemas.",
         "Events that snapshot.can(event) rejects are dropped. Jev gets one parallel request over the options that remain.",
         "The chosen event is sent only if the machine still accepts it. types<T>() events throw because they have no runtime shape.",
         "Orders are one Jev call of closed questions (drinks, quantity, milk). Unclear orders go to a router agent that asks the customer to confirm.",
@@ -10922,7 +10922,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     stack: [
       "TypeScript",
-      "XState v6",
+      "XState v6 (alpha)",
       "Zod",
       "TypeSafe JavaScript SDK",
       "@xstate/jev (in-repo)",
@@ -10934,7 +10934,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       docs: "https://github.com/statelyai/jevspresso/blob/main/packages/jev/README.md",
     },
     pricingNote:
-      "The repo does not publish a license or a price table. Jev calls spend a TypeSafe key that src/lib/jev.ts keeps on the server. pnpm test does not call Jev.",
+      "The repo does not publish a license or a price table. Jev calls spend a TypeSafe key that src/lib/jev.ts keeps on the server. pnpm test does not call Jev. Needs XState v6 alpha.",
     firstSeen: "2026-10-03",
     relatedSlugs: [
       "leepokai-jev-guard",
@@ -10952,7 +10952,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Is @xstate/jev on npm?",
         answer:
-          "On 2026-10-05 the npm registry returned Not found for @xstate/jev. packages/jev/package.json names the package, sets version 0.0.0, and marks it private. Use the copy that ships in packages/jev of the jevspresso repo.",
+          "On 2026-10-05 the npm registry returned Not found for @xstate/jev. packages/jev/package.json names the package, sets version 0.0.0, and marks it private. It is a private workspace package, so use it from a clone of the repo.",
       },
       {
         question: "What does the lamp example show?",
@@ -10967,7 +10967,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Jevspresso: XState events chosen by Jev",
     metaDescription:
-      "Stately Jevspresso lets Jev pick only events an XState machine accepts. Live bar at jevspresso.dev. @xstate/jev ships in the repo, not on npm.",
+      "Stately Jevspresso lets Jev pick only events an XState machine accepts. Live bar at jevspresso.dev. @xstate/jev lives in the repo, not on npm.",
   },
 
   "tomerglick57-jevstiller": {
@@ -10978,7 +10978,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Teams with a stable Choice task (support intents, news sections, a fixed label set) who want most answers on their own CPU after a short warm-up.",
     overview:
-      "Jevstiller (github.com/tomerglick57/Jevstiller, jevstiller.pages.dev) is a drop-in proxy in front of repeated Jev Choice calls. Point the SDK at it with TYPESAFE_BASE_URL. At first every request still goes to Jev. From Jev's answers, including the full probability distribution, it trains a small local student on a frozen bge encoder, checks agreement against a budget you set, and then answers most requests locally. Uncertain or novel input, and a permanent random audit slice, keep going to Jev. If the audit shows the contract broke, everything falls back to Jev. The README says agreement with Jev is not accuracy. PyPI jevstiller 0.4.0. Apache-2.0.",
+      "Jevstiller (github.com/tomerglick57/Jevstiller, jevstiller.pages.dev) is a drop-in proxy in front of repeated Jev Choice calls. Point the SDK at it with TYPESAFE_BASE_URL. At first every request still goes to Jev. From Jev's answers, including the full probability distribution, it trains a small local student on a frozen bge encoder, checks agreement against a budget you set, and then answers many repeats locally. Uncertain or novel input, and a permanent random audit slice, keep going to Jev. If the audit shows the contract broke, everything falls back to Jev. The README says agreement with Jev is not accuracy. PyPI jevstiller 0.4.0. Apache-2.0.",
     creator: {
       name: "tomerglick57",
       handle: "tomerglick57",
@@ -11006,7 +11006,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "README: a local Banking77 answer is about 15 ms p50 on CPU, about 20 times faster than Jev at about 300 ms p50. The proxy section, 16 vCPU and bge-small, says local answers are about 16 ms p50 and about 50 ms p99. A live run on 2026-09-25 reached 70.7% local at 99.45% agreement.",
+            "README: a local Banking77 answer is about 15 ms p50 on CPU, about 20 times faster than Jev at about 300 ms p50. The proxy section, 16 vCPU and bge-small, says local answers are about 16 ms p50 and about 50 ms p99. A late September 2026 live run reached 70.7% local at 99.45% agreement.",
           source: "github.com/tomerglick57/Jevstiller README",
         },
         {
@@ -11022,7 +11022,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Jevstiller learns a task, it does not memorize one input. The README groups jevcache with semantic caches that reuse answers to near-identical inputs, and says those caches do not learn to answer new inputs. Here a frozen sentence encoder (bge-small, base, or large) stores embeddings, and a numpy logistic regression fits Jev's distribution. An out-of-distribution gate sends unfamiliar text to Jev whatever the head says. The routing threshold is chosen on a held-out set with a Clopper-Pearson finite-sample bound at 95% confidence, strictest threshold first. The audit channel is the ongoing check. If it breaks the budget, the proxy falls back to Jev on its own. The README's closest cousin is stuntd, which also learns a local head and checks a slice of live traffic. Jevstiller's own comparison says it picks the threshold with a finite-sample bound, trains and promotes by itself, and identifies a question by its exact content. Distil Labs, named in that same section, trains a replacement model as a separate job. That is a different project from samuelfaj-distill, the Rust coding-agent harness already in this directory. Non-Choice questions never get a local answer. Ops in the README: TOML config, jevstiller admin, Prometheus /metrics, a Docker image at ghcr.io/tomerglick57/jevstiller, and a Kubernetes manifest. The README marks the project Alpha.",
+      "Jevstiller learns a task, it does not memorize one input. The README groups jevcache with semantic caches that reuse answers to near-identical inputs, and says those caches do not learn to answer new inputs. Here a frozen sentence encoder (bge-small, base, or large) stores embeddings, and a numpy logistic regression fits Jev's distribution. An out-of-distribution gate sends unfamiliar text to Jev whatever the head says. The routing threshold is chosen on a held-out set with a Clopper-Pearson finite-sample bound at 95% confidence, strictest threshold first. The audit channel is the ongoing check. If it breaks the budget, the proxy falls back to Jev on its own. The README's closest cousin is stuntd, which also learns a local head and checks a slice of live traffic. Jevstiller's own comparison says it picks the threshold with a finite-sample bound, trains and promotes by itself, and identifies a question by its exact content. Distil Labs, named in that same section, trains a replacement model as a separate job. That is a different project from Distill by Samuel Fajreldines, the Rust coding-agent harness already in this directory. Non-Choice questions never get a local answer. Ops in the README: TOML config, jevstiller admin, Prometheus /metrics, a Docker image at ghcr.io/tomerglick57/jevstiller, and a Kubernetes manifest. The README marks the project Alpha.",
     keyFeatures: [
       "Drop-in proxy: TYPESAFE_BASE_URL=http://localhost:8080, callers keep their own API keys",
       "Student on bge embeddings, trained from Jev's full probability distribution",
@@ -11077,7 +11077,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Jevstiller: local student for Jev Choice",
     metaDescription:
-      "Jevstiller proxies repeated Jev Choice calls, then answers most locally after a student hits your agreement budget. Banking77: 71.9% local at 99.50% agreement.",
+      "Jevstiller proxies repeated Jev Choice calls, then answers many repeats locally after your agreement budget is met. Banking77: 71.9% local at 99.50% agreement.",
   },
 
   "raphaelmansuy-edgextract": {
@@ -11132,7 +11132,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Hosted TypeSafe Jev is not the runtime here. The Python client posts to Ollama at http://localhost:11434/v1/systemone. The library default model is nimble. The CoNLL04 number of record is tev1. The browser demo at raphaelmansuy.github.io/edgextract loads Tev1 ONNX on WebGPU, about a 1 GB download into the browser cache, and the README says no server of theirs sees your text. The hosted page does not call 127.0.0.1:11434. A sample graph in the README keeps one wrong link on purpose (Acme acquired Northwind, while the text says invested in) so you can see why the review queue exists. The comparison that the README says matters is the zero-shot row: closed questions kept fewer wrong links than Mistral Small JSON, and a model trained on CoNLL04 still wins by a wide margin. togethercomputer-tev1 is the training recipe behind Tev1. bespokelabsai-nimble is the open Nimble recipe. ollaya and vLLM Jev are other ways to serve open decision checkpoints. edgextract is the extractor that asks those models yes-or-no questions against an ontology you wrote.",
+      "Hosted TypeSafe Jev is not the runtime here. The Python client posts to Ollama at http://localhost:11434/v1/systemone. The library default model is nimble. The CoNLL04 number of record is tev1. The browser demo at raphaelmansuy.github.io/edgextract loads Tev1 ONNX on WebGPU, about a 1 GB download into the browser cache, and the README says no server of theirs sees your text. The demo defaults to Tev1 on WebGPU in the tab. The README says Ollama is one click away. A sample graph in the README keeps one wrong link on purpose (Acme acquired Northwind, while the text says invested in) so you can see why the review queue exists. The comparison that the README says matters is the zero-shot row: closed questions kept fewer wrong links than Mistral Small JSON, and a model trained on CoNLL04 still wins by a wide margin. Together's Tev1 recipe is the training recipe behind Tev1. The Bespoke Labs Nimble recipe is the open Nimble recipe. Ollaya and vLLM Jev are other ways to serve open decision checkpoints. edgextract is the extractor that asks those models yes-or-no questions against an ontology you wrote.",
     keyFeatures: [
       "YAML ontology: types, relations with domain and range, optional gazetteer",
       "Rust crate, Python package, and npm WASM build, each at 0.1.0",
@@ -11242,7 +11242,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Paper Radar follows the shape the README attributes to TypeSafe: one small question per interest, all of them in one call, then your code decides. Relevance defaults to the max of weight times the yes probability, so one strong interest is enough. noisy-OR is there when several weak matches should add up. Exclusions are their own Nouls, written as positive statements. paper-radar check warns about interests that ask for counts or dates, because the README says Jev does not count or compare dates. Calibration reads labels you leave as GitHub issues (radar-label) and reports Brier score, expected calibration error, and thresholds for a precision and recall target. Screening mode is a different command: every inclusion criterion has to hold, one exclusion vetoes the record, and the output is a PRISMA 2020 count block. The held-out Cochrane number is real and narrow. 4 reviews the README says were never used while building the tool reproduced 96.9% of included studies and removed 78% of the reading, for $0.60. The README also says the development set did far worse, that the thresholds above are the optimistic case, and that about a third of new PubMed records have no abstract and are never auto-excluded. 1kpapers classifies a fixed atlas with DeepSeek summaries and one Jev topic Choice. Paper Radar is a weekday filter you fork, with feeds, calibration, and that screening benchmark. Public radars on the GitHub Pages site cover AI, agents, efficiency, robot learning, neuroscience, clinical AI, and a signal feed. The AI feed's feed.xml returned a page on 2026-10-05.",
+      "Paper Radar follows the shape the README attributes to TypeSafe: one small question per interest, all of them in one call, then your code decides. Relevance defaults to the max of weight times the yes probability, so one strong interest is enough. noisy-OR is there when several weak matches should add up. Exclusions are their own Nouls, written as positive statements. paper-radar check warns about interests that ask for counts or dates, because the README says Jev does not count or compare dates. Calibration reads labels you leave as GitHub issues (radar-label) and reports Brier score, expected calibration error, and thresholds for a precision and recall target. Screening mode is a different command: every inclusion criterion has to hold, one exclusion vetoes the record, and the output is a PRISMA 2020 count block. The held-out Cochrane number is real and narrow. 4 reviews the README says were never used while building the tool reproduced 96.9% of included studies and removed 78% of the reading, for $0.60. The README also says the development set did far worse, that the thresholds above are the optimistic case, and that about a third of new PubMed records have no abstract and are never auto-excluded. 1kpapers classifies a fixed atlas with DeepSeek summaries and one Jev topic Choice. Paper Radar is a weekday filter you fork, with feeds, calibration, and that screening benchmark. Public radars on the GitHub Pages site cover AI, agents, efficiency, robot learning, neuroscience, clinical AI, and a signal feed. The AI radar's feed.xml was live on 2026-10-05.",
     keyFeatures: [
       "radar.toml interests in plain English, weekdays at 02:00 UTC via GitHub Actions",
       "Page plus RSS. The README says Zotero can subscribe. Optional Slack, Discord, Telegram, or email",
@@ -11287,12 +11287,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Can this screen a systematic review?",
         answer:
-          "The README's screening command treats each criterion as a Noul and prints PRISMA 2020 counts. On 4 held-out Cochrane reviews it reports 96.9% recall and 78.0% pooled work saved across 19,447 records, for $0.60. The same section says it is a second screener, not a replacement, and that the thresholds were fitted on the judgments they are scored against.",
+          "The README's screening command treats each criterion as a Noul and prints PRISMA 2020 counts. On 4 held-out Cochrane reviews it reports 96.9% recall and 78.0% pooled work saved across 19,447 records, for $0.60. The same section says it is a second screener, not a replacement, and that the thresholds were fitted on the judgments they are scored against. That is the optimistic case.",
       },
     ],
     metaTitle: "Paper Radar: daily arXiv triage with Jev",
     metaDescription:
-      "Paper Radar scores each new arXiv paper with Jev and publishes must-read, maybe, and near-miss bands. A 50-paper run cost $0.0020. Cochrane recall was 96.9%.",
+      "Paper Radar scores each new arXiv paper with Jev and bands it must-read, maybe or near-miss. A 50-paper run cost $0.0020. Cochrane results are optimistic.",
   },
 
 };
