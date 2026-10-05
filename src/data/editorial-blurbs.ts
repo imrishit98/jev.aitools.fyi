@@ -245,6 +245,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Describe taste in English, Tree-sitter slices the units, Jev votes pass or fail. Packs, eval fixtures, and a cache so CI does not re-buy the same hunk.",
   "junma11-medjev":
     "Chart text stays in the hospital. One GPU, typed clinical fields, confidences you can route to human review. Built on kev, trained on Augmented Clinical Notes.",
+  "vectifyai-jev-doc-search":
+    "A 300-page PDF is too big for one Jev menu. PageIndex folds it into a tree of sections, Jev walks a few options at a time, and a yes-or-no check keeps the pages that actually answer.",
+  "statelyai-jevspresso":
+    "The espresso machine is an XState machine. Jev only picks a move the machine already allows. Break the bulb on the lamp demo and it still finds the repair.",
+  "tomerglick57-jevstiller":
+    "Point the SDK at a local proxy. It watches Jev's Choice answers, trains a small model, and starts answering the easy repeats on your CPU. A random audit slice still goes to Jev.",
+  "raphaelmansuy-edgextract":
+    "You write the kinds and the legal links. A local yes-or-no model scores each one. If it is unsure, the link waits in a review queue instead of slipping into the graph.",
+  "eliot5566-jev-paper-radar":
+    "Fork it, write what you care about in plain English, and each weekday Jev scores the new papers. You get a page, an RSS feed, and a receipt for every probability.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
