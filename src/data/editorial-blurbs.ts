@@ -239,6 +239,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "grep for a meaning, and the line that comes back is still your line. A Go drawer of filters, man pages, spend caps, and a skill a coding agent can install.",
   "peterfriese-system-one-foundation-models":
     "LanguageModelSession, with the model swapped for hosted Jev, laya-serve, or Laya on the Neural Engine. Read the README security box before a phone build ever sees an API key.",
+  "extend-hq-jevbox":
+    "A document drive that files and finds evidence with Jev beam search, not embeddings. SpiceDB permissions, cited chat, and MCP that respect the same gates.",
+  "codegirl-007-jevlint":
+    "Describe taste in English, Tree-sitter slices the units, Jev votes pass or fail. Packs, eval fixtures, and a cache so CI does not re-buy the same hunk.",
+  "junma11-medjev":
+    "Chart text stays in the hospital. One GPU, typed clinical fields, confidences you can route to human review. Built on kev, trained on Augmented Clinical Notes.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

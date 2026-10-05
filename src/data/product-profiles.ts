@@ -10438,4 +10438,304 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Swift 6 bridge: LanguageModelSession over hosted Jev, laya-serve, or on-device Laya. Package.swift declares iOS, macOS, and visionOS 27.0.",
   },
 
+  "extend-hq-jevbox": {
+    slug: "extend-hq-jevbox",
+    status: "published",
+    problem:
+      "Team document libraries still lean on embeddings or keyword search that blur permissions, hide weak evidence, or need a separate vector stack to stay current.",
+    targetUser:
+      "Engineering and ops teams who want a self-hostable document drive with org sharing, cited chat, and agent MCP access without maintaining chunk indexes.",
+    overview:
+      "Jevbox (github.com/extend-hq/jevbox, jevbox.extend.ai) is Extend's full stack document library from Andrew Luo, released October 2026. Better Auth organizations, Extend Parse indexing, SpiceDB authorization, and TypeSafe Jev hierarchical routing share one PostgreSQL estate. Search and automatic filing require a TypeSafe API key; README states there is no keyword or embedding fallback. Kushal Byatnal's launch post on X and the ModelSystem.One writeup describe Jev Choice beam search over folders, documents, and sections plus Score usefulness filtering before chat models answer with citations.",
+    creator: {
+      name: "Extend",
+      handle: "extend-hq",
+      githubUrl: "https://github.com/extend-hq",
+      companyUrl: "https://extend.ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Hierarchical Choice routing for filing and library search; independent Score usefulness on source passages before chat synthesis",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Permission-filtered folder menus, document structural outlines, and overlapping source passages from parsed uploads (see docs/retrieval.md).",
+      decisionOut:
+        "Route log-probability scores across up to 4 beam paths; passage usefulness on a 4-level rubric with 1.5 floor and 2.75 early-stop threshold per retrieval doc.",
+      flowSteps: [
+        "Parse uploads with Extend API or local text decoders; store sections and passages without generative summaries",
+        "On upload, Jev classifies into existing folders or validates model-proposed branches (docs/organization.md)",
+        "At query time, Jev Choice walks authorized hierarchy; weak evidence widens exploration up to documented caps",
+        "Jev Score batches usefulness on candidate passages; chat providers answer only from accepted citations",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "docs/retrieval.md: beam retains 4 routes; Choice menus up to 64 children plus none; exploration capped at 96 node expansions and 96 passage scores per query.",
+          source: "github.com/extend-hq/jevbox docs/retrieval.md",
+        },
+        {
+          claim:
+            "README: TypeSafe key required for hierarchical search and document questions; no keyword or embedding fallback when the connection is missing.",
+          source: "github.com/extend-hq/jevbox README Run locally",
+        },
+        {
+          claim:
+            "Public GitHub repo extend-hq/jevbox had about 401 stars when this listing was drafted.",
+          source: "GitHub star count October 2026",
+        },
+        {
+          claim:
+            "Extend's October 2026 launch post on X passed 900 likes overnight per ModelSystem.One news summary; treat engagement as social signal, not a benchmark.",
+          source: "modelsystem.one/news/extend-jevbox-document-drive",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jevbox is the permission-aware document application lane, not DocJev's classify-and-split library and not jev-search's Search1API web planner. Extend stores structure and original passages, then spends Jev on routing and evidence quality instead of maintaining embedding indexes. SpiceDB checks run before provider calls and again on results, so revoked sources block dependent chats. MCP and REST expose the same search and answer tools with durable run handles documented in docs/api-access.md. Chat models from many vendors write prose; Jev never replaces them, it decides where to look and which passages merit context. Compare jkudish-jev-mcp when you only need judgment tools inside an existing agent, or docjev when your problem is boundary detection on one file.",
+    keyFeatures: [
+      "Extend UI Finder with grid, list, columns, and gallery views plus inline citation previews",
+      "Automatic filing and upload-driven organization reviews over cached indexes",
+      "Versioned REST API and MCP with API-key or OAuth auth under current document permissions",
+      "Render blueprint, Docker Compose, Helm, and AWS/EKS Terraform deployment guides",
+      "pg-boss workers for indexing, filing, chat, and MCP jobs separate from the web tier",
+    ],
+    stack: [
+      "TypeScript",
+      "Node 24+",
+      "PostgreSQL",
+      "SpiceDB",
+      "Extend Parse",
+      "TypeSafe System One",
+      "Better Auth",
+    ],
+    links: {
+      repo: "https://github.com/extend-hq/jevbox",
+      docs: "https://github.com/extend-hq/jevbox/blob/main/docs/retrieval.md",
+      website: "https://jevbox.extend.ai",
+      demo: "https://jevbox.extend.ai",
+      post: "https://x.com/kushalbyatnal/status/2106134932795822464",
+    },
+    pricingNote:
+      "Self-hosted infrastructure plus your Extend parse, TypeSafe Jev, and chat provider keys. README documents Render paid services; no directory-hosted SaaS meter.",
+    firstSeen: "2026-10-04",
+    relatedSlugs: [
+      "docjev",
+      "superagents-lab-jev-search",
+      "jkudish-jev-mcp",
+      "ellipsis-dev-blink",
+    ],
+    relatedLearnSlugs: ["system-one", "use-cases"],
+    faq: [
+      {
+        question: "Does Jevbox use vector search?",
+        answer:
+          "docs/retrieval.md states the implementation uses TypeSafe as the decision provider and does not require PageIndex or a vector store.",
+      },
+      {
+        question: "How is this different from DocJev?",
+        answer:
+          "DocJev classifies or splits single documents from natural-language rules. Jevbox is a multi-user library with sharing, chat, MCP, and hierarchical retrieval across many indexed files.",
+      },
+      {
+        question: "Is the repository licensed for production forks?",
+        answer:
+          "README encourages forks as a template and does not plan to accept pull requests. ModelSystem.One notes the public repo lacked a LICENSE file at launch; confirm license terms in the repository before you depend on it.",
+      },
+    ],
+    metaTitle: "Jevbox: Jev document library without embeddings",
+    metaDescription:
+      "Extend Jevbox self-hosts cited document chat. Jev Choice beam search and Score passage filtering, SpiceDB permissions, MCP. GitHub extend-hq/jevbox.",
+  },
+
+  "codegirl-007-jevlint": {
+    slug: "codegirl-007-jevlint",
+    status: "published",
+    problem:
+      "Style and architecture rules that need human judgment still sit in review comments because regex linters cannot read intent across languages.",
+    targetUser:
+      "Teams who want CI-friendly semantic linting with plain-language rules, cached Jev calls, and optional rule packs without sending chat history.",
+    overview:
+      "jevlint (github.com/codegirl-007/jevlint) is a Go CLI that uses Tree-sitter to extract functions, types, comments, fields, or statements, then asks Jev whether each unit satisfies rules in jevlint.json. Commands cover init, doctor, check, eval, and plugin pack management. README documents TypeSafe as the default provider plus Clef on Cloudflare Workers AI and OpenRouter-hosted Jev. Prebuilt binaries ship on GitHub Releases for linux, macOS, and windows on amd64 and arm64.",
+    creator: {
+      name: "codegirl-007",
+      handle: "codegirl-007",
+      githubUrl: "https://github.com/codegirl-007",
+    },
+    jevUsage: {
+      flowRole:
+        "Per code-unit Noul-style pass or fail judgments on natural-language rule descriptions, with optional localize second pass",
+      primitives: ["Noul"],
+      stateIn:
+        "Extracted source for one Tree-sitter unit plus rule text, exceptions, and optional callee context (up to 12 project-local callees).",
+      decisionOut:
+        "pass, fail, skip, or abstain per unit with confidence; failures below minConfidence stay hidden; localize reruns focused regions on fail.",
+      flowSteps: [
+        "jevlint init detects languages and writes jevlint.json",
+        "check walks include globs, batches applicable rules per unit (default concurrency 4)",
+        "Failed function or type rules may trigger localize passes up to 24 regions",
+        "Results cache in the OS user cache keyed by endpoint, model, credential fingerprint, and request body",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README: default concurrency 4 parallel Jev requests; network failures retry up to 2 times.",
+          source: "github.com/codegirl-007/jevlint README How it works",
+        },
+        {
+          claim:
+            "Public GitHub repo codegirl-007/jevlint had about 125 stars when this listing was drafted.",
+          source: "GitHub star count October 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevlint sits between classic linters and agent guardrails. Abide compiles AGENTS.md rubrics on every edit diff; jev-codes scores hunks against YAML standards packs; grev filters arbitrary line streams on the shell. jevlint instead targets repository taste with Tree-sitter precision across 12 language presets, rule packs shared like owner/name modules, and jevlint eval fixtures that require explicit pass or fail outcomes. Clef and OpenRouter paths reuse the same System One request shape, so switching providers does not rewrite rules. Use uehaj-jev-semgrep when you only need line-level meaning grep, or aurorainfra-grev when the job is Unix filters on logs and CSVs.",
+    keyFeatures: [
+      "init, doctor, check, eval, plugin, and version commands with JSON output flags",
+      "Rule packs with pack.json, shared rules.json, and bundled eval fixtures",
+      "OS-level result cache with --refresh-cache and --clear-cache",
+      "--changed flag limits checks to git-modified files",
+      "GitHub Releases binaries plus go install from source (Go 1.26+, CGO)",
+    ],
+    stack: [
+      "Go",
+      "Tree-sitter grammars",
+      "TypeSafe Jev",
+      "Optional Clef or OpenRouter Jev",
+    ],
+    links: {
+      repo: "https://github.com/codegirl-007/jevlint",
+      docs: "https://github.com/codegirl-007/jevlint#commands",
+    },
+    pricingNote:
+      "Open source CLI; Jev, Clef, or OpenRouter usage bills per your API keys. README never stores credentials in the project tree.",
+    firstSeen: "2026-10-04",
+    relatedSlugs: [
+      "coldteadotai-abide",
+      "kushwho-jev-codes",
+      "uehaj-jev-semgrep",
+      "aurorainfra-grev",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Which languages are supported?",
+        answer:
+          "README lists presets c, cpp, csharp, go, java, javascript, kotlin, php, python, ruby, rust, tsx, and typescript with native grammars compiled into the binary.",
+      },
+      {
+        question: "How is jevlint different from Abide?",
+        answer:
+          "Abide hooks agent edits against instruction-file rubrics. jevlint is a batch linter you run with jevlint check on repository paths.",
+      },
+      {
+        question: "Does check send my whole repo to Jev?",
+        answer:
+          "README states Jevlint sends extracted code units and file metadata to the configured provider per rule batch, not full chat logs.",
+      },
+    ],
+    metaTitle: "jevlint: Tree-sitter lint rules judged by Jev",
+    metaDescription:
+      "codegirl-007 jevlint runs plain-language rules on code units via Tree-sitter and TypeSafe Jev. Packs, cache, eval, Release binaries.",
+  },
+
+  "junma11-medjev": {
+    slug: "junma11-medjev",
+    status: "published",
+    problem:
+      "Clinical research pipelines still paste free-text notes into general chat models and manually transcribe answers into registries, which leaks PHI and yields inconsistent field wording.",
+    targetUser:
+      "Hospital and research engineers who need on-prem extraction of typed clinical variables with calibrated confidences on a single GPU.",
+    overview:
+      "MedJev (github.com/JunMa11/MedJev) is Jun Ma's open Python project for ultra-fast clinical variable extraction from free-text notes. It fine-tunes Qwen3.5-0.8B-Base with LoRA and a pointer head adapted from Jared Palmer's kev decision architecture (github.com/jaredpalmer/kev). Training data ships at data/medjev-v1 from the Augmented Clinical Notes corpus on Hugging Face, with underlying notes traced to PMC-Patients. README advertises thousands of notes per hour on one consumer GPU with no per-use API fee when serving locally.",
+    creator: {
+      name: "Jun Ma",
+      handle: "JunMa11",
+      githubUrl: "https://github.com/JunMa11",
+    },
+    jevUsage: {
+      flowRole:
+        "Local System One-compatible noul, choice, and score heads over encoded clinical note state with one forward pass per question branch",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Clinical note text materialized into kev-style records with per-field instructions and criteria (see medjev.records.materialize).",
+      decisionOut:
+        "Probability vectors per question: binaries as noul, enums as choice, ordered levels as score, with serving latency reported in evaluate JSON.",
+      flowSteps: [
+        "Train with python -m medjev.train on Augmented Clinical Notes splits",
+        "Select checkpoints on development; test split requires --allow-test",
+        "Serve with load() and probs_and_prefix so state encodes once per record",
+        "Optional serve_compare UI contrasts base Qwen, hosted Jev replays, and MedJev checkpoint",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README dataset counts: 23,719 train, 2,997 development, and 2,895 test records in data/medjev-v1 from Augmented Clinical Notes.",
+          source: "github.com/JunMa11/MedJev README Training",
+        },
+        {
+          claim:
+            "medjev.evaluate reports micro accuracy, macro-F1, Brier, ECE, score level error, majority-class floors, and latency_ms_per_record on the serving path.",
+          source: "github.com/JunMa11/MedJev README Evaluation",
+        },
+        {
+          claim:
+            "Public GitHub repo JunMa11/MedJev had about 111 stars when this listing was drafted.",
+          source: "GitHub star count October 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "MedJev is a domain fine-tune, not a hosted gate you paste into agents. It inherits kev's question isolation and System One request format so each clinical field is a typed branch reading a shared encoded note state. That keeps answers inside clinician-defined option sets with explicit confidences for triage to human review. Hosted TypeSafe Jev appears only as an optional baseline replay in serve_compare (answers loaded from data/results/jev JSONL, not re-purchased per click). Contrast jaredpalmer-kev for general open weights, classifier.dev for HTTP zero-shot labels, or docjev for document splitting. Cite github.com/JunMa11/MedJev, github.com/jaredpalmer/kev, the Augmented Clinical Notes dataset, and the PMC-Patients paper linked in README acknowledgements.",
+    keyFeatures: [
+      "Train, evaluate, compare, bench_runtime, and serve_compare modules",
+      "11 default question specs in medjev.labels.QUESTIONS or custom schemas",
+      "Single-GPU recipe with bf16 and gradient checkpointing documented",
+      "Optional TYPESAFE_API_KEY for hosted Jev baseline experiments only",
+      "On-prem inference: patient text stays on your hardware per README positioning",
+    ],
+    stack: [
+      "Python 3.12",
+      "PyTorch",
+      "Qwen3.5-0.8B",
+      "peft",
+      "flash-linear-attention",
+      "kev-derived model code",
+    ],
+    links: {
+      repo: "https://github.com/JunMa11/MedJev",
+      docs: "https://github.com/JunMa11/MedJev#training",
+    },
+    pricingNote:
+      "Open source training and serving on your GPUs. Optional TypeSafe Jev baseline needs your API key; routine MedJev inference does not call TypeSafe when running local checkpoints.",
+    firstSeen: "2026-10-04",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "classifier-dev",
+      "docjev",
+      "peterfriese-system-one-foundation-models",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Does MedJev send notes to TypeSafe by default?",
+        answer:
+          "README positions local serving so patient text stays on your network. serve_compare replays stored Jev baseline JSONL unless you configure a fresh hosted eval.",
+      },
+      {
+        question: "What is the relationship to kev?",
+        answer:
+          "README acknowledgements state medjev/model.py, api.py, records.py, and checkpoint.py adapt kev under Apache-2.0 with changes recorded in NOTICE.",
+      },
+      {
+        question: "Can I add a new clinical field without retraining?",
+        answer:
+          "README contrasts general LLMs (describe a field in prose) with MedJev (needs hundreds of labeled examples and a short fine-tune for reliable new option sets).",
+      },
+    ],
+    metaTitle: "MedJev: on-prem clinical note extraction",
+    metaDescription:
+      "JunMa11 MedJev fine-tunes Qwen on Augmented Clinical Notes with kev-style noul, choice, and score heads. Train, eval, and serve on one GPU.",
+  },
+
 };
