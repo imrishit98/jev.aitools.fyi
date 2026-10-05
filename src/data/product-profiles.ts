@@ -10952,7 +10952,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Is @xstate/jev on npm?",
         answer:
-          "On 2026-10-05 the npm registry returned Not found for @xstate/jev. packages/jev/package.json names the package, sets version 0.0.0, and marks it private. Install the jevspresso repo. There is no npm install line for this package.",
+          "On 2026-10-05 the npm registry returned Not found for @xstate/jev. packages/jev/package.json names the package, sets version 0.0.0, and marks it private. Use the copy that ships in packages/jev of the jevspresso repo.",
       },
       {
         question: "What does the lamp example show?",
