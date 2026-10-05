@@ -2039,7 +2039,7 @@
     "slug": "eliot5566-jev-paper-radar",
     "title": "Paper Radar",
     "oneLiner": "A weekday arXiv radar: Jev scores every new paper against your interests, and you read the short list.",
-    "description": "Paper Radar (github.com/Eliot5566/JEV-Paper-Radar, MIT) is a fork-and-run daily triage. One Jev call per paper: a Noul per interest and exclusion, a Choice for paper type, and a Noul for code released. Weekdays at 02:00 UTC. A 50-paper run on 2026-09-23 cost $0.0020. Four held-out Cochrane reviews: 96.9% recall and 78.0% work saved on 19,447 records, for $0.60, with the README's own caveat that development reviews did worse. A different job from the 1kpapers atlas.",
+    "description": "Paper Radar (github.com/Eliot5566/JEV-Paper-Radar, MIT) is a fork-and-run daily triage. One Jev call per paper: a Noul per interest and exclusion, a Choice for paper type, and a Noul for code released. Weekdays at 02:00 UTC. A 50-paper run on 2026-09-23 cost $0.0020. 4 held-out Cochrane reviews: 96.9% recall and 78.0% work saved on 19,447 records, for $0.60, with the README's own caveat that development reviews did worse. A different job from the 1kpapers atlas.",
     "category": "applications",
     "tags": ["applications", "research", "arxiv", "rss"],
     "language": "Python",
