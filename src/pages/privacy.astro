@@ -79,7 +79,7 @@ const jsonLd = webPageJsonLd({
           When you use <a href="/submit" class="text-accent hover:underline">/submit</a>, you fill in a form in your browser. We do not run a form service and we do not store that form on our servers. The form opens GitHub's new-issue page in a new tab with your entries pre-filled, including your optional email and X handle if you typed them. GitHub receives that pre-filled text as soon as the page opens. Nothing is posted until you sign in to GitHub and submit the issue. <strong class="text-foreground">GitHub issues are public by GitHub's design</strong>: once you submit, your GitHub username, the issue title, and everything in the issue body, including any email address or X handle you entered, may be visible to anyone on the internet under GitHub's terms.
         </p>
         <p class="mt-3">
-          Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We load our fonts directly from Google Fonts, so Google receives your IP address and browser details when a page loads, under Google's own privacy policy. We do not run third-party advertising cookies on this directory.
+          Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We serve our typefaces from this site (self-hosted font files bundled with the directory), not from a third-party font CDN. We do not run third-party advertising cookies on this directory.
         </p>
         <p class="mt-3">
           <strong class="text-foreground">Local storage.</strong> Your browser's local storage holds up to three small preferences, all kept on your device and not sent to us: your light or dark theme, your choice of human or agent view, and (only if you tick the box on <a href={choicesUrl} class="text-accent hover:underline">Your Privacy Choices</a>) your opt-out preference.
@@ -148,9 +148,6 @@ const jsonLd = webPageJsonLd({
           </table>
         </div>
         <p class="mt-3">
-          <strong class="text-foreground">Google Fonts.</strong> We load fonts straight from Google. Google is not a service provider under contract to us for this. It receives your IP address and browser details to deliver the fonts and handles them under <a href="https://policies.google.com/privacy" class="text-accent hover:underline" rel="noopener noreferrer">Google's privacy policy</a>. We do not send Google anything else, and we get nothing in return.
-        </p>
-        <p class="mt-3">
           <strong class="text-foreground">People and apps you choose.</strong> When you open a GitHub issue, follow an outbound link, or embed content from another service, you direct what becomes public or what that service receives. The recipient's own privacy policy then applies.
         </p>
         <p class="mt-3">
@@ -218,7 +215,7 @@ const jsonLd = webPageJsonLd({
                 <td class="py-2 pr-2">Optional email and X handle you type on /submit (public once you post the GitHub issue); GitHub username on a public issue; IP address</td>
                 <td class="py-2 pr-2">You; your device; GitHub</td>
                 <td class="py-2 pr-2">Review submissions; operate and secure the site</td>
-                <td class="py-2 pr-2">Cloudflare; GitHub; Google (fonts)</td>
+                <td class="py-2 pr-2">Cloudflare; GitHub; Vercel AI Gateway (demo search only)</td>
                 <td class="py-2 pr-2">No</td>
                 <td class="py-2">Issues stay on GitHub until you or GitHub remove them; connection logs follow Cloudflare's retention settings. We keep no separate copy.</td>
               </tr>
@@ -337,7 +334,7 @@ const jsonLd = webPageJsonLd({
           <strong class="text-foreground">Material changes.</strong> Examples: a new type of partner; a new purpose for using personal information; sharing information that identifies you where we didn't before; starting to use your information to train AI; weakening any promise in this policy.
         </p>
         <ul class="mt-3 list-disc space-y-2 pl-5">
-          <li>We'll tell you <strong class="text-foreground">at least 30 days before</strong> the change takes effect. We'll show a clear notice on {siteName}. The notice explains what's changing, why, and what your choices are.</li>
+          <li>We'll tell you <strong class="text-foreground">at least 30 days before</strong> the change takes effect. We'll show a clear notice on {siteName} and publish the earlier version in our <a href={archiveUrl} class="text-accent hover:underline">policy archive</a>. This directory has no accounts or mailing list, so we do not email visitors about policy changes. The notice explains what's changing, why, and what your choices are.</li>
           <li><strong class="text-foreground">Information we already have.</strong> A material change applies only to information we collect after it takes effect. We'll use information we already hold in a materially new way only if you agree first, by an action such as ticking a box or tapping "Yes". Staying on {siteName}, or not replying, doesn't count as agreeing.</li>
           <li>If you don't agree, we'll keep handling your existing information under the earlier version. Past versions are at <a href={archiveUrl} class="text-accent hover:underline">{archiveUrl}</a>.</li>
         </ul>

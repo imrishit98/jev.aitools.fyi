@@ -27,8 +27,15 @@ export function privacyContactEmail(): string {
   return siteConfig.publisherContact.email;
 }
 
-/** Show site-wide policy update banner until partner sections take effect. */
+/** Banner phase for the site-wide privacy notice (client-side date check). */
+export type LegalBannerPhase = "upcoming" | "post-effective";
+
+export function getLegalBannerPhase(now = new Date()): LegalBannerPhase {
+  const effectiveStart = new Date(`${PARTNER_SHARING_EFFECTIVE_ISO}T00:00:00.000Z`);
+  return now.getTime() < effectiveStart.getTime() ? "upcoming" : "post-effective";
+}
+
+/** @deprecated Use getLegalBannerPhase in the banner script. */
 export function showPolicyUpdateBanner(now = new Date()): boolean {
-  const end = new Date(`${PARTNER_SHARING_EFFECTIVE_ISO}T23:59:59.999Z`);
-  return now.getTime() < end.getTime();
+  return getLegalBannerPhase(now) === "upcoming";
 }
