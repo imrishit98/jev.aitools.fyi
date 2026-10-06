@@ -1,26 +1,64 @@
 ---
-import { LEGAL_PATHS, PARTNER_SHARING_EFFECTIVE_DISPLAY, showPolicyUpdateBanner } from "@/lib/legal";
+import {
+  LEGAL_PATHS,
+  PARTNER_SHARING_EFFECTIVE_DISPLAY,
+  PARTNER_SHARING_EFFECTIVE_ISO,
+} from "@/lib/legal";
 
-const visible = showPolicyUpdateBanner();
+const privacyHref = LEGAL_PATHS.privacy;
 ---
-{
-  visible && (
-    <div
-      class="border-b border-accent/30 bg-accent/10 px-4 py-3 text-center text-sm leading-relaxed text-foreground"
-      role="status"
-      aria-live="polite"
-    >
-      <p>
-        <strong>Upcoming privacy update ({PARTNER_SHARING_EFFECTIVE_DISPLAY}):</strong> We may share
-        <strong> statistics that do not identify anyone</strong> with business and research partners.
-        We still do not sell your personal information.{" "}
-        <a
-          href={LEGAL_PATHS.privacy}
-          class="font-medium text-accent underline-offset-4 hover:underline"
-        >
-          Read the Privacy Policy
-        </a>
-      </p>
-    </div>
-  )
-}
+<div id="jev-legal-policy-banner" class="legal-policy-banner" hidden>
+  <div
+    class="border-b border-accent/30 bg-accent/10 px-4 py-3 text-center text-sm leading-relaxed text-foreground legal-policy-banner-upcoming"
+    role="status"
+    aria-live="polite"
+  >
+    <p>
+      <strong>Upcoming privacy update ({PARTNER_SHARING_EFFECTIVE_DISPLAY}):</strong> We may share
+      <strong> statistics that do not identify anyone</strong> with business and research partners.
+      We still do not sell your personal information.{" "}
+      <a
+        href={privacyHref}
+        class="font-medium text-accent underline-offset-4 hover:underline"
+      >
+        Read the Privacy Policy
+      </a>
+    </p>
+  </div>
+  <div
+    class="border-b border-border bg-muted/30 px-4 py-2.5 text-center text-sm leading-relaxed text-muted-foreground legal-policy-banner-post"
+    role="status"
+    hidden
+  >
+    <p>
+      Our Privacy Policy was updated {PARTNER_SHARING_EFFECTIVE_DISPLAY}.{" "}
+      <a href={privacyHref} class="font-medium text-accent underline-offset-4 hover:underline">
+        Read the Privacy Policy
+      </a>
+    </p>
+  </div>
+</div>
+<script
+  is:inline
+  define:vars={{
+    effectiveIso: PARTNER_SHARING_EFFECTIVE_ISO,
+    effectiveDisplay: PARTNER_SHARING_EFFECTIVE_DISPLAY,
+  }}
+>
+  (function () {
+    var root = document.getElementById("jev-legal-policy-banner");
+    if (!root) return;
+    var upcoming =
+      Date.now() < new Date(effectiveIso + "T00:00:00.000Z").getTime();
+    var upcomingEl = root.querySelector(".legal-policy-banner-upcoming");
+    var postEl = root.querySelector(".legal-policy-banner-post");
+    root.hidden = false;
+    if (upcoming) {
+      if (postEl) postEl.hidden = true;
+      if (upcomingEl) upcomingEl.hidden = false;
+    } else {
+      if (upcomingEl) upcomingEl.hidden = true;
+      if (postEl) postEl.hidden = false;
+    }
+  })();
+</script>
