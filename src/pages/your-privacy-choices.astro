@@ -2,7 +2,11 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { PrivacyChoicesPanel } from "@/components/privacy-choices-panel";
 import { privacyChoicesPageSeo } from "@/lib/seo";
-import { LEGAL_LAST_UPDATED_DISPLAY, privacyContactEmail } from "@/lib/legal";
+import {
+  LEGAL_LAST_UPDATED_DISPLAY,
+  LEGAL_LAST_UPDATED_ISO,
+  privacyContactEmail,
+} from "@/lib/legal";
 import { webPageJsonLd } from "@/components/json-ld";
 
 const seo = privacyChoicesPageSeo();
@@ -11,7 +15,7 @@ const jsonLd = webPageJsonLd({
   name: "Your Privacy Choices",
   description: seo.description,
   url: seo.canonical,
-  dateModified: "2026-10-05",
+  dateModified: LEGAL_LAST_UPDATED_ISO,
 });
 ---
 

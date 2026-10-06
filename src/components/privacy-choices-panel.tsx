@@ -46,7 +46,8 @@ export function PrivacyChoicesPanel() {
         </h2>
         <p className="mt-3 leading-relaxed text-muted-foreground">
           We do not sell your personal information and we do not share it for targeted
-          advertising. If that ever changes, this control already works for your browser.
+          advertising. If that ever changes, we will apply this setting before any sale or
+          sharing begins.
         </p>
         <label className="mt-4 flex cursor-pointer items-start gap-3 rounded-lg border border-border bg-muted/30 p-4">
           <input

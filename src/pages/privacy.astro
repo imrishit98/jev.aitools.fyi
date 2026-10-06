@@ -4,6 +4,7 @@ import { privacyPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import {
   LEGAL_LAST_UPDATED_DISPLAY,
+  LEGAL_LAST_UPDATED_ISO,
   LEGAL_PATHS,
   MIN_COHORT,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
@@ -24,7 +25,7 @@ const jsonLd = webPageJsonLd({
   name: "Privacy Policy",
   description: seo.description,
   url: seo.canonical,
-  dateModified: "2026-10-05",
+  dateModified: LEGAL_LAST_UPDATED_ISO,
 });
 ---
 
@@ -46,7 +47,7 @@ const jsonLd = webPageJsonLd({
           <li>Southern East Inc., a Canadian company in Ontario, runs {siteName}.</li>
           <li>We use your information to run and improve {siteName}, keep it secure, and talk with you.</li>
           <li>We don't sell your personal information. We don't share it for targeted advertising.</li>
-          <li>We may publish or share statistics that don't identify anyone.</li>
+          <li>We may publish statistics that don't identify anyone. Sharing them with business and research partners starts {PARTNER_SHARING_EFFECTIVE_DISPLAY} (see <a href="#future-partner-sharing" class="text-accent hover:underline">the dated section below</a>).</li>
           <li>We'll ask you first before we give a partner anything that identifies you for the partner's own use, including training AI.</li>
           <li>If we change how we use your information, we'll tell you at least 30 days ahead. We won't apply a new use to information we already have unless you say yes.</li>
           <li>
@@ -75,10 +76,16 @@ const jsonLd = webPageJsonLd({
           The directory lists public project metadata: titles, descriptions, repository links, demo URLs, tags, and star counts when those numbers are visible on public GitHub.
         </p>
         <p class="mt-3">
-          When you use <a href="/submit" class="text-accent hover:underline">/submit</a>, you fill in a form in your browser. We do not store that form on our servers. Submitting opens a new issue on GitHub with the details you entered. GitHub issues are public by GitHub's design, so your GitHub username, issue title, and message content may be visible to anyone on the internet under GitHub's terms.
+          When you use <a href="/submit" class="text-accent hover:underline">/submit</a>, you fill in a form in your browser. We do not run a form service and we do not store that form on our servers. The form opens GitHub's new-issue page in a new tab with your entries pre-filled, including your optional email and X handle if you typed them. GitHub receives that pre-filled text as soon as the page opens. Nothing is posted until you sign in to GitHub and submit the issue. <strong class="text-foreground">GitHub issues are public by GitHub's design</strong>: once you submit, your GitHub username, the issue title, and everything in the issue body, including any email address or X handle you entered, may be visible to anyone on the internet under GitHub's terms.
         </p>
         <p class="mt-3">
-          Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We store a theme preference in your browser's local storage so light and dark mode persist. We do not run third-party advertising cookies on this directory.
+          Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We load our fonts directly from Google Fonts, so Google receives your IP address and browser details when a page loads, under Google's own privacy policy. We do not run third-party advertising cookies on this directory.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Local storage.</strong> Your browser's local storage holds up to three small preferences, all kept on your device and not sent to us: your light or dark theme, your choice of human or agent view, and (only if you tick the box on <a href={choicesUrl} class="text-accent hover:underline">Your Privacy Choices</a>) your opt-out preference.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">My First Million search demo.</strong> The demo at <a href="/demos/my-first-million" class="text-accent hover:underline">/demos/my-first-million</a> sends the search text you type to our search service. When the demo runs in live mode, that text is processed by Vercel AI Gateway and the AI model it routes to, in order to classify and rank results. We do not send your IP address or any account details with it, and we do not save the text in a database.
         </p>
         <p class="mt-3">
           Detail pages and the showcase may embed media or link to GitHub, X, and author sites. Those services have their own privacy policies when you leave {siteName}.
@@ -132,9 +139,17 @@ const jsonLd = webPageJsonLd({
                 <td class="py-2 pr-4 align-top">Public issue tracking when you submit a listing via /submit</td>
                 <td class="py-2 align-top">United States</td>
               </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Vercel AI Gateway and the AI model it routes to</td>
+                <td class="py-2 pr-4 align-top">Classify and rank search text typed into the My First Million demo (live mode only)</td>
+                <td class="py-2 align-top">United States</td>
+              </tr>
             </tbody>
           </table>
         </div>
+        <p class="mt-3">
+          <strong class="text-foreground">Google Fonts.</strong> We load fonts straight from Google. Google is not a service provider under contract to us for this. It receives your IP address and browser details to deliver the fonts and handles them under <a href="https://policies.google.com/privacy" class="text-accent hover:underline" rel="noopener noreferrer">Google's privacy policy</a>. We do not send Google anything else, and we get nothing in return.
+        </p>
         <p class="mt-3">
           <strong class="text-foreground">People and apps you choose.</strong> When you open a GitHub issue, follow an outbound link, or embed content from another service, you direct what becomes public or what that service receives. The recipient's own privacy policy then applies.
         </p>
@@ -152,6 +167,7 @@ const jsonLd = webPageJsonLd({
           <li>We do not sell personal information to train AI models, including large language models.</li>
           <li>We do not let partners train AI models on information that identifies you unless you opt in (see "Programs you choose to join" when that section takes effect).</li>
           <li>We do not use your personal information to train AI models.</li>
+          <li>Search text you type into the My First Million demo is sent to an AI model to rank results (see "What we collect and publish today"). That provider's own terms decide what it keeps, so don't type personal information into the demo.</li>
           <li>
             <strong class="text-foreground">Public content.</strong> Anyone can see content you post publicly on GitHub or elsewhere, including search engines and AI crawlers we don't control.
           </li>
@@ -199,21 +215,21 @@ const jsonLd = webPageJsonLd({
             <tbody class="align-top">
               <tr class="border-b border-border/70">
                 <td class="py-2 pr-2">Identifiers</td>
-                <td class="py-2 pr-2">Email you type on /submit; GitHub username on a public issue; IP address</td>
+                <td class="py-2 pr-2">Optional email and X handle you type on /submit (public once you post the GitHub issue); GitHub username on a public issue; IP address</td>
                 <td class="py-2 pr-2">You; your device; GitHub</td>
                 <td class="py-2 pr-2">Review submissions; operate and secure the site</td>
-                <td class="py-2 pr-2">Cloudflare; GitHub</td>
+                <td class="py-2 pr-2">Cloudflare; GitHub; Google (fonts)</td>
                 <td class="py-2 pr-2">No</td>
-                <td class="py-2">While the listing or issue is relevant, plus up to 24 months for security logs</td>
+                <td class="py-2">Issues stay on GitHub until you or GitHub remove them; connection logs follow Cloudflare's retention settings. We keep no separate copy.</td>
               </tr>
               <tr class="border-b border-border/70">
                 <td class="py-2 pr-2">Internet or network activity</td>
-                <td class="py-2 pr-2">Pages viewed, referrers, approximate performance metrics</td>
+                <td class="py-2 pr-2">Pages viewed, referrers, approximate performance metrics; search text typed into the My First Million demo</td>
                 <td class="py-2 pr-2">Your device</td>
-                <td class="py-2 pr-2">Analytics, improvement, security</td>
-                <td class="py-2 pr-2">Cloudflare</td>
+                <td class="py-2 pr-2">Analytics, improvement, security, demo search</td>
+                <td class="py-2 pr-2">Cloudflare; Vercel AI Gateway and its model (demo search)</td>
                 <td class="py-2 pr-2">No</td>
-                <td class="py-2">Up to 24 months in aggregate form</td>
+                <td class="py-2">Analytics follow Cloudflare's retention settings. Demo search text is not saved by us.</td>
               </tr>
             </tbody>
           </table>
@@ -352,10 +368,10 @@ const jsonLd = webPageJsonLd({
         </p>
 
         <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="partners">
-          Who we share with — business and research partners
+          Who we share with: business and research partners
         </h3>
         <p class="mt-2">
-          We may work with partners such as universities and research groups, analytics and market-research firms, and companies that build, test or supply data for AI and machine-learning systems. <strong class="text-foreground">By default, partners receive only the statistics and anonymized information described in section 3.2 of our clause set (Statistics and anonymized information).</strong>
+          We may work with partners such as universities and research groups, analytics and market-research firms, and companies that build, test or supply data for AI and machine-learning systems. <strong class="text-foreground">By default, partners receive only the statistics and anonymized information described in <a href="#statistics" class="text-accent hover:underline">Statistics and anonymized information</a> above.</strong>
         </p>
         <ul class="mt-3 list-disc space-y-2 pl-5">
           <li>We will not give a partner information that identifies you for the partner's own use, including training its AI models, unless you have opted in (see "Programs you choose to join").</li>

@@ -4,7 +4,9 @@ import { termsPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import {
   LEGAL_LAST_UPDATED_DISPLAY,
+  LEGAL_LAST_UPDATED_ISO,
   LEGAL_PATHS,
+  PARTNER_SHARING_EFFECTIVE_DISPLAY,
   PRIVACY_OFFICER,
   legalMailingAddress,
   privacyContactEmail,
@@ -21,7 +23,7 @@ const jsonLd = webPageJsonLd({
   name: "Terms of Service",
   description: seo.description,
   url: seo.canonical,
-  dateModified: "2026-10-05",
+  dateModified: LEGAL_LAST_UPDATED_ISO,
 });
 ---
 
@@ -75,8 +77,19 @@ const jsonLd = webPageJsonLd({
           "Service Data" means: (a) statistics and anonymized information we create as described in our Privacy Policy; and (b) technical and usage information about how {siteName} performs, such as uptime, errors and feature usage. Service Data does not include Your Content itself, and it does not identify you or any other person.
         </p>
         <p class="mt-3">
-          We own Service Data. We may use, publish and license it for any lawful purpose, but only while it stays non-identifying, and only if each recipient agrees in writing not to re-identify anyone, not to combine it with other data to do that, and not to pass it on without the same terms. If Service Data turns out to identify someone, we'll treat it as personal information under our Privacy Policy and fix the problem.
+          We own Service Data. We may use it to run, secure and improve {siteName}, and publish it in research, reports and benchmarks, but only while it stays non-identifying. If Service Data turns out to identify someone, we'll treat it as personal information under our Privacy Policy and fix the problem.
         </p>
+        <div
+          id="service-data-licensing"
+          class="mt-4 scroll-mt-24 rounded-lg border-2 border-dashed border-accent/40 bg-muted/20 p-5"
+        >
+          <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+            Takes effect {PARTNER_SHARING_EFFECTIVE_DISPLAY}
+          </p>
+          <p class="mt-2">
+            Starting {PARTNER_SHARING_EFFECTIVE_DISPLAY}, we may also license Service Data to the business and research partners described in our <a href="/privacy#future-partner-sharing" class="text-accent hover:underline">Privacy Policy</a>, for any lawful purpose, but only while it stays non-identifying, and only if each recipient agrees in writing not to re-identify anyone, not to combine it with other data to do that, and not to pass it on without the same terms. This applies only to Service Data created from information collected on or after that date. It does not apply to information we already hold unless you expressly agree.
+          </p>
+        </div>
       </section>
 
       <section id="acceptable-use" class="scroll-mt-24">
