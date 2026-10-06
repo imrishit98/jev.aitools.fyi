@@ -255,6 +255,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "You write the kinds and the legal links. A local yes-or-no model scores each one. If it is unsure, the link waits in a review queue instead of slipping into the graph.",
   "eliot5566-jev-paper-radar":
     "Fork it, write what you care about in plain English, and each weekday Jev scores the new papers. You get a page, an RSS feed, and a receipt for every probability.",
+  "sheltercosmo-jev4pg":
+    "Ask Postgres in English or Chinese and keep the SQL you can read. jev4pg then runs 41 Jev operators for the judgments SQL cannot make. On the project's own BIRD table, Jev alone got fewer answers right than the LLM, for much less estimated cost.",
+  "datawhalechina-jev-cookbook":
+    "A Chinese Jupyter course that starts with one question at a time. Eighteen official recipes, a voice-controlled 3D room, and a local Laya fine-tune come later. You can run the offline examples before you create an API key.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
