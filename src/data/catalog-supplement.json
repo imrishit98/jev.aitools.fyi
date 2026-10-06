@@ -2075,7 +2075,7 @@
   },
   {
     "slug": "datawhalechina-jev-cookbook",
-    "title": "Jev Cookbook",
+    "title": "Chinese Jev Cookbook",
     "oneLiner": "Datawhale's 11-chapter Chinese Jupyter course for Jev, with 18 recipes, a 3D smart home, and local Laya fine-tuning.",
     "description": "Jev Cookbook (github.com/datawhalechina/jev-cookbook) is Datawhale's unofficial 11-chapter Chinese Jupyter tutorial for Jev. It teaches Choice, Score, and Noul, replays 18 official recipes, and includes a voice-driven 3D smart home, a Laya versus Jev setup on 231 public questions, 12 runnable projects, Pi and DeepSeek Harness gates, and local Laya fine-tuning with RLCD. Offline examples need no API key. The README says the English original at docs.typesafe.ai is authoritative. Original text is CC BY-NC-SA 4.0.",
     "category": "guides",

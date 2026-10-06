@@ -2756,7 +2756,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Backend engineers and data folks who already trust SQL and want Jev Noul, Choice, or Score predicates inside WHERE clauses.",
     overview:
-      "pg-jev (github.com/realZachi/pg-jev, pgjev.com) is Zachi's (@iam_zachi) PostgreSQL extension exposing jev() for per-row judgments in plain language. Example patterns from the launch clip include WHERE jev(people, 'could work from home') without embeddings. Zachi reported one hundred twenty nine rows judged in about one second for about $0.0009, with cache hits near six milliseconds on a second run. This listing is the database extension only, not the separate Chrome ad-blocker demo elsewhere in the showcase. It is also separate from jev4pg. pg-jev is one per-row jev() predicate. jev4pg plans SQL from a natural-language question and ships a larger operator toolkit plus a BIRD comparison.",
+      "pg-jev (github.com/realZachi/pg-jev, pgjev.com) is Zachi's (@iam_zachi) PostgreSQL extension exposing jev() for per-row judgments in plain language. Example patterns from the launch clip include WHERE jev(people, 'could work from home') without embeddings. Zachi reported 129 rows judged in about one second for about $0.0009, with cache hits near 6 ms on a second run. This listing is the database extension only, not the separate Chrome ad-blocker demo elsewhere in the showcase. It is also separate from jev4pg. pg-jev is one per-row jev() predicate. jev4pg plans SQL from a natural-language question and ships a larger operator toolkit plus a BIRD comparison.",
     creator: {
       name: "Zachi",
       handle: "iam_zachi",
@@ -2786,7 +2786,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       sourcedMetrics: [
         {
           claim:
-            "One hundred twenty nine rows judged in about one second for about $0.0009; second run about six milliseconds from cache.",
+            "129 rows judged in about one second for about $0.0009; second run about 6 ms from cache.",
           source: "iam_zachi X post 2100679300756435135",
         },
         {
@@ -11311,7 +11311,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Data and backend teams who already run PostgreSQL and want English or Simplified Chinese questions, a large set of Jev operators, and a review step before anything is written.",
     overview:
-      "jev4pg (github.com/Sheltercosmo/jev4pg, jev4pg.com) turns a question in English or Simplified Chinese into SQL for PostgreSQL. It also ships 41 Jev operators for filtering, extraction, ranking, matching, and verification. You can work in the workspace, call the HTTP API, or stay in Postgres. Explainable embeddings store each record as named questions and the probability of each answer, so a person can see why two rows look alike. Evidence caching keeps the raw observations when a threshold changes. VALUE, UNKNOWN, and NOT_EVALUATED stay separate from a real failure, and a skipped judgment does not quietly become false. Release v0.7.0 is Apache 2.0. GitHub lists the owner as Shelter Zhou (Sheltercosmo). The repo was created on 23 September 2026. On 6 October 2026 it had 143 stars and 2 forks. Older names for the same project are JevSDSQL and jevsd-pg. pg-jev is a different tool. The realzachi-pg-jev listing is one jev() function that judges a single row inside a WHERE clause. jev4pg plans the SQL from the question and adds the operator toolkit plus a published benchmark. On the README's BIRD Challenging table (100 questions, 11 databases), Jev 1.13.0 alone matched 20 of 99 scorable answers (20.2%), median 8.55 s, estimated $0.389 per 100 attempts. GPT-5.6 Terra matched 39 of 99 (39.4%), median 8.68 s, $3.262. Jev plus GPT-5.6 Terra matched 34 of 99 (34.3%), median 14.23 s, $2.839. Jev alone scored lower than the LLM. The README calls that an efficiency tradeoff: Jev planned with zero LLM generation calls, at an estimated token cost 88.1% lower than the LLM baseline. Hybrid used 20.8% fewer LLM input tokens and took longer. The same README says the numbers are a local historical comparison of the frozen Python planner on 23 September 2026. They are not an official leaderboard score, and they do not measure v0.7.0 or the Rust preview. One missing reference leaves 99 scorable questions. Medians cover 94 cases, with up to three cases in flight. Costs use frozen accounting rates, and one hybrid request has unreported usage.",
+      "jev4pg (github.com/Sheltercosmo/jev4pg, jev4pg.com) is an Apache 2.0 PostgreSQL project from Shelter Zhou (Sheltercosmo). You ask a question in English or Simplified Chinese and get SQL you can read, plus a workspace, an HTTP API, and durable query jobs in release v0.7.0. Older names include JevSDSQL and jevsd-pg.\n\nThe repo ships 41 Jev operators for filtering, extraction, ranking, matching, and verification. Explainable embeddings store named questions and answer probabilities. Evidence caching keeps raw observations when a threshold changes. VALUE, UNKNOWN, and NOT_EVALUATED stay separate from execution failures.\n\nOn the README BIRD Challenging snapshot (100 questions, 11 databases), Jev 1.13.0 alone matched 20 of 99 scorable answers (20.2%). GPT-5.6 Terra matched 39 of 99 (39.4%). Jev plus GPT-5.6 Terra matched 34 of 99 (34.3%). Jev alone was cheaper; the LLM baseline matched more answers. Methodology limits are in the FAQ and sourced metrics below.\n\nBuilt for data and backend teams that already trust PostgreSQL and want semantic steps with a review path before anything is written.",
     creator: {
       name: "Shelter Zhou",
       handle: "Sheltercosmo",
@@ -11345,18 +11345,18 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Jev planned with zero LLM generation calls at 88.1% lower estimated token cost than the LLM baseline. Hybrid used 20.8% fewer LLM input tokens. The LLM baseline matched more answers, and hybrid took longer. One unavailable reference leaves 99 scorable questions. Medians cover 94 cases with up to three cases in flight. Costs use frozen accounting rates. One hybrid request has unreported usage. Measured on the frozen Python planner on 23 September 2026. Not an official leaderboard score, and not a measurement of v0.7.0 or the Rust preview.",
+            "Jev planned with 0 LLM generation calls at 88.1% lower estimated token cost than the LLM baseline. Hybrid used 20.8% fewer LLM input tokens. The LLM baseline matched more answers, and hybrid took longer. 1 unavailable reference leaves 99 scorable questions. Medians cover 94 cases with up to 3 cases in flight. Costs use frozen accounting rates. 1 hybrid request has unreported usage. Measured on the frozen Python planner on 23 September 2026. Not an official leaderboard score, and not a measurement of v0.7.0 or the Rust preview.",
           source: "github.com/Sheltercosmo/jev4pg README, BIRD Challenging section",
         },
         {
           claim:
-            "Methodology note: hybrid matched six answers the LLM missed and missed eleven the LLM matched. Both matched 28. The run does not establish that hybrid is more accurate or faster. p95 times were 26.80 s, 38.85 s, and 54.16 s. Complete application results matched 20, 38, and 34 references. One otherwise correct LLM query passed the application's 1,000-row return cap.",
+            "Methodology note: hybrid matched 6 answers the LLM missed and missed 11 the LLM matched. Both matched 28. The run does not establish that hybrid is more accurate or faster. p95 times were 26.80 s, 38.85 s, and 54.16 s. Complete application results matched 20, 38, and 34 references. 1 otherwise correct LLM query passed the application's 1,000-row return cap.",
           source: "github.com/Sheltercosmo/jev4pg docs/benchmarks/BIRD_CHALLENGING_100.md",
         },
         {
           claim:
-            "The README and sdd/operators/manifest.json describe 41 Jev operators. The homepage repeats the count of 41. GitHub release v0.7.0 was published on 4 October 2026. On 6 October 2026 the homepage footer still labeled the workspace release v0.6.0 and the native preview 0.2.0.",
-          source: "jev4pg README, sdd/operators/manifest.json, GitHub releases, jev4pg.com on 2026-10-06",
+            "The README and sdd/operators/manifest.json describe 41 Jev operators. GitHub release v0.7.0 was published on 4 October 2026.",
+          source: "jev4pg README, sdd/operators/manifest.json, GitHub releases",
         },
         {
           claim:
@@ -11366,7 +11366,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "jev4pg is the planning and operator layer. PostgreSQL still does joins, windows, and exact arithmetic. A jev planner mode builds SQL with no LLM generation call. Hybrid mode lets Jev pick schema and evidence, then an LLM writes a proposal that Jev reviews. You can correct the saved interpretation and reuse it. That is a different job from pg-jev (realzachi-pg-jev), which exposes one jev() predicate for a row in a WHERE clause and does not publish this BIRD table. neo4jev (jexp-neo4jev) is different again: it walks a Neo4j graph by classifying neighboring relationships. The native Rust path is a preview in v0.7.0, for PostgreSQL 17 on Linux. Reusable semantic features and hybrid planning run in the application. The project guide is https://jev4pg.com/guide/. Cite the jev4pg README and docs/benchmarks/BIRD_CHALLENGING_100.md for the scores.",
+      "jev4pg is the planning and operator layer. PostgreSQL still does joins, windows, and exact arithmetic. A jev planner mode builds SQL with no LLM generation call. Hybrid mode lets Jev pick schema and evidence, then an LLM writes a proposal that Jev reviews. You can correct the saved interpretation and reuse it. pg-jev (https://pgjev.com?ref=jev.aitools.fyi) is a separate Postgres extension with one jev() predicate per row in a WHERE clause. The native Rust path is a preview in v0.7.0 for PostgreSQL 17 on Linux. The project guide is https://jev4pg.com/guide/. Cite the jev4pg README and docs/benchmarks/BIRD_CHALLENGING_100.md for the scores.",
     keyFeatures: [
       "Natural-language questions in English and Simplified Chinese, with the SQL left visible",
       "41 Jev operators for filtering, extraction, ranking, matching, verification, and workflow steps",
@@ -11400,27 +11400,27 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "How is jev4pg different from pg-jev?",
         answer:
-          "pg-jev (realzachi-pg-jev) is a Postgres extension with one jev() function. You put it in a WHERE clause and it judges one row at a time. jev4pg plans a SQL query from a natural-language question, ships 41 Jev operators, and publishes a BIRD Challenging comparison. The titles on this page stay on jev4pg so the two listings do not compete.",
+          "pg-jev is a Postgres extension with one jev() function. You put it in a WHERE clause and it judges one row at a time. jev4pg plans a SQL query from a natural-language question, ships 41 Jev operators, and publishes a BIRD Challenging comparison. The titles on this page stay on jev4pg so the two listings do not compete.",
       },
       {
         question: "Did Jev beat the LLM on the BIRD test?",
         answer:
-          "No. The README table says Jev 1.13.0 matched 20 of 99 (20.2%). GPT-5.6 Terra matched 39 of 99 (39.4%). Hybrid matched 34 of 99 (34.3%). Jev alone was the cheap run: zero LLM generation calls, and an estimated token cost 88.1% lower than the LLM baseline. Hybrid used 20.8% fewer LLM input tokens and had a slower median, 14.23 s against 8.68 s.",
+          "No. The README table says Jev 1.13.0 matched 20 of 99 (20.2%). GPT-5.6 Terra matched 39 of 99 (39.4%). Hybrid matched 34 of 99 (34.3%). Jev alone was the cheap run: 0 LLM generation calls, and an estimated token cost 88.1% lower than the LLM baseline. Hybrid used 20.8% fewer LLM input tokens and had a slower median, 14.23 s against 8.68 s.",
       },
       {
         question: "Do these BIRD numbers measure release v0.7.0?",
         answer:
-          "The README says no. The table is a local historical comparison of the frozen Python planner on 23 September 2026. It is not an official leaderboard score, and it does not measure v0.7.0 or the Rust preview. One missing reference leaves 99 scorable questions. Medians cover 94 cases. The methodology note adds that hybrid was not shown to be more accurate or faster: it matched six answers the LLM missed and missed eleven the LLM matched.",
+          "The README says no. The table is a local historical comparison of the frozen Python planner on 23 September 2026. It is not an official leaderboard score, and it does not measure v0.7.0 or the Rust preview. 1 missing reference leaves 99 scorable questions. Medians cover 94 cases. The methodology note adds that hybrid was not shown to be more accurate or faster: it matched 6 answers the LLM missed and missed 11 the LLM matched.",
       },
       {
         question: "Which release should I install?",
         answer:
-          "GitHub's latest release is v0.7.0, published 4 October 2026, titled PostgreSQL workspace and durable queries. The README install block clones that tag. On 6 October 2026 the homepage footer still said workspace v0.6.0 and native preview 0.2.0. Trust the release tag in the repo when you deploy.",
+          "GitHub's latest release is v0.7.0, published 4 October 2026, titled PostgreSQL workspace and durable queries. The README install block clones that tag.",
       },
     ],
     metaTitle: "jev4pg: Jev text to SQL for PostgreSQL",
     metaDescription:
-      "jev4pg turns English or Chinese into SQL and runs 41 Jev operators on Postgres. BIRD: Jev alone 20/99 (20.2%), below GPT-5.6 Terra at 39/99.",
+      "jev4pg maps English or Chinese questions to PostgreSQL SQL and runs 41 Jev operators. README BIRD snapshot shows cheaper Jev planning vs higher LLM match rates.",
   },
 
   "datawhalechina-jev-cookbook": {
@@ -11449,12 +11449,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         "A teaching path: typed questions in notebooks, then the same shapes inside recipes, a smart home, agent gates, and a local Laya server",
       primitives: ["Choice", "Score", "Noul"],
       stateIn:
-        "A state plus one typed question at a time. Choice, Score, and Noul are the three primitives. The course says to ask one thing per question and let code combine the answers.",
+        "A state plus one typed question at a time. Choice, Score, and Noul are the 3 primitives. The course says to ask one thing per question and let code combine the answers.",
       decisionOut:
         "A structured answer with a probability and a confidence, not generated text you have to parse. Later chapters route, gate, or score from those answers.",
       flowSteps: [
         "Read the site, or clone the repo and run main/setup_env.sh. The chapter guide asks for Python 3.10+ and Jupyter.",
-        "Chapters 1 to 3 are the core path: what Jev is, five booklets on the mechanism, then the four architecture patterns.",
+        "Chapters 1 to 3 are the core path: what Jev is, 5 booklets on the mechanism, then the 4 architecture patterns.",
         "Set JEV_RUN_MODE=offline to walk the code on saved example responses. A TypeSafe key is optional and is required only for live calls.",
         "Chapter 4 runs the 18 recipe notebooks. Chapter 5 speaks to a 3D room. Chapter 7 runs 12 projects.",
         "Chapter 9 gates Pi tool calls and reviews a DeepSeek Harness session. Chapter 10 builds a Chinese dataset, fine-tunes Laya with RLCD, and serves it locally.",
@@ -11483,10 +11483,10 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "This repo teaches the call. It does not replace the English docs. The official cookbook listing on this directory points at docs.typesafe.ai, which the Datawhale README says is the authority. Ten levels of Jev (disler-ten-levels-of-jev) is a different course: 30 TypeScript examples and a Vue lab, in English. receptron-laya is the Node library that runs Laya weights, not a tutorial. y0usaf-pi-jev is a Pi extension you install. Chapter 9 here is a notebook about a Pi gate, plus a DeepSeek Harness plugin whose own README says the offline demo does not call TypeSafe. Chapter 6's notebook is built to score Laya and Jev on the same 231 public questions. The compare.md stored in the repo does not finish that job: Laya-local has no scorable rows. A separate note in the chapter 6 README, dated 26 September 2026, covers five other providers on the same question file. That note says none of them returned 231 valid answers, and it says not to treat the composite scores as a final ranking. This page does not repeat that table. Cite the Datawhale README, the chapter guides, and docs.typesafe.ai.",
+      "This repo teaches the call. It does not replace the English docs. The official cookbook listing on this directory points at docs.typesafe.ai, which the Datawhale README says is the authority. Ten levels of Jev (disler-ten-levels-of-jev) is a different course: 30 TypeScript examples and a Vue lab, in English. receptron-laya is the Node library that runs Laya weights, not a tutorial. y0usaf-pi-jev is a Pi extension you install. Chapter 9 here is a notebook about a Pi gate, plus a DeepSeek Harness plugin whose own README says the offline demo does not call TypeSafe. Chapter 6's notebook is built to score Laya and Jev on the same 231 public questions. The compare.md stored in the repo does not finish that job: Laya-local has no scorable rows. A separate note in the chapter 6 README, dated 26 September 2026, covers 5 other providers on the same question file. That note says none of them returned 231 valid answers, and it says not to treat the composite scores as a final ranking. This page does not repeat that table. Cite the Datawhale README, the chapter guides, and docs.typesafe.ai.",
     keyFeatures: [
       "11 chapters in Jupyter, from a first multi-question call to a local fine-tune",
-      "Five core booklets: System One, state, primitives, confidence, and building with TypeSafe",
+      "5 core booklets: System One, state, primitives, confidence, and building with TypeSafe",
       "18 recipe notebooks replayed from the official cookbook, with a note at the end of each",
       "Voice-driven 3D smart home lab with cost stats",
       "12 projects: snake, minesweeper, werewolf, a web page that opens those games, a maze, a moving target, a browser agent, Dou Dizhu, blackjack, sudoku, a Mario repro, and the smart home",
@@ -11538,10 +11538,10 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "What is DSH in chapter 9?",
         answer:
-          "The plugin README in apps/dsh-jev-decision says DSH is DeepSeek Harness. The plugin lets that harness call Jev for a structured judgment before it acts. Its offline demo runs without an API key. The chapter README says a live notebook sends at most 4 TypeSafe requests.",
+          "The plugin README in apps/dsh-jev-decision says DSH is DeepSeek Harness. The plugin lets that harness call Jev for a structured judgment before it acts. Its offline demo runs without an API key. The chapter 9 README says a live run sends at most 4 requests.",
       },
     ],
-    metaTitle: "Jev Cookbook: Chinese tutorial by Datawhale",
+    metaTitle: "Chinese Jev tutorial: Datawhale Cookbook",
     metaDescription:
       "Datawhale's unofficial Chinese Jev course: 11 Jupyter chapters, 18 recipes, a 3D smart home, and local Laya fine-tuning. docs.typesafe.ai is authoritative.",
   },
