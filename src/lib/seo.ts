@@ -415,8 +415,35 @@ export function privacyPageSeo() {
   return pageSeo({
     title: "Privacy policy for Jev Directory",
     description:
-      "How jev.aitools.fyi handles analytics, submitted links, and public directory data. Privacy policy for the curated Jev ecosystem index.",
+      "We don't sell your personal information. How jev.aitools.fyi handles Cloudflare analytics, GitHub submissions, and public directory data.",
     path: "/privacy",
+  });
+}
+
+export function privacyArchivePageSeo() {
+  return pageSeo({
+    title: "Privacy policy archive (September 22, 2026)",
+    description:
+      "Archived September 22, 2026 privacy policy for jev.aitools.fyi, preserved word for word for comparison with the current policy.",
+    path: "/privacy/archive",
+  });
+}
+
+export function termsPageSeo() {
+  return pageSeo({
+    title: "Terms of Service for Jev Directory",
+    description:
+      "Terms for using the free Jev.aitools.fyi directory: submissions, acceptable use, disclaimers, Ontario governing law, and Southern East Inc.",
+    path: "/terms",
+  });
+}
+
+export function privacyChoicesPageSeo() {
+  return pageSeo({
+    title: "Your Privacy Choices",
+    description:
+      "Opt out of sale, sharing, and targeted ads on jev.aitools.fyi. We honour Global Privacy Control and show Opt-Out Request Honored when GPC is on.",
+    path: "/your-privacy-choices",
   });
 }
 

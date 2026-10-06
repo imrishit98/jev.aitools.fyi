@@ -95,7 +95,7 @@ if (detailInSitemap !== expectedDetail) {
 }
 
 const staticExpected =
-  11 +
+  14 +
   10 +
   1 +
   learnTopicCount +
