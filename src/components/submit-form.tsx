@@ -242,7 +242,11 @@ export function SubmitForm() {
         </div>
         <div className="space-y-2 sm:col-span-2">
           <Label htmlFor="email">Your email (optional)</Label>
-          <Input id="email" name="email" type="email" />
+          <Input id="email" name="email" type="email" aria-describedby="email-public-note" />
+          <p id="email-public-note" className="text-xs text-muted-foreground">
+            If you add an email or X handle, it appears in the public GitHub issue. Leave it blank
+            to keep it private.
+          </p>
         </div>
       </div>
 
@@ -308,7 +312,11 @@ export function SubmitForm() {
         <code className="rounded bg-muted px-1 py-0.5 text-xs">src/data/catalog.json</code>{" "}
         via{" "}
         <code className="rounded bg-muted px-1 py-0.5 text-xs">scripts/generate-catalog.mjs</code>.
-        No backend, no spam funnel.
+        No backend, no spam funnel. GitHub issues are public. See our{" "}
+        <a href="/privacy#what-we-collect" className="text-accent hover:underline">
+          Privacy Policy
+        </a>
+        .
       </p>
     </form>
   );

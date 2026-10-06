@@ -17,7 +17,7 @@ export const staticRouteDates: Record<string, string> = {
   "/about": STATIC_PRIOR,
   "/contact": STATIC_PRIOR,
   "/privacy": "2026-10-05",
-  "/privacy/archive": "2026-10-05",
+  "/privacy/archive": "2026-09-22",
   "/terms": "2026-10-05",
   "/your-privacy-choices": "2026-10-05",
   "/developers": STATIC_PRIOR,

@@ -39,6 +39,8 @@ ${siteConfig.tagline}. This is the curated, link-first index for TypeSafe **Jev*
 - [About and disclaimer](${SITE}/about)
 - [Contact](${SITE}/contact)
 - [Privacy policy](${SITE}/privacy)
+- [Terms of service](${SITE}/terms)
+- [Your privacy choices](${SITE}/your-privacy-choices)
 - [Developers and agents](${SITE}/developers)
 - [For agents (HTML + Markdown)](${SITE}/for-agents)
 
