@@ -2,9 +2,30 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { privacyPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
+import {
+  LEGAL_LAST_UPDATED_DISPLAY,
+  LEGAL_PATHS,
+  MIN_COHORT,
+  PARTNER_SHARING_EFFECTIVE_DISPLAY,
+  PRIVACY_OFFICER,
+  legalMailingAddress,
+  privacyContactEmail,
+} from "@/lib/legal";
+import { webPageJsonLd } from "@/components/json-ld";
 
 const seo = privacyPageSeo();
-const { publisherContact } = siteConfig;
+const siteName = siteConfig.hostnameBrand;
+const contactEmail = privacyContactEmail();
+const address = legalMailingAddress();
+const choicesUrl = LEGAL_PATHS.choices;
+const archiveUrl = LEGAL_PATHS.privacyArchive;
+
+const jsonLd = webPageJsonLd({
+  name: "Privacy Policy",
+  description: seo.description,
+  url: seo.canonical,
+  dateModified: "2026-10-05",
+});
 ---
 
 <BaseLayout
@@ -12,41 +33,355 @@ const { publisherContact } = siteConfig;
   description={seo.description}
   path="/privacy"
   showSponsors={false}
+  jsonLd={jsonLd}
 >
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
-    <h1 class="font-heading text-3xl font-semibold">Privacy policy</h1>
-    <p class="mt-3 text-sm text-muted-foreground">Last updated: September 22, 2026</p>
-    <div class="mt-8 space-y-6 leading-relaxed text-muted-foreground">
-      <p>
-        This policy describes how {publisherContact.legalName} ("we", "us") handles information when you visit {siteConfig.hostnameBrand} ({siteConfig.url}), a curated public directory of TypeSafe Jev and System One projects.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">What we publish</h2>
-      <p>
-        The directory lists public project metadata: titles, descriptions, repository links, demo URLs, tags, and star counts when those numbers are visible on public GitHub. Submitting a listing or opening a GitHub issue may expose your username and message content on GitHub's platform under their terms.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Analytics and hosting</h2>
-      <p>
-        The site is hosted on Cloudflare. Cloudflare may process connection data (such as IP address, user agent, and requested URL) for security, performance, and optional Web Analytics if enabled in our project settings. We use that data in aggregate to understand traffic, not to sell personal profiles.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Cookies and local storage</h2>
-      <p>
-        We use a small theme preference in your browser local storage so light and dark mode persist. We do not run third-party advertising cookies on this directory.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Embedded media and outbound links</h2>
-      <p>
-        Detail pages and the showcase may embed clips or link to GitHub, X, and author sites. Those services have their own privacy policies when you leave {siteConfig.hostnameBrand}.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Agent and API traffic</h2>
-      <p>
-        Read-only endpoints such as <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>, <a href="/openapi.json" class="text-accent hover:underline">/openapi.json</a>, and <a href="/search-index.json" class="text-accent hover:underline">/search-index.json</a> return public directory data. Unknown <code class="rounded bg-muted px-1 text-foreground">/api/*</code> routes return JSON error documents without storing request bodies.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Your choices</h2>
-      <p>
-        You may use standard browser controls to block storage or analytics. To correct or remove a listing, contact us at <a href={`mailto:${publisherContact.email}`} class="text-accent hover:underline">{publisherContact.email}</a> or use <a href="/submit" class="text-accent hover:underline">/submit</a>.
-      </p>
-      <h2 class="font-heading text-xl font-semibold text-foreground">Contact</h2>
-      <p>
-        Privacy questions: <a href={`mailto:${publisherContact.email}`} class="text-accent hover:underline">{publisherContact.email}</a>. Postal mail: {publisherContact.address.streetAddress}, {publisherContact.address.addressLocality}, {publisherContact.address.addressRegion} {publisherContact.address.postalCode}, Canada. See <a href="/contact" class="text-accent hover:underline">/contact</a> for more detail.
+    <h1 class="font-heading text-3xl font-semibold">Privacy Policy</h1>
+    <p class="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED_DISPLAY}</p>
+
+    <div class="mt-8 space-y-8 leading-relaxed text-muted-foreground">
+      <section id="short-version" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">The short version</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>Southern East Inc., a Canadian company in Ontario, runs {siteName}.</li>
+          <li>We use your information to run and improve {siteName}, keep it secure, and talk with you.</li>
+          <li>We don't sell your personal information. We don't share it for targeted advertising.</li>
+          <li>We may publish or share statistics that don't identify anyone.</li>
+          <li>We'll ask you first before we give a partner anything that identifies you for the partner's own use, including training AI.</li>
+          <li>If we change how we use your information, we'll tell you at least 30 days ahead. We won't apply a new use to information we already have unless you say yes.</li>
+          <li>
+            Your choices: <a href={choicesUrl} class="text-accent hover:underline">{choicesUrl}</a>.
+            Questions: {PRIVACY_OFFICER}, <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>.
+          </li>
+        </ul>
+      </section>
+
+      <section id="who-we-are" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Who we are</h2>
+        <p class="mt-3">
+          {siteName} is run by Southern East Inc., a corporation incorporated under the laws of Canada, at {address} ("we", "us"). We decide how and why your personal information is used, so we are responsible for it. Some laws call this the "controller".
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Privacy Officer.</strong> {PRIVACY_OFFICER} is responsible for how Southern East Inc. protects personal information. For people in Quebec, this is also our person in charge of the protection of personal information. Contact: <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>, or by mail at the address above.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">What this policy covers.</strong> This policy covers {siteName}, including this website and the public directory at {siteConfig.url}.
+        </p>
+      </section>
+
+      <section id="what-we-collect" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">What we collect and publish today</h2>
+        <p class="mt-3">
+          The directory lists public project metadata: titles, descriptions, repository links, demo URLs, tags, and star counts when those numbers are visible on public GitHub.
+        </p>
+        <p class="mt-3">
+          When you use <a href="/submit" class="text-accent hover:underline">/submit</a>, you fill in a form in your browser. We do not store that form on our servers. Submitting opens a new issue on GitHub with the details you entered. GitHub issues are public by GitHub's design, so your GitHub username, issue title, and message content may be visible to anyone on the internet under GitHub's terms.
+        </p>
+        <p class="mt-3">
+          Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We store a theme preference in your browser's local storage so light and dark mode persist. We do not run third-party advertising cookies on this directory.
+        </p>
+        <p class="mt-3">
+          Detail pages and the showcase may embed media or link to GitHub, X, and author sites. Those services have their own privacy policies when you leave {siteName}.
+        </p>
+        <p class="mt-3">
+          Read-only endpoints such as <a href="/llms.txt" class="text-accent hover:underline">/llms.txt</a>, <a href="/openapi.json" class="text-accent hover:underline">/openapi.json</a>, and <a href="/search-index.json" class="text-accent hover:underline">/search-index.json</a> return public directory data. Unknown <code class="rounded bg-muted px-1 text-foreground">/api/*</code> routes return JSON error documents without storing request bodies.
+        </p>
+      </section>
+
+      <section id="statistics" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Statistics and anonymized information</h2>
+        <p class="mt-3">
+          <strong class="text-foreground">What this is.</strong> Sometimes we turn information into statistics, or into other information that doesn't identify anyone. For example: the most-viewed tool category this month, or how many listings include a live demo link.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">How we make it.</strong> We remove names, contact details, account IDs and other direct identifiers. We combine information from many people. We don't publish or share any figure based on fewer than {MIN_COHORT} people. Before release, we check that no one can reasonably be identified from the result, on its own or combined with other information that is reasonably available. We record what we did and repeat the check over time.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Our commitments.</strong> We keep this information in non-identifying form. We won't try to re-identify anyone, except to test that our methods work. We don't use it to make decisions about you or to target you with ads or offers.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">How we use it.</strong> We use it to run, secure and improve {siteName}, and to publish research, reports and benchmarks.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">De-identified information is different.</strong> Some information we have only "de-identified". For example, we may replace your name with a code. That information can still be linked back to you, so we treat it as personal information. We use it only for our own internal research, analysis and product development. We don't give it to partners unless you've agreed (see "Programs you choose to join" below, when that section takes effect).
+        </p>
+      </section>
+
+      <section id="who-we-share" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Who we share information with</h2>
+        <p class="mt-3">
+          <strong class="text-foreground">Service providers.</strong> These companies help us run {siteName}. They act only on our instructions, under contract, and may not use your information for their own purposes. Current list:
+        </p>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full min-w-[28rem] border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border text-left text-foreground">
+                <th class="py-2 pr-4 font-semibold">Provider</th>
+                <th class="py-2 pr-4 font-semibold">What they do for us</th>
+                <th class="py-2 font-semibold">Where data is processed</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Cloudflare</td>
+                <td class="py-2 pr-4 align-top">Hosting, security, and Web Analytics</td>
+                <td class="py-2 align-top">Global (including Canada and the US)</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">GitHub (Microsoft)</td>
+                <td class="py-2 pr-4 align-top">Public issue tracking when you submit a listing via /submit</td>
+                <td class="py-2 align-top">United States</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3">
+          <strong class="text-foreground">People and apps you choose.</strong> When you open a GitHub issue, follow an outbound link, or embed content from another service, you direct what becomes public or what that service receives. The recipient's own privacy policy then applies.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Legal and safety reasons.</strong> We may disclose information when the law requires it, in response to valid legal process, or to protect people, our rights, or {siteName} from fraud or abuse.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Business transfers.</strong> See <a href="#business-transfers" class="text-accent hover:underline">If our business changes hands</a>.
+        </p>
+      </section>
+
+      <section id="ai-training" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Do we use personal information to train AI?</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>We do not sell personal information to train AI models, including large language models.</li>
+          <li>We do not let partners train AI models on information that identifies you unless you opt in (see "Programs you choose to join" when that section takes effect).</li>
+          <li>We do not use your personal information to train AI models.</li>
+          <li>
+            <strong class="text-foreground">Public content.</strong> Anyone can see content you post publicly on GitHub or elsewhere, including search engines and AI crawlers we don't control.
+          </li>
+        </ul>
+      </section>
+
+      <section id="business-transfers" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">If our business changes hands</h2>
+        <p class="mt-3">
+          If Southern East Inc., or one of our sites, is involved in a merger, acquisition, financing, reorganization, sale of assets, bankruptcy or insolvency, personal information may be shared with the other parties and their advisers.
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li><strong class="text-foreground">Before a deal closes</strong>, we share only what's needed to evaluate it, de-identified where we can. We share it under a confidentiality agreement that limits use to the deal and requires return or deletion if the deal doesn't go ahead.</li>
+          <li><strong class="text-foreground">After a deal closes</strong>, the new owner may use your information only as this policy describes. To make a material change, it must follow <a href="#changes" class="text-accent hover:underline">Changes to this policy</a>: 30 days' notice, and your consent for new uses of information it already holds.</li>
+          <li><strong class="text-foreground">We'll tell you</strong> within 30 days after a closing in which your information changes hands. We'll give you the new owner's name and contact details. You can delete your account before or after.</li>
+          <li>A deal whose main purpose is selling personal information is not a "business transfer". The rest of this policy applies to it.</li>
+        </ul>
+      </section>
+
+      <section id="privacy-choices" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Your Privacy Choices</h2>
+        <p class="mt-3">
+          See <a href={choicesUrl} class="text-accent hover:underline">Your Privacy Choices</a> ({choicesUrl}) for opt-out of sale, sharing and targeted advertising (including Global Privacy Control), optional programs, and how to access, correct, or delete your information.
+        </p>
+      </section>
+
+      <section id="us-residents" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Notice for US residents</h2>
+        <p class="mt-3">
+          This section applies to residents of California and other US states with comprehensive privacy laws, including Colorado, Connecticut, Virginia, Texas and Oregon. It is our notice at collection. Last updated: {LEGAL_LAST_UPDATED_DISPLAY}.
+        </p>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full min-w-[36rem] border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border text-left text-foreground">
+                <th class="py-2 pr-2 font-semibold">Category</th>
+                <th class="py-2 pr-2 font-semibold">Examples</th>
+                <th class="py-2 pr-2 font-semibold">Source</th>
+                <th class="py-2 pr-2 font-semibold">Why we use it</th>
+                <th class="py-2 pr-2 font-semibold">Disclosed for a business purpose to</th>
+                <th class="py-2 pr-2 font-semibold">Sold or shared in the past 12 months?</th>
+                <th class="py-2 font-semibold">How long we keep it</th>
+              </tr>
+            </thead>
+            <tbody class="align-top">
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-2">Identifiers</td>
+                <td class="py-2 pr-2">Email you type on /submit; GitHub username on a public issue; IP address</td>
+                <td class="py-2 pr-2">You; your device; GitHub</td>
+                <td class="py-2 pr-2">Review submissions; operate and secure the site</td>
+                <td class="py-2 pr-2">Cloudflare; GitHub</td>
+                <td class="py-2 pr-2">No</td>
+                <td class="py-2">While the listing or issue is relevant, plus up to 24 months for security logs</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-2">Internet or network activity</td>
+                <td class="py-2 pr-2">Pages viewed, referrers, approximate performance metrics</td>
+                <td class="py-2 pr-2">Your device</td>
+                <td class="py-2 pr-2">Analytics, improvement, security</td>
+                <td class="py-2 pr-2">Cloudflare</td>
+                <td class="py-2 pr-2">No</td>
+                <td class="py-2">Up to 24 months in aggregate form</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3">
+          <strong class="text-foreground">Sale and sharing.</strong> In the past 12 months, we have not sold personal information and have not shared it for cross-context behavioural advertising.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Minors.</strong> We don't knowingly sell or share personal information of anyone under 18, and we don't target ads to them.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Sensitive information.</strong> We do not collect sensitive personal information on this directory.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Deidentified information.</strong> We keep and use deidentified information only in deidentified form. We won't try to re-identify it, except as the law allows to test our methods. We require anyone who receives it to make the same commitments in writing.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">AI training.</strong> See <a href="#ai-training" class="text-accent hover:underline">Do we use personal information to train AI?</a>
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Your rights.</strong> You can ask to know and access, delete, correct, and get a portable copy of your personal information. You can opt out of sale, sharing, targeted advertising, and profiling that has legal or similarly significant effects. We won't treat you differently for using these rights.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">How to use them.</strong> Email <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a> or use <a href={choicesUrl} class="text-accent hover:underline">{choicesUrl}</a>. We reply within 45 days, and we may extend once by 45 days if we tell you why. We'll confirm your identity first. An authorized agent may act for you with your signed permission. If we refuse, reply "appeal" and we'll respond within the time your state's law allows. If you're still unhappy, you can contact your state Attorney General.
+        </p>
+        <p class="mt-3"><strong class="text-foreground">Financial incentives.</strong> We don't offer any.</p>
+      </section>
+
+      <section id="eea-uk" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Notice for people in the EEA, UK and Switzerland</h2>
+        <div class="mt-4 overflow-x-auto">
+          <table class="w-full min-w-[28rem] border-collapse text-sm">
+            <thead>
+              <tr class="border-b border-border text-left text-foreground">
+                <th class="py-2 pr-4 font-semibold">What we do</th>
+                <th class="py-2 font-semibold">Legal basis</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Provide the directory and respond to submissions</td>
+                <td class="py-2 align-top">Legitimate interests (and contract where you ask us to review a listing)</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Keep the service secure; prevent fraud and abuse</td>
+                <td class="py-2 align-top">Legitimate interests</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Measure and improve the service (Cloudflare Web Analytics)</td>
+                <td class="py-2 align-top">Legitimate interests</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Create statistics and anonymized information</td>
+                <td class="py-2 align-top">Legitimate interests</td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Give a partner information that identifies you, for the partner's own purposes, including AI training</td>
+                <td class="py-2 align-top"><strong class="text-foreground">Consent</strong></td>
+              </tr>
+              <tr class="border-b border-border/70">
+                <td class="py-2 pr-4 align-top">Business transfers</td>
+                <td class="py-2 align-top">Legitimate interests</td>
+              </tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="mt-3">
+          <strong class="text-foreground">Your rights.</strong> You can access, correct, delete, restrict, and get a portable copy of your data. You can also object to processing based on legitimate interests. Where we rely on consent, you can withdraw it at any time. We don't make decisions about you based solely on automated processing that have legal or similarly significant effects.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Transfers.</strong> We're based in Canada. The European Commission and the UK recognize Canada as providing adequate protection for organizations covered by PIPEDA. Some of our service providers are in other countries, such as the US. For those, we use the EU-US Data Privacy Framework (and its UK and Swiss extensions) or Standard Contractual Clauses (with the UK Addendum where needed).
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Complaints.</strong> You can complain to the data protection authority where you live or work. We'd like the chance to help first at <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>.
+        </p>
+      </section>
+
+      <section id="quebec" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Notice for people in Quebec</h2>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>
+            <strong class="text-foreground">Person in charge.</strong> Our person in charge of the protection of personal information is {PRIVACY_OFFICER} (<a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>).
+          </li>
+          <li>
+            <strong class="text-foreground">Purposes and consent.</strong> We collect only what we need for the purposes we tell you before or at collection. We ask for consent separately for each specific purpose, in clear and simple terms. We won't use your information for a new purpose without your consent, except where Quebec law allows it.
+          </li>
+          <li><strong class="text-foreground">Privacy by default.</strong> Our settings start at the most privacy-protective level. Optional sharing and programs are off until you turn them on.</li>
+          <li><strong class="text-foreground">Identification, location and profiling features.</strong> We don't use technology that identifies, locates or profiles you on this directory.</li>
+          <li><strong class="text-foreground">Anonymization.</strong> We anonymize information only for serious and legitimate purposes, following Quebec's Regulation respecting the anonymization of personal information. We record each process in a register.</li>
+          <li><strong class="text-foreground">Outside Quebec.</strong> Our service providers store or process information in other Canadian provinces and the US. Before information leaves Quebec, we assess the privacy impact, and our contracts require protection equivalent to Quebec law.</li>
+          <li><strong class="text-foreground">Your rights.</strong> You can access and correct your information, withdraw consent, and get your information in a structured, commonly used technological format. We reply within 30 days.</li>
+          <li><strong class="text-foreground">Complaints.</strong> You can complain to the Commission d'accès à l'information du Québec.</li>
+          <li>
+            <strong class="text-foreground">French.</strong> This policy is available in English only today. A French translation may be added; contact us if you need assistance in French.
+          </li>
+        </ul>
+      </section>
+
+      <section id="changes" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Changes to this policy</h2>
+        <p class="mt-3">
+          <strong class="text-foreground">Small changes.</strong> For typo fixes, clearer wording, changes that give you more protection, or a new service provider doing the same kind of job, we update this page and the "Last updated" date.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Material changes.</strong> Examples: a new type of partner; a new purpose for using personal information; sharing information that identifies you where we didn't before; starting to use your information to train AI; weakening any promise in this policy.
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>We'll tell you <strong class="text-foreground">at least 30 days before</strong> the change takes effect. We'll show a clear notice on {siteName}. The notice explains what's changing, why, and what your choices are.</li>
+          <li><strong class="text-foreground">Information we already have.</strong> A material change applies only to information we collect after it takes effect. We'll use information we already hold in a materially new way only if you agree first, by an action such as ticking a box or tapping "Yes". Staying on {siteName}, or not replying, doesn't count as agreeing.</li>
+          <li>If you don't agree, we'll keep handling your existing information under the earlier version. Past versions are at <a href={archiveUrl} class="text-accent hover:underline">{archiveUrl}</a>.</li>
+        </ul>
+        <p class="mt-3">
+          <strong class="text-foreground">Legal requirements.</strong> If the law makes us change something faster, we'll give as much notice as we can.
+        </p>
+      </section>
+
+      <div
+        class="scroll-mt-24 rounded-lg border-2 border-dashed border-accent/40 bg-muted/20 p-6"
+        id="future-partner-sharing"
+      >
+        <p class="text-sm font-semibold uppercase tracking-wide text-accent">
+          Takes effect {PARTNER_SHARING_EFFECTIVE_DISPLAY}
+        </p>
+        <h2 class="mt-2 font-heading text-xl font-semibold text-foreground">
+          Business and research partners (future)
+        </h2>
+        <p class="mt-3">
+          Starting {PARTNER_SHARING_EFFECTIVE_DISPLAY}, the following sections also apply. They do not apply to information we already hold unless you agree after that date.
+        </p>
+
+        <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="statistics-partners">
+          Statistics shared with partners
+        </h3>
+        <p class="mt-2">
+          We may share or license the statistics and anonymized information described in <a href="#statistics" class="text-accent hover:underline">Statistics and anonymized information</a> with the business and research partners below. Anyone who receives it must agree in writing not to re-identify anyone, not to combine it with other data to do that, and not to pass it on without the same terms.
+        </p>
+
+        <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="partners">
+          Who we share with — business and research partners
+        </h3>
+        <p class="mt-2">
+          We may work with partners such as universities and research groups, analytics and market-research firms, and companies that build, test or supply data for AI and machine-learning systems. <strong class="text-foreground">By default, partners receive only the statistics and anonymized information described in section 3.2 of our clause set (Statistics and anonymized information).</strong>
+        </p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>We will not give a partner information that identifies you for the partner's own use, including training its AI models, unless you have opted in (see "Programs you choose to join").</li>
+          <li>Every partner signs a written agreement. It limits use to the stated purpose, bans re-identification and onward sale, requires security and deletion, and lets us check compliance.</li>
+          <li>Before any sharing starts, we will list here the types of partners we actually work with and what they receive. <strong class="text-foreground">As of {PARTNER_SHARING_EFFECTIVE_DISPLAY}, we don't share personal information with any business or research partner.</strong></li>
+        </ul>
+
+        <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="optional-programs">
+          Programs you choose to join
+        </h3>
+        <p class="mt-2">
+          We may offer optional programs. For example: contributing content or examples to help build or test AI tools; or being introduced to a partner's expert network or research study.
+        </p>
+        <p class="mt-2">
+          <strong class="text-foreground">Off unless you turn it on.</strong> Before you join, we'll show you a separate screen that says who the partner is, exactly what we'll share, why, how long the partner keeps it, whether it leaves Canada, and whether you'll be paid. Saying no doesn't change how {siteName} works for you.
+        </p>
+        <p class="mt-2">
+          <strong class="text-foreground">You can leave at any time</strong> at <a href={choicesUrl} class="text-accent hover:underline">{choicesUrl}</a> or by emailing <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>. Leaving stops future sharing within 2 business days. We'll also ask the partner to delete what it received, as our agreement with it requires. If your information has already been used to train an AI model, the partner may not be able to remove it from that model. If that applies, we'll say so on the sign-up screen.
+        </p>
+        <p class="mt-2">
+          <strong class="text-foreground">Partners' own terms.</strong> If you sign up with a partner directly, the partner's terms and privacy policy apply to what you give it. A partner can't send you marketing email because you agreed to something with us. It has to ask you itself.
+        </p>
+      </div>
+
+      <p class="text-sm">
+        Past versions: <a href={archiveUrl} class="text-accent hover:underline">{archiveUrl}</a>
       </p>
     </div>
   </div>

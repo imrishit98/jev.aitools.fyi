@@ -1,0 +1,158 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import { termsPageSeo } from "@/lib/seo";
+import { siteConfig } from "@/lib/site";
+import {
+  LEGAL_LAST_UPDATED_DISPLAY,
+  LEGAL_PATHS,
+  PRIVACY_OFFICER,
+  legalMailingAddress,
+  privacyContactEmail,
+} from "@/lib/legal";
+import { webPageJsonLd } from "@/components/json-ld";
+
+const seo = termsPageSeo();
+const siteName = siteConfig.hostnameBrand;
+const contactEmail = privacyContactEmail();
+const address = legalMailingAddress();
+const archiveUrl = LEGAL_PATHS.privacyArchive;
+
+const jsonLd = webPageJsonLd({
+  name: "Terms of Service",
+  description: seo.description,
+  url: seo.canonical,
+  dateModified: "2026-10-05",
+});
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path="/terms"
+  showSponsors={false}
+  jsonLd={jsonLd}
+>
+  <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
+    <h1 class="font-heading text-3xl font-semibold">Terms of Service</h1>
+    <p class="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED_DISPLAY}</p>
+
+    <div class="mt-8 space-y-8 leading-relaxed text-muted-foreground">
+      <section id="agreement" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Agreement</h2>
+        <p class="mt-3">
+          These Terms of Service ("Terms") govern your use of {siteName} ({siteConfig.url}), a curated public directory operated by Southern East Inc. ("we", "us"). By using {siteName}, you agree to these Terms and our <a href="/privacy" class="text-accent hover:underline">Privacy Policy</a>.
+        </p>
+      </section>
+
+      <section id="your-content" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Your content</h2>
+        <p class="mt-3">
+          <strong class="text-foreground">You own it.</strong> "Your Content" means everything you submit, upload or create in {siteName}, including listing details you send through <a href="/submit" class="text-accent hover:underline">/submit</a> or a GitHub issue. You keep all your rights in it.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">The license you give us.</strong> You give Southern East Inc. a worldwide, non-exclusive, royalty-free license to host, store, copy, process, transmit, adapt (for formatting and display) and display Your Content. We may do this only to:
+        </p>
+        <ol class="mt-3 list-decimal space-y-2 pl-5">
+          <li>provide, secure, maintain and support {siteName} for you, including showing or sending Your Content where you direct;</li>
+          <li>show content you choose to make public on {siteName}, and in listings or search results that promote {siteName};</li>
+          <li>improve and develop our services, including analyzing how they're used and, only where our Privacy Policy says so, training and testing models used for features of {siteName}; and</li>
+          <li>create statistics and anonymized information as described in our Privacy Policy.</li>
+        </ol>
+        <p class="mt-3">
+          <strong class="text-foreground">Limits.</strong> We won't sell Your Content. We won't give it to a third party for that party's own purposes, including training the third party's AI models, unless you opt in or tell us to. Our service providers may handle it only to help us run {siteName}.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">GitHub submissions.</strong> When you submit through GitHub, your issue is public by GitHub's design. We do not control GitHub's visibility settings.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">How long the license lasts.</strong> It ends when you delete Your Content or ask us to remove a listing, except for: (i) statistics and anonymized information already created; (ii) backup copies, until they're overwritten in our normal cycle (within 35 days); (iii) anything you've already shared with others or published; and (iv) anything the law requires us to keep.
+        </p>
+      </section>
+
+      <section id="service-data" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Service Data</h2>
+        <p class="mt-3">
+          "Service Data" means: (a) statistics and anonymized information we create as described in our Privacy Policy; and (b) technical and usage information about how {siteName} performs, such as uptime, errors and feature usage. Service Data does not include Your Content itself, and it does not identify you or any other person.
+        </p>
+        <p class="mt-3">
+          We own Service Data. We may use, publish and license it for any lawful purpose, but only while it stays non-identifying, and only if each recipient agrees in writing not to re-identify anyone, not to combine it with other data to do that, and not to pass it on without the same terms. If Service Data turns out to identify someone, we'll treat it as personal information under our Privacy Policy and fix the problem.
+        </p>
+      </section>
+
+      <section id="acceptable-use" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Acceptable use</h2>
+        <p class="mt-3">You agree not to:</p>
+        <ul class="mt-3 list-disc space-y-2 pl-5">
+          <li>use {siteName} in a way that breaks the law or infringes someone else's rights;</li>
+          <li>submit false, misleading, or malicious listings or issues;</li>
+          <li>attempt to disrupt, scrape, or overload the site beyond reasonable browsing and the public APIs we document;</li>
+          <li>misrepresent your affiliation with TypeSafe AI, Southern East Inc., or any listed project; or</li>
+          <li>use the directory to distribute malware, spam, or harassing content.</li>
+        </ul>
+        <p class="mt-3">
+          We may remove listings or block abuse that violates these rules or our content standards on <a href="/about" class="text-accent hover:underline">/about</a>.
+        </p>
+      </section>
+
+      <section id="assignment" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Assignment</h2>
+        <p class="mt-3">
+          We may assign or transfer these Terms, and our related rights and obligations, including information handled under our Privacy Policy. We may do this to an affiliate, or to a successor in a merger, acquisition, financing, reorganization, insolvency, or sale of all or part of our assets or of the business of {siteName}. The successor must honour these Terms and our Privacy Policy for the information it receives, unless it gives you notice and gets any consent required under "Changes to these Terms" and our Privacy Policy. We'll tell you within 30 days after such a transfer. You may not assign these Terms without our written consent.
+        </p>
+      </section>
+
+      <section id="changes" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Changes to these Terms</h2>
+        <p class="mt-3">
+          <strong class="text-foreground">What counts as material.</strong> A change is material if a reasonable user would consider it significant. For example, it reduces your rights or our obligations, changes how we use or share your data, changes dispute resolution or governing law, or takes away a feature you rely on.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Notice.</strong> We'll give at least 30 days' notice of a material change, with a notice in {siteName}. The notice will summarize the change and link to the old and new versions.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Your data.</strong> A change that expands how we use or share data applies to data we collected before the change only if you expressly agree.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Your options.</strong> If you don't agree, you can stop using {siteName} before the change takes effect.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">Other changes.</strong> Non-material changes take effect when we post them. Except as the "Your data" paragraph says, using {siteName} after a non-material change takes effect means you accept the updated Terms.
+        </p>
+        <p class="mt-3">
+          <strong class="text-foreground">History.</strong> Past Privacy Policy versions are at <a href={archiveUrl} class="text-accent hover:underline">{archiveUrl}</a>. If the law requires a change sooner, we'll give as much notice as we can.
+        </p>
+      </section>
+
+      <section id="disclaimers" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Disclaimers</h2>
+        <p class="mt-3">
+          {siteName} is provided on an "as is" and "as available" basis. We curate links and descriptions in good faith but do not guarantee that every listing is complete, current, or fit for your purpose. Outbound links and embedded demos are controlled by third parties, not by Southern East Inc.
+        </p>
+      </section>
+
+      <section id="limitation-of-liability" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Limitation of liability</h2>
+        <p class="mt-3">
+          To the fullest extent permitted by applicable law, Southern East Inc. and its directors, officers, employees, and agents will not be liable for any indirect, incidental, special, consequential, or punitive damages, or any loss of profits, data, or goodwill, arising from your use of {siteName}. Our total liability for any claim relating to {siteName} is limited to the greater of (a) CAD $100 or (b) the amount you paid us to use {siteName} in the twelve months before the claim (typically zero for this free directory).
+        </p>
+        <p class="mt-3">
+          Some jurisdictions do not allow certain limitations. In those places, these limits apply only to the extent allowed by law.
+        </p>
+      </section>
+
+      <section id="governing-law" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Governing law</h2>
+        <p class="mt-3">
+          These Terms are governed by the laws of the Province of Ontario and the federal laws of Canada applicable therein, without regard to conflict-of-law rules. You agree that the courts of Ontario, Canada have exclusive jurisdiction over disputes arising from these Terms, except where consumer protection law in your province or country gives you a non-waivable right to sue elsewhere.
+        </p>
+      </section>
+
+      <section id="contact" class="scroll-mt-24">
+        <h2 class="font-heading text-xl font-semibold text-foreground">Contact</h2>
+        <p class="mt-3">
+          Questions about these Terms: <a href={`mailto:${contactEmail}`} class="text-accent hover:underline">{contactEmail}</a>. Privacy Officer: {PRIVACY_OFFICER}. Mail: {address}. See also <a href="/contact" class="text-accent hover:underline">/contact</a>.
+        </p>
+      </section>
+    </div>
+  </div>
+</BaseLayout>

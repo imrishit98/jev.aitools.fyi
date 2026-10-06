@@ -101,6 +101,9 @@ const STATIC_ROUTE_META: {
   { path: "/about", priority: 0.55, changefreq: "monthly" },
   { path: "/contact", priority: 0.52, changefreq: "monthly" },
   { path: "/privacy", priority: 0.5, changefreq: "monthly" },
+  { path: "/privacy/archive", priority: 0.35, changefreq: "yearly" },
+  { path: "/terms", priority: 0.48, changefreq: "monthly" },
+  { path: "/your-privacy-choices", priority: 0.46, changefreq: "monthly" },
   { path: "/developers", priority: 0.62, changefreq: "monthly" },
   { path: "/for-agents", priority: 0.58, changefreq: "monthly" },
 ];

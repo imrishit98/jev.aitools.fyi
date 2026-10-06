@@ -1,0 +1,26 @@
+---
+import { LEGAL_PATHS, PARTNER_SHARING_EFFECTIVE_DISPLAY, showPolicyUpdateBanner } from "@/lib/legal";
+
+const visible = showPolicyUpdateBanner();
+---
+{
+  visible && (
+    <div
+      class="border-b border-accent/30 bg-accent/10 px-4 py-3 text-center text-sm leading-relaxed text-foreground"
+      role="status"
+      aria-live="polite"
+    >
+      <p>
+        <strong>Upcoming privacy update ({PARTNER_SHARING_EFFECTIVE_DISPLAY}):</strong> We may share
+        <strong> statistics that do not identify anyone</strong> with business and research partners.
+        We still do not sell your personal information.{" "}
+        <a
+          href={LEGAL_PATHS.privacy}
+          class="font-medium text-accent underline-offset-4 hover:underline"
+        >
+          Read the Privacy Policy
+        </a>
+      </p>
+    </div>
+  )
+}

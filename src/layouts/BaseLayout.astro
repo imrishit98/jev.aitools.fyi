@@ -3,6 +3,7 @@ import "../styles/global.css";
 import { siteConfig } from "@/lib/site";
 import { absoluteUrl, formatDocumentTitle, ogImagePaths, OG_IMAGE_HEIGHT, OG_IMAGE_WIDTH } from "@/lib/seo";
 import SiteHeader from "@/components/site-header";
+import LegalPolicyBanner from "@/components/legal-policy-banner.astro";
 import SiteFooter from "@/components/site-footer.astro";
 import SiteCredit from "@/components/site-credit.astro";
 import GlobalJsonLd from "@/components/global-json-ld.astro";
@@ -127,6 +128,7 @@ const cloudflareWebAnalyticsToken =
   </head>
   <body class="flex min-h-full flex-col font-sans">
     <SiteHeader client:load />
+    <LegalPolicyBanner />
     <main class="flex-1 pb-12 md:pb-14">
       {showSponsors && <SponsorFeatured />}
       <slot />

@@ -226,6 +226,30 @@ export function layaVsJevArticleJsonLd(
   });
 }
 
+export function webPageJsonLd(options: {
+  name: string;
+  description: string;
+  url: string;
+  dateModified: string;
+}) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "WebPage",
+    name: options.name,
+    description: options.description,
+    url: options.url,
+    mainEntityOfPage: options.url,
+    dateModified: options.dateModified,
+    inLanguage: "en-US",
+    isPartOf: {
+      "@type": "WebSite",
+      name: siteConfig.hostnameBrand,
+      url: siteConfig.url,
+    },
+    publisher: publisherOrg,
+  };
+}
+
 export function articleListJsonLd(options: {
   name: string;
   path: string;
