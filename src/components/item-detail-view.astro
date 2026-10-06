@@ -158,7 +158,11 @@ const listingDescription = profile
           <>
             <section class="surface-card p-6 sm:p-8" aria-labelledby="product-overview-heading">
               <h2 id="product-overview-heading" class="font-heading text-xl font-semibold tracking-tight sm:text-2xl">Overview</h2>
-              <p class="mt-4 text-base leading-relaxed text-foreground/90">{profile.overview}</p>
+              <div class="mt-4 space-y-4 text-base leading-relaxed text-foreground/90">
+                {profile.overview.split(/\n\n+/).map((paragraph) => (
+                  <p>{paragraph}</p>
+                ))}
+              </div>
               <p class="mt-4 text-base leading-relaxed text-muted-foreground">
                 <span class="font-medium text-foreground">Problem:</span> {profile.problem}
               </p>
