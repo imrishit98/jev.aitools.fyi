@@ -11,6 +11,13 @@ import { join, relative, resolve } from "node:path";
 const distDir = resolve(import.meta.dirname, "..", "dist");
 const site = "https://jev.aitools.fyi";
 
+/** Keep in sync with src/lib/mfm-demo-static.ts */
+const MFM_DEMO_HTML_ASSET_PATH = "/demos/mfm-jev-search-shell.html";
+const MFM_DEMO_SHELL_PUBLIC_PATH = MFM_DEMO_HTML_ASSET_PATH.replace(
+  /\.html$/,
+  "",
+);
+
 function walk(dir, out = []) {
   for (const name of readdirSync(dir)) {
     const full = join(dir, name);
@@ -56,5 +63,11 @@ for (const file of files) {
   );
 }
 
+for (const shellPath of [MFM_DEMO_HTML_ASSET_PATH, MFM_DEMO_SHELL_PUBLIC_PATH]) {
+  lines.push(shellPath, "  X-Robots-Tag: noindex, follow", "");
+}
+
 writeFileSync(join(distDir, "_headers"), `${lines.join("\n")}\n`);
-console.log(`Wrote dist/_headers (${files.length} markdown rules)`);
+console.log(
+  `Wrote dist/_headers (${files.length} markdown rules + 2 MFM shell noindex rules)`,
+);

@@ -26,7 +26,13 @@ const layaVsJevMod = await vite.ssrLoadModule("/src/data/laya-vs-jev-guides.ts")
 const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 const sitemapMod = await vite.ssrLoadModule("/src/lib/sitemap-xml.ts");
+const mfmStaticMod = await vite.ssrLoadModule("/src/lib/mfm-demo-static.ts");
 await vite.close();
+
+const mfmShellHeaderPaths = [
+  mfmStaticMod.MFM_DEMO_HTML_ASSET_PATH,
+  mfmStaticMod.MFM_DEMO_SHELL_PUBLIC_PATH,
+];
 
 const stats = itemsMod.getDirectoryStats();
 const learnTopicCount = learnMod.learnGuideSlugs.length;
@@ -216,7 +222,7 @@ const mfmDemoHtml = join(distRoot, "demos/mfm-jev-search-shell.html");
 try {
   const mfmHtml = readFileSync(mfmDemoHtml, "utf8");
   if (!mfmHtml.includes(`href="${mfmCanonical}"`)) {
-    errors.push("MFM demo index.html canonical must be no-slash URL");
+    errors.push("MFM demo shell HTML canonical must be no-slash URL");
   }
 } catch {
   errors.push("dist/demos/mfm-jev-search-shell.html missing");
@@ -405,15 +411,27 @@ try {
 } catch {
   errors.push("dist/_headers missing");
 }
-const headerPaths = [...headersFile.matchAll(/^(\/\S+\.md)$/gm)].map((m) => m[1]);
+const headerPaths = [...headersFile.matchAll(/^(\/\S+)$/gm)]
+  .map((m) => m[1])
+  .filter((path) => !path.startsWith("#"));
 const duplicateHeaderPaths = headerPaths.filter(
   (path, index) => headerPaths.indexOf(path) !== index,
 );
 if (duplicateHeaderPaths.length > 0) {
   errors.push(`_headers duplicate paths: ${[...new Set(duplicateHeaderPaths)].join(", ")}`);
 }
-if ([...headersFile.matchAll(/^(\/\S+)$/gm)].some((m) => !m[1].endsWith(".md"))) {
-  errors.push("_headers has a rule that is not a .md path");
+const allowedNonMdHeaderPaths = new Set(mfmShellHeaderPaths);
+for (const path of headerPaths) {
+  if (!path.endsWith(".md") && !allowedNonMdHeaderPaths.has(path)) {
+    errors.push(`_headers has unexpected non-markdown path: ${path}`);
+    break;
+  }
+}
+for (const shellPath of mfmShellHeaderPaths) {
+  const block = `${shellPath}\n  X-Robots-Tag: noindex, follow\n`;
+  if (!headersFile.includes(block)) {
+    errors.push(`_headers missing noindex rule for ${shellPath}`);
+  }
 }
 const mdFiles = listMarkdownFiles(distRoot);
 for (const file of mdFiles) {
@@ -424,9 +442,10 @@ for (const file of mdFiles) {
     errors.push(`_headers missing rule for ${mdPath}`);
   }
 }
-if (mdFiles.length !== headerPaths.length) {
+const expectedHeaderRules = mdFiles.length + mfmShellHeaderPaths.length;
+if (headerPaths.length !== expectedHeaderRules) {
   errors.push(
-    `_headers rule count: expected ${mdFiles.length} markdown files, got ${headerPaths.length} rules`,
+    `_headers rule count: expected ${expectedHeaderRules}, got ${headerPaths.length}`,
   );
 }
 
