@@ -2368,13 +2368,18 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     firstSeen: "2026-09-19",
     demoIds: ["box-incident-triage-levie"],
-    relatedSlugs: ["classifier-dev", "vercel-eve"],
+    relatedSlugs: ["tsale-jevline", "classifier-dev", "vercel-eve"],
     relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
     faq: [
       {
         question: "Is this a shipped Box SKU?",
         answer:
           "The directory indexes Levie's public demonstration clip. Confirm product availability with Box for your tenant.",
+      },
+      {
+        question: "How is this different from Jevline?",
+        answer:
+          "Box triage routes stored incident files by customer impact and severity. Jevline (tsale-jevline) scopes endpoint telemetry from one malicious process into an execution timeline for DFIR analysts.",
       },
     ],
     metaTitle: "Box × Jev: incident triage on Content Cloud",
@@ -6343,7 +6348,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Kev is the open-weights answer when you want the same SDK calls as api.typesafe.ai but the bill and GPUs are yours. togethercomputer-tev1 teaches a letter-picker via LoRA on Together; featherless-simple-jev assembles logits from arbitrary HF models; bespokelabsai-nimble ships a curated 9B recipe. Kev ships full checkpoints with eval tables against hosted Jev and explicit warnings that Jev training data is unknown, so headline accuracy is directional. wfzyx-von chases sub-25 ms non-autoregressive inference on a smaller encoder; Kev stays autoregressive Qwen with richer Score and Noul in one batch. Do not confuse this repo with kevthetech143-super-jev fan forks. classifier.dev and hosted System One remain the paths when you refuse to operate inference.",
+      "Kev is the open-weights answer when you want the same SDK calls as api.typesafe.ai but the bill and GPUs are yours. PostHog Jeeves (posthog-jeeves) adds an optional reasoning chain before the same Choice, Noul, and Score head, which the Jeeves README says helps on JevBench hard but costs latency at the tail. togethercomputer-tev1 teaches a letter-picker via LoRA on Together; featherless-simple-jev assembles logits from arbitrary HF models; bespokelabsai-nimble ships a curated 9B recipe. Kev ships full checkpoints with eval tables against hosted Jev and explicit warnings that Jev training data is unknown, so headline accuracy is directional. wfzyx-von chases sub-25 ms non-autoregressive inference on a smaller encoder; Kev stays autoregressive Qwen with richer Score and Noul in one batch. Do not confuse this repo with kevthetech143-super-jev fan forks. classifier.dev and hosted System One remain the paths when you refuse to operate inference.",
     keyFeatures: [
       "Four public sizes from 0.8B laptop class to 27B datacenter GPU",
       "Drop-in TypeSafe Python SDK against local kev.serve",
@@ -6368,11 +6373,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Open source weights; you pay for GPUs, Modal training, or your own cloud serve. No TypeSafe meter unless you call both.",
     firstSeen: "2026-09-24",
     relatedSlugs: [
+      "posthog-jeeves",
       "togethercomputer-tev1",
       "featherless-simple-jev",
       "bespokelabsai-nimble",
       "wfzyx-von",
-      "theoleecj-semif",
     ],
     relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
     faq: [
@@ -6390,6 +6395,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         question: "How does Kev compare to tev1 or Nimble?",
         answer:
           "tev1 is a Together fine-tune recipe; Nimble is Bespoke's 9B schema classifier. Kev ships multiple finished checkpoints with System One parity and Jared Palmer's eval narrative against hosted Jev.",
+      },
+      {
+        question: "How is Kev different from PostHog Jeeves?",
+        answer:
+          "Kev answers from the prompt in one forward pass. Jeeves can write a reasoning chain first, then score options. The Jeeves README credits Kev as inspiration and publishes side by side tables where Jeeves leads on some JevBench tiers but trails Jev on MMLU.",
       },
     ],
     metaTitle: "Kev: Jared Palmer's open Jev-like models on Qwen",
@@ -7511,7 +7521,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "ollaya is infrastructure, not another Laya marketing page: one daemon serves many open decision checkpoints with the same HTTP shape. jaredpalmer-kev and wfzyx-von remain the authoritative repos for those models; ollaya pulls verified ONNX wrappers. togethercomputer-tev1 is a training recipe on Together; ollaya is local pull and serve. githubnext-localjev bridges chat JSON on Mac; ollaya runs native decision graphs. Do not list Laya itself again here; use ollaya when the story is runtime packaging.",
+      "ollaya is infrastructure, not another Laya marketing page: one daemon serves many open decision checkpoints with the same HTTP shape. Bud Decision Studio (budecosystem-bud-decision-studio) is the GUI desktop alternative: Playground, model downloads, and localhost :8420 for the same SDK contract. jaredpalmer-kev and wfzyx-von remain the authoritative repos for those models; ollaya pulls verified ONNX wrappers. togethercomputer-tev1 is a training recipe on Together; ollaya is local pull and serve. githubnext-localjev bridges chat JSON on Mac; ollaya runs native decision graphs. Do not list Laya itself again here; use ollaya when the story is runtime packaging.",
     keyFeatures: [
       "Ollama-style pull, list, ps, run, and Modelfile create workflow",
       "TypeSafe-compatible /v1/systemone on default port 11435",
@@ -7530,10 +7540,10 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Apache-2.0 binary; model licenses follow each upstream author listed in README.",
     firstSeen: "2026-09-25",
     relatedSlugs: [
+      "budecosystem-bud-decision-studio",
       "jaredpalmer-kev",
       "wfzyx-von",
       "togethercomputer-tev1",
-      "githubnext-localjev",
     ],
     relatedLearnSlugs: ["system-one", "where-to-run-jev"],
     faq: [
@@ -7812,7 +7822,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "jev-router is the product-name answer for Claude Code model routing with Jev: wrap the CLI you already trust, do not replace it. nidhi-singh02-agent-router is the multi-agent desk with Herdr launches and quota policy filters before TypeSafe ranks Cursor, Codex, Claude Code, or OpenCode. miuuyy-astra-ares instead toggles reasoning effort inside a patched Codex binary. jev-router stays inside one CLI and optimizes model tier per turn. Use dbreunig-building-with-jev-skill when teammates need vocabulary for routing questions, and typesafe-ai-skills for maintained install patterns.",
+      "jev-router is the product-name answer for Claude Code model routing with Jev: wrap the CLI you already trust, do not replace it. vinilana-jev-gateway is a different problem: it picks which tool to call each turn across Codex, Claude Code, OpenCode, Kilo, Gemini, and Devin, not which model tier. nidhi-singh02-agent-router is the multi-agent desk with Herdr launches and quota policy filters before TypeSafe ranks Cursor, Codex, Claude Code, or OpenCode. miuuyy-astra-ares instead toggles reasoning effort inside a patched Codex binary. jev-router stays inside one CLI and optimizes model tier per turn. Use dbreunig-building-with-jev-skill when teammates need vocabulary for routing questions, and typesafe-ai-skills for maintained install patterns.",
     keyFeatures: [
       "Global npm jev-router with jev-claude and jev-codex entry points",
       "Bundled /jev-explain and $jev-explain from saved System One request bodies",
@@ -7835,10 +7845,10 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "MIT open source; TypeSafe bills per routing decision; CLI usage still follows your Anthropic or OpenAI subscription.",
     firstSeen: "2026-09-26",
     relatedSlugs: [
+      "vinilana-jev-gateway",
       "nidhi-singh02-agent-router",
       "miuuyy-astra-ares",
       "dbreunig-building-with-jev-skill",
-      "typesafe-ai-skills",
     ],
     relatedLearnSlugs: ["patterns", "use-cases"],
     faq: [
@@ -7851,6 +7861,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         question: "What gets sent to TypeSafe?",
         answer:
           "README limitations section: only the user prompt text for the routing decision on that turn.",
+      },
+      {
+        question: "How is this different from vinilana jev-gateway?",
+        answer:
+          "jev-router rewrites the model field for Claude Code or Codex per fresh user turn. jev-gateway sits in front of the agent HTTP API and asks Jev which named tool to call. The jev-gateway README says Codex can force a tool while Claude Code only gets a hint.",
       },
       {
         question: "How is this different from Agent Router?",
@@ -8235,10 +8250,10 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Apache-2.0 code and published weights; you pay for GPUs and electricity. Third-party leaderboard hosting may bill separately.",
     firstSeen: "2026-09-27",
     relatedSlugs: [
+      "apolinario-decision-index",
       "jaredpalmer-kev",
       "wfzyx-von",
       "ollaya-dev-ollaya",
-      "theoleecj-semif",
     ],
     relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
     faq: [
@@ -11544,5 +11559,501 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "Chinese Jev tutorial: Datawhale Cookbook",
     metaDescription:
       "Datawhale's unofficial Chinese Jev course: 11 Jupyter chapters, 18 recipes, a 3D smart home, and local Laya fine-tuning. docs.typesafe.ai is authoritative.",
+  },
+
+  "posthog-jeeves": {
+    slug: "posthog-jeeves",
+    status: "published",
+    problem:
+      "Jev-like models score options fast, but accuracy on hard out-of-domain tasks still pushes teams toward slow reasoning LLM fallbacks.",
+    targetUser:
+      "ML engineers who want an open 9B decision server with optional thinking chains, Jev-shaped HTTP, and published training code on CUDA or Apple Silicon.",
+    overview:
+      "Jeeves (github.com/PostHog/jeeves, MIT) is PostHog's open reasoning decision model built on Qwen3.5-9B with LoRA r16 and a pointer head. Nicholas P. Waltz is named as author in the README citation block. The model writes a reasoning chain per question, then scores Choice, Noul, and Score in one POST /v1/systemone call. Training is SFT plus CISPO RL with one fitted temperature and a block-4 diffusion drafter for speed. Weights ship on Hugging Face as PostHog/jeeves (bf16) and PostHog/jeeves-fp8; the repo also publishes jeeves_sdk as a drop-in for the TypeSafe Python SDK. The README credits jaredpalmer/kev as inspiration.\n\nOn tables the project publishes with thinking enabled and a 2,560-token cap, Jeeves reports test overall 0.889 versus Jev 0.857 and Kev-9B 0.822, and JevBench overall 0.935 versus Jev 0.866 on 231 public items. The same README shows Jeeves trailing Jev on MMLU (0.793 vs 0.900) and MMLU-Pro (0.739 vs 0.840). Treat every number as the project's own claim, not this directory's measurement.",
+    creator: {
+      name: "PostHog",
+      handle: "PostHog",
+      githubUrl: "https://github.com/PostHog",
+      company: "PostHog",
+      companyUrl: "https://posthog.com",
+    },
+    creatorQuote: {
+      text: "Inspired by Kev.",
+      attributedTo: "PostHog/jeeves README Acknowledgements",
+      sourceUrl: "https://github.com/PostHog/jeeves/blob/master/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Optional reasoning chain, then parallel Choice, Noul, and Score over shared state via pointer-head softmax",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "State string and questions map in TypeSafe System One shape; optional options.think, max_think, nothink_threshold, return_reasoning.",
+      decisionOut:
+        "Typed answers with probabilities or scores; usage includes reasoning_tokens when thinking is on.",
+      flowSteps: [
+        "pip install -r requirements.txt and hf download PostHog/jeeves",
+        "python -m inference.serve with optional --precision fp8 and drafter_k4 weights",
+        "POST /v1/systemone with parallel questions; set options.max_think to cap chain length",
+        "Point jeeves_sdk TypeSafeClient at JEEVES_BASE_URL or port 8009 default",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README results table with thinking: test overall 0.889 vs Jev 0.857 and Kev-9B 0.822; JevBench overall 0.935 vs Jev 0.866 on 231 public items; JevBench hard 0.865 vs Jev 0.730. Kev-9B JevBench cells are Kev-8B per README footnote.",
+          source: "github.com/PostHog/jeeves README Results",
+        },
+        {
+          claim:
+            "README limitations: MMLU 0.793 vs Jev 0.900; MMLU-Pro 0.739 vs Jev 0.840; thinking median 3.3 s and p90 17.1 s on one H100 fp8 vs about 0.3 s without thinking on 325 dev questions.",
+          source: "github.com/PostHog/jeeves README Limitations and Options tables",
+        },
+        {
+          claim:
+            "GitHub repo PostHog/jeeves had 414 stars and 21 forks on 2026-10-07. Repo LICENSE is MIT. Hugging Face PostHog/jeeves and PostHog/jeeves-fp8 card license is Apache-2.0.",
+          source: "GitHub and Hugging Face API, 2026-10-07",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jeeves is the open model that reasons before it decides. jaredpalmer-kev answers straight from the prompt with Qwen fine-tunes and SDK parity tables. liuziyu77-valen adds vision tensors. theoleecj-semif and ollaya-dev-ollaya cover other local serve paths. Hosted TypeSafe Jev remains the closed API baseline in third-party tables. Jeeves serves the same POST /v1/systemone envelope with extra options Jev clients may ignore. Link to Kev both ways when you compare training cost versus chain latency.",
+    keyFeatures: [
+      "Full SFT, CISPO, calibration, and drafter training scripts in-repo",
+      "Block-4 diffusion drafter with published tokens per second table",
+      "jeeves_sdk drop-in for typesafe-sdk with reasoning options",
+      "CUDA bf16 or fp8 and Apple Silicon MPS paths documented",
+      "export.py and export_fp8.py for fused standalone checkpoints",
+    ],
+    stack: [
+      "Python 3.12",
+      "PyTorch",
+      "Qwen3.5-9B",
+      "CUDA 8.9+ for fp8 or Apple Silicon 48 GB+ for bf16 serve",
+      "Hugging Face weights",
+    ],
+    links: {
+      repo: "https://github.com/PostHog/jeeves",
+      docs: "https://github.com/PostHog/jeeves#quickstart",
+      website: "https://huggingface.co/PostHog/jeeves",
+    },
+    pricingNote:
+      "Open weights and MIT code; you pay for GPUs and electricity. Hugging Face weight license is Apache-2.0 per model cards.",
+    firstSeen: "2026-09-29",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "apolinario-decision-index",
+      "theoleecj-semif",
+      "ollaya-dev-ollaya",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does the Hugging Face license match the GitHub license?",
+        answer:
+          "The GitHub repository LICENSE file is MIT. Hugging Face lists Apache-2.0 on PostHog/jeeves and PostHog/jeeves-fp8. Read both before you ship weights.",
+      },
+      {
+        question: "How do I turn thinking off for latency?",
+        answer:
+          "Send options.think false or use nothink_threshold. The README reports about 0.3 s per request without thinking on dev questions versus 3.3 s median with full chains on one H100 fp8.",
+      },
+      {
+        question: "Are the Kev and Jev comparison tables apples to apples?",
+        answer:
+          "The README says comparisons outside JevBench use different items from the same sources. JevBench rows are restricted to the same 231 public items. Kev-9B JevBench numbers are actually Kev-8B.",
+      },
+    ],
+    metaTitle: "Jeeves: PostHog open reasoning Jev-like 9B model",
+    metaDescription:
+      "PostHog Jeeves: Qwen3.5-9B with CISPO, optional thinking, Jev-shaped POST /v1/systemone. MIT repo; HF weights Apache-2.0. README vs Jev and Kev.",
+  },
+
+  "vinilana-jev-gateway": {
+    slug: "vinilana-jev-gateway",
+    status: "published",
+    problem:
+      "Coding agents send large tool menus to expensive reasoning models every turn, even when a fast decision could pick the right tool.",
+    targetUser:
+      "Developers running Codex, Claude Code, OpenCode, Kilo, Gemini CLI, or Devin locally who want Jev to steer tool_choice without replacing their login.",
+    overview:
+      "jev-gateway (github.com/vinilana/jev-gateway, MIT, npm jev-gateway 0.5.1) is vinilana's localhost proxy for coding agents. Launchers jev-codex, jev-claude, jev-opencode, jev-kilo, jev-gemini, and jev-devin start a background gateway on 127.0.0.1, then run the real CLI unchanged. Each turn the gateway asks Jev which tool fits. When Jev is confident, Codex requests can be rewritten toward that tool. When Jev is unsure or offline, traffic passes through unchanged. First-run setup stores keys in ~/.jev-gateway/.env after one live Jev check. Jev can be reached via TypeSafe, OpenRouter, Vercel AI Gateway, or OpenCode Zen per the README provider table.",
+    creator: {
+      name: "vinilana",
+      handle: "vinilana",
+      githubUrl: "https://github.com/vinilana",
+    },
+    jevUsage: {
+      flowRole:
+        "Per agent turn Choice over declared tools before the upstream LLM request is sent",
+      primitives: ["Choice"],
+      stateIn:
+        "Tool names, descriptions, and conversation context the gateway extracts from OpenAI, Anthropic, or Gemini compatible requests.",
+      decisionOut:
+        "Steered tool_choice for Codex when allowed, or a short hint appended for Claude Code hint mode.",
+      flowSteps: [
+        "npm install -g jev-gateway and run jev-codex or another launcher",
+        "Pick Jev provider in setup and paste API key",
+        "Use jev-codex --dashboard to watch routing, latency, and token counts",
+        "Toggle jev-codex --routing off for baseline comparison on similar tasks",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Claude Code caveat: extended thinking and prompt cache block forced tool_choice, so the gateway adds a non-binding hint. Expect better tool picks on large tool lists, not lower cost or latency.",
+          source: "github.com/vinilana/jev-gateway README Using it with Claude Code",
+        },
+        {
+          claim:
+            "README Benchmark section cites jev-gateway-bench: 120 agent sessions on chess tasks; medians vary by model and task; five runs per cell is a small sample; Opus 5 feature task got worse with routing on some metrics.",
+          source: "github.com/vinilana/jev-gateway README Benchmark",
+        },
+        {
+          claim:
+            "GitHub repo vinilana/jev-gateway had 301 stars and 41 forks on 2026-10-07. npm jev-gateway latest is 0.5.1 published 2026-10-06 per CHANGELOG.",
+          source: "GitHub and npm, 2026-10-07",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-gateway picks the tool name for agent HTTP traffic. gargpratyush-jev-router and 0xnatoshi-jev-codex-router style projects pick model tier or reasoning depth per turn instead. vinilana-jev-eval-agent and vinilana-jev-browser are sibling repos from the same author for eval and browser automation. The gateway fails open: Jev errors never block the upstream CLI. It listens on localhost only. Measure on your own tasks before you trust bench medians.",
+    keyFeatures: [
+      "Six jev- launchers with shared ~/.jev-gateway/.env",
+      "Dashboard on port 8790 with peer discovery and routing reasons",
+      "--routing off baseline mode for A/B token comparison",
+      "Codex Responses API support including apply_patch style tools",
+      "OpenCode agent bypass warnings from opencode debug config",
+    ],
+    stack: [
+      "Node.js 22.15+",
+      "TypeSafe, OpenRouter, Vercel AI Gateway, or OpenCode Zen for Jev",
+      "Codex, Claude Code, OpenCode, Kilo, Gemini CLI, or Devin installed",
+    ],
+    links: {
+      repo: "https://github.com/vinilana/jev-gateway",
+      docs: "https://github.com/vinilana/jev-gateway#quick-start",
+      website: "https://www.npmjs.com/package/jev-gateway",
+    },
+    pricingNote:
+      "MIT open source; Jev calls bill through whichever provider key you configure; agent subscriptions stay separate.",
+    firstSeen: "2026-09-18",
+    relatedSlugs: [
+      "gargpratyush-jev-router",
+      "browser-use-jev-ultrafast",
+      "nidhi-singh02-agent-router",
+      "kerpopule-hermes-jev-skills",
+    ],
+    relatedLearnSlugs: ["patterns", "use-cases"],
+    faq: [
+      {
+        question: "Can Claude Code force a tool like Codex?",
+        answer:
+          "No. The README says Claude Code runs with extended thinking and cached conversations, so the gateway uses hint mode only. Codex can force the tool when the API allows it.",
+      },
+      {
+        question: "What happens if Jev is down?",
+        answer:
+          "README: every request goes straight to the LLM. The gateway never makes a request fail because Jev errored.",
+      },
+      {
+        question: "Which npm version should I install?",
+        answer:
+          "CHANGELOG shows 0.5.1 on 2026-10-06 with a Codex reviewer tool_choice fix. npm install -g jev-gateway pulls latest unless you pin.",
+      },
+    ],
+    metaTitle: "jev-gateway: Jev tool routing for Codex and Claude",
+    metaDescription:
+      "vinilana/jev-gateway npm 0.5.1 proxies coding agents on localhost. Jev picks tools each turn, fails open, and documents Claude hint limits vs Codex force.",
+  },
+
+  "apolinario-decision-index": {
+    slug: "apolinario-decision-index",
+    status: "published",
+    problem:
+      "Teams cite Decision Index ranks in README tables but cannot reproduce the public suite or score their own /v1/systemone server with the same math.",
+    targetUser:
+      "Benchmark authors and open decision model maintainers who need resumable runs, chance-corrected area scores, and parity checks against edition 0.3 public index rules.",
+    overview:
+      "decision-index (github.com/apolinario/decision-index, MIT, PyPI decision-index 0.3) is apolinario's reproduction kit for the Decision Index leaderboard for typed decision engines. Inputs are state plus Choice or Noul questions with explicit criteria; outputs are one probability per option. The live board edition described in the README is 0.3: Full score is 20% public benchmarks from this kit, 50% private same-skill tests, and 30% private new-domain tasks run only by maintainers. This repository rebuilds and runs the public index: 37 benchmarks in five areas, chance-corrected and coverage-adjusted, with about 7 GB of pinned downloads and no redistributed row files. README states not affiliated with TypeSafe AI. The project's own sources describe the board but do not publish a separate live board URL, so this listing links the GitHub repo only.",
+    creator: {
+      name: "apolinario",
+      handle: "apolinario",
+      githubUrl: "https://github.com/apolinario",
+    },
+    jevUsage: {
+      flowRole:
+        "Batch evaluation harness calling engines via transformers or HTTP POST /v1/systemone with frozen prompts",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Frozen suite rows with state blobs and criteria per benchmark; engines must not truncate or drop options.",
+      decisionOut:
+        "Per-row probabilities scored into chance-corrected benchmark skills and a weighted public index.",
+      flowSteps: [
+        "pip install -e .[transformers,rebuild] and python -m decision_index suite rebuild",
+        "suite import staged rows for edition 0.3 with hash verification",
+        "python -m decision_index pipeline --engine http --option base_url=... for your server",
+        "python -m decision_index score --edition 0.3 on results.jsonl",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README parity: tests/test_index021.py checks math against published entrants including Jev at 57.89 on edition 0.2.1 public index; tests/test_index03.py checks 0.3 public-index math for 11 entrants including Jev; score --edition 0.3 over a full lab run reproduces Cloudflare clef public index 61.71.",
+          source: "github.com/apolinario/decision-index README Parity section",
+        },
+        {
+          claim:
+            "README rules: models whose median, mean, or 80th-percentile latency exceeds 1,000 ms per request on maintainer RTX PRO 6000 measurement are not added to the board as Jev-like.",
+          source: "github.com/apolinario/decision-index README Quickstart",
+        },
+        {
+          claim:
+            "GitHub repo apolinario/decision-index had 24 stars and 57 forks on 2026-10-07, last pushed 2026-10-07 per GitHub API.",
+          source: "GitHub API, 2026-10-07",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This kit scores hosted Jev, Kev, Mapika decider, and any engine that implements System One wire format. iammrduncan-typesafe-ai-benchmark and other single-project eval repos measure one author's harness; Decision Index is the cross-model public suite Kev and decider README rows cite. mapika-decider lists Decision Index ranks in its Standing section. posthog-jeeves publishes separate JevBench tables. Use the http engine when your model already exposes POST /v1/systemone locally.",
+    keyFeatures: [
+      "Edition flags 0.3, 0.2.1, 0.2, and 0.1 with pinned manifests in hub/",
+      "Checkpoint resume in results.jsonl with error retries",
+      "Reference transformers and http engines plus Hugging Face Job helper",
+      "Chance correction, gold star weights, and GSM8K rebuild in 0.3",
+      "Submission flow via submissions/README.md pull request",
+    ],
+    stack: [
+      "Python 3.10+",
+      "PyTorch optional for transformers engine",
+      "Hugging Face Hub downloads for suite rebuild",
+      "HTTP System One servers for open models",
+    ],
+    links: {
+      repo: "https://github.com/apolinario/decision-index",
+      docs: "https://github.com/apolinario/decision-index/blob/main/docs/suite.md",
+    },
+    pricingNote:
+      "MIT kit; you pay for download bandwidth, GPUs, and Hugging Face Jobs if used.",
+    firstSeen: "2026-09-22",
+    relatedSlugs: [
+      "mapika-decider",
+      "jaredpalmer-kev",
+      "posthog-jeeves",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Where is the live leaderboard URL?",
+        answer:
+          "This listing checked the README and repository homepage fields on 2026-10-07. They describe Decision Index 0.3 and Full score rules but do not name a standalone board URL, so only the GitHub repo is linked here.",
+      },
+      {
+        question: "Does this compute the Full score?",
+        answer:
+          "No. The kit runs and scores the public 20% portion. Private halves are run by maintainers after you submit complete public runs per submissions/README.md.",
+      },
+      {
+        question: "What Jev score should I expect on 0.2.1 vs 0.3?",
+        answer:
+          "README parity tests cite Jev at 57.89 on the 0.2.1 public index. For 0.3, the README says lab rescoring reproduces Cloudflare clef at 61.71 public index, not a single Jev headline number in the intro.",
+      },
+    ],
+    metaTitle: "Decision Index kit: reproduce public Jev benchmarks",
+    metaDescription:
+      "apolinario/decision-index rebuilds Decision Index 0.3 public suite, scores POST /v1/systemone engines, and documents Jev parity at 57.89 on 0.2.1.",
+  },
+
+  "tsale-jevline": {
+    slug: "tsale-jevline",
+    status: "published",
+    problem:
+      "After one confirmed malicious process, analysts still manually chase children, injections, logons, and network links across huge telemetry exports.",
+    targetUser:
+      "DFIR and threat-hunting teams with EDR or Windows event logs who want a Jev-scored incident timeline from a single seed entity.",
+    overview:
+      "Jevline (github.com/tsale/jevline) is Kostas (@tsale) experimental incident scoping tool. Start from one confirmed-malicious process, account, host, or address. The engine normalizes JSON, NDJSON, CSV, or text exports, links processes and infrastructure, then asks Jev each round whether a candidate belongs to the same incident. Default link threshold is 0.8; answers within 0.05 are marked for review. The live demo is at jev-incident-timeline.vercel.app. The GitHub repository had no LICENSE file when checked on 2026-10-07.\n\nThe README real-intrusion table on host CLA-WS-214 scores 40 of 41 attack-chain processes in 21 s for $0.11 with Jev on combined Elastic Defend and Windows logs, versus GLM 5.3 Flash in Jev's place at 32.6 min, $1.06, and 8 wrong decisions. The README states a Jev score measures relatedness to the incident, not maliciousness, and every result needs analyst review.",
+    creator: {
+      name: "Kostas",
+      handle: "tsale",
+      githubUrl: "https://github.com/tsale",
+    },
+    jevUsage: {
+      flowRole:
+        "Repeated Noul or Choice style relatedness questions on linked entities until the incident graph stops growing",
+      primitives: ["Noul", "Choice"],
+      stateIn:
+        "Summaries of candidate processes, accounts, hosts, or addresses with links to seed and incident members plus analyst context string.",
+      decisionOut:
+        "Probability that the candidate belongs; members above threshold join the incident timeline output.",
+      flowSteps: [
+        "Load exports in the website up to 2 MB on the free key or any size with your TypeSafe key in browser",
+        "Pick seed process or type ip, domain, user, or host seed",
+        "Engine links lineage, injection, files, persistence, network, and logon edges",
+        "Jev questions run round by round; CLI analyze supports --out reports on your machine",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Results table, combined logs 1,015,959 records: Jev 40/41 attack-chain processes, 1 wrong, 21 s, $0.11; GLM 5.3 Flash substitute 41/41 found but 8 wrong, 32.6 min, $1.06. Median Jev 0.08 s per question vs GLM 9 s.",
+          source: "github.com/tsale/jevline README Results on a real intrusion",
+        },
+        {
+          claim:
+            "README: 337 to 1,123 Jev requests for six days of one host telemetry; questions grow with incident size, not raw log volume.",
+          source: "github.com/tsale/jevline README",
+        },
+        {
+          claim:
+            "GitHub repo tsale/jevline had 30 stars on 2026-10-07. Demo URL returned HTTP 200 on 2026-10-07. No LICENSE file in the default branch tree.",
+          source: "GitHub API and HTTP check, 2026-10-07",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jevline scopes endpoint and EDR telemetry into an incident graph. box-jev-incident-triage routes Box-stored files by customer impact. gaurav-gosain-jev-sec-bench and teyhouse-jev-secret-detection are benchmark listings in the catalog, not the same interactive scoping workflow. classifier.dev could gate individual rows, but Jevline's value is multi-hop linking with hundreds of relatedness calls. Treat GLM comparison rows as same questions, different model, per README.",
+    keyFeatures: [
+      "Browser demo with bundled lab example malicious_events.json",
+      "CLI engine/src/cli.ts inspect and analyze without install",
+      "Schema-less ingest with Jev-assisted field mapping for unknown formats",
+      "Optional OpenRouter narrative draft labeled AI generated",
+      "Repeat folding on timeline and execution chain outputs",
+    ],
+    stack: [
+      "TypeScript engine",
+      "Node.js 22.18+ for CLI",
+      "TypeSafe API or site free key capped at 2 MB uploads",
+      "Vercel functions for analyze and relay",
+    ],
+    links: {
+      repo: "https://github.com/tsale/jevline",
+      docs: "https://github.com/tsale/jevline/blob/main/engine/README.md",
+      demo: "https://jev-incident-timeline.vercel.app/",
+    },
+    pricingNote:
+      "Open source engine; Jev spend follows TypeSafe published token rates in README cost table or your key.",
+    firstSeen: "2026-10-06",
+    relatedSlugs: [
+      "box-jev-incident-triage",
+      "classifier-dev",
+      "browser-use-jev-ultrafast",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Is Jevline a malware detector?",
+        answer:
+          "No. The README says experimental, not validated. Scores measure relatedness to the seeded incident, not maliciousness. Analysts must review every member.",
+      },
+      {
+        question: "What does threshold 0.8 mean?",
+        answer:
+          "README: a candidate joins when probability is 0.8 or higher by default. Answers within 0.05 of the threshold get a review marker because Jev varies by a few hundredths between identical questions.",
+      },
+      {
+        question: "Is there an open source license?",
+        answer:
+          "GitHub API returned license null for tsale/jevline on 2026-10-07. Treat redistribution terms as unclear until a LICENSE file appears.",
+      },
+    ],
+    metaTitle: "Jevline: Jev incident timeline from one bad process",
+    metaDescription:
+      "tsale/jevline links EDR and Windows logs, asks Jev if each entity belongs, and outputs a DFIR timeline. README 40/41 processes in 21 s vs GLM bench row.",
+  },
+
+  "budecosystem-bud-decision-studio": {
+    slug: "budecosystem-bud-decision-studio",
+    status: "published",
+    problem:
+      "Local decision models still require separate engine installs, weight downloads, and SDK base URL wiring before you can compare answers to hosted Jev.",
+    targetUser:
+      "Builders on macOS Apple Silicon, Windows 10/11, or Linux x64/ARM64 who want a desktop Playground and localhost System One API for open models.",
+    overview:
+      "Bud Decision Studio (github.com/BudEcosystem/Bud-Decision-Studio) is Bud Ecosystem's cross-platform desktop app described in the README as the LM Studio of Jev-like System One models. Source and UI live in the Bud-Decision-Studio repository. Installers, get.sh, get.ps1, and GitHub Releases ship from github.com/BudEcosystem/Bud-Decision-Engine, which the README badges as the download target. The project page budecosystem.com/open-source-projects/bud-decision-studio returned HTTP 200 on 2026-10-07. The Studio repo had no LICENSE file when checked the same day.\n\nFirst launch checks hardware, installs a private Python engine with matching PyTorch, and lets you download eleven open models such as Kev 4B, Lev, Laya Multilingual, Jev-Omni, and CLM 8B. While the app runs, POST /v1/systemone and GET /v1/models on http://127.0.0.1:8420 work with typesafe-sdk when you change only the base URL.",
+    creator: {
+      name: "Bud Ecosystem",
+      handle: "BudEcosystem",
+      githubUrl: "https://github.com/BudEcosystem",
+      companyUrl: "https://www.budecosystem.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Local System One server for Playground, templates, history, eval, and train flows",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Playground state text or JSON, template variables, or API JSON per studio-api.md.",
+      decisionOut:
+        "Per-question probabilities with act_threshold and needs_review flags on template runs.",
+      flowSteps: [
+        "Install via Bud-Decision-Engine release or curl get.sh script",
+        "Complete first-run engine setup on GPU or CPU",
+        "Download models from the Models page; open Playground or POST /v1/systemone",
+        "Point TypeSafeClient base_url at http://127.0.0.1:8420 with api_key local",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Train table lists eleven models with before/after task accuracy on held-out examples and general decision deltas on an NVIDIA GB10, such as Kev 4B policy topics 77% to 82%.",
+          source: "github.com/BudEcosystem/Bud-Decision-Studio README Teach a model",
+        },
+        {
+          claim:
+            "README Models table names eleven downloadable checkpoints with sizes from Julia 1 144M through Jev-Omni 12B multimodal.",
+          source: "github.com/BudEcosystem/Bud-Decision-Studio README The eleven models",
+        },
+        {
+          claim:
+            "GitHub BudEcosystem/Bud-Decision-Studio had 99 stars on 2026-10-07. Releases and install scripts reference BudEcosystem/Bud-Decision-Engine.",
+          source: "GitHub API, 2026-10-07",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Bud Decision Studio is GUI-first local Jev API hosting. ollaya-dev-ollaya is the Rust CLI and daemon on port 11435 with pull and MCP helpers. jaredpalmer-kev and receptron-laya remain upstream training and ONNX stories; Bud bundles consumer installs and compares published results next to Jev in the Models table. Hosted TypeSafe Jev is still the cloud baseline when you want zero local disk.",
+    keyFeatures: [
+      "Playground, Evaluate, History, Templates, Train, and API pages",
+      "Studio template versions and act_threshold review routing",
+      "Eleven curated models with per-model example scenarios",
+      "LoRA Train page with export/import of fine-tunes",
+      "curl and typesafe-sdk examples on the API page",
+    ],
+    stack: [
+      "Tauri desktop shell",
+      "Bundled Python engine with CUDA, Metal, or CPU paths",
+      "Windows, macOS Apple Silicon, Linux x64 and ARM64 including DGX Spark",
+    ],
+    links: {
+      repo: "https://github.com/BudEcosystem/Bud-Decision-Studio",
+      docs: "https://github.com/BudEcosystem/Bud-Decision-Studio/tree/main/site/docs-src",
+      website: "https://www.budecosystem.com/open-source-projects/bud-decision-studio",
+    },
+    pricingNote:
+      "Free desktop download; electricity and GPU hardware are yours. Each model keeps its upstream Hugging Face license linked in-app.",
+    firstSeen: "2026-09-30",
+    relatedSlugs: [
+      "ollaya-dev-ollaya",
+      "jaredpalmer-kev",
+      "receptron-laya",
+      "mapika-decider",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Which repository has releases?",
+        answer:
+          "README install badges and download table point to github.com/BudEcosystem/Bud-Decision-Engine/releases/latest. Bud-Decision-Studio holds source, docs, and media.",
+      },
+      {
+        question: "Will typesafe-sdk work without code changes?",
+        answer:
+          "README shows TypeSafeClient with api_key local and base_url http://127.0.0.1:8420 while the app is open.",
+      },
+      {
+        question: "How is this different from ollaya?",
+        answer:
+          "ollaya is a terminal daemon and pull workflow. Bud Decision Studio is a desktop GUI with Playground charts, template versioning, and bundled first-run engine setup.",
+      },
+    ],
+    metaTitle: "Bud Decision Studio: desktop local Jev API app",
+    metaDescription:
+      "Bud Ecosystem desktop app serves POST /v1/systemone on :8420, ships eleven open models, Playground and Train UI. Releases on Bud-Decision-Engine repo.",
   },
 };
