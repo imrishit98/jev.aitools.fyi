@@ -259,6 +259,16 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Ask Postgres in English or Chinese and keep the SQL you can read. jev4pg then runs 41 Jev operators for the judgments SQL cannot make. On the project's own BIRD table, Jev alone got fewer answers right than the LLM, for much less estimated cost.",
   "datawhalechina-jev-cookbook":
     "A Chinese Jupyter course that starts with one question at a time. 18 official recipes, a voice-controlled 3D room, and a local Laya fine-tune come later. You can run the offline examples before you create an API key.",
+  "posthog-jeeves":
+    "PostHog's open 9B model writes a short reasoning chain, then scores every option in one Jev-shaped request. Turn thinking off when you need about 0.3 s answers. Weights, training code, and a Python SDK ship in the repo.",
+  "vinilana-jev-gateway":
+    "Run Codex or Claude through a local proxy. Each turn Jev picks which tool to call. Codex can be steered hard. Claude Code only gets a hint the model may ignore. If Jev fails, your agent keeps going.",
+  "apolinario-decision-index":
+    "Rebuild the public Decision Index suite from pinned sources, score any engine that speaks POST /v1/systemone, and compare to the board math. About 7 GB of downloads once. No redistributed benchmark files.",
+  "tsale-jevline":
+    "Drop in EDR or Windows logs, seed one bad process, and Jev links the rest round by round. You get a timeline and evidence table, not a malware verdict. Every score still needs an analyst.",
+  "budecosystem-bud-decision-studio":
+    "A desktop app that installs its own engine, downloads eleven open decision models, and serves Jev's API on localhost. Playground charts, eval leaderboards, and templates without touching api.typesafe.ai.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
