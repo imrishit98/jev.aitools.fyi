@@ -1231,12 +1231,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Jev never emits arbitrary shell commands or DOM coordinates. It only chooses among commands the app exposes, matching the Browser Use pattern of finite actions over structured state. Confidence and policy live in application code: sub-threshold or invalid picks are dropped before socai runs. The released provider boundary supports OpenRouter Jev or an explicit loopback /v1/systemone endpoint; the local path rejects redirects and never receives the OpenRouter key. Step limits (--max-steps, default 12) bound cost while partial results remain honest when login walls or decision failures appear.",
+      "Jev never emits arbitrary shell commands or DOM coordinates. It only chooses among commands the app exposes, matching the Browser Use pattern of finite actions over structured state. Confidence and policy live in application code: sub-threshold or invalid picks are dropped before socai runs. The released provider boundary supports OpenRouter Jev or an explicit loopback /v1/systemone endpoint; the local path rejects redirects and never receives the OpenRouter key. Step limits (--max-steps, default 12) bound cost while partial results remain honest when login walls or decision failures appear. Jev Social v0.1.10 starts each socai child with telemetry disabled unless the exact value SOCAI_TELEMETRY=1 opts in.",
     keyFeatures: [
       "Instagram, TikTok, and LinkedIn operation tables in README",
-      "Release-pinned npx github:socai-io/jev-social#v0.1.8 onboarding without cloning",
+      "Release-pinned npx github:socai-io/jev-social#v0.1.10 onboarding without cloning",
       "Loopback web UI at 127.0.0.1:8766 plus CLI search mode",
-      "Per-step telemetry: choice, confidence, command, elapsed time",
+      "Per-step run trace: choice, confidence, command, summary, and elapsed time",
       "Marketing site and GIF demos linked from repository",
     ],
     stack: [
@@ -1280,7 +1280,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "How do I try it quickly?",
         answer:
-          "Run npx github:socai-io/jev-social#v0.1.8 onboard, then npx github:socai-io/jev-social#v0.1.8, or clone the repo and use npm start. You need Node 20+, a current socai CLI, signed-in Chrome access, and either OpenRouter Jev or a compatible loopback System One endpoint.",
+          "Run npx github:socai-io/jev-social#v0.1.10 onboard, then npx github:socai-io/jev-social#v0.1.10, or clone the repo and use npm start. You need Node 20+, a current socai CLI, signed-in Chrome access, and either OpenRouter Jev or a compatible loopback System One endpoint.",
       },
     ],
     metaTitle: "Jev Social: typed socai CLI loops for social research",
