@@ -1296,7 +1296,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "My First Million listeners, indie hackers, and Jev builders who want a reference channel-search stack with typed gates instead of vibes-only reranking.",
     overview:
-      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Try the live demo at /demos/my-first-million/: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
+      "My First Million × Jev scopes retrieval to @MyFirstMillionPod. Try the live demo at /demos/my-first-million: hybrid recall plus one Gateway evaluate pass with exists, relevance, topic, and hit questions, then a pile UI with FLIP rise, debug sheet, and caption mention chips with &t= jump links.",
     creator: {
       name: "Rishit Patel",
       handle: "imrishit98",
@@ -1338,8 +1338,8 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     links: {
       repo: "https://github.com/imrishit98/jev.aitools.fyi",
-      docs: "https://jev.aitools.fyi/demos/my-first-million/",
-      demo: "https://jev.aitools.fyi/demos/my-first-million/",
+      docs: "https://jev.aitools.fyi/demos/my-first-million",
+      demo: "https://jev.aitools.fyi/demos/my-first-million",
     },
     pricingNote:
       "Open source demo. Live Jev calls bill to your AI Gateway key; mock mode skips network.",

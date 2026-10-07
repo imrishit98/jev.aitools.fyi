@@ -199,6 +199,28 @@ if (!llms.includes(`Detail pages (indexable HTML): ${expectedDetail}`)) {
 if (!llms.includes("/llms-full.txt")) {
   errors.push("llms.txt missing llms-full.txt link");
 }
+const mfmCanonical = "https://jev.aitools.fyi/demos/my-first-million";
+if (!llms.includes(mfmCanonical)) {
+  errors.push("llms.txt missing My First Million demo URL");
+}
+if (llms.includes(`${mfmCanonical}/`)) {
+  errors.push("llms.txt must not use trailing slash on MFM demo URL");
+}
+if (!locs.includes(mfmCanonical)) {
+  errors.push("sitemap missing MFM demo at canonical no-slash URL");
+}
+if (locs.includes(`${mfmCanonical}/`)) {
+  errors.push("sitemap must not list MFM demo with trailing slash");
+}
+const mfmDemoHtml = join(distRoot, "demos/mfm-jev-search-shell.html");
+try {
+  const mfmHtml = readFileSync(mfmDemoHtml, "utf8");
+  if (!mfmHtml.includes(`href="${mfmCanonical}"`)) {
+    errors.push("MFM demo index.html canonical must be no-slash URL");
+  }
+} catch {
+  errors.push("dist/demos/mfm-jev-search-shell.html missing");
+}
 
 const llmsFullPath = join(distRoot, "llms-full.txt");
 const llmsFull = readFileSync(llmsFullPath, "utf8");

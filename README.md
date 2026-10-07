@@ -48,7 +48,7 @@ Connect this repo to a Cloudflare **Pages** project.
 | My First Million demo (optional) | `AI_GATEWAY_API_KEY` (Vercel AI Gateway for live Jev) |
 | My First Million mock mode | Auto when no `AI_GATEWAY_API_KEY`; optional `JEV_MOCK=true` forces mock even with a key |
 
-**Workers Builds (`pnpm deploy`):** Wrangler config is [`wrangler.toml`](./wrangler.toml) (`main`, `SITE_ASSETS`, `[vars] PUBLIC_SITE_URL`, **`[assets] run_worker_first`** for `/` and `/index.html`). `workers/site-and-assets.ts` handles Markdown negotiation, My First Million demo API at `/demos/my-first-million/api/*`, and passes other requests to the `SITE_ASSETS` binding (`dist/`). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
+**Workers Builds (`pnpm deploy`):** Wrangler config is [`wrangler.toml`](./wrangler.toml) (`main`, `SITE_ASSETS`, `[vars] PUBLIC_SITE_URL`, **`[assets] run_worker_first`** for `/` and `/index.html`). `workers/site-and-assets.ts` handles Markdown negotiation, My First Million demo API at `/demos/my-first-million/api/*`, and passes other requests to the `SITE_ASSETS` binding (`dist/`). The demo HTML ships as `demos/mfm-jev-search-shell.html`, served at `/demos/my-first-million` via a Pages Function and the Workers `run_worker_first` handler (avoids Assets directory trailing-slash 307s). **`functions/`** still applies when you deploy via **Cloudflare Pages** git integration (`dist/_routes.json` runs Functions before static files). MFM handlers import the same module: `src/lib/mfm-jev-search/api-route.ts`.
 
 Simulate production locally:
 
@@ -58,7 +58,7 @@ cp .dev.vars.example .dev.vars   # JEV_MOCK=true for search without a Gateway ke
 pnpm pages:dev
 ```
 
-Live channel search demo: [https://jev.aitools.fyi/demos/my-first-million/](https://jev.aitools.fyi/demos/my-first-million/) (shortcut: [/mfm](https://jev.aitools.fyi/mfm); API under `/demos/my-first-million/api/*`).
+Live channel search demo: [https://jev.aitools.fyi/demos/my-first-million](https://jev.aitools.fyi/demos/my-first-million) (shortcut: [/mfm](https://jev.aitools.fyi/mfm); API under `/demos/my-first-million/api/*`).
 
 Custom domain: **jev.aitools.fyi** in Pages → Custom domains.
 

@@ -10,6 +10,7 @@ import {
   withVaryAccept,
 } from "../src/lib/markdown-negotiation";
 import { tryNotFoundHtmlSeoResponse } from "../src/lib/not-found-seo";
+import { tryMfmDemoBarePathResponse } from "../src/lib/mfm-demo-static";
 
 export interface Env extends MfmSearchEnv {
   SITE_ASSETS: Fetcher;
@@ -45,6 +46,13 @@ export default {
     );
     if (exploreResponse) {
       return exploreResponse;
+    }
+
+    const mfmDemo = await tryMfmDemoBarePathResponse(request, url, (assetRequest) =>
+      env.SITE_ASSETS.fetch(assetRequest),
+    );
+    if (mfmDemo) {
+      return mfmDemo;
     }
 
     const response = await env.SITE_ASSETS.fetch(request);
