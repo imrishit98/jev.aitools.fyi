@@ -33,6 +33,14 @@ function headersForInternalAssetFetch(request: Request): Headers {
   return out;
 }
 
+/** Canonical demo URL must not inherit shell asset noindex from dist/_headers. */
+function headersForCanonicalDemoResponse(assetHeaders: Headers): Headers {
+  const headers = new Headers(assetHeaders);
+  headers.delete("x-robots-tag");
+  headers.set("content-type", "text/html; charset=utf-8");
+  return headers;
+}
+
 export function isMfmDemoBarePath(pathname: string): boolean {
   return pathname === MFM_DEMO_CANONICAL_PATH;
 }
@@ -61,15 +69,16 @@ export async function tryMfmDemoBarePathResponse(
   );
   const asset = await fetchAsset(assetRequest);
   if (asset.status === 304) {
-    return new Response(null, { status: 304, headers: asset.headers });
+    return new Response(null, {
+      status: 304,
+      headers: headersForCanonicalDemoResponse(asset.headers),
+    });
   }
   if (!asset.ok) {
     return asset;
   }
 
-  const headers = new Headers(asset.headers);
-  headers.delete("x-robots-tag");
-  headers.set("content-type", "text/html; charset=utf-8");
+  const headers = headersForCanonicalDemoResponse(asset.headers);
   if (request.method === "HEAD") {
     return new Response(null, { status: asset.status, headers });
   }

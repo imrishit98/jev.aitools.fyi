@@ -228,6 +228,21 @@ try {
   errors.push("dist/demos/mfm-jev-search-shell.html missing");
 }
 
+const mfmStaticSrc = readFileSync(
+  join(root, "src/lib/mfm-demo-static.ts"),
+  "utf8",
+);
+if (
+  !mfmStaticSrc.includes("headersForCanonicalDemoResponse") ||
+  !/asset\.status === 304[\s\S]{0,600}headersForCanonicalDemoResponse/.test(
+    mfmStaticSrc,
+  )
+) {
+  errors.push(
+    "mfm-demo-static.ts must strip X-Robots-Tag on canonical 304 responses",
+  );
+}
+
 const llmsFullPath = join(distRoot, "llms-full.txt");
 const llmsFull = readFileSync(llmsFullPath, "utf8");
 if (llmsFull.includes("\u2014") || llmsFull.includes("\u2013")) {
