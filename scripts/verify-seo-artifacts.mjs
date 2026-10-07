@@ -228,19 +228,79 @@ try {
   errors.push("dist/demos/mfm-jev-search-shell.html missing");
 }
 
-const mfmStaticSrc = readFileSync(
-  join(root, "src/lib/mfm-demo-static.ts"),
-  "utf8",
-);
-if (
-  !mfmStaticSrc.includes("headersForCanonicalDemoResponse") ||
-  !/asset\.status === 304[\s\S]{0,600}headersForCanonicalDemoResponse/.test(
-    mfmStaticSrc,
-  )
-) {
-  errors.push(
-    "mfm-demo-static.ts must strip X-Robots-Tag on canonical 304 responses",
+async function verifyMfmCanonicalDemoResponseHeaders() {
+  const { tryMfmDemoBarePathResponse, MFM_DEMO_CANONICAL_PATH } = mfmStaticMod;
+  const demoUrl = new URL(MFM_DEMO_CANONICAL_PATH, "https://jev.aitools.fyi");
+  const etag = '"verify-mfm-shell-etag"';
+  const shellAssetHeaders = new Headers({
+    "x-robots-tag": "noindex, follow",
+    etag,
+  });
+  const htmlBody = "<!doctype html><html></html>";
+
+  const fakeAsset =
+    (status, body = null) =>
+    async () =>
+      new Response(body, { status, headers: shellAssetHeaders });
+
+  const res304 = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "GET" }),
+    demoUrl,
+    fakeAsset(304),
   );
+  if (!res304 || res304.status !== 304) {
+    return "MFM canonical demo: mock 304 asset must yield 304 response";
+  }
+  if (res304.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 304 response must not include X-Robots-Tag";
+  }
+  if (res304.headers.get("etag") !== etag) {
+    return "MFM canonical demo: 304 response must preserve ETag from asset";
+  }
+  if (res304.headers.get("content-type") !== "text/html; charset=utf-8") {
+    return "MFM canonical demo: 304 response must set text/html content-type";
+  }
+
+  const res200 = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "GET" }),
+    demoUrl,
+    fakeAsset(200, htmlBody),
+  );
+  if (!res200 || res200.status !== 200) {
+    return "MFM canonical demo: mock 200 asset must yield 200 response";
+  }
+  if (res200.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 200 GET must not include X-Robots-Tag";
+  }
+  if (res200.headers.get("content-type") !== "text/html; charset=utf-8") {
+    return "MFM canonical demo: 200 GET must set text/html content-type";
+  }
+  const gotBody = await res200.text();
+  if (gotBody !== htmlBody) {
+    return "MFM canonical demo: 200 GET must pass through asset body";
+  }
+
+  const resHead = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "HEAD" }),
+    demoUrl,
+    fakeAsset(200, htmlBody),
+  );
+  if (!resHead || resHead.status !== 200) {
+    return "MFM canonical demo: mock 200 asset must yield 200 for HEAD";
+  }
+  if (resHead.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 200 HEAD must not include X-Robots-Tag";
+  }
+  if (resHead.body !== null) {
+    return "MFM canonical demo: 200 HEAD must have null body";
+  }
+
+  return null;
+}
+
+const mfmCanonicalHeaderErr = await verifyMfmCanonicalDemoResponseHeaders();
+if (mfmCanonicalHeaderErr) {
+  errors.push(mfmCanonicalHeaderErr);
 }
 
 const llmsFullPath = join(distRoot, "llms-full.txt");
