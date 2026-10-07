@@ -126,7 +126,7 @@ export function generateSitemapStaticXml(): string {
   }
 
   entries.push({
-    loc: absoluteUrl("/demos/my-first-million/"),
+    loc: absoluteUrl("/demos/my-first-million"),
     lastmod: staticRouteDate("/demos/my-first-million"),
     priority: 0.7,
     changefreq: "monthly",

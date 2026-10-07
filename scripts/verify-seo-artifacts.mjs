@@ -26,7 +26,13 @@ const layaVsJevMod = await vite.ssrLoadModule("/src/data/laya-vs-jev-guides.ts")
 const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 const sitemapMod = await vite.ssrLoadModule("/src/lib/sitemap-xml.ts");
+const mfmStaticMod = await vite.ssrLoadModule("/src/lib/mfm-demo-static.ts");
 await vite.close();
+
+const mfmShellHeaderPaths = [
+  mfmStaticMod.MFM_DEMO_HTML_ASSET_PATH,
+  mfmStaticMod.MFM_DEMO_SHELL_PUBLIC_PATH,
+];
 
 const stats = itemsMod.getDirectoryStats();
 const learnTopicCount = learnMod.learnGuideSlugs.length;
@@ -198,6 +204,103 @@ if (!llms.includes(`Detail pages (indexable HTML): ${expectedDetail}`)) {
 }
 if (!llms.includes("/llms-full.txt")) {
   errors.push("llms.txt missing llms-full.txt link");
+}
+const mfmCanonical = "https://jev.aitools.fyi/demos/my-first-million";
+if (!llms.includes(mfmCanonical)) {
+  errors.push("llms.txt missing My First Million demo URL");
+}
+if (llms.includes(`${mfmCanonical}/`)) {
+  errors.push("llms.txt must not use trailing slash on MFM demo URL");
+}
+if (!locs.includes(mfmCanonical)) {
+  errors.push("sitemap missing MFM demo at canonical no-slash URL");
+}
+if (locs.includes(`${mfmCanonical}/`)) {
+  errors.push("sitemap must not list MFM demo with trailing slash");
+}
+const mfmDemoHtml = join(distRoot, "demos/mfm-jev-search-shell.html");
+try {
+  const mfmHtml = readFileSync(mfmDemoHtml, "utf8");
+  if (!mfmHtml.includes(`href="${mfmCanonical}"`)) {
+    errors.push("MFM demo shell HTML canonical must be no-slash URL");
+  }
+} catch {
+  errors.push("dist/demos/mfm-jev-search-shell.html missing");
+}
+
+async function verifyMfmCanonicalDemoResponseHeaders() {
+  const { tryMfmDemoBarePathResponse, MFM_DEMO_CANONICAL_PATH } = mfmStaticMod;
+  const demoUrl = new URL(MFM_DEMO_CANONICAL_PATH, "https://jev.aitools.fyi");
+  const etag = '"verify-mfm-shell-etag"';
+  const shellAssetHeaders = new Headers({
+    "x-robots-tag": "noindex, follow",
+    etag,
+  });
+  const htmlBody = "<!doctype html><html></html>";
+
+  const fakeAsset =
+    (status, body = null) =>
+    async () =>
+      new Response(body, { status, headers: shellAssetHeaders });
+
+  const res304 = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "GET" }),
+    demoUrl,
+    fakeAsset(304),
+  );
+  if (!res304 || res304.status !== 304) {
+    return "MFM canonical demo: mock 304 asset must yield 304 response";
+  }
+  if (res304.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 304 response must not include X-Robots-Tag";
+  }
+  if (res304.headers.get("etag") !== etag) {
+    return "MFM canonical demo: 304 response must preserve ETag from asset";
+  }
+  if (res304.headers.get("content-type") !== "text/html; charset=utf-8") {
+    return "MFM canonical demo: 304 response must set text/html content-type";
+  }
+
+  const res200 = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "GET" }),
+    demoUrl,
+    fakeAsset(200, htmlBody),
+  );
+  if (!res200 || res200.status !== 200) {
+    return "MFM canonical demo: mock 200 asset must yield 200 response";
+  }
+  if (res200.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 200 GET must not include X-Robots-Tag";
+  }
+  if (res200.headers.get("content-type") !== "text/html; charset=utf-8") {
+    return "MFM canonical demo: 200 GET must set text/html content-type";
+  }
+  const gotBody = await res200.text();
+  if (gotBody !== htmlBody) {
+    return "MFM canonical demo: 200 GET must pass through asset body";
+  }
+
+  const resHead = await tryMfmDemoBarePathResponse(
+    new Request(demoUrl, { method: "HEAD" }),
+    demoUrl,
+    fakeAsset(200, htmlBody),
+  );
+  if (!resHead || resHead.status !== 200) {
+    return "MFM canonical demo: mock 200 asset must yield 200 for HEAD";
+  }
+  if (resHead.headers.get("x-robots-tag")) {
+    return "MFM canonical demo: 200 HEAD must not include X-Robots-Tag";
+  }
+  if (resHead.body !== null) {
+    return "MFM canonical demo: 200 HEAD must have null body";
+  }
+
+  return null;
+}
+
+const mfmCanonicalHeaderErr = await verifyMfmCanonicalDemoResponseHeaders();
+if (mfmCanonicalHeaderErr) {
+  errors.push(mfmCanonicalHeaderErr);
 }
 
 const llmsFullPath = join(distRoot, "llms-full.txt");
@@ -383,15 +486,27 @@ try {
 } catch {
   errors.push("dist/_headers missing");
 }
-const headerPaths = [...headersFile.matchAll(/^(\/\S+\.md)$/gm)].map((m) => m[1]);
+const headerPaths = [...headersFile.matchAll(/^(\/\S+)$/gm)]
+  .map((m) => m[1])
+  .filter((path) => !path.startsWith("#"));
 const duplicateHeaderPaths = headerPaths.filter(
   (path, index) => headerPaths.indexOf(path) !== index,
 );
 if (duplicateHeaderPaths.length > 0) {
   errors.push(`_headers duplicate paths: ${[...new Set(duplicateHeaderPaths)].join(", ")}`);
 }
-if ([...headersFile.matchAll(/^(\/\S+)$/gm)].some((m) => !m[1].endsWith(".md"))) {
-  errors.push("_headers has a rule that is not a .md path");
+const allowedNonMdHeaderPaths = new Set(mfmShellHeaderPaths);
+for (const path of headerPaths) {
+  if (!path.endsWith(".md") && !allowedNonMdHeaderPaths.has(path)) {
+    errors.push(`_headers has unexpected non-markdown path: ${path}`);
+    break;
+  }
+}
+for (const shellPath of mfmShellHeaderPaths) {
+  const block = `${shellPath}\n  X-Robots-Tag: noindex, follow\n`;
+  if (!headersFile.includes(block)) {
+    errors.push(`_headers missing noindex rule for ${shellPath}`);
+  }
 }
 const mdFiles = listMarkdownFiles(distRoot);
 for (const file of mdFiles) {
@@ -402,9 +517,10 @@ for (const file of mdFiles) {
     errors.push(`_headers missing rule for ${mdPath}`);
   }
 }
-if (mdFiles.length !== headerPaths.length) {
+const expectedHeaderRules = mdFiles.length + mfmShellHeaderPaths.length;
+if (headerPaths.length !== expectedHeaderRules) {
   errors.push(
-    `_headers rule count: expected ${mdFiles.length} markdown files, got ${headerPaths.length} rules`,
+    `_headers rule count: expected ${expectedHeaderRules}, got ${headerPaths.length}`,
   );
 }
 

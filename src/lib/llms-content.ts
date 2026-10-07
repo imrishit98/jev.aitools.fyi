@@ -63,6 +63,7 @@ export function generateLlmsTxt(): string {
     `- Your privacy choices (GPC opt-out): ${siteConfig.url}/your-privacy-choices`,
     `- Developers / agents: ${siteConfig.url}/developers`,
     `- For agents (crawl map): ${siteConfig.url}/for-agents`,
+    `- My First Million search demo: ${siteConfig.url}/demos/my-first-million`,
     `- Sitemap index: ${siteConfig.url}/sitemap.xml (child maps: sitemap-static.xml, sitemap-learn.xml, sitemap-guides.xml, sitemap-listings.xml)`,
     `- OpenAPI (agent surface): ${siteConfig.url}/openapi.json`,
     `- JSON API errors: unknown /api/* routes return application/json (see OpenAPI)`,
