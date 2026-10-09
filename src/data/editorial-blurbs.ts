@@ -269,6 +269,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Drop in EDR or Windows logs, seed one bad process, and Jev links the rest round by round. You get a timeline and evidence table, not a malware verdict. Every score still needs an analyst.",
   "budecosystem-bud-decision-studio":
     "A desktop app that installs its own engine, downloads eleven open decision models, and serves Jev's API on localhost. Playground charts, eval leaderboards, and templates without touching api.typesafe.ai.",
+  "yinsongxu-llm2jev":
+    "Run your own weights and still speak POST /v1/systemone. LLM2Jev reads logits in one prefill pass on SGLang, Transformers, or MLX, serves multimodal state, and documents 231 public JevBench items. Independent of TypeSafe.",
+  "shhivv-arc-cua":
+    "One pip install, two tools. arc-driver is MCP control of macOS apps with no Jev key. arc-cua lets a planner delegate a capped subtask to JEV or your own choice provider while literals stay in inputs.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

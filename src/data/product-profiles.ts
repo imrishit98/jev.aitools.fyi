@@ -3967,6 +3967,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "tanstack-ai-decide",
       "openrouter-typesafe-jev-1-13",
       "vinnylarouge-jevlike",
+      "yinsongxu-llm2jev",
     ],
     relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
     faq: [
@@ -4071,6 +4072,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "browser-use-jev-ultrafast",
       "lahfir-agent-desktop",
       "classifier-dev",
+      "shhivv-arc-cua",
     ],
     relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
     faq: [
@@ -5393,6 +5395,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "awlevin-typesafe-computer-use",
       "lahfir-agent-desktop",
       "browser-use-jev-ultrafast",
+      "shhivv-arc-cua",
     ],
     relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
     faq: [
@@ -7058,6 +7061,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "theoleecj-semif",
       "sutro-sh-jev-align",
       "githubnext-localjev",
+      "yinsongxu-llm2jev",
     ],
     relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
     faq: [
@@ -7644,6 +7648,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "jaredpalmer-kev",
       "togethercomputer-tev1",
       "wfzyx-von",
+      "yinsongxu-llm2jev",
     ],
     relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
     faq: [
@@ -12055,5 +12060,219 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "Bud Decision Studio: desktop local Jev API app",
     metaDescription:
       "Bud Ecosystem desktop app serves POST /v1/systemone on :8420, ships eleven open models, Playground and Train UI. Releases on Bud-Decision-Engine repo.",
+  },
+
+  "yinsongxu-llm2jev": {
+    slug: "yinsongxu-llm2jev",
+    status: "published",
+    problem:
+      "Teams want System One shaped HTTP on GPUs they already own, but hosted Jev bills per call and chat-style JSON bridges add decode latency.",
+    targetUser:
+      "Engineers running local text or vision language models who need POST /v1/systemone compatibility, multimodal state, and logits built during prefill only.",
+    overview:
+      "LLM2Jev (github.com/Yinsongxu/LLM2Jev, Apache-2.0) from Yinsong Xu is an independent open-source project. It is not affiliated with or endorsed by Jev or TypeSafe. The stack turns compatible causal and vision language models into Jev-style structured decision outputs by reading probabilities from logits during prefill, without token-by-token decoding. Backends include SGLang on NVIDIA Linux, Hugging Face Transformers, and MLX on Apple Silicon. A compatible POST /v1/systemone HTTP service, Python API, multimodal text and image inputs, staged candidate scoring for SGLang Radix Cache prefix reuse, Web and Snake demos, and a Valen Sokoban example added October 8 ship in-repo. docs/jevbench.md documents 231 public JevBench items with reproduction commands.",
+    creator: {
+      name: "Yinsong Xu",
+      handle: "Yinsongxu",
+      githubUrl: "https://github.com/Yinsongxu",
+    },
+    jevUsage: {
+      flowRole:
+        "Local inference server and Python scorer: shared state plus Choice, Score, and Noul questions become one or staged prefill passes over hub weights",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "System One compatible JSON: shared state strings, optional images in state or instructions, and per-question criteria lists per docs/usage.md and docs/multimodal.md.",
+      decisionOut:
+        "Probability maps assembled from logits during prefill; HTTP responses match /v1/systemone envelope expectations for SDK and JevBench adapters.",
+      flowSteps: [
+        "Compile each question into model prompts per docs/request-to-model.md",
+        "Score criteria tokens from logits in one pass or staged Radix-friendly batches on SGLang",
+        "Optional python -m jevbench.cli run against a local endpoint for public task files",
+        "Serve with the documented online HTTP service on a chosen port",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README JevBench section cites 76.2% accuracy on 231 public items with LLM2Jev and Qwen3.5-4B, P50 latency 48 ms and P95 346 ms on the local endpoint versus Jev 1.13.0 P50 652 ms and P95 722 ms in the published comparison table.",
+          source: "github.com/Yinsongxu/LLM2Jev README and docs/jevbench.md",
+        },
+        {
+          claim:
+            "docs/jevbench.md lists 231 public items across original, easy, and hard datasets used for the accuracy and latency summary.",
+          source: "github.com/Yinsongxu/LLM2Jev docs/jevbench.md",
+        },
+        {
+          claim:
+            "Public GitHub repo Yinsongxu/LLM2Jev had 417 stars and 45 forks when this listing was drafted.",
+          source: "GitHub API, 2026-10-09",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "LLM2Jev is a self-hosted wire-compatible server story: you keep weights on SGLang, Transformers, or MLX and expose the same POST shape agents already use. featherless-simple-jev also assembles JSON from logits but targets Featherless or a HF classifier surface, not a full /v1/systemone port with multimodal state and JevBench CLI. nokia-applied-research-anyjev wraps vLLM with calibration levels and BANKING77 tables; LLM2Jev focuses on prefill-only speed, Radix staged candidates, and Mac MLX paths. liuziyu77-valen trains multimodal decision checkpoints; LLM2Jev's Valen Sokoban example scores single-step Choice on project eval data without shipping Valen weights. Say plainly in reviews that LLM2Jev is independent of TypeSafe; compare numbers on your hardware before you swap production routes.",
+    keyFeatures: [
+      "POST /v1/systemone compatible HTTP service documented in docs/usage.md",
+      "SGLang, Transformers, and MLX-VLM backends with multimodal inputs",
+      "Prefill-only logits scoring without autoregressive answer decoding",
+      "Staged candidate submission for SGLang Radix Cache on cold requests",
+      "Web demo, Snake demo, MuJoCo pick-and-place, and Valen Sokoban examples",
+      "jevbench CLI for 231 public items with typesafe adapter to a local endpoint",
+    ],
+    stack: [
+      "Python 3.12+",
+      "SGLang",
+      "Hugging Face Transformers",
+      "MLX on Apple Silicon",
+      "uv or pip install extras",
+    ],
+    links: {
+      repo: "https://github.com/Yinsongxu/LLM2Jev",
+      docs: "https://github.com/Yinsongxu/LLM2Jev/blob/main/docs/usage.md",
+      website: "https://github.com/Yinsongxu/LLM2Jev",
+    },
+    pricingNote:
+      "Apache-2.0 open source; you pay for GPUs, electricity, and model weights you download.",
+    firstSeen: "2026-09-19",
+    relatedSlugs: [
+      "featherless-simple-jev",
+      "nokia-applied-research-anyjev",
+      "liuziyu77-valen",
+      "githubnext-localjev",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is LLM2Jev affiliated with TypeSafe or Jev?",
+        answer:
+          "No. The README banner states LLM2Jev is an independent open-source project not affiliated with or endorsed by Jev or TypeSafe.",
+      },
+      {
+        question: "How is LLM2Jev different from Simple Jev?",
+        answer:
+          "Simple Jev exposes /v1/classifier from Featherless or your HF server. LLM2Jev targets full /v1/systemone compatibility, multimodal state, MLX on Mac, and ships JevBench reproduction docs.",
+      },
+      {
+        question: "How is LLM2Jev different from AnyJev?",
+        answer:
+          "AnyJev adds L0 through L2 calibration heads on vLLM hidden states. LLM2Jev scores logits during prefill on SGLang, Transformers, or MLX without Nokia's pipeline levels.",
+      },
+      {
+        question: "Can I run it on a Mac without NVIDIA?",
+        answer:
+          "Yes. docs/usage.md documents an MLX backend on Apple Silicon for text and image scoring plus a compatible HTTP service.",
+      },
+    ],
+    metaTitle: "LLM2Jev: local /v1/systemone with prefill-only logits",
+    metaDescription:
+      "Yinsongxu/LLM2Jev serves System One HTTP on SGLang, Transformers, or MLX. Prefill logits, multimodal state, 231 public JevBench items. Not TypeSafe.",
+  },
+
+  "shhivv-arc-cua": {
+    slug: "shhivv-arc-cua",
+    status: "published",
+    problem:
+      "Computer-use agents that send every click to a frontier model burn time and money on steps that are really one pick from a short legal menu.",
+    targetUser:
+      "macOS builders who want a planner or CUA agent to hand off bounded desktop subtasks to a fast decision model, or who need a background MCP driver without any decision API.",
+    overview:
+      "arc-cua (github.com/shhivv/arc-cua, MIT, PyPI package arc-cua) from Shiv Shanmugam ships two tools in one install. arc-driver is a macOS background driver exposed as MCP tools for Claude Code, Codex, and other clients; your agent decides each action and arc-driver does not use Jev or TypeSafe. The arc-cua decision loop is separate: a planner passes a bounded payload with goal, inputs, verification, constraints, and max_actions; a fast decision model runs the observe, legal action space, pick, execute, and settle loop until SUBTASK_COMPLETE or a terminal handoff. JEV through TypeSafe is the default decision backend; ChoicePolicy and custom ChoiceTransport let you plug other typed choice providers. Launch thread: x.com/sxhivs/status/2108239774893138358.",
+    creator: {
+      name: "Shiv Shanmugam",
+      handle: "shhivv",
+      xUrl: "https://x.com/sxhivs",
+      githubUrl: "https://github.com/shhivv",
+      companyUrl: "https://shivshanmugam.com",
+    },
+    jevUsage: {
+      flowRole:
+        "arc-cua loop only: per-step Choice over dynamically built desktop operations and targets; arc-driver MCP path has no Jev calls",
+      primitives: ["Choice"],
+      stateIn:
+        "DesktopSnapshot elements from AX plus local OCR on macOS or Chrome backend text; subtask inputs supply literal strings the model may type, never invent.",
+      decisionOut:
+        "Next UI operation and target id from the legal menu; verification criteria checked via separate choice heads before SUBTASK_COMPLETE.",
+      flowSteps: [
+        "Planner or script calls execute_payload with goal, verification, inputs, and max_actions",
+        "Runtime observes desktop, builds finite action space, freshness guard, and settle probes",
+        "TypeSafeJevPolicy or ChoicePolicy sends typed questions to JEV or a custom transport",
+        "Returns SUBTASK_COMPLETE, BLOCKED, NEEDS_AGENT, NEEDS_INPUT, or DRY_RUN to the planner",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README provider comparison table lists JEV on headless Chrome tasks with 5/5 verified runs, median 2.0 to 2.9 s end-to-end, 2 to 5 decisions, and median decision latency 273 to 319 ms per task row.",
+          source: "github.com/shhivv/arc-cua README Provider comparison",
+        },
+        {
+          claim:
+            "README states arc-driver does not use decision models, JEV, or TypeSafe and is documented separately in docs/driver.md.",
+          source: "github.com/shhivv/arc-cua README arc-driver section",
+        },
+        {
+          claim:
+            "Public GitHub repo shhivv/arc-cua had 306 stars when this listing was drafted.",
+          source: "GitHub API, 2026-10-09",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "arc-cua optimizes planner-to-decision-model handoff, not full-session macOS loops that own every step. awlevin-typesafe-computer-use is a Python clicker where Jev picks OCR and accessibility actions each turn in one repo. sac-y-jev-cu wraps Codex Computer Use with text-only Jev gates. browser-use-jev-ultrafast stays in Chromium DOM tables. arc-driver adds MCP observe and act tools with no API key; only the arc-cua subtask loop calls JEV or your ChoiceTransport. Paul Smith computer-use-jev and other explore-only macOS demos are cousins in spirit but this page tracks shhivv/arc-cua README facts only. Type literal values in inputs; the README blocks invented text from goal prose alone.",
+    keyFeatures: [
+      "arc-driver MCP server via uvx arc-cua mcp for background macOS control",
+      "execute_payload JSON API with verification, constraints, and max_actions",
+      "TypeSafeJevPolicy default plus OpenAIDecisionsTransport and custom ChoiceTransport",
+      "Runtime-owned UI settling with freshness guard and late_reaction retry",
+      "ChromeBackend and hybrid macOS AX plus OCR backends",
+      "pip install arc-cua[macos] or arc-cua[browser] per README",
+    ],
+    stack: [
+      "Python",
+      "macOS Accessibility and Apple Vision OCR",
+      "TypeSafe JEV for default arc-cua loop",
+      "MCP for arc-driver",
+      "Chrome remote debugging for browser backend",
+    ],
+    links: {
+      repo: "https://github.com/shhivv/arc-cua",
+      docs: "https://github.com/shhivv/arc-cua/blob/master/docs/driver.md",
+      website: "https://pypi.org/project/arc-cua/",
+      post: "https://x.com/sxhivs/status/2108239774893138358",
+    },
+    pricingNote:
+      "MIT open source; arc-cua loop needs TYPESAFE_API_KEY for default JEV per README. arc-driver needs no model key.",
+    firstSeen: "2026-09-20",
+    relatedSlugs: [
+      "awlevin-typesafe-computer-use",
+      "sac-y-jev-cu",
+      "browser-use-jev-ultrafast",
+      "lahfir-agent-desktop",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does arc-driver use Jev?",
+        answer:
+          "No. The README table states arc-driver does not use decision models, JEV, or TypeSafe. Only the arc-cua subtask loop uses a decision backend.",
+      },
+      {
+        question: "Do I need a TypeSafe API key?",
+        answer:
+          "The arc-cua decision loop defaults to JEV through TypeSafe; README shows export TYPESAFE_API_KEY. Custom ChoicePolicy transports can replace it.",
+      },
+      {
+        question: "How is this different from typesafe-computer-use?",
+        answer:
+          "Aaron Levin's repo runs a single-agent click loop with Jev every step. arc-cua returns control to a planner after bounded subtasks and also ships a separate MCP driver without Jev.",
+      },
+      {
+        question: "Can Jev see screenshots in the default policy?",
+        answer:
+          "README states JEV does not accept images; TypeSafeJevPolicy does not offer screenshot_checks. Other transports may attach screenshots when configured.",
+      },
+    ],
+    metaTitle: "arc-cua: MCP macOS driver plus Jev subtask loop",
+    metaDescription:
+      "shhivv/arc-cua PyPI arc-cua: arc-driver MCP needs no Jev; arc-cua hands bounded desktop subtasks to TypeSafe JEV or custom choice providers on macOS.",
   },
 };

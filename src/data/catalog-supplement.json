@@ -2179,5 +2179,39 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-10-07"
+  },
+  {
+    "slug": "yinsongxu-llm2jev",
+    "title": "LLM2Jev",
+    "oneLiner": "Independent Apache-2.0 server: local text and vision models expose POST /v1/systemone from prefill logits on SGLang, Transformers, or MLX.",
+    "description": "LLM2Jev (github.com/Yinsongxu/LLM2Jev) from Yinsong Xu turns hub causal and VLM weights into Jev-style probabilities during prefill only, no token-by-token decode. Compatible HTTP, multimodal state, SGLang Radix staged candidates, Web and Snake demos, Valen Sokoban example Oct 8, JevBench on 231 public items in docs/jevbench.md. Not affiliated with TypeSafe. Distinct from featherless-simple-jev classifier API and AnyJev calibration pipeline.",
+    "category": "integrations",
+    "tags": ["integrations", "self-hosted", "system-one", "multimodal", "mlx"],
+    "language": "Python",
+    "stars": 417,
+    "url": "https://github.com/Yinsongxu/LLM2Jev",
+    "repoUrl": "https://github.com/Yinsongxu/LLM2Jev",
+    "creatorHandle": "Yinsongxu",
+    "creatorName": "Yinsong Xu",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-10-09"
+  },
+  {
+    "slug": "shhivv-arc-cua",
+    "title": "arc-cua",
+    "oneLiner": "PyPI arc-cua on macOS: arc-driver MCP controls apps in the background without Jev; arc-cua hands bounded subtasks to JEV or your choice provider.",
+    "description": "arc-cua (github.com/shhivv/arc-cua, MIT, PyPI arc-cua) from Shiv Shanmugam packages arc-driver MCP tools for Codex and Claude Code with no decision API, plus an arc-cua loop where planners pass goal, inputs, verification, and max_actions to TypeSafe JEV or ChoicePolicy transports. Distinct from awlevin-typesafe-computer-use full clicker loops. Launch post on X @sxhivs.",
+    "category": "browser-computer-use",
+    "tags": ["browser-computer-use", "macos", "mcp", "computer-use", "codex"],
+    "language": "Python",
+    "stars": 306,
+    "url": "https://github.com/shhivv/arc-cua",
+    "repoUrl": "https://github.com/shhivv/arc-cua",
+    "creatorHandle": "shhivv",
+    "creatorName": "Shiv Shanmugam",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-10-09"
   }
 ]
