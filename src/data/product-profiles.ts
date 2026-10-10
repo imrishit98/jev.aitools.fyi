@@ -1716,7 +1716,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       docs: "https://github.com/thumay9700/jev-plays",
     },
     firstSeen: "2026-09-21",
-    relatedSlugs: ["fhshaik-typesafe-mario", "enoyola-jev-grand-prix"],
+    relatedSlugs: ["fhshaik-typesafe-mario", "enoyola-jev-grand-prix", "christianmat-jev-pokemon"],
     relatedLearnSlugs: ["use-cases"],
     faq: [
       {
@@ -1785,7 +1785,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     firstSeen: "2026-09-16",
     demoIds: ["typesafe-mario-faadilhshaik"],
-    relatedSlugs: ["thumay9700-jev-plays", "lukaske-jev-doom-agent", "shubhankar-jev-fifa"],
+    relatedSlugs: [
+      "thumay9700-jev-plays",
+      "christianmat-jev-pokemon",
+      "lukaske-jev-doom-agent",
+      "shubhankar-jev-fifa",
+    ],
     relatedLearnSlugs: ["use-cases"],
     faq: [
       {
@@ -2823,6 +2828,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     demoIds: ["pg-jev-iam-zachi"],
     relatedSlugs: [
       "sheltercosmo-jev4pg",
+      "0814wdwd-solo-jev",
       "jarrodwatts-jev-trader",
       "virlo-ai",
       "carolmonroe-jevrls",
@@ -3445,6 +3451,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "kerpopule-hermes-jev-skills",
       "tamaratran-fast-jev-compaction",
       "devagrawal09-jev-review",
+      "luobosibing2-dsh-jev-plugin",
     ],
     relatedLearnSlugs: ["use-cases", "system-one"],
     faq: [
@@ -11414,7 +11421,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     pricingNote:
       "Apache 2.0 code. Inference uses your TypeSafe key or another provider you configure. Hybrid planning also needs an LLM provider. The BIRD dollar figures are frozen accounting estimates in the README, not an invoice.",
     firstSeen: "2026-10-06",
-    relatedSlugs: ["realzachi-pg-jev", "jexp-neo4jev"],
+    relatedSlugs: ["realzachi-pg-jev", "0814wdwd-solo-jev", "jexp-neo4jev"],
     relatedLearnSlugs: ["use-cases", "system-one"],
     faq: [
       {
@@ -12062,6 +12069,271 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Bud Ecosystem desktop app serves POST /v1/systemone on :8420, ships eleven open models, Playground and Train UI. Releases on Bud-Decision-Engine repo.",
   },
 
+  "christianmat-jev-pokemon": {
+    slug: "christianmat-jev-pokemon",
+    status: "published",
+    problem:
+      "Pokemon agents that let an LLM freestyle button prose burn money and still miss menu edge cases. You need legal options with facts, not open-ended play-by-play.",
+    targetUser:
+      "Researchers, streamers, and emulator hackers comparing RAM-first harness design on Pokemon Red, including anyone studying full-game cost and latency on TypeSafe Jev.",
+    overview:
+      "jev-pokemon (github.com/christianmat/jev-pokemon, GPL-2.0-or-later) is Christian Mathiesen's Node harness where TypeSafe Jev plays Pokemon Red without scripts, cheats, or memory writes. The Game Boy emulator reads RAM, builds game state (map, party, battle, on-screen text), lists legal options with short facts (type matchups, damage estimates, progress hints), and Jev picks one Choice per step. A* pathfinding and menu mechanics run in code; Jev only judges. README documents a completed run: 37h 40m wall time, 16,150 decisions, about $1.65 total Jev cost, median about 0.4s per decision, 16 team wipes (14 at the Elite Four), and 15 Elite Four attempts. Landing page jev-pokemon.vercel.app hosts highlights; the Sep 25 to Sep 26, 2026 YouTube live stream has ended per README. Built at Frigade (frigade.com link in README).",
+    creator: {
+      name: "Christian Mathiesen",
+      handle: "christianmat",
+      githubUrl: "https://github.com/christianmat",
+      company: "Frigade",
+      companyUrl: "https://frigade.com",
+    },
+    jevUsage: {
+      flowRole: "Per-step Choice over legal emulator actions with fact-backed option lists",
+      primitives: ["Choice"],
+      stateIn:
+        "RAM-derived state: overworld and battle context, menus, dialog, party, milestones checked against real event flags (README How it works). Hidden items are omitted because a human would not know them.",
+      decisionOut:
+        "One legal button press or strategic focus (progress, heal, train, catch, shop, explore, team) per Jev call; harness applies inputs and loop protection when options repeat.",
+      flowSteps: [
+        "Emulator advances frames and reads RAM",
+        "Harness builds legal options plus facts, never writing game memory",
+        "Jev selects one option via gateway or mock client",
+        "Mechanics execute pathfinding, battles, and menus; logs land in jev-calls.jsonl",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Result table: 37h 40m total time, 16,150 decisions, about 39.2M input tokens, about $1.65 Jev cost, median about 0.4s per decision.",
+          source: "github.com/christianmat/jev-pokemon README Result",
+        },
+        {
+          claim:
+            "README Cost section: about $1 to $1.70 per 24 hours at real-time speed; throttle worst case about $7 per day.",
+          source: "github.com/christianmat/jev-pokemon README Cost",
+        },
+        {
+          claim: "GitHub christianmat/jev-pokemon had 123 stars and 9 forks on 2026-10-08.",
+          source: "GitHub API stargazers_count and forks_count, 2026-10-08",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-pokemon is a finished Pokemon Red story, not a multi-game framework. Compared to thumay9700-jev-plays (PyBoy, modular tactics) or fhshaik-typesafe-mario (NES JSON state), this repo optimizes for one title with rich option lists and house rules: FAST text, battle animations off, player JEV, rival BLUE, and nickname spelling one letter at a time. Story goals live in src/knowledge/milestones.ts; progress is validated against in-game flags. Bring your own US/EU Pokemon Red ROM (SHA-1 documented in README), set AI_GATEWAY_API_KEY for real Jev, or use mock mode for free local dev. npm run setup builds pret/pokered symbol data; local viewer runs on port 8787. This is a fan experiment, not affiliated with Nintendo or TypeSafe AI per README Legal.",
+    keyFeatures: [
+      "Full-game completion documented with team levels and Elite Four retries",
+      "jev-calls.jsonl audit log with options, probabilities, and latency",
+      "Milestone checkpoints with resume and manual save tooling",
+      "Loop protection for stuck menus and failing choices",
+      "Static landing page in site/ with highlights video",
+    ],
+    stack: ["Node 20+", "Game Boy emulator (serverboy core)", "Vercel AI Gateway or mock Jev"],
+    links: {
+      repo: "https://github.com/christianmat/jev-pokemon",
+      docs: "https://github.com/christianmat/jev-pokemon",
+      website: "https://jev-pokemon.vercel.app",
+      demo: "https://jev-pokemon.vercel.app",
+    },
+    pricingNote:
+      "README cites $0.042 per million input tokens with free output; typical call about 1,200 tokens.",
+    firstSeen: "2026-09-25",
+    relatedSlugs: ["thumay9700-jev-plays", "fhshaik-typesafe-mario", "muratcanberber-jev-the-fish-game"],
+    relatedLearnSlugs: ["use-cases"],
+    faq: [
+      {
+        question: "How is this different from jev-plays?",
+        answer:
+          "jev-plays is a Python PyBoy framework aimed at multiple retro titles. jev-pokemon is a TypeScript Pokemon Red completion harness with documented full-game metrics and a public landing page.",
+      },
+      {
+        question: "Does the harness cheat or edit RAM?",
+        answer: "No. README states the harness only reads memory and presses buttons; it never writes game memory.",
+      },
+      {
+        question: "Where is the stream?",
+        answer:
+          "README says the Sep 25 to Sep 26, 2026 YouTube live stream ended; highlights are on jev-pokemon.vercel.app, which links to youtube.com/@frigadeapp.",
+      },
+    ],
+    metaTitle: "jev-pokemon: Christian Mathiesen Jev Pokemon Red playthrough",
+    metaDescription:
+      "Christian Mathiesen jev-pokemon: Jev picks Pokemon Red from RAM options and facts. README 37h 40m, 16,150 calls, about $1.65. jev-pokemon.vercel.app demo.",
+  },
+
+  "0814wdwd-solo-jev": {
+    slug: "0814wdwd-solo-jev",
+    status: "published",
+    problem:
+      "Running the same semantic decision across thousands of table rows repeats huge shared context, so prefix caches help little when field order is wrong.",
+    targetUser:
+      "Data and ML engineers batching Jev or JEV-9B judgments over Pandas, NumPy, or JSON tables who want throughput without turning the problem into NL-to-SQL.",
+    overview:
+      "SOLO (github.com/0814wdwd/solo_jev, MIT) is the System One Layout Optimizer: it runs a natural-language decision over every record, reorders rows and fields so prefix-caching backends reuse input computation, then returns decisions aligned with your original row order. The backend still receives the complete record each time. README reports up to 11.7x throughput over original order and 3.28x over NDV sorting on measured RTX 4090 synthetic workloads (see docs/benchmarks.md). The default packaged path serves AutoTrust JEV-9B through vLLM; docs/deployment.md and docs/vllm-jev.md cover hosting and the Open-Jev adapter. SOLO builds on the ICML 2026 PMLR paper Prefix-Cache-Aware Data Reordering for LLM-Augmented Database Analytics (proceedings.mlr.press/v306/li26gn.html).",
+    creator: {
+      name: "0814wdwd",
+      handle: "0814wdwd",
+      githubUrl: "https://github.com/0814wdwd",
+    },
+    jevUsage: {
+      flowRole: "Batch per-row semantic decision with layout planning ahead of inference",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Each row as a complete record (Pandas DataFrame, NumPy, JSON/JSONL, or nested objects per docs/inputs.md) plus one shared natural-language question.",
+      decisionOut:
+        "Per-row decisions and probabilities in original index order after scan(); binary, categorical, or scored heads per JEV-9B metadata.",
+      flowSteps: [
+        "Normalize tabular or JSON input to the engine contract",
+        "Planner reorders rows and fields for prefix reuse (SOLO layout)",
+        "DecisionEngine issues batched requests to local JEV-9B or your backend",
+        "Results map back to the caller's row order",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README and docs/benchmarks.md: up to 11.7x throughput vs original order and 3.28x vs NDV sorting on one NVIDIA RTX 4090 with AutoTrust JEV-9B, BF16, vLLM 0.31.0, 128 records per synthetic case.",
+          source: "github.com/0814wdwd/solo_jev docs/benchmarks.md",
+        },
+        {
+          claim: "GitHub 0814wdwd/solo_jev had 105 stars on 2026-10-08.",
+          source: "GitHub API stargazers_count, 2026-10-08",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "SOLO is not a SQL generator. realzachi-pg-jev adds a jev() predicate inside Postgres WHERE clauses; sheltercosmo-jev4pg plans SQL from English or Chinese questions plus 41 operators. SOLO keeps your relational rows and asks the same decision question across all of them, optimizing layout for decision-model throughput. Example README quickstart: refund policy text plus customer_request rows scanned with Does the request ask for a monetary refund? Use examples/offline_layout.py without a GPU to see planning only. Pair with hosted TypeSafe Jev by swapping the backend when you outgrow the bundled JEV-9B server. Cite the PMLR paper and SOLO version when publishing benchmarks.",
+    keyFeatures: [
+      "DecisionEngine.scan for Pandas, JSON/JSONL, and NumPy",
+      "Documented RTX 4090 reproducible demos in docs/benchmarks.md",
+      "AutoTrust JEV-9B serving path and vLLM Open-Jev adapter docs",
+      "Offline layout demo without network or GPU",
+      "ICML 2026 citation block in README",
+    ],
+    stack: ["Python 3.10+", "solo_layout package", "vLLM", "AutoTrust JEV-9B"],
+    links: {
+      repo: "https://github.com/0814wdwd/solo_jev",
+      docs: "https://github.com/0814wdwd/solo_jev/tree/main/docs",
+    },
+    pricingNote:
+      "Open source client; GPU hosting and TypeSafe or self-hosted inference costs are yours.",
+    firstSeen: "2026-10-08",
+    relatedSlugs: ["realzachi-pg-jev", "sheltercosmo-jev4pg", "apolinario-decision-index"],
+    relatedLearnSlugs: ["system-one", "use-cases"],
+    faq: [
+      {
+        question: "Is SOLO text-to-SQL?",
+        answer:
+          "No. It batch-applies one semantic decision per row. jev4pg and pg-jev solve different Postgres problems; see those listings.",
+      },
+      {
+        question: "Do 11.7x speedups apply to every dataset?",
+        answer:
+          "No. README positions them as reproducible synthetic workloads on one RTX 4090. Read docs/benchmarks.md before quoting in production decks.",
+      },
+      {
+        question: "Which open model ships by default?",
+        answer:
+          "README points at AutoTrust JEV-9B on Hugging Face, served through vLLM per docs/deployment.md.",
+      },
+    ],
+    metaTitle: "SOLO solo_jev: batch Jev decisions with prefix-cache layout",
+    metaDescription:
+      "0814wdwd SOLO reorders table rows for prefix caching, then runs per-row Jev decisions. RTX 4090 benchmarks in docs/benchmarks.md. Not NL-to-SQL.",
+  },
+
+  "luobosibing2-dsh-jev-plugin": {
+    slug: "luobosibing2-dsh-jev-plugin",
+    status: "published",
+    problem:
+      "DeepSeek Harness agents need fast structured judgment on skills, drift, completion, and dangerous tools without replacing the main planning model.",
+    targetUser:
+      "DSH 0.1.7-rc.2 Web users who want optional TypeSafe Jev or Luna Decisions layers on skill ranking, supervision, corrections, log admission, approvals, and stage navigation.",
+    overview:
+      "dsh-jev-plugin (github.com/luobosibing2/dsh-jev-plugin, MIT; package name deepseek-harness-jev) is luobosibing2's native DeepSeek Harness plugin. Twelve features are independently toggled from one Jev settings page and are all disabled by default: skill selection, file ranking, drift reminders, completion checks, goal supervision, instruction guidance, interjection routing, shared-finding corrections, long-log admission, test-log admission, workspace approval, and stage navigation. The main model still plans and calls tools; enabled features call the saved judgment endpoint at documented Cordis extension points. Tested with DSH 0.1.7-rc.2 per README; community project, not an official DeepSeek or TypeSafe release. Bilingual docs and dated test reports live at luobosibing2.github.io/dsh-jev-plugin/. GitHub had 185 stars and 16 forks on 2026-10-08.",
+    creator: {
+      name: "luobosibing2",
+      handle: "luobosibing2",
+      githubUrl: "https://github.com/luobosibing2",
+    },
+    jevUsage: {
+      flowRole:
+        "Optional System One judgment at DSH hooks for selection, supervision, messaging, tool output, and approvals",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Per feature: skill summaries, glob paths, session events, tool results, shared messages, approval payloads, or recorded model steps (README feature table and packages/jev README).",
+      decisionOut:
+        "Rankings, reminders, completion supplements, admission filters, approval hints, or stage labels with receipts in local plugin records.",
+      flowSteps: [
+        "Install plugin tarball or GitHub URL into a DSH Web profile",
+        "Configure Jev or Luna judgment connection and API key on the Jev page",
+        "Enable only the features you need (defaults off)",
+        "DSH hooks call the judgment client; results apply per feature rules",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README completion diagnosis: with scripted initial errors, real Jev judgments plus DeepSeek supplements met core requirements in 6/6 enabled error cases; 2/2 accurate controls judged complete without supplement (docs/testing/2026-10-05-completion-recovery).",
+          source: "github.com/luobosibing2/dsh-jev-plugin README Behavior and limitations",
+        },
+        {
+          claim:
+            "README tool-output admission: one real-profile build log shrank from 8,510 characters by 75.7% at documented defaults (docs/reports/2026-09-27-tool-output-admission.md).",
+          source: "github.com/luobosibing2/dsh-jev-plugin README",
+        },
+        {
+          claim: "GitHub luobosibing2/dsh-jev-plugin had 185 stars and 16 forks on 2026-10-08.",
+          source: "GitHub API, 2026-10-08",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Think of the plugin as twelve small judgment products sharing one connection. Skill and file ranking use agent/pre-step and tools hooks; supervision watches session events; workspace approval answers eligible single-operation escalations in workspace-write mode; stage navigation classifies completed DSH steps on demand. Reminders are advisory: README says drift and instruction guidance do not block tools. Pair with thruwire-foreman when you want factory-level supervision outside DSH, y0usaf-pi-jev for Pi-specific gates, or devmortimer-pi-warden for Pi guardrails. Install from the Web UI by pasting the GitHub repository URL (README shows github.com/luobosibing2/deepseek-harness-jev, which resolves to this repo). Research inspired by Mu per README acknowledgements.",
+    keyFeatures: [
+      "Twelve independent feature switches on one settings page",
+      "Jev and Luna Decisions connections with OpenRouter or OpenAI options",
+      "Stage navigation tab with six stage labels plus mixed and unknown",
+      "Bilingual feature site and public test reports under docs/testing",
+      "Focused vitest host and wire tests documented for contributors",
+    ],
+    stack: [
+      "DeepSeek Harness 0.1.7-rc.2",
+      "Cordis 4.0.4 plugin APIs",
+      "TypeScript",
+      "pnpm 11.7.0 build",
+    ],
+    links: {
+      repo: "https://github.com/luobosibing2/dsh-jev-plugin",
+      docs: "https://luobosibing2.github.io/dsh-jev-plugin/",
+      website: "https://luobosibing2.github.io/dsh-jev-plugin/",
+    },
+    pricingNote:
+      "MIT plugin; judgment calls bill through your TypeSafe, Luna, or OpenRouter credentials.",
+    firstSeen: "2026-10-08",
+    relatedSlugs: [
+      "thruwire-foreman",
+      "y0usaf-pi-jev",
+      "devmortimer-pi-warden",
+      "dicklesworthstone-skillranker",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Do features turn on when I install the plugin?",
+        answer:
+          "No. README states all twelve features stay disabled until you enable them on the Jev page after configuring a judgment connection.",
+      },
+      {
+        question: "Which DSH version is supported?",
+        answer:
+          "README pins DeepSeek Harness CLI 0.1.7-rc.2 and Cordis 4.0.4; newer versions are not automatically supported.",
+      },
+      {
+        question: "Is this official from DeepSeek or TypeSafe?",
+        answer:
+          "No. README labels an independent community project with scoped validation notes in docs/validation.md.",
+      },
+    ],
+    metaTitle: "DSH Jev plugin: DeepSeek Harness judgment features",
+    metaDescription:
+      "DSH Jev plugin with twelve optional features: skill ranking, drift, completion, log admission, workspace approval. luobosibing2 repo and docs site.",
+  },
+
   "yinsongxu-llm2jev": {
     slug: "yinsongxu-llm2jev",
     status: "published",
@@ -12070,7 +12342,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Engineers running local text or vision language models who need POST /v1/systemone compatibility, multimodal state, and logits built during prefill only.",
     overview:
-      "LLM2Jev (github.com/Yinsongxu/LLM2Jev, Apache-2.0) from Yinsong Xu is an independent open-source project. It is not affiliated with or endorsed by Jev or TypeSafe. The stack turns compatible causal and vision language models into Jev-style structured decision outputs by reading probabilities from logits during prefill, without token-by-token decoding. Backends include SGLang on NVIDIA Linux, Hugging Face Transformers, and MLX on Apple Silicon. A compatible POST /v1/systemone HTTP service, Python API, multimodal text and image inputs, staged candidate scoring for SGLang Radix Cache prefix reuse, Web and Snake demos, and a Valen Sokoban example added October 8 ship in-repo. docs/jevbench.md documents 231 public JevBench items with reproduction commands.",
+      "LLM2Jev (github.com/Yinsongxu/LLM2Jev, Apache-2.0) from Yinsong Xu is an independent open-source project. It is not affiliated with or endorsed by Jev or TypeSafe. The stack turns compatible causal and vision language models into Jev-style structured decision outputs by reading probabilities from logits during prefill, without token-by-token decoding. Backends include SGLang on NVIDIA Linux, Hugging Face Transformers, and MLX on Apple Silicon. The repo ships a compatible POST /v1/systemone HTTP service, a Python API, multimodal text and image inputs, and staged candidate scoring for SGLang Radix Cache prefix reuse. Web and Snake demos and a Valen Sokoban example added October 8 are included. docs/jevbench.md documents 231 public JevBench items with reproduction commands.",
     creator: {
       name: "Yinsong Xu",
       handle: "Yinsongxu",
@@ -12103,13 +12375,13 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo Yinsongxu/LLM2Jev had 417 stars and 45 forks when this listing was drafted.",
+            "Public GitHub repo Yinsongxu/LLM2Jev had 417 stars and 45 forks as of October 9, 2026.",
           source: "GitHub API, 2026-10-09",
         },
       ],
     },
     howJevIsUsed:
-      "LLM2Jev is a self-hosted wire-compatible server story: you keep weights on SGLang, Transformers, or MLX and expose the same POST shape agents already use. featherless-simple-jev also assembles JSON from logits but targets Featherless or a HF classifier surface, not a full /v1/systemone port with multimodal state and JevBench CLI. nokia-applied-research-anyjev wraps vLLM with calibration levels and BANKING77 tables; LLM2Jev focuses on prefill-only speed, Radix staged candidates, and Mac MLX paths. liuziyu77-valen trains multimodal decision checkpoints; LLM2Jev's Valen Sokoban example scores single-step Choice on project eval data without shipping Valen weights. Say plainly in reviews that LLM2Jev is independent of TypeSafe; compare numbers on your hardware before you swap production routes.",
+      "LLM2Jev is a self-hosted wire-compatible server: you keep weights on SGLang, Transformers, or MLX and expose the same POST shape agents already use. featherless-simple-jev also assembles JSON from logits but targets Featherless or a HF classifier surface, not a full /v1/systemone port with multimodal state and JevBench CLI. nokia-applied-research-anyjev wraps vLLM with calibration levels and BANKING77 tables; LLM2Jev focuses on prefill-only speed, Radix staged candidates, and Mac MLX paths. liuziyu77-valen trains multimodal decision checkpoints; LLM2Jev's Valen Sokoban example scores single-step Choice on project eval data without shipping Valen weights. LLM2Jev is independent of TypeSafe. Test the numbers on your own hardware before you switch production traffic.",
     keyFeatures: [
       "POST /v1/systemone compatible HTTP service documented in docs/usage.md",
       "SGLang, Transformers, and MLX-VLM backends with multimodal inputs",
@@ -12176,7 +12448,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "macOS builders who want a planner or CUA agent to hand off bounded desktop subtasks to a fast decision model, or who need a background MCP driver without any decision API.",
     overview:
-      "arc-cua (github.com/shhivv/arc-cua, MIT, PyPI package arc-cua) from Shiv Shanmugam ships two tools in one install. arc-driver is a macOS background driver exposed as MCP tools for Claude Code, Codex, and other clients; your agent decides each action and arc-driver does not use Jev or TypeSafe. The arc-cua decision loop is separate: a planner passes a bounded payload with goal, inputs, verification, constraints, and max_actions; a fast decision model runs the observe, legal action space, pick, execute, and settle loop until SUBTASK_COMPLETE or a terminal handoff. JEV through TypeSafe is the default decision backend; ChoicePolicy and custom ChoiceTransport let you plug other typed choice providers. Launch thread: x.com/sxhivs/status/2108239774893138358.",
+      "arc-cua (github.com/shhivv/arc-cua, MIT, PyPI package arc-cua) from Shiv Shanmugam ships two tools in one install. arc-driver is a macOS background driver exposed as MCP tools for Claude Code, Codex, and other clients; your agent decides each action and arc-driver does not use Jev or TypeSafe. The arc-cua decision loop is separate: a planner passes a bounded payload with goal, inputs, verification, constraints, and max_actions; a fast decision model runs the observe, legal action space, pick, execute, and settle loop until SUBTASK_COMPLETE or a terminal handoff. JEV through TypeSafe is the default decision backend; ChoicePolicy and custom ChoiceTransport let you plug other typed choice providers. Launch post on X from @sxhivs, Oct 8, 2026: x.com/sxhivs/status/2108239774893138358.",
     creator: {
       name: "Shiv Shanmugam",
       handle: "shhivv",
@@ -12211,15 +12483,15 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo shhivv/arc-cua had 306 stars when this listing was drafted.",
+            "Public GitHub repo shhivv/arc-cua had 306 stars as of October 9, 2026.",
           source: "GitHub API, 2026-10-09",
         },
       ],
     },
     howJevIsUsed:
-      "arc-cua optimizes planner-to-decision-model handoff, not full-session macOS loops that own every step. awlevin-typesafe-computer-use is a Python clicker where Jev picks OCR and accessibility actions each turn in one repo. sac-y-jev-cu wraps Codex Computer Use with text-only Jev gates. browser-use-jev-ultrafast stays in Chromium DOM tables. arc-driver adds MCP observe and act tools with no API key; only the arc-cua subtask loop calls JEV or your ChoiceTransport. Paul Smith computer-use-jev and other explore-only macOS demos are cousins in spirit but this page tracks shhivv/arc-cua README facts only. Type literal values in inputs; the README blocks invented text from goal prose alone.",
+      "arc-cua optimizes planner-to-decision-model handoff, not full-session macOS loops that own every step. awlevin-typesafe-computer-use is a Python clicker where Jev picks OCR and accessibility actions each turn in one repo. sac-y-jev-cu wraps Codex Computer Use with text-only Jev gates. browser-use-jev-ultrafast stays in Chromium DOM tables. arc-driver adds MCP observe and act tools with no API key; only the arc-cua subtask loop calls JEV or your ChoiceTransport. Other macOS demos, such as Paul Smith's computer-use-jev, take a similar approach. The details here come from the arc-cua README. Type literal values in inputs; the README blocks invented text from goal prose alone.",
     keyFeatures: [
-      "arc-driver MCP server via uvx arc-cua mcp for background macOS control",
+      "arc-driver MCP server via uvx --from 'arc-cua[macos]' arc-cua mcp for background macOS control",
       "execute_payload JSON API with verification, constraints, and max_actions",
       "TypeSafeJevPolicy default plus OpenAIDecisionsTransport and custom ChoiceTransport",
       "Runtime-owned UI settling with freshness guard and late_reaction retry",

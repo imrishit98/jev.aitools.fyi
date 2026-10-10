@@ -269,6 +269,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Drop in EDR or Windows logs, seed one bad process, and Jev links the rest round by round. You get a timeline and evidence table, not a malware verdict. Every score still needs an analyst.",
   "budecosystem-bud-decision-studio":
     "A desktop app that installs its own engine, downloads eleven open decision models, and serves Jev's API on localhost. Playground charts, eval leaderboards, and templates without touching api.typesafe.ai.",
+  "christianmat-jev-pokemon":
+    "No cheats and no RAM writes: the harness turns Pokemon Red memory into legal menu and battle options with short facts, and Jev picks one. Christian Mathiesen documented a full clear for about $1.65 and a live stream recap on the landing page.",
+  "0814wdwd-solo-jev":
+    "Ask the same decision question across every row in a table, then let SOLO reorder columns so prefix caching sees more shared context. Throughput jumps on the project's RTX 4090 demos. This is batch judgment, not a SQL planner.",
+  "luobosibing2-dsh-jev-plugin":
+    "Twelve optional switches on one Jev settings page inside DeepSeek Harness: rank skills, catch drift, check completion, trim huge logs, or help with workspace approvals. Everything stays off until you turn it on and save a judgment connection.",
   "yinsongxu-llm2jev":
     "Run your own weights and still speak POST /v1/systemone. LLM2Jev reads logits in one prefill pass on SGLang, Transformers, or MLX, serves multimodal state, and documents 231 public JevBench items. Independent of TypeSafe.",
   "shhivv-arc-cua":
