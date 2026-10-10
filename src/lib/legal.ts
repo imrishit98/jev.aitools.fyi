@@ -8,6 +8,10 @@ export const LEGAL_LAST_UPDATED_ISO = "2026-10-05";
 export const PARTNER_SHARING_EFFECTIVE_DISPLAY = "November 9, 2026";
 export const PARTNER_SHARING_EFFECTIVE_ISO = "2026-11-09";
 
+/** localStorage key when the visitor dismisses the pre-effective policy popup. */
+export const POLICY_NOTICE_DISMISS_STORAGE_KEY =
+  "jev_policy_notice_dismissed_2026-11-09";
+
 export const PRIVACY_OFFICER = "Rishit Patel";
 export const MIN_COHORT = 10;
 
