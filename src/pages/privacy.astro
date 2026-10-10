@@ -3,9 +3,9 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { privacyPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import {
-  LEGAL_LAST_UPDATED_DISPLAY,
-  LEGAL_LAST_UPDATED_ISO,
   LEGAL_PATHS,
+  PRIVACY_POLICY_LAST_UPDATED_DISPLAY,
+  PRIVACY_POLICY_LAST_UPDATED_ISO,
   MIN_COHORT,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
   PRIVACY_OFFICER,
@@ -25,7 +25,7 @@ const jsonLd = webPageJsonLd({
   name: "Privacy Policy",
   description: seo.description,
   url: seo.canonical,
-  dateModified: LEGAL_LAST_UPDATED_ISO,
+  dateModified: PRIVACY_POLICY_LAST_UPDATED_ISO,
 });
 ---
 
@@ -38,7 +38,7 @@ const jsonLd = webPageJsonLd({
 >
   <div class="mx-auto max-w-3xl px-4 py-12 sm:px-6">
     <h1 class="font-heading text-3xl font-semibold">Privacy Policy</h1>
-    <p class="mt-3 text-sm text-muted-foreground">Last updated: {LEGAL_LAST_UPDATED_DISPLAY}</p>
+    <p class="mt-3 text-sm text-muted-foreground">Last updated: {PRIVACY_POLICY_LAST_UPDATED_DISPLAY}</p>
 
     <div class="mt-8 space-y-8 leading-relaxed text-muted-foreground">
       <section id="short-version" class="scroll-mt-24">
@@ -82,7 +82,7 @@ const jsonLd = webPageJsonLd({
           Cloudflare hosts the site and may process connection data (such as IP address, user agent, and requested URL) for security and performance. We use Cloudflare Web Analytics on this site, which helps us understand traffic in aggregate. We serve our typefaces from this site (self-hosted font files bundled with the directory), not from a third-party font CDN. We do not run third-party advertising cookies on this directory.
         </p>
         <p class="mt-3">
-          <strong class="text-foreground">Local storage.</strong> Your browser's local storage holds up to three small preferences, all kept on your device and not sent to us: your light or dark theme, your choice of human or agent view, and (only if you tick the box on <a href={choicesUrl} class="text-accent hover:underline">Your Privacy Choices</a>) your opt-out preference.
+          <strong class="text-foreground">Local storage.</strong> Your browser's local storage holds up to four small preferences, all kept on your device and not sent to us: your light or dark theme, your choice of human or agent view, and (only if you tick the box on <a href={choicesUrl} class="text-accent hover:underline">Your Privacy Choices</a>) your opt-out preference, and whether you closed the short policy notice.
         </p>
         <p class="mt-3">
           <strong class="text-foreground">My First Million search demo.</strong> The demo at <a href="/demos/my-first-million" class="text-accent hover:underline">/demos/my-first-million</a> sends the search text you type to our search service. When the demo runs in live mode, that text is processed by Vercel AI Gateway and the AI model it routes to, in order to classify and rank results. We do not send your IP address or any account details with it, and we do not save the text in a database.
@@ -194,7 +194,7 @@ const jsonLd = webPageJsonLd({
       <section id="us-residents" class="scroll-mt-24">
         <h2 class="font-heading text-xl font-semibold text-foreground">Notice for US residents</h2>
         <p class="mt-3">
-          This section applies to residents of California and other US states with comprehensive privacy laws, including Colorado, Connecticut, Virginia, Texas and Oregon. It is our notice at collection. Last updated: {LEGAL_LAST_UPDATED_DISPLAY}.
+          This section applies to residents of California and other US states with comprehensive privacy laws, including Colorado, Connecticut, Virginia, Texas and Oregon. It is our notice at collection. Last updated: {PRIVACY_POLICY_LAST_UPDATED_DISPLAY}.
         </p>
         <div class="mt-4 overflow-x-auto">
           <table class="w-full min-w-[36rem] border-collapse text-sm">

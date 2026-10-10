@@ -2,63 +2,91 @@
 import {
   LEGAL_PATHS,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
-  PARTNER_SHARING_EFFECTIVE_ISO,
+  PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
+  POLICY_NOTICE_DISMISS_STORAGE_KEY,
 } from "@/lib/legal";
 
 const privacyHref = LEGAL_PATHS.privacy;
 ---
 <div id="jev-legal-policy-banner" class="legal-policy-banner" hidden>
-  <div
-    class="border-b border-accent/30 bg-accent/10 px-4 py-3 text-center text-sm leading-relaxed text-foreground legal-policy-banner-upcoming"
-    role="status"
-    aria-live="polite"
+  <aside
+    aria-label="Policy update notice"
+    class="legal-policy-banner-upcoming fixed bottom-4 left-3 z-30 max-w-[min(18.75rem,calc(100vw-7.5rem))] rounded-md border border-border/60 bg-background/95 p-2.5 text-[11px] leading-[1.35] text-muted-foreground shadow-md backdrop-blur-sm sm:left-4"
   >
-    <p>
-      <strong>Upcoming privacy update ({PARTNER_SHARING_EFFECTIVE_DISPLAY}):</strong> We may share
-      <strong> statistics that do not identify anyone</strong> with business and research partners.
-      We still do not sell your personal information.{" "}
-      <a
-        href={privacyHref}
-        class="font-medium text-accent underline-offset-4 hover:underline"
+    <button
+      type="button"
+      class="legal-policy-banner-dismiss absolute top-1.5 right-1.5 flex size-6 items-center justify-center rounded-sm text-foreground/80 transition-colors hover:text-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 focus-visible:ring-offset-background"
+      aria-label="Close notice"
+    >
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        width="14"
+        height="14"
+        viewBox="0 0 24 24"
+        fill="none"
+        stroke="currentColor"
+        stroke-width="2"
+        stroke-linecap="round"
+        stroke-linejoin="round"
+        aria-hidden="true"
       >
+        <path d="M18 6 6 18"></path>
+        <path d="m6 6 12 12"></path>
+      </svg>
+    </button>
+    <p class="pr-6">
+      Upcoming privacy update ({PARTNER_SHARING_EFFECTIVE_DISPLAY}): We may share statistics that do
+      not identify anyone with business and research partners. We still do not sell your personal
+      information.{" "}
+      <a href={privacyHref} class="text-foreground/90 underline underline-offset-2 hover:text-foreground">
         Read the Privacy Policy
       </a>
     </p>
-  </div>
-  <div
-    class="border-b border-border bg-muted/30 px-4 py-2.5 text-center text-sm leading-relaxed text-muted-foreground legal-policy-banner-post"
-    role="status"
-    hidden
-  >
-    <p>
-      Our Privacy Policy was updated {PARTNER_SHARING_EFFECTIVE_DISPLAY}.{" "}
-      <a href={privacyHref} class="font-medium text-accent underline-offset-4 hover:underline">
-        Read the Privacy Policy
-      </a>
-    </p>
-  </div>
+  </aside>
 </div>
 <script
   is:inline
   define:vars={{
-    effectiveIso: PARTNER_SHARING_EFFECTIVE_ISO,
-    effectiveDisplay: PARTNER_SHARING_EFFECTIVE_DISPLAY,
+    partnerSharingEffectiveEpochMs: PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
+    dismissKey: POLICY_NOTICE_DISMISS_STORAGE_KEY,
   }}
 >
   (function () {
     var root = document.getElementById("jev-legal-policy-banner");
     if (!root) return;
-    var upcoming =
-      Date.now() < new Date(effectiveIso + "T00:00:00.000Z").getTime();
-    var upcomingEl = root.querySelector(".legal-policy-banner-upcoming");
-    var postEl = root.querySelector(".legal-policy-banner-post");
+    var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
+    if (!upcoming) {
+      root.hidden = true;
+      return;
+    }
+    var dismissedInMemory = false;
+    function isDismissed() {
+      if (dismissedInMemory) return true;
+      try {
+        return localStorage.getItem(dismissKey) === "1";
+      } catch (e) {
+        return dismissedInMemory;
+      }
+    }
+    function setNoticeVisible(visible) {
+      document.body.classList.toggle("jev-policy-notice-visible", visible);
+    }
+    if (isDismissed()) {
+      root.hidden = true;
+      return;
+    }
     root.hidden = false;
-    if (upcoming) {
-      if (postEl) postEl.hidden = true;
-      if (upcomingEl) upcomingEl.hidden = false;
-    } else {
-      if (upcomingEl) upcomingEl.hidden = true;
-      if (postEl) postEl.hidden = false;
+    setNoticeVisible(true);
+    var dismissBtn = root.querySelector(".legal-policy-banner-dismiss");
+    if (dismissBtn) {
+      dismissBtn.addEventListener("click", function () {
+        dismissedInMemory = true;
+        root.hidden = true;
+        setNoticeVisible(false);
+        try {
+          localStorage.setItem(dismissKey, "1");
+        } catch (e) {}
+      });
     }
   })();
 </script>

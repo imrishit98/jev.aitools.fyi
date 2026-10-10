@@ -3,7 +3,14 @@ import { siteConfig } from "@/lib/site";
 import { categories } from "@/data/categories";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import { FooterSponsors } from "@/components/sponsors";
+import {
+  LEGAL_PATHS,
+  PARTNER_SHARING_EFFECTIVE_DISPLAY,
+  PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
+} from "@/lib/legal";
+
 const year = new Date().getFullYear();
+const privacyHref = LEGAL_PATHS.privacy;
 ---
 <footer class="mt-auto border-t border-border bg-muted/40">
   <div class="mx-auto grid max-w-6xl gap-12 px-4 py-14 sm:px-6 md:grid-cols-12">
@@ -160,6 +167,29 @@ const year = new Date().getFullYear();
   </div>
   <div class="space-y-4 border-t border-border/80 py-5">
     <FooterSponsors client:visible />
+    <p
+      id="jev-legal-policy-footer-notice"
+      class="px-4 text-center text-[11px] leading-relaxed text-muted-foreground"
+      hidden
+    >
+      Our Privacy Policy was updated {PARTNER_SHARING_EFFECTIVE_DISPLAY}.{" "}
+      <a href={privacyHref} class="underline underline-offset-2 hover:text-foreground">
+        Read the Privacy Policy
+      </a>
+    </p>
+    <script
+      is:inline
+      define:vars={{
+        partnerSharingEffectiveEpochMs: PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
+      }}
+    >
+      (function () {
+        var el = document.getElementById("jev-legal-policy-footer-notice");
+        if (!el) return;
+        var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
+        el.hidden = upcoming;
+      })();
+    </script>
     <p class="text-center text-xs text-muted-foreground">
       © {year} Southern East Inc. ·{" "}
       <span class="font-mono text-foreground/90">jev.aitools.fyi</span>
