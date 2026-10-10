@@ -275,6 +275,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Ask the same decision question across every row in a table, then let SOLO reorder columns so prefix caching sees more shared context. Throughput jumps on the project's RTX 4090 demos. This is batch judgment, not a SQL planner.",
   "luobosibing2-dsh-jev-plugin":
     "Twelve optional switches on one Jev settings page inside DeepSeek Harness: rank skills, catch drift, check completion, trim huge logs, or help with workspace approvals. Everything stays off until you turn it on and save a judgment connection.",
+  "yinsongxu-llm2jev":
+    "Run your own weights and still speak POST /v1/systemone. LLM2Jev reads logits in one prefill pass on SGLang, Transformers, or MLX, serves multimodal state, and documents 231 public JevBench items. Independent of TypeSafe.",
+  "shhivv-arc-cua":
+    "One pip install, two tools. arc-driver is MCP control of macOS apps with no Jev key. arc-cua lets a planner delegate a capped subtask to JEV or your own choice provider while literals stay in inputs.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
