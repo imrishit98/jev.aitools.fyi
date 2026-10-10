@@ -2,7 +2,7 @@
 import {
   LEGAL_PATHS,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
-  PARTNER_SHARING_EFFECTIVE_ISO,
+  PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
   POLICY_NOTICE_DISMISS_STORAGE_KEY,
 } from "@/lib/legal";
 
@@ -47,15 +47,14 @@ const privacyHref = LEGAL_PATHS.privacy;
 <script
   is:inline
   define:vars={{
-    effectiveIso: PARTNER_SHARING_EFFECTIVE_ISO,
+    partnerSharingEffectiveEpochMs: PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
     dismissKey: POLICY_NOTICE_DISMISS_STORAGE_KEY,
   }}
 >
   (function () {
     var root = document.getElementById("jev-legal-policy-banner");
     if (!root) return;
-    var upcoming =
-      Date.now() < new Date(effectiveIso + "T00:00:00.000Z").getTime();
+    var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
     if (!upcoming) {
       root.hidden = true;
       return;
@@ -69,16 +68,21 @@ const privacyHref = LEGAL_PATHS.privacy;
         return dismissedInMemory;
       }
     }
+    function setNoticeVisible(visible) {
+      document.body.classList.toggle("jev-policy-notice-visible", visible);
+    }
     if (isDismissed()) {
       root.hidden = true;
       return;
     }
     root.hidden = false;
+    setNoticeVisible(true);
     var dismissBtn = root.querySelector(".legal-policy-banner-dismiss");
     if (dismissBtn) {
       dismissBtn.addEventListener("click", function () {
         dismissedInMemory = true;
         root.hidden = true;
+        setNoticeVisible(false);
         try {
           localStorage.setItem(dismissKey, "1");
         } catch (e) {}

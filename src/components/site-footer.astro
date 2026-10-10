@@ -6,7 +6,7 @@ import { FooterSponsors } from "@/components/sponsors";
 import {
   LEGAL_PATHS,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
-  PARTNER_SHARING_EFFECTIVE_ISO,
+  PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
 } from "@/lib/legal";
 
 const year = new Date().getFullYear();
@@ -179,13 +179,14 @@ const privacyHref = LEGAL_PATHS.privacy;
     </p>
     <script
       is:inline
-      define:vars={{ effectiveIso: PARTNER_SHARING_EFFECTIVE_ISO }}
+      define:vars={{
+        partnerSharingEffectiveEpochMs: PARTNER_SHARING_EFFECTIVE_EPOCH_MS,
+      }}
     >
       (function () {
         var el = document.getElementById("jev-legal-policy-footer-notice");
         if (!el) return;
-        var upcoming =
-          Date.now() < new Date(effectiveIso + "T00:00:00.000Z").getTime();
+        var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
         el.hidden = upcoming;
       })();
     </script>

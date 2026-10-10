@@ -203,3 +203,8 @@
     @apply mb-3 text-sm text-muted-foreground sm:mb-4;
   }
 }
+
+/* Room for the fixed pre-effective policy notice above footer sponsors and copyright. */
+body.jev-policy-notice-visible {
+  padding-bottom: 7rem;
+}
