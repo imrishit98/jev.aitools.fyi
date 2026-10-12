@@ -74,7 +74,7 @@ export const alternativesHub: AlternativesHub = {
       links: [{ match: "Decision Index", href: "https://github.com/apolinario/decision-index" }],
     },
     {
-      question: "Why is Von in the table as a runners-up?",
+      question: "Why is Von in the table as a runner-up?",
       answer:
         "Von sits at row eleven as an editorial speed pick with strong Hugging Face downloads, not because it outranked Liquid d1 on every signal we watch. Read the Von vs Jev page before you treat it as a full migration target.",
       links: [{ match: "Von vs Jev page", href: alternativePath("von") }],

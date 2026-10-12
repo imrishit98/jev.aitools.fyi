@@ -645,6 +645,35 @@ for (const slug of alternativesSlugsMod.alternativeSlugs) {
     slug,
   );
 }
+const crossPageSentenceOwners = new Map();
+for (const slug of alternativesSlugsMod.alternativeSlugs) {
+  const alt = alternativesDataMod.getAlternative(slug);
+  if (!alt) continue;
+  for (const section of alt.sections) {
+    if (section.h === "Migrating from hosted Jev") continue;
+    const sentences = section.body
+      .split(/(?<=[.!?])\s+/)
+      .map((s) => s.replace(/\s+/g, " ").trim().toLowerCase())
+      .filter((s) => s.length > 50);
+    for (const sentence of sentences) {
+      const owners = crossPageSentenceOwners.get(sentence) ?? new Set();
+      owners.add(slug);
+      crossPageSentenceOwners.set(sentence, owners);
+    }
+  }
+}
+const crossPageDupes = [...crossPageSentenceOwners.entries()].filter(
+  ([, owners]) => owners.size >= 2,
+);
+if (crossPageDupes.length > 0) {
+  const sample = crossPageDupes
+    .slice(0, 3)
+    .map(([sentence, owners]) => `${[...owners].join("+")}: ${sentence.slice(0, 72)}…`)
+    .join("; ");
+  errors.push(
+    `alternatives cross-page duplicate section sentences (${crossPageDupes.length}): ${sample}`,
+  );
+}
 const layaAlt = alternativesDataMod.getAlternative("laya");
 if (layaAlt) {
   assertFactSources("laya", layaAlt.facts);

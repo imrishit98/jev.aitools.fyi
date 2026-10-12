@@ -136,7 +136,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What clef is",
-        "body": "Cloudflare clef answers typed decision questions through Workers AI while publishing weights on Hugging Face for inspection. You pay Cloudflare meters instead of TypeSafe Jev tokens, which helps when Workers, R2, and D1 already anchor your stack. clef-flash is a lower priced SKU with a different public Decision Index score. clef is not a drop-in for every Jev gateway integration, but it competes in the same category: parallel decisions over explicit options, not open-ended chat. clef Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Cloudflare or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Cloudflare clef answers typed decision questions through Workers AI while publishing weights on Hugging Face for inspection. You pay Cloudflare meters instead of TypeSafe Jev tokens, which helps when Workers, R2, and D1 already anchor your stack. clef-flash is a lower priced SKU with a different public Decision Index score. clef is not a drop-in for every Jev gateway integration, but it competes in the same category: parallel decisions over explicit options, not open-ended chat."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -148,7 +148,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "Workers AI bills clef and clef-flash on separate meters; use the facts table for $/M input and add your Workers request volume before you compare to api.typesafe.ai."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -160,7 +160,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Start from Cloudflare clef and clef-flash model pages, then cross-check Workers AI limits against catalog clef listings."
       },
       {
         "h": "Product-specific notes",
@@ -230,7 +230,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "seoDescription": "Kev is an open Jev-like model family on Qwen with a System One compatible server. Compare sizes, hardware, accuracy, license and migration from Jev.",
     "h1": "Kev as a Jev alternative",
     "keyPoint": "Kev ships Apache 2.0 decision checkpoints with a TypeSafe-compatible HTTP server, so many teams only change baseURL while keeping parallel Choice, Score, and Noul questions.",
-    "summary": "Kev is Jared Palmer's open-weight family trained on Qwen3.5 and Qwen3.8 bases. kev.serve exposes POST /v1/systemone so the TypeSafe Python SDK can target localhost. README publishes vendor-reported accuracy and Brier tables against hosted Jev on frozen suites. Independent Decision Index scores Kev-27B slightly below Jev in our snapshot, but self-host economics and fine-tuning freedom drive most evaluations.",
+    "summary": "Kev is Jared Palmer's open-weight family trained on Qwen 3.5 and Qwen 3.8 bases. kev.serve exposes POST /v1/systemone so the TypeSafe Python SDK can target localhost. README publishes vendor-reported accuracy and Brier tables against hosted Jev on frozen suites. Independent Decision Index scores Kev-27B slightly below Jev in our snapshot, but self-host economics and fine-tuning freedom drive most evaluations.",
     "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
@@ -339,7 +339,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What Kev is",
-        "body": "Kev is Jared Palmer's open-weight family trained on Qwen3.5 and Qwen3.8 bases. kev.serve exposes POST /v1/systemone so the TypeSafe Python SDK can target localhost. README publishes vendor-reported accuracy and Brier tables against hosted Jev on frozen suites. Independent Decision Index scores Kev-27B slightly below Jev in our snapshot, but self-host economics and fine-tuning freedom drive most evaluations. Kev Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Jared Palmer or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Kev is Jared Palmer's open-weight family trained on Qwen 3.5 and Qwen 3.8 bases. kev.serve exposes POST /v1/systemone so the TypeSafe Python SDK can target localhost. README publishes vendor-reported accuracy and Brier tables against hosted Jev on frozen suites. Independent Decision Index scores Kev-27B slightly below Jev in our snapshot, but self-host economics and fine-tuning freedom drive most evaluations."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -351,7 +351,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "Self-host economics are GPU hours, checkpoint storage, and on-call time; vendor README tables against hosted Jev are directional, not your invoice."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -363,7 +363,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Use the jaredpalmer/kev catalog listing and kev.serve README for SDK wiring; sibling pages on this hub compare other System One servers."
       },
       {
         "h": "Product-specific notes",
@@ -466,7 +466,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "row": "Hosted price (input)",
-        "them": "gpt-6-luna (vendor, beta): $0.1 per M input tokens (vendor list, 2026-10-12)",
+        "them": "gpt-6-luna (vendor, beta): $0.10 per M input tokens (vendor list, 2026-10-12)",
         "jev": "$0.042 per M input tokens (vendor, TypeSafe docs)",
         "sourceLabel": "Price lists",
         "sourceUrl": "https://docs.typesafe.ai"
@@ -538,7 +538,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What Decisions API is",
-        "body": "OpenAI announced Decisions API in public beta with a Luna-class decision model priced per million input tokens in community posts. It targets the same engineering pain as Jev: software needs scored options, not essays. Beta terms, model names, and regional availability can change quickly. Our snapshot does not list OpenAI on the public Decision Index board, so treat accuracy claims as vendor-beta until you run your own eval harness. Decisions API Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not OpenAI or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "OpenAI announced Decisions API in public beta with a Luna-class decision model priced per million input tokens in community posts. It targets the same engineering pain as Jev: software needs scored options, not essays. Beta terms, model names, and regional availability can change quickly. Our snapshot does not list OpenAI on the public Decision Index board, so treat accuracy claims as vendor-beta until you run your own eval harness."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -550,7 +550,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "Decisions API beta pricing in community posts is per-million input tokens; confirm enterprise list price in your OpenAI account before finops sign-off."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -562,7 +562,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Anchor on the Decisions API beta announcement and OpenAI privacy policy, then read hosted Jev facts when you need an open-weight exit ramp."
       },
       {
         "h": "Product-specific notes",
@@ -728,7 +728,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What pplx-decider is",
-        "body": "Perplexity publishes pplx-decider checkpoints on Hugging Face under Apache 2.0 and discusses hosted pricing in community threads. The model targets parallel decision questions with vendor-reported multimodal inputs. Independent Decision Index scores place Perplexity Decider v1.1 slightly above hosted Jev in edition 0.3.1, but that is still a public benchmark slice, not your production labels. Plan calibration and serving GPUs before you promise SLA parity with api.typesafe.ai. pplx-decider Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Perplexity or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Perplexity publishes pplx-decider checkpoints on Hugging Face under Apache 2.0 and discusses hosted pricing in community threads. The model targets parallel decision questions with vendor-reported multimodal inputs. Independent Decision Index scores place Perplexity Decider v1.1 slightly above hosted Jev in edition 0.3.1, but that is still a public benchmark slice, not your production labels. Plan calibration and serving GPUs before you promise SLA parity with api.typesafe.ai."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -740,7 +740,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "Hosted Perplexity inference and self-hosted pplx-decider weights have different cost models; community thread pricing may not match your contract tier."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -752,7 +752,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "HF model card, Perplexity Decisions API reference, and community pricing thread are the official trio before you pick hosted vs self-host."
       },
       {
         "h": "Product-specific notes",
@@ -815,7 +815,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "ollaya-dev-ollaya"
     ],
     "seoTitle": "Decider vs Jev: Mapika's small open decision models",
-    "seoDescription": "Decider is an open System One model family on Qwen3.5, from 0.8B up. Compare speed, accuracy, hardware, license and the /v1/systemone server with Jev.",
+    "seoDescription": "Decider is an open System One model family on Qwen 3.5, from 0.8B up. Compare speed, accuracy, hardware, license and the /v1/systemone server with Jev.",
     "h1": "Mapika decider as a Jev alternative",
     "keyPoint": "decider is Mapika's independent System One class family with transparent mixture notes and HTTP compatible with TypeSafe clients.",
     "summary": "Mapika/decider ships Apache 2.0 code and multiple Hugging Face checkpoints from 2B dense to 35B-A3b MoE. README states no affiliation with TypeSafe and no distillation from hosted Jev. decider.serve and decider.serve_vllm expose POST /v1/systemone. Standing sections quote JevBench and Decision Index rows as vendor-read leaderboard snapshots. Independent Decision Index scores for decider-2B are lower than Jev in our import, so evaluate on your data before you replace production gates.",
@@ -927,7 +927,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What decider is",
-        "body": "Mapika/decider ships Apache 2.0 code and multiple Hugging Face checkpoints from 2B dense to 35B-A3b MoE. README states no affiliation with TypeSafe and no distillation from hosted Jev. decider.serve and decider.serve_vllm expose POST /v1/systemone. Standing sections quote JevBench and Decision Index rows as vendor-read leaderboard snapshots. Independent Decision Index scores for decider-2B are lower than Jev in our import, so evaluate on your data before you replace production gates. decider Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Mapika or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Mapika/decider ships Apache 2.0 code and multiple Hugging Face checkpoints from 2B dense to 35B-A3b MoE. README states no affiliation with TypeSafe and no distillation from hosted Jev. decider.serve and decider.serve_vllm expose POST /v1/systemone. Standing sections quote JevBench and Decision Index rows as vendor-read leaderboard snapshots. Independent Decision Index scores for decider-2B are lower than Jev in our import, so evaluate on your data before you replace production gates."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -935,11 +935,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Fit and tradeoffs",
-        "body": "Choose decider when your constraints match its deployment model: You want Qwen3.5 trained decider weights with public mixture.py; You need vLLM serve for throughput on your cluster; You prefer an independent lineage from Jared Palmer Kev."
+        "body": "Choose decider when your constraints match its deployment model: You want Qwen 3.5 trained decider weights with public mixture.py; You need vLLM serve for throughput on your cluster; You prefer an independent lineage from Jared Palmer Kev."
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "decider checkpoints range from 2B dense to 35B MoE; size GPUs from the HF card for the variant you pin, not from a smaller demo model."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -951,7 +951,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Mapika/decider README plus decider.serve docs pair with HF checkpoint cards for each size you evaluate."
       },
       {
         "h": "Product-specific notes",
@@ -959,7 +959,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       }
     ],
     "whenChooseThem": [
-      "You want Qwen3.5 trained decider weights with public mixture.py",
+      "You want Qwen 3.5 trained decider weights with public mixture.py",
       "You need vLLM serve for throughput on your cluster",
       "You prefer an independent lineage from Jared Palmer Kev"
     ],
@@ -1126,7 +1126,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What GLiNER2.5 Decide is",
-        "body": "Fastino publishes GLiNER2.5-Decide on Hugging Face under Apache 2.0 with strong download adoption relative to niche decision stacks. It is not a full System One server out of the box: you integrate Decide outputs into application gates rather than assuming POST /v1/systemone parity. Independent Decision Index scores are lower than Jev in edition 0.3.1, which is expected when the harness stresses broad decision suites. Decide can still win when entity-span workflows dominate and you want a smaller specialized model instead of a 27B decider. GLiNER2.5 Decide Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Fastino or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Fastino publishes GLiNER2.5-Decide on Hugging Face under Apache 2.0 with strong download adoption relative to niche decision stacks. It is not a full System One server out of the box: you integrate Decide outputs into application gates rather than assuming POST /v1/systemone parity. Independent Decision Index scores are lower than Jev in edition 0.3.1, which is expected when the harness stresses broad decision suites. Decide can still win when entity-span workflows dominate and you want a smaller specialized model instead of a 27B decider."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -1138,7 +1138,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "GLiNER Decide can run on CPU for shallow gates; weigh download-friendly checkpoints against 27B decoder rent when you model $/decision."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -1150,7 +1150,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Fastino GLiNER2.5-Decide on Hugging Face is the source of truth for spans, licenses, and integration examples."
       },
       {
         "h": "Product-specific notes",
@@ -1321,7 +1321,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What SemIf is",
-        "body": "SemIf packages Choice, Score, and Noul style batches over shared state with probabilities read from logits instead of chat decoding. README stresses independence from TypeSafe. GitHub stars are high for a research server, but Decision Index does not list SemIf in our snapshot, so treat benchmarks as DIY. WebGPU browser demos help you explain the category to stakeholders before you rack GPUs. SemIf Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Theo Lee CJ or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "SemIf packages Choice, Score, and Noul style batches over shared state with probabilities read from logits instead of chat decoding. README stresses independence from TypeSafe. GitHub stars are high for a research server, but Decision Index does not list SemIf in our snapshot, so treat benchmarks as DIY. WebGPU browser demos help you explain the category to stakeholders before you rack GPUs."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -1333,7 +1333,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "SemIf is research infrastructure: budget engineering time for serving, monitoring, and rollback, not only cloud token meters."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -1345,7 +1345,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "SemIf-OpenJev on GitHub and openjev.com demos are separate surfaces; pin the commit you ship in production."
       },
       {
         "h": "Product-specific notes",
@@ -1512,7 +1512,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What CLM 8B is",
-        "body": "Contrastive-LM/CLM publishes Apache 2.0 weights and training code for decision heads on Qwen3-8B. Adoption on GitHub and Hugging Face is meaningful for a research repo, but independent Decision Index scores are far below Jev in edition 0.3.1. CLM is best viewed as a laboratory checkpoint: useful when your team already fine-tunes Qwen and wants published head architectures, not when you need a turnkey hosted API tomorrow. CLM 8B Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Contrastive LM or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Contrastive-LM/CLM publishes Apache 2.0 weights and training code for decision heads on Qwen3-8B. Adoption on GitHub and Hugging Face is meaningful for a research repo, but independent Decision Index scores are far below Jev in edition 0.3.1. CLM is best viewed as a laboratory checkpoint: useful when your team already fine-tunes Qwen and wants published head architectures, not when you need a turnkey hosted API tomorrow."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -1524,7 +1524,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "CLM is a lab checkpoint on Qwen3-8B; expect training and serving labor instead of a turnkey hosted per-million price."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -1536,11 +1536,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "Contrastive-LM/CLM repo and CLM-v0.1-8B weights card document head designs; compare hosted clef if you need a faster API path."
       },
       {
         "h": "Product-specific notes",
-        "body": "CLM publishes contrastive head architectures on Qwen3-8B; you still own serving, calibration, and HTTP glue. Decision Index scores for CLM are far below hosted Jev in edition 0.3.1, so treat CLM as a lab checkpoint. There is no published Stanford or NVIDIA affiliation on the official Contrastive-LM repositories we link. Contrastive training recipes may help when you already fine-tune Qwen and want published head designs to iterate on. Laboratory checkpoints still need security review for weight provenance and license terms before production trials. If you only need a hosted API this quarter, CLM is the wrong shortcut compared to clef or hosted Jev."
+        "body": "CLM publishes contrastive head architectures on Qwen3-8B; you still own serving, calibration, and HTTP glue. Decision Index scores for CLM are far below hosted Jev in edition 0.3.1, so treat CLM as a lab checkpoint. Contrastive training recipes may help when you already fine-tune Qwen and want published head designs to iterate on. Laboratory checkpoints still need security review for weight provenance and license terms before production trials. If you only need a hosted API this quarter, CLM is the wrong shortcut compared to clef or hosted Jev. Pin the CLM-v0.1-8B revision you benchmark so head weights do not drift between training runs."
       }
     ],
     "whenChooseThem": [
@@ -1707,7 +1707,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What Liquid d1 is",
-        "body": "LiquidAI ships d1-3B on Hugging Face under the LFM 1.0 license with decision-oriented tuning. Independent Decision Index scores land near 40 in edition 0.3.1, below Jev but above several specialist checkpoints. d1 targets efficient inference on edge GPUs. You still need to wrap inference in your System One compatible server if you want drop-in SDK parity with api.typesafe.ai. Liquid d1 Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not Liquid AI or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "LiquidAI ships d1-3B on Hugging Face under the LFM 1.0 license with decision-oriented tuning. Independent Decision Index scores land near 40 in edition 0.3.1, below Jev but above several specialist checkpoints. d1 targets efficient inference on edge GPUs. You still need to wrap inference in your System One compatible server if you want drop-in SDK parity with api.typesafe.ai."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -1719,7 +1719,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "d1-3B ships under the LFM 1.0 license; legal review and edge GPU sizing matter as much as headline $/M comparisons to hosted Jev."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -1731,7 +1731,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "LiquidAI d1-3B model card covers LFM license terms and modality notes; catalog Liquid listings link related edge stacks."
       },
       {
         "h": "Product-specific notes",
@@ -1793,7 +1793,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "seoDescription": "von is a non-autoregressive System One model with order-invariant option scores. Compare local latency claims, setup, license and accuracy with Jev.",
     "h1": "von vs Jev",
     "keyPoint": "Von is a compact non-autoregressive encoder for fast Choice, Noul, and Score style routing when you can trade some benchmark breadth for milliseconds.",
-    "summary": "Von publishes Apache 2.0 weights with Python and TypeScript clients. README emphasizes order-invariant option scoring and sub-25 ms inference on author hardware, with gameplay demos comparing kills and latency to hosted Jev API calls. Von is a runners-up pick on the hub ranked table because teams often pair it with larger decoders, but Hugging Face downloads are high for its size class. Decision Index does not list Von in our snapshot, so run your own harness before you promise accuracy parity.",
+    "summary": "Von publishes Apache 2.0 weights with Python and TypeScript clients. README emphasizes order-invariant option scoring and sub-25 ms inference on author hardware, with gameplay demos comparing kills and latency to hosted Jev API calls. Von is a runner-up pick on the hub ranked table because teams often pair it with larger decoders, but Hugging Face downloads are high for its size class. Decision Index does not list Von in our snapshot, so run your own harness before you promise accuracy parity.",
     "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
@@ -1902,7 +1902,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "sections": [
       {
         "h": "What Von is",
-        "body": "Von publishes Apache 2.0 weights with Python and TypeScript clients. README emphasizes order-invariant option scoring and sub-25 ms inference on author hardware, with gameplay demos comparing kills and latency to hosted Jev API calls. Von is a runners-up pick on the hub ranked table because teams often pair it with larger decoders, but Hugging Face downloads are high for its size class. Decision Index does not list Von in our snapshot, so run your own harness before you promise accuracy parity. Von Read vendor docs for exact JSON fields. This page is independent writing on jev.aitools.fyi; we are not wfzyx or TypeSafe. When README tables compare to hosted Jev, we label them vendor-reported. When we cite Decision Index, we label the harness as independent."
+        "body": "Von publishes Apache 2.0 weights with Python and TypeScript clients. README emphasizes order-invariant option scoring and sub-25 ms inference on author hardware, with gameplay demos comparing kills and latency to hosted Jev API calls. Von is a runner-up pick on the hub ranked table because teams often pair it with larger decoders, but Hugging Face downloads are high for its size class. Decision Index does not list Von in our snapshot, so run your own harness before you promise accuracy parity."
       },
       {
         "h": "Accuracy and benchmarks",
@@ -1914,7 +1914,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Pricing and ops",
-        "body": "Hosted and self-hosted cost models differ: compare vendor list prices to GPU, storage, and on-call time for your traffic shape."
+        "body": "Von targets sub-25 ms encoder paths on author hardware; reproduce latency and cost on your CPUs or GPUs before you promise gameplay-demo economics."
       },
       {
         "h": "Migrating from hosted Jev",
@@ -1926,7 +1926,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "See catalog listings and sibling comparison pages on this hub for a second opinion. Sources at the bottom link to official vendor repositories."
+        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row eleven as a speed pick, not a full migration default."
       },
       {
         "h": "Product-specific notes",
@@ -1962,7 +1962,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Why is Von outside the hub ranked table?",
-        "answer": "The ranked table lists the ten models teams most often benchmark for full System One migrations (Laya through Liquid d1). Von remains a popular runners-up when you need a fast encoder; see the hub FAQ."
+        "answer": "The ranked table lists the ten models teams most often benchmark for full System One migrations (Laya through Liquid d1). Von remains a popular runner-up when you need a fast encoder; see the hub FAQ."
       }
     ],
     "sources": [

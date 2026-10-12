@@ -109,6 +109,21 @@ const siblings = alt.siblingSlugs
                   >
                     {fact.sourceLabel}
                   </a>
+                  {
+                    fact.secondarySourceUrl && fact.secondarySourceLabel ? (
+                      <>
+                        <span class="text-muted-foreground/70"> · </span>
+                        <a
+                          href={withOutboundRef(fact.secondarySourceUrl)}
+                          rel={externalLinkRel(fact.secondarySourceUrl)}
+                          target="_blank"
+                          class="text-primary hover:underline"
+                        >
+                          {fact.secondarySourceLabel}
+                        </a>
+                      </>
+                    ) : null
+                  }
                 </td>
               </tr>
             ))

@@ -72,6 +72,13 @@ export function hfAdoption(repo: keyof typeof metrics.huggingface): string {
   return `${row.downloads.toLocaleString("en-US")} HF downloads${license} (${row.checkedAt})`;
 }
 
+export function githubAndHfAdoption(
+  githubRepo: keyof typeof metrics.github,
+  hfRepo: keyof typeof metrics.huggingface,
+): string {
+  return `${githubAdoption(githubRepo)}; ${hfAdoption(hfRepo)}`;
+}
+
 export const jevSystemOneFacts: AlternativeFact[] = [
   {
     row: "API shape",

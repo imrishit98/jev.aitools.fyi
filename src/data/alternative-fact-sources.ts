@@ -5,6 +5,13 @@ import {
   jevDecisionIndexSource,
   jevHostedPriceSource,
   alternativesMetrics,
+  githubAdoption,
+  hfAdoption,
+  githubAndHfAdoption,
+  decisionIndexLabel,
+  hostedPricePerM,
+  jevHostedPrice,
+  jevDecisionIndex,
 } from "@/data/alternatives-shared";
 
 const TYPESAFE_API = "https://docs.typesafe.ai/api";
@@ -21,6 +28,27 @@ type ProductSources = {
   weights?: { url: string; label: string };
   github?: { url: string; label: string };
   adoption?: { url: string; label: string };
+};
+
+const ADOPTION_REPOS: Partial<
+  Record<AlternativeSlug, { github: keyof typeof alternativesMetrics.github; hf: keyof typeof alternativesMetrics.huggingface }>
+> = {
+  kev: { github: "jaredpalmer/kev", hf: "jaredpalmer/kev-4b" },
+  "mapika-decider": { github: "Mapika/decider", hf: "Mapika/decider-2b" },
+  "clm-8b": { github: "Contrastive-LM/CLM", hf: "Contrastive-LM/CLM-v0.1-8B" },
+  von: { github: "wfzyx/von", hf: "wfzyx/von" },
+};
+
+const FIRST_RELEASE_SOURCE: Partial<Record<AlternativeSlug, { url: string; label: string }>> = {
+  "cloudflare-clef": {
+    url: "https://developers.cloudflare.com/workers-ai/models/clef/",
+    label: "Cloudflare clef model page",
+  },
+  semif: { url: "https://github.com/TheoLeeCJ/SemIf-OpenJev", label: "GitHub: SemIf-OpenJev README" },
+  "openai-decisions-api": {
+    url: "https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877",
+    label: "OpenAI Decisions API beta announcement",
+  },
 };
 
 const BY_SLUG: Record<AlternativeSlug, ProductSources> = {
@@ -166,6 +194,8 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
   const row = fact.row;
   let sourceUrl = fact.sourceUrl;
   let sourceLabel = fact.sourceLabel;
+  let secondarySourceUrl: string | undefined;
+  let secondarySourceLabel: string | undefined;
   let them = fact.them;
   let jev = fact.jev;
 
@@ -189,7 +219,8 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
     } else if (src.pricing) {
       sourceUrl = src.pricing.url;
       sourceLabel = src.pricing.label;
-    } else if (them.toLowerCase().includes("self-host")) {
+    } else if (them.toLowerCase().includes("self-host") || them.toLowerCase().includes("self-host only")) {
+      them = NOT_PUBLISHED_LABEL;
       sourceUrl = src.weights?.url ?? src.vendorHome;
       sourceLabel = src.weights?.label ?? src.vendorLabel;
     } else {
@@ -228,24 +259,73 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
     sourceUrl = DI_JSON;
     sourceLabel = jevDi.label;
   } else if (row === "Data handling") {
-    sourceUrl = TYPESAFE_PRIVACY;
-    sourceLabel = "TypeSafe privacy (Jev); vendor terms for alternative";
     if (slug === "cloudflare-clef") {
       sourceUrl = "https://developers.cloudflare.com/workers-ai/privacy/";
       sourceLabel = "Cloudflare Workers AI privacy";
     } else if (slug === "openai-decisions-api") {
       sourceUrl = "https://openai.com/policies/privacy-policy";
       sourceLabel = "OpenAI privacy policy";
+    } else if (
+      ["kev", "mapika-decider", "semif", "clm-8b", "von", "fastino-gliner-decide", "liquid-d1"].includes(slug)
+    ) {
+      them = NOT_PUBLISHED_LABEL;
+      sourceUrl = src.github?.url ?? src.vendorHome;
+      sourceLabel = "Self-hosted data handling not published on a single vendor page";
+    } else {
+      sourceUrl = TYPESAFE_PRIVACY;
+      sourceLabel = "TypeSafe privacy policy (Jev column)";
     }
   } else if (row === "SDKs") {
     sourceUrl = src.api?.url ?? src.github?.url ?? src.vendorHome;
     sourceLabel = src.api?.label ?? src.vendorLabel;
   } else if (row === "Adoption signal") {
-    sourceUrl = src.adoption?.url ?? src.github?.url ?? src.weights?.url ?? src.vendorHome;
-    sourceLabel = src.adoption?.label ?? src.vendorLabel;
+    const dual = ADOPTION_REPOS[slug];
+    if (dual) {
+      them = githubAndHfAdoption(dual.github, dual.hf);
+      sourceUrl = `https://github.com/${dual.github}`;
+      sourceLabel = "GitHub repository (stars)";
+      secondarySourceUrl = `https://huggingface.co/${dual.hf}`;
+      secondarySourceLabel = "Hugging Face model card (downloads)";
+    } else if (slug === "cloudflare-clef") {
+      them = hfAdoption("Cloudflare/clef");
+      sourceUrl = "https://huggingface.co/Cloudflare/clef";
+      sourceLabel = "Hugging Face: Cloudflare/clef";
+    } else if (slug === "perplexity-pplx-decider") {
+      them = hfAdoption("perplexity-ai/pplx-decider-v1.1-27b");
+      sourceUrl = "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b";
+      sourceLabel = "Hugging Face model card";
+    } else if (slug === "fastino-gliner-decide") {
+      them = hfAdoption("fastino/GLiNER2.5-Decide");
+      sourceUrl = "https://huggingface.co/fastino/GLiNER2.5-Decide";
+      sourceLabel = "Hugging Face model card";
+    } else if (slug === "liquid-d1") {
+      them = hfAdoption("LiquidAI/d1-3B");
+      sourceUrl = "https://huggingface.co/LiquidAI/d1-3B";
+      sourceLabel = "Hugging Face model card";
+    } else if (slug === "semif") {
+      them = githubAdoption("TheoLeeCJ/SemIf-OpenJev");
+      sourceUrl = "https://github.com/TheoLeeCJ/SemIf-OpenJev";
+      sourceLabel = "GitHub: SemIf-OpenJev (stars)";
+    } else if (slug === "openai-decisions-api") {
+      them = NOT_PUBLISHED_LABEL;
+      sourceUrl = src.vendorHome;
+      sourceLabel = src.vendorLabel;
+    } else {
+      sourceUrl = src.adoption?.url ?? src.github?.url ?? src.weights?.url ?? src.vendorHome;
+      sourceLabel = src.adoption?.label ?? src.vendorLabel;
+    }
+    if (row === "Adoption signal" && jev.includes("Vendor hosted")) {
+      jev = NOT_PUBLISHED_LABEL;
+    }
   } else if (row === "First public release") {
-    sourceUrl = src.github?.url ?? src.weights?.url ?? src.vendorHome;
-    sourceLabel = src.github?.label ?? src.vendorLabel;
+    const release = FIRST_RELEASE_SOURCE[slug];
+    if (release) {
+      sourceUrl = release.url;
+      sourceLabel = release.label;
+    } else {
+      sourceUrl = src.github?.url ?? src.weights?.url ?? src.vendorHome;
+      sourceLabel = src.github?.label ?? src.vendorLabel;
+    }
   } else if (!isBareFactSource(fact.sourceUrl) && !isInvalidCompetitorFactSource(slug, fact, fact.sourceUrl)) {
     return { ...fact, them, jev, sourceUrl: fact.sourceUrl, sourceLabel: fact.sourceLabel };
   } else {
@@ -266,7 +346,47 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
     sourceLabel = src.vendorLabel;
   }
 
-  return { ...fact, them, jev, sourceUrl, sourceLabel };
+  // Sync hosted price / DI rows from metrics for Jev column consistency
+  if (row === "Hosted price (input)" && jev.includes("$0.042")) {
+    jev = jevHostedPrice();
+    sourceUrl = jevPrice.url;
+    sourceLabel = jevPrice.label;
+  }
+  if (row === "Decision Index (public)" || row.includes("Decision Index")) {
+    const scoreKeys: Partial<Record<AlternativeSlug, keyof typeof alternativesMetrics.decisionIndexFullScores>> = {
+      "cloudflare-clef": "cloudflare-clef",
+      kev: "kev-27b",
+      "perplexity-pplx-decider": "perplexity-decider-v1.1",
+      "mapika-decider": "decider-2b",
+      "fastino-gliner-decide": "gliner25-decide",
+      "clm-8b": "clm-v0.1-8b",
+      "liquid-d1": "liquid-d1-3b",
+    };
+    const key = scoreKeys[slug];
+    if (key) them = decisionIndexLabel(key);
+    jev = jevDecisionIndex();
+    sourceUrl = DI_JSON;
+    sourceLabel = jevDi.label;
+  }
+  if (row === "Hosted price (input)" && slug === "cloudflare-clef") {
+    them = hostedPricePerM("cloudflare-clef");
+  }
+  if (row === "Hosted price (input)" && slug === "perplexity-pplx-decider") {
+    them = hostedPricePerM("perplexity-pplx-decider");
+  }
+  if (row === "Hosted price (input)" && slug === "openai-decisions-api") {
+    them = hostedPricePerM("openai-decisions-api");
+  }
+
+  return {
+    ...fact,
+    them,
+    jev,
+    sourceUrl,
+    sourceLabel,
+    secondarySourceUrl,
+    secondarySourceLabel,
+  };
 }
 
 export function resolveAlternativeFacts(slug: AlternativeSlug, facts: AlternativeFact[]): AlternativeFact[] {

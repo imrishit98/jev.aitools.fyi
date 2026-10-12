@@ -5,19 +5,11 @@
     "oneLiner": "AI-native site builder that uses Jev to pick headline, layout, and copy per visitor segment in milliseconds.",
     "description": "Ploy is a marketing site product that personalizes funnel pages without running a full A/B test program for every headline tweak. Builders describe segments and variants; Jev scores which combination fits the incoming visitor context. The public launch clip on X shows roughly twenty-five millisecond decisions per visitor. Listed here as a shipped product pattern for Choice-driven personalization, not a directory stub.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "personalization",
-      "product"
-    ],
+    "tags": ["applications", "marketing", "personalization", "product"],
     "url": "https://ploy.ai",
     "postUrl": "https://x.com/bryantchou/status/2101485995669770522",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "bryantchou",
     "creatorName": "Bryant Chou",
     "sourcePlatform": "x",
@@ -31,17 +23,10 @@
     "oneLiner": "Free browser agent that records tasks; Jev speeds routing on the hot path while the LLM still plans steps.",
     "description": "rtrvr.ai is a browser automation product aimed at repeatable recorded workflows without forcing every user to bring their own API keys on day one. Community demos highlight Jev shaving latency on routing decisions inside the agent loop while larger models handle open-ended planning. Treat this listing as the product home for the rtrvr.ai domain referenced in builder clips on the showcase.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "agents",
-      "product",
-      "browser-use"
-    ],
+    "tags": ["browser-computer-use", "agents", "product", "browser-use"],
     "url": "https://rtrvr.ai",
     "postUrl": "https://x.com/b_kalisetty/status/2100693198175928707",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "b_kalisetty",
     "creatorName": "Bhavani Kalisetty",
     "sourcePlatform": "x",
@@ -53,19 +38,12 @@
     "oneLiner": "Standards gate for agent-written diffs: YAML rules plus parallel Jev questions before merge.",
     "description": "jev-codes is a devtools project from Kushal Agarwal that points Jev at a pull request diff and a YAML standards pack. Instead of one sprawling LLM review essay, the tool asks focused System One questions and surfaces merge-ready opinions. The showcase clip walks through wiring standards once and reusing them across repos.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "review",
-      "devtools",
-      "product"
-    ],
+    "tags": ["agent-tooling", "review", "devtools", "product"],
     "language": "TypeScript",
     "url": "https://github.com/kushwho/jev-codes",
     "repoUrl": "https://github.com/kushwho/jev-codes",
     "postUrl": "https://x.com/kushwho11146/status/2101103318386758011",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "kushwho11146",
     "creatorName": "Kushal Agarwal",
     "sourcePlatform": "github",
@@ -78,21 +56,13 @@
     "oneLiner": "TanStack AI ships decide() for typed Choice, Score, and boolean paths so agent loops stay structured.",
     "description": "TanStack AI is the TanStack team's AI SDK surface. The decide() helper exposes System One style typed decisions to TypeScript apps without hand-rolling HTTP clients for every question schema. Official docs live on tanstack.com; the launch clip on X shows decide() inside real agent code. This listing tracks the integration as a first-class way to call Jev-shaped primitives from TanStack apps.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "sdk",
-      "typescript",
-      "agents"
-    ],
+    "tags": ["integrations", "sdk", "typescript", "agents"],
     "language": "TypeScript",
     "url": "https://tanstack.com/ai/latest",
     "repoUrl": "https://github.com/TanStack/ai",
     "postUrl": "https://x.com/tan_stack/status/2101659024890765819",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "tan_stack",
     "creatorName": "TanStack",
     "sourcePlatform": "official",
@@ -106,17 +76,10 @@
     "oneLiner": "Local feed scoring: Jev ranks posts already on screen against your rules with BYOK and no telemetry pitch.",
     "description": "Your Signal is an open experiment from Fabio Angela for ranking social feed items against personal rules on device. The builder clip emphasizes local scoring with bring-your-own-key configuration instead of shipping text to a mystery cloud for relevance labels. Listing tracks the project as described in the public showcase post while we wait for a stable product URL beyond the launch thread.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "social",
-      "ranking",
-      "product"
-    ],
+    "tags": ["applications", "social", "ranking", "product"],
     "url": "https://x.com/FabioAngela79/status/2101013867627159592",
     "postUrl": "https://x.com/FabioAngela79/status/2101013867627159592",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "FabioAngela79",
     "creatorName": "Fabio Angela",
     "sourcePlatform": "x",
@@ -129,17 +92,10 @@
     "oneLiner": "Playful code-review gate that bounces bad diffs; merge when Jev says yes, not when vibes say maybe.",
     "description": "Magic Jev Ball is a builder demo from Agamya that frames code review as a merge gate with visible Jev judgments. The showcase clip treats it as a teaching pattern for parallel questions on diffs before you trust an agent with write access. Primary public reference is the launch post on X until a canonical repo link is published separately.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "review",
-      "devtools",
-      "product"
-    ],
+    "tags": ["applications", "review", "devtools", "product"],
     "url": "https://x.com/acharyaagamya/status/2101129105676861621",
     "postUrl": "https://x.com/acharyaagamya/status/2101129105676861621",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "acharyaagamya",
     "creatorName": "Agamya",
     "sourcePlatform": "x",
@@ -151,19 +107,11 @@
     "oneLiner": "Link management platform that uses Jev to flag malicious dub.sh URLs trained on historical abuse domains.",
     "description": "Dub (dub.co) is a modern link attribution and short-link product used by teams for branded dub.sh links and analytics. Steven Tey's public build clip describes feeding ten thousand plus previously caught malicious domains into Jev so new short links can be scored for abuse before they spread. The approach leans on Jev token efficiency so scanning stays cheap at short-link volume. This listing tracks the shipped abuse-detection pattern from the launch post, not a speculative integration.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "security",
-      "links",
-      "product"
-    ],
+    "tags": ["applications", "security", "links", "product"],
     "url": "https://dub.co",
     "postUrl": "https://x.com/steventey/status/2101706435898069093",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "steventey",
     "creatorName": "Steven Tey",
     "sourcePlatform": "x",
@@ -176,17 +124,10 @@
     "oneLiner": "Email client that live-prioritizes inbox threads by importance with Jev instead of reverse chronological order.",
     "description": "Avec (avec.ai) is an email product from Jonathan Unikowski's team that re-sorts incoming mail by importance as messages arrive. The public showcase clip states the experience is built with Jev and coming to Avec soon, positioning structured ranking as the antidote to endless chronological scrolling. Treat avec.ai as the product home while the app rolls out; Jev usage is described in the attributed launch video on this directory.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "email",
-      "ranking",
-      "product"
-    ],
+    "tags": ["applications", "email", "ranking", "product"],
     "url": "https://avec.ai",
     "postUrl": "https://x.com/jnnnthnn/status/2101399331115077760",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "jnnnthnn",
     "creatorName": "Jonathan Unikowski",
     "sourcePlatform": "x",
@@ -199,19 +140,11 @@
     "oneLiner": "Open-source pixelml-av video indexing with Grok answers and Jev relevance plus support checks on long-form video.",
     "description": "PixelML (pixelml.com) builds Composer and Sentinel agents for indexing video to text so LLMs can reason over footage. Sean Phan's benchmark clip compares pixelml-av plus Grok plus Jev against Gemini Flash on a seventy-five minute file: Jev filters retrieved evidence with local temporal context before Grok answers, then runs a support check with optional frame reinspection on low confidence. The pattern targets enterprises with large video corpora and many repeated queries.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "video",
-      "rag",
-      "product"
-    ],
+    "tags": ["applications", "video", "rag", "product"],
     "url": "https://pixelml.com",
     "postUrl": "https://x.com/seanphan/status/2101398226654171359",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "seanphan",
     "creatorName": "Sean Phan",
     "sourcePlatform": "x",
@@ -224,19 +157,11 @@
     "oneLiner": "AI UGC creator studio where Jev picks style mixes from your product, audience, and vibe brief.",
     "description": "Hypit (hypit.ai) generates distinct AI UGC creators with natural imperfections instead of copy-paste faces. The launch clip claims one hundred unique creators in about thirteen seconds after Jev selects style combinations from a marketer's product, audience, and vibe inputs. Hypit renders the chosen mix into fresh avatars. This listing documents the Choice-driven creative routing pattern from Hypit's attributed post.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "ugc",
-      "product"
-    ],
+    "tags": ["applications", "marketing", "ugc", "product"],
     "url": "https://hypit.ai",
     "postUrl": "https://x.com/hypitai/status/2101686320909426977",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "hypitai",
     "creatorName": "Hypit",
     "sourcePlatform": "x",
@@ -249,17 +174,10 @@
     "oneLiner": "Japanese manufacturing procurement automation combining fast Jev browser ops with ERP systems like SAP and Oracle.",
     "description": "Egghead Inc. (egghead.co.jp) sells Smart AI procurement for manufacturers. A public builder clip highlights Jev browser automation speed for tedious ERP data entry into SAP, Oracle, and similar systems, arguing forward-deployed engineering plus Jev beats narrow SaaS alone for shop-floor workflows. The post is in Japanese and focuses on procurement use cases; this listing tracks the product domain and Jev browser routing pattern from the attributed showcase.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "enterprise",
-      "product",
-      "browser-use"
-    ],
+    "tags": ["browser-computer-use", "enterprise", "product", "browser-use"],
     "url": "https://www.egghead.co.jp",
     "postUrl": "https://x.com/sakai_1910/status/2101536551360704770",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "sakai_1910",
     "creatorName": "sakai",
     "sourcePlatform": "x",
@@ -272,21 +190,13 @@
     "oneLiner": "OSS document classify and split library powered by Jev and natural-language category rules, with liteparse or LlamaParse backends.",
     "description": "DocJev (github.com/jerryjliu/docjev) is Jerry Liu's open-source library for document classification and splitting using TypeSafe Jev. You provide a document and natural-language category rules; Jev predicts the document category or boundaries between sub-documents. The launch post benchmarks about six times faster than gpt-5.6-luna at equivalent accuracy when using the liteparse OCR path. Optional LlamaParse integration targets complex documents via cloud.llamaindex.ai preprocessing.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "documents",
-      "classification",
-      "product"
-    ],
+    "tags": ["applications", "documents", "classification", "product"],
     "language": "Python",
     "url": "https://github.com/jerryjliu/docjev",
     "repoUrl": "https://github.com/jerryjliu/docjev",
     "postUrl": "https://x.com/jerryjliu0/status/2101738281046294552",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "jerryjliu0",
     "creatorName": "Jerry Liu",
     "sourcePlatform": "github",
@@ -313,9 +223,7 @@
     "repoUrl": "https://github.com/socai-io/jev-social",
     "demoUrl": "https://socai-io.github.io/jev-social/",
     "postUrl": "https://socai.io/blog/jev-social-media-automation/",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "Asklv123123123",
     "sourcePlatform": "github",
     "detailPage": true,
@@ -323,9 +231,9 @@
   },
   {
     "slug": "mfm-jev-search",
-    "title": "My First Million \u00d7 Jev",
+    "title": "My First Million × Jev",
     "oneLiner": "Search what was said on My First Million: hybrid recall, Jev multi-question re-rank, and jump-to-caption timestamps.",
-    "description": "My First Million \u00d7 Jev is a channel-scoped YouTube search demo for @MyFirstMillionPod hosted on jev.aitools.fyi. Query understanding uses local lexicon plus Jev Choice intent before hybrid recall (BM25, TF-IDF, fuzzy, and caption-proximity fused with weighted RRF). One experimental_evaluate batch scores exists, relevance, topic, and hit rubric per shortlist candidate with confidence gates. The pile UI lifts matches with FLIP animation; the feature card shows Mentioned in captions chips with YouTube timestamp jumps when transcripts are enriched. Live at /demos/my-first-million with Cloudflare Pages Functions and a bundled channel catalog.",
+    "description": "My First Million × Jev is a channel-scoped YouTube search demo for @MyFirstMillionPod hosted on jev.aitools.fyi. Query understanding uses local lexicon plus Jev Choice intent before hybrid recall (BM25, TF-IDF, fuzzy, and caption-proximity fused with weighted RRF). One experimental_evaluate batch scores exists, relevance, topic, and hit rubric per shortlist candidate with confidence gates. The pile UI lifts matches with FLIP animation; the feature card shows Mentioned in captions chips with YouTube timestamp jumps when transcripts are enriched. Live at /demos/my-first-million with Cloudflare Pages Functions and a bundled channel catalog.",
     "category": "applications",
     "tags": [
       "applications",
@@ -339,9 +247,7 @@
     "url": "https://jev.aitools.fyi/demos/my-first-million",
     "repoUrl": "https://github.com/imrishit98/jev.aitools.fyi",
     "demoUrl": "https://jev.aitools.fyi/demos/my-first-million",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "imrishit98",
     "creatorName": "Rishit Patel",
     "sourcePlatform": "github",
@@ -354,17 +260,10 @@
     "oneLiner": "Shubhankar's FIFA-style soccer sim where every outfield player runs a ~150 ms Jev loop for tackle, pass, shoot, speed, and direction, plus Jev-driven commentary and soundtrack picks.",
     "description": "Browserbase builder Shubhankar Srivastava rebuilt a FIFA-style match as a love letter to real-time System One loops. Each player carries an independent Jev decision cycle on roughly a 150 millisecond cadence, choosing whether to tackle, pass, or shoot and with what speed and direction. The public clip on X also shows commentary lines and soundtrack choices routed through Jev, not a separate chat model. Peyton Casper's earlier post on the same thread highlighted a shootout-style goalie prototype from the same author; this listing tracks the full-pitch rebuild and the attributed launch video on Jev Directory. No public repo or playable URL was linked in the launch thread as of September 2026; treat the showcase embed and post as the canonical reference.",
     "category": "games",
-    "tags": [
-      "games",
-      "sports",
-      "realtime",
-      "product"
-    ],
+    "tags": ["games", "sports", "realtime", "product"],
     "url": "https://x.com/_shubhankar/status/2101830589620056160",
     "postUrl": "https://x.com/_shubhankar/status/2101830589620056160",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "_shubhankar",
     "creatorName": "Shubhankar Srivastava",
     "sourcePlatform": "x",
@@ -378,18 +277,11 @@
     "oneLiner": "Local F1 sim where Jev picks racing line and pedals while code steers at 120 Hz; lap-by-lap race engineer learns corner limits between API calls.",
     "description": "Jev Grand Prix is an open Python and browser racing game from enoyola. Telemetry becomes race-engineer prose, then one batched System One request asks three questions: track position Choice, pedal Choice, and a Noul trouble meter for leaving the track. The server applies line and braking targets while the client runs physics at 120 Hz, because direct wheel steering from delayed answers caused nine off-tracks in early tests. Between laps, code remembers sector times and asks Jev once per corner whether to push, hold, or back off on a grip-percent ladder. README documents clean eight-lap improvement from about 59 seconds to 50.9 seconds with real Jev calls. Clone github.com/enoyola/jev-grand-prix, set TYPESAFE_API_KEY, and open localhost:8765.",
     "category": "games",
-    "tags": [
-      "games",
-      "racing",
-      "realtime",
-      "python"
-    ],
+    "tags": ["games", "racing", "realtime", "python"],
     "language": "Python",
     "url": "https://github.com/enoyola/jev-grand-prix",
     "repoUrl": "https://github.com/enoyola/jev-grand-prix",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "enoyola",
     "creatorName": "enoyola",
     "sourcePlatform": "github",
@@ -402,18 +294,11 @@
     "oneLiner": "Cinematic 2D rescue game: robot S-01 saves six people in 35 seconds while Jev picks doors and actions from text descriptions, not screenshots.",
     "description": "Before the Fall is a browser-ready rescue sim from muhammadaq1. Six rooms collapse on five-second timers; the robot must clear three junctions of three doors each per victim. The engine sends Jev plain-language obstacle descriptions and capability constraints, then Jev returns a door plus an action such as push aside, lift aside, duck under, or step through. The game validates against scene rules without revealing the correct door in the prompt. A recorded run in the README rescued all six people in 28.4 seconds with 18 of 18 applied decisions and about 352 ms average API latency. Open source on GitHub with a bundled demo video; run locally with your TypeSafe key per repository instructions.",
     "category": "games",
-    "tags": [
-      "games",
-      "puzzle",
-      "realtime",
-      "javascript"
-    ],
+    "tags": ["games", "puzzle", "realtime", "javascript"],
     "language": "JavaScript",
     "url": "https://github.com/muhammadaq1/before-the-fall-jev",
     "repoUrl": "https://github.com/muhammadaq1/before-the-fall-jev",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "muhammadaq1",
     "creatorName": "muhammadaq1",
     "sourcePlatform": "github",
@@ -426,18 +311,11 @@
     "oneLiner": "Authoritative multiplayer fish arena: each AI fish batches Choice and Noul questions every few seconds while humans hunt with the mouse.",
     "description": "JEV: The Fish Game is a Node and Three.js multiplayer aquarium from muratcanberber. Up to five players plus spectators share one authoritative 30 Hz simulation with WebSocket frames at 10 Hz. Every AI fish issues one batched Jev request with three questions: action Choice (flee, hunt, eat_food, roam), target Choice, and panic Noul for sprinting. Thresholds, metabolism, spikes, and wall avoidance stay in application code; Jev supplies judgment only. README cites about 300 ms per fish decision, roughly 70 decisions per minute for five AI fish, and about ten cents per hour at TypeSafe list pricing. Host locally on port 8787 or tunnel with cloudflared; API keys never ship to browsers.",
     "category": "games",
-    "tags": [
-      "games",
-      "multiplayer",
-      "realtime",
-      "typescript"
-    ],
+    "tags": ["games", "multiplayer", "realtime", "typescript"],
     "language": "TypeScript",
     "url": "https://github.com/muratcanberber/JEV-TheFishGame",
     "repoUrl": "https://github.com/muratcanberber/JEV-TheFishGame",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "muratcanberber",
     "creatorName": "muratcanberber",
     "sourcePlatform": "github",
@@ -450,18 +328,11 @@
     "oneLiner": "Modular emulator agent framework: PyBoy Pokemon Red first, with structured RAM schemas and Choice-driven tactics at System One latency.",
     "description": "jev-plays is an open Python framework from thumay9700 that wires TypeSafe Jev into retro emulators starting with Pokemon Red on PyBoy. Internal memory maps into Pydantic state objects; battle and navigation modules define Choice, Noul, and Score questions instead of parsing LLM prose. README positions the project for a YouTube series across Mario, Zelda, and Mega Man, with documented 50 to 150 ms decision targets and sub-dollar full-game cost claims versus hundred-dollar LLM playthroughs. Clone github.com/thumay9700/jev-plays, set TYPESAFE_API_KEY, and supply a legally obtained ROM per repository instructions.",
     "category": "games",
-    "tags": [
-      "games",
-      "emulator",
-      "agents",
-      "python"
-    ],
+    "tags": ["games", "emulator", "agents", "python"],
     "language": "Python",
     "url": "https://github.com/thumay9700/jev-plays",
     "repoUrl": "https://github.com/thumay9700/jev-plays",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "thumay9700",
     "creatorName": "thumay9700",
     "sourcePlatform": "github",
@@ -474,18 +345,11 @@
     "oneLiner": "Interactive courtroom that feeds case records to TypeSafe Jev and returns rulings with confidence; Kyle benchmarked 100+ famous cases with 13% disagreement vs actual outcomes.",
     "description": "Jev as a Judge (judge.kylejeong.com) is Kyle Jeong's experiment in legal what-if tooling. You browse a gallery of well-known cases or ask the court to rule on a record; TypeSafe Jev generates an outcome from the case text alone. Kyle's launch post reports running 100 plus landmark matters and disagreeing with historical rulings about 13 percent of the time. The site labels outputs as experiments, not legal advice. This listing tracks the shipped web app and attributed metrics from the September 2026 clip on X.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "legal",
-      "product",
-      "eval"
-    ],
+    "tags": ["applications", "legal", "product", "eval"],
     "url": "https://judge.kylejeong.com",
     "demoUrl": "https://judge.kylejeong.com",
     "postUrl": "https://x.com/kylejeong/status/2101832317862056149",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "kylejeong",
     "creatorName": "Kyle Jeong",
     "sourcePlatform": "x",
@@ -499,18 +363,11 @@
     "oneLiner": "Paste Supabase pg_policies output and compare Jev, GPT, and Gemini on the same RLS leak rubric with latency and cost side by side.",
     "description": "JevRLS (jevrls.lovable.app) is Carol Monroe's Row Level Security auditor for Supabase teams. You paste policy dumps; the app runs the same decision rule across Jev, GPT, and Gemini to see who flags risky policies, how fast, and at what cost. Site copy positions Jev as TypeSafe's System One model returning per-policy verdicts in about a second. This listing documents the public Lovable deployment and the benchmark pattern from Carol's September 2026 showcase post, not a separate open-source repo.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "security",
-      "database",
-      "product"
-    ],
+    "tags": ["applications", "security", "database", "product"],
     "url": "https://jevrls.lovable.app",
     "demoUrl": "https://jevrls.lovable.app",
     "postUrl": "https://x.com/carolmonroe/status/2101747586126557230",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "CarolMonroe",
     "creatorName": "Carol Monroe",
     "sourcePlatform": "x",
@@ -523,19 +380,12 @@
     "oneLiner": "Android log viewer with optional Jev Noul relevance filtering, keyboard TUI, recordings, and a headless CLI agents can call.",
     "description": "logview (github.com/iurysza/logview) is Iury Souza's Bun-based Android log tool. Live capture, replay, and recording share one pipeline; the terminal UI adds keyboard navigation. Enable semantic mode with TYPESAFE_API_KEY and the slash field becomes a natural-language query: Jev classifies up to 100 locally eligible retained lines per batch (default threshold 0.5), dims low scores, and keeps ingesting new lines while a query is active. Headless replay never calls Jev. README documents logview.json config, default model jev-1.13.0, and prompt version log-relevance-noul-v1 in source.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "cli",
-      "devtools",
-      "android"
-    ],
+    "tags": ["agent-tooling", "cli", "devtools", "android"],
     "language": "TypeScript",
     "url": "https://github.com/iurysza/logview",
     "repoUrl": "https://github.com/iurysza/logview",
     "postUrl": "https://x.com/iurysza/status/2101770705155010568",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "IurySza",
     "creatorName": "Iury Souza",
     "sourcePlatform": "github",
@@ -548,19 +398,11 @@
     "oneLiner": "KP's seven-mode browser arcade on Netlify AI Gateway: color blobs, mood piano, pictionary, puppet theatre, movie guesser, things icons, plus a Jev explainer.",
     "description": "Jev Arcade at jevarcade.netlify.app is KP's (thisiskp_, Head of Community at Netlify) weekend cabinet for TypeSafe Jev via Netlify AI Gateway. Public meta describes talk-or-type play across soft color blobs, mood piano, pictionary, puppet theatre, movie guesser, and things icons, plus an info mode on how Jev and Netlify power the demos. This is distinct from the separate jev-arcade.vercel.app Krunker-style FPS listing elsewhere in the catalog. No public GitHub repo was linked in the September 2026 launch thread; treat the Netlify site and showcase clip as canonical.",
     "category": "games",
-    "tags": [
-      "games",
-      "integrations",
-      "product",
-      "netlify"
-    ],
+    "tags": ["games", "integrations", "product", "netlify"],
     "url": "https://jevarcade.netlify.app",
     "demoUrl": "https://jevarcade.netlify.app",
     "postUrl": "https://x.com/thisiskp_/status/2101846703091376219",
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "thisiskp_",
     "creatorName": "KP",
     "sourcePlatform": "x",
@@ -574,21 +416,12 @@
     "oneLiner": "Short-form social listening with a Jev Clearance gate before eighty-signal viral video tagging on TikTok, Reels, and Shorts.",
     "description": "Virlo (virlo.ai) is a content research SaaS for creators and marketers tracking viral short-form video across TikTok, Instagram Reels, and YouTube Shorts. The catalog indexes more than twelve million clips and serves over one hundred thousand users, per public positioning from Virlo and co-founder jaffa (@dsqjaffa, @virlomain). TypeSafe Jev powers a Clearance judgment layer that decides whether a candidate video is actually on-niche before Virlo's eighty-signal panel tags hooks, formats, angles, and production cues. Clearance uses Noul-style yes/no with confidence on niche match from caption, hashtags, and transcript, plus hashtag stuffing and topic mismatch checks. Parallel Choice, Score, and Noul packs gate marketing-agent outputs such as hook type, format, angle, and worth-scripting. High-confidence rows act automatically; shaky rows escalate to stronger models or humans. Virlo (not Jev) still owns visual and production tagging; Jev controls entry into the benchmark sample. Jev runs in Calibration A/B against Virlo's existing judge; an early human-labeled head-to-head reported thirty-three of forty-four versus thirty of forty-four. Developers can reach Virlo via MCP at dev.virlo.ai and API keys virlo_tkn_* with a separate TypeSafe key for System One. Open-source Vee (github.com/Virlo-AI/vee) is a marketing agent powered by Virlo data.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "social",
-      "product",
-      "tiktok"
-    ],
+    "tags": ["applications", "marketing", "social", "product", "tiktok"],
     "url": "https://virlo.ai",
     "demoUrl": "https://dev.virlo.ai",
     "postUrl": "https://x.com/dsqjaffa/status/2102090111198363988",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "dsqjaffa",
     "creatorName": "jaffa",
     "sourcePlatform": "x",
@@ -601,18 +434,11 @@
     "oneLiner": "Competitor ad library teardowns: Jev labels hooks, formats, offers, CTAs, awareness stage, and landing mismatches across hundreds of live ads in seconds.",
     "description": "StealAds (stealads.ai) is Matthew Berman's (@TheMattBerman) product for breaking down competitor Meta ad libraries at scale. A public launch clip on X shows Jev analyzing seven hundred twenty-four live ads across thirty-seven brands in about forty seconds for roughly nine cents of tokens, surfacing hook, format, offer, CTA, awareness stage, and landing-page mismatch labels. The builder announced availability inside @stealads plus MCP. A Made with Jev build page documents the competitor ad teardown pattern at madewithjev.com/builds/competitor-ad-teardown. Interactive demo lives at app.stealads.ai/demo. This listing tracks the shipped marketing workflow and attributed showcase clip, not a generic ads spy directory stub.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "ads",
-      "product"
-    ],
+    "tags": ["applications", "marketing", "ads", "product"],
     "url": "https://stealads.ai",
     "demoUrl": "https://app.stealads.ai/demo",
     "postUrl": "https://x.com/TheMattBerman/status/2100654891756589230",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "TheMattBerman",
     "creatorName": "Matthew Berman",
     "sourcePlatform": "x",
@@ -625,16 +451,10 @@
     "oneLiner": "Semantic typing racer: Jev judges how far apart your words are in meaning, and the car moves farther when the comparison is stronger.",
     "description": "Wordshift is Marcel Pociot's (@marcelpociot) browser game experiment described in a September 2026 X clip as the first semantic typing racer built with TypeSafe Jev. Players type comparisons such as slower than a jet, bigger than an elephant, or faster than a cheetah; Jev scores semantic distance and drives how far the car advances, so victory depends on meaning, not just WPM. No stable public play URL was linked in the launch thread; treat the showcase clip and this product profile as canonical until Marcel publishes a hosted build.",
     "category": "games",
-    "tags": [
-      "games",
-      "demo",
-      "product"
-    ],
+    "tags": ["games", "demo", "product"],
     "url": "https://x.com/marcelpociot/status/2100715684732801095",
     "postUrl": "https://x.com/marcelpociot/status/2100715684732801095",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "marcelpociot",
     "creatorName": "Marcel Pociot",
     "sourcePlatform": "x",
@@ -643,21 +463,14 @@
   },
   {
     "slug": "box-jev-incident-triage",
-    "title": "Box \u00d7 Jev incident triage",
+    "title": "Box × Jev incident triage",
     "oneLiner": "Enterprise Box workflow demo: Jev classifies customer-facing impact and severity, routes files to escalate/monitor/review folders, and writes metadata.",
     "description": "Aaron Levie (@levie) published a Box plus Jev demonstration for enterprise content workflows. The clip pulls an incident report from Box, asks typed questions about whether the issue is customer-facing and how severe it is, moves the file into escalate, monitor, or review folders, and sets a metadata template instance with the result. Levie highlights near-instant decisions at very low cost and names insurance claims, contract management, loan processing, security reviews, and customer log analysis as adjacent patterns. This directory listing documents the public X workflow demo; pair it with Box's own AI and metadata docs for production deployment.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "enterprise",
-      "content",
-      "demo"
-    ],
+    "tags": ["integrations", "enterprise", "content", "demo"],
     "url": "https://www.box.com",
     "postUrl": "https://x.com/levie/status/2101007708044574906",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "levie",
     "creatorName": "Aaron Levie",
     "sourcePlatform": "x",
@@ -670,21 +483,13 @@
     "oneLiner": "Rust macOS desktop automation via OS accessibility trees; agents pair it with Jev Choice over the next safe ref action.",
     "description": "agent-desktop (github.com/lahfir/agent-desktop) is a native Rust CLI and npm-distributed binary that exposes desktop computer use through macOS accessibility trees instead of pixel guessing. Progressive skeleton snapshots cut dense app UIs down by roughly eighty to ninety-six percent token use versus flat dumps, with stable qualified refs like @snapshot:e1 for click, type, and scroll commands. The tool is not an LLM: your agent owns the observe-act loop and typically uses TypeSafe Jev to pick the next operation from a finite action table built from snapshot output, matching the pattern Muhammad Aayan (@socialwithaayan) highlighted in his September 2026 top-ten Jev repos thread. Ships fifty-eight command names, CDP interop for Chromium apps, ClawHub and skills.sh listings, and structured JSON errors. macOS thirteen plus required today; Windows and Linux adapters are planned against the same contracts.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "desktop",
-      "accessibility",
-      "rust",
-      "computer-use"
-    ],
+    "tags": ["browser-computer-use", "desktop", "accessibility", "rust", "computer-use"],
     "language": "Rust",
     "stars": 1413,
     "url": "https://github.com/lahfir/agent-desktop",
     "repoUrl": "https://github.com/lahfir/agent-desktop",
     "postUrl": "https://x.com/socialwithaayan/status/2102059089652285739",
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorHandle": "lahfir",
     "creatorName": "lahfir",
     "sourcePlatform": "github",
@@ -697,21 +502,13 @@
     "oneLiner": "Skill pack and Hermes plugin: Jev routes models, filters memory, compacts transcripts, picks skills, and chooses GUI or browser actions without writing prose.",
     "description": "hermes-jev-skills (github.com/kerpopule/hermes-jev-skills) wires TypeSafe Jev into Hermes Agent plus Claude Code and Codex via plain SKILL.md files and a hermes-jev plugin. Documented skills include model routing (~0.4 s per turn), search result ranking, memory injection screening, turn compaction, skill selection across hundreds of installed skills, triage, mailbox sorting, and computer or browser use action Choice from operator-approved action tables. This is not tamaratran/fast-jev-compaction (Claude Code context trimming plugin), not anpicasso/hermes-jev-approvals (smart shell auxiliary), and not keeltrace/hermes-jev (async supervision nervous system). Install with python3 install.py; jev setup-key stores TypeSafe credentials in the OS secret store. Featured in Muhammad Aayan's (@socialwithaayan) ten Jev repos roundup on X.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "hermes",
-      "mcp",
-      "routing",
-      "compaction"
-    ],
+    "tags": ["agent-tooling", "hermes", "mcp", "routing", "compaction"],
     "language": "Python",
     "stars": 381,
     "url": "https://github.com/kerpopule/hermes-jev-skills",
     "repoUrl": "https://github.com/kerpopule/hermes-jev-skills",
     "postUrl": "https://x.com/socialwithaayan/status/2102059089652285739",
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorHandle": "kerpopule",
     "creatorName": "kerpopule",
     "sourcePlatform": "github",
@@ -724,18 +521,11 @@
     "oneLiner": "Live AI paper atlas: DeepSeek V4 Flash summaries plus Jev Choice across twenty four topics for about eight cents on one thousand eighteen papers.",
     "description": "1kpapers (1kpapers.com) is Hassan El Mghari's (@nutlope) research atlas experiment. A September 2026 X clip describes summarizing each paper with DeepSeek V4 Flash, then sending title plus summary with twenty four topic labels to Jev Choice for about eight cents total and roughly two hundred fifty six millisecond median latency per paper. Jev topic labels may still be experimental while editorial topics show on the live site. This listing tracks the shipped atlas and attributed metrics, not a scraped index stub.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "research",
-      "classification",
-      "product"
-    ],
+    "tags": ["applications", "research", "classification", "product"],
     "url": "https://1kpapers.com",
     "demoUrl": "https://1kpapers.com",
     "postUrl": "https://x.com/nutlope/status/2100426999546184123",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "nutlope",
     "creatorName": "Hassan El Mghari",
     "sourcePlatform": "x",
@@ -748,18 +538,11 @@
     "oneLiner": "Paste a URL: headless Chrome plus vision, thirty five parallel Jev slop tells, and a page score in about two hundred forty three milliseconds.",
     "description": "AI Slop Detector is Jon Kraayenbrink's (@kraayenJon) free scanner linked from his September 2026 launch post. The pipeline renders the page, describes visuals, runs about thirty five parallel Jev Noul questions on tells like purple gradients, emoji headers, and bento grids, scores the whole page, and uses DeepSeek for verdict copy. The public tool allows two scans per day. This profile cites the X clip and live free-tools URL, not third-party directories.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "content",
-      "tools"
-    ],
+    "tags": ["applications", "marketing", "content", "tools"],
     "url": "https://madewithjev.com/free-tools/ai-slop-detector",
     "demoUrl": "https://madewithjev.com/free-tools/ai-slop-detector",
     "postUrl": "https://x.com/kraayenJon/status/2101157548346794059",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "kraayenJon",
     "creatorName": "Jon Kraayenbrink",
     "sourcePlatform": "x",
@@ -772,18 +555,11 @@
     "oneLiner": "Sixty one parallel Jev questions score an X draft in about one second; rewrite until the score peaks without rewarding reply bait.",
     "description": "Rob Hallam (@robj3d3) built a viral post classifier for SuperX using Jev on draft text only. His launch clip claims sixty one parallel questions in about one second for about $0.0004, trained on nine thousand four hundred eighty one posts from two hundred seven creators with about two-in-three accuracy picking the stronger post. Free users try superx.so/tweet-tester; the same scorer ships via SuperX API, MCP, and CLI. This listing documents the attributed workflow and metrics from the X thread.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "marketing",
-      "social",
-      "product"
-    ],
+    "tags": ["applications", "marketing", "social", "product"],
     "url": "https://superx.so/tweet-tester",
     "demoUrl": "https://superx.so/tweet-tester",
     "postUrl": "https://x.com/robj3d3/status/2100722975645598191",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "robj3d3",
     "creatorName": "Rob Hallam",
     "sourcePlatform": "x",
@@ -796,16 +572,10 @@
     "oneLiner": "Muhammad Aayan's ranked listicle of hot Jev GitHub projects with plain-English roles for each repo and links into this directory.",
     "description": "Muhammad Aayan (@socialwithaayan) published a text listicle on X ranking ten fast-growing Jev repositories with star counts and one-line explanations of how each project uses TypeSafe System One. The thread doubles as a reading list for browser agents, compaction, trading bots, official skills, desktop automation, computer use, code review, agent supervisors, Hermes skill packs, and Postgres extensions. Aayan also authors the X Article How to Actually Use Jev (Full Guide) at x.com/i/article/2101984233145409536. This Jev Directory guide page mirrors the ten picks with internal links to our thick listings (including agent-desktop and hermes-jev-skills, which were missing from the catalog when the thread shipped). Star counts in the original post are approximate; verify on GitHub before you quote them in a deck.",
     "category": "guides",
-    "tags": [
-      "guides",
-      "roundup",
-      "community"
-    ],
+    "tags": ["guides", "roundup", "community"],
     "url": "https://x.com/socialwithaayan/status/2102059089652285739",
     "postUrl": "https://x.com/socialwithaayan/status/2102059089652285739",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "socialwithaayan",
     "creatorName": "Muhammad Aayan",
     "sourcePlatform": "x",
@@ -818,13 +588,7 @@
     "oneLiner": "Local memory store with opt-in Jev reranking on recall so the right note surfaces first without rewriting your vault.",
     "description": "Hippo Memory (hippo-memory.com, github.com/kitfunso/hippo-memory) is kitfunso's CLI-first memory layer for agents and humans. Recall stays fast and local; pass --reranker jev when you want TypeSafe Jev to score candidate memories against the query before results return. Ranking only, off by default, with README eval docs claiming recall-at-one gains on a private three hundred query set. Not a chat wrapper: Jev answers structured ranking judgments, not prose summaries.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "memory",
-      "rag",
-      "ranking",
-      "cli"
-    ],
+    "tags": ["agent-tooling", "memory", "rag", "ranking", "cli"],
     "language": "TypeScript",
     "stars": 753,
     "url": "https://hippo-memory.com",
@@ -842,13 +606,7 @@
     "oneLiner": "Juspay's agent SDK adds tryDecide() as a third inference type beside chat and embed, with fail-open routing when no TypeSafe key is set.",
     "description": "NeuroLink (neurolink.ink, github.com/juspay/neurolink) is Juspay's TypeScript agent framework. The decide path calls TypeSafe Jev through Vercel AI Gateway semantics so apps get calibrated Choice, Score, and boolean answers for model routing, context budgeting, relevance compaction, and tool routing without parsing chat completions. Documented to fail open when TYPESAFE_API_KEY is missing. This listing tracks the integration surface, not a hosted proxy resale.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "sdk",
-      "typescript",
-      "agents",
-      "routing"
-    ],
+    "tags": ["integrations", "sdk", "typescript", "agents", "routing"],
     "language": "TypeScript",
     "stars": 137,
     "url": "https://neurolink.ink",
@@ -866,12 +624,7 @@
     "oneLiner": "Meaning grep: Jev scores each line against a natural-language proposition with AND, OR, and NOT composition across languages.",
     "description": "jev-semgrep (github.com/uehaj/jev-semgrep) is uehaj's CLI that filters text files by semantic match instead of regex. For each line or batch, Jev returns a Noul-style probability that the line satisfies your meaning proposition; threshold to keep or drop. Compose propositions with boolean operators; the query language and file text need not share a locale. Zenn writeup at zenn.dev/uehaj/articles/jev-semgrep-grep-by-meaning documents the workflow.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "developer-tools",
-      "search",
-      "cli"
-    ],
+    "tags": ["agent-tooling", "developer-tools", "search", "cli"],
     "language": "TypeScript",
     "stars": 129,
     "url": "https://github.com/uehaj/jev-semgrep",
@@ -889,12 +642,7 @@
     "oneLiner": "Claude Code and Codex Bash hook: Jev Noul per stdout chunk asks what must stay before the model sees the flood.",
     "description": "jev-pruner (github.com/tamaratran/jev-pruner) is Tamara Tran's companion to fast-jev-compaction: it trims noisy shell output instead of transcript tool rows. After a command runs and before stdout returns to the LLM, the hook chunks output and asks Jev whether any line in each chunk still matters; chunks above threshold survive, full stdout archives locally. Distinct repo from tamaratran/fast-jev-compaction. Bring your own TypeSafe key per README.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "compaction",
-      "claude-code",
-      "hooks"
-    ],
+    "tags": ["agent-tooling", "compaction", "claude-code", "hooks"],
     "language": "TypeScript",
     "stars": 139,
     "url": "https://github.com/tamaratran/jev-pruner",
@@ -911,12 +659,7 @@
     "oneLiner": "Local decision ledger for Jev-class calls: memoize (model, schema, state) to answers with CLI decide, recall, replay, and serve.",
     "description": "jevcache (jevcache.sh, github.com/hyperspaceai/jevcache) from hyperspaceai caches structured Jev decisions on disk instead of re-paying inference for identical state. The jev backend uses your TypeSafe API key locally; it is not a proxy reseller. Operators run decide, recall, replay, and serve from the CLI to audit what the cache hit or missed. Schemas map to whatever primitives you define: Choice, Score, or Noul.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "infrastructure",
-      "caching",
-      "cli"
-    ],
+    "tags": ["integrations", "infrastructure", "caching", "cli"],
     "language": "TypeScript",
     "stars": 70,
     "url": "https://jevcache.sh",
@@ -934,12 +677,7 @@
     "oneLiner": "Software factory foreman: Codex and OpenCode workers code while Jev watches factory evidence and steers completion, verification, and escalation.",
     "description": "foreman (github.com/thruwire/foreman, thruwire.ai) is Josh Rosen's Python asyncio supervisor for a software factory. Slower coding agents produce implementation evidence; Foreman runs a parallel loop that asks TypeSafe Jev about responsibilities such as implementation complete, requirements satisfied, tests sufficient, worker stuck, and needs human. Outputs drive continue, steer, stop, retry, verify, and finish. Not a replacement harness: an experiment in semantic supervision above Codex or OpenCode workers.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "agents",
-      "supervisor",
-      "python"
-    ],
+    "tags": ["agent-tooling", "agents", "supervisor", "python"],
     "language": "Python",
     "stars": 506,
     "url": "https://thruwire.ai",
@@ -958,13 +696,7 @@
     "oneLiner": "Rust CLI sr ranks which agent skill fits the next step using live session context, Jev comparisons, and a real none-of-these option.",
     "description": "skillranker (github.com/Dicklesworthstone/skillranker) is Dicklesworthstone's standalone Rust CLI for skill selection. Jev from TypeSafe.ai compares candidates against the live conversation, workspace signals, and harness inventory, including abstention via none of these. Claude Code hooks, structured JSON, local feedback, and optional Quill narrowing for large libraries. Requires your own TypeSafe API key; no bundled local model.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "agents",
-      "cli",
-      "rust",
-      "skills"
-    ],
+    "tags": ["agent-tooling", "agents", "cli", "rust", "skills"],
     "language": "Rust",
     "stars": 113,
     "url": "https://github.com/Dicklesworthstone/skillranker",
@@ -981,12 +713,7 @@
     "oneLiner": "Fish-style zsh autosuggestions: Choice over history candidates plus Noul gating before grey inline completions appear.",
     "description": "jev-shell-history (github.com/mrnugget/jev-shell-history) is mrnugget's zsh plugin that ranks recent shell history with TypeSafe Jev. On each keystroke it may send up to one hundred distinct commands with typed_so_far; Jev Choice picks the best completion ID and Noul asks whether any candidate completes the input. Prefix mode skips the model when literals match; fuzzy mode uses JEV_THRESHOLD and JEV_MIN_SCORE. History text leaves your machine for TypeSafe when a request runs.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "shell",
-      "zsh",
-      "cli"
-    ],
+    "tags": ["integrations", "shell", "zsh", "cli"],
     "language": "TypeScript",
     "stars": 101,
     "url": "https://github.com/mrnugget/jev-shell-history",
@@ -1003,12 +730,7 @@
     "oneLiner": "Neo4j graph navigation demo: each hop is one system_one call with Choice over outgoing edges and Noul for goal reached, then beam search by log-probs.",
     "description": "neo4jev (github.com/jexp/neo4jev) is Michael Hunger's (jexp) schema-agnostic Neo4j navigator. At each node, outgoing relationships become Choice options with full probability mass; a Noul goal-reached question rides in the same system_one round trip. Top-k beam search ranks paths by sum of log probabilities. Ships Streamlit app, Jupyter notebooks, and neo4j-viz rendering against the public companies2 graph by default. Needs TYPESAFE_API_KEY for live model output.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "neo4j",
-      "graph",
-      "demo"
-    ],
+    "tags": ["integrations", "neo4j", "graph", "demo"],
     "language": "Jupyter Notebook",
     "stars": 89,
     "url": "https://github.com/jexp/neo4jev",
@@ -1026,20 +748,13 @@
     "oneLiner": "Live BS and spin meter on any video: Whisper sentences, parallel Jev Noul probes per preset, rendered as a postable 16:9 edit.",
     "description": "jevmeter (github.com/ChetasLua/jevmeter) is chetaslua's open Python CLI that transcribes speech, scores every sentence with parallel Jev Noul questions from debate, earnings, podcast, or hype presets, and ffmpeg-renders a 16:9 overlay video. README badges cite about five cents for a full debate run on the battle demo post. Featured showcase clip uses remote X video (no binaries in this directory).",
     "category": "applications",
-    "tags": [
-      "applications",
-      "video",
-      "media",
-      "eval"
-    ],
+    "tags": ["applications", "video", "media", "eval"],
     "language": "Python",
     "stars": 81,
     "url": "https://github.com/ChetasLua/jevmeter",
     "repoUrl": "https://github.com/ChetasLua/jevmeter",
     "postUrl": "https://x.com/chetaslua/status/2100602714204049588",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "chetaslua",
     "creatorName": "chetaslua",
     "sourcePlatform": "x",
@@ -1052,28 +767,20 @@
     "oneLiner": "Open System One style decision server: one forward pass over shared state yields Choice, Score, and Noul probabilities from models you host.",
     "description": "SemIf (github.com/TheoLeeCJ/SemIf, openjev.com) is Theo Lee CJ's independent open-source decision stack, formerly branded OpenJev on the site. It mirrors the typed question API pattern without TypeSafe's closed model: local or self-hosted inference reads option logits in one pass, returns calibrated-style scores, and stays honest that it is not affiliated with TypeSafe. Browser WebGPU demos and PyTorch paths ship in-repo; scores are research baselines you should calibrate on your hardware before production gates.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "self-hosted",
-      "research"
-    ],
+    "tags": ["benchmarks", "open-source", "self-hosted", "research"],
     "language": "Python",
-    "stars": 4783,
-    "url": "https://github.com/TheoLeeCJ/SemIf-OpenJev",
-    "repoUrl": "https://github.com/TheoLeeCJ/SemIf-OpenJev",
+    "stars": 3844,
+    "url": "https://openjev.com",
+    "repoUrl": "https://github.com/TheoLeeCJ/SemIf",
     "demoUrl": "https://openjev.com",
     "postUrl": "https://x.com/hhkkmon/status/2100443314957038010",
     "featured": true,
-    "badges": [
-      "has-demo",
-      "featured"
-    ],
+    "badges": ["has-demo", "featured"],
     "creatorHandle": "TheoLeeCJ",
     "creatorName": "Theo Lee CJ",
     "sourcePlatform": "github",
     "detailPage": true,
-    "updatedAt": "2026-10-12"
+    "updatedAt": "2026-09-22"
   },
   {
     "slug": "featherless-simple-jev",
@@ -1081,12 +788,7 @@
     "oneLiner": "Turn any open Hugging Face model into a Jev-style classifier HTTP API: shared context plus Choice, Score, and Noul from next-token logits, not generated JSON.",
     "description": "Simple Jev (github.com/featherless-ai/simple-jev) from Featherless AI exposes POST /v1/classifier semantics on models you run locally or on Featherless hardware. The server builds structured JSON from logits; the model never writes a completion blob. Public demo API at simple-jev-demo-api.featherless.ai needs no login (2k context, 2 RPS). Docs and playground live at simple-jev.featherless.ai. Self-host with the HF server in the repo when you want your own weights and keys.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "classifier",
-      "huggingface",
-      "self-hosted"
-    ],
+    "tags": ["integrations", "classifier", "huggingface", "self-hosted"],
     "language": "Python",
     "stars": 484,
     "url": "https://simple-jev.featherless.ai",
@@ -1104,20 +806,13 @@
     "oneLiner": "macOS computer-use loop: OCR plus accessibility turn the screen into numbered actions; TypeSafe Jev Choice picks the next step for about $0.0002.",
     "description": "typesafe-computer-use (github.com/awlevin/typesafe-computer-use) is Aaron Levin's (@awlevin) clicker CLI for real mouse and keyboard on macOS. Deterministic capture builds a finite action list; Jev chooses operation and target in one fast call; a small writer model only runs for TYPE_TEXT, URL proposals, or final answers. Dry-run by default, --act when you trust the gate. README tables cite author-measured 155x cheaper and 14x to 40x faster model latency versus Claude Opus 5 on a bare screenshot for the same step (self-reported; rerun on your box).",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "browser-use",
-      "macos",
-      "agents"
-    ],
+    "tags": ["browser-computer-use", "browser-use", "macos", "agents"],
     "language": "Python",
     "stars": 828,
     "url": "https://github.com/awlevin/typesafe-computer-use",
     "repoUrl": "https://github.com/awlevin/typesafe-computer-use",
     "postUrl": "https://x.com/awlevin/status/2100262612428894676",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "awlevin",
     "creatorName": "Aaron Levin",
     "sourcePlatform": "x",
@@ -1130,12 +825,7 @@
     "oneLiner": "Voice-controlled headed Chromium: partial transcripts trigger one batched Jev call (~250 to 350 ms) for intent, target, safety, and scroll amount before Playwright acts.",
     "description": "jev-voice-browser (github.com/moritzkremb/jev-voice-browser) is Moritz Kremb's Node plus Playwright stack. Web Speech streams words to a local server; on debounce it snapshots up to one hundred DOM nodes and asks TypeSafe Jev a dozen typed questions in one request (intent, target element, site, command complete, addressed to browser, destructive, scroll Score, and more). Code acts, waits, asks, or ignores; Jev never generates prose, only picks candidate spans copied verbatim. Control UI on localhost:8787; API key stays server-side.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "browser-use",
-      "voice",
-      "playwright"
-    ],
+    "tags": ["browser-computer-use", "browser-use", "voice", "playwright"],
     "language": "JavaScript",
     "stars": 244,
     "url": "https://github.com/moritzkremb/jev-voice-browser",
@@ -1153,12 +843,7 @@
     "oneLiner": "MuJoCo camera-only quadrotor: classical CV at 15 Hz, TypeSafe Jev advisory maneuvers at ~2.5 Hz, geometric control and safety reflex own the sticks.",
     "description": "jev-drone (github.com/RomanSlack/jev-drone, jev-drone.vercel.app) is Roman Slack's autonomous Skydio-style drone in simulation. Depth and segmentation become symbolic range sectors and obstacle height; Jev answers one batched Choice (maneuver), Score (risk), and Noul (target truly lost) call when the scene fingerprint changes. README ablation: without Jev the greedy baseline never clears station 2; with Jev engaged the author reports a full course run with zero collisions. Geometric controller at 500 Hz and 50 Hz reflex always veto unsafe climbs.",
     "category": "games",
-    "tags": [
-      "games",
-      "simulation",
-      "robotics",
-      "demo"
-    ],
+    "tags": ["games", "simulation", "robotics", "demo"],
     "language": "Python",
     "stars": 131,
     "url": "https://jev-drone.vercel.app",
@@ -1176,12 +861,7 @@
     "oneLiner": "Plain-language web search: Jev picks sources, time windows, and query terms, then Search1API fetches while Jev Score ranks snippets (no generated answers).",
     "description": "jev-search (github.com/superagents-lab/jev-search, jev.s1.dev) is an MIT TypeScript search stack on Cloudflare Workers. You type a question in normal language; Jev plans which providers, date ranges, and keyword variants to hit; Search1API returns raw hits; Jev scores relevance and returns links plus snippets only. No chatty summarization layer. Self-host with your keys or try the hosted demo.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "rag",
-      "search",
-      "agents"
-    ],
+    "tags": ["agent-tooling", "rag", "search", "agents"],
     "language": "TypeScript",
     "stars": 427,
     "url": "https://github.com/superagents-lab/jev-search",
@@ -1190,9 +870,7 @@
     "creatorHandle": "superagents-lab",
     "creatorName": "Superagents Lab",
     "sourcePlatform": "github",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "detailPage": true,
     "updatedAt": "2026-09-23"
   },
@@ -1202,18 +880,11 @@
     "oneLiner": "Talk through a haul: Jev reads your transcript and current outfit, Choice-picks from the closet, and swaps the look on camera in about 620 ms.",
     "description": "Nailthy Tang's Drape experiment wires live speech, wardrobe metadata, and a realtime try-on feed. You talk; Jev reads the transcript plus what you are wearing, picks the next garment from a finite closet list, and the preview updates on stream. Author metrics on X cite about $0.0011 per decision and about 620 ms per swap. Featured showcase clip uses remote X video (no binaries in this directory).",
     "category": "applications",
-    "tags": [
-      "applications",
-      "fashion",
-      "demo",
-      "realtime"
-    ],
+    "tags": ["applications", "fashion", "demo", "realtime"],
     "url": "https://weardrape.app",
     "postUrl": "https://x.com/nailthy62/status/2101388186916454439",
     "demoUrl": "https://madewithjev.com/builds/drape-virtual-try-on",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "nailthy62",
     "creatorName": "Nailthy Tang",
     "sourcePlatform": "x",
@@ -1226,21 +897,14 @@
     "oneLiner": "Chrome extension: optional live audio and captions feed Jev a sponsor-segment gate, then auto-skips for about $0.005 per video (BYOK).",
     "description": "youtube-sponsor-detection (github.com/trungdq88/youtube-sponsor-detection) is Tony Dinh's open prototype extension. It can listen to YouTube audio, detect when a paid segment starts, and skip forward in real time. Bring your own TypeSafe key; the author cites about five tenths of a cent per video on X. MIT JavaScript repo with a madewithjev build write-up and showcase clip.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "chrome-extension",
-      "youtube",
-      "browser-use"
-    ],
+    "tags": ["applications", "chrome-extension", "youtube", "browser-use"],
     "language": "JavaScript",
     "stars": 94,
     "url": "https://github.com/trungdq88/youtube-sponsor-detection",
     "repoUrl": "https://github.com/trungdq88/youtube-sponsor-detection",
     "postUrl": "https://x.com/tdinh_me/status/2100793777103466615",
     "demoUrl": "https://madewithjev.com/builds/youtube-sponsor-skipper",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "tdinh_me",
     "creatorName": "Tony Dinh",
     "sourcePlatform": "x",
@@ -1253,18 +917,11 @@
     "oneLiner": "Free site mapper: Jev classifies up to 500 pages and Choice-selects which URLs should link to which, exporting CSV or JSON for your LLM implementer.",
     "description": "Ian Nuttall's internal linking tool at ian.is/tools/internal-links crawls your site, uses Jev to classify pages and pick sensible link pairs, then hands back structured CSV or JSON you pass to an agent or editor. BYOK or pay one dollar to run on Ian's key. Up to five hundred pages per run. Launch clip on X is embedded in the directory showcase.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "seo",
-      "content",
-      "agents"
-    ],
+    "tags": ["applications", "seo", "content", "agents"],
     "url": "https://ian.is/tools/internal-links",
     "demoUrl": "https://ian.is/tools/internal-links",
     "postUrl": "https://x.com/iannuttall/status/2102443273339994558",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "iannuttall",
     "creatorName": "Ian Nuttall",
     "sourcePlatform": "x",
@@ -1277,21 +934,14 @@
     "oneLiner": "Three.js driving sim in Tesla FSD style: Jev picks steering and speed paths from compact candidate tables, not pixels, up to about four decisions per second.",
     "description": "JevPilot (github.com/standardagents/jevpilot, jevpilot.standardagents.ai) is Justin Schroeder's browser game where geometry and physics stay in code while Jev reads symbolic road, traffic, and destination state. Candidate maneuvers are filtered for collisions; Jev chooses among eligible paths at up to four hertz near traffic. Hosted demo meters Jev credit server-side so keys never hit the browser. Open source TypeScript with X showcase video.",
     "category": "games",
-    "tags": [
-      "games",
-      "simulation",
-      "realtime",
-      "demo"
-    ],
+    "tags": ["games", "simulation", "realtime", "demo"],
     "language": "TypeScript",
     "stars": 179,
     "url": "https://github.com/standardagents/jevpilot",
     "repoUrl": "https://github.com/standardagents/jevpilot",
     "demoUrl": "https://jevpilot.standardagents.ai",
     "postUrl": "https://x.com/jpschroeder/status/2100347770867458384",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "jpschroeder",
     "creatorName": "Justin Schroeder",
     "sourcePlatform": "github",
@@ -1304,12 +954,7 @@
     "oneLiner": "0.6B Qwen3 parallel decision heads: state, question, and candidates in; full Choice, boolean, and Score distributions out with zero answer-token decoding.",
     "description": "NanoJev (github.com/TianyuCodings/NanoJev) trains unified decision heads on Maze, Snake, ViZDoom Basic, and Predict Position with public Hugging Face model C-Tianyu/NanoJev and dataset revision unified-games-v1. README benchmarks compare held-out gameplay against TypeSafe Jev and untuned Qwen3-0.6B; browser side-by-side replays live on nanojev-dev.tianyuchen99.chatgpt.site. MIT Python pipeline for researchers reproducing System One shaped parallel classifiers on game scale data.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "games",
-      "research"
-    ],
+    "tags": ["benchmarks", "open-source", "games", "research"],
     "language": "Python",
     "stars": 2108,
     "url": "https://github.com/TianyuCodings/NanoJev",
@@ -1327,12 +972,7 @@
     "oneLiner": "Open curation, LoRA training, and local serving recipe for Bespoke-Nimble-9B: schema Choice and boolean fields scored in one parallel pass, no chain-of-thought.",
     "description": "Nimble (github.com/bespokelabsai/nimble) from Bespoke Labs documents contrastive data edits, answer-token-only fine-tuning on Qwen3.5-9B, and MLX or CUDA inference for Jev-style schema classification. Hugging Face model bespokelabs/Bespoke-Nimble-9B ships with contract files; README reports held-out label agreement versus base Qwen and Jev 1.13.0 without distilling from TypeSafe. Python 3.12, Apple Silicon or NVIDIA paths.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "self-hosted",
-      "huggingface"
-    ],
+    "tags": ["benchmarks", "open-source", "self-hosted", "huggingface"],
     "language": "Python",
     "stars": 1678,
     "url": "https://github.com/bespokelabsai/nimble",
@@ -1350,12 +990,7 @@
     "oneLiner": "Patched Codex CLI bridge: Jev reads bounded task context and sets GPT-6 Astra, Sol, or Luna reasoning effort plus a multi-generation lease before each step.",
     "description": "Astra-Ares (github.com/miuuyy/Astra-Ares) installs a separate pinned Codex build where Jev chooses native reasoning effort and 1/2/5/10 generation leases from recent tool results and public plans. OpenRouter is the default Jev provider; Codex still talks directly to OpenAI with prefix-friendly configuration_update. Experimental MIT reference for adaptive reasoning effort, not a replacement for stock codex.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "codex",
-      "routing",
-      "agents"
-    ],
+    "tags": ["agent-tooling", "codex", "routing", "agents"],
     "language": "JavaScript",
     "stars": 232,
     "url": "https://github.com/miuuyy/Astra-Ares",
@@ -1372,12 +1007,7 @@
     "oneLiner": "Hooks Claude Code, Codex, and OpenCode to ask Jev one question per AGENTS.md rule on every edit (~300 ms), forcing same-turn repairs when probability crosses 0.8.",
     "description": "Abide (github.com/coldteadotai/abide, npm @coldtea/abide) compiles instruction files into .abide/rubric.json and batches per-rule Jev checks on diffs without sending chat history. Replay benchmarks on real sessions cite sub-cent per turn costs versus chat-classifier baselines. abide audit sweeps existing files; calibrate and tune retire noisy rules. MIT TypeScript CLI with local key storage.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "guardrails",
-      "codex",
-      "claude-code"
-    ],
+    "tags": ["agent-tooling", "guardrails", "codex", "claude-code"],
     "language": "TypeScript",
     "stars": 211,
     "url": "https://github.com/coldteadotai/abide",
@@ -1390,16 +1020,11 @@
   },
   {
     "slug": "sdras-jev-webmcp-extension",
-    "title": "Jev \u00d7 WebMCP",
+    "title": "Jev × WebMCP",
     "oneLiner": "Chrome side panel: discover page WebMCP tools, map schemas to parallel Jev Choice and Noul questions, fill args from the user's words, execute under read-only and consequential gates.",
     "description": "jev-webmcp-extension (github.com/sdras/jev-webmcp-extension) converts tool manifests into System One question batches, calls api.typesafe.ai with your key, and runs pageCallTool through Chrome scripting with manifest screening and double-Enter confirmations. Basketful demo and Chrome Web Store listing documented in README; pure JS core tested with npm test and eval harness. Apache-2.0, no build step.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "chrome-extension",
-      "webmcp",
-      "browser-use"
-    ],
+    "tags": ["applications", "chrome-extension", "webmcp", "browser-use"],
     "language": "JavaScript",
     "stars": 109,
     "url": "https://github.com/sdras/jev-webmcp-extension",
@@ -1417,12 +1042,7 @@
     "oneLiner": "Android chat co-pilot overlay: Jev judges intent and danger on screen text, ranks three reply drafts, fill-only never auto-send.",
     "description": "jev-chat-jarvis (github.com/jev-chat/jev-chat-jarvis, chatjevs.com) reads QQ, X, and Lark threads via accessibility and OCR, runs a judge pass for intent, danger, and reply urgency, then offers three ranked candidates you paste yourself. No hooks, no auto-send, local knowledge optional. APK releases for Android 11 plus; macOS and Windows sibling repos share the kernel.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "mobile",
-      "chat",
-      "android"
-    ],
+    "tags": ["applications", "mobile", "chat", "android"],
     "language": "Kotlin",
     "stars": 5214,
     "url": "https://chatjevs.com",
@@ -1440,12 +1060,7 @@
     "oneLiner": "Codex Computer Use skill: Jev picks element, action, completion, and risk from AX text only; dry-run and confirm on sensitive ops.",
     "description": "Jev-cu (github.com/Sac-Y/Jev-cu) installs into Codex as a skill plus Node loop that sends accessibility text candidates to TypeSafe Jev while CUA executes clicks. No screenshots to Jev. policy.mjs gates delete, send, pay, and similar paths. Distinct from awlevin-typesafe-computer-use and lahfir-agent-desktop in this directory.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "codex",
-      "computer-use",
-      "skill"
-    ],
+    "tags": ["browser-computer-use", "codex", "computer-use", "skill"],
     "language": "JavaScript",
     "stars": 587,
     "url": "https://github.com/Sac-Y/Jev-cu",
@@ -1462,20 +1077,13 @@
     "oneLiner": "Ten MCP tools on TypeSafe Jev: verify, screen, find, rerank, classify, decide, compare, extract, review, and gate in about 150 to 500 ms.",
     "description": "jev-mcp (github.com/jkudish/jev-mcp, npm @jkudish/jev-mcp) from Joey Kudish exposes typed judgment tools for agents via npx -y @jkudish/jev-mcp. README documents latency and cost class per call plus install snippets for Claude Code, Codex, and OpenCode. Promoted from catalog index row to full ProductProfile in this batch.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "mcp",
-      "agents",
-      "tools"
-    ],
+    "tags": ["agent-tooling", "mcp", "agents", "tools"],
     "language": "TypeScript",
     "stars": 316,
     "url": "https://github.com/jkudish/jev-mcp",
     "repoUrl": "https://github.com/jkudish/jev-mcp",
     "postUrl": "https://x.com/0xLogicrw/status/2100478725393686556",
-    "badges": [
-      "mcp"
-    ],
+    "badges": ["mcp"],
     "creatorHandle": "jkudish",
     "creatorName": "Joey Kudish",
     "sourcePlatform": "github",
@@ -1488,12 +1096,7 @@
     "oneLiner": "Agent skill teaching Choice, Score, Noul question design, state shape, and thresholds for jev-1.13 integrations.",
     "description": "building-with-jev-skill (github.com/dbreunig/building-with-jev-skill) is Drew Breunig's SKILL.md pack for writing programs that call Jev well. Install via Claude Code plugin, vercel-labs skills CLI, or manual copy. Pedagogical, not a runtime gate.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "skill",
-      "agents",
-      "guides"
-    ],
+    "tags": ["agent-tooling", "skill", "agents", "guides"],
     "language": "Markdown",
     "stars": 131,
     "url": "https://github.com/dbreunig/building-with-jev-skill",
@@ -1510,12 +1113,7 @@
     "oneLiner": "Pi extension: batched gate nouls on bash, write, and edit; bash output judge; jev_ask tool; shadow default with fail-open errors.",
     "description": "pi-jev (github.com/y0usaf/pi-jev, npm @y0usaf/pi-jev) adds TypeSafe Jev gates and optional output judging to the Pi coding agent. README documents calibration tables, privacy limits, and shadow versus enforce modes. Upgraded from thin catalog detail to full ProductProfile.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "agents",
-      "pi",
-      "eval"
-    ],
+    "tags": ["agent-tooling", "agents", "pi", "eval"],
     "language": "TypeScript",
     "stars": 141,
     "url": "https://github.com/y0usaf/pi-jev",
@@ -1532,12 +1130,7 @@
     "oneLiner": "One morphing text box becomes events, checklists, timers, and converters: parallel Jev intent fan-out plus deterministic value parsing, offline keyword fallback.",
     "description": "Shapeshift (github.com/anishfn/shapeshift, shapeshiftui.vercel.app) classifies card type with fourteen parallel TypeSafe questions while code fills dates and math. Bun app with optional server /api/intent key; defaults to offline mode without an account.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "ui",
-      "intent",
-      "offline"
-    ],
+    "tags": ["applications", "ui", "intent", "offline"],
     "language": "TypeScript",
     "stars": 510,
     "url": "https://shapeshiftui.vercel.app",
@@ -1555,12 +1148,7 @@
     "oneLiner": "Supervisor hooks for Claude Code and Codex: append-only ledger, deterministic done-without-check blocks, optional Jev judgments that never sole-block.",
     "description": "Canny (github.com/qkal/canny) installs from a git clone with zero runtime dependencies. Facts block in code; done claims and semantic rules go to TypeSafe. canny replay reproduces verdicts.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "guardrails",
-      "codex",
-      "claude-code"
-    ],
+    "tags": ["agent-tooling", "guardrails", "codex", "claude-code"],
     "language": "TypeScript",
     "stars": 78,
     "url": "https://github.com/qkal/canny",
@@ -1577,12 +1165,7 @@
     "oneLiner": "Natural-language codebase search: ensemble filesystem walkers plus Jev relevance scores in a Bun CLI.",
     "description": "blink (github.com/ellipsis-dev/blink) ranks local files for a query with parallel walkers and TypeSafe scoring. Upgraded from thin catalog with refreshed stars and full ProductProfile.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "search",
-      "cli",
-      "codebase"
-    ],
+    "tags": ["applications", "search", "cli", "codebase"],
     "language": "TypeScript",
     "stars": 73,
     "url": "https://github.com/ellipsis-dev/blink",
@@ -1600,12 +1183,7 @@
     "oneLiner": "Pre-release CLI: policy and quota filters, then TypeSafe ranks agent, model, and effort; launches Cursor, Claude Code, Codex, or OpenCode via Herdr.",
     "description": "agent-router (github.com/nidhi-singh02/agent-router) keeps config and decisions local under .model-router. Requires TypeSafe on every run; README marks active development.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "routing",
-      "herdr",
-      "codex"
-    ],
+    "tags": ["agent-tooling", "routing", "herdr", "codex"],
     "language": "TypeScript",
     "stars": 70,
     "url": "https://github.com/nidhi-singh02/agent-router",
@@ -1623,12 +1201,7 @@
     "oneLiner": "Auto mode for every coding agent: Jev risk on each tool call, injection scan on results, skill checks; npm jev-guard with multi-host adapters.",
     "description": "jev-guard (github.com/leepokai/jev-guard, npm jev-guard) scores risk, user_requested, and from_untrusted before and after tools across Claude Code, Codex, Cursor, pi, OpenCode, and ACP. Upgraded thick listing with refreshed GitHub stars.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "guardrails",
-      "prompt-injection",
-      "npm"
-    ],
+    "tags": ["agent-tooling", "guardrails", "prompt-injection", "npm"],
     "language": "JavaScript",
     "stars": 33,
     "url": "https://github.com/leepokai/jev-guard",
@@ -1645,12 +1218,7 @@
     "oneLiner": "Together's open Jev-inspired recipe: fine-tune Qwen3.5-4B for letter Choice on state plus options, host as Tev1-4B-experimental.",
     "description": "tev1 (github.com/togethercomputer/tev1) ships dataset builders, LoRA SFT on new v1 (37,840 train, 4,568 val), and decide.py for Together endpoints. Independent of TypeSafe labels; serverless together/Tev1-4B-experimental plus HF weights. Blog and @nutlope launch thread.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "fine-tuning",
-      "together",
-      "classifier"
-    ],
+    "tags": ["integrations", "fine-tuning", "together", "classifier"],
     "language": "Python",
     "stars": 42,
     "url": "https://api.together.ai/models/together/Tev1-4B-experimental",
@@ -1668,14 +1236,9 @@
     "oneLiner": "Jared Palmer's open Jev-like Qwen decision models: System One-compatible serve, HF weights 0.8B to 27B, eval tables vs hosted Jev.",
     "description": "Kev (github.com/jaredpalmer/kev, Apache-2.0) trains and serves Choice, Score, and Noul on Qwen3.5 and Qwen3.8 with TypeSafe SDK drop-in against kev.serve. HF Spaces demo, frozen eval suites, Modal fine-tune skill. Not kevthetech143-super-jev.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "self-hosted",
-      "qwen"
-    ],
+    "tags": ["integrations", "open-source", "self-hosted", "qwen"],
     "language": "Python",
-    "stars": 8943,
+    "stars": 8949,
     "url": "https://huggingface.co/spaces/jaredpalmer/kev",
     "repoUrl": "https://github.com/jaredpalmer/kev",
     "demoUrl": "https://huggingface.co/spaces/jaredpalmer/kev",
@@ -1683,7 +1246,7 @@
     "creatorName": "Jared Palmer",
     "sourcePlatform": "github",
     "detailPage": true,
-    "updatedAt": "2026-10-12"
+    "updatedAt": "2026-09-24"
   },
   {
     "slug": "wfzyx-von",
@@ -1691,21 +1254,16 @@
     "oneLiner": "Apache-2.0 non-autoregressive System One model: one forward pass, order-invariant option scores, sub-25 ms local claims.",
     "description": "Von (github.com/wfzyx/von) scores premise plus options for Choice, Noul, and Score without autoregressive decode. Von 1.2 fixes option-order sensitivity; weights at huggingface.co/wfzyx/von. Open alternative to hosted Jev; not genai-craft-openvons.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "decision-model",
-      "system-one"
-    ],
+    "tags": ["integrations", "open-source", "decision-model", "system-one"],
     "language": "Python",
-    "stars": 883,
+    "stars": 635,
     "url": "https://huggingface.co/wfzyx/von",
     "repoUrl": "https://github.com/wfzyx/von",
     "creatorHandle": "wfzyx",
     "creatorName": "wfzyx",
     "sourcePlatform": "github",
     "detailPage": true,
-    "updatedAt": "2026-10-12"
+    "updatedAt": "2026-09-24"
   },
   {
     "slug": "monteduro-killmyidea",
@@ -1713,19 +1271,13 @@
     "oneLiner": "One parallel Jev batch per startup idea: eight 0 to 4 scores, weighted average, KILL FIX SHIP verdict. No generative LLM on the hot path.",
     "description": "killmyidea (github.com/monteduro/killmyidea, killmyidea.stemonte.io) upgraded from thin catalog: TypeSafe Jev only, deterministic scoring in TypeScript, demo plus SQLite analytics. Refreshed stars.",
     "category": "playgrounds",
-    "tags": [
-      "playgrounds",
-      "startup",
-      "eval"
-    ],
+    "tags": ["playgrounds", "startup", "eval"],
     "language": "TypeScript",
     "stars": 191,
     "url": "https://killmyidea.stemonte.io",
     "repoUrl": "https://github.com/monteduro/killmyidea",
     "demoUrl": "https://killmyidea.stemonte.io",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "monteduro",
     "creatorName": "Marco Monteduro",
     "sourcePlatform": "github",
@@ -1738,12 +1290,7 @@
     "oneLiner": "macOS menu-bar companion: default JEV mode picks local controls for clicks; Gemini mode for voice and writing. Keys in Keychain.",
     "description": "TipTour (github.com/milind-soni/tiptour-macos) uses Jev over detected labels for single, double, and right click tasks with 12-action cap. Screenshots stay local on Jev path. Distinct from awlevin-typesafe-computer-use and sac-y-jev-cu.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "macos",
-      "computer-use",
-      "jev"
-    ],
+    "tags": ["browser-computer-use", "macos", "computer-use", "jev"],
     "language": "Swift",
     "stars": 663,
     "url": "https://github.com/milind-soni/tiptour-macos",
@@ -1760,12 +1307,7 @@
     "oneLiner": "Rust coding agent harness: Jev routes reasoning consults, effort, and utility summaries; fail-open; Distill owns tool permissions.",
     "description": "distill (github.com/samuelfaj/distill) documents Plan, Step, and Review Jev batteries in docs/jev-routing.md. Token-saving TUI for Codex, Grok, and OpenRouter. Not bespokelabsai-nimble training.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "routing",
-      "rust",
-      "tokens"
-    ],
+    "tags": ["agent-tooling", "routing", "rust", "tokens"],
     "language": "Rust",
     "stars": 688,
     "url": "https://github.com/samuelfaj/distill",
@@ -1782,12 +1324,7 @@
     "oneLiner": "Windows chat overlay: offline OCR, Jev judge on intent and tension, three ranked drafts, fill-only never auto-send.",
     "description": "jev-chat-windows (github.com/jev-chat/jev-chat-windows) PyQt sibling to jev-chat-jarvis. Judge via OpenRouter or TypeSafe; draft LLM default DeepSeek. ~146 MB release zip for Windows 10+.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "windows",
-      "chat",
-      "ocr"
-    ],
+    "tags": ["applications", "windows", "chat", "ocr"],
     "language": "Python",
     "stars": 530,
     "url": "https://github.com/jev-chat/jev-chat-windows",
@@ -1805,13 +1342,7 @@
     "oneLiner": "Sutro CLI: label uncertain rows, GEPA-optimize TypeSafe Jev AI Functions, ship portable definitions via ai-functions.dev.",
     "description": "jev-align (github.com/sutro-sh/jev-align, PyPI jev-align 0.1.4) runs jeva guided loops on CSV/Parquet/JSONL with Binary through Score tasks. TypeSafe, Vercel, or Cloudflare Jev backends; separate reflection models. Not a skill router.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "cli",
-      "gepa",
-      "calibration",
-      "ai-functions"
-    ],
+    "tags": ["agent-tooling", "cli", "gepa", "calibration", "ai-functions"],
     "language": "Python",
     "stars": 287,
     "url": "https://github.com/sutro-sh/jev-align",
@@ -1828,13 +1359,7 @@
     "oneLiner": "Nokia research: Decider API turns hub LLMs into calibrated Jev-style choices with L0 flip fixes and optional L2 heads on vLLM.",
     "description": "AnyJev (github.com/nokia-applied-research/AnyJev, PyPI anyjev) documents BANKING77 flip and ECE tables, truncate/pipeline CLIs, and fit_head on 100-300 labels. Distinct from jaredpalmer-kev fine-tunes and featherless logit assembly.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "open-source",
-      "decision-model",
-      "vllm",
-      "calibration"
-    ],
+    "tags": ["agent-tooling", "open-source", "decision-model", "vllm", "calibration"],
     "language": "Python",
     "stars": 601,
     "url": "https://github.com/nokia-applied-research/AnyJev",
@@ -1851,13 +1376,7 @@
     "oneLiner": "GitHub Next Bun server: local POST /v1/systemone over oMLX DiffusionGemma chat JSON, TypeSafe SDK compatible, README honest on calibration.",
     "description": "localjev (github.com/githubnext/localjev, MIT) bridges state plus Choice/Score/Noul to OpenAI-compatible chat, validates retries, serves :8080. Wire-compatible, not OpenJev logit-equivalent. Distinct from featherless-simple-jev.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "self-hosted",
-      "system-one",
-      "bun",
-      "diffusiongemma"
-    ],
+    "tags": ["agent-tooling", "self-hosted", "system-one", "bun", "diffusiongemma"],
     "language": "TypeScript",
     "stars": 771,
     "url": "https://github.com/githubnext/localjev",
@@ -1874,12 +1393,7 @@
     "oneLiner": "SGLang JSON Schema generation on existing AR LLMs: enums, numbers, depends_on graphs, JevBench 228/231 with thinking. Not a System One server.",
     "description": "TypeLLM (github.com/TypeLLM/TypeLLM, typellm.ai) pip install typellm against SGLang. Type-safe fields, permutation averaging, vision input. Distinct from decision-head cluster.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "sglang",
-      "json-schema",
-      "constrained-generation"
-    ],
+    "tags": ["agent-tooling", "sglang", "json-schema", "constrained-generation"],
     "language": "Python",
     "stars": 606,
     "url": "https://typellm.ai",
@@ -1896,13 +1410,7 @@
     "oneLiner": "Local llama.cpp Jev-shaped server: Spark-X2.5 LoRA, POST /v1/systemone on :8017, zero answer tokens, independent of TypeSafe.",
     "description": "rizzo-flow (github.com/Rizzo-AI-Academy/rizzo-flow) uv sync, rizzo download, rizzo serve playground. typed-decisions bench tables with calibration caveats. Metal CUDA Vulkan ROCm SYCL CPU.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "self-hosted",
-      "decision-model",
-      "llama-cpp",
-      "system-one"
-    ],
+    "tags": ["integrations", "self-hosted", "decision-model", "llama-cpp", "system-one"],
     "language": "Python",
     "stars": 489,
     "url": "https://rizzo-ai-academy.github.io/rizzo-flow/",
@@ -1916,16 +1424,10 @@
   {
     "slug": "tianyucodings-jevharness",
     "title": "JevHarness",
-    "oneLiner": "LLM writes task harness code, freezes it, then Jev makes fast choice/score/noul calls. GEPA evolution and Pok\u00e9mon 25% to 75% Eval demo.",
+    "oneLiner": "LLM writes task harness code, freezes it, then Jev makes fast choice/score/noul calls. GEPA evolution and Pokémon 25% to 75% Eval demo.",
     "description": "JevHarness (github.com/TianyuCodings/JevHarness) Claude Code plugin, archived replay site, latency tables. Companion to NanoJev benchmark, not duplicate tools entry.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "harness",
-      "gepa",
-      "claude-code",
-      "games"
-    ],
+    "tags": ["agent-tooling", "harness", "gepa", "claude-code", "games"],
     "language": "Python",
     "stars": 255,
     "url": "https://jev-harness.tianyuchen99.chatgpt.site",
@@ -1943,13 +1445,7 @@
     "oneLiner": "Ollama for decision models: pull laya kev von decider, serve POST /v1/systemone on :11435, ONNX graphs only, TypeSafe SDK drop-in.",
     "description": "ollaya (github.com/ollaya-dev/ollaya, ollaya.dev) install.sh, MCP, Modelfiles. Weights from author HF repos. Runtime category, not a new Laya product page.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "self-hosted",
-      "onnx",
-      "system-one",
-      "cli"
-    ],
+    "tags": ["agent-tooling", "self-hosted", "onnx", "system-one", "cli"],
     "language": "Rust",
     "stars": 153,
     "url": "https://ollaya.dev",
@@ -1966,13 +1462,7 @@
     "oneLiner": "Multimodal System One: text, images, video in; Qwen3.5 plus shared decision head out. HF Valen-Preview-0923, Spaces demo, SFT and RLCD.",
     "description": "Valen (github.com/Liuziyu77/Valen) zero answer-token decode, General 100k data, Sokoban blur demos. Distinct from text-only Kev, Von, tev1.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "multimodal",
-      "decision-model",
-      "qwen",
-      "vision"
-    ],
+    "tags": ["integrations", "multimodal", "decision-model", "qwen", "vision"],
     "language": "Python",
     "stars": 164,
     "url": "https://huggingface.co/Valen-Team/Valen-Preview-0923",
@@ -1990,13 +1480,7 @@
     "oneLiner": "Mobilerun Android agent: Jev picks OPEN_APP, TAP, TYPE_TEXT, and scroll ops from observations; React studio, CLI traces, verified dark-theme demo.",
     "description": "mobile-jev (github.com/droidrun/mobile-jev) from Droidrun pairs TypeSafe Jev with the Mobilerun API on real Android hardware. One request per step chooses operation plus speculative targets over indexed controls and up to 200 installed apps. Localhost studio streams the device; pnpm demo dark-theme verifies the Settings switch. README Uber clip documents about 21s for nine actions without a completed booking. No ADB.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "mobile",
-      "mobilerun",
-      "android",
-      "agents"
-    ],
+    "tags": ["browser-computer-use", "mobile", "mobilerun", "android", "agents"],
     "language": "JavaScript",
     "stars": 402,
     "url": "https://github.com/droidrun/mobile-jev",
@@ -2014,13 +1498,7 @@
     "oneLiner": "npm jev-router: jev-claude and jev-codex wrap real CLIs; Jev picks the cheapest sufficient model each fresh user turn with status or commentary lines.",
     "description": "jev-router (github.com/gargpratyush/jev-router, npm jev-router v0.3.0) routes Claude Code and OpenAI Codex subscription sessions via TypeSafe per-turn tier Choice. Fail-open, /jev-explain from saved requests, ~/.jev-router.env config. Distinct from nidhi-singh02-agent-router Herdr multi-agent launcher.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "routing",
-      "claude-code",
-      "codex",
-      "npm"
-    ],
+    "tags": ["agent-tooling", "routing", "claude-code", "codex", "npm"],
     "language": "JavaScript",
     "stars": 427,
     "url": "https://github.com/gargpratyush/jev-router",
@@ -2037,13 +1515,7 @@
     "oneLiner": "Codex skill: Jev clicks and scrolls on accessibility text; Codex types, interprets visuals, and verifies. Author claims about 5 to 10x faster browser ops at EZCollegeApp.",
     "description": "jev-browser-use (github.com/wy-coliney/jev-browser-use) installs with npx skills add. Uses existing Computer Use Chrome connection, TypeSafe or OpenRouter Jev config under ~/.config/jev-browser-use. Distinct from browser-use-jev-ultrafast Python DOM hybrid.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "codex",
-      "skill",
-      "browser-use",
-      "agents"
-    ],
+    "tags": ["browser-computer-use", "codex", "skill", "browser-use", "agents"],
     "language": "JavaScript",
     "stars": 545,
     "url": "https://github.com/wy-coliney/jev-browser-use",
@@ -2060,18 +1532,10 @@
     "oneLiner": "A retro arcade for browser games played by Jev and other AI models.",
     "description": "Jev Arcade at arcade.jevdoom.com collects browser games that Jev and other AI models have played. Paste a link to submit a game; the arcade pulls in its title, description, and preview image. Upvote by inserting coins, sort by Top or New, and climb the high-score table. There are no accounts, just 3-letter initials like an old cabinet. Fan-made and unofficial. Distinct from jev-arcade.vercel.app (Krunker FPS) and jevarcade.netlify.app (Netlify gateway mini games). You can also play the Doom shareware episode yourself at jevdoom.com/play.",
     "category": "games",
-    "tags": [
-      "games",
-      "arcade",
-      "doom",
-      "ai-agents",
-      "community"
-    ],
+    "tags": ["games", "arcade", "doom", "ai-agents", "community"],
     "url": "https://arcade.jevdoom.com",
     "demoUrl": "https://jevdoom.com/play",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "jevdoom",
     "creatorName": "jevdoom.com",
     "sourcePlatform": "web",
@@ -2084,22 +1548,14 @@
     "oneLiner": "Official LangChain Runnable for TypeSafeClassifier plus experimental ModelRouterMiddleware and AutoModeMiddleware on System One.",
     "description": "langchain-typesafe (PyPI langchain-typesafe, code in github.com/langchain-ai/langchain) wraps Choice, Score, and Noul as TypeSafeClassifier with message-as-state, parallel questions, and LangChain model-error inheritance. Install with uv add langchain-typesafe; set TYPESAFE_API_KEY. Experimental extra ships ModelRouterMiddleware for once-per-run model pick and AutoModeMiddleware for pre-tool risk gates. MIT. LangChain blog and docs cover harness patterns; this listing tracks the integration package only.",
     "category": "sdks",
-    "tags": [
-      "sdks",
-      "langchain",
-      "python",
-      "middleware",
-      "integrations"
-    ],
+    "tags": ["sdks", "langchain", "python", "middleware", "integrations"],
     "language": "Python",
     "url": "https://pypi.org/project/langchain-typesafe/",
     "repoUrl": "https://github.com/langchain-ai/langchain",
     "creatorHandle": "langchain-ai",
     "creatorName": "LangChain",
     "sourcePlatform": "github",
-    "badges": [
-      "sdk"
-    ],
+    "badges": ["sdk"],
     "detailPage": true,
     "updatedAt": "2026-09-27"
   },
@@ -2109,13 +1565,7 @@
     "oneLiner": "Mapika open System One family on Qwen3.5: one forward pass, Choice/Score/Noul, POST /v1/systemone via decider-ai on PyPI, weights on Hugging Face.",
     "description": "decider (github.com/Mapika/decider, PyPI decider-ai, Apache-2.0) is an independent Qwen3.5-trained decision stack with public mixture notes, calibrate CLI, and decider.serve HTTP. Models from 0.8B to 35B-A3b plus vision; README cites third-party JevBench and Decision Index ranks as of September 2026. ollaya can serve ONNX wrappers but Mapika/decider remains model source of truth. Distinct from jaredpalmer-kev, wfzyx-von, ollaya-dev-ollaya, and theoleecj-semif.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "decision-model",
-      "system-one",
-      "self-hosted"
-    ],
+    "tags": ["integrations", "open-source", "decision-model", "system-one", "self-hosted"],
     "language": "Python",
     "stars": 702,
     "url": "https://github.com/Mapika/decider",
@@ -2133,13 +1583,7 @@
     "oneLiner": "WXT Chrome and Firefox extension: Jev classifies keep/ad/promotion/newsletter/social/cookie/uncertain, then saves local template hide rules at p and confidence at least 0.9.",
     "description": "Unclutter (github.com/kitze/unclutter, MIT) sends bounded DOM candidates to TypeSafe jev-latest or Vercel AI Gateway typesafe-ai/jev, never full page HTML. Manual analyze or on-visit mode; Bun build; BYOK in the popup. Distinct from realzachi-typesafe-adblock blocklist flow. Kitze ships reusable template rules so repeat visits skip inference when patterns match.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "extension",
-      "privacy",
-      "chrome",
-      "firefox"
-    ],
+    "tags": ["browser-computer-use", "extension", "privacy", "chrome", "firefox"],
     "language": "TypeScript",
     "stars": 312,
     "url": "https://github.com/kitze/unclutter",
@@ -2157,13 +1601,7 @@
     "oneLiner": "Node 20+ ONNX Runtime client for Convai Laya: typed systemOne, HF cache about 1.7 GB fp32, parity claims vs Python RLAgent.",
     "description": "receptron/laya (npm @receptron/laya, MIT) runs Convai Innovations Laya weights in TypeScript without PyTorch at runtime. Choice, Score, and Noul batched in one forward pass; cache under ~/.cache/receptron-laya. Distinct from ollaya-dev-ollaya Rust pull/serve daemon: this page is the JS runtime only, not a second Laya weights listing.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "nodejs",
-      "typescript",
-      "onnx",
-      "laya"
-    ],
+    "tags": ["integrations", "nodejs", "typescript", "onnx", "laya"],
     "language": "TypeScript",
     "stars": 500,
     "url": "https://github.com/receptron/laya",
@@ -2180,13 +1618,7 @@
     "oneLiner": "npm @dzhng/jevgrep (`jg`): coding-agent CLI for hierarchical semantic repo search with Jev relevance, verbatim excerpts, and `jg skill` installer.",
     "description": "jevgrep (github.com/dzhng/jevgrep, MIT, Node 22+) asks a natural-language repo question; `jg` walks folders, files, and declarations, returns reading leads and source excerpts on stdout. Auth via jg auth for Vercel AI Gateway, TypeSafe, OpenRouter, or OpenCode Zen (provider pick needs package >=0.3.0). README evals on 10 Python SWE-bench tasks: 8/10 solved with or without Jevgrep; Sol-only cost about $7.62 to $5.44 (~28.6%); total-cost rerun with Jev measured 25.8% lower, still 8/10. Distinct from uehaj-jev-semgrep line filters and sufianetaouil-every per-function scoring.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "cli",
-      "code-search",
-      "coding-agent",
-      "semantic-search"
-    ],
+    "tags": ["agent-tooling", "cli", "code-search", "coding-agent", "semantic-search"],
     "language": "TypeScript",
     "stars": 1148,
     "url": "https://github.com/dzhng/jevgrep",
@@ -2203,13 +1635,7 @@
     "oneLiner": "Open-source AI Trading OS: research, backtest, paper/live execution, Agent Gateway + MCP; optional TypeSafe Jev pre-trade filter on entries.",
     "description": "QuantDinger (github.com/OpenByteInc/QuantDinger, Apache-2.0 backend, ai.quantdinger.com) is a multi-tenant-capable stack for crypto and stocks/forex. README JEV-powered pre-trade decisions: optional AI Decision Filter sends order and strategy context to TypeSafe POST /v1/systemone; typed Choice with probabilities and confidence; rejected entries never reach the exchange; exits and emergency paths bypass; provider failure fails open. Config JEV_API_KEY, JEV_BASE_URL, JEV_MODEL in System Settings. Distinct from jarrodwatts-jev-trader Monad demo.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "trading",
-      "quant",
-      "mcp-server",
-      "typesafe-ai"
-    ],
+    "tags": ["applications", "trading", "quant", "mcp-server", "typesafe-ai"],
     "language": "Python",
     "stars": 12268,
     "url": "https://ai.quantdinger.com",
@@ -2226,13 +1652,7 @@
     "oneLiner": "Self-hosted GLiFormer System One server: POST /v1/systemone compatible with typesafe-sdk; local uv run or Modal GPU/CPU deploy.",
     "description": "jeff (github.com/logan-markewich/jeff, MIT, Python) serves knowledgator/gliformer-large-v1 (~400M) as a drop-in TypeSafe wire endpoint via TYPESAFE_BASE_URL. Choice, Score, Noul; JEFF_API_KEYS auth. README benchmarks vs hosted Jev on 1600 labeled items: ~$2.6 vs ~$15.6 per 1M single-question requests; JevBench v1.2.2 66.9 (#9) vs Jev 75.3 (#2). Distinct from jaredpalmer-kev Qwen family, wfzyx-von encoder speed, githubnext-localjev Bun proxy.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "self-hosted",
-      "system-one",
-      "gliformer"
-    ],
+    "tags": ["integrations", "open-source", "self-hosted", "system-one", "gliformer"],
     "language": "Python",
     "stars": 256,
     "url": "https://github.com/logan-markewich/jeff",
@@ -2249,13 +1669,7 @@
     "oneLiner": "Apple Silicon Core ML and Neural Engine runtime for open-weight Laya: short typed decisions, PyPI laya-coreml, Hugging Face bundles, Snake demo.",
     "description": "Laya-CoreML (github.com/mizorewww/laya-coreml, Apache-2.0, PyPI laya-coreml) loads Core ML bundles such as aac6fef/laya-multilingual-coreml-ane and returns choice, score, and noul probabilities with no generated tokens. README on M3 Max: ANE FP16 P50 4.98 ms and P95 5.31 ms versus compiled MLX FP16 6.94/7.39 ms, 2.78x better whole-system energy per decision, 65,598 stable calls. The requested 10x speedup was not achieved. ANE packs cap requests at 96 tokens; the multilingual CPU+GPU pack is 1024. Port fidelity: 189/189 on three FP16 checkpoints. Snake loop 49.1 to 50.0 decisions/s on three 600-step episodes. Independent of the Laya-MLX learn guide, @receptron/laya, and ollaya.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "apple-silicon",
-      "coreml",
-      "laya",
-      "on-device"
-    ],
+    "tags": ["integrations", "apple-silicon", "coreml", "laya", "on-device"],
     "language": "Python",
     "stars": 1527,
     "url": "https://github.com/mizorewww/laya-coreml",
@@ -2273,13 +1687,7 @@
     "oneLiner": "LLM plus Jev alloy: JevSift, JevLoop, and JevLong over a CLI JSON protocol so the host agent keeps the session.",
     "description": "JevRev (github.com/Alex314618-create/JevRev, npm jevrev 0.2.0, MIT, Node 20+) lets the LLM propose and execute while Jev sifts approaches, audits rounds, and watches long JSONL sessions. Hosted Jev, local SemIf, or replay. Shadow activation does not call Jev. README Tidal City compares the same ChatGPT-6-Sol-Ultra prompt with and without the three parts. README JSONL case: 25,000 events, regex-shortcut failed malformed-line checks (65 vs 184) while batch-index passed and won, both near 180k events/s. Loop finished at round 3 (838 ms, 1,628 replay tokens) while Long still flagged failure_loop. Separate intent from Foreman, JevHarness, Distill, and Astra-Ares.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "harness",
-      "cli",
-      "workflow",
-      "jev"
-    ],
+    "tags": ["agent-tooling", "harness", "cli", "workflow", "jev"],
     "language": "TypeScript",
     "stars": 670,
     "url": "https://github.com/Alex314618-create/JevRev",
@@ -2296,13 +1704,7 @@
     "oneLiner": "Live SEO audit from one homepage URL: 52 rules, Jev page judgments, PDF, XLSX, and Markdown from the same audit.json.",
     "description": "jev-seo (github.com/AgriciDaniel/jev-seo, MIT, Python 3.10+, README v0.1.1, CI on main) crawls a live site, checks rules tied to Google Search Central, measures Core Web Vitals, and asks TypeSafe Jev 13 page questions plus 5 site questions. Standard mode is about a cent in Jev per site (0.042 USD per million input tokens). Optional --full adds DataForSEO at about 0.30 USD. Budgets default to 0.25 USD and 1.00 USD. Evaluation on 2026-09-22: 59 pages repeated, confident page types agreed 44/44. Example --full report for claude-seo.md is in the repo. Distinct organic-search tool from the internal-links exporter.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "seo",
-      "audit",
-      "reports",
-      "claude-code"
-    ],
+    "tags": ["applications", "seo", "audit", "reports", "claude-code"],
     "language": "Python",
     "stars": 169,
     "url": "https://github.com/AgriciDaniel/jev-seo",
@@ -2320,12 +1722,7 @@
     "oneLiner": "Automatic Claude Code, Cursor, and Codex project memory: JEVMEM.md with Jev decide, recall, guard, and poisoning checks; npm jevmem 0.6.1.",
     "description": "jevmem (github.com/Avinash-jetwani/jevmem, npm jevmem) hooks Stop and UserPromptSubmit in Claude Code, lists in Anthropic's plugin directory, and documents Cursor and Codex via MCP. Typed Jev thresholds write decision, constraint, bug, todo, dead end, and superseded lines; PreToolUse guard and foreign-line audit in CI. README held-out evals and SECURITY.md poisoning numbers.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "memory",
-      "claude-code",
-      "npm"
-    ],
+    "tags": ["agent-tooling", "memory", "claude-code", "npm"],
     "language": "TypeScript",
     "stars": 100,
     "url": "https://github.com/Avinash-jetwani/jevmem",
@@ -2342,12 +1739,7 @@
     "oneLiner": "HACS integration: Jev questions become sensors, jev.* actions, AI Task, Assist, house check repairs, cost budget, and 25 blueprints.",
     "description": "HA-Jev (github.com/AboveColin/HA-Jev) wires TypeSafe Jev into Home Assistant 2026.9+ with hassfest CI. Docs at jev.cdevries.dev cover YAML and UI questions, automation response variables, and daily spend sensors. Uses jevclient; not affiliated with TypeSafe per README.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "home-assistant",
-      "hacs",
-      "automation"
-    ],
+    "tags": ["applications", "home-assistant", "hacs", "automation"],
     "language": "Python",
     "stars": 68,
     "url": "https://github.com/AboveColin/HA-Jev",
@@ -2365,12 +1757,7 @@
     "oneLiner": "Turn embedding models into Choice, Score, and Noul: JevEmbed-Data, LoRA releases on Hugging Face, benchmark runner, playground, HTTP /v1/systemone.",
     "description": "JevEmbed (github.com/HITsz-TMG/JevEmbed) fine-tunes encoders on about 1.67M labeled JevEmbed-Data questions. Collection HIT-TMG/lychee-jevembed ships merged weights; README reports up to 85.86% overall hard-label test accuracy for JevEmbed-Qwen3-Embedding-4B. Synthesis, train, serve, and jevembed-benchmark in one repo.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "embeddings",
-      "open-weight",
-      "huggingface"
-    ],
+    "tags": ["integrations", "embeddings", "open-weight", "huggingface"],
     "language": "Python",
     "stars": 60,
     "url": "https://github.com/HITsz-TMG/JevEmbed",
@@ -2388,21 +1775,13 @@
     "oneLiner": "Open multilingual non-autoregressive System 1 engine: a script-aware Router picks English, multilingual, or typed-decisions checkpoints, then one forward pass returns Choice, Score, and Noul.",
     "description": "DeepOpen (github.com/deepopen-com/deepopen, Apache-2.0, pip install deepopen) is a Laya-based decision engine with 3 Hugging Face checkpoints and a Router that detects script before the forward pass. English ModernBERT-large (421M), multilingual mmBERT-base (322M, 100+ languages), and a typed-decisions fine-tune. README T4 tables, Banking77 and CLINC150 reproduction trees, and published limits on high-cardinality labels. Separate product from Von, receptron Laya, AnyJev, NanoJev, SemIf, and ollaya.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "decision-model",
-      "system-one",
-      "multilingual"
-    ],
+    "tags": ["integrations", "open-source", "decision-model", "system-one", "multilingual"],
     "language": "Python",
     "stars": 1633,
     "url": "https://github.com/deepopen-com/deepopen",
     "repoUrl": "https://github.com/deepopen-com/deepopen",
     "demoUrl": "https://huggingface.co/spaces/convaiinnovations/deepopen-demo",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "deepopen-com",
     "creatorName": "Deep Open",
     "sourcePlatform": "github",
@@ -2415,13 +1794,7 @@
     "oneLiner": "Coding agent with a judgment kernel: a small judge answers about 35 bounded calls per turn while the big model does the work. CLI and desktop, built on pi and AionUi.",
     "description": "mu (github.com/qybaihe/mu, npm mu-agent) is a coding agent whose judgment kernel asks a small judge at 35 decision points per turn. MIT for packages and kyrn, Apache-2.0 for the AionUi desktop shell. Points cover input, context, tools, the turn, and a hive board. Judges are hosted Jev, local Laya, or an LLM tier, and each point is active, shadow, or off. README measured test-log admission, desktop releases, and privacy notes. Separate from pi-jev, jev-guard, Distill, and JevHarness.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "coding-agent",
-      "pi",
-      "desktop",
-      "jev"
-    ],
+    "tags": ["agent-tooling", "coding-agent", "pi", "desktop", "jev"],
     "language": "TypeScript",
     "stars": 336,
     "url": "https://github.com/qybaihe/mu",
@@ -2438,13 +1811,7 @@
     "oneLiner": "Native vLLM serving for open Jev-style checkpoints on Linux NVIDIA and Apple Silicon: POST /v1/systemone for Choice, Noul, and Score.",
     "description": "vLLM Jev (github.com/mode-io/vllm-jev, Apache-2.0) serves compatible decision checkpoints through vLLM on Linux and through MLX or PyTorch MPS on Apple Silicon. The supported table includes Open-Jev-2B and 9B, 3 Laya checkpoints, OpenJev-0.6B, Tiny-Jev, Valen-Preview-0923, and vjev-vision. README live run: 24 Valen video questions in 1.22 s versus 5.31 s on the PyTorch path. A different runtime from LocalJev, ollaya, receptron Laya, Von, and DeepOpen.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "serving",
-      "vllm",
-      "system-one",
-      "open-weight"
-    ],
+    "tags": ["integrations", "serving", "vllm", "system-one", "open-weight"],
     "language": "Python",
     "stars": 198,
     "url": "https://github.com/mode-io/vllm-jev",
@@ -2461,12 +1828,7 @@
     "oneLiner": "Ten levels from one Noul smart-if to a pi agent that writes its own Jev questions, with a live Vue lab and a YouTube walkthrough.",
     "description": "ten-levels-of-jev (github.com/disler/ten-levels-of-jev, MIT) arranges 30 runnable TypeScript options into 10 levels. Levels 1 to 5 call Jev from code. Levels 6 to 10 put Jev inside the pi coding agent, first as hooks, then as tools, until the agent writes the questions. 201 offline tests on a deterministic mock. Companion video: youtu.be/_U-O5lYhJ7Q. A different curriculum from dbreunig/building-with-jev-skill.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "curriculum",
-      "pi",
-      "jev"
-    ],
+    "tags": ["agent-tooling", "curriculum", "pi", "jev"],
     "language": "TypeScript",
     "stars": 147,
     "url": "https://github.com/disler/ten-levels-of-jev",
@@ -2484,12 +1846,7 @@
     "oneLiner": "Vision front end for hosted TypeSafe Jev: one frame, many objects, one Choice or Noul call over RGB, video, or RGB-D.",
     "description": "JEV Sees (github.com/CharlesFeng0314/JEV_sees, MIT, v0.1.0) builds scene state from images, video, and RGB-D, then calls official TypeSafe Choice, Noul, and Score. Florence-2 proposes regions. Depth clusters decide physical objects when RGB-D is available. observe() and state() stay local. system_one needs a TypeSafe key. The README removed the earlier YOLO latency table and asks for a new benchmark before speed claims. Created 2026-09-30.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "vision",
-      "rgb-d",
-      "typesafe"
-    ],
+    "tags": ["integrations", "vision", "rgb-d", "typesafe"],
     "language": "Python",
     "stars": 113,
     "url": "https://github.com/CharlesFeng0314/JEV_sees",
@@ -2506,13 +1863,7 @@
     "oneLiner": "Claude Code skill that hands bulk filter, classify, rank, find, and ask calls to TypeSafe Jev, with a 12-task README bench claiming 86% fewer Claude tokens.",
     "description": "Quicksilver (github.com/UditAkhourii/quicksilver, MIT, Node 18+) is a Claude Code skill and qs CLI. npx github:UditAkhourii/quicksilver copies the skill into ~/.claude/skills/quicksilver. Jev returns a yes/no, a label, or a score, and Claude reads the shortlist. The README 12-task bench states 86% fewer Claude tokens (median 82%), a match on 8 of 12 tasks, up to 20x faster, and a median of $0.004 of Jev per task. The same table shows the BGL log falling from 54% F1 to 23%. Distinct from building-with-jev-skill, Hermes Jev skills, jevgrep, and fast Jev compaction.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "claude-code",
-      "skill",
-      "cli",
-      "jev"
-    ],
+    "tags": ["agent-tooling", "claude-code", "skill", "cli", "jev"],
     "language": "JavaScript",
     "stars": 98,
     "url": "https://github.com/UditAkhourii/quicksilver",
@@ -2529,13 +1880,7 @@
     "oneLiner": "Unix-style thinking coreutils in Go: filter, label, sort, and cut by meaning with TypeSafe Jev, and print the user's own lines back.",
     "description": "grev (github.com/aurorainfra/grev, Apache-2.0 or MIT) is a Go suite of semantic Unix filters: grev, isv, tagv, sortv, rank, cutv, seek, trv, lookv, probev, and the rest. Output is the user's input. Labels and scores show up only as explicit columns. Packages, man pages, spend caps, OpenRouter and Fastino endpoints, and grev-settings skill install. docs/tools/grev.md shows a 16-line log judged in 1 request for $0.000058. A different job from jevgrep's repo search, logview's Android TUI, jev-guard, and Hippo memory.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "cli",
-      "unix",
-      "go",
-      "jev"
-    ],
+    "tags": ["agent-tooling", "cli", "unix", "go", "jev"],
     "language": "Go",
     "stars": 55,
     "url": "https://github.com/aurorainfra/grev",
@@ -2552,20 +1897,12 @@
     "oneLiner": "Native Swift 6 bridge that plugs hosted Jev, laya-serve, or on-device Laya into Apple Foundation Models LanguageModelSession.",
     "description": "System One for Apple Foundation Models (github.com/peterfriese/system-one-foundation-models, Apache-2.0) is Peter Friese's Swift package for LanguageModelSession and @Generable types. Traits select hosted Jev, on-device Laya Core ML, or laya-serve. Shortcuts cover session.probability, choice, and score. MailTriageApp ships 5 backends. ProxyTransport keeps the TypeSafe key off the phone. Package.swift declares iOS 27.0, macOS 27.0, and visionOS 27.0, matching the README badges. This listing quotes those declarations. Distinct from the Python Laya Core ML runtime, the Node Laya ONNX client, the official JS SDK, and ollaya.",
     "category": "sdks",
-    "tags": [
-      "sdks",
-      "swift",
-      "apple",
-      "foundation-models",
-      "laya"
-    ],
+    "tags": ["sdks", "swift", "apple", "foundation-models", "laya"],
     "language": "Swift",
     "stars": 63,
     "url": "https://github.com/peterfriese/system-one-foundation-models",
     "repoUrl": "https://github.com/peterfriese/system-one-foundation-models",
-    "badges": [
-      "sdk"
-    ],
+    "badges": ["sdk"],
     "creatorHandle": "peterfriese",
     "creatorName": "Peter Friese",
     "sourcePlatform": "github",
@@ -2578,13 +1915,7 @@
     "oneLiner": "Self-hostable document library: Jev Choice beam search over folders, documents, and sections, plus Score usefulness filtering, with SpiceDB permissions and MCP.",
     "description": "Jevbox (github.com/extend-hq/jevbox, jevbox.extend.ai) from Extend is Andrew Luo's full stack document drive. Extend Parse indexes uploads; TypeSafe Jev routes library search and automatic filing without embeddings or a vector database. Chat answers cite source passages; permission-aware REST and MCP mirror SpiceDB checks. Render blueprint, Docker, and Helm deploy paths. Distinct from Jerry Liu DocJev classify/split and superagents-lab jev-search web retrieval.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "documents",
-      "rag",
-      "mcp",
-      "self-hosted"
-    ],
+    "tags": ["applications", "documents", "rag", "mcp", "self-hosted"],
     "language": "TypeScript",
     "stars": 401,
     "url": "https://jevbox.extend.ai",
@@ -2603,13 +1934,7 @@
     "oneLiner": "Tree-sitter unit linter: plain-language rules judged by Jev per function, type, or statement, with packs, cache, and Release binaries.",
     "description": "jevlint (github.com/codegirl-007/jevlint) extracts code units with Tree-sitter, batches Jev Noul checks against jevlint.json rules, and supports init, doctor, check, eval, and plugin packs. Providers include TypeSafe, Clef on Cloudflare Workers AI, and OpenRouter Jev. GitHub Releases ship linux, macOS, and windows binaries. Distinct from Cold Tea Abide instruction rubrics on diffs, kushwho jev-codes PR standards, and aurorainfra grev Unix filters.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "lint",
-      "cli",
-      "devtools",
-      "tree-sitter"
-    ],
+    "tags": ["agent-tooling", "lint", "cli", "devtools", "tree-sitter"],
     "language": "Go",
     "stars": 125,
     "url": "https://github.com/codegirl-007/jevlint",
@@ -2626,13 +1951,7 @@
     "oneLiner": "On-prem clinical note extraction: local noul, choice, and score variables on one GPU, built on Jared Palmer kev with Augmented Clinical Notes training data.",
     "description": "MedJev (github.com/JunMa11/MedJev) fine-tunes Qwen3.5-0.8B on EPFL Augmented Clinical Notes for typed clinical variables from free text. Train, evaluate, and serve on your hardware; optional hosted Jev baseline via TypeSafe for comparison in serve_compare. Patient notes stay on-prem. Architecture adapts kev LoRA and pointer-head serving. Distinct from generic hosted Jev gates and open-weight catalog pages that do not target bedside chart extraction.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "healthcare",
-      "gpu",
-      "training",
-      "on-prem"
-    ],
+    "tags": ["agent-tooling", "healthcare", "gpu", "training", "on-prem"],
     "language": "Python",
     "stars": 111,
     "url": "https://github.com/JunMa11/MedJev",
@@ -2649,12 +1968,7 @@
     "oneLiner": "Find the page that answers a question in a long PDF: PageIndex builds a tree, Jev Choice walks it, and Noul checks the pages.",
     "description": "jev-doc-search (github.com/VectifyAI/jev-doc-search, Apache-2.0) is the PageIndex team's recipe for one long PDF. Flat page search is one Choice with one option per page, which the README says breaks past 32,000 tokens and 255 options. tree_search.py walks a PageIndex tree with a beam of 3, then checks up to 16 pages with Noul. Model jev-1.13.0. NVIDIA fiscal 2026 revenue landed on p37 and p51. A different job from Jevbox, which is a multi-file library and whose docs say it does not need PageIndex.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "documents",
-      "search",
-      "pdf"
-    ],
+    "tags": ["agent-tooling", "documents", "search", "pdf"],
     "language": "Python",
     "stars": 95,
     "url": "https://github.com/VectifyAI/jev-doc-search",
@@ -2671,20 +1985,13 @@
     "oneLiner": "An espresso bar where Jev only picks events an XState v6 (alpha) machine already accepts, plus a lamp demo and an eval page.",
     "description": "Jevspresso (github.com/statelyai/jevspresso, jevspresso.dev) is Stately's simulated bar. An XState v6 (alpha) machine models what is physically possible, and Jev picks one legal event. Jev never writes an action or a payload. @xstate/jev lives in packages/jev. On 2026-10-05 npm returned Not found for that package name, and the repo has no LICENSE file. /light replaces a broken bulb. /eval reports orders served correctly and cost. The first XState listing in this directory.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "xstate",
-      "state-machine",
-      "agents"
-    ],
+    "tags": ["integrations", "xstate", "state-machine", "agents"],
     "language": "TypeScript",
     "stars": 22,
     "url": "https://jevspresso.dev",
     "repoUrl": "https://github.com/statelyai/jevspresso",
     "demoUrl": "https://jevspresso.dev",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "statelyai",
     "creatorName": "Stately",
     "sourcePlatform": "github",
@@ -2697,12 +2004,7 @@
     "oneLiner": "A drop-in proxy that learns a local student from repeated Jev Choice calls and answers the sure ones on your machine.",
     "description": "Jevstiller (github.com/tomerglick57/Jevstiller, jevstiller.pages.dev, Apache-2.0, PyPI jevstiller 0.4.0) sits in front of repeated Choice calls. Set TYPESAFE_BASE_URL. It trains a bge-small student from Jev's full distributions, holds a disagreement budget with a Clopper-Pearson bound, and keeps a random audit slice on Jev. Banking77 replay: 71.9% answered locally at 99.50% agreement. The README says agreement is not accuracy, and that jevcache-style caches reuse near-identical inputs instead of learning new ones.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "proxy",
-      "latency",
-      "classification"
-    ],
+    "tags": ["integrations", "proxy", "latency", "classification"],
     "language": "Python",
     "stars": 61,
     "url": "https://jevstiller.pages.dev",
@@ -2720,20 +2022,13 @@
     "oneLiner": "Turn markdown into a knowledge graph with an ontology you write and yes-or-no scores from a local decision model.",
     "description": "edgextract (github.com/raphaelmansuy/edgextract, Apache-2.0) extracts a knowledge graph from markdown. You write the types and legal links. Ollama 0.35+ answers closed yes-or-no questions on tev1 or nimble (library default). Unsure links wait for review. CoNLL04 zero-shot: Names F1 0.690, Links F1 0.388, behind trained SpERT. crates.io, npm, and PyPI are 0.1.0. The article says clef was not tested, and the README claims nothing about hosted Jev calibration.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "knowledge-graph",
-      "ollama",
-      "ontology"
-    ],
+    "tags": ["integrations", "knowledge-graph", "ollama", "ontology"],
     "language": "TypeScript",
     "stars": 70,
     "url": "https://raphaelmansuy.github.io/edgextract/",
     "repoUrl": "https://github.com/raphaelmansuy/edgextract",
     "demoUrl": "https://raphaelmansuy.github.io/edgextract/",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "raphaelmansuy",
     "creatorName": "Raphael Mansuy",
     "sourcePlatform": "github",
@@ -2746,20 +2041,13 @@
     "oneLiner": "A weekday arXiv radar: Jev scores every new paper against your interests, and you read the short list.",
     "description": "Paper Radar (github.com/Eliot5566/JEV-Paper-Radar, MIT) is a fork-and-run daily triage. One Jev call per paper: a Noul per interest and exclusion, a Choice for paper type, and a Noul for code released. Weekdays at 02:00 UTC. A 50-paper run on 2026-09-23 cost $0.0020. 4 held-out Cochrane reviews: 96.9% recall and 78.0% work saved on 19,447 records, for $0.60, which the README calls the optimistic case. A different job from the 1kpapers atlas.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "research",
-      "arxiv",
-      "rss"
-    ],
+    "tags": ["applications", "research", "arxiv", "rss"],
     "language": "Python",
     "stars": 28,
     "url": "https://eliot5566.github.io/JEV-Paper-Radar/public/",
     "repoUrl": "https://github.com/Eliot5566/JEV-Paper-Radar",
     "demoUrl": "https://eliot5566.github.io/JEV-Paper-Radar/public/",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "Eliot5566",
     "creatorName": "Eliot5566",
     "sourcePlatform": "github",
@@ -2772,20 +2060,13 @@
     "oneLiner": "Natural language to SQL for PostgreSQL, plus 41 Jev operators. On the project's BIRD table, Jev alone scores below the LLM.",
     "description": "jev4pg (github.com/Sheltercosmo/jev4pg, jev4pg.com, Apache 2.0, release v0.7.0) plans SQL from English or Simplified Chinese and runs 41 Jev operators on PostgreSQL. On the README BIRD Challenging table, Jev alone matched 20/99 (20.2%), below GPT-5.6 Terra at 39/99 (39.4%). Hybrid matched 34/99 (34.3%) and took longer. This is not pg-jev. pg-jev is one per-row jev() predicate. jev4pg is natural-language SQL planning plus the operator toolkit and that benchmark.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "postgres",
-      "sql",
-      "benchmark"
-    ],
+    "tags": ["integrations", "postgres", "sql", "benchmark"],
     "language": "Python",
     "stars": 143,
     "url": "https://jev4pg.com",
     "repoUrl": "https://github.com/Sheltercosmo/jev4pg",
     "demoUrl": "https://jev4pg.com",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "Sheltercosmo",
     "creatorName": "Shelter Zhou",
     "sourcePlatform": "github",
@@ -2798,20 +2079,13 @@
     "oneLiner": "Datawhale's 11-chapter Chinese Jupyter course for Jev, with 18 recipes, a 3D smart home, and local Laya fine-tuning.",
     "description": "Jev Cookbook (github.com/datawhalechina/jev-cookbook) is Datawhale's unofficial 11-chapter Chinese Jupyter tutorial for Jev. It teaches Choice, Score, and Noul, replays 18 official recipes, and includes a voice-driven 3D smart home, a Laya versus Jev setup on 231 public questions, 12 runnable projects, Pi and DeepSeek Harness gates, and local Laya fine-tuning with RLCD. Offline examples need no API key. The README says the English original at docs.typesafe.ai is authoritative. Original text is CC BY-NC-SA 4.0.",
     "category": "guides",
-    "tags": [
-      "guides",
-      "tutorial",
-      "chinese",
-      "notebook"
-    ],
+    "tags": ["guides", "tutorial", "chinese", "notebook"],
     "language": "Python",
     "stars": 184,
     "url": "https://datawhalechina.github.io/jev-cookbook/",
     "repoUrl": "https://github.com/datawhalechina/jev-cookbook",
     "demoUrl": "https://datawhalechina.github.io/jev-cookbook/",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "datawhalechina",
     "creatorName": "Datawhale",
     "sourcePlatform": "github",
@@ -2824,13 +2098,7 @@
     "oneLiner": "PostHog's open 9B Jev-like model that reasons before it scores options, with CISPO training, a block-4 drafter, and Jev-compatible POST /v1/systemone.",
     "description": "Jeeves (github.com/PostHog/jeeves, MIT code, Hugging Face PostHog/jeeves weights Apache-2.0) is a Qwen3.5-9B plus LoRA r16 pointer-head decision stack from PostHog. It writes a reasoning chain per question, then scores Choice, Noul, and Score in one request. README tables claim 0.889 test overall vs Jev 0.857 and Kev-9B 0.822, and 0.935 JevBench public vs Jev 0.866, with MMLU trails called out. Ships inference.serve, full SFT and CISPO code, jeeves_sdk, and FP8 weights. Inspired by jaredpalmer/kev.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "decision-model",
-      "reasoning",
-      "self-hosted"
-    ],
+    "tags": ["integrations", "open-source", "decision-model", "reasoning", "self-hosted"],
     "language": "Python",
     "stars": 414,
     "url": "https://github.com/PostHog/jeeves",
@@ -2847,12 +2115,7 @@
     "oneLiner": "Local proxy for Codex, Claude Code, OpenCode, Kilo, Gemini, and Devin: Jev picks the tool each turn, fails open, listens on 127.0.0.1 only.",
     "description": "jev-gateway (github.com/vinilana/jev-gateway, npm jev-gateway 0.5.1, MIT) routes coding agents through a localhost gateway. Each turn it asks Jev which tool fits; confident picks steer Codex; Claude Code gets non-binding hints because extended thinking blocks forced tool_choice. TypeSafe, OpenRouter, Vercel AI Gateway, or OpenCode Zen keys. --routing off baseline mode and --dashboard monitoring. Distinct from jev-router repos that pick model tier, not tool name.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "codex",
-      "claude-code",
-      "proxy"
-    ],
+    "tags": ["agent-tooling", "codex", "claude-code", "proxy"],
     "language": "TypeScript",
     "stars": 301,
     "url": "https://github.com/vinilana/jev-gateway",
@@ -2869,12 +2132,7 @@
     "oneLiner": "Reproduce the public Decision Index 0.3 suite locally or as one Hugging Face Job: 37 chance-corrected benchmarks, HTTP /v1/systemone engines, resumable runs.",
     "description": "decision-index (github.com/apolinario/decision-index, MIT, PyPI decision-index 0.3) rebuilds the frozen public benchmark kit from pinned sources (~7 GB downloads, not redistributed). Full board score is 20% public plus private maintainer tests; this repo runs the public index only. README parity tests cite Jev 57.89 on edition 0.2.1 and reproduce Cloudflare clef public index 61.71 on 0.3. Models over 1000 ms latency are not Jev-like per README rules. Not affiliated with TypeSafe AI.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "leaderboard",
-      "evaluation"
-    ],
+    "tags": ["benchmarks", "open-source", "leaderboard", "evaluation"],
     "language": "Python",
     "stars": 24,
     "url": "https://github.com/apolinario/decision-index",
@@ -2891,20 +2149,13 @@
     "oneLiner": "Scope endpoint incidents from one malicious seed: link telemetry, ask Jev if each entity belongs, output a timeline. Experimental DFIR helper, not a detector.",
     "description": "Jevline (github.com/tsale/jevline, no LICENSE file in repo, demo jev-incident-timeline.vercel.app) follows process, network, and logon links from one confirmed-malicious seed and asks Jev each round whether candidates belong (default threshold 0.8). README real-intrusion table: 40 of 41 attack-chain processes in 21 s for $0.11 with Jev vs GLM 5.3 Flash 32.6 min and 8 wrong decisions. Scores measure relatedness, not maliciousness. Distinct from box-jev-incident-triage Box file routing.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "security",
-      "dfir",
-      "incident-response"
-    ],
+    "tags": ["integrations", "security", "dfir", "incident-response"],
     "language": "TypeScript",
     "stars": 30,
     "url": "https://jev-incident-timeline.vercel.app/",
     "repoUrl": "https://github.com/tsale/jevline",
     "demoUrl": "https://jev-incident-timeline.vercel.app/",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "tsale",
     "creatorName": "Kostas",
     "sourcePlatform": "github",
@@ -2917,12 +2168,7 @@
     "oneLiner": "Cross-platform desktop app to download eleven open decision models, run a Playground, and serve TypeSafe Jev API on http://127.0.0.1:8420.",
     "description": "Bud Decision Studio (github.com/BudEcosystem/Bud-Decision-Studio, no LICENSE file; installers and releases on github.com/BudEcosystem/Bud-Decision-Engine) is Bud Ecosystem's GUI for local System One models: Kev 4B, Lev, Laya Multilingual, Jev-Omni, CLM 8B, and more. First-run setup installs a private Python engine. POST /v1/systemone and GET /v1/models work with typesafe-sdk by changing base URL only. Distinct from ollaya-dev-ollaya CLI daemon.",
     "category": "applications",
-    "tags": [
-      "applications",
-      "desktop-app",
-      "self-hosted",
-      "system-one"
-    ],
+    "tags": ["applications", "desktop-app", "self-hosted", "system-one"],
     "language": "TypeScript",
     "stars": 99,
     "url": "https://www.budecosystem.com/open-source-projects/bud-decision-studio",
@@ -2940,20 +2186,13 @@
     "oneLiner": "Christian Mathiesen harness: Jev beats Pokemon Red from RAM legal options and facts, not scripts or memory writes.",
     "description": "jev-pokemon (github.com/christianmat/jev-pokemon, GPL-2.0, demo jev-pokemon.vercel.app) is Christian Mathiesen's Node Game Boy harness where TypeSafe Jev picks one legal option per step from RAM-derived facts. README credits a full clear in 37h 40m, 16,150 decisions, about $1.65 Jev cost, and median about 0.4s per decision. House rules, milestone checkpoints, A* pathfinding, and ROM legal notes are documented. Distinct from thumay9700-jev-plays PyBoy framework.",
     "category": "games",
-    "tags": [
-      "games",
-      "emulator",
-      "agents",
-      "typescript"
-    ],
+    "tags": ["games", "emulator", "agents", "typescript"],
     "language": "TypeScript",
     "stars": 123,
     "url": "https://jev-pokemon.vercel.app",
     "repoUrl": "https://github.com/christianmat/jev-pokemon",
     "demoUrl": "https://jev-pokemon.vercel.app",
-    "badges": [
-      "has-demo"
-    ],
+    "badges": ["has-demo"],
     "creatorHandle": "christianmat",
     "creatorName": "Christian Mathiesen",
     "sourcePlatform": "github",
@@ -2966,12 +2205,7 @@
     "oneLiner": "Prefix-cache-aware batch Jev decisions over Pandas, NumPy, or JSON rows: reorder fields for throughput, not NL-to-SQL.",
     "description": "SOLO solo_jev (github.com/0814wdwd/solo_jev, MIT, Python) runs one natural-language decision per relational row with layout optimization for prefix-caching backends. README cites up to 11.7x throughput vs original order on one RTX 4090 synthetic workload and 3.28x vs NDV sorting; docs/benchmarks.md records protocol. Ships AutoTrust JEV-9B via vLLM and Open-Jev adapter docs. Batch semantic judgments only: not pg-jev, not jev4pg text-to-SQL planning.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "batch",
-      "python",
-      "research"
-    ],
+    "tags": ["integrations", "batch", "python", "research"],
     "language": "Python",
     "stars": 105,
     "url": "https://github.com/0814wdwd/solo_jev",
@@ -2988,12 +2222,7 @@
     "oneLiner": "DeepSeek Harness plugin: twelve optional Jev or Luna judgment features for skill ranking, drift, completion, approvals, and log admission.",
     "description": "dsh-jev-plugin (github.com/luobosibing2/dsh-jev-plugin, MIT, docs luobosibing2.github.io/dsh-jev-plugin) wires TypeSafe Jev into DeepSeek Harness 0.1.7-rc.2 extension points. README lists twelve independently toggled features (skill and file ranking, supervision, shared corrections, workspace approval, stage navigation, log admission, and more), all off by default. Install from GitHub URL in the Web UI; bilingual docs and dated test reports. Community project, not an official DeepSeek or TypeSafe release.",
     "category": "agent-tooling",
-    "tags": [
-      "agent-tooling",
-      "harness",
-      "guardrails",
-      "typescript"
-    ],
+    "tags": ["agent-tooling", "harness", "guardrails", "typescript"],
     "language": "TypeScript",
     "stars": 185,
     "url": "https://luobosibing2.github.io/dsh-jev-plugin/",
@@ -3011,13 +2240,7 @@
     "oneLiner": "Independent Apache-2.0 server: local text and vision models expose POST /v1/systemone from prefill logits on SGLang, Transformers, or MLX.",
     "description": "LLM2Jev (github.com/Yinsongxu/LLM2Jev) from Yinsong Xu turns hub causal and VLM weights into Jev-style probabilities during prefill only, no token-by-token decode. Compatible HTTP, multimodal state, SGLang Radix staged candidates, Web and Snake demos, Valen Sokoban example Oct 8, JevBench on 231 public items in docs/jevbench.md. Not affiliated with TypeSafe. Distinct from featherless-simple-jev classifier API and AnyJev calibration pipeline.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "self-hosted",
-      "system-one",
-      "multimodal",
-      "mlx"
-    ],
+    "tags": ["integrations", "self-hosted", "system-one", "multimodal", "mlx"],
     "language": "Python",
     "stars": 417,
     "url": "https://github.com/Yinsongxu/LLM2Jev",
@@ -3034,13 +2257,7 @@
     "oneLiner": "PyPI arc-cua on macOS: arc-driver MCP controls apps in the background without Jev; arc-cua hands bounded subtasks to JEV or your choice provider.",
     "description": "arc-cua (github.com/shhivv/arc-cua, MIT, PyPI arc-cua) from Shiv Shanmugam packages arc-driver MCP tools for Codex and Claude Code with no decision API, plus an arc-cua loop where planners pass goal, inputs, verification, and max_actions to TypeSafe JEV or ChoicePolicy transports. Distinct from awlevin-typesafe-computer-use full clicker loops. Launch post on X from @sxhivs, Oct 8, 2026.",
     "category": "browser-computer-use",
-    "tags": [
-      "browser-computer-use",
-      "macos",
-      "mcp",
-      "computer-use",
-      "codex"
-    ],
+    "tags": ["browser-computer-use", "macos", "mcp", "computer-use", "codex"],
     "language": "Python",
     "stars": 306,
     "url": "https://github.com/shhivv/arc-cua",
@@ -3050,28 +2267,22 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-10-09"
-  },
+  }
+,
   {
     "slug": "nandhakishorm-laya",
     "title": "Laya (upstream)",
     "oneLiner": "Convai Innovations open decision stack: Apache-2.0 ModernBERT checkpoints, Router mode, and the upstream Python SDK.",
     "description": "NandhaKishorM/laya is the upstream open-source SDK and training repo for Convai Laya decision models on Hugging Face (convaiinnovations/laya). It implements Choice, Score, and Noul in one forward pass with Router routing between English and multilingual checkpoints. This listing points at the authoritative GitHub repo, not community ports such as receptron-laya or laya-mlx. Compare with hosted TypeSafe Jev on /learn/laya-vs-jev/compare.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "decision-model",
-      "laya"
-    ],
+    "tags": ["integrations","open-source","decision-model","laya"],
     "language": "Python",
-    "stars": 32363,
+    "stars": 32383,
     "url": "https://github.com/NandhaKishorM/laya",
     "repoUrl": "https://github.com/NandhaKishorM/laya",
     "demoUrl": "https://huggingface.co/convaiinnovations/laya",
     "featured": true,
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorHandle": "NandhaKishorM",
     "creatorName": "NandhaKishorM",
     "sourcePlatform": "github",
@@ -3084,20 +2295,13 @@
     "oneLiner": "Apache-2.0 clef and clef-flash decision models on Workers AI with open weights on Hugging Face.",
     "description": "Cloudflare Clef is a family of open-weight decision models served on Workers AI (@cf/cloudflare/clef and clef-flash). Weights are Apache-2.0 on Hugging Face. Pricing is listed on Cloudflare model pages ($0.24 per M input for clef and $0.038 for clef-flash as of Oct 2026). Compare with hosted Jev on /alternatives/cloudflare-clef.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "cloudflare",
-      "decision-model"
-    ],
+    "tags": ["integrations","open-source","cloudflare","decision-model"],
     "language": "Python",
     "stars": 0,
     "url": "https://developers.cloudflare.com/workers-ai/models/clef/",
     "repoUrl": "https://huggingface.co/Cloudflare/clef",
     "featured": true,
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorName": "Cloudflare",
     "sourcePlatform": "github",
     "detailPage": true,
@@ -3109,20 +2313,13 @@
     "oneLiner": "Perplexity Apache-2.0 27B decision weights plus hosted Decisions API.",
     "description": "Perplexity pplx-decider v1.1-27b is an open-weight multimodal decision model with a hosted API documented on docs.perplexity.ai. Community pricing posts cite about $0.02 per M input tokens. Weights live at perplexity-ai/pplx-decider-v1.1-27b on Hugging Face. Compare with Jev on /alternatives/perplexity-pplx-decider.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "perplexity",
-      "decision-model"
-    ],
+    "tags": ["integrations","open-source","perplexity","decision-model"],
     "language": "Python",
     "stars": 0,
     "url": "https://docs.perplexity.ai/api-reference/decisions-post",
     "repoUrl": "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b",
     "featured": true,
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorName": "Perplexity",
     "sourcePlatform": "github",
     "detailPage": true,
@@ -3134,12 +2331,7 @@
     "oneLiner": "Fastino 340M Apache-2.0 encoder for typed decisions on CPU-friendly hardware.",
     "description": "GLiNER2.5-Decide (fastino/GLiNER2.5-Decide) is a compact Apache-2.0 decision encoder from Fastino Labs with high Hugging Face adoption for edge routing. Compare accuracy and hosting with Jev on /alternatives/fastino-gliner-decide.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "cpu",
-      "decision-model"
-    ],
+    "tags": ["benchmarks","open-source","cpu","decision-model"],
     "language": "Python",
     "stars": 0,
     "url": "https://huggingface.co/fastino/GLiNER2.5-Decide",
@@ -3157,20 +2349,14 @@
     "oneLiner": "Contrastive-LM Apache-2.0 8B System One style model built on Qwen3-8B.",
     "description": "CLM-v0.1-8B from Contrastive-LM is an Apache-2.0 contrastive decision model on Hugging Face with cached state and action embeddings. Independent Decision Index scores are much lower than vendor launch claims; read /alternatives/clm-8b before you trust hype posts alone.",
     "category": "benchmarks",
-    "tags": [
-      "benchmarks",
-      "open-source",
-      "decision-model"
-    ],
+    "tags": ["benchmarks","open-source","decision-model"],
     "language": "Python",
     "stars": 2981,
     "url": "https://github.com/Contrastive-LM/CLM",
     "repoUrl": "https://github.com/Contrastive-LM/CLM",
     "demoUrl": "https://huggingface.co/Contrastive-LM/CLM-v0.1-8B",
     "featured": true,
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorName": "Contrastive-LM",
     "sourcePlatform": "github",
     "detailPage": true,
@@ -3182,12 +2368,7 @@
     "oneLiner": "Liquid AI 3B multimodal decision model under the LFM 1.0 license.",
     "description": "LiquidAI/d1-3B answers typed decision questions over text and images. Weights use the LFM 1.0 license (not Apache). Vendor model card cites Decision Index 0.2.1 and latency on RTX 4090; independent 0.3.1 Full score is lower. See /alternatives/liquid-d1.",
     "category": "integrations",
-    "tags": [
-      "integrations",
-      "open-source",
-      "multimodal",
-      "decision-model"
-    ],
+    "tags": ["integrations","open-source","multimodal","decision-model"],
     "language": "Python",
     "stars": 0,
     "url": "https://huggingface.co/LiquidAI/d1-3B",
@@ -3205,20 +2386,13 @@
     "oneLiner": "Hosted gpt-6-luna decisions beta with image input and predicate-shaped requests.",
     "description": "OpenAI Decisions API (public beta from Oct 2026) exposes POST /v1/decisions for typed decision tasks with gpt-6-luna. It is a closed hosted API, not open weights. Community posts cite about $0.10 per M input tokens. Compare request shape and data controls with TypeSafe Jev on /alternatives/openai-decisions-api.",
     "category": "guides",
-    "tags": [
-      "guides",
-      "official",
-      "openai",
-      "decision-model"
-    ],
+    "tags": ["guides","official","openai","decision-model"],
     "language": "TypeScript",
     "stars": 0,
     "url": "https://platform.openai.com/docs/guides/decisions",
     "repoUrl": "https://platform.openai.com/docs/guides/decisions",
     "featured": true,
-    "badges": [
-      "featured"
-    ],
+    "badges": ["featured"],
     "creatorName": "OpenAI",
     "sourcePlatform": "github",
     "detailPage": true,

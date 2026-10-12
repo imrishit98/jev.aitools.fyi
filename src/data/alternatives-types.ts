@@ -8,6 +8,9 @@ export type AlternativeFact = {
   jev: string;
   sourceLabel: string;
   sourceUrl: string;
+  /** Optional second primary source (e.g. HF downloads beside GitHub stars). */
+  secondarySourceLabel?: string;
+  secondarySourceUrl?: string;
   /** Defaults to page lastVerified when omitted in source data. */
   checkedAt?: string;
 };
