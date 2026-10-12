@@ -21,12 +21,12 @@
     "checkedAt": "2026-10-12"
   },
   "github": {
-    "NandhaKishorM/laya": { "stars": 32383, "forks": 2892, "checkedAt": "2026-10-12" },
-    "jaredpalmer/kev": { "stars": 8949, "forks": 591, "checkedAt": "2026-10-12" },
-    "Mapika/decider": { "stars": 1124, "forks": 48, "checkedAt": "2026-10-12" },
+    "NandhaKishorM/laya": { "stars": 32393, "forks": 2892, "checkedAt": "2026-10-12" },
+    "jaredpalmer/kev": { "stars": 8952, "forks": 591, "checkedAt": "2026-10-12" },
+    "Mapika/decider": { "stars": 1127, "forks": 48, "checkedAt": "2026-10-12" },
     "Contrastive-LM/CLM": { "stars": 2981, "forks": 260, "checkedAt": "2026-10-12" },
     "wfzyx/von": { "stars": 883, "forks": 69, "checkedAt": "2026-10-12" },
-    "TheoLeeCJ/SemIf-OpenJev": { "stars": 4783, "forks": 348, "checkedAt": "2026-10-12" }
+    "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },

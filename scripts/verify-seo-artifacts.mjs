@@ -645,21 +645,34 @@ for (const slug of alternativesSlugsMod.alternativeSlugs) {
     slug,
   );
 }
+function collectCrossPageSentences(slug, text, ownersMap, minLen = 50) {
+  const sentences = text
+    .split(/(?<=[.!?])\s+/)
+    .map((s) => s.replace(/\s+/g, " ").trim().toLowerCase())
+    .filter((s) => s.length > minLen);
+  for (const sentence of sentences) {
+    const owners = ownersMap.get(sentence) ?? new Set();
+    owners.add(slug);
+    ownersMap.set(sentence, owners);
+  }
+}
 const crossPageSentenceOwners = new Map();
 for (const slug of alternativesSlugsMod.alternativeSlugs) {
   const alt = alternativesDataMod.getAlternative(slug);
   if (!alt) continue;
   for (const section of alt.sections) {
     if (section.h === "Migrating from hosted Jev") continue;
-    const sentences = section.body
-      .split(/(?<=[.!?])\s+/)
-      .map((s) => s.replace(/\s+/g, " ").trim().toLowerCase())
-      .filter((s) => s.length > 50);
-    for (const sentence of sentences) {
-      const owners = crossPageSentenceOwners.get(sentence) ?? new Set();
-      owners.add(slug);
-      crossPageSentenceOwners.set(sentence, owners);
-    }
+    collectCrossPageSentences(slug, section.body, crossPageSentenceOwners);
+  }
+  for (const entry of alt.faq) {
+    collectCrossPageSentences(slug, entry.answer, crossPageSentenceOwners);
+  }
+  for (const bullet of alt.whenChooseThem) {
+    const normalized = bullet.replace(/\s+/g, " ").trim().toLowerCase();
+    if (normalized.length <= 50) continue;
+    const owners = crossPageSentenceOwners.get(normalized) ?? new Set();
+    owners.add(slug);
+    crossPageSentenceOwners.set(normalized, owners);
   }
 }
 const crossPageDupes = [...crossPageSentenceOwners.entries()].filter(
@@ -671,7 +684,7 @@ if (crossPageDupes.length > 0) {
     .map(([sentence, owners]) => `${[...owners].join("+")}: ${sentence.slice(0, 72)}…`)
     .join("; ");
   errors.push(
-    `alternatives cross-page duplicate section sentences (${crossPageDupes.length}): ${sample}`,
+    `alternatives cross-page duplicate prose (${crossPageDupes.length}): ${sample}`,
   );
 }
 const layaAlt = alternativesDataMod.getAlternative("laya");

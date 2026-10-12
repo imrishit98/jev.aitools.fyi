@@ -1,5 +1,6 @@
 import type { Alternative } from "@/data/alternatives-types";
 import { alternativeSlugs } from "@/data/alternatives-slugs";
+import { hostedPricePerM } from "@/data/alternatives-shared";
 
 export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative> = {
   "cloudflare-clef": {
@@ -184,11 +185,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Cloudflare clef beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Cloudflare clef; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores Cloudflare clef; compare the facts table to hosted Jev. Public Decision Index slices still miss Workers-specific latency and billing gates you care about in production."
       },
       {
         "question": "Can I use the TypeSafe SDK with Cloudflare clef?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "Workers AI clef JSON may differ from POST /v1/systemone even when question semantics match; budget adapter work before you cut over hardened gateways."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -367,7 +368,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Product-specific notes",
-        "body": "kev.serve is the supported path for POST /v1/systemone compatibility; pick a checkpoint size that matches your GPU budget before you promise 27B accuracy. README tables that compare to hosted Jev are vendor-run on frozen suites; treat them as directional, not as your compliance sign-off. Fine-tuning adapters on your labels is the main reason teams pick Kev over metered tokens, not a one-point Decision Index gap. Kev checkpoints span sub-billion to 27B parameters; match VRAM, batch size, and concurrency before you copy a demo config. Shadow mode against hosted Jev should log raw probabilities, not just argmax labels, so you can diff calibration on disputed rows. Keep rollback to api.typesafe.ai for at least one release when you move a production gate to self-hosted Kev."
+        "body": "kev.serve is the supported path for POST /v1/systemone compatibility; pick a checkpoint size that matches your GPU budget before you promise 27B accuracy. README tables that compare to hosted Jev are vendor-run on frozen suites; treat them as directional, not as your compliance sign-off. Fine-tuning adapters on your labels is the main reason teams pick Kev over metered tokens, not a one-point Decision Index gap. Kev checkpoints span sub-billion to 27B parameters; match VRAM, batch size, and concurrency before you copy a demo config. Shadow mode against hosted Jev should log raw probabilities, not just argmax labels, so you can diff calibration on disputed rows. Keep rollback to api.typesafe.ai for at least one release when you move a production gate to self-hosted Kev. Modal and HF Spaces demos are useful for sales reviews, not capacity planning for your production cluster."
       }
     ],
     "whenChooseThem": [
@@ -387,11 +388,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Kev beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Kev; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores Kev; compare the facts table to hosted Jev. Edition 0.3.1 scores Kev-27B; your fine-tunes and batch sizes can move accuracy away from that headline number."
       },
       {
         "question": "Can I use the TypeSafe SDK with Kev?",
-        "answer": "Many teams point typesafe_sdk at a compatible self-hosted base URL. Verify model strings and response metadata in staging."
+        "answer": "Point typesafe_sdk at kev.serve with a pinned checkpoint; verify model strings and probability metadata against hosted Jev in staging shadow mode."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -466,7 +467,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "row": "Hosted price (input)",
-        "them": "gpt-6-luna (vendor, beta): $0.10 per M input tokens (vendor list, 2026-10-12)",
+        "them": hostedPricePerM("openai-decisions-api"),
         "jev": "$0.042 per M input tokens (vendor, TypeSafe docs)",
         "sourceLabel": "Price lists",
         "sourceUrl": "https://docs.typesafe.ai"
@@ -590,7 +591,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Can I use the TypeSafe SDK with OpenAI Decisions API?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "Decisions API error envelopes follow OpenAI chat patterns; map fields in a staging adapter before you route production gates through gpt-6-luna."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -776,11 +777,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Perplexity pplx-decider beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Perplexity pplx-decider; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores Perplexity pplx-decider; compare the facts table to hosted Jev. Multimodal suites on the public board may not cover your text-only Jev gates without a private eval pass."
       },
       {
         "question": "Can I use the TypeSafe SDK with Perplexity pplx-decider?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "Hosted Perplexity Decisions and self-hosted pplx-decider weights use different auth and payloads; plan a translation layer if you reuse Jev SDK types."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -975,11 +976,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Mapika decider beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Mapika decider; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores Mapika decider; compare the facts table to hosted Jev. decider-2B headline scores do not predict MoE checkpoint behavior on your labeled data."
       },
       {
         "question": "Can I use the TypeSafe SDK with Mapika decider?",
-        "answer": "Many teams point typesafe_sdk at a compatible self-hosted base URL. Verify model strings and response metadata in staging."
+        "answer": "Point typesafe_sdk at decider.serve, pin the HF checkpoint name, and verify MoE versus dense response metadata in staging before you cut traffic over."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1130,7 +1131,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Accuracy and benchmarks",
-        "body": "Independent Decision Index edition 0.3.1 lists GLiNER2.5 Decide at 9.24 in our imported snapshot."
+        "body": "Independent Decision Index edition 0.3.1 lists GLiNER2.5 Decide at 9.24 in our imported snapshot. Run span-level evals on your entities before you treat that headline score as a production gate."
       },
       {
         "h": "Fit and tradeoffs",
@@ -1154,7 +1155,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Product-specific notes",
-        "body": "GLiNER Decide targets span-style entity decisions; it is not a drop-in replacement for every Choice gate in a large agent graph. CPU inference can win on cost for shallow gates even when Decision Index headline scores look lower than a 27B decoder. Pair Decide with a larger model on escalation paths instead of forcing one checkpoint to cover every gate. Fastino documents Decide as part of the GLiNER family; read the HF card for input shapes before you wire production JSON. High Hugging Face downloads reflect niche routing demand, not a guarantee of parity with hosted Jev on your compliance suite. Fine-tuning on domain spans may beat zero-shot Decide outputs when your entities are proprietary jargon."
+        "body": "GLiNER Decide targets span-style entity decisions; it is not a drop-in replacement for every Choice gate in a large agent graph. CPU inference can win on cost for shallow gates even when Decision Index headline scores look lower than a 27B decoder. Pair Decide with a larger model on escalation paths instead of forcing one checkpoint to cover every gate. Fastino documents Decide as part of the GLiNER family; read the HF card for input shapes before you wire production JSON. High Hugging Face downloads reflect niche routing demand, not a guarantee of parity with hosted Jev on your compliance suite. Fine-tuning on domain spans may beat zero-shot Decide outputs when your entities are proprietary jargon. Treat Decide as a specialist router, not a wholesale replacement for every Jev gate in a large agent graph."
       }
     ],
     "whenChooseThem": [
@@ -1174,11 +1175,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does GLiNER2.5 Decide beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores GLiNER2.5 Decide; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores GLiNER2.5 Decide; compare the facts table to hosted Jev. Span-heavy entity gates can outperform headline Decision Index scores on niche extraction workloads."
       },
       {
         "question": "Can I use the TypeSafe SDK with GLiNER2.5 Decide?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "GLiNER Decide outputs may need reshaping into your Choice gates; expect a small glue service rather than drop-in SDK parity with api.typesafe.ai."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1373,7 +1374,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Can I use the TypeSafe SDK with SemIf?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "SemIf logit servers expose research endpoints; validate batching, TLS, and auth before you point production traffic at SemIf-OpenJev."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1516,7 +1517,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Accuracy and benchmarks",
-        "body": "Independent Decision Index edition 0.3.1 lists CLM 8B at 6.24 in our imported snapshot."
+        "body": "Independent Decision Index edition 0.3.1 lists CLM 8B at 6.24 in our imported snapshot. Treat that number as a lab baseline until you reproduce contrastive head training on your own labels."
       },
       {
         "h": "Fit and tradeoffs",
@@ -1540,7 +1541,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Product-specific notes",
-        "body": "CLM publishes contrastive head architectures on Qwen3-8B; you still own serving, calibration, and HTTP glue. Decision Index scores for CLM are far below hosted Jev in edition 0.3.1, so treat CLM as a lab checkpoint. Contrastive training recipes may help when you already fine-tune Qwen and want published head designs to iterate on. Laboratory checkpoints still need security review for weight provenance and license terms before production trials. If you only need a hosted API this quarter, CLM is the wrong shortcut compared to clef or hosted Jev. Pin the CLM-v0.1-8B revision you benchmark so head weights do not drift between training runs."
+        "body": "CLM publishes contrastive head architectures on Qwen3-8B; you still own serving, calibration, and HTTP glue. Decision Index scores for CLM are far below hosted Jev in edition 0.3.1, so treat CLM as a lab checkpoint. Contrastive training recipes may help when you already fine-tune Qwen and want published head designs to iterate on. Laboratory checkpoints still need security review for weight provenance and license terms before production trials. If you only need a hosted API this quarter, CLM is the wrong shortcut compared to clef or hosted Jev. Pin the CLM-v0.1-8B revision you benchmark so head weights do not drift between training runs. Budget time to reproduce contrastive head training before you promise CLM parity with vendor README ablations."
       }
     ],
     "whenChooseThem": [
@@ -1560,11 +1561,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does CLM 8B beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores CLM 8B; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores CLM 8B; compare the facts table to hosted Jev. Laboratory CLM scores reflect harness splits, not your Qwen fine-tune or serving stack in production."
       },
       {
         "question": "Can I use the TypeSafe SDK with CLM 8B?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "CLM ships research weights without a turnkey HTTP server; you own the System One compatible wrapper and routing layer before production cutover."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1755,11 +1756,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Liquid d1 beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Liquid d1; compare the facts table to hosted Jev. Decision Index is independent but still not your production labels."
+        "answer": "The public snapshot in our metrics file scores Liquid d1; compare the facts table to hosted Jev. Edge modality mixes in d1-3B may diverge from the text-only slices Decision Index stresses today."
       },
       {
         "question": "Can I use the TypeSafe SDK with Liquid d1?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "d1-3B modality preprocessing may differ from hosted Jev; adapter work belongs in your inference pipeline, not only in the Hugging Face model card."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1930,7 +1931,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Product-specific notes",
-        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 11 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off."
+        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 11 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
       }
     ],
     "whenChooseThem": [
@@ -1954,7 +1955,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Can I use the TypeSafe SDK with Von?",
-        "answer": "You may need a thin adapter if the HTTP shape differs from POST /v1/systemone. Plan engineering time for glue code."
+        "answer": "Von clients return fast scores but may omit metadata your Jev gates expect; test response shape in shadow mode before swapping endpoints."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
