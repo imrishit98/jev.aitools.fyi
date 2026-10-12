@@ -1383,8 +1383,8 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     ],
     "sources": [
       {
-        "label": "GitHub: TheoLeeCJ/SemIf",
-        "url": "https://github.com/TheoLeeCJ/SemIf"
+        "label": "GitHub: TheoLeeCJ/SemIf-OpenJev",
+        "url": "https://github.com/TheoLeeCJ/SemIf-OpenJev"
       },
       {
         "label": "openjev.com",
