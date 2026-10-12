@@ -46,7 +46,9 @@ export function jevDecisionIndexSource(): { label: string; url: string; checkedA
 export function hostedPricePerM(slug: keyof typeof metrics.hostedPricingPerMInputUsd): string {
   const row = metrics.hostedPricingPerMInputUsd[slug];
   const label = "label" in row && row.label ? `${row.label}: ` : "";
-  return `${label}$${row.value} per M input tokens (vendor list, ${row.checkedAt})`;
+  const amount = Number(row.value);
+  const formatted = Number.isFinite(amount) ? amount.toFixed(2) : String(row.value);
+  return `${label}$${formatted} per M input tokens (vendor list, ${row.checkedAt})`;
 }
 
 export function githubAdoption(repo: keyof typeof metrics.github): string {

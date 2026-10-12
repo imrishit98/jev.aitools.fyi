@@ -9,6 +9,8 @@ import {
   webPageJsonLd,
 } from "@/components/json-ld";
 import { alternativesHub } from "@/data/alternatives";
+import { getItemBySlug } from "@/lib/items";
+import { getItemPath } from "@/lib/item-paths";
 import { absoluteUrl, alternativesHubSeo } from "@/lib/seo";
 import { alternativeHubDate } from "@/lib/content-dates";
 import { splitIntoParagraphs } from "@/lib/prose";
@@ -21,6 +23,8 @@ const itemList = alternativesHub.ranked.map((row) => ({
   name: row.name,
   path: row.pagePath,
 }));
+const nanojevPath = getItemPath(getItemBySlug("tianyucodings-nanojev")!);
+const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
 ---
 
 <BaseLayout
@@ -82,7 +86,7 @@ const itemList = alternativesHub.ranked.map((row) => ({
 
     <section class="mt-12" aria-labelledby="ranked-heading">
       <h2 id="ranked-heading" class="font-heading text-xl font-semibold text-foreground">
-        Eleven comparison pages (adoption signals plus one editorial pick)
+        Eleven comparison pages (editorial order, informed by adoption)
       </h2>
       <div class="mt-4 overflow-x-auto rounded-md border border-border">
         <table class="w-full min-w-[900px] border-collapse text-left text-xs sm:text-sm">
@@ -129,10 +133,10 @@ const itemList = alternativesHub.ranked.map((row) => ({
     <section id="how-we-ranked" class="mt-12 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
       <h2 class="font-heading text-xl font-semibold text-foreground">How we ranked</h2>
       <p>
-        Rows one through ten follow adoption signals as of {alternativesHub.lastVerified}: GitHub stars, Hugging Face
-        downloads, search demand on this site, launch buzz, and third-party roundups. Row eleven (Von) is an editorial
-        speed pick, not a pure adoption rank. This is not a quality score. Re-check monthly and keep retired pages linked
-        from the hub when a model drops out of the table.
+        The table order is editorial as of {alternativesHub.lastVerified}. We use GitHub stars, Hugging Face downloads,
+        and on-site interest as signals, but we do not sort purely by any one metric (downloads alone would reorder
+        several rows). Row eleven (Von) is an explicit editorial speed pick. This is not a quality score. Re-check monthly
+        and keep retired pages linked from the hub when a model drops out of the table.
       </p>
       <p>
         Hosted APIs (OpenAI Decisions API, Perplexity hosted decider, Cloudflare Workers AI) sit beside open weights in
@@ -167,8 +171,8 @@ const itemList = alternativesHub.ranked.map((row) => ({
       <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
         Runners-up with strong download counts include
         <a href="/alternatives/von" class="text-primary hover:underline">Von</a>,
-        <a href="/tools/tianyucodings-nanojev" class="text-primary hover:underline">NanoJev</a>, and
-        <a href="/tools/nokia-applied-research-anyjev" class="text-primary hover:underline">AnyJev</a>. Browse
+        <a href={nanojevPath} class="text-primary hover:underline">NanoJev</a>, and
+        <a href={anyjevPath} class="text-primary hover:underline">AnyJev</a>. Browse
         <a href="/explore?q=open+source+decision" class="text-primary hover:underline">open models on Explore</a>.
       </p>
     </section>

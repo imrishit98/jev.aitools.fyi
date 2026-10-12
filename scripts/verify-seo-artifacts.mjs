@@ -1,7 +1,7 @@
 /**
  * Post-build guard: sitemap, robots, and canonical hygiene (SEO pass 5).
  */
-import { readFileSync, readdirSync, statSync } from "node:fs";
+import { readFileSync, readdirSync, statSync, existsSync } from "node:fs";
 import { join } from "node:path";
 import * as cheerio from "cheerio";
 import { createRequire } from "node:module";
@@ -27,6 +27,9 @@ const alternativesSlugsMod = await vite.ssrLoadModule("/src/data/alternatives-sl
 const alternativesDataMod = await vite.ssrLoadModule("/src/data/alternatives.ts");
 const alternativesHubMod = await vite.ssrLoadModule("/src/data/alternatives-hub.ts");
 const alternativesSharedMod = await vite.ssrLoadModule("/src/data/alternatives-shared.ts");
+const factSourcesMod = await vite.ssrLoadModule("/src/data/alternative-fact-sources.ts");
+const sectionSanitizeMod = await vite.ssrLoadModule("/src/lib/alternative-section-sanitize.ts");
+const contentDatesMod = await vite.ssrLoadModule("/src/lib/content-dates.ts");
 const metricsJson = JSON.parse(
   readFileSync(join(root, "src/data/alternatives-metrics.json"), "utf8"),
 );
@@ -435,10 +438,70 @@ for (const [k, v] of Object.entries(metricsJson.huggingface)) {
 }
 
 const ALT_MIN_WORDS = 600;
+const ALT_MIN_UNIQUE_SENTENCES = 20;
 function countWords(html) {
   const $ = cheerio.load(html);
   const text = $("article").text().replace(/\s+/g, " ").trim();
   return text ? text.split(" ").length : 0;
+}
+function countUniqueSentencesInArticle(html) {
+  const $ = cheerio.load(html);
+  const text = $("article").text().replace(/\s+/g, " ").trim();
+  return sectionSanitizeMod.countUniqueSentences(text);
+}
+function distFileForInternalHref(href) {
+  const pathOnly = href.split("#")[0].split("?")[0];
+  if (!pathOnly || pathOnly === "/") return join(distRoot, "index.html");
+  const normalized = pathOnly.endsWith("/") ? pathOnly.slice(0, -1) : pathOnly;
+  const asHtml = join(distRoot, `${normalized}.html`);
+  if (existsSync(asHtml)) return asHtml;
+  const nested = join(distRoot, normalized, "index.html");
+  if (existsSync(nested)) return nested;
+  return asHtml;
+}
+function assertInternalLinks(html, label) {
+  const hrefs = [
+    ...html.matchAll(/href="(\/(?:learn|alternatives|tools|apps|benchmarks|explore|guides|sdks)[^"#?]*)"/g),
+  ].map((m) => m[1]);
+  for (const href of hrefs) {
+    const file = distFileForInternalHref(href);
+    if (!existsSync(file)) {
+      errors.push(`${label} broken internal link ${href} (expected ${file})`);
+    }
+  }
+}
+function assertOutboundRefs(html, label) {
+  const $ = cheerio.load(html);
+  $("a[href^='http']").each((_, el) => {
+    const href = $(el).attr("href") ?? "";
+    if (!href || href.includes("jev.aitools.fyi")) return;
+    if (href.includes("madbid.lol")) return;
+    if (!href.includes("ref=jev.aitools.fyi")) {
+      errors.push(`${label} external link missing outbound ref: ${href.slice(0, 96)}`);
+    }
+  });
+}
+function assertFactSources(slug, facts) {
+  for (const fact of facts) {
+    if (!fact.sourceUrl?.startsWith("https://")) {
+      errors.push(`alternatives:${slug} fact missing sourceUrl: ${fact.row}`);
+      continue;
+    }
+    if (factSourcesMod.isBareFactSource(fact.sourceUrl)) {
+      errors.push(`alternatives:${slug} fact bare sourceUrl: ${fact.row} -> ${fact.sourceUrl}`);
+    }
+    if (
+      slug !== "laya" &&
+      factSourcesMod.isInvalidCompetitorFactSource(slug, fact, fact.sourceUrl)
+    ) {
+      errors.push(
+        `alternatives:${slug} competitor fact cites TypeSafe root: ${fact.row} -> ${fact.sourceUrl}`,
+      );
+    }
+    if (!fact.checkedAt || !/^\d{4}-\d{2}-\d{2}$/.test(fact.checkedAt)) {
+      errors.push(`alternatives:${slug} fact missing checkedAt: ${fact.row}`);
+    }
+  }
 }
 
 if (alternativesSharedMod.alternativesLastVerified !== alternativesHubMod.alternativesHub.lastVerified) {
@@ -446,6 +509,20 @@ if (alternativesSharedMod.alternativesLastVerified !== alternativesHubMod.altern
 }
 if (!altHubHtml.includes('rel="canonical" href="https://jev.aitools.fyi/alternatives"')) {
   errors.push("Alternatives hub canonical mismatch");
+}
+if (
+  !altHubHtml.includes(`"dateModified":"${contentDatesMod.alternativeHubDate}"`) &&
+  !altHubHtml.includes(`"dateModified": "${contentDatesMod.alternativeHubDate}"`)
+) {
+  errors.push("alternatives hub Article/WebPage dateModified must match alternativeHubDate");
+}
+assertInternalLinks(altHubHtml, "alternatives hub");
+assertOutboundRefs(altHubHtml, "alternatives hub");
+for (const row of alternativesHubMod.alternativesHub.ranked) {
+  const file = distFileForInternalHref(row.pagePath);
+  if (!existsSync(file)) {
+    errors.push(`alternatives hub row link missing dist file: ${row.pagePath}`);
+  }
 }
 if (!llms.includes("/alternatives")) {
   errors.push("llms.txt missing /alternatives hub");
@@ -483,24 +560,9 @@ for (const slug of alternativesSlugsMod.alternativeSlugs) {
   if (altHtml.includes("\u2014") || altHtml.includes("\u2013")) {
     errors.push(`alternatives/${slug} HTML contains em or en dash`);
   }
-  for (const src of alt.sources) {
-    if (src.url.includes("x.com") || src.url.includes("twitter.com")) continue;
-    if (!src.url.includes("ref=jev.aitools.fyi")) {
-      /* outbound ref applied at render; check rendered HTML */
-    }
-  }
-  const renderedRef = alt.sources.some((s) => !s.url.includes("x.com") && altHtml.includes("ref=jev.aitools.fyi"));
-  if (!renderedRef && alt.sources.length > 0) {
-    errors.push(`alternatives/${slug} missing outbound ref params in HTML`);
-  }
-  for (const fact of alt.facts) {
-    if (!fact.sourceUrl?.startsWith("https://")) {
-      errors.push(`alternatives/${slug} fact missing sourceUrl: ${fact.row}`);
-    }
-    if (!fact.checkedAt || !/^\d{4}-\d{2}-\d{2}$/.test(fact.checkedAt)) {
-      errors.push(`alternatives/${slug} fact missing checkedAt: ${fact.row}`);
-    }
-  }
+  assertInternalLinks(altHtml, `alternatives/${slug}`);
+  assertOutboundRefs(altHtml, `alternatives/${slug}`);
+  assertFactSources(slug, alt.facts);
   if (altHtml.includes("aggregateRating") || altHtml.includes('"@type":"Review"')) {
     errors.push(`alternatives/${slug} must not include rating or review JSON-LD`);
   }
@@ -508,13 +570,43 @@ for (const slug of alternativesSlugsMod.alternativeSlugs) {
   if (words < ALT_MIN_WORDS) {
     errors.push(`alternatives/${slug} word count ${words} below ${ALT_MIN_WORDS}`);
   }
+  const uniqueSentences = countUniqueSentencesInArticle(altHtml);
+  if (uniqueSentences < ALT_MIN_UNIQUE_SENTENCES) {
+    errors.push(
+      `alternatives/${slug} unique sentence count ${uniqueSentences} below ${ALT_MIN_UNIQUE_SENTENCES}`,
+    );
+  }
+  if (!altHtml.includes("not published")) {
+    const expectsPlaceholder = alt.facts.some(
+      (f) =>
+        f.them?.toLowerCase().includes("not published") || f.jev?.toLowerCase().includes("not published"),
+    );
+    if (expectsPlaceholder) {
+      errors.push(`alternatives/${slug} missing rendered not published placeholder`);
+    }
+  }
   if (!altHtml.includes(`"dateModified":"${alt.lastVerified}"`)) {
     errors.push(`alternatives/${slug} Article dateModified must match lastVerified`);
   }
 }
+const layaAlt = alternativesDataMod.getAlternative("laya");
+if (layaAlt) {
+  assertFactSources("laya", layaAlt.facts);
+}
+assertInternalLinks(compareHtml, "laya compare");
+assertOutboundRefs(compareHtml, "laya compare");
 const layaWords = countWords(compareHtml);
 if (layaWords < ALT_MIN_WORDS) {
   errors.push(`laya compare word count ${layaWords} below ${ALT_MIN_WORDS}`);
+}
+const layaUnique = countUniqueSentencesInArticle(compareHtml);
+if (layaUnique < ALT_MIN_UNIQUE_SENTENCES) {
+  errors.push(`laya compare unique sentence count ${layaUnique} below ${ALT_MIN_UNIQUE_SENTENCES}`);
+}
+if (compareHtml.includes(`"dateModified":"${alternativesHubMod.alternativesHub.lastVerified}"`)) {
+  /* ok */
+} else if (!compareHtml.includes(`"dateModified":"${contentDatesMod.LAYA_COMPARE_TOUCHED}"`)) {
+  errors.push("laya compare dateModified must match last verified editorial date");
 }
 if (compareHtml.includes("aggregateRating") || compareHtml.includes('"@type":"Review"')) {
   errors.push("laya compare must not include rating or review JSON-LD");

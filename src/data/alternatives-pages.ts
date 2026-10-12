@@ -128,7 +128,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       {
         "row": "clef-flash Decision Index",
         "them": "47.61 (Decision Index 0.3.1, snapshot 2026-10-10; independent harness, not vendor-only)",
-        "jev": "$0.042 per M input tokens (vendor, TypeSafe docs)",
+        "jev": "60.11 (Decision Index 0.3.1, snapshot 2026-10-10; independent harness, not vendor-only)",
         "sourceLabel": "Decision Index snapshot",
         "sourceUrl": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json"
       }

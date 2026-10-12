@@ -18,9 +18,9 @@ export const alternativesHub: AlternativesHub = {
   h1: "Jev alternatives: 11 decision models compared",
   lastVerified: alternativesLastVerified,
   summary:
-    "Hosted TypeSafe Jev is the default System One API for many agent stacks, but it is not the only way to score Choice, Score, and Noul questions in one forward pass. This hub lists eleven comparison pages we maintain in 2026: Laya on the existing learn hub plus ten dedicated /alternatives guides. Rows one through ten follow adoption signals (GitHub, Hugging Face, search demand, and launch buzz) as of " +
+    "Hosted TypeSafe Jev is the default System One API for many agent stacks, but it is not the only way to score Choice, Score, and Noul questions in one forward pass. This hub lists eleven comparison pages we maintain in 2026: Laya on the existing learn hub plus ten dedicated /alternatives guides. The table order is editorial as of " +
     alternativesLastVerified +
-    ". Row eleven (Von) is an editorial speed pick, not a pure adoption rank. We label vendor-reported benchmarks separately from independent Decision Index Full scores from the public snapshot regenerated on " +
+    ", informed by GitHub stars, Hugging Face downloads, and on-site interest, but not a single-metric sort. Row eleven (Von) is an explicit editorial speed pick. We label vendor-reported benchmarks separately from independent Decision Index Full scores from the public snapshot regenerated on " +
     m.decisionIndex.generatedUtc.slice(0, 10) +
     ".",
   quickPicks: [
@@ -58,9 +58,9 @@ export const alternativesHub: AlternativesHub = {
         "Any engine that answers typed decision questions (Choice, Score, Noul) over structured state without generating open-ended chat. That includes hosted System One APIs, open checkpoints with compatible HTTP servers, and research stacks like SemIf. General LLM classifiers are out of scope for this hub.",
     },
     {
-      question: "Why is Laya ranked first if this site covers Jev?",
+      question: "Why is Laya first in the table if this site covers Jev?",
       answer:
-        "GitHub and Hugging Face adoption for Convai Laya is the largest in the open decision-model category we track. Many teams evaluate Laya alongside hosted Jev. Our Laya vs Jev compare guide is independent writing; we are not Convai or TypeSafe.",
+        "Row one is an editorial choice: Laya has the largest GitHub and Hugging Face footprint among open decision models we track, and many teams evaluate it alongside hosted Jev. Our Laya vs Jev compare guide is independent writing; we are not Convai or TypeSafe.",
       links: [
         { match: "Laya vs Jev compare guide", href: "/learn/laya-vs-jev/compare" },
       ],
@@ -74,9 +74,9 @@ export const alternativesHub: AlternativesHub = {
       links: [{ match: "Decision Index", href: "https://github.com/apolinario/decision-index" }],
     },
     {
-      question: "Why is Von in the table if it was a runners-up?",
+      question: "Why is Von in the table as a runners-up?",
       answer:
-        "Von sits at row eleven as an editorial speed pick with strong Hugging Face downloads, not because it outranked Liquid d1 on every adoption signal. Read the Von vs Jev page before you treat it as a full migration target.",
+        "Von sits at row eleven as an editorial speed pick with strong Hugging Face downloads, not because it outranked Liquid d1 on every signal we watch. Read the Von vs Jev page before you treat it as a full migration target.",
       links: [{ match: "Von vs Jev page", href: alternativePath("von") }],
     },
     {
@@ -157,11 +157,11 @@ function buildRanked(): AlternativesHubRankRow[] {
       jevCompatible: "Conceptual (Router API, not identical wire)",
       sizes: "English ~421M, multilingual ~322M (HF model card)",
       inputs: "Text / JSON state",
-      decisionIndex: "See Laya vs Jev benchmarks (vendor vs independent)",
+      decisionIndex: "Laya vs Jev benchmarks guide (vendor vs independent splits)",
       adoption: `${githubAdoption("NandhaKishorM/laya")}; ${hfAdoption("convaiinnovations/laya")}`,
       pagePath: "/learn/laya-vs-jev/compare",
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Cloudflare clef",
@@ -175,7 +175,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: hfAdoption("Cloudflare/clef"),
       pagePath: alternativePath("cloudflare-clef"),
       group: "hosted",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Kev",
@@ -189,7 +189,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: `${githubAdoption("jaredpalmer/kev")}; ${hfAdoption("jaredpalmer/kev-4b")}`,
       pagePath: alternativePath("kev"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "OpenAI Decisions API",
@@ -203,7 +203,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: "Vendor beta (no public GitHub stars)",
       pagePath: alternativePath("openai-decisions-api"),
       group: "hosted",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Perplexity pplx-decider",
@@ -217,7 +217,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: hfAdoption("perplexity-ai/pplx-decider-v1.1-27b"),
       pagePath: alternativePath("perplexity-pplx-decider"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Mapika decider",
@@ -231,7 +231,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: `${githubAdoption("Mapika/decider")}; ${hfAdoption("Mapika/decider-2b")}`,
       pagePath: alternativePath("mapika-decider"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "GLiNER2.5 Decide",
@@ -245,7 +245,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: hfAdoption("fastino/GLiNER2.5-Decide"),
       pagePath: alternativePath("fastino-gliner-decide"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "SemIf",
@@ -259,7 +259,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: githubAdoption("TheoLeeCJ/SemIf-OpenJev"),
       pagePath: alternativePath("semif"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "CLM 8B",
@@ -273,7 +273,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: `${githubAdoption("Contrastive-LM/CLM")}; ${hfAdoption("Contrastive-LM/CLM-v0.1-8B")}`,
       pagePath: alternativePath("clm-8b"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Liquid d1",
@@ -287,7 +287,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: hfAdoption("LiquidAI/d1-3B"),
       pagePath: alternativePath("liquid-d1"),
       group: "open",
-      orderingBasis: "adoption",
+      orderingBasis: "editorial",
     },
     {
       name: "Von",
@@ -301,7 +301,7 @@ function buildRanked(): AlternativesHubRankRow[] {
       adoption: `${githubAdoption("wfzyx/von")}; ${hfAdoption("wfzyx/von")}`,
       pagePath: alternativePath("von"),
       group: "open",
-      orderingBasis: "editorial",
+      orderingBasis: "editorial-pick",
     },
   ];
 

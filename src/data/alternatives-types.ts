@@ -55,8 +55,8 @@ export type AlternativesHubRankRow = {
   adoption: string;
   pagePath: string;
   group: "open" | "hosted";
-  /** adoption = GitHub/HF/search signals; editorial = curator pick (e.g. Von). */
-  orderingBasis: "adoption" | "editorial";
+  /** editorial = curator table order (may use adoption signals); editorial-pick = explicit runners-up (Von). */
+  orderingBasis: "editorial" | "editorial-pick";
 };
 
 export type AlternativesHub = {

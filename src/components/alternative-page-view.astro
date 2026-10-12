@@ -11,6 +11,7 @@ import { itemHasDetailPage } from "@/lib/content-policy";
 import { linksForAlternative } from "@/lib/directory-links";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import { formatFactCell, isNotPublishedValue } from "@/lib/alternative-fact-display";
 
 interface Props {
   alt: Alternative;
@@ -81,8 +82,24 @@ const siblings = alt.siblingSlugs
             alt.facts.map((fact) => (
               <tr class="border-b border-border/60 align-top">
                 <th class="px-3 py-2 font-medium text-foreground">{fact.row}</th>
-                <td class="px-3 py-2 text-muted-foreground">{fact.them}</td>
-                <td class="px-3 py-2 text-muted-foreground">{fact.jev}</td>
+                <td class="px-3 py-2 text-muted-foreground">
+                  {
+                    isNotPublishedValue(fact.them) ? (
+                      <span class="italic text-muted-foreground/80">{formatFactCell(fact.them)}</span>
+                    ) : (
+                      fact.them
+                    )
+                  }
+                </td>
+                <td class="px-3 py-2 text-muted-foreground">
+                  {
+                    isNotPublishedValue(fact.jev) ? (
+                      <span class="italic text-muted-foreground/80">{formatFactCell(fact.jev)}</span>
+                    ) : (
+                      fact.jev
+                    )
+                  }
+                </td>
                 <td class="px-3 py-2 text-xs text-muted-foreground">
                   <a
                     href={withOutboundRef(fact.sourceUrl)}
