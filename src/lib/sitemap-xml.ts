@@ -3,6 +3,8 @@ import type { CategorySlug } from "@/data/types";
 import { agentGuideSlugs } from "@/data/agent-guides";
 import { learnGuideSlugs } from "@/data/learn-guides";
 import { layaVsJevGuideSlugs } from "@/data/laya-vs-jev-guides";
+import { alternativeSlugs } from "@/data/alternatives-slugs";
+import { alternativeHubDate, alternativeGuideDate } from "@/lib/content-dates";
 import {
   agentGuideDate,
   agentHubDate,
@@ -153,6 +155,18 @@ export function generateSitemapLearnXml(): string {
       loc: absoluteUrl(`/learn/laya-vs-jev/${topic}`),
       lastmod: parseIsoDay(layaGuideDate(topic)),
       priority: 0.82,
+      changefreq: "monthly",
+    })),
+    {
+      loc: absoluteUrl("/alternatives"),
+      lastmod: parseIsoDay(alternativeHubDate),
+      priority: 0.86,
+      changefreq: "weekly",
+    },
+    ...alternativeSlugs.map((slug) => ({
+      loc: absoluteUrl(`/alternatives/${slug}`),
+      lastmod: parseIsoDay(alternativeGuideDate(slug)),
+      priority: 0.84,
       changefreq: "monthly",
     })),
   ];

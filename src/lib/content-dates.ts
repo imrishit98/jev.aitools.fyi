@@ -35,7 +35,10 @@ const LAYA_TOUCHED = new Set([
   "migration-and-coexistence",
 ]);
 
+export const LAYA_COMPARE_TOUCHED = "2026-10-12";
+
 export function layaGuideDate(slug: string): string {
+  if (slug === "compare") return LAYA_COMPARE_TOUCHED;
   return LAYA_TOUCHED.has(slug) ? TOUCHED : GUIDE_PRIOR;
 }
 
@@ -54,6 +57,12 @@ export function agentGuideDate(slug: string): string {
 }
 
 export const agentHubDate = TOUCHED;
+
+export const alternativeHubDate = "2026-10-12";
+
+export function alternativeGuideDate(_slug: string): string {
+  return alternativeHubDate;
+}
 
 const CATEGORY_TOUCHED = new Set([
   "sdks",

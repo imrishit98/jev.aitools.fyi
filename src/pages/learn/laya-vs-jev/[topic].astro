@@ -1,17 +1,20 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import LayaVsJevGuideView from "@/components/laya-vs-jev-guide-view.astro";
+import AlternativePageView from "@/components/alternative-page-view.astro";
 import {
   breadcrumbJsonLd,
   faqPageJsonLd,
   layaVsJevArticleJsonLd,
+  alternativeArticleJsonLd,
 } from "@/components/json-ld";
+import { layaCompareAsAlternative } from "@/data/alternatives";
 import {
   layaVsJevGuideSlugs,
   layaVsJevHub,
   getLayaVsJevGuide,
 } from "@/data/laya-vs-jev-guides";
-import { layaGuideDate } from "@/lib/content-dates";
+import { alternativeGuideDate, layaGuideDate } from "@/lib/content-dates";
 import { layaVsJevGuidePageSeo } from "@/lib/seo";
 
 export function getStaticPaths() {
@@ -24,6 +27,9 @@ if (!guide) throw new Error(`Unknown Laya vs Jev guide ${topic}`);
 
 const seo = layaVsJevGuidePageSeo(guide);
 const path = `/learn/laya-vs-jev/${topic}`;
+const useAlternativeTemplate = topic === "compare";
+const layaAlt = useAlternativeTemplate ? layaCompareAsAlternative() : null;
+const modified = useAlternativeTemplate ? alternativeGuideDate("laya") : layaGuideDate(guide.slug);
 ---
 
 <BaseLayout
@@ -40,8 +46,10 @@ const path = `/learn/laya-vs-jev/${topic}`;
       { name: layaVsJevHub.title, path: "/learn/laya-vs-jev" },
       { name: guide.title, path },
     ]),
-    layaVsJevArticleJsonLd(guide, layaGuideDate(guide.slug)),
-    faqPageJsonLd(guide.faq),
+    ...(useAlternativeTemplate && layaAlt
+      ? [alternativeArticleJsonLd(layaAlt, modified)]
+      : [layaVsJevArticleJsonLd(guide, modified)]),
+    faqPageJsonLd(useAlternativeTemplate && layaAlt ? layaAlt.faq : guide.faq),
   ]}
 >
   <div class="max-w-3xl page-shell-breadcrumb">
@@ -51,6 +59,10 @@ const path = `/learn/laya-vs-jev/${topic}`;
       <span class="text-foreground">{guide.title}</span>
     </nav>
     <h1 class="font-heading text-3xl font-semibold">{guide.title}</h1>
-    <LayaVsJevGuideView guide={guide} />
+    {useAlternativeTemplate && layaAlt ? (
+      <AlternativePageView alt={layaAlt} />
+    ) : (
+      <LayaVsJevGuideView guide={guide} />
+    )}
   </div>
 </BaseLayout>

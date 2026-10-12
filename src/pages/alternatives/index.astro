@@ -1,0 +1,217 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import FaqAnswer from "@/components/faq-answer.astro";
+import { ButtonLink } from "@/components/button-link";
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  articleListJsonLd,
+  webPageJsonLd,
+} from "@/components/json-ld";
+import { alternativesHub } from "@/data/alternatives";
+import { absoluteUrl, alternativesHubSeo } from "@/lib/seo";
+import { alternativeHubDate } from "@/lib/content-dates";
+import { splitIntoParagraphs } from "@/lib/prose";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+
+const seo = alternativesHubSeo();
+const summaryParagraphs = splitIntoParagraphs(alternativesHub.summary, 320);
+const hubModified = alternativeHubDate;
+const itemList = alternativesHub.ranked.map((row) => ({
+  name: row.name,
+  path: row.pagePath,
+}));
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path="/alternatives"
+  type="article"
+  ogImagePath={seo.imagePath}
+  markdownAlternate="/alternatives.md"
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Jev alternatives", path: "/alternatives" },
+    ]),
+    webPageJsonLd({
+      name: alternativesHub.h1,
+      description: alternativesHub.seoDescription,
+      url: absoluteUrl("/alternatives"),
+      dateModified: hubModified,
+    }),
+    articleListJsonLd({
+      name: alternativesHub.h1,
+      path: "/alternatives",
+      items: itemList,
+    }),
+    faqPageJsonLd(alternativesHub.faq),
+  ]}
+>
+  <div class="max-w-6xl page-shell-breadcrumb">
+    <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent">Home</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">Jev alternatives</span>
+    </nav>
+    <header class="max-w-3xl">
+      <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{alternativesHub.h1}</h1>
+      <p class="mt-3 text-sm text-muted-foreground">
+        Last verified: <time datetime={alternativesHub.lastVerified}>{alternativesHub.lastVerified}</time>.
+        <a href="#how-we-ranked" class="ml-1 font-medium text-primary hover:underline">How we rank</a>
+      </p>
+      <div class="mt-4 space-y-3 text-muted-foreground">
+        {summaryParagraphs.map((para) => <p class="leading-relaxed">{para}</p>)}
+      </div>
+    </header>
+
+    <section class="mt-10">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Quick picks by need</h2>
+      <ul class="mt-4 space-y-2 text-sm leading-relaxed text-muted-foreground">
+        {
+          alternativesHub.quickPicks.map((pick) => (
+            <li>
+              <span class="font-medium text-foreground">{pick.need}:</span> {pick.pick}
+              <a href={pick.href} class="ml-1 text-primary hover:underline">Compare</a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <section class="mt-12" aria-labelledby="ranked-heading">
+      <h2 id="ranked-heading" class="font-heading text-xl font-semibold text-foreground">
+        Eleven comparison pages (adoption signals plus one editorial pick)
+      </h2>
+      <div class="mt-4 overflow-x-auto rounded-md border border-border">
+        <table class="w-full min-w-[900px] border-collapse text-left text-xs sm:text-sm">
+          <thead>
+            <tr class="border-b border-border bg-muted/40">
+              <th class="px-2 py-2">#</th>
+              <th class="px-2 py-2">Model</th>
+              <th class="px-2 py-2">Maker</th>
+              <th class="px-2 py-2">Open weights</th>
+              <th class="px-2 py-2">Hosted API</th>
+              <th class="px-2 py-2">Jev API compatible</th>
+              <th class="px-2 py-2">Sizes</th>
+              <th class="px-2 py-2">Inputs</th>
+              <th class="px-2 py-2">Decision Index</th>
+              <th class="px-2 py-2">Adoption (dated)</th>
+              <th class="px-2 py-2">Guide</th>
+            </tr>
+          </thead>
+          <tbody>
+            {
+              alternativesHub.ranked.map((row) => (
+                <tr class="border-b border-border/60 align-top">
+                  <td class="px-2 py-2">{row.rank}</td>
+                  <td class="px-2 py-2 font-medium text-foreground">{row.name}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.maker}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.openWeights}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.hostedApi}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.jevCompatible}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.sizes}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.inputs}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.decisionIndex}</td>
+                  <td class="px-2 py-2 text-muted-foreground">{row.adoption}</td>
+                  <td class="px-2 py-2">
+                    <a href={row.pagePath} class="text-primary hover:underline">Open</a>
+                  </td>
+                </tr>
+              ))
+            }
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="how-we-ranked" class="mt-12 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
+      <h2 class="font-heading text-xl font-semibold text-foreground">How we ranked</h2>
+      <p>
+        Rows one through ten follow adoption signals as of {alternativesHub.lastVerified}: GitHub stars, Hugging Face
+        downloads, search demand on this site, launch buzz, and third-party roundups. Row eleven (Von) is an editorial
+        speed pick, not a pure adoption rank. This is not a quality score. Re-check monthly and keep retired pages linked
+        from the hub when a model drops out of the table.
+      </p>
+      <p>
+        Hosted APIs (OpenAI Decisions API, Perplexity hosted decider, Cloudflare Workers AI) sit beside open weights in
+        the table but are grouped separately in prose when you need a closed vendor endpoint.
+      </p>
+    </section>
+
+    <section class="mt-10 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Hosted vs self-hosted</h2>
+      <p>
+        Pick hosted Jev or a vendor API when you want keys, billing, and gateway integrations without running GPUs.
+        Pick open weights when data must stay in your VPC, when you fine-tune checkpoints, or when unit economics favor
+        amortized hardware. See <a href="/learn/where-to-run-jev" class="text-primary hover:underline">where to run Jev</a>
+        and the <a href="/learn/system-one" class="text-primary hover:underline">System One primer</a>.
+      </p>
+    </section>
+
+    <section class="mt-10 max-w-3xl space-y-3 text-sm leading-relaxed text-muted-foreground">
+      <h2 class="font-heading text-xl font-semibold text-foreground">Switching from Jev</h2>
+      <p>
+        Compatible servers keep the Choice, Score, and Noul request shape: shared state, typed questions, explicit
+        options. What changes is calibration, option limits, context windows, and thresholds. Many teams shadow-run a
+        candidate model before cutover. See
+        <a href="/learn/laya-vs-jev/migration-and-coexistence" class="text-primary hover:underline"
+          >migration and coexistence</a
+        > for patterns.
+      </p>
+    </section>
+
+    <section class="mt-10">
+      <h2 class="font-heading text-xl font-semibold text-foreground">More open alternatives</h2>
+      <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
+        Runners-up with strong download counts include
+        <a href="/alternatives/von" class="text-primary hover:underline">Von</a>,
+        <a href="/tools/tianyucodings-nanojev" class="text-primary hover:underline">NanoJev</a>, and
+        <a href="/tools/nokia-applied-research-anyjev" class="text-primary hover:underline">AnyJev</a>. Browse
+        <a href="/explore?q=open+source+decision" class="text-primary hover:underline">open models on Explore</a>.
+      </p>
+    </section>
+
+    <section class="mt-12 max-w-3xl">
+      <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+      <dl class="mt-4 space-y-6">
+        {
+          alternativesHub.faq.map((entry) => (
+            <div>
+              <dt class="font-medium text-foreground">{entry.question}</dt>
+              <dd class="mt-2 text-sm leading-relaxed text-muted-foreground">
+                <FaqAnswer entry={entry} />
+              </dd>
+            </div>
+          ))
+        }
+      </dl>
+    </section>
+
+    <section class="mt-12 max-w-3xl">
+      <h2 class="font-heading text-lg font-semibold text-foreground">Sources</h2>
+      <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+        {
+          alternativesHub.sources.map((src) => (
+            <li>
+              <a
+                href={withOutboundRef(src.url)}
+                rel={externalLinkRel(src.url)}
+                target="_blank"
+                class="text-primary hover:underline"
+              >
+                {src.label}
+              </a>
+            </li>
+          ))
+        }
+      </ul>
+    </section>
+
+    <div class="mt-10 flex flex-wrap gap-3">
+      <ButtonLink href="/explore">Explore the catalog</ButtonLink>
+      <ButtonLink href="/learn" variant="outline">Learn hub</ButtonLink>
+    </div>
+  </div>
+</BaseLayout>

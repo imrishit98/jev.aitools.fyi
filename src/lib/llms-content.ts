@@ -8,6 +8,10 @@ import {
   layaVsJevGuides,
   layaVsJevHub,
 } from "@/data/laya-vs-jev-guides";
+import { alternativesHub, alternativeSlugs, alternatives } from "@/data/alternatives";
+import { alternativePath } from "@/data/alternatives-slugs";
+import { alternativesHubMarkdown } from "@/lib/alternative-markdown";
+import { alternativeMarkdown } from "@/lib/alternative-markdown";
 import { jevSpecSheet } from "@/data/spec";
 import { getAllProductProfileSlugs } from "@/lib/product-profiles";
 import { getDirectoryStats, getItemBySlug } from "@/lib/items";
@@ -105,6 +109,14 @@ export function generateLlmsTxt(): string {
         `- ${layaVsJevGuides[slug].title}: ${siteConfig.url}/learn/laya-vs-jev/${slug}`,
     ),
     "",
+    "## Jev alternatives",
+    "",
+    `- ${alternativesHub.h1}: ${siteConfig.url}/alternatives`,
+    ...alternativeSlugs.map((slug) => {
+      const alt = alternatives[slug];
+      return `- ${alt.seoTitle}: ${siteConfig.url}${alternativePath(slug)}`;
+    }),
+    "",
     "## Agent integration guides",
     "",
     `- ${agentGuidesHub.title} (hub): ${siteConfig.url}/guides/jev-with-ai-agents`,
@@ -136,6 +148,11 @@ export function generateLlmsTxt(): string {
     `- Hermes markdown: ${siteConfig.url}/guides/jev-with-ai-agents/hermes.md`,
     `- Copilot markdown: ${siteConfig.url}/guides/jev-with-ai-agents/github-copilot-agent.md`,
     `- Laya vs Jev markdown: ${siteConfig.url}/learn/laya-vs-jev/compare.md`,
+    `- Jev alternatives hub markdown: ${siteConfig.url}/alternatives.md`,
+    ...alternativeSlugs.map(
+      (slug) =>
+        `- ${alternatives[slug].displayName} vs Jev markdown: ${siteConfig.url}${alternativePath(slug)}.md`,
+    ),
     "",
     "## Official TypeSafe links (external)",
     "",
@@ -155,6 +172,10 @@ export function generateLlmsFullTxt(): string {
     ...agentGuideSlugs.map((slug) => agentGuideMarkdown(slug) ?? ""),
     layaHubMarkdown(),
     ...layaVsJevGuideSlugs.map((slug) => layaGuideMarkdown(slug) ?? ""),
+    alternativesHubMarkdown(alternativesHub),
+    ...alternativeSlugs.map(
+      (slug) => alternativeMarkdown(alternatives[slug], alternativePath(slug)),
+    ),
     ...learnGuideSlugs.map((slug) => learnGuideMarkdown(slug) ?? ""),
   ].filter(Boolean);
 

@@ -210,6 +210,24 @@ export function agentGuideArticleJsonLd(
   });
 }
 
+export function alternativeArticleJsonLd(
+  alt: {
+    h1: string;
+    seoDescription: string;
+    slug: string;
+  },
+  dateModified?: string,
+) {
+  const path =
+    alt.slug === "laya" ? "/learn/laya-vs-jev/compare" : `/alternatives/${alt.slug}`;
+  return articleJsonLd({
+    headline: alt.h1,
+    description: alt.seoDescription,
+    url: absoluteUrl(path),
+    dateModified,
+  });
+}
+
 export function layaVsJevArticleJsonLd(
   guide: {
     title: string;

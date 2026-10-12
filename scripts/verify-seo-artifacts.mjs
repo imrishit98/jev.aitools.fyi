@@ -23,6 +23,13 @@ const vite = await createServer({
 const itemsMod = await vite.ssrLoadModule("/src/lib/items.ts");
 const learnMod = await vite.ssrLoadModule("/src/data/learn-guides.ts");
 const layaVsJevMod = await vite.ssrLoadModule("/src/data/laya-vs-jev-guides.ts");
+const alternativesSlugsMod = await vite.ssrLoadModule("/src/data/alternatives-slugs.ts");
+const alternativesDataMod = await vite.ssrLoadModule("/src/data/alternatives.ts");
+const alternativesHubMod = await vite.ssrLoadModule("/src/data/alternatives-hub.ts");
+const alternativesSharedMod = await vite.ssrLoadModule("/src/data/alternatives-shared.ts");
+const metricsJson = JSON.parse(
+  readFileSync(join(root, "src/data/alternatives-metrics.json"), "utf8"),
+);
 const agentGuidesMod = await vite.ssrLoadModule("/src/data/agent-guides.ts");
 const redirectsMod = await vite.ssrLoadModule("/src/lib/redirects.ts");
 const sitemapMod = await vite.ssrLoadModule("/src/lib/sitemap-xml.ts");
@@ -40,6 +47,8 @@ const agentGuidePageCount =
   1 + agentGuidesMod.agentGuideSlugs.length; /* hub + per-agent */
 const layaVsJevPageCount =
   1 + layaVsJevMod.layaVsJevGuideSlugs.length; /* hub + per-topic */
+const alternativesPageCount =
+  1 + alternativesSlugsMod.alternativeSlugs.length; /* hub + per-alternative */
 const expectedDetail = stats.detailPages;
 const expectedCatalog = stats.total;
 
@@ -106,7 +115,8 @@ const staticExpected =
   1 +
   learnTopicCount +
   layaVsJevPageCount +
-  agentGuidePageCount; /* static hubs + categories + MFM demo + learn topics + laya hub + agent guides */
+  alternativesPageCount +
+  agentGuidePageCount; /* static hubs + categories + MFM demo + learn topics + laya hub + alternatives + agent guides */
 if (locs.length !== staticExpected + expectedDetail) {
   errors.push(
     `sitemap total: expected ${staticExpected + expectedDetail}, got ${locs.length}`,
@@ -358,6 +368,162 @@ if (compareHtml.includes("TypeSafe's hosted release cycle")) {
 }
 if (!compareHtml.includes("Using both is normal.")) {
   errors.push("Laya compare key point was not rewritten");
+}
+if (!compareHtml.includes("Last verified:")) {
+  errors.push("Laya compare missing last verified line from alternatives template");
+}
+if (!compareHtml.toLowerCase().includes("at a glance")) {
+  errors.push("Laya compare missing alternatives comparison table");
+}
+
+const altHubHtml = readFileSync(join(distRoot, "alternatives.html"), "utf8");
+if (!altHubHtml.includes("Jev alternatives: 11 decision models compared")) {
+  errors.push("Alternatives hub H1 mismatch");
+}
+const hubRanked = alternativesHubMod.alternativesHub.ranked;
+const expectedHubRows = alternativesSlugsMod.alternativeSlugs.length + 1;
+if (hubRanked.length !== expectedHubRows) {
+  errors.push(
+    `alternatives hub row count: expected ${expectedHubRows}, got ${hubRanked.length}`,
+  );
+}
+const itemListBlocks = [...altHubHtml.matchAll(/"@type":"ItemList"[^}]*"numberOfItems":(\d+)/g)];
+const itemListCount = itemListBlocks.length
+  ? Number(itemListBlocks[0][1])
+  : -1;
+if (itemListCount !== expectedHubRows) {
+  errors.push(`alternatives hub ItemList count: expected ${expectedHubRows}, got ${itemListCount}`);
+}
+if (/\b10 decision models\b|\bten models\b|\btop 10\b/i.test(altHubHtml) && !/eleven|11 decision/i.test(altHubHtml)) {
+  errors.push("alternatives hub still claims 10 models in body copy");
+}
+if (alternativesHubMod.alternativesHub.seoTitle.length > 54) {
+  errors.push("alternatives hub seoTitle too long for branding");
+}
+if (alternativesHubMod.alternativesHub.seoDescription.length > 160) {
+  errors.push("alternatives hub seoDescription too long");
+}
+if (alternativesHubMod.alternativesHub.seoTitle.includes("(2026)")) {
+  errors.push("alternatives hub title must not include year");
+}
+
+function assertMetricsSnapshot(obj, pathPrefix) {
+  if (obj && typeof obj === "object") {
+    if ("checkedAt" in obj && !/^\d{4}-\d{2}-\d{2}$/.test(obj.checkedAt)) {
+      errors.push(`${pathPrefix} checkedAt invalid`);
+    }
+    if ("sourceUrl" in obj && !obj.sourceUrl.startsWith("https://")) {
+      errors.push(`${pathPrefix} missing sourceUrl`);
+    }
+    for (const [k, v] of Object.entries(obj)) {
+      if (v && typeof v === "object" && !Array.isArray(v)) {
+        assertMetricsSnapshot(v, `${pathPrefix}.${k}`);
+      }
+    }
+  }
+}
+assertMetricsSnapshot(metricsJson.decisionIndex, "metrics.decisionIndex");
+assertMetricsSnapshot(metricsJson.hostedPricingPerMInputUsd, "metrics.hostedPricing");
+for (const [k, v] of Object.entries(metricsJson.decisionIndexFullScores)) {
+  if (!v.checkedAt) errors.push(`metrics.decisionIndexFullScores.${k} missing checkedAt`);
+}
+for (const [k, v] of Object.entries(metricsJson.github)) {
+  if (!v.checkedAt) errors.push(`metrics.github.${k} missing checkedAt`);
+}
+for (const [k, v] of Object.entries(metricsJson.huggingface)) {
+  if (!v.checkedAt) errors.push(`metrics.huggingface.${k} missing checkedAt`);
+}
+
+const ALT_MIN_WORDS = 600;
+function countWords(html) {
+  const $ = cheerio.load(html);
+  const text = $("article").text().replace(/\s+/g, " ").trim();
+  return text ? text.split(" ").length : 0;
+}
+
+if (alternativesSharedMod.alternativesLastVerified !== alternativesHubMod.alternativesHub.lastVerified) {
+  errors.push("alternatives lastVerified mismatch between hub and shared snapshot");
+}
+if (!altHubHtml.includes('rel="canonical" href="https://jev.aitools.fyi/alternatives"')) {
+  errors.push("Alternatives hub canonical mismatch");
+}
+if (!llms.includes("/alternatives")) {
+  errors.push("llms.txt missing /alternatives hub");
+}
+for (const slug of alternativesSlugsMod.alternativeSlugs) {
+  const alt = alternativesDataMod.getAlternative(slug);
+  if (!alt) {
+    errors.push(`alternatives data missing slug ${slug}`);
+    continue;
+  }
+  if (alt.seoTitle.length > 54) {
+    errors.push(`alternatives:${slug} seoTitle too long for branding (${alt.seoTitle.length})`);
+  }
+  if (alt.seoDescription.length > 160) {
+    errors.push(`alternatives:${slug} seoDescription too long (${alt.seoDescription.length})`);
+  }
+  if (alt.seoTitle.includes("\u2014") || alt.seoDescription.includes("\u2014")) {
+    errors.push(`alternatives:${slug} contains em dash in meta`);
+  }
+  const htmlPath = join(distRoot, `alternatives/${slug}.html`);
+  const altHtml = readFileSync(htmlPath, "utf8");
+  if (!locs.includes(`https://jev.aitools.fyi/alternatives/${slug}`)) {
+    errors.push(`sitemap missing /alternatives/${slug}`);
+  }
+  if (!llms.includes(`/alternatives/${slug}`)) {
+    errors.push(`llms.txt missing /alternatives/${slug}`);
+  }
+  if (!llms.includes(`/alternatives/${slug}.md`)) {
+    errors.push(`llms.txt missing markdown twin /alternatives/${slug}.md`);
+  }
+  const canon = `https://jev.aitools.fyi/alternatives/${slug}`;
+  if (!altHtml.includes(`href="${canon}"`)) {
+    errors.push(`alternatives/${slug} canonical mismatch`);
+  }
+  if (altHtml.includes("\u2014") || altHtml.includes("\u2013")) {
+    errors.push(`alternatives/${slug} HTML contains em or en dash`);
+  }
+  for (const src of alt.sources) {
+    if (src.url.includes("x.com") || src.url.includes("twitter.com")) continue;
+    if (!src.url.includes("ref=jev.aitools.fyi")) {
+      /* outbound ref applied at render; check rendered HTML */
+    }
+  }
+  const renderedRef = alt.sources.some((s) => !s.url.includes("x.com") && altHtml.includes("ref=jev.aitools.fyi"));
+  if (!renderedRef && alt.sources.length > 0) {
+    errors.push(`alternatives/${slug} missing outbound ref params in HTML`);
+  }
+  for (const fact of alt.facts) {
+    if (!fact.sourceUrl?.startsWith("https://")) {
+      errors.push(`alternatives/${slug} fact missing sourceUrl: ${fact.row}`);
+    }
+    if (!fact.checkedAt || !/^\d{4}-\d{2}-\d{2}$/.test(fact.checkedAt)) {
+      errors.push(`alternatives/${slug} fact missing checkedAt: ${fact.row}`);
+    }
+  }
+  if (altHtml.includes("aggregateRating") || altHtml.includes('"@type":"Review"')) {
+    errors.push(`alternatives/${slug} must not include rating or review JSON-LD`);
+  }
+  const words = countWords(altHtml);
+  if (words < ALT_MIN_WORDS) {
+    errors.push(`alternatives/${slug} word count ${words} below ${ALT_MIN_WORDS}`);
+  }
+  if (!altHtml.includes(`"dateModified":"${alt.lastVerified}"`)) {
+    errors.push(`alternatives/${slug} Article dateModified must match lastVerified`);
+  }
+}
+const layaWords = countWords(compareHtml);
+if (layaWords < ALT_MIN_WORDS) {
+  errors.push(`laya compare word count ${layaWords} below ${ALT_MIN_WORDS}`);
+}
+if (compareHtml.includes("aggregateRating") || compareHtml.includes('"@type":"Review"')) {
+  errors.push("laya compare must not include rating or review JSON-LD");
+}
+if (altHubHtml.includes("aggregateRating") || altHubHtml.includes('"@type":"Review"')) {
+  errors.push("alternatives hub must not include rating or review JSON-LD");
+}
+if (!locs.includes("https://jev.aitools.fyi/alternatives")) {
+  errors.push("sitemap missing /alternatives hub");
 }
 
 const homeHtml = readFileSync(join(distRoot, "index.html"), "utf8");
