@@ -368,7 +368,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Product-specific notes",
-        "body": "kev.serve is the supported path for POST /v1/systemone compatibility; pick a checkpoint size that matches your GPU budget before you promise 27B accuracy. README tables that compare to hosted Jev are vendor-run on frozen suites; treat them as directional, not as your compliance sign-off. Fine-tuning adapters on your labels is the main reason teams pick Kev over metered tokens, not a one-point Decision Index gap. Kev checkpoints span sub-billion to 27B parameters; match VRAM, batch size, and concurrency before you copy a demo config. Shadow mode against hosted Jev should log raw probabilities, not just argmax labels, so you can diff calibration on disputed rows. Keep rollback to api.typesafe.ai for at least one release when you move a production gate to self-hosted Kev. Modal and HF Spaces demos are useful for sales reviews, not capacity planning for your production cluster."
+        "body": "kev.serve is the supported path for POST /v1/systemone compatibility; pick a checkpoint size that matches your GPU budget before you promise 27B accuracy. README tables that compare to hosted Jev are vendor-run on frozen suites; treat them as directional, not as your compliance sign-off. Fine-tuning adapters on your labels is the main reason teams pick Kev over metered tokens, not a one-point Decision Index gap. Kev checkpoints span sub-billion to 27B parameters; match VRAM, batch size, and concurrency before you copy a demo config. Shadow mode against hosted Jev should log raw probabilities, not just argmax labels, so you can diff calibration on disputed rows. Keep rollback to api.typesafe.ai for at least one release when you move a production gate to self-hosted Kev. Vendor README and Spaces demos are fine for quick looks; load-test kev.serve on your own hardware before you promise capacity."
       }
     ],
     "whenChooseThem": [
@@ -591,7 +591,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Can I use the TypeSafe SDK with OpenAI Decisions API?",
-        "answer": "Decisions API error envelopes follow OpenAI chat patterns; map fields in a staging adapter before you route production gates through gpt-6-luna."
+        "answer": "OpenAI's beta announcement is the source we link for API shape; plan a staging adapter to map errors and fields before you route production gates through gpt-6-luna."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1374,7 +1374,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Can I use the TypeSafe SDK with SemIf?",
-        "answer": "SemIf logit servers expose research endpoints; validate batching, TLS, and auth before you point production traffic at SemIf-OpenJev."
+        "answer": "The SemIf-OpenJev README describes the server layout we summarize; validate batching, TLS, and auth on your deployment before you point production traffic at it."
       },
       {
         "question": "Should I leave hosted Jev entirely?",
@@ -1756,7 +1756,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "question": "Does Liquid d1 beat Jev on Decision Index?",
-        "answer": "The public snapshot in our metrics file scores Liquid d1; compare the facts table to hosted Jev. Edge modality mixes in d1-3B may diverge from the text-only slices Decision Index stresses today."
+        "answer": "The public snapshot in our metrics file scores Liquid d1; compare the facts table to hosted Jev. The d1-3B model card discusses multimodal inputs; treat Decision Index as text-oriented unless you run your own eval on your modalities."
       },
       {
         "question": "Can I use the TypeSafe SDK with Liquid d1?",

@@ -765,7 +765,7 @@
     "slug": "theoleecj-semif",
     "title": "SemIf",
     "oneLiner": "Open System One style decision server: one forward pass over shared state yields Choice, Score, and Noul probabilities from models you host.",
-    "description": "SemIf (github.com/TheoLeeCJ/SemIf, openjev.com) is Theo Lee CJ's independent open-source decision stack, formerly branded OpenJev on the site. It mirrors the typed question API pattern without TypeSafe's closed model: local or self-hosted inference reads option logits in one pass, returns calibrated-style scores, and stays honest that it is not affiliated with TypeSafe. Browser WebGPU demos and PyTorch paths ship in-repo; scores are research baselines you should calibrate on your hardware before production gates.",
+    "description": "SemIf-OpenJev (github.com/TheoLeeCJ/SemIf-OpenJev, openjev.com) is Theo Lee CJ's independent open-source decision stack, formerly branded OpenJev on the site. It mirrors the typed question API pattern without TypeSafe's closed model: local or self-hosted inference reads option logits in one pass, returns calibrated-style scores, and stays honest that it is not affiliated with TypeSafe. Browser WebGPU demos and PyTorch paths ship in-repo; scores are research baselines you should calibrate on your hardware before production gates.",
     "category": "benchmarks",
     "tags": ["benchmarks", "open-source", "self-hosted", "research"],
     "language": "Python",
