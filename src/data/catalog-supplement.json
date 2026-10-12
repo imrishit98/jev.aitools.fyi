@@ -2267,5 +2267,39 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-10-09"
+  },
+  {
+    "slug": "dorkitude-webctl",
+    "title": "webctl",
+    "oneLiner": "Go CLI: multi-provider web search for coding agents, Jev scores and dedupes hits, optional scrape chunk filter; skimmer splits the same filter for any file or URL.",
+    "description": "webctl (github.com/dorkitude/webctl) from Kyle (@dorkitude) queries up to three search backends, sends each hit with query and goal to TypeSafe Jev for relevance scoring, dedupes by URL or title then MinHash LSH pairs Jev judges, and optional --scrape --filter-chunks (~2000 char chunks). Sister repo skimmer exposes the chunk filter for rg pipes and JSON lists. Distinct from superagents-lab-jev-search worker planning and aurorainfra-grev Unix line filters.",
+    "category": "agent-tooling",
+    "tags": ["agent-tooling", "search", "cli", "go", "skimmer"],
+    "language": "Go",
+    "stars": 158,
+    "url": "https://github.com/dorkitude/webctl",
+    "repoUrl": "https://github.com/dorkitude/webctl",
+    "creatorHandle": "dorkitude",
+    "creatorName": "Kyle",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-10-12"
+  },
+  {
+    "slug": "mordavid-nucleisniper",
+    "title": "NucleiSniper",
+    "oneLiner": "Python pipeline: deep-fingerprint each target, Jev Score ranks every Nuclei template 0 to 4, then Nuclei runs highest relevance first. Prioritization, not filtering.",
+    "description": "NucleiSniper (github.com/MorDavid/NucleiSniper) from Mor David profiles targets with 30 plus signal types, prefilters templates with 100% recall per README, batches about 50 templates per Jev call, and executes Nuclei in score order so critical checks surface early. Requires TYPESAFE_API_KEY and authorized targets only. Distinct from leepokai-jev-guard agent gates and dub-co link abuse scoring.",
+    "category": "integrations",
+    "tags": ["integrations", "security", "pentest", "nuclei", "python"],
+    "language": "Python",
+    "stars": 21,
+    "url": "https://github.com/MorDavid/NucleiSniper",
+    "repoUrl": "https://github.com/MorDavid/NucleiSniper",
+    "creatorHandle": "MorDavid",
+    "creatorName": "Mor David",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-10-12"
   }
 ]
