@@ -8,7 +8,6 @@ import {
 } from "@/components/json-ld";
 import { alternativeSlugs, getAlternative } from "@/data/alternatives";
 import { alternativePageSeo } from "@/lib/seo";
-import { alternativeGuideDate } from "@/lib/content-dates";
 
 export function getStaticPaths() {
   return alternativeSlugs.map((slug) => ({ params: { slug } }));
@@ -20,7 +19,7 @@ if (!alt) throw new Error(`Unknown alternative ${slug}`);
 
 const seo = alternativePageSeo(alt);
 const path = `/alternatives/${slug}`;
-const modified = alternativeGuideDate(slug!);
+const modified = alt.lastVerified;
 ---
 
 <BaseLayout

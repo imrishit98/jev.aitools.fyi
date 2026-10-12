@@ -7,11 +7,21 @@ import {
   alternativeSlugs,
   type AlternativeSlug,
 } from "@/data/alternatives-slugs";
-import { alternativesLastVerified } from "@/data/alternatives-shared";
+import {
+  alternativesLastVerified,
+  alternativeHubLastVerified,
+  alternativePageLastVerified,
+} from "@/data/alternatives-shared";
 import { resolveAlternativeFacts, resolveLayaFact } from "@/data/alternative-fact-sources";
-import { sanitizeAlternativeSections } from "@/lib/alternative-section-sanitize";
 
-export { alternativesLastVerified, alternativeSlugs, alternativePath, type AlternativeSlug };
+export {
+  alternativesLastVerified,
+  alternativeHubLastVerified,
+  alternativePageLastVerified,
+  alternativeSlugs,
+  alternativePath,
+  type AlternativeSlug,
+};
 export { alternativesHub, alternatives, layaCompareAsAlternative };
 
 function withFactDates(alt: Alternative): Alternative {
@@ -24,18 +34,24 @@ function withFactDates(alt: Alternative): Alternative {
   };
 }
 
-function prepareAlternative(alt: Alternative): Alternative {
+function prepareAlternative(alt: Alternative, lastVerified: string): Alternative {
   const slug = alt.slug as AlternativeSlug;
   const facts =
     slug === "laya"
       ? alt.facts.map((f) => resolveLayaFact(f))
       : resolveAlternativeFacts(slug, alt.facts);
-  const sections = sanitizeAlternativeSections(slug, alt.summary, alt.sections);
-  return withFactDates({ ...alt, facts, sections });
+  return withFactDates({ ...alt, facts, lastVerified });
+}
+
+export function lastVerifiedForAlternativeSlug(slug: string): string {
+  if (slug === "laya") return alternativePageLastVerified("laya-compare");
+  return alternativePageLastVerified(slug as keyof typeof import("@/data/alternatives-metrics.json").pageLastVerified);
 }
 
 export function getAlternative(slug: string): Alternative | undefined {
-  if (slug === "laya") return prepareAlternative(layaCompareAsAlternative());
+  if (slug === "laya") {
+    return prepareAlternative(layaCompareAsAlternative(), alternativePageLastVerified("laya-compare"));
+  }
   const alt = alternatives[slug as AlternativeSlug];
-  return alt ? prepareAlternative(alt) : undefined;
+  return alt ? prepareAlternative(alt, alternativePageLastVerified(slug as AlternativeSlug)) : undefined;
 }

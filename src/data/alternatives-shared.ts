@@ -3,7 +3,17 @@ import type { AlternativeFact, AlternativeSource } from "@/data/alternatives-typ
 
 export const alternativesMetrics = metrics;
 
-export const alternativesLastVerified = "2026-10-12";
+export const alternativesLastVerified = metrics.snapshotDate;
+
+export function alternativeHubLastVerified(): string {
+  return metrics.pageLastVerified.hub;
+}
+
+export function alternativePageLastVerified(slug: keyof typeof metrics.pageLastVerified): string {
+  const row = metrics.pageLastVerified[slug];
+  if (!row) throw new Error(`alternatives-metrics pageLastVerified missing key: ${slug}`);
+  return row;
+}
 
 const diEdition = metrics.decisionIndex.edition;
 const diGenerated = metrics.decisionIndex.generatedUtc.slice(0, 10);

@@ -1,5 +1,19 @@
 {
   "snapshotDate": "2026-10-12",
+  "pageLastVerified": {
+    "hub": "2026-10-12",
+    "laya-compare": "2026-10-12",
+    "cloudflare-clef": "2026-10-12",
+    "kev": "2026-10-12",
+    "openai-decisions-api": "2026-10-12",
+    "perplexity-pplx-decider": "2026-10-12",
+    "mapika-decider": "2026-10-12",
+    "fastino-gliner-decide": "2026-10-12",
+    "semif": "2026-10-12",
+    "clm-8b": "2026-10-12",
+    "liquid-d1": "2026-10-12",
+    "von": "2026-10-12"
+  },
   "decisionIndex": {
     "edition": "0.3.1",
     "sourceUrl": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json",

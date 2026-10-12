@@ -1,6 +1,6 @@
 import type { AlternativesHub, AlternativesHubRankRow } from "@/data/alternatives-types";
 import {
-  alternativesLastVerified,
+  alternativeHubLastVerified,
   alternativesMetrics as m,
   decisionIndexLabel,
   githubAdoption,
@@ -16,10 +16,10 @@ export const alternativesHub: AlternativesHub = {
   seoTitle: "Jev alternatives: 11 decision models compared",
   seoDescription: hubSeoDescription,
   h1: "Jev alternatives: 11 decision models compared",
-  lastVerified: alternativesLastVerified,
+  lastVerified: alternativeHubLastVerified(),
   summary:
     "Hosted TypeSafe Jev is the default System One API for many agent stacks, but it is not the only way to score Choice, Score, and Noul questions in one forward pass. This hub lists eleven comparison pages we maintain in 2026: Laya on the existing learn hub plus ten dedicated /alternatives guides. The table order is editorial as of " +
-    alternativesLastVerified +
+    alternativeHubLastVerified() +
     ", informed by GitHub stars, Hugging Face downloads, and on-site interest, but not a single-metric sort. Row eleven (Von) is an explicit editorial speed pick. We label vendor-reported benchmarks separately from independent Decision Index Full scores from the public snapshot regenerated on " +
     m.decisionIndex.generatedUtc.slice(0, 10) +
     ".",

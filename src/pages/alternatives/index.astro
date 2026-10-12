@@ -18,7 +18,7 @@ import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 
 const seo = alternativesHubSeo();
 const summaryParagraphs = splitIntoParagraphs(alternativesHub.summary, 320);
-const hubModified = alternativeHubDate;
+const hubModified = alternativeHubDate();
 const itemList = alternativesHub.ranked.map((row) => ({
   name: row.name,
   path: row.pagePath,

@@ -136,7 +136,7 @@ export function layaCompareAsAlternative(): Alternative {
           "Convai's Hugging Face card publishes vendor-reported accuracy comparisons against hosted Jev on selected public slices. Those tables are useful directionally but are not independent audits. Jev can lead on high-cardinality choice sets while Laya typed-decisions checkpoints lead on Convai workflow evals after fine-tuning. Argmax accuracy and calibrated probabilities are different KPIs. Read /learn/laya-vs-jev/benchmarks-and-fairness before you paste numbers into an SLA. Independent Decision Index scores in our metrics file cover hosted Jev; Laya comparisons belong in the Laya vs Jev hub where we separate vendor-reported from third-party harnesses.",
       },
       {
-        h: "When to choose Laya",
+        h: "Fit and tradeoffs",
         body:
           "Choose Laya when state must stay on device or inside a VPC, when you want to fork or fine-tune checkpoints, when you already run GPU inference, or when local sub-50 ms decisions matter more than zero ops. The typed-decisions checkpoint targets invoice, security, and support triage style workflows Convai documents. Base English and multilingual checkpoints are not magic on those tasks without specialization. Router preload matters when you alternate languages; cold starts can cost seconds if you rebuild graphs each request.",
       },
@@ -164,6 +164,11 @@ result = router.decide(state, questions=laya_questions)`,
         h: "Ecosystem links",
         body:
           "Upstream SDK and weights live on GitHub and Hugging Face. Community ports include Laya-MLX on Apple Silicon and ONNX/Core ML tooling in the directory catalog. Compare Cloudflare clef if you want hosted inference on Workers AI, Jared Palmer Kev if you need POST /v1/systemone parity, and Von if you need a tiny fast encoder. Return to /learn/laya-vs-jev/compare for the full side-by-side narrative.",
+      },
+      {
+        h: "Product-specific notes",
+        body:
+          "Laya's Router API is Python-first; gateways that expect POST /v1/systemone may need an adapter even when question semantics align. Apache 2.0 weights enable fine-tuning and air-gapped deploys that hosted Jev cannot mirror one-for-one. Model card parameter counts cover multiple public checkpoints; pin the exact revision you benchmark. MLX and ONNX community ports change latency profiles compared to upstream CUDA paths cited on the card. Many teams keep hosted Jev for vendor support while running Laya on high-volume pre-filters inside the VPC. Benchmark fairness requires matching state serialization, option order, and threshold policies across engines.",
       },
     ],
     whenChooseThem: [

@@ -8,13 +8,13 @@ import {
   layaVsJevArticleJsonLd,
   alternativeArticleJsonLd,
 } from "@/components/json-ld";
-import { layaCompareAsAlternative } from "@/data/alternatives";
+import { getAlternative } from "@/data/alternatives";
 import {
   layaVsJevGuideSlugs,
   layaVsJevHub,
   getLayaVsJevGuide,
 } from "@/data/laya-vs-jev-guides";
-import { alternativeGuideDate, layaGuideDate } from "@/lib/content-dates";
+import { layaGuideDate } from "@/lib/content-dates";
 import { layaVsJevGuidePageSeo } from "@/lib/seo";
 
 export function getStaticPaths() {
@@ -28,8 +28,8 @@ if (!guide) throw new Error(`Unknown Laya vs Jev guide ${topic}`);
 const seo = layaVsJevGuidePageSeo(guide);
 const path = `/learn/laya-vs-jev/${topic}`;
 const useAlternativeTemplate = topic === "compare";
-const layaAlt = useAlternativeTemplate ? layaCompareAsAlternative() : null;
-const modified = useAlternativeTemplate ? alternativeGuideDate("laya") : layaGuideDate(guide.slug);
+const layaAlt = useAlternativeTemplate ? getAlternative("laya")! : null;
+const modified = useAlternativeTemplate ? layaAlt!.lastVerified : layaGuideDate(guide.slug);
 ---
 
 <BaseLayout

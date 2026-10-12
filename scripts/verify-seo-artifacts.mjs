@@ -28,7 +28,7 @@ const alternativesDataMod = await vite.ssrLoadModule("/src/data/alternatives.ts"
 const alternativesHubMod = await vite.ssrLoadModule("/src/data/alternatives-hub.ts");
 const alternativesSharedMod = await vite.ssrLoadModule("/src/data/alternatives-shared.ts");
 const factSourcesMod = await vite.ssrLoadModule("/src/data/alternative-fact-sources.ts");
-const sectionSanitizeMod = await vite.ssrLoadModule("/src/lib/alternative-section-sanitize.ts");
+const textStatsMod = await vite.ssrLoadModule("/src/lib/alternative-text-stats.ts");
 const contentDatesMod = await vite.ssrLoadModule("/src/lib/content-dates.ts");
 const metricsJson = JSON.parse(
   readFileSync(join(root, "src/data/alternatives-metrics.json"), "utf8"),
@@ -427,6 +427,19 @@ function assertMetricsSnapshot(obj, pathPrefix) {
 }
 assertMetricsSnapshot(metricsJson.decisionIndex, "metrics.decisionIndex");
 assertMetricsSnapshot(metricsJson.hostedPricingPerMInputUsd, "metrics.hostedPricing");
+for (const [key, row] of Object.entries(metricsJson.pageLastVerified ?? {})) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(row)) {
+    errors.push(`metrics.pageLastVerified.${key} invalid date`);
+  }
+}
+for (const slug of alternativesSlugsMod.alternativeSlugs) {
+  if (!metricsJson.pageLastVerified?.[slug]) {
+    errors.push(`metrics.pageLastVerified missing slug ${slug}`);
+  }
+}
+if (!metricsJson.pageLastVerified?.hub || !metricsJson.pageLastVerified?.["laya-compare"]) {
+  errors.push("metrics.pageLastVerified missing hub or laya-compare");
+}
 for (const [k, v] of Object.entries(metricsJson.decisionIndexFullScores)) {
   if (!v.checkedAt) errors.push(`metrics.decisionIndexFullScores.${k} missing checkedAt`);
 }
@@ -447,7 +460,41 @@ function countWords(html) {
 function countUniqueSentencesInArticle(html) {
   const $ = cheerio.load(html);
   const text = $("article").text().replace(/\s+/g, " ").trim();
-  return sectionSanitizeMod.countUniqueSentences(text);
+  return textStatsMod.countUniqueSentences(text);
+}
+
+function lastmodFromSitemapXml(xml, locUrl) {
+  const blocks = [...xml.matchAll(/<url>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>/g)];
+  for (const [, loc, lastmod] of blocks) {
+    if (loc === locUrl) return lastmod;
+  }
+  return null;
+}
+
+const learnSitemapXml = readFileSync(join(distRoot, "sitemap-learn.xml"), "utf8");
+
+function assertPageDates(label, canonicalUrl, lastVerified, html, slugForGuideDate) {
+  if (!html.includes(`<time datetime="${lastVerified}">${lastVerified}</time>`)) {
+    errors.push(`${label} Last verified must show ${lastVerified}`);
+  }
+  if (
+    !html.includes(`"dateModified":"${lastVerified}"`) &&
+    !html.includes(`"dateModified": "${lastVerified}"`)
+  ) {
+    errors.push(`${label} JSON-LD dateModified must equal ${lastVerified}`);
+  }
+  const lastmod = lastmodFromSitemapXml(learnSitemapXml, canonicalUrl);
+  if (!lastmod) {
+    errors.push(`${label} missing sitemap lastmod for ${canonicalUrl}`);
+  } else if (lastmod !== lastVerified) {
+    errors.push(`${label} sitemap lastmod ${lastmod} must equal lastVerified ${lastVerified}`);
+  }
+  if (slugForGuideDate) {
+    const guideDay = contentDatesMod.alternativeGuideDate(slugForGuideDate);
+    if (guideDay !== lastVerified) {
+      errors.push(`${label} alternativeGuideDate ${guideDay} must equal lastVerified ${lastVerified}`);
+    }
+  }
 }
 function distFileForInternalHref(href) {
   const pathOnly = href.split("#")[0].split("?")[0];
@@ -510,11 +557,16 @@ if (alternativesSharedMod.alternativesLastVerified !== alternativesHubMod.altern
 if (!altHubHtml.includes('rel="canonical" href="https://jev.aitools.fyi/alternatives"')) {
   errors.push("Alternatives hub canonical mismatch");
 }
-if (
-  !altHubHtml.includes(`"dateModified":"${contentDatesMod.alternativeHubDate}"`) &&
-  !altHubHtml.includes(`"dateModified": "${contentDatesMod.alternativeHubDate}"`)
-) {
-  errors.push("alternatives hub Article/WebPage dateModified must match alternativeHubDate");
+const hubLastVerified = alternativesHubMod.alternativesHub.lastVerified;
+assertPageDates(
+  "alternatives hub",
+  "https://jev.aitools.fyi/alternatives",
+  hubLastVerified,
+  altHubHtml,
+  null,
+);
+if (contentDatesMod.alternativeHubDate() !== hubLastVerified) {
+  errors.push("alternativeHubDate() must equal hub lastVerified");
 }
 assertInternalLinks(altHubHtml, "alternatives hub");
 assertOutboundRefs(altHubHtml, "alternatives hub");
@@ -585,9 +637,13 @@ for (const slug of alternativesSlugsMod.alternativeSlugs) {
       errors.push(`alternatives/${slug} missing rendered not published placeholder`);
     }
   }
-  if (!altHtml.includes(`"dateModified":"${alt.lastVerified}"`)) {
-    errors.push(`alternatives/${slug} Article dateModified must match lastVerified`);
-  }
+  assertPageDates(
+    `alternatives/${slug}`,
+    `https://jev.aitools.fyi/alternatives/${slug}`,
+    alt.lastVerified,
+    altHtml,
+    slug,
+  );
 }
 const layaAlt = alternativesDataMod.getAlternative("laya");
 if (layaAlt) {
@@ -603,10 +659,17 @@ const layaUnique = countUniqueSentencesInArticle(compareHtml);
 if (layaUnique < ALT_MIN_UNIQUE_SENTENCES) {
   errors.push(`laya compare unique sentence count ${layaUnique} below ${ALT_MIN_UNIQUE_SENTENCES}`);
 }
-if (compareHtml.includes(`"dateModified":"${alternativesHubMod.alternativesHub.lastVerified}"`)) {
-  /* ok */
-} else if (!compareHtml.includes(`"dateModified":"${contentDatesMod.LAYA_COMPARE_TOUCHED}"`)) {
-  errors.push("laya compare dateModified must match last verified editorial date");
+if (layaAlt) {
+  assertPageDates(
+    "laya compare",
+    "https://jev.aitools.fyi/learn/laya-vs-jev/compare",
+    layaAlt.lastVerified,
+    compareHtml,
+    null,
+  );
+  if (contentDatesMod.layaCompareLastVerified() !== layaAlt.lastVerified) {
+    errors.push("layaCompareLastVerified() must equal laya compare lastVerified");
+  }
 }
 if (compareHtml.includes("aggregateRating") || compareHtml.includes('"@type":"Review"')) {
   errors.push("laya compare must not include rating or review JSON-LD");

@@ -159,7 +159,7 @@ export function generateSitemapLearnXml(): string {
     })),
     {
       loc: absoluteUrl("/alternatives"),
-      lastmod: parseIsoDay(alternativeHubDate),
+      lastmod: parseIsoDay(alternativeHubDate()),
       priority: 0.86,
       changefreq: "weekly",
     },
