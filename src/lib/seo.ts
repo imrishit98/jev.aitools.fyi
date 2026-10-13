@@ -21,7 +21,7 @@ import {
 } from "@/data/alternatives";
 import type { Alternative } from "@/data/alternatives-types";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
-import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
+import { getItemPath } from "@/lib/item-paths";
 import { getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
 import {
   getProductProfile,
@@ -106,7 +106,7 @@ export function stripEmDash(text: string): string {
 }
 
 export function trimMetaDescription(text: string, max = 160): string {
-  let t = stripEmDash(text);
+  const t = stripEmDash(text);
   if (t.length <= max) return t;
   const cut = t.slice(0, max - 1);
   const lastSpace = cut.lastIndexOf(" ");
@@ -162,18 +162,6 @@ const CATEGORY_TITLE_TAIL: Record<CategorySlug, string> = {
   playgrounds: "live Jev demo",
   benchmarks: "Jev eval harness",
   guides: "Jev community guide",
-};
-
-const SEGMENT_LABEL: Record<
-  ReturnType<typeof getItemDetailSegment>,
-  string
-> = {
-  sdks: "SDK",
-  tools: "tool",
-  apps: "app",
-  games: "game",
-  benchmarks: "benchmark",
-  guides: "guide",
 };
 
 const BRAND_SUFFIX = ` | ${TITLE_BRAND}`;

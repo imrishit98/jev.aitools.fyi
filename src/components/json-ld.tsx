@@ -3,7 +3,7 @@ import type { DirectoryItem } from "@/data/types";
 import type { FaqEntry } from "@/data/faq";
 import { siteConfig } from "@/lib/site";
 import { absoluteUrl } from "@/lib/seo";
-import { getItemPath, hrefForListing } from "@/lib/item-paths";
+import { getItemPath } from "@/lib/item-paths";
 import { itemHasDetailPage } from "@/lib/content-policy";
 
 const publisherOrg = {

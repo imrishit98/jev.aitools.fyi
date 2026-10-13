@@ -52,19 +52,19 @@ const privacyHref = LEGAL_PATHS.privacy;
   }}
 >
   (function () {
-    var root = document.getElementById("jev-legal-policy-banner");
+    const root = document.getElementById("jev-legal-policy-banner");
     if (!root) return;
-    var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
+    const upcoming = Date.now() < partnerSharingEffectiveEpochMs;
     if (!upcoming) {
       root.hidden = true;
       return;
     }
-    var dismissedInMemory = false;
+    let dismissedInMemory = false;
     function isDismissed() {
       if (dismissedInMemory) return true;
       try {
         return localStorage.getItem(dismissKey) === "1";
-      } catch (e) {
+      } catch {
         return dismissedInMemory;
       }
     }
@@ -77,7 +77,7 @@ const privacyHref = LEGAL_PATHS.privacy;
     }
     root.hidden = false;
     setNoticeVisible(true);
-    var dismissBtn = root.querySelector(".legal-policy-banner-dismiss");
+    const dismissBtn = root.querySelector(".legal-policy-banner-dismiss");
     if (dismissBtn) {
       dismissBtn.addEventListener("click", function () {
         dismissedInMemory = true;
@@ -85,7 +85,9 @@ const privacyHref = LEGAL_PATHS.privacy;
         setNoticeVisible(false);
         try {
           localStorage.setItem(dismissKey, "1");
-        } catch (e) {}
+        } catch {
+          /* localStorage unavailable */
+        }
       });
     }
   })();

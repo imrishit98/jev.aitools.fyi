@@ -128,7 +128,7 @@ function firstSentence(text) {
 
 function punchyOneLiner(item, facts) {
   const hand = existing[item.slug]?.oneLiner;
-  const sluggyPrefix = /^[a-z0-9.-]+\:\s/i;
+  const sluggyPrefix = /^[a-z0-9.-]+:\s/i;
   if (hand && hand.length >= 40 && !sluggyPrefix.test(hand)) return clean(hand);
 
   let lead = stripRoboticLead(firstSentence(facts));
@@ -187,7 +187,7 @@ for (const item of detail) {
     out[item.slug]?.description &&
     out[item.slug].description.length >= 180 &&
     out[item.slug].oneLiner !== out[item.slug].description &&
-    !/^[a-z0-9.-]+\:\s/i.test(out[item.slug].oneLiner)
+    !/^[a-z0-9.-]+:\s/i.test(out[item.slug].oneLiner)
   ) {
     continue;
   }

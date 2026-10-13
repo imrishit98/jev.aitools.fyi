@@ -122,11 +122,11 @@ type CatalogShape = {
 };
 
 const catalog = catalogJson as CatalogShape;
-let videos: MfmVideo[] = catalog.videos || [];
+const videos: MfmVideo[] = catalog.videos || [];
 let docs: Record<string, string[]>[] = [];
 let df = new Map<string, number>();
 let avgdl = 1;
-let enrichStats: Record<string, unknown> | null = catalog.enrichStats || null;
+const enrichStats: Record<string, unknown> | null = catalog.enrichStats || null;
 let hybridIndex: ReturnType<typeof buildHybridIndex> | null = null;
 
 function rebuildIndex() {
