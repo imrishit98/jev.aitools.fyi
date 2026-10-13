@@ -9,6 +9,7 @@ import {
   layaVsJevGuides,
   layaVsJevHub,
 } from "@/data/laya-vs-jev-guides";
+import { alternativesHub, alternativeSlugs, alternatives } from "@/data/alternatives";
 import { productProfilesBySlug } from "@/data/product-profiles";
 
 export const META_TITLE_MAX = 60;
@@ -85,6 +86,14 @@ export function collectRawMetaFields(): RawMetaField[] {
     const guide = agentGuides[slug];
     push(fields, `agent:${slug}:seoTitle`, "title", guide.seoTitle);
     push(fields, `agent:${slug}:seoDescription`, "description", guide.seoDescription);
+  }
+
+  push(fields, "alternatives-hub:seoTitle", "title", alternativesHub.seoTitle);
+  push(fields, "alternatives-hub:seoDescription", "description", alternativesHub.seoDescription);
+  for (const slug of alternativeSlugs) {
+    const alt = alternatives[slug];
+    push(fields, `alternatives:${slug}:seoTitle`, "title", alt.seoTitle);
+    push(fields, `alternatives:${slug}:seoDescription`, "description", alt.seoDescription);
   }
 
   return fields;

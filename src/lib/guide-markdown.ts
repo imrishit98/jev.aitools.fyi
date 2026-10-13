@@ -20,6 +20,8 @@ import {
   layaHubDate,
   learnGuideDate,
 } from "@/lib/content-dates";
+import { layaCompareAsAlternative } from "@/data/alternatives";
+import { alternativeMarkdown } from "@/lib/alternative-markdown";
 import { linksForAgentGuide, linksForLayaGuide, type DirectoryLink } from "@/lib/directory-links";
 import { withOutboundRef } from "@/lib/outbound-attribution";
 import { absoluteUrl } from "@/lib/seo";
@@ -145,6 +147,9 @@ export function layaGuideMarkdown(slug: string): string | null {
   const guide = getLayaVsJevGuide(slug);
   if (!guide) return null;
   const path = `/learn/laya-vs-jev/${slug}`;
+  if (slug === "compare") {
+    return alternativeMarkdown(layaCompareAsAlternative(), path);
+  }
   const updated = layaGuideDate(slug);
   const sections = guide.sections
     .map((section) => {

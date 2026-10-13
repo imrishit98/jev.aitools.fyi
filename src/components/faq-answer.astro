@@ -1,5 +1,11 @@
 ---
 import type { FaqEntry } from "@/data/faq";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+
+function linkHref(href: string): string {
+  if (href.startsWith("/") || href.startsWith("#")) return href;
+  return withOutboundRef(href);
+}
 
 interface Props {
   entry: FaqEntry;
@@ -46,7 +52,14 @@ const segments = renderSegments();
   {
     segments.map((seg) =>
       seg.type === "link" ? (
-        <a href={seg.href} class="text-primary hover:underline">{seg.value}</a>
+        <a
+          href={linkHref(seg.href)}
+          rel={seg.href.startsWith("/") ? undefined : externalLinkRel(seg.href)}
+          target={seg.href.startsWith("/") ? undefined : "_blank"}
+          class="text-primary hover:underline"
+        >
+          {seg.value}
+        </a>
       ) : (
         seg.value
       ),

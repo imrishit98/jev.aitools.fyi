@@ -280,6 +280,10 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
         h: "What we did not guess",
         body: "Rate limits like 250,000 tokens per second on the official API are omitted here unless docs.typesafe.ai/models states them in your checkout. Context limits vary by gateway (32k on Vercel, OpenRouter, and Cloudflare model pages). Always confirm aliases on the provider page you ship against.",
       },
+      {
+        h: "Open models beside hosted Jev",
+        body: "When you outgrow a single gateway, the /alternatives hub ranks open checkpoints and hosted decision APIs teams actually trial: Laya, Cloudflare clef, Kev, Perplexity decider, and more. Each row links to a dated comparison page with migration notes.",
+      },
     ],
     faq: [
       {

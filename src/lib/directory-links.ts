@@ -1,5 +1,7 @@
 import { categories } from "@/data/categories";
 import type { AgentGuide } from "@/data/agent-guides-types";
+import type { Alternative } from "@/data/alternatives-types";
+import { alternativePath, type AlternativeSlug } from "@/data/alternatives-slugs";
 import { itemHasDetailPage } from "@/lib/content-policy";
 import { getItemBySlug } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
@@ -58,6 +60,24 @@ const LAYA_LISTINGS = [
 ];
 
 /** Listings and categories for the Laya vs Jev guides. */
+/** Listings, learn guides, and hub links for an alternatives comparison page. */
+export function linksForAlternative(alt: Alternative): DirectoryLink[] {
+  const self =
+    alt.slug === "laya" ? "/learn/laya-vs-jev/compare" : alternativePath(alt.slug as AlternativeSlug);
+  const ecosystem = alt.ecosystemSlugs ?? [];
+  return dedupe([
+    { href: "/alternatives", label: "Jev alternatives hub" },
+    { href: "/learn/system-one", label: "System One primer" },
+    { href: "/learn/jev-typesafe", label: "What Jev is" },
+    { href: "/learn/where-to-run-jev", label: "Where to run Jev" },
+    ...categoryLinks(["integrations", "benchmarks"]),
+    ...listingLinks([
+      ...(alt.listingSlug ? [alt.listingSlug] : []),
+      ...ecosystem,
+    ]),
+  ]).filter((link) => link.href !== self);
+}
+
 export function linksForLayaGuide(slug: string): DirectoryLink[] {
   const self = `/learn/laya-vs-jev/${slug}`;
   return dedupe([

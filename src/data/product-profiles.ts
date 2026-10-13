@@ -3824,7 +3824,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Researchers and hackers self-hosting open weights who need Choice, Score, and Noul style batches on hardware they control.",
     overview:
-      "SemIf (github.com/TheoLeeCJ/SemIf, openjev.com) is Theo Lee CJ's independent decision server formerly marketed as OpenJev on the site. It reads shared state once, asks many typed questions, and returns option probabilities from open models in a single forward pass. The project explicitly disclaims affiliation with TypeSafe: same interface ideas, different weights and training. WebGPU browser demos and PyTorch/MPS paths ship in-repo for replayable evidence.",
+      "SemIf-OpenJev (github.com/TheoLeeCJ/SemIf-OpenJev, openjev.com) is Theo Lee CJ's independent decision server formerly marketed as OpenJev on the site. It reads shared state once, asks many typed questions, and returns option probabilities from open models in a single forward pass. The project explicitly disclaims affiliation with TypeSafe: same interface ideas, different weights and training. WebGPU browser demos and PyTorch/MPS paths ship in-repo for replayable evidence.",
     creator: {
       name: "Theo Lee CJ",
       handle: "TheoLeeCJ",
@@ -3847,13 +3847,8 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       sourcedMetrics: [
         {
           claim:
-            "Public GitHub repo TheoLeeCJ/SemIf had about three thousand eight hundred forty four stars when this listing was drafted.",
-          source: "GitHub star count September 2026",
-        },
-        {
-          claim:
             "README positions SemIf as reproducing the interface pattern, not TypeSafe's undisclosed model or training.",
-          source: "github.com/TheoLeeCJ/SemIf README",
+          source: "github.com/TheoLeeCJ/SemIf-OpenJev README",
         },
       ],
     },
@@ -3868,8 +3863,8 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     stack: ["Python", "PyTorch", "WebGPU demo", "Open weights", "Self-hosted inference"],
     links: {
       website: "https://openjev.com",
-      repo: "https://github.com/TheoLeeCJ/SemIf",
-      docs: "https://github.com/TheoLeeCJ/SemIf#semif-formerly-openjev",
+      repo: "https://github.com/TheoLeeCJ/SemIf-OpenJev",
+      docs: "https://github.com/TheoLeeCJ/SemIf-OpenJev#semif-formerly-openjev",
       demo: "https://openjev.com",
     },
     pricingNote:

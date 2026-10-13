@@ -1,5 +1,8 @@
 /** Editorial dates for sitemap lastmod and JSON-LD. Not filesystem mtimes. */
 
+import metrics from "@/data/alternatives-metrics.json";
+import type { AlternativeSlug } from "@/data/alternatives-slugs";
+
 export const LISTING_LASTMOD_FALLBACK = "2026-09-19";
 export const CONTENT_CHECKED = "2026-09-30";
 
@@ -35,7 +38,12 @@ const LAYA_TOUCHED = new Set([
   "migration-and-coexistence",
 ]);
 
+export function layaCompareLastVerified(): string {
+  return metrics.pageLastVerified["laya-compare"];
+}
+
 export function layaGuideDate(slug: string): string {
+  if (slug === "compare") return layaCompareLastVerified();
   return LAYA_TOUCHED.has(slug) ? TOUCHED : GUIDE_PRIOR;
 }
 
@@ -54,6 +62,16 @@ export function agentGuideDate(slug: string): string {
 }
 
 export const agentHubDate = TOUCHED;
+
+export function alternativeHubDate(): string {
+  return metrics.pageLastVerified.hub;
+}
+
+export function alternativeGuideDate(slug: AlternativeSlug): string {
+  const day = metrics.pageLastVerified[slug];
+  if (!day) throw new Error(`pageLastVerified missing for alternative slug: ${slug}`);
+  return day;
+}
 
 const CATEGORY_TOUCHED = new Set([
   "sdks",

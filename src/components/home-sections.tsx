@@ -54,6 +54,7 @@ export function HomeWhatIsJev() {
           { href: "/learn/jev-typesafe", label: "What is Jev?" },
           { href: "/learn/jev-vs-llm-classification", label: "Jev vs chat labels" },
           { href: "/learn/laya-vs-jev", label: "Laya vs Jev" },
+          { href: "/alternatives", label: "Jev alternatives" },
           { href: "/learn/system-one", label: "System One" },
           { href: "/learn/vercel-ai-gateway", label: "AI Gateway" },
           { href: "/learn/use-cases", label: "Use cases" },

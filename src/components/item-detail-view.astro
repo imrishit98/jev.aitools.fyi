@@ -29,6 +29,10 @@ import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
 import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import SponsorSidebar from "@/components/sponsor-sidebar.astro";
+import {
+  alternativeComparisonHref,
+  alternativeComparisonLabel,
+} from "@/lib/alternatives-listing-link";
 
 interface Props {
   slug: string;
@@ -68,6 +72,8 @@ const jsonLdExtra = [
 const listingDescription = profile
   ? productProfileSeoDescription(profile)
   : undefined;
+const alternativeHref = alternativeComparisonHref(slug);
+const alternativeLabel = alternativeComparisonLabel(slug);
 ---
 
 <BaseLayout
@@ -117,6 +123,13 @@ const listingDescription = profile
           </div>
           <h1 class="mt-5 font-heading text-3xl font-semibold tracking-tight sm:text-4xl">{item.title}</h1>
           <p class="mt-3 text-lg leading-relaxed text-muted-foreground">{item.oneLiner}</p>
+          {alternativeHref && (
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <a href={alternativeHref} class="font-medium text-primary hover:underline">
+                {alternativeLabel}
+              </a>
+            </p>
+          )}
           {listingEnrichment?.leadCallout && (
             <p class="mt-4 text-base leading-relaxed text-foreground/90">
               {listingEnrichment.leadCallout.beforeLink}
