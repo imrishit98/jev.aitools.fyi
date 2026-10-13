@@ -14,6 +14,12 @@ import {
   layaVsJevHub,
   type LayaVsJevGuide,
 } from "@/data/laya-vs-jev-guides";
+import {
+  alternativesHub,
+  alternativeSlugs,
+  alternatives,
+} from "@/data/alternatives";
+import type { Alternative } from "@/data/alternatives-types";
 import type { CategoryMeta, CategorySlug, DirectoryItem } from "@/data/types";
 import { getItemPath, getItemDetailSegment } from "@/lib/item-paths";
 import { getDirectoryStats, getItemsWithDetailPages } from "@/lib/items";
@@ -542,6 +548,28 @@ export function layaVsJevGuidePageSeo(guide: LayaVsJevGuide) {
   });
 }
 
+export function alternativesHubSeo() {
+  return pageSeo({
+    title: alternativesHub.seoTitle,
+    description: alternativesHub.seoDescription,
+    path: "/alternatives",
+    type: "article",
+    imagePath: ogImagePaths.learnHub,
+  });
+}
+
+export function alternativePageSeo(alt: Alternative) {
+  const path =
+    alt.slug === "laya" ? "/learn/laya-vs-jev/compare" : `/alternatives/${alt.slug}`;
+  return pageSeo({
+    title: alt.seoTitle,
+    description: alt.seoDescription,
+    path,
+    type: "article",
+    imagePath: ogImagePaths.default,
+  });
+}
+
 export function parseItemLastModified(updatedAt?: string): Date {
   const day = updatedAt?.slice(0, 10) ?? "";
   if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
@@ -603,6 +631,14 @@ export function collectIndexableMeta(): { path: string; title: string; descripti
     const guide = agentGuides[slug];
     const seo = agentGuidePageSeo(guide);
     push(`/guides/jev-with-ai-agents/${slug}`, seo.title, seo.description);
+  }
+
+  const altHub = alternativesHubSeo();
+  push("/alternatives", altHub.title, altHub.description);
+  for (const slug of alternativeSlugs) {
+    const alt = alternatives[slug];
+    const seo = alternativePageSeo(alt);
+    push(`/alternatives/${slug}`, seo.title, seo.description);
   }
 
   for (const item of getItemsWithDetailPages()) {

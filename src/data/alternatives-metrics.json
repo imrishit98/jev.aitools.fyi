@@ -1,0 +1,61 @@
+{
+  "snapshotDate": "2026-10-12",
+  "pageLastVerified": {
+    "hub": "2026-10-12",
+    "laya-compare": "2026-10-12",
+    "cloudflare-clef": "2026-10-12",
+    "kev": "2026-10-12",
+    "openai-decisions-api": "2026-10-12",
+    "perplexity-pplx-decider": "2026-10-12",
+    "mapika-decider": "2026-10-12",
+    "fastino-gliner-decide": "2026-10-12",
+    "semif": "2026-10-12",
+    "clm-8b": "2026-10-12",
+    "liquid-d1": "2026-10-12",
+    "von": "2026-10-12"
+  },
+  "decisionIndex": {
+    "edition": "0.3.1",
+    "sourceUrl": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json",
+    "generatedUtc": "2026-10-10T07:54:16Z",
+    "checkedAt": "2026-10-12"
+  },
+  "github": {
+    "NandhaKishorM/laya": { "stars": 32393, "forks": 2892, "checkedAt": "2026-10-12" },
+    "jaredpalmer/kev": { "stars": 8952, "forks": 591, "checkedAt": "2026-10-12" },
+    "Mapika/decider": { "stars": 1127, "forks": 48, "checkedAt": "2026-10-12" },
+    "Contrastive-LM/CLM": { "stars": 2981, "forks": 260, "checkedAt": "2026-10-12" },
+    "wfzyx/von": { "stars": 883, "forks": 69, "checkedAt": "2026-10-12" },
+    "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" }
+  },
+  "huggingface": {
+    "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "Cloudflare/clef": { "downloads": 14351, "likes": 2028, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "Cloudflare/clef-flash": { "downloads": 22123, "likes": 756, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "jaredpalmer/kev-4b": { "downloads": 21656, "likes": 115, "checkedAt": "2026-10-12" },
+    "Mapika/decider-2b": { "downloads": 331532, "likes": 105, "checkedAt": "2026-10-12" },
+    "fastino/GLiNER2.5-Decide": { "downloads": 90464, "likes": 404, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "perplexity-ai/pplx-decider-v1.1-27b": { "downloads": 2221, "likes": 122, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "Contrastive-LM/CLM-v0.1-8B": { "downloads": 4367, "likes": 764, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "LiquidAI/d1-3B": { "downloads": 10843, "likes": 300, "license": "lfm-1.0", "checkedAt": "2026-10-12" },
+    "wfzyx/von": { "downloads": 106915, "likes": 57, "license": "apache-2.0", "checkedAt": "2026-10-12" }
+  },
+  "hostedPricingPerMInputUsd": {
+    "typesafe-jev": { "value": 0.042, "label": "TypeSafe Jev list price", "sourceUrl": "https://docs.typesafe.ai/models.md", "checkedAt": "2026-10-12" },
+    "cloudflare-clef": { "value": 0.24, "sourceUrl": "https://developers.cloudflare.com/workers-ai/models/clef/", "checkedAt": "2026-10-12" },
+    "cloudflare-clef-flash": { "value": 0.038, "sourceUrl": "https://developers.cloudflare.com/workers-ai/models/clef-flash/", "checkedAt": "2026-10-12" },
+    "perplexity-pplx-decider": { "value": 0.02, "sourceUrl": "https://community.perplexity.ai/t/pplx-decider-v1-1-27b-our-updated-open-weights-multimodal-decision-model-is-now-available/6286", "checkedAt": "2026-10-12" },
+    "openai-decisions-api": { "value": 0.1, "label": "gpt-6-luna (vendor, beta)", "sourceUrl": "https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877", "checkedAt": "2026-10-12" }
+  },
+  "decisionIndexFullScores": {
+    "jev": { "name": "Jev", "v": 60.11, "checkedAt": "2026-10-12" },
+    "perplexity-decider-v1.1": { "name": "Perplexity Decider v1.1 (27B)", "v": 62.75, "checkedAt": "2026-10-12" },
+    "kev-27b": { "name": "Kev 27B", "v": 58.78, "checkedAt": "2026-10-12" },
+    "cloudflare-clef": { "name": "Cloudflare clef", "v": 53.08, "checkedAt": "2026-10-12" },
+    "cloudflare-clef-flash": { "name": "Cloudflare clef-flash", "v": 47.61, "checkedAt": "2026-10-12" },
+    "decider-2b": { "name": "Decider 2B", "v": 25.8, "checkedAt": "2026-10-12" },
+    "gliner25-decide": { "name": "GLiNER2.5-Decide", "v": 9.24, "checkedAt": "2026-10-12" },
+    "clm-v0.1-8b": { "name": "CLM-v0.1-8B Qwen3-8B heads", "v": 6.24, "checkedAt": "2026-10-12" },
+    "liquid-d1-3b": { "name": "LiquidAI d1-3B", "v": 40.08, "checkedAt": "2026-10-12" }
+  }
+}

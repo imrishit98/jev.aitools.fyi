@@ -1,0 +1,51 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import AlternativePageView from "@/components/alternative-page-view.astro";
+import {
+  breadcrumbJsonLd,
+  faqPageJsonLd,
+  alternativeArticleJsonLd,
+} from "@/components/json-ld";
+import { alternativeSlugs, getAlternative } from "@/data/alternatives";
+import { alternativePageSeo } from "@/lib/seo";
+
+export function getStaticPaths() {
+  return alternativeSlugs.map((slug) => ({ params: { slug } }));
+}
+
+const { slug } = Astro.params;
+const alt = getAlternative(slug!);
+if (!alt) throw new Error(`Unknown alternative ${slug}`);
+
+const seo = alternativePageSeo(alt);
+const path = `/alternatives/${slug}`;
+const modified = alt.lastVerified;
+---
+
+<BaseLayout
+  title={seo.title}
+  description={seo.description}
+  path={path}
+  type="article"
+  ogImagePath={seo.imagePath}
+  markdownAlternate={`${path}.md`}
+  jsonLd={[
+    breadcrumbJsonLd([
+      { name: "Home", path: "/" },
+      { name: "Jev alternatives", path: "/alternatives" },
+      { name: alt.h1, path },
+    ]),
+    alternativeArticleJsonLd(alt, modified),
+    faqPageJsonLd(alt.faq),
+  ]}
+>
+  <div class="max-w-3xl page-shell-breadcrumb">
+    <nav class="breadcrumb-trail" aria-label="Breadcrumb">
+      <a href="/alternatives" class="hover:text-accent">Jev alternatives</a>
+      <span class="mx-2">/</span>
+      <span class="text-foreground">{alt.displayName}</span>
+    </nav>
+    <h1 class="font-heading text-3xl font-semibold">{alt.h1}</h1>
+    <AlternativePageView alt={alt} />
+  </div>
+</BaseLayout>

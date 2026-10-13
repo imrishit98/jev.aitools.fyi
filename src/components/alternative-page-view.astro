@@ -1,0 +1,246 @@
+---
+import { ButtonLink } from "@/components/button-link";
+import FaqAnswer from "@/components/faq-answer.astro";
+import DirectoryLinks from "@/components/directory-links.astro";
+import type { Alternative } from "@/data/alternatives-types";
+import { getAlternative } from "@/data/alternatives";
+import { alternativePath, type AlternativeSlug } from "@/data/alternatives-slugs";
+import { getItemBySlug } from "@/lib/items";
+import { getItemPath } from "@/lib/item-paths";
+import { itemHasDetailPage } from "@/lib/content-policy";
+import { linksForAlternative } from "@/lib/directory-links";
+import { splitIntoParagraphs } from "@/lib/prose";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import { formatFactCell, isNotPublishedValue } from "@/lib/alternative-fact-display";
+
+interface Props {
+  alt: Alternative;
+}
+
+const { alt } = Astro.props;
+const keyPointParagraphs = splitIntoParagraphs(alt.keyPoint, 280);
+const summaryParagraphs = splitIntoParagraphs(alt.summary, 300);
+const directoryLinks = linksForAlternative(alt);
+const listing =
+  alt.listingSlug && getItemBySlug(alt.listingSlug) && itemHasDetailPage(getItemBySlug(alt.listingSlug)!)
+    ? getItemBySlug(alt.listingSlug)!
+    : undefined;
+const siblings = alt.siblingSlugs
+  .map((slug) => getAlternative(slug))
+  .filter(Boolean)
+  .slice(0, 3);
+---
+
+<article>
+  <p class="text-sm text-muted-foreground">
+    Last verified: <time datetime={alt.lastVerified}>{alt.lastVerified}</time>.
+    <a href="#how-we-ranked" class="ml-1 font-medium text-primary hover:underline">How we rank</a>
+  </p>
+
+  <div class="mt-4 space-y-3 text-base leading-relaxed text-foreground">
+    {summaryParagraphs.map((para) => <p>{para}</p>)}
+  </div>
+
+  <aside class="mt-6 rounded-md border border-primary/25 bg-primary/5 p-5">
+    <p class="text-[11px] font-medium uppercase tracking-widest text-primary">Quick verdict</p>
+    <div class="mt-2 space-y-3 text-base leading-relaxed text-foreground">
+      {keyPointParagraphs.map((para) => <p>{para}</p>)}
+    </div>
+  </aside>
+
+  <p class="mt-4 text-sm leading-relaxed text-muted-foreground">
+    jev.aitools.fyi is an independent directory. We are not TypeSafe, Cloudflare, OpenAI, Perplexity, or the makers
+    named on this page unless a listing is marked official.
+  </p>
+
+  <DirectoryLinks links={directoryLinks} />
+
+  {listing && (
+    <p class="mt-6 text-sm text-muted-foreground">
+      Catalog listing:
+      <a href={getItemPath(listing)} class="font-medium text-primary hover:underline">{listing.title}</a>
+      (brand-focused page; this article is the Jev comparison).
+    </p>
+  )}
+
+  <section class="mt-10" aria-labelledby="at-a-glance-heading">
+    <h2 id="at-a-glance-heading" class="font-heading text-xl font-semibold text-foreground">
+      {alt.displayName} vs Jev at a glance
+    </h2>
+    <div class="mt-4 overflow-x-auto rounded-md border border-border">
+      <table class="w-full min-w-[640px] border-collapse text-left text-sm">
+        <thead>
+          <tr class="border-b border-border bg-muted/40">
+            <th class="px-3 py-2 font-medium text-foreground">Topic</th>
+            <th class="px-3 py-2 font-medium text-foreground">{alt.displayName}</th>
+            <th class="px-3 py-2 font-medium text-foreground">TypeSafe Jev</th>
+            <th class="px-3 py-2 font-medium text-muted-foreground">Source</th>
+          </tr>
+        </thead>
+        <tbody>
+          {
+            alt.facts.map((fact) => (
+              <tr class="border-b border-border/60 align-top">
+                <th class="px-3 py-2 font-medium text-foreground">{fact.row}</th>
+                <td class="px-3 py-2 text-muted-foreground">
+                  {
+                    isNotPublishedValue(fact.them) ? (
+                      <span class="italic text-muted-foreground/80">{formatFactCell(fact.them)}</span>
+                    ) : (
+                      fact.them
+                    )
+                  }
+                </td>
+                <td class="px-3 py-2 text-muted-foreground">
+                  {
+                    isNotPublishedValue(fact.jev) ? (
+                      <span class="italic text-muted-foreground/80">{formatFactCell(fact.jev)}</span>
+                    ) : (
+                      fact.jev
+                    )
+                  }
+                </td>
+                <td class="px-3 py-2 text-xs text-muted-foreground">
+                  <a
+                    href={withOutboundRef(fact.sourceUrl)}
+                    rel={externalLinkRel(fact.sourceUrl)}
+                    target="_blank"
+                    class="text-primary hover:underline"
+                  >
+                    {fact.sourceLabel}
+                  </a>
+                  {
+                    fact.secondarySourceUrl && fact.secondarySourceLabel ? (
+                      <>
+                        <span class="text-muted-foreground/70"> · </span>
+                        <a
+                          href={withOutboundRef(fact.secondarySourceUrl)}
+                          rel={externalLinkRel(fact.secondarySourceUrl)}
+                          target="_blank"
+                          class="text-primary hover:underline"
+                        >
+                          {fact.secondarySourceLabel}
+                        </a>
+                      </>
+                    ) : null
+                  }
+                </td>
+              </tr>
+            ))
+          }
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <div class="mt-10 space-y-10">
+    {
+      alt.sections.map((section) => {
+        const bodyParagraphs = splitIntoParagraphs(section.body, 320);
+        return (
+          <section>
+            <h2 class="font-heading text-xl font-semibold text-foreground">{section.h}</h2>
+            <div class="mt-2 space-y-3 leading-relaxed text-muted-foreground">
+              {bodyParagraphs.map((para) => <p>{para}</p>)}
+            </div>
+            {section.code && (
+              <pre
+                class="mt-4 overflow-x-auto rounded-md border border-border bg-muted/40 p-4 text-sm text-foreground"
+              >
+                <code class={`language-${section.code.lang}`}>{section.code.content}</code>
+              </pre>
+            )}
+          </section>
+        );
+      })
+    }
+  </div>
+
+  <section class="mt-12 grid gap-8 sm:grid-cols-2">
+    <div>
+      <h2 class="font-heading text-lg font-semibold text-foreground">When to choose {alt.displayName}</h2>
+      <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+        {alt.whenChooseThem.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+    <div>
+      <h2 class="font-heading text-lg font-semibold text-foreground">When to stay on Jev</h2>
+      <ul class="mt-3 list-disc space-y-2 pl-5 text-sm leading-relaxed text-muted-foreground">
+        {alt.whenChooseJev.map((item) => <li>{item}</li>)}
+      </ul>
+    </div>
+  </section>
+
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-semibold text-foreground">FAQ</h2>
+    <dl class="mt-4 space-y-6">
+      {
+        alt.faq.map((entry) => (
+          <div>
+            <dt class="font-medium text-foreground">{entry.question}</dt>
+            <dd class="mt-2 text-sm leading-relaxed text-muted-foreground">
+              <FaqAnswer entry={entry} />
+            </dd>
+          </div>
+        ))
+      }
+    </dl>
+  </section>
+
+  <section class="mt-12">
+    <h2 class="font-heading text-xl font-semibold text-foreground">Other Jev alternatives</h2>
+    <ul class="mt-4 grid gap-3 sm:grid-cols-2">
+      <li>
+        <a
+          href="/alternatives"
+          class="block rounded-md border border-border/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+        >
+          <p class="font-medium text-foreground">Jev alternatives hub</p>
+          <p class="mt-1 text-sm text-muted-foreground">Ranked table and quick picks</p>
+        </a>
+      </li>
+      {
+        siblings.map((sib) => (
+          <li>
+            <a
+              href={alternativePath(sib!.slug as AlternativeSlug)}
+              class="block rounded-md border border-border/60 p-4 transition-colors hover:border-primary/40 hover:bg-primary/5"
+            >
+              <p class="font-medium text-foreground">{sib!.h1}</p>
+              <p class="mt-1 text-sm text-muted-foreground">{sib!.seoDescription.slice(0, 120)}…</p>
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+  </section>
+
+  <section class="mt-12 rounded-md border border-border/60 bg-muted/20 p-5">
+    <h2 class="font-heading text-lg font-semibold text-foreground">Sources</h2>
+    <ul class="mt-3 list-disc space-y-2 pl-5 text-sm text-muted-foreground">
+      {
+        alt.sources.map((src) => (
+          <li>
+            <a
+              href={withOutboundRef(src.url)}
+              rel={externalLinkRel(src.url)}
+              target="_blank"
+              class="text-primary hover:underline"
+            >
+              {src.label}
+            </a>
+          </li>
+        ))
+      }
+    </ul>
+    <p class="mt-4 text-sm text-muted-foreground">
+      Last verified <time datetime={alt.lastVerified}>{alt.lastVerified}</time>.
+      Spotted an error? <a href="/contact" class="text-primary hover:underline">Contact us</a>.
+    </p>
+  </section>
+
+  <div class="mt-8 flex flex-wrap gap-3">
+    <ButtonLink href="/alternatives" variant="outline">All Jev alternatives</ButtonLink>
+    <ButtonLink href="/learn/jev-typesafe">What Jev is</ButtonLink>
+  </div>
+</article>
