@@ -2,7 +2,6 @@
  * Flags indexable detail listings with thin or robotic copy.
  * Run: node scripts/audit-detail-copy.mjs
  */
-import { readFileSync } from "node:fs";
 import { resolve } from "node:path";
 import { createRequire } from "node:module";
 

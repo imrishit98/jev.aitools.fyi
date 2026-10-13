@@ -184,9 +184,9 @@ const privacyHref = LEGAL_PATHS.privacy;
       }}
     >
       (function () {
-        var el = document.getElementById("jev-legal-policy-footer-notice");
+        const el = document.getElementById("jev-legal-policy-footer-notice");
         if (!el) return;
-        var upcoming = Date.now() < partnerSharingEffectiveEpochMs;
+        const upcoming = Date.now() < partnerSharingEffectiveEpochMs;
         el.hidden = upcoming;
       })();
     </script>

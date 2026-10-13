@@ -99,14 +99,16 @@ const cloudflareWebAnalyticsToken =
     <script is:inline define:vars={{ storageKey: "jev-directory-theme" }}>
       (function () {
         try {
-          var stored = localStorage.getItem(storageKey) || "system";
-          var dark =
-            stored === "dark" ||
-            (stored === "system" &&
-              window.matchMedia("(prefers-color-scheme: dark)").matches);
+          const stored = localStorage.getItem(storageKey) || "system";
+          const dark =
+      stored === "dark" ||
+      (stored === "system" &&
+        window.matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", dark);
           document.documentElement.style.colorScheme = dark ? "dark" : "light";
-        } catch (e) {}
+        } catch {
+          /* localStorage unavailable */
+        }
       })();
     </script>
     <GlobalJsonLd />
