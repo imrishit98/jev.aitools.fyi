@@ -12542,4 +12542,237 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "shhivv/arc-cua PyPI arc-cua: arc-driver MCP needs no Jev; arc-cua hands bounded desktop subtasks to TypeSafe JEV or custom choice providers on macOS.",
   },
+
+  "dorkitude-webctl": {
+    slug: "dorkitude-webctl",
+    status: "published",
+    problem:
+      "Coding agents without built-in web search burn context on noisy SERP snippets, duplicate URLs, and full pages when only a few paragraphs matter.",
+    targetUser:
+      "Claude Code, Codex, pi, or custom harness authors who want a shell-first search tool that ranks and dedupes hits with TypeSafe Jev before the model reads them.",
+    overview:
+      "webctl (github.com/dorkitude/webctl, Go) from Kyle (@dorkitude on X) is a smart web search CLI for agents. It queries up to three providers per run (Brave first when keyed; keyless Exa, Parallel, Keenable, You.com, Firecrawl, then DuckDuckGo when no search key exists), fuses lists by reciprocal rank, scores each result with Jev against the query and an explicit --goal, applies a default score cutoff, dedupes in two passes (normalized URL or title, then MinHash LSH candidate pairs Jev judges as same or different), and can optionally scrape top hits and filter ~2000 character chunks with overlap. Install via Homebrew, apt, npm, or go install. The separate skimmer repo (github.com/dorkitude/skimmer, created 2026-10-10) is the same chunk filter for URLs, files, directories, rg pipes, and JSON or line lists; this page covers both tools.",
+    creator: {
+      name: "Kyle",
+      handle: "dorkitude",
+      xUrl: "https://x.com/dorkitude",
+      githubUrl: "https://github.com/dorkitude",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-result relevance Score (0 to 10), optional Noul for custom gates, near-duplicate Noul pairs, and per-chunk relevance when scraping or via skimmer",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "Search title, URL, and snippet up to 600 characters per hit; optional full excerpt as content; scrape chunks with query and goal; skimmer passes chunk text or list fields with a required goal.",
+      decisionOut:
+        "Numeric relevance scores with default cut at 6; optional yes or no via --noul; duplicate pairs collapsed to the best-scored copy; scrape and skimmer keep only chunks above threshold while skimmer retains chunks Jev cannot judge.",
+      flowSteps: [
+        "Query configured search providers with cooldown-aware fallback (~/webctl/cooldown.json on 429 or 402)",
+        "Pass each result batch to Jev with query and --goal for scoring",
+        "Dedupe pass one on normalized URL or title; pass two on MinHash LSH pairs sent to Jev in one batch",
+        "Optional --scrape --filter-chunks on top results; or run skimmer skim or filter on local material",
+        "Print ranked snippets for the agent harness",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README schematics: about 25 raw results per provider scored down to about 10 to 15 relevant hits; scrape mode shows about 25 chunks filtered to about 3 to 6 relevant chunks per page.",
+          source: "github.com/dorkitude/webctl README schematics",
+        },
+        {
+          claim:
+            "benchmarks/README.md (2026-09-20/21, experiments 01 to 04, 30 cases): Claude webctl without scrape averaged 1.5k payload tokens and quality 9.40 versus Claude native 1.0k tokens and 8.53; webctl with --scrape --filter-chunks top 3 averaged 4.6k payload and 9.47 quality.",
+          source: "github.com/dorkitude/webctl benchmarks/README.md",
+        },
+        {
+          claim:
+            "skimmer README example: kept 4 of 40 chunks, 71k to 7.6k chars (89% saved) on a Bloom filter Wikipedia skim.",
+          source: "github.com/dorkitude/skimmer README",
+        },
+        {
+          claim:
+            "Public GitHub repo dorkitude/webctl had 158 stars, created 2026-09-20; dorkitude/skimmer had 28 stars, created 2026-10-10.",
+          source: "GitHub API, 2026-10-12",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "webctl is agent-facing web retrieval with Jev as the noise gate, not a chat answer layer. superagents-lab-jev-search plans Search1API queries inside a Cloudflare Worker and never ships as a Bash-only CLI. aurorainfra-grev filters lines you already have on stdin with sixteen Unix tools, not live SERP fusion. tamaratran-jev-pruner and tamaratran-fast-jev-compaction trim shell stdout or transcript tool rows with Noul keep or drop, not search ranking. dzhng-jevgrep walks a git tree for coding-agent excerpts. webctl plus skimmer cover search plus long-page and repo skim paths with the same Jev scoring philosophy. Jev calls bill to your TypeSafe key; benchmarks/README.md notes they are outside agent token counts. Cite github.com/dorkitude/webctl README, docs/providers.md, docs/filtering.md, benchmarks/README.md, and github.com/dorkitude/skimmer README only.",
+    keyFeatures: [
+      "Up to three providers per search with reciprocal rank fusion and shared cooldown ladder (15m to 72h strikes)",
+      "Jev scores each hit 0 to 10 with default min 6; --noul and --rubric overrides",
+      "Two-pass dedupe: URL or title collapse, then MinHash LSH plus Jev same-content judgment",
+      "--scrape --filter-chunks for long pages (~2000 char chunks, overlap configurable in skimmer)",
+      "skimmer skim for URLs, files, dirs, and rg -n pipes with path:start-end citations",
+      "skimmer filter for JSON, JSONL, or line lists; keeps items Jev cannot judge",
+      "Homebrew, apt, npm, go install for webctl; Homebrew, apt, Scoop, go install for skimmer",
+    ],
+    stack: [
+      "Go",
+      "TypeSafe Jev",
+      "Brave, Exa, Parallel, and other providers per docs/providers.md",
+      "skimmer (sibling repo) for non-search skim and filter",
+    ],
+    links: {
+      repo: "https://github.com/dorkitude/webctl",
+      docs: "https://github.com/dorkitude/webctl/blob/main/docs/search.md",
+      website: "https://github.com/dorkitude/webctl",
+    },
+    pricingNote:
+      "Open source CLI; TypeSafe Jev usage bills to your key. Search backends may be free tier, keyed, or IP throttled per docs/providers.md.",
+    firstSeen: "2026-09-20",
+    relatedSlugs: [
+      "superagents-lab-jev-search",
+      "aurorainfra-grev",
+      "tamaratran-jev-pruner",
+      "tamaratran-fast-jev-compaction",
+      "dzhng-jevgrep",
+    ],
+    relatedLearnSlugs: ["system-one", "use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "What is skimmer and how does it relate to webctl?",
+        answer:
+          "skimmer (github.com/dorkitude/skimmer) is webctl's chunk filter extracted as its own CLI. Use skimmer skim on URLs, files, or rg output and skimmer filter on JSON or line lists. webctl --scrape --filter-chunks uses the same idea on search results.",
+      },
+      {
+        question: "Does webctl need a Jev key?",
+        answer:
+          "README says searching can run without a Jev key using keyless search endpoints, but Jev scoring and filtering need a TypeSafe key from webctl setup. Without a key you get thinner results and no relevance filter.",
+      },
+      {
+        question: "How is webctl different from jev-search?",
+        answer:
+          "jev-search is a TypeScript Cloudflare Worker that plans Search1API queries. webctl is a Go agent CLI that fuses live SERP providers, scores with Jev, dedupes, and optionally scrapes chunks.",
+      },
+      {
+        question: "What does skimmer do when Jev cannot judge a chunk?",
+        answer:
+          "skimmer README states that when Jev cannot judge a chunk (for example a failed batch), skimmer keeps it rather than silently dropping it.",
+      },
+      {
+        question: "When should I use --scrape --filter-chunks?",
+        answer:
+          "webctl README and benchmarks/README.md: snippets are usually enough; scrape pays on long PDFs, threads, and transcripts, not on short dev-doc facts. Summarize mode can shrink scrape payload further when configured.",
+      },
+    ],
+    metaTitle: "webctl: Jev-ranked web search CLI for coding agents",
+    metaDescription:
+      "dorkitude/webctl Go CLI scores and dedupes SERP hits with TypeSafe Jev; skimmer filters chunks on any URL, file, or list. Distinct from jev-search and grev.",
+  },
+
+  "mordavid-nucleisniper": {
+    slug: "mordavid-nucleisniper",
+    status: "published",
+    problem:
+      "Vanilla Nuclei runs thousands of templates in directory order, so irrelevant checks finish before high-value templates even start on a mismatched stack.",
+    targetUser:
+      "Authorized pentesters and bug bounty researchers who want every Nuclei template to still run, but ordered by target-aware Jev relevance scores first.",
+    overview:
+      "NucleiSniper (github.com/MorDavid/NucleiSniper, Python 3.10+) from Mor David is a single-script pipeline that indexes Nuclei YAML to SQLite, deep-fingerprints each target (30 plus signal types including tech fingerprints, TLS, DNS, cookies, favicon mmh3, robots, path probes, and more), prefilters templates, batches about 50 templates per TypeSafe Jev call returning a 0 to 4 Score plus confidence and probability distribution, then runs Nuclei with templates sorted highest relevance first. Prioritization, not filtering: README stresses every template still runs. Flags include --no-scan, --report, --resume, --dry-run, --html-report, and --playwright for SPAs. Requires nuclei on PATH, local nuclei-templates, and TYPESAFE_API_KEY. Mor David also maintains BruteForceAI and related security tooling per the project README author section.",
+    creator: {
+      name: "Mor David",
+      handle: "MorDavid",
+      githubUrl: "https://github.com/MorDavid",
+      companyUrl: "https://www.mordavid.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Batch template relevance Score (0 to 4) against a rich target profile; auto-split batches on token limits",
+      primitives: ["Score"],
+      stateIn:
+        "Target profile JSON from HTTP, TLS, DNS, HTML, and path probes (and optional Playwright render); each batch holds roughly fifty template metadata records from the SQLite index.",
+      decisionOut:
+        "Per-template score 0 to 4, confidence 0 to 1, and probability distribution; sorted list drives Nuclei execution order.",
+      flowSteps: [
+        "Index nuclei-templates YAML into SQLite (reuse unless --rebuild-index)",
+        "Profile each URL with 30 plus signal types; optional --playwright render",
+        "Prefilter templates that cannot match; README cites ~8.6% of 13,764 templates kept with 100% recall",
+        "Score batches with Jev concurrently (--workers); split oversized batches on token limit",
+        "Sort all templates by score and run Nuclei, or stop after scoring with --no-scan",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README About table: vanilla Nuclei runs 13,764+ templates in arbitrary order; NucleiSniper runs every template but highest relevance first.",
+          source: "github.com/MorDavid/NucleiSniper README",
+        },
+        {
+          claim:
+            "README Stage 1: prefilter keeps ~8.6% of 13,764 templates with 100% recall before Jev scoring.",
+          source: "github.com/MorDavid/NucleiSniper README Stage 1",
+        },
+        {
+          claim:
+            "README: batch about 50 templates per Jev API call with score 0 to 4, confidence, and probability distribution; auto-splits on token limit.",
+          source: "github.com/MorDavid/NucleiSniper README",
+        },
+        {
+          claim:
+            "Public GitHub repo MorDavid/NucleiSniper had 21 stars and 7 forks, created 2026-10-08.",
+          source: "GitHub API, 2026-10-12",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "NucleiSniper spends Jev once per target to reorder a full template library, not to skip authorized coverage. leepokai-jev-guard scores coding-agent tool calls and scans untrusted results for injection. dub-co documents Jev scoring malicious short links at dub.sh scale, not Nuclei YAML metadata. tsale-jevline asks Jev whether DFIR entities belong in an incident timeline. NucleiSniper sits in offensive template prioritization: deep fingerprint in, Score out, Nuclei execution unchanged except sort order. Use only on systems you own or are explicitly allowed to test; the README legal disclaimer is part of the product story. Clone from github.com/MorDavid/NucleiSniper, not the placeholder YourUser URL in the sample install block.",
+    keyFeatures: [
+      "SQLite template index with incremental reparse",
+      "30 plus target signal types plus optional Playwright SPA profiling",
+      "Tag prefilter with documented 100% recall before Jev",
+      "Concurrent profiling (--url-workers) and scoring (--workers)",
+      "--resume, --dry-run, --html-report, and scan-from --report workflow",
+      "Fail-safe: stops before Jev if nuclei is missing from PATH",
+    ],
+    stack: [
+      "Python 3.10+",
+      "ProjectDiscovery Nuclei and nuclei-templates",
+      "TypeSafe Jev (TYPESAFE_API_KEY)",
+      "Optional Playwright Chromium for SPAs",
+    ],
+    links: {
+      repo: "https://github.com/MorDavid/NucleiSniper",
+      docs: "https://github.com/MorDavid/NucleiSniper#readme",
+      website: "https://github.com/MorDavid/NucleiSniper",
+    },
+    pricingNote:
+      "Open source script; Jev API usage bills to TYPESAFE_API_KEY. Nuclei and template maintenance are yours.",
+    firstSeen: "2026-10-08",
+    relatedSlugs: [
+      "leepokai-jev-guard",
+      "dub-co",
+      "tsale-jevline",
+    ],
+    relatedLearnSlugs: ["system-one", "use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does NucleiSniper drop low-scoring templates?",
+        answer:
+          "README features call it prioritisation, not filtering. Every template still runs; order changes so high relevance checks start earlier.",
+      },
+      {
+        question: "Is NucleiSniper legal to run on any website?",
+        answer:
+          "README legal disclaimer: for authorised security testing only. Do not scan systems without permission or use findings maliciously.",
+      },
+      {
+        question: "What Jev primitive does scoring use?",
+        answer:
+          "Stage 1 README: each batch returns a Score 0 to 4 plus confidence and a probability distribution per template.",
+      },
+      {
+        question: "What happens if nuclei is not installed?",
+        answer:
+          "README fail-safe design: if nuclei is not on PATH, the tool stops before calling Jev so you do not spend API credit on unscorable runs.",
+      },
+      {
+        question: "How is this different from jev-guard?",
+        answer:
+          "jev-guard gates coding-agent tool calls and scans results. NucleiSniper ranks Nuclei vulnerability templates per target and then runs Nuclei.",
+      },
+    ],
+    metaTitle: "NucleiSniper: Jev-ranked Nuclei template order for pentest",
+    metaDescription:
+      "MorDavid/NucleiSniper profiles targets, Jev Scores every Nuclei template 0 to 4, runs highest relevance first. Authorised testing only. Needs TYPESAFE_API_KEY.",
+  },
 };

@@ -279,6 +279,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Run your own weights and still speak POST /v1/systemone. LLM2Jev reads logits in one prefill pass on SGLang, Transformers, or MLX, serves multimodal state, and documents 231 public JevBench items. Independent of TypeSafe.",
   "shhivv-arc-cua":
     "One pip install, two tools. arc-driver is MCP control of macOS apps with no Jev key. arc-cua lets a planner delegate a capped subtask to JEV or your own choice provider while literals stay in inputs.",
+  "dorkitude-webctl":
+    "Point your agent at one search command. webctl pulls from Brave or keyless fallbacks, lets Jev score and dedupe the hits, and can scrape only the chunks that matter. skimmer is the same chunk filter for repos, grep, and JSON lists.",
+  "mordavid-nucleisniper":
+    "Stop waiting for WordPress templates on a Django host. NucleiSniper fingerprints the target, asks Jev to rank all Nuclei YAMLs, then runs the whole library with the best matches first. Every template still runs; order is the win.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
