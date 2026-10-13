@@ -101,9 +101,9 @@ const cloudflareWebAnalyticsToken =
         try {
           const stored = localStorage.getItem(storageKey) || "system";
           const dark =
-      stored === "dark" ||
-      (stored === "system" &&
-        window.matchMedia("(prefers-color-scheme: dark)").matches);
+            stored === "dark" ||
+            (stored === "system" &&
+              window.matchMedia("(prefers-color-scheme: dark)").matches);
           document.documentElement.classList.toggle("dark", dark);
           document.documentElement.style.colorScheme = dark ? "dark" : "light";
         } catch {
