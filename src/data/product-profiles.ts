@@ -12823,13 +12823,13 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo RayenMlayeh/jevcrawl had 64 stars and 5 forks as of October 15, 2026; created 2026-10-11.",
+            "Public GitHub repo RayenMlayeh/jevcrawl had 64 stars and 6 forks as of October 15, 2026; created 2026-10-11.",
           source: "GitHub API, 2026-10-15",
         },
       ],
     },
     howJevIsUsed:
-      "jevcrawl spends hosted Jev on crawl steering, not on writing answers back to the user. dorkitude-webctl ranks live SERP hits and optional scrape chunks for coding agents; jevcrawl walks inward from a site you name. superagents-lab-jev-search plans Search1API queries inside a Worker. browser-use-jev-ultrafast picks DOM operations in Chromium. jkudish-jev-mcp exposes generic verify and rerank tools without a site walker. Page text goes to TypeSafe for scoring per README cost and privacy section; TYPESAFE_API_KEY is required. Default JEVCRAWL_MODEL is jev-1.13.0 with thresholds calibrated per version in jevcrawl/config.py. Cite github.com/RayenMlayeh/jevcrawl README, pyproject.toml, and skills/jevcrawl/SKILL.md only.",
+      "jevcrawl spends hosted Jev on crawl steering, not on writing answers back to the user. dorkitude-webctl ranks live SERP hits and optional scrape chunks for coding agents; jevcrawl walks inward from a site you name. superagents-lab-jev-search plans Search1API queries inside a Worker. browser-use-jev-ultrafast picks DOM operations in Chromium. jkudish-jev-mcp exposes generic verify and rerank tools without a site walker. Page text goes to TypeSafe for scoring per README cost and privacy section; TYPESAFE_API_KEY is required. Default JEVCRAWL_MODEL is jev-1.13.0 with thresholds calibrated per version in jevcrawl/config.py.",
     keyFeatures: [
       "MCP server via uvx jevcrawl plus crawl, scrape, map, and doctor CLI",
       "Verbatim passages with URL, heading path, and character offsets into hashed page text",
@@ -12935,7 +12935,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo LiQiiiii/Jeva had 76 stars and 2 forks as of October 15, 2026; created 2026-10-12.",
+            "Public GitHub repo LiQiiiii/Jeva had 76 stars and 3 forks as of October 15, 2026; created 2026-10-12.",
           source: "GitHub API, 2026-10-15",
         },
       ],
@@ -13051,13 +13051,13 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Public GitHub repo feder-cr/jev had 1325 stars and 159 forks as of October 15, 2026.",
+            "Public GitHub repo feder-cr/jev had 1,325 stars and 159 forks as of October 15, 2026.",
           source: "GitHub API, 2026-10-15",
         },
       ],
     },
     howJevIsUsed:
-      "jevos is the missing local CPU binary lane this directory did not list before October 2026. receptron-laya and jaredpalmer-kev need Python or Node stacks and larger downloads; wfzyx-von targets sub-25 ms encoder inference with a different training story; yinsongxu-llm2jev wraps your own Qwen weights behind /v1/systemone. jevos ships pinned int8 OpenVINO weights and a wiki with guides feder-cr maintains with Loris Salsi. theoleecj-semif documents another open server narrative when you want research flexibility over a single release binary. README states code written for Jev SDK yes or no paths works unchanged; verify score maturity notes (early) before production rubrics. Do not cite awesomejev.com or third-party awesome lists for authorship; use github.com/feder-cr/jev and huggingface.co/feder-cr/jev only.",
+      "jevos is a self-contained CPU server for teams that want TypeSafe wire format without a Python or Node runtime at serve time. receptron-laya and jaredpalmer-kev need those stacks and larger downloads; wfzyx-von targets sub-25 ms encoder inference with a different training story; yinsongxu-llm2jev wraps your own Qwen weights behind /v1/systemone. jevos ships pinned int8 OpenVINO weights plus a GitHub wiki co-maintained with Loris Salsi. theoleecj-semif documents another open server path when you want research flexibility over a single release binary. README states code written for Jev SDK yes or no paths works unchanged; check score maturity notes (early) before production rubrics.",
     keyFeatures: [
       "Single binary CPU inference with OpenVINO int8 jevos-v4 weights",
       "POST /v1/systemone compatible with TypeSafe Jev wire format",
@@ -13115,7 +13115,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "GitHub release jevos-v4-openvino-int8.zip or hf download feder-cr/jev --include model/* per README quickstart.",
       },
     ],
-    metaTitle: "jevos: CPU OpenVINO System One server from feder-cr/jev",
+    metaTitle: "jevos: CPU System One server on OpenVINO int8",
     metaDescription:
       "feder-cr/jev jevos-v4 binary serves POST /v1/systemone on CPU, 28 to 130 ms on README laptop table. HF weights, wiki, Loris Salsi co-maintainer.",
   },
