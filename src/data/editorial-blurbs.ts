@@ -283,6 +283,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Point your agent at one search command. webctl pulls from Brave or keyless fallbacks, lets Jev score and dedupe the hits, and can scrape only the chunks that matter. skimmer is the same chunk filter for repos, grep, and JSON lists.",
   "mordavid-nucleisniper":
     "Stop waiting for WordPress templates on a Django host. NucleiSniper fingerprints the target, asks Jev to rank all Nuclei YAMLs, then runs the whole library with the best matches first. Every template still runs; order is the win.",
+  "rayenmlayeh-jevcrawl":
+    "Point an agent at a site and a question. jevcrawl walks links four at a time while Jev scores passages and next hops; your LLM only sees verbatim excerpts with URLs and offsets, not a pile of nav chrome.",
+  "liqiiiii-jeva":
+    "Jeva is the paper-backed answer when you want System One structure baked in: options encoded once, nulls explicit, sets can grow, and LIQIIIII/Jeva-4B runs the whole Choice, Noul, and Score menu locally.",
+  "feder-cr-jevos":
+    "Download one CPU binary, unzip the int8 model, curl POST /v1/systemone. jevos keeps the Jev wire shape while README tables brag about millisecond-class latency next to cloud Jev on a laptop chip.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
