@@ -12775,4 +12775,348 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "MorDavid/NucleiSniper profiles targets, Jev Scores every Nuclei template 0 to 4, runs highest relevance first. Authorised testing only. Needs TYPESAFE_API_KEY.",
   },
+
+  "rayenmlayeh-jevcrawl": {
+    slug: "rayenmlayeh-jevcrawl",
+    status: "published",
+    problem:
+      "Agents that browse the web either ingest entire crawled pages and drown in boilerplate, or let a chat model pick every link and pay dollars per question.",
+    targetUser:
+      "Claude Code, Cursor, Codex, or custom MCP clients that need goal-directed site crawls with verbatim passages, URLs, and character offsets instead of model paraphrases.",
+    overview:
+      "jevcrawl (github.com/RayenMlayeh/jevcrawl, Apache-2.0, PyPI jevcrawl) from Rayen Mlayeh is an MCP server and CLI for AI agents. It fetches up to four pages in parallel, segments HTML into passages, strips boilerplate, and sends each page's link labels and passage blocks to TypeSafe Jev in one batch per page. Jev scores relevance and answers fixed yes or no questions; nothing on the page is treated as instructions, so injected text can only bias a score, not steer the crawler. Results return verbatim text with heading paths, URL, and char_start or char_end into a sha256-indexed page blob. Install with uvx jevcrawl or pip; optional jevcrawl[js] extra renders JavaScript shells via Playwright. skills/jevcrawl/SKILL.md documents agent prompts; jevcrawl doctor checks keys and connectivity.",
+    creator: {
+      name: "Rayen Mlayeh",
+      handle: "RayenMlayeh",
+      githubUrl: "https://github.com/RayenMlayeh",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-page batch scoring of passages and outbound links plus yes or no gates for goal satisfaction and near-duplicate judgment; cached locally at ~/.jevcrawl/cache",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "Fixed question strings from jevcrawl plus page passages, link labels, and URLs in data fields only; query goal string from the agent or CLI --goal.",
+      decisionOut:
+        "Ranked passages and next links above calibrated thresholds; stopped_because answered, frontier_empty, max_pages, max_seconds, budget, or auth_error; degraded breadth-first mode with uncertain blocks after three failed Jev calls.",
+      flowSteps: [
+        "Seed from sitemap or entry URL with robots.txt respect (JEVCRAWL_RESPECT_ROBOTS default 1)",
+        "Fetch up to four concurrent pages; optional JS render for detected shells (max five per call with js extra)",
+        "Segment and filter boilerplate; one Jev request scores every passage and link on the page",
+        "Keep links below the priority floor in reserve; follow best links until goal Noul passes or budget hits",
+        "Return blocks with sources; report jev_cost_usd, tokens_raw vs tokens_returned, and stats.degraded when applicable",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README WebWalkerQA scoreboard on 50 tasks: 40% correct answers and 54% found the answer page for about $0.025 per task versus 30% and 33% with about $0.194 when Claude picks every link, and 8% and 11% with about $0.228 for breadth-first crawl.",
+          source: "github.com/RayenMlayeh/jevcrawl README benchmarks",
+        },
+        {
+          claim:
+            "README Crawl4AI comparison on 20 tasks: jevcrawl found an answer page 10 times versus 5 for Crawl4AI BestFirstCrawlingStrategy; median crawl time 29 s versus 43 s.",
+          source: "github.com/RayenMlayeh/jevcrawl README jevcrawl vs Crawl4AI",
+        },
+        {
+          claim:
+            "README docs.python.org example: 6 pages, 80,034 raw tokens reduced to 1,873 returned for about $0.0069 in 8.3 s.",
+          source: "github.com/RayenMlayeh/jevcrawl README demo",
+        },
+        {
+          claim:
+            "Public GitHub repo RayenMlayeh/jevcrawl had 64 stars and 6 forks as of October 15, 2026; created 2026-10-11.",
+          source: "GitHub API, 2026-10-15",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevcrawl spends hosted Jev on crawl steering, not on writing answers back to the user. dorkitude-webctl ranks live SERP hits and optional scrape chunks for coding agents; jevcrawl walks inward from a site you name. superagents-lab-jev-search plans Search1API queries inside a Worker. browser-use-jev-ultrafast picks DOM operations in Chromium. jkudish-jev-mcp exposes generic verify and rerank tools without a site walker. Page text goes to TypeSafe for scoring per README cost and privacy section; TYPESAFE_API_KEY is required. Default JEVCRAWL_MODEL is jev-1.13.0 with thresholds calibrated per version in jevcrawl/config.py.",
+    keyFeatures: [
+      "MCP server via uvx jevcrawl plus crawl, scrape, map, and doctor CLI",
+      "Verbatim passages with URL, heading path, and character offsets into hashed page text",
+      "WebWalkerQA benchmark tables versus Claude link picking, breadth-first, and Crawl4AI",
+      "Local Jev answer cache; max_decision_usd hard stop before overspend",
+      "Optional Playwright js extra for empty HTML shells; stats.js_rendered_urls lists them",
+      "Fail-open degraded mode: breadth-first with uncertain blocks after repeated Jev errors",
+    ],
+    stack: [
+      "Python 3.11+",
+      "TypeSafe Jev (TYPESAFE_API_KEY)",
+      "MCP",
+      "Optional Playwright Chromium (jevcrawl[js])",
+      "uv or pip install from PyPI",
+    ],
+    links: {
+      repo: "https://github.com/RayenMlayeh/jevcrawl",
+      docs: "https://github.com/RayenMlayeh/jevcrawl#readme",
+      website: "https://pypi.org/project/jevcrawl/",
+    },
+    pricingNote:
+      "Apache-2.0 open source; Jev input tokens bill to your TypeSafe key (README cites about $0.042 per million for jev-1.13.0 and about $0.011 average crawl cost in benchmarks).",
+    firstSeen: "2026-10-15",
+    relatedSlugs: [
+      "dorkitude-webctl",
+      "superagents-lab-jev-search",
+      "jkudish-jev-mcp",
+      "browser-use-jev-ultrafast",
+    ],
+    relatedLearnSlugs: ["system-one", "use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Does jevcrawl paraphrase answers?",
+        answer:
+          "README How it works: Jev returns probabilities for fixed yes or no questions and scores; it cannot produce text. Every returned block is copied from the page with offsets for verification.",
+      },
+      {
+        question: "How do I install the MCP server?",
+        answer:
+          "README Quick start: claude mcp add jevcrawl -e TYPESAFE_API_KEY=<key> -- uvx jevcrawl, or equivalent mcpServers JSON with command uvx and args [jevcrawl]. Run uvx jevcrawl doctor to validate setup.",
+      },
+      {
+        question: "How is jevcrawl different from webctl?",
+        answer:
+          "webctl fuses multi-provider web search and optional scrape chunk filtering. jevcrawl crawls from a seed URL on one site (or map mode) with Jev picking links and passages toward a --goal.",
+      },
+      {
+        question: "What happens if Jev API calls fail?",
+        answer:
+          "README: after three failed Jev requests the crawl continues breadth-first, marks blocks uncertain, and sets stats.degraded instead of failing silently.",
+      },
+      {
+        question: "Which Jev primitives does the crawler use?",
+        answer:
+          "README describes scoring every passage and link and yes or no probability per question; jevUsage maps that to Score for relevance ranking and Noul for goal and duplicate style gates.",
+      },
+    ],
+    metaTitle: "jevcrawl: MCP site crawler with Jev passage and link scoring",
+    metaDescription:
+      "RayenMlayeh/jevcrawl PyPI MCP crawler scores links and passages with TypeSafe Jev, verbatim sources, WebWalkerQA benchmarks. Not webctl SERP search.",
+  },
+
+  "liqiiiii-jeva": {
+    slug: "liqiiiii-jeva",
+    status: "published",
+    problem:
+      "Teams want System One shaped Choice, Noul, and Score from a model designed for set-dependent decisions, not a chat model forced to emit one token per label.",
+    targetUser:
+      "Researchers and ML engineers with Linux x86_64 and NVIDIA GPUs who will run Jeva-4B locally, read arXiv 2610.18773, and fine-tune or evaluate using the repo docs.",
+    overview:
+      "Jeva (github.com/LiQiiiii/Jeva, LIQIIIII/Jeva-4B on Hugging Face, arXiv:2610.18773) from Qi Li and Xinchao Wang at the National University of Singapore is a native System One stack. A language encoder represents state and each option independently; a compact decision head updates state against a complete option memory so probabilities stay permutation invariant, null aware, and scalable to variable candidate sets with two-level option caching. Python API exposes Choice, Noul, and Score via model.system_one or model.predict for dataset-exact option text. Project page liqiiiii.github.io/Jeva/ hosts figures; docs/evaluation.md and docs/finetuning.md cover benchmarks and training. jeva-doctor --check-kernels --strict validates the CUDA kernel install after pip install -r requirements.txt.",
+    creator: {
+      name: "Qi Li",
+      handle: "LiQiiiii",
+      githubUrl: "https://github.com/LiQiiiii",
+      company: "National University of Singapore",
+    },
+    jevUsage: {
+      flowRole:
+        "Native parallel Choice, Noul, and Score over encoded state and independently encoded options with reusable option tuples",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Text state string plus questions map of Choice criteria dicts or lists, Noul instructions, or Score rubric criteria with optional values per README local_inference example.",
+      decisionOut:
+        "Per-question choice key and probabilities, noul truth probability, or expected score level; open-set Choice returns null_probability and conditional_probabilities when allow_null is true.",
+      flowSteps: [
+        "conda env with CUDA 12.8 per README Installation",
+        "Jeva.from_pretrained LIQIIIII/Jeva-4B on cuda",
+        "Call system_one with parallel questions on one state blob",
+        "Optional cache complete option tuples or reuse projected keys across new sets",
+        "Use predict(...) when benchmark rows require exact option strings and order",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README architecture tagline lists null awareness, permutation invariance, option scalability, and cacheable option memory as explicit design goals.",
+          source: "github.com/LiQiiiii/Jeva README",
+        },
+        {
+          claim:
+            "Citation block lists arXiv preprint arXiv:2610.18773, Jeva: System One Models from First Principles, Li and Wang, 2026.",
+          source: "github.com/LiQiiiii/Jeva README Citation",
+        },
+        {
+          claim:
+            "Public GitHub repo LiQiiiii/Jeva had 76 stars and 3 forks as of October 15, 2026; created 2026-10-12.",
+          source: "GitHub API, 2026-10-15",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jeva is research weights and a training story, not a hosted api.typesafe.ai substitute. mapika-decider and yinsongxu-llm2jev ship wire-compatible HTTP servers from other Qwen lineages; Jeva publishes the encoder plus decision stack paper and HF Jeva-4B with finetune docs. tianyucodings-nanojev targets game-scale 0.6B heads; Jeva argues for first-principles structural properties on a 4B class model. nokia-applied-research-anyjev adds calibration pipelines on vLLM; featherless-simple-jev assembles classifier logits from arbitrary HF models. This directory does not claim TypeSafe affiliation for Jeva. Cross-read open model listings on /explore rather than duplicating NanoJev or AnyJev pages here.",
+    keyFeatures: [
+      "LIQIIIII/Jeva-4B weights with Choice, Noul, and Score in one system_one call",
+      "Permutation invariant scoring and explicit null_probability on open sets",
+      "Option tuple cache and per-option vector reuse documented in README",
+      "docs/evaluation.md, docs/finetuning.md, and examples/local_inference.py",
+      "PyTorch 2.9.1 and CUDA 12.8 paired requirements with jeva-doctor checks",
+    ],
+    stack: [
+      "Python 3.12",
+      "PyTorch 2.9.1",
+      "CUDA 12.8 NVIDIA stack",
+      "Hugging Face Hub",
+    ],
+    links: {
+      repo: "https://github.com/LiQiiiii/Jeva",
+      docs: "https://github.com/LiQiiiii/Jeva/blob/main/docs/evaluation.md",
+      website: "https://liqiiiii.github.io/Jeva/",
+    },
+    pricingNote:
+      "Open research code and public weights; you pay for GPUs, electricity, and Hugging Face bandwidth. No TypeSafe API required for local inference.",
+    firstSeen: "2026-10-15",
+    relatedSlugs: [
+      "yinsongxu-llm2jev",
+      "nokia-applied-research-anyjev",
+      "mapika-decider",
+      "tianyucodings-nanojev",
+      "featherless-simple-jev",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Jeva affiliated with TypeSafe?",
+        answer:
+          "No. Jeva is an independent NUS research release with its own GitHub repo, Hugging Face weights, and arXiv paper. This listing does not imply TypeSafe endorsement.",
+      },
+      {
+        question: "Which Hugging Face model id should I use?",
+        answer:
+          "README Installation and examples use LIQIIIII/Jeva-4B with Jeva.from_pretrained on cuda.",
+      },
+      {
+        question: "How does Jeva differ from LLM2Jev?",
+        answer:
+          "LLM2Jev serves POST /v1/systemone from general causal or VLM logits on SGLang, Transformers, or MLX. Jeva trains a dedicated encoder and decision stack with published structural properties and finetune docs.",
+      },
+      {
+        question: "What hardware does the README require?",
+        answer:
+          "README Installation: Linux x86_64, NVIDIA GPU, conda environment with cuda-nvcc 12.8.13 and pip requirements.txt; first request may compile kernels.",
+      },
+      {
+        question: "Where is the paper?",
+        answer:
+          "README Citation lists arXiv:2610.18773, Jeva: System One Models from First Principles, by Qi Li and Xinchao Wang, 2026.",
+      },
+    ],
+    metaTitle: "Jeva: NUS System One model with native Choice, Noul, Score",
+    metaDescription:
+      "LiQiiiii/Jeva 4B weights, arXiv 2610.18773, permutation invariant decision stack. HF LIQIIIII/Jeva-4B, eval and finetune docs. Independent of TypeSafe.",
+  },
+
+  "feder-cr-jevos": {
+    slug: "feder-cr-jevos",
+    status: "published",
+    problem:
+      "Teams want Jev-shaped noul, choice, and score on a laptop CPU without cloud tokens, Python runtimes, or a separate GPU server.",
+    targetUser:
+      "Self-hosters and EU privacy-minded engineers who can download release binaries or Hugging Face weights and point existing System One HTTP clients at localhost.",
+    overview:
+      "jevos (github.com/feder-cr/jev, feder-cr/jev on Hugging Face) from feder-cr and Loris Salsi (@LosaLosSantos) is a single C++ binary that serves POST /v1/systemone in TypeSafe Jev wire format on CPU via OpenVINO int8 weights (jevos-v4 release). README quickstart: extract platform archive, unzip jevos-v4-openvino-int8.zip into model/, run ./jev serve on port 8017 by default. Supports parallel noul, choice, and score questions on one state JSON; GET /health reports readiness and model SHA-256; ./jev decide request.json answers offline. Latency table on README cites median 28 ms short and 130 ms long requests on Intel Core Ultra 7 255H versus hosted Jev and Laya on the same six-task accuracy grid. Optional JEV_API_KEY bearer auth; about 1 GB RAM. GGUF builds for llama.cpp ship beside OpenVINO in releases.",
+    creator: {
+      name: "feder-cr",
+      handle: "feder-cr",
+      githubUrl: "https://github.com/feder-cr",
+    },
+    creatorQuote: {
+      text:
+        "Decisions on a laptop CPU in 28 to 130 ms. Send a text and a question and get back the probability of each answer, in TypeSafe Jev's API, on your own machine.",
+      attributedTo: "feder-cr/jev README",
+      sourceUrl: "https://github.com/feder-cr/jev#readme",
+    },
+    jevUsage: {
+      flowRole:
+        "Local CPU System One server: parallel noul, choice, and score on one state read per request",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "JSON state string or object plus questions map with type noul, choice, or score per README curl and API section.",
+      decisionOut:
+        "Wire-compatible answers with probabilities; choice and score include per-option probabilities and confidence for human escalation; usage reports input_tokens with zero output_tokens.",
+      flowSteps: [
+        "Download jev-linux-x64 or Windows zip plus jevos-v4-openvino-int8.zip from GitHub releases",
+        "Place model/ beside binary or hf download feder-cr/jev model/* into jev/model/",
+        "Run ./jev serve with optional --threads, --host, --port, --model-dir",
+        "POST /v1/systemone from curl or TypeSafe-compatible SDKs",
+        "Optional bearer JEV_API_KEY on all routes except /health",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README benchmark chart: jevos-v4 median latency 28 ms short and 130 ms long on Intel Core Ultra 7 255H 16 threads versus Jev about 311 to 314 ms and Laya about 129 to 480 ms on the same harness.",
+          source: "github.com/feder-cr/jev README Benchmarks",
+        },
+        {
+          claim:
+            "README feature table: jevos-v4 supports yes or no, multiple choice, and scores (scores marked early), runs on your machine, free cost, 8,192 token context.",
+          source: "github.com/feder-cr/jev README Benchmarks table",
+        },
+        {
+          claim:
+            "Public GitHub repo feder-cr/jev had 1,325 stars and 159 forks as of October 15, 2026.",
+          source: "GitHub API, 2026-10-15",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevos is a self-contained CPU server for teams that want TypeSafe wire format without a Python or Node runtime at serve time. receptron-laya and jaredpalmer-kev need those stacks and larger downloads; wfzyx-von targets sub-25 ms encoder inference with a different training story; yinsongxu-llm2jev wraps your own Qwen weights behind /v1/systemone. jevos ships pinned int8 OpenVINO weights plus a GitHub wiki co-maintained with Loris Salsi. theoleecj-semif documents another open server path when you want research flexibility over a single release binary. README states code written for Jev SDK yes or no paths works unchanged; check score maturity notes (early) before production rubrics.",
+    keyFeatures: [
+      "Single binary CPU inference with OpenVINO int8 jevos-v4 weights",
+      "POST /v1/systemone compatible with TypeSafe Jev wire format",
+      "Release archives for Linux and Windows plus HF model download",
+      "Latency and six-task accuracy table versus Jev, Laya, and Qwen3.5-4B on README",
+      "Optional JEV_API_KEY, ./jev decide offline mode, GGUF for llama.cpp",
+      "GitHub wiki for deeper guides and measurements",
+    ],
+    stack: [
+      "C++",
+      "OpenVINO int8",
+      "CPU only (no Python runtime required to serve)",
+      "Hugging Face feder-cr/jev weights",
+    ],
+    links: {
+      repo: "https://github.com/feder-cr/jev",
+      docs: "https://github.com/feder-cr/jev/wiki",
+      website: "https://huggingface.co/feder-cr/jev",
+    },
+    pricingNote:
+      "Free open weights and binaries; you pay for the machine and electricity. No per-token cloud bill when self-hosted.",
+    firstSeen: "2026-10-15",
+    relatedSlugs: [
+      "receptron-laya",
+      "jaredpalmer-kev",
+      "wfzyx-von",
+      "yinsongxu-llm2jev",
+      "theoleecj-semif",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is the GitHub repo name jev or jevos?",
+        answer:
+          "Repository is feder-cr/jev; product and release tag use jevos (for example jevos-v4-openvino-int8.zip). This directory slug is feder-cr-jevos with title jevos.",
+      },
+      {
+        question: "Does jevos need Python?",
+        answer:
+          "README quickstart serves with ./jev only. Python appears in Build from source for OpenVINO SDK, CMake, and tests, not for the default serve path.",
+      },
+      {
+        question: "How does jevos compare to Kev or Laya?",
+        answer:
+          "README table contrasts CPU binary jevos-v4 against cloud Jev and local Laya on latency and six benchmark tasks. Kev and Laya listings document Python SDK and HF training paths; jevos optimizes one int8 CPU binary.",
+      },
+      {
+        question: "Can I use the TypeSafe SDK?",
+        answer:
+          "README API section states POST /v1/systemone matches TypeSafe Jev wire format so SDK code for yes or no questions can target localhost:8017.",
+      },
+      {
+        question: "Where do weights live?",
+        answer:
+          "GitHub release jevos-v4-openvino-int8.zip or hf download feder-cr/jev --include model/* per README quickstart.",
+      },
+    ],
+    metaTitle: "jevos: CPU System One server on OpenVINO int8",
+    metaDescription:
+      "feder-cr/jev jevos-v4 binary serves POST /v1/systemone on CPU, 28 to 130 ms on README laptop table. HF weights, wiki, Loris Salsi co-maintainer.",
+  },
 };
