@@ -92,7 +92,7 @@
     "description": "notra in the Jev ecosystem. Marketing analytics platform whose feature flag routes brand-visibility classifiers off an LLM and onto Jev boolean decisions. A shipped workflow you can study before you bet your own traffic on the same gate style. Tags in the wild: applications, routing. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "realzachi-pg-jev": {
-    "oneLiner": "Ask your Postgres tables questions in plain language.",
+    "oneLiner": "pg-jev is a Postgres extension for people who already filter rows in SQL. The jev() function judges each row in plain language without embeddings or a vector index. Zachi's launch clip judged 129 rows in about one second for about $0.0009, with cache hits near 6 ms on a second run.",
     "description": "Ask your Postgres tables questions in plain language. A PostgreSQL extension powered by TypeSafe's Jev. Glue code for gateways, agents, and platforms that should stay typed instead of chatty. Tags in the wild: integrations. Skim the repo for setup, then open the demo when you want proof before you merge anything."
   },
   "y0usaf-pi-jev": {

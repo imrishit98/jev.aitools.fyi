@@ -7,7 +7,7 @@ export type LearnGuide = {
   seoTitle: string;
   seoDescription: string;
   definition: string;
-  headings: { h: string; body: string }[];
+  headings: { h: string; body: string; links?: { href: string; label: string }[] }[];
   faq: FaqEntry[];
   exploreHref?: string;
 };
@@ -28,12 +28,12 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "jev-typesafe",
     title: "Jev & TypeSafe",
     description:
-      "What Jev is, how System One fits your stack, and where this directory ends and TypeSafe docs begin.",
-    seoTitle: "What is TypeSafe Jev? System One primer for builders",
+      "A primer for builders who need to know what Jev is, who it is for, and when TypeSafe docs should take over from this directory.",
+    seoTitle: "TypeSafe Jev explained: what it is and how to use it",
     seoDescription:
-      "Learn what Jev is, how System One returns typed probabilities, and where TypeSafe docs beat this directory. A primer before you browse SDKs and tools.",
+      "For builders new to System One. Jev takes structured state and typed questions, then returns probabilities your code can threshold before you browse SDKs.",
     definition:
-      "Jev is TypeSafe's System One decision model for software: structured state in, typed parallel questions, probability-backed answers out.",
+      "Jev is TypeSafe's System One decision model for software teams who need a label, a score, or a yes-or-no gate: send structured state and typed questions, and the API returns probabilities your code can threshold.",
     exploreHref: "/explore?category=official",
     headings: [
       {
@@ -282,7 +282,11 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
       },
       {
         h: "Open models beside hosted Jev",
-        body: "When you outgrow a single gateway, the /alternatives hub ranks open checkpoints and hosted decision APIs teams actually trial: Laya, Cloudflare clef, Kev, Perplexity decider, and more. Each row links to a dated comparison page with migration notes.",
+        body: "When you outgrow a single gateway, open checkpoints sit beside hosted Jev. Laya, Cloudflare clef, Kev, Perplexity decider, and Liquid d1 each have a dated comparison with migration notes. Jev alternatives compared collects the full set, and Liquid d1 vs Jev covers the small multimodal checkpoint.",
+        links: [
+          { href: "/alternatives", label: "Jev alternatives compared" },
+          { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
+        ],
       },
     ],
     faq: [

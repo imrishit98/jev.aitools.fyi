@@ -44,6 +44,17 @@ const startHereLinks = (enrichment?.startHere?.links ?? [])
 const jsonLdExtra = enrichment?.faq?.length
   ? [faqPageJsonLd(enrichment.faq)]
   : [];
+
+const alternativeLinkSets: Record<string, { href: string; label: string }[]> = {
+  "agent-tooling": [{ href: "/alternatives", label: "Jev alternatives compared" }],
+  benchmarks: [
+    { href: "/alternatives", label: "Jev alternatives compared" },
+    { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
+  ],
+  integrations: [{ href: "/alternatives", label: "Jev alternatives compared" }],
+  sdks: [{ href: "/alternatives", label: "Jev alternatives compared" }],
+};
+const alternativeLinks = items.length > 0 ? (alternativeLinkSets[cat.slug] ?? []) : [];
 ---
 
 <BaseLayout
@@ -99,6 +110,20 @@ const jsonLdExtra = enrichment?.faq?.length
           )
         }
       </p>
+      {
+        alternativeLinks.length > 0 && (
+          <p class="mt-2 text-sm leading-relaxed text-muted-foreground">
+            See{" "}
+            {alternativeLinks.map((link, index) => (
+              <span>
+                {index > 0 ? (index === alternativeLinks.length - 1 ? " and " : ", ") : ""}
+                <a href={link.href} class="text-primary hover:underline">{link.label}</a>
+              </span>
+            ))}
+            .
+          </p>
+        )
+      }
     </header>
 
     {
