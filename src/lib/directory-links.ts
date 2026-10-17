@@ -45,9 +45,17 @@ export function linksForAgentGuide(guide: AgentGuide): DirectoryLink[] {
       ? ["browser-computer-use", "agent-tooling"]
       : ["agent-tooling"];
   const self = `/guides/jev-with-ai-agents/${guide.slug}`;
+  const comparisonLinks =
+    guide.slug === "hermes" || guide.slug === "github-copilot-agent"
+      ? [
+          { href: "/alternatives", label: "Jev alternatives compared" },
+          { href: alternativePath("liquid-d1"), label: "Liquid d1 vs Jev" },
+        ]
+      : [];
   return dedupe([
     { href: "/guides/jev-with-ai-agents", label: "All agent guides" },
     { href: "/learn/system-one", label: "System One primer" },
+    ...comparisonLinks,
     ...categoryLinks(categorySlugs),
     ...listingLinks(guide.relatedCatalogSlugs),
   ]).filter((link) => link.href !== self);

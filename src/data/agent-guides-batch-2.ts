@@ -292,22 +292,17 @@ evaluate setup mcp`,
   "github-copilot-agent": {
     slug: "github-copilot-agent",
     title: "GitHub Copilot Agent Mode + Jev",
-    tagline: "VS Code Agent chat with MCP servers key servers, not mcpServers.",
+    tagline: "Workspace .vscode/mcp.json uses servers. Copilot CLI uses mcpServers.",
     seoTitle: "GitHub Copilot Agent + Jev: MCP in VS Code",
     seoDescription:
-      "Add system1-mcp or typesafe-mcp to .vscode/mcp.json for Copilot Agent mode. servers vs mcpServers, Ask vs Agent, cloud agent constraints, and env keys.",
+      "Jev in VS Code is an MCP server you start and trust, then use in Copilot Agent mode. .vscode/mcp.json uses servers. Copilot CLI uses mcpServers.",
     whyJev:
-      "Copilot Agent mode can run terminal commands and MCP tools in a loop. That is powerful and slightly terrifying. Jev gives you fast_guard-style reflexes or evaluate-shaped checks so the agent pauses on destructive commands instead of narrating its way into rm -rf.",
+      "Jev in VS Code is an MCP server that GitHub Copilot can call from Agent mode.\n\nAdd it under servers in the workspace file .vscode/mcp.json, or run MCP: Add Server. Then click Start and trust the server.\n\nOpen Copilot Chat, select Agent, and confirm the tools in the tools list.\n\nTools such as system1-mcp fast_guard return a typed check so the agent does not invent a yes or no from a paragraph.",
     sections: [
       {
-        h: "Ask mode vs Agent mode",
+        h: "Jev in VS Code",
         body:
-          "GitHub documents Copilot Chat modes in VS Code. Ask mode is Q&A without autonomous tool loops. Agent mode lets Copilot plan, invoke tools, and run commands until the task completes. MCP tools attach to Agent mode (and related agent surfaces), not to lightweight Ask completions. Pick Agent when you want Jev gates on the execution path.",
-      },
-      {
-        h: "VS Code MCP config uses servers",
-        body:
-          "VS Code reads .vscode/mcp.json (workspace) or user MCP configuration. The top-level key is servers, not mcpServers. Cursor and Claude Desktop configs pasted verbatim will silently fail in VS Code. Use MCP: Add Server or edit the file, click Start, and trust the server when prompted.",
+          "Use Jev in VS Code by registering an MCP server and opening it in Copilot Agent mode.\n\n1. Create the workspace file .vscode/mcp.json with a top-level servers entry.\n\nFor system1-mcp the command is uvx and the args are system1-mcp.\n\nOr run MCP: Add Server from the Command Palette, choose Command (stdio), and save to that workspace file.\n\nThe same flow is Add Server under Chat: Open Customizations, then MCP Servers.\n\n2. Save the file. Click Start at the top of the server list. When VS Code asks, confirm that you trust the server.\n\nAfter you trust the workspace, servers in .vscode/mcp.json can start without a separate MCP trust prompt.\n\n3. Open Copilot Chat and select Agent from the agent dropdown.\n\n4. Open the tools list and confirm the Jev server's tools are there.\n\nGitHub's VS Code steps call this control the tools icon. The VS Code MCP quickstart calls it Configure Tools.\n\nVS Code also documents the workspace file .mcp.json. Its top-level key is mcpServers.\n\nCopilot harness sessions read that file directly. They do not read .vscode/mcp.json directly.\n\nThey can receive a forwarded copy, except servers that use interactive input variables such as ${input:...}.",
         code: {
           lang: "json",
           content: `{
@@ -331,63 +326,111 @@ evaluate setup mcp`,
         },
       },
       {
+        h: "Agent mode for MCP tools",
+        body:
+          "GitHub's VS Code walkthrough uses Agent mode for MCP. Open Copilot Chat from the chat icon, select Agent from the agent dropdown, make sure the server is running, then use the tools icon to see servers and tools. Select Agent when you want Copilot to call Jev MCP tools.",
+      },
+      {
+        h: "Which file uses servers",
+        body:
+          "The top-level key depends on the file.\n\nWorkspace .vscode/mcp.json and the VS Code user profile file mcp.json use servers.\n\nThe workspace file .mcp.json and the Copilot user file use mcpServers.\n\nA Cursor or Claude Desktop file that starts with mcpServers does not match .vscode/mcp.json.\n\nCopilot CLI also skips .vscode/mcp.json because that file uses servers.\n\nFor a new shared server, VS Code prefers .mcp.json or Copilot Global.\n\nThe file .vscode/mcp.json is still what GitHub's VS Code steps use, and it is where VS Code input variables work.",
+      },
+      {
         h: "Install system1-mcp for Copilot",
         body:
-          "system1-mcp install autodetects VS Code style hosts. For teams, commit a workspace mcp.json with inputs or env references, and document TYPESAFE_API_KEY in your onboarding doc (not in chat). Tools exposed: fast_guard, fast_judge, fast_verify, fast_score.",
+          "system1-mcp documents four tools: fast_guard, fast_judge, fast_verify, and fast_score.\n\nIts installer autodetects Claude Desktop, Cursor, Google Antigravity, Windsurf, Roo Code, Cline, and Zed.\n\nIt does not name Visual Studio Code, so uvx system1-mcp install is not the VS Code setup.\n\nAdd the server in .vscode/mcp.json yourself, then run uvx system1-mcp doctor.\n\nIf the key is already in ~/.system1/config.json, the README says the env block is optional.\n\nDo not commit a live key. The sample above uses a VS Code input prompt.\n\nCopilot harness sessions skip servers that use those input variables.",
         code: {
           lang: "bash",
           content: `export TYPESAFE_API_KEY="tsk_..."
-uvx system1-mcp install
 uvx system1-mcp doctor`,
         },
       },
       {
         h: "typesafe-mcp alternative",
         body:
-          "When you want a single evaluate tool that mirrors POST /v1/systemone, install itsmostafa/typesafe-mcp and register the stdio server in servers with the same command/args pattern as other MCP packages. Pair with typesafe-ai/skills so Copilot learns when to call evaluate.",
+          "itsmostafa/typesafe-mcp, the system-one-connector README, exposes one evaluate tool for POST /v1/systemone shaped calls.\n\nInstall with the system-one-connector install script, then run evaluate setup mcp with TYPESAFE_API_KEY set.\n\nThat command registers Claude Code, Claude Desktop, Codex, and Hermes. It does not register Visual Studio Code.\n\nFor VS Code, the manual config runs the evaluate binary with args mcp.\n\nThe installer places that binary in ~/.local/bin unless EVALUATE_INSTALL_DIR is set.\n\nPut the command under servers in .vscode/mcp.json.\n\nThe project example uses mcpServers and a literal env value. Change the key to servers for this file.\n\nUse a VS Code input if you do not want the key in git. Pair it with typesafe-ai/skills when you want notes on when to call evaluate.",
+        code: {
+          lang: "json",
+          content: `{
+  "servers": {
+    "evaluate": {
+      "command": "/absolute/path/to/evaluate",
+      "args": ["mcp"],
+      "env": {
+        "TYPESAFE_API_KEY": "\${input:typesafe-api-key}"
+      }
+    }
+  }
+}`,
+        },
       },
       {
         h: "Copilot CLI and cloud coding agent",
         body:
-          "GitHub documents separate MCP locations for Copilot CLI (~/.copilot/mcp-config.json with mcpServers) and cloud coding agents (repository settings, not always .vscode/mcp.json). Before relying on Jev in GitHub's cloud agent, read the current GitHub docs for which MCP hosts are supported; constraints change faster than local VS Code.",
+          "Copilot CLI user servers live in ~/.copilot/mcp-config.json under mcpServers.\n\nWhen COPILOT_HOME is set, the user file is $COPILOT_HOME/mcp-config.json.\n\nOtherwise the user file is ~/.copilot/mcp-config.json.\n\ncopilot mcp add writes ~/.copilot/mcp-config.json.\n\nProject files are .mcp.json and .github/mcp.json.\n\nThey use mcpServers, or a bare object whose keys are server names.\n\nThe CLI does not read .vscode/mcp.json.\n\nCopilot cloud agent does not use the VS Code file either.\n\nA repository admin pastes an mcpServers JSON block on GitHub under Settings, then Copilot, then MCP servers.\n\nSecrets and variables named in that block must use the COPILOT_MCP_ prefix.\n\nCloud agent and Copilot code review support MCP tools only.\n\nThey do not support MCP resources or prompts, and they do not support remote MCP servers that use OAuth.\n\nA local command has to exist on the GitHub Actions runner.\n\nThe docs name uv and pipx as examples that are not installed by default and may need a copilot-setup-steps workflow.",
       },
       {
         h: "Visual Studio and enterprise",
         body:
-          "Visual Studio 2026+ ships Copilot agent features with MCP support aligned to the same Model Context Protocol. Enterprise admins may gate MCP via chat.mcp.access policies documented in VS Code. Test in a sandbox repo before rolling reflex tools org-wide.",
+          "Visual Studio 17.14 or later can use MCP with Copilot.\n\nThis is Visual Studio, not Visual Studio Code.\n\nOpen GitHub Copilot Chat, select Agent, click the tools icon, then the plus icon, fill in the server, and save.\n\nThe Visual Studio mcp.json examples use a top-level servers key for HTTP servers and for local stdio servers.\n\nIn VS Code, enterprise policy ChatMCP sets chat.mcp.access.\n\nDocumented values are all (any source), registry (only the configured registry), and none (MCP disabled).\n\nGitHub has a separate MCP servers in Copilot policy for Copilot Business and Copilot Enterprise.\n\nThat policy is disabled by default.\n\nIt does not govern Copilot Free, Copilot Pro, Copilot Pro+, or Copilot Max.",
       },
-      envSection("VS Code Copilot Agent and MCP child processes"),
+      {
+        h: "Environment keys",
+        body:
+          "Create a TypeSafe API key in the console linked under Primary sources.\n\nYou can also route through Vercel AI Gateway or OpenRouter where the integration documents it.\n\nExport TYPESAFE_API_KEY for VS Code Copilot Agent and MCP child processes.\n\nSome MCP clients accept AI_GATEWAY_API_KEY for gateway-hosted Jev. Follow that integration README.\n\nNever commit keys into repos or paste them into chat logs.",
+        code: {
+          lang: "bash",
+          content: `export TYPESAFE_API_KEY="tsk_..."
+# Optional pin:
+export TYPESAFE_MODEL="jev-latest"`,
+        },
+      },
       {
         h: "Pitfalls",
         body:
-          "Never store live API keys in mcp.json committed to git; use inputs, env vars, or secret stores. Copilot CLI does not read .vscode/mcp.json. After MCP edits, restart servers from the MCP list. Agent mode can still ignore tools unless your custom instructions mention fast_guard before shell execution.",
+          "Do not commit live API keys.\n\nIn .vscode/mcp.json, use inputs so Start prompts for the key.\n\nCopilot harness sessions do not receive servers that use input variables.\n\nCopilot CLI does not read .vscode/mcp.json.\n\nAfter edits, click Start or run MCP: List Servers.\n\nA server that never started has no tools in Agent mode.\n\nThe system1-mcp README says registration alone does not force a call to fast_guard.\n\nIt suggests an AGENTS.md line that calls fast_guard before shell commands.",
       },
     ],
     faq: [
       {
+        question: "How do I use Jev in VS Code?",
+        answer:
+          "Add a Jev MCP server in workspace .vscode/mcp.json under servers, or run MCP: Add Server and choose Command (stdio). Click Start, trust the server or the workspace, open Copilot Chat, select Agent, and confirm the tools in the tools list.",
+      },
+      {
+        question: "What is Jev in VS Code?",
+        answer:
+          "Jev in VS Code is an MCP server Copilot Agent mode can call, usually system1-mcp or the evaluate server. It is not a built-in VS Code extension listed on this site.",
+      },
+      {
+        question: "What does VS Code Jev mean?",
+        answer:
+          "VS Code Jev means Jev used inside Visual Studio Code through an MCP server and Copilot Agent mode. Follow the Jev in VS Code steps on this page.",
+      },
+      {
         question: "Why did my Cursor MCP config not work?",
         answer:
-          "VS Code requires servers as the root key. Rename mcpServers to servers and reload MCP.",
+          "Cursor configs use mcpServers. VS Code's .vscode/mcp.json file requires servers. Rename the key for that file, or use workspace .mcp.json when you want to keep mcpServers for Copilot harness sessions.",
       },
       {
         question: "Does Copilot Agent call Jev automatically?",
         answer:
-          "Not guaranteed. Register MCP tools and add repo instructions (AGENTS.md) that require fast_guard before destructive commands.",
+          "Only after the MCP server is configured, started, and trusted, and only when Agent mode can see its tools. VS Code may still ask you to confirm a tool call. The system1-mcp README says to add an AGENTS.md line that calls fast_guard before shell commands, because registration alone does not force the call. Copilot cloud agent can use enabled tools without asking once the repository MCP configuration is saved.",
       },
       {
         question: "Can I use jev-judge-mcp?",
         answer:
-          "Yes via stdio npx -y jev-judge-mcp in servers if you prefer a single judge tool. See the Claude/Codex guide for install lines.",
+          "Yes. The Claude and Codex guide documents stdio npx -y jev-judge-mcp. In VS Code .vscode/mcp.json, put that command under servers.",
       },
       {
         question: "Cloud agent MCP support?",
         answer:
-          "GitHub documents MCP for cloud coding agents separately from local VS Code. Verify the latest GitHub docs before assuming system1-mcp runs in cloud sessions.",
+          "Repository admins add an mcpServers JSON block under Settings, Copilot, MCP servers. That is not .vscode/mcp.json. Cloud agent supports MCP tools only, not resources or prompts, and it does not support remote OAuth servers.",
       },
       {
         question: "Where is official Copilot MCP documentation?",
         answer:
-          "See GitHub Docs: Extending Copilot Chat with MCP (docs.github.com/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp).",
+          "See GitHub Docs: Extending Copilot Chat with MCP, and the VS Code page Add and manage MCP servers. Visual Studio setup on the GitHub page starts at version 17.14.",
       },
     ],
     relatedCatalogSlugs: [
@@ -396,12 +439,19 @@ uvx system1-mcp doctor`,
       "typesafe-ai-skills",
       "brainwires-jevwire",
     ],
-    relatedAgentSlugs: ["cline-and-roo", "cursor-mcp-and-skills", "devin-desktop", "codex-and-opencode"],
+    relatedAgentSlugs: ["cline-and-roo", "cursor-mcp-and-skills", "devin-desktop", "codex-and-opencode", "hermes"],
     sources: [
       { label: "Extending Copilot Chat with MCP", url: "https://docs.github.com/en/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp" },
+      { label: "Add and manage MCP servers in VS Code", url: "https://code.visualstudio.com/docs/copilot/chat/mcp-servers" },
+      { label: "VS Code enterprise AI settings", url: "https://code.visualstudio.com/docs/enterprise/ai-settings" },
+      { label: "Adding MCP servers for GitHub Copilot CLI", url: "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers" },
+      { label: "Configure MCP servers for your repository", url: "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp" },
+      { label: "system1-mcp README", url: "https://github.com/ericmaddox/system1-mcp" },
       { label: "system1-mcp on PyPI", url: "https://pypi.org/project/system1-mcp" },
       { label: "typesafe-mcp README", url: "https://github.com/itsmostafa/typesafe-mcp" },
-      { label: "VS Code MCP configuration reference", url: "https://code.visualstudio.com/docs/copilot/chat/mcp-servers" },
+      { label: "system-one-connector configuration", url: "https://github.com/itsmostafa/system-one-connector/blob/main/docs/configuration.md" },
+      { label: "typesafe-ai/skills", url: "https://github.com/typesafe-ai/skills" },
+      { label: "TypeSafe console", url: "https://console.typesafe.ai/" },
     ],
   },
 

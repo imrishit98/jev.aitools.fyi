@@ -9,6 +9,7 @@ import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd } from "@/components/jso
 import { homeFaq } from "@/data/faq";
 import { getHomepageDemos } from "@/data/showcase-demos";
 import { getAllItems } from "@/lib/items";
+import { agentGuidePath } from "@/data/agent-guides";
 import { homePageSeo } from "@/lib/seo";
 
 const items = getAllItems();
@@ -29,7 +30,15 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
   <HomeHero client:load />
   <div class="mx-auto flex max-w-6xl flex-col gap-20 px-4 py-16 sm:px-6 sm:py-20">
     <HomeWhatIsJev />
-    <HomeDemoStrip client:visible demos={homepageDemos} />
+    <div>
+      <p class="mb-8 text-sm leading-relaxed text-muted-foreground">
+        Setup guides:{" "}
+        <a href={agentGuidePath("hermes")} class="font-medium text-primary hover:underline">Jev with Hermes Agent</a>
+        {" and "}
+        <a href={agentGuidePath("github-copilot-agent")} class="font-medium text-primary hover:underline">GitHub Copilot Agent Mode + Jev</a>.
+      </p>
+      <HomeDemoStrip client:visible demos={homepageDemos} />
+    </div>
     <FeaturedRail client:load />
     <HomeSponsors client:visible />
     <HomeFaq client:load />
