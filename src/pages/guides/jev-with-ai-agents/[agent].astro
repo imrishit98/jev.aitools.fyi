@@ -15,6 +15,7 @@ const guide = getAgentGuide(agent!);
 if (!guide) throw new Error(`Unknown agent guide ${agent}`);
 
 const seo = agentGuidePageSeo(guide);
+const updated = agentGuideDate(guide.slug);
 ---
 
 <BaseLayout
@@ -42,6 +43,9 @@ const seo = agentGuidePageSeo(guide);
       <span class="text-foreground">{guide.title}</span>
     </nav>
     <h1 class="font-heading text-3xl font-semibold">{guide.title}</h1>
+    <p class="mt-2 text-sm text-muted-foreground">
+      Last updated <time datetime={updated}>{updated}</time>
+    </p>
     <AgentGuideView guide={guide} />
   </div>
 </BaseLayout>

@@ -57,8 +57,17 @@ const AGENT_TOUCHED = new Set([
   "browser-computer-use",
 ]);
 
+/** Refresh dates for guides edited after the shared TOUCHED day. Other slugs stay on TOUCHED or GUIDE_PRIOR. */
+const AGENT_GUIDE_DATE_OVERRIDES: Record<string, string> = {
+  hermes: "2026-10-17",
+  "github-copilot-agent": "2026-10-17",
+};
+
 export function agentGuideDate(slug: string): string {
-  return AGENT_TOUCHED.has(slug) ? TOUCHED : GUIDE_PRIOR;
+  return (
+    AGENT_GUIDE_DATE_OVERRIDES[slug] ??
+    (AGENT_TOUCHED.has(slug) ? TOUCHED : GUIDE_PRIOR)
+  );
 }
 
 export const agentHubDate = TOUCHED;

@@ -341,10 +341,10 @@ if (!hermesHtml.includes('aria-label="In the directory"')) {
 if (!hermesHtml.includes("/guides/jev-with-ai-agents/hermes.md")) {
   errors.push("Hermes guide missing markdown alternate");
 }
-if (!hermesHtml.includes('"dateModified":"2026-09-30"')) {
+if (!hermesHtml.includes('"dateModified":"2026-10-17"')) {
   errors.push("Hermes Article JSON-LD missing dateModified");
 }
-if (!hermesHtml.includes("Jev with Hermes Agent: approvals and routing setup")) {
+if (!hermesHtml.includes("Hermes Agent + Jev: quick setup and approvals")) {
   errors.push("Hermes title was not rewritten");
 }
 
@@ -885,6 +885,27 @@ if (headerPaths.length !== expectedHeaderRules) {
   errors.push(
     `_headers rule count: expected ${expectedHeaderRules}, got ${headerPaths.length}`,
   );
+}
+
+const trailingSlashGuideUrls = [
+  "/guides/jev-with-ai-agents/hermes/",
+  "/guides/jev-with-ai-agents/github-copilot-agent/",
+];
+function collectTextArtifacts(dir, out = []) {
+  for (const name of readdirSync(dir)) {
+    const full = join(dir, name);
+    if (statSync(full).isDirectory()) collectTextArtifacts(full, out);
+    else if (name.endsWith(".html") || /^llms.*\.txt$/.test(name)) out.push(full);
+  }
+  return out;
+}
+for (const file of collectTextArtifacts(distRoot)) {
+  const text = readFileSync(file, "utf8");
+  for (const needle of trailingSlashGuideUrls) {
+    if (text.includes(needle)) {
+      errors.push(`${file.slice(distRoot.length)} contains trailing-slash guide URL ${needle}`);
+    }
+  }
 }
 
 if (errors.length) {

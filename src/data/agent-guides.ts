@@ -101,16 +101,30 @@ const agentGuidesBatch1: Record<AgentGuideBatch1Slug, AgentGuide> = {
     slug: "hermes",
     title: "Jev with Hermes Agent",
     tagline: "Smart approvals, skill routing, and MCP without asking Hermes to fake a classifier.",
-    seoTitle: "Jev with Hermes Agent: approvals and routing setup",
+    seoTitle: "Hermes Agent + Jev: quick setup and approvals",
     seoDescription:
-      "Set up approvals, skill routing, and Jev MCP on Hermes Agent. Typed approve, deny, or escalate, with catalog links, so Hermes can quit faking a classifier.",
+      "Hermes Jev means Jev reviews flagged Hermes shell commands as APPROVE, DENY, or ESCALATE, so Hermes can quit faking a classifier.",
     whyJev:
-      "Hermes smart mode already sends flagged shell commands to an auxiliary reviewer that must answer APPROVE, DENY, or ESCALATE. A chat model burns tokens on reasoning you discard. Jev returns that shape natively, often alongside policy and safety nouls in one parallel call.",
+      "Hermes Jev means the hermes-jev-approvals plugin: Jev is the approval reviewer for flagged Hermes shell commands and returns APPROVE, DENY, or ESCALATE.\n\nThat pairing is how Hermes can quit faking a classifier.\n\nHermes smart mode already sends those commands to an auxiliary reviewer that must answer in that shape.\n\nA chat model burns tokens on reasoning you discard. Jev returns the shape natively, often alongside policy and safety nouls in one parallel call.\n\nkeeltrace/hermes-jev is a separate async supervision project, not this approval path.",
     sections: [
+      {
+        h: "Jev in Hermes: quick setup",
+        body:
+          "Jev in Hermes is the anpicasso/hermes-jev-approvals plugin. It replaces only the auxiliary approval reviewer when approvals.mode is smart. It cannot chat, it refuses every other task, and it registers no hooks.\n\n1. Install the plugin: hermes plugins install anpicasso/hermes-jev-approvals/plugin\n\n2. Add the TypeSafe credential: hermes auth add typesafe-jev\n\n3. Turn on smart approvals: hermes config set approvals.mode smart\n\n4. Point the reviewer at Jev: hermes config set auxiliary.approval.provider typesafe-jev\n\n5. Set the model: hermes config set auxiliary.approval.model jev-latest\n\n6. Restart the gateway: systemctl --user restart hermes-gateway\n\nPlugins are profile-scoped. Repeat the install for each HERMES_HOME. These six commands are the install block in the plugin README.",
+        code: {
+          lang: "bash",
+          content: `hermes plugins install anpicasso/hermes-jev-approvals/plugin
+hermes auth add typesafe-jev
+hermes config set approvals.mode smart
+hermes config set auxiliary.approval.provider typesafe-jev
+hermes config set auxiliary.approval.model jev-latest
+systemctl --user restart hermes-gateway`,
+        },
+      },
       {
         h: "What Hermes is",
         body:
-          "Hermes Agent is Nous Research's self-improving agent: terminal UI, gateway to Telegram/Discord/Slack, subagents, cron, and a plugin ecosystem. It is model-agnostic (Nous Portal, OpenRouter, local endpoints). Documentation lives at https://hermes-agent.nousresearch.com/docs/.",
+          "Hermes Agent is Nous Research's self-improving agent: terminal UI, gateway to Telegram/Discord/Slack, subagents, cron, and a plugin ecosystem. It is model-agnostic (Nous Portal, OpenRouter, local endpoints). The Hermes Agent docs are linked under Primary sources.",
       },
       {
         h: "Why pair Hermes with Jev",
@@ -120,7 +134,7 @@ const agentGuidesBatch1: Record<AgentGuideBatch1Slug, AgentGuide> = {
       {
         h: "Smart command approvals (hermes-jev-approvals)",
         body:
-          "The anpicasso/hermes-jev-approvals plugin replaces only the auxiliary approval reviewer when approvals.mode is smart. It refuses chat tasks, registers no hooks, and asks six parallel typed questions per flagged command: verdict Choice, policy Noul, blast radius Score, and safety nouls. Deterministic code maps answers to APPROVE, DENY, or ESCALATE.",
+          "The anpicasso/hermes-jev-approvals plugin replaces only the auxiliary approval reviewer when approvals.mode is smart.\n\nIt refuses chat tasks, registers no hooks, and asks six parallel typed questions per flagged command: verdict Choice, policy Noul, blast radius Score, and safety nouls.\n\nDeterministic code maps answers to APPROVE, DENY, or ESCALATE.",
         code: {
           lang: "bash",
           content: `hermes plugins install anpicasso/hermes-jev-approvals/plugin
@@ -154,14 +168,39 @@ systemctl --user restart hermes-gateway`,
         body:
           "Hermes documents MCP integration for extending tool access (see the user guide feature page linked from the main README). You can attach community Jev MCP servers (for example blakestone-x/jev-mcp or itsmostafa/typesafe-mcp) the same way you attach other MCP servers, so Hermes tools can call typed classify/score/check endpoints alongside native skills.",
       },
-      envSection("Hermes gateway and plugin processes"),
+      {
+        h: "Environment keys",
+        body:
+          "Create a TypeSafe API key in the console linked under Primary sources.\n\nYou can also route through Vercel AI Gateway or OpenRouter where the integration documents it.\n\nExport TYPESAFE_API_KEY for Hermes gateway and plugin processes.\n\nSome MCP clients accept AI_GATEWAY_API_KEY for gateway-hosted Jev. Follow that integration README.\n\nNever commit keys into repos or paste them into chat logs.",
+        code: {
+          lang: "bash",
+          content: `export TYPESAFE_API_KEY="tsk_..."
+# Optional pin:
+export TYPESAFE_MODEL="jev-latest"`,
+        },
+      },
       {
         h: "Pitfalls",
         body:
-          "Without smart_policy, benchmarks on the approvals plugin showed routine kills and git pushes escalated or denied. For OpenRouter, use the plugin README pattern (model ~typesafe/jev-latest with base_url) and do not put api_key under auxiliary.approval or Hermes bypasses the plugin. Plugins are profile-scoped: repeat install per HERMES_HOME. Malformed Jev answers escalate to the user by design.",
+          "Without smart_policy, benchmarks on the approvals plugin showed routine kills and git pushes escalated or denied.\n\nFor OpenRouter, use the plugin README pattern: model ~typesafe/jev-latest with base_url.\n\nDo not put api_key under auxiliary.approval or Hermes bypasses the plugin.\n\nPlugins are profile-scoped. Repeat the install for each HERMES_HOME.\n\nMalformed Jev answers escalate to the user by design.",
       },
     ],
     faq: [
+      {
+        question: "What is a Jev Hermes agent?",
+        answer:
+          "A Jev Hermes agent is Hermes Agent with Jev as the smart approval reviewer through hermes-jev-approvals. Hermes still runs the session. Jev only returns APPROVE, DENY, or ESCALATE for flagged shell commands.",
+      },
+      {
+        question: "What does Hermes agent Jev mean?",
+        answer:
+          "Hermes agent Jev is the same pairing: Hermes Agent plus the Jev approval plugin. It is not keeltrace/hermes-jev, which adds async supervision. Install anpicasso/hermes-jev-approvals, set approvals.mode to smart, and point auxiliary.approval at typesafe-jev.",
+      },
+      {
+        question: "How do I use Jev with Hermes?",
+        answer:
+          "Install hermes-jev-approvals, run hermes auth add typesafe-jev, set approvals.mode to smart, set auxiliary.approval.provider to typesafe-jev and auxiliary.approval.model to jev-latest, then restart the Hermes gateway.",
+      },
       {
         question: "What is Hermes Jev in search results?",
         answer:
@@ -195,12 +234,13 @@ systemctl --user restart hermes-gateway`,
       "blakestone-x-jev-mcp",
       "itsmostafa-typesafe-mcp",
     ],
-    relatedAgentSlugs: ["openclaw", "cursor-mcp-and-skills"],
+    relatedAgentSlugs: ["openclaw", "cursor-mcp-and-skills", "github-copilot-agent"],
     sources: [
       { label: "Hermes Agent docs", url: "https://hermes-agent.nousresearch.com/docs/" },
       { label: "hermes-jev-approvals README", url: "https://github.com/anpicasso/hermes-jev-approvals" },
       { label: "typesafe-skill-router README", url: "https://github.com/DECRUX9812/typesafe-skill-router" },
       { label: "Hermes MCP feature doc", url: "https://hermes-agent.nousresearch.com/docs/user-guide/features/mcp" },
+      { label: "TypeSafe console", url: "https://console.typesafe.ai/" },
     ],
   },
 
