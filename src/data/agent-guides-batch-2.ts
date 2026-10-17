@@ -333,7 +333,7 @@ evaluate setup mcp`,
       {
         h: "Which file uses servers",
         body:
-          "The top-level key depends on the file.\n\nWorkspace .vscode/mcp.json and the VS Code user profile file mcp.json use servers.\n\nThe workspace file .mcp.json and the Copilot user file use mcpServers.\n\nA Cursor or Claude Desktop file that starts with mcpServers does not match .vscode/mcp.json.\n\nCopilot CLI also skips .vscode/mcp.json because that file uses servers.\n\nFor a new shared server, VS Code prefers .mcp.json or Copilot Global.\n\nThe file .vscode/mcp.json is still what GitHub's VS Code steps use, and it is where VS Code input variables work.",
+          "The top-level key depends on the file.\n\nWorkspace .vscode/mcp.json and the VS Code user profile file mcp.json use servers.\n\nThe workspace file .mcp.json and the Copilot user file use mcpServers.\n\nA Cursor or Claude Desktop file that starts with mcpServers does not match .vscode/mcp.json.\n\nCopilot CLI also skips .vscode/mcp.json because that file uses servers.\n\nFor a new shared server, VS Code prefers .mcp.json or Copilot Global.\n\nThe Add Server flow lists .vscode/mcp.json and the user-profile mcp.json as deprecated compatibility destinations.\n\nThe file .vscode/mcp.json is still what GitHub's VS Code steps use, and it is where VS Code input variables work.",
       },
       {
         h: "Install system1-mcp for Copilot",
@@ -372,7 +372,7 @@ uvx system1-mcp doctor`,
       {
         h: "Visual Studio and enterprise",
         body:
-          "Visual Studio 17.14 or later can use MCP with Copilot.\n\nThis is Visual Studio, not Visual Studio Code.\n\nOpen GitHub Copilot Chat, select Agent, click the tools icon, then the plus icon, fill in the server, and save.\n\nThe Visual Studio mcp.json examples use a top-level servers key for HTTP servers and for local stdio servers.\n\nIn VS Code, enterprise policy ChatMCP sets chat.mcp.access.\n\nDocumented values are all (any source), registry (only the configured registry), and none (MCP disabled).\n\nGitHub has a separate MCP servers in Copilot policy for Copilot Business and Copilot Enterprise.\n\nThat policy is disabled by default.\n\nIt does not govern Copilot Free, Copilot Pro, Copilot Pro+, or Copilot Max.",
+          "Visual Studio 17.14 or later can use MCP with Copilot.\n\nThis is Visual Studio, not Visual Studio Code.\n\nOpen GitHub Copilot Chat, select Agent, click the tools icon, then the plus icon, fill in the server, and save.\n\nThe Visual Studio mcp.json examples use a top-level servers key for HTTP servers and for local stdio servers.\n\nVS Code says organizations centrally manage MCP server access with Copilot enterprise-managed settings.\n\nGitHub has a separate MCP servers in Copilot policy for Copilot Business and Copilot Enterprise.\n\nThat policy is disabled by default.\n\nIt does not govern Copilot Free, Copilot Pro, Copilot Pro+, or Copilot Max.",
       },
       {
         h: "Environment keys",
@@ -443,7 +443,6 @@ export TYPESAFE_MODEL="jev-latest"`,
     sources: [
       { label: "Extending Copilot Chat with MCP", url: "https://docs.github.com/en/copilot/customizing-copilot/using-model-context-protocol/extending-copilot-chat-with-mcp" },
       { label: "Add and manage MCP servers in VS Code", url: "https://code.visualstudio.com/docs/copilot/chat/mcp-servers" },
-      { label: "VS Code enterprise AI settings", url: "https://code.visualstudio.com/docs/enterprise/ai-settings" },
       { label: "Adding MCP servers for GitHub Copilot CLI", url: "https://docs.github.com/en/copilot/how-tos/copilot-cli/customize-copilot/add-mcp-servers" },
       { label: "Configure MCP servers for your repository", url: "https://docs.github.com/en/copilot/how-tos/use-copilot-agents/coding-agent/extend-coding-agent-with-mcp" },
       { label: "system1-mcp README", url: "https://github.com/ericmaddox/system1-mcp" },
