@@ -39,9 +39,9 @@ export const categoryEnrichmentBySlug: Partial<
 > = {
   "agent-tooling": {
     slug: "agent-tooling",
-    seoTitle: "Jev agent tooling: MCP servers, routers, and review gates",
+    seoTitle: "Jev for coding agents: MCP servers and approval gates",
     seoDescription:
-      "Compare coding-agent accessories that call TypeSafe Jev for model routing, tool approvals, context compaction, and diff review. Pick criteria and FAQs below.",
+      "For teams on Claude Code, Pi, or Hermes. Compare MCP servers, routers, and tool-approval gates that call TypeSafe Jev with thresholds you set.",
     whoItsFor:
       "Teams running Claude Code, Pi, Hermes, or custom agents who need fast, thresholdable decisions on the hot path instead of parsing YES/NO from chat completions.",
     howToChoose:
@@ -131,9 +131,9 @@ export const categoryEnrichmentBySlug: Partial<
 
   benchmarks: {
     slug: "benchmarks",
-    seoTitle: "Jev benchmarks: calibration, replicas, and latency harnesses",
+    seoTitle: "Jev benchmarks: evals, replicas and latency harnesses",
     seoDescription:
-      "Eval repos and open replicas that measure typed Jev decisions: workflow agreement, parallel decoding speedups, and calibration tooling, with sourced tables.",
+      "For engineers picking hosted Jev or a local replica. Browse eval harnesses, calibration studies, and latency tables, each linked to the project's own source.",
     startHere: {
       preamble: "Start here:",
       links: [

@@ -2856,9 +2856,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Marketing and docs describe Noul, Choice, and Score style questions depending on how you phrase the plain-language predicate per row.",
       },
     ],
-    metaTitle: "pg-jev: Jev predicates inside PostgreSQL",
+    metaTitle: "pg-jev: Postgres extension for Jev, examples and setup",
     metaDescription:
-      "realZachi pg-jev adds jev() for natural-language WHERE clauses without embeddings. Launch metrics, pgjev.com, and SQL extension repo.",
+      "For people who already filter rows in SQL. pg-jev adds jev() without embeddings. A launch clip judged 129 rows in about one second for about $0.0009.",
   },
 
   "kraayenjon-ai-slop-detector": {
@@ -6407,9 +6407,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Kev answers from the prompt in one forward pass. Jeeves can write a reasoning chain first, then score options. The Jeeves README credits Kev as inspiration and publishes side by side tables where Jeeves leads on some JevBench tiers but trails Jev on MMLU.",
       },
     ],
-    metaTitle: "Kev: Jared Palmer's open Jev-like models on Qwen",
+    metaTitle: "Kev (jaredpalmer/kev): open Jev-style models on Qwen",
     metaDescription:
-      "jaredpalmer/kev serves System One-compatible Choice, Score, and Noul from 0.8B to 27B Qwen checkpoints. HF weights, evals vs hosted Jev, TypeSafe SDK drop-in.",
+      "For teams hosting their own GPUs. Apache-2.0 Qwen checkpoints from 0.8B to 27B serve Choice, Score, and Noul, with README tables against hosted Jev.",
   },
 
   "wfzyx-von": {
@@ -8180,9 +8180,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "No. TypeSafeClassifier returns typed probabilities for questions you define; it does not draft user-facing prose.",
       },
     ],
-    metaTitle: "langchain-typesafe: LangChain Runnable for System One",
+    metaTitle: "langchain-typesafe: TypeSafe Jev for LangChain agents",
     metaDescription:
-      "Official langchain-typesafe PyPI package: TypeSafeClassifier, Choice, Score, Noul, and experimental routing middleware for LangChain agents.",
+      "For Python teams on LangChain. Official TypeSafeClassifier on PyPI batches Choice, Score, and Noul, with experimental middleware for model pick and tool risk.",
   },
 
   "mapika-decider": {
@@ -8587,9 +8587,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Upstream README and evals/results/relevance-threshold-2026-09-27.md, total-cost-2026-09-28.md, and speed-2026-09-28.md in the dzhng/jevgrep repo.",
       },
     ],
-    metaTitle: "jevgrep: Jev hierarchical repo search for coding agents",
+    metaTitle: "jevgrep (dzhng/jevgrep): Jev code search for agents",
     metaDescription:
-      "dzhng/jevgrep `jg` CLI uses Jev to walk repos, print excerpts, and install agent skills. README SWE-bench evals cite about 26% lower agent cost at 8/10 solves.",
+      "For coding agents that should not read a whole repo. jg walks folders with Jev and prints excerpts. A README eval kept 8 of 10 SWE-bench solves at lower cost.",
   },
 
   "openbyteinc-quantdinger": {

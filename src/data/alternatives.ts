@@ -1,4 +1,4 @@
-import type { Alternative, AlternativesHub } from "@/data/alternatives-types";
+import type { Alternative } from "@/data/alternatives-types";
 import { alternativesHub } from "@/data/alternatives-hub";
 import { layaCompareAsAlternative } from "@/data/alternatives-laya";
 import { alternatives } from "@/data/alternatives-pages";

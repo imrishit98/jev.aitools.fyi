@@ -49,6 +49,13 @@ export function HomeWhatIsJev() {
       <p className="mt-5 max-w-2xl text-base leading-relaxed text-muted-foreground">
         Jev is TypeSafe&apos;s <strong className="font-medium text-foreground">System One</strong> model: parallel typed questions in, calibrated answers out. Fast, cheap, and allergic to writing paragraphs when a boolean would do.
       </p>
+      <p className="mt-3 max-w-2xl text-base leading-relaxed text-muted-foreground">
+        Open models such as Laya sit beside the hosted API. Read{" "}
+        <AppLink href="/alternatives" className="font-medium text-primary hover:underline">
+          Jev alternatives compared
+        </AppLink>
+        .
+      </p>
       <div className="mt-6 flex flex-wrap gap-2">
         {[
           { href: "/learn/jev-typesafe", label: "What is Jev?" },

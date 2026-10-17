@@ -37,12 +37,12 @@ export const categories: CategoryMeta[] = [
     slug: "agent-tooling",
     title: "Agent tooling",
     description:
-      "Routers, MCP servers, compaction, review gates, guards, and skills for coding agents.",
+      "MCP servers, model routers, and approval gates for people running coding agents on TypeSafe Jev.",
     seoTitle: "Jev agent tooling: MCP servers, routers, and review gates",
     seoDescription:
       "Coding-agent accessories that use Jev to pick models, approve tools, compact context, and score diffs. Explore MCP servers and routers.",
     intro:
-      "The Claude Code accessory aisle. Routers, compaction, MCP, guards, and reviewers that speak probability. Agent tooling usually sits on the hot path: picking models, approving tool calls, compacting context, or scoring diffs. Favor READMEs that document latency budgets and failure modes. MCP listings should expose tool schemas so you know what state hits Jev.",
+      "This hub is for teams on Claude Code, Pi, Hermes, or a custom agent who need a fast route, allow, or compact decision on the hot path. Each tool sends Choice, Noul, or Score questions to Jev instead of parsing yes or no out of a chat reply. Prefer READMEs that state a latency budget and fail closed when the API errors.",
   },
   {
     slug: "browser-computer-use",
@@ -92,12 +92,12 @@ export const categories: CategoryMeta[] = [
     slug: "benchmarks",
     title: "Benchmarks",
     description:
-      "Evals, open replicas, calibration studies, and comparison harnesses.",
+      "Eval harnesses and open replicas for engineers who need reproducible typed Jev numbers before they pick a route.",
     seoTitle: "Jev benchmarks and evals: calibration and open replicas",
     seoDescription:
       "Datasets, harnesses, and open replicas for comparing typed Jev decisions. Measure calibration and latency on your hardware before you pick a routing policy.",
     intro:
-      "Measure twice, route once. Calibration papers, open replicas, and head-to-head rerank battles. Benchmark listings document datasets, baselines, and reproducible harnesses. Treat star counts as hints, not votes. Open replicas help you compare latency and calibration on your hardware before you pick a routing policy.",
+      "Use this page when you are choosing between hosted Jev, a gateway, and a local replica. The listings document calibration studies, latency harnesses, and head-to-head tables, not chat leaderboards. Read the methodology, then open the author's scripts. Star counts are hints, not votes.",
   },
   {
     slug: "guides",

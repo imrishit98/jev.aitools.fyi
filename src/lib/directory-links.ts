@@ -82,6 +82,7 @@ export function linksForLayaGuide(slug: string): DirectoryLink[] {
   const self = `/learn/laya-vs-jev/${slug}`;
   return dedupe([
     { href: "/learn/laya-vs-jev", label: "Laya vs Jev hub" },
+    { href: "/alternatives", label: "Jev alternatives compared" },
     { href: "/learn/laya-vs-jev/compare", label: "Laya vs Jev compared" },
     { href: "/learn/system-one", label: "System One primer" },
     { href: "/learn/jev-typesafe", label: "What Jev is" },

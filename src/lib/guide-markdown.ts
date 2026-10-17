@@ -226,7 +226,13 @@ export function learnGuideMarkdown(slug: string): string | null {
   const path = `/learn/${slug}`;
   const updated = learnGuideDate(slug);
   const sections = guide.headings
-    .map((section) => `## ${plain(section.h)}\n\n${plain(section.body)}`)
+    .map((section) => {
+      const links = (section.links ?? [])
+        .map((link) => `- [${plain(link.label)}](${absoluteUrl(link.href)})`)
+        .join("\n");
+      const linked = links ? `\n\n${links}` : "";
+      return `## ${plain(section.h)}\n\n${plain(section.body)}${linked}`;
+    })
     .join("\n\n");
   const faq = guide.faq
     .map((entry) => `### ${plain(entry.question)}\n\n${plain(entry.answer)}`)
