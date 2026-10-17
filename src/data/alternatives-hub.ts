@@ -7,7 +7,7 @@ import {
   hfAdoption,
   hostedPricePerM,
 } from "@/data/alternatives-shared";
-import { alternativeSlugs, alternativePath } from "@/data/alternatives-slugs";
+import { alternativePath } from "@/data/alternatives-slugs";
 
 const hubSeoDescription =
   "Eleven Jev alternatives with dated facts: Laya, Cloudflare Clef, Kev, OpenAI Decisions API, Von, and more. Adoption, licenses, prices, benchmarks.";

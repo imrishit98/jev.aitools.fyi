@@ -14,8 +14,6 @@ import {
   jevDecisionIndex,
 } from "@/data/alternatives-shared";
 
-const TYPESAFE_API = "https://docs.typesafe.ai/api";
-const TYPESAFE_MODELS = "https://docs.typesafe.ai/models.md";
 const TYPESAFE_PRIVACY = "https://docs.typesafe.ai/privacy";
 const DI_JSON = alternativesMetrics.decisionIndex.sourceUrl;
 
@@ -192,8 +190,8 @@ function pathIsTypesafeRoot(u: URL): boolean {
 function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFact {
   const src = BY_SLUG[slug];
   const row = fact.row;
-  let sourceUrl = fact.sourceUrl;
-  let sourceLabel = fact.sourceLabel;
+  let sourceUrl: string;
+  let sourceLabel: string;
   let secondarySourceUrl: string | undefined;
   let secondarySourceLabel: string | undefined;
   let them = fact.them;
@@ -208,7 +206,6 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
   } else if (row === "License / access") {
     sourceUrl = src.license?.url ?? src.weights?.url ?? src.vendorHome;
     sourceLabel = src.license?.label ?? src.vendorLabel;
-    jev = jev;
     if (row.includes("License") && !src.license && !src.weights) {
       them = NOT_PUBLISHED_LABEL;
     }

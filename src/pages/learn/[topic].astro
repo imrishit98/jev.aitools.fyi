@@ -69,6 +69,18 @@ const definitionParagraphs = splitIntoParagraphs(guide.definition, 220);
             {bodyParagraphs.map((para) => (
               <p>{para}</p>
             ))}
+            {section.links && section.links.length > 0 && (
+              <p>
+                See{" "}
+                {section.links.map((link, index) => (
+                  <span>
+                    {index > 0 ? (index === section.links!.length - 1 ? " and " : ", ") : ""}
+                    <a href={link.href} class="text-primary hover:underline">{link.label}</a>
+                  </span>
+                ))}
+                .
+              </p>
+            )}
           </div>
         </section>
         );

@@ -47,9 +47,9 @@ export const layaVsJevHub = {
     "Run typed decisions on your own machine, or call hosted System One in the cloud. Same kind of question, very different homework.",
   seoTitle: "Laya vs Jev: open local decisions vs hosted System One",
   seoDescription:
-    "Compare Convai Laya (open checkpoints, local inference) with hosted Jev. Tradeoffs, latency caveats, benchmarks, Laya-MLX, and when to use both.",
+    "Also searched as Leya or Lyla. Compare Convai's open Laya checkpoints with hosted Jev: local GPUs, latency caveats, benchmarks, and when using both is sane.",
   intro:
-    "Laya is Convai's open-weight family of decision models. You ask Choice, Score, or Noul questions over structured state. One forward pass, no chat essay. TypeSafe Jev is the hosted System One API many teams already plug into agents, gateways, and moderation pipelines. Both help software make judgment calls. They differ in who hosts the GPU, what you can download, and how you pay. This hub is independent writing on jev.aitools.fyi. We are not TypeSafe or Convai. We link primary sources and say plainly when a vendor benchmark is not an independent audit.",
+    "Laya is Convai's open-weight family of decision models. You ask Choice, Score, or Noul questions over structured state. One forward pass, no chat essay. TypeSafe Jev is the hosted System One API many teams already plug into agents, gateways, and moderation pipelines. Both help software make judgment calls. They differ in who hosts the GPU, what you can download, and how you pay. This hub is independent writing on jev.aitools.fyi. We are not TypeSafe or Convai. We link primary sources and say plainly when a vendor benchmark is not an independent audit. Laya is also searched as Leya or Lyla.",
   faq: [
     {
       question: "Is Laya a drop-in replacement for Jev?",
@@ -113,11 +113,11 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
     title: "Laya vs Jev: open weights or a hosted API",
     tagline:
       "Same typed primitives, different deployment. Read this before you rip out a working Jev integration on a Friday afternoon.",
-    seoTitle: "Laya vs Jev: open weights or a hosted API",
+    seoTitle: "Laya vs Jev: open weights or a hosted API compared",
     seoDescription:
-      "Searching Jev vs Laya? Laya is open weights you run yourself. Jev is the hosted decision API. Latency, cost, privacy, and when using both is the sane move.",
+      "Laya, also searched as Leya or Lyla, is open weights you run. Jev is the hosted decision API. Compare latency, privacy, and when both belong in one stack.",
     keyPoint:
-      "Pick Laya when you need open weights on your own machines. Pick hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
+      "Neither is better at every job: pick Laya when you need open weights on your own machines, and hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
     sections: [
       {
         h: "What both products do",
@@ -160,6 +160,21 @@ const guides: Record<LayaVsJevGuideSlug, LayaVsJevGuide> = {
         question: "Which has better accuracy?",
         answer:
           "It depends on task, language, option count, and whether you fine-tune Laya. Public tables mix benchmarks. Jev leads on some high-cardinality sets while Laya's typed-decisions checkpoint leads on Convai's typed workflow eval. See benchmarks-and-fairness.",
+      },
+      {
+        question: "Is Leya or Lyla the same as Laya?",
+        answer:
+          "Yes. Leya and Lyla are spellings people type when they mean Laya, the open-weight decision models from Convai Innovations. They are not separate products, and the weights live on the convaiinnovations/laya Hugging Face repo.",
+      },
+      {
+        question: "Laya vs Jev: which is better?",
+        answer:
+          "Neither wins every job. Choose Laya when you need open weights on machines you run. Choose hosted Jev when you want a managed POST /v1/systemone API and gateway routing. Read benchmarks-and-fairness before you treat one public table as the winner.",
+      },
+      {
+        question: "Can I use both?",
+        answer:
+          "Yes. Teams often keep local Laya on high-volume filters and hosted Jev for escalation, audit-heavy workflows, or option sets they do not want to maintain weights for. The migration-and-coexistence guide in this hub walks through that split.",
       },
     ],
     relatedGuideSlugs: ["what-is-laya", "benchmarks-and-fairness", "migration-and-coexistence"],

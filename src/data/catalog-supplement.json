@@ -1233,7 +1233,7 @@
   {
     "slug": "jaredpalmer-kev",
     "title": "Kev",
-    "oneLiner": "Jared Palmer's open Jev-like Qwen decision models: System One-compatible serve, HF weights 0.8B to 27B, eval tables vs hosted Jev.",
+    "oneLiner": "Kev is for engineers who want open Jev-style decisions on GPUs they run. Jared Palmer's Apache-2.0 family (github.com/jaredpalmer/kev) serves Choice, Score, and Noul from Qwen checkpoints at 0.8B, 4B, 9B, and 27B, with README eval tables against hosted Jev.",
     "description": "Kev (github.com/jaredpalmer/kev, Apache-2.0) trains and serves Choice, Score, and Noul on Qwen3.5 and Qwen3.8 with TypeSafe SDK drop-in against kev.serve. HF Spaces demo, frozen eval suites, Modal fine-tune skill. Not kevthetech143-super-jev.",
     "category": "integrations",
     "tags": ["integrations", "open-source", "self-hosted", "qwen"],
@@ -1545,7 +1545,7 @@
   {
     "slug": "langchain-ai-langchain-typesafe",
     "title": "langchain-typesafe",
-    "oneLiner": "Official LangChain Runnable for TypeSafeClassifier plus experimental ModelRouterMiddleware and AutoModeMiddleware on System One.",
+    "oneLiner": "langchain-typesafe is for Python teams already on LangChain who want TypeSafe Jev inside the agent graph. TypeSafeClassifier batches Choice, Score, and Noul in one call, and the experimental extra adds middleware that picks a model tier and gates risky tools.",
     "description": "langchain-typesafe (PyPI langchain-typesafe, code in github.com/langchain-ai/langchain) wraps Choice, Score, and Noul as TypeSafeClassifier with message-as-state, parallel questions, and LangChain model-error inheritance. Install with uv add langchain-typesafe; set TYPESAFE_API_KEY. Experimental extra ships ModelRouterMiddleware for once-per-run model pick and AutoModeMiddleware for pre-tool risk gates. MIT. LangChain blog and docs cover harness patterns; this listing tracks the integration package only.",
     "category": "sdks",
     "tags": ["sdks", "langchain", "python", "middleware", "integrations"],
@@ -1615,7 +1615,7 @@
   {
     "slug": "dzhng-jevgrep",
     "title": "jevgrep",
-    "oneLiner": "npm @dzhng/jevgrep (`jg`): coding-agent CLI for hierarchical semantic repo search with Jev relevance, verbatim excerpts, and `jg skill` installer.",
+    "oneLiner": "jevgrep is for coding agents that need repo search, not another line grep. The jg CLI from dzhng/jevgrep uses Jev to walk folders, files, and declarations, then prints verbatim excerpts. A README eval on 10 Python SWE-bench tasks kept 8 of 10 solves and measured lower total agent cost than search without it.",
     "description": "jevgrep (github.com/dzhng/jevgrep, MIT, Node 22+) asks a natural-language repo question; `jg` walks folders, files, and declarations, returns reading leads and source excerpts on stdout. Auth via jg auth for Vercel AI Gateway, TypeSafe, OpenRouter, or OpenCode Zen (provider pick needs package >=0.3.0). README evals on 10 Python SWE-bench tasks: 8/10 solved with or without Jevgrep; Sol-only cost about $7.62 to $5.44 (~28.6%); total-cost rerun with Jev measured 25.8% lower, still 8/10. Distinct from uehaj-jev-semgrep line filters and sufianetaouil-every per-function scoring.",
     "category": "agent-tooling",
     "tags": ["agent-tooling", "cli", "code-search", "coding-agent", "semantic-search"],

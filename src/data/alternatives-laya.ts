@@ -13,9 +13,9 @@ import {
 /** Laya positioned as a Jev alternative for the compare guide upgrade path. */
 export function layaCompareAsAlternative(): Alternative {
   const slug = "laya";
-  const compareSeoTitle = "Laya vs Jev: open weights or a hosted API";
+  const compareSeoTitle = "Laya vs Jev: open weights or a hosted API compared";
   const compareSeoDescription =
-    "Searching Jev vs Laya? Laya is open weights you run yourself. Jev is the hosted decision API. Latency, cost, privacy, and when using both is the sane move.";
+    "Laya, also searched as Leya or Lyla, is open weights you run. Jev is the hosted decision API. Compare latency, privacy, and when both belong in one stack.";
 
   return {
     slug,
@@ -24,9 +24,9 @@ export function layaCompareAsAlternative(): Alternative {
     seoDescription: compareSeoDescription,
     h1: "Laya vs Jev: open weights or a hosted API",
     keyPoint:
-      "Pick Laya when you need open weights on your own machines. Pick hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
+      "Neither is better at every job: pick Laya when you need open weights on your own machines, and hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
     summary:
-      "Convai Laya is an Apache 2.0 decision model family you download and run locally with the laya Python Router. TypeSafe Jev is the hosted System One API many agents already call through gateways. Both answer Choice, Score, and Noul style questions in one forward pass instead of generating chat prose. Laya wins evaluations driven by privacy, fine-tuning, and local latency when you own GPUs. Jev wins when you want supported HTTP, predictable billing, and large option sets without tuning head budgets yourself.",
+      "Convai Laya is an Apache 2.0 decision model family you download and run locally with the laya Python Router. TypeSafe Jev is the hosted System One API many agents already call through gateways. Both answer Choice, Score, and Noul style questions in one forward pass instead of generating chat prose. Laya wins evaluations driven by privacy, fine-tuning, and local latency when you own GPUs. Jev wins when you want supported HTTP, predictable billing, and large option sets without tuning head budgets yourself. Laya is also searched as Leya or Lyla.",
     lastVerified: alternativesLastVerified,
     listingSlug: undefined,
     ecosystemSlugs: ["receptron-laya", "mizorewww-laya-mlx"],
@@ -201,6 +201,21 @@ result = router.decide(state, questions=laya_questions)`,
         question: "Does this page replace the Laya vs Jev compare guide?",
         answer:
           "No. This Alternative object powers structured compare upgrades. The long-form guide remains at /learn/laya-vs-jev/compare.",
+      },
+      {
+        question: "Is Leya or Lyla the same as Laya?",
+        answer:
+          "Yes. Leya and Lyla are spellings people type when they mean Laya, the open-weight decision models from Convai Innovations. They are not separate products, and the weights live on the convaiinnovations/laya Hugging Face repo.",
+      },
+      {
+        question: "Laya vs Jev: which is better?",
+        answer:
+          "Neither wins every job. Choose Laya when you need open weights on machines you run. Choose hosted Jev when you want a managed POST /v1/systemone API and gateway routing. Read benchmarks-and-fairness before you treat one public table as the winner.",
+      },
+      {
+        question: "Can I use both?",
+        answer:
+          "Yes. Teams often keep local Laya on high-volume filters and hosted Jev for escalation, audit-heavy workflows, or option sets they do not want to maintain weights for. The migration-and-coexistence guide in this hub walks through that split.",
       },
     ],
     sources: [
