@@ -13119,4 +13119,136 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "feder-cr/jev jevos-v4 binary serves POST /v1/systemone on CPU, 28 to 130 ms on README laptop table. HF weights, wiki, Loris Salsi co-maintainer.",
   },
+
+  "disler-pi-durable-news-agent": {
+    slug: "disler-pi-durable-news-agent",
+    status: "published",
+    problem:
+      "Agent news is a firehose of launches, benchmarks, and threads, and a chat assistant only helps after you remember to ask and read what comes back.",
+    targetUser:
+      "Engineers who want an always-on news desk on a Mac, Mac mini, Linux box, or exe.dev VM, with Jev judging every item before it becomes a card.",
+    overview:
+      "Pi Durable News Agent (github.com/disler/pi-durable-news-agent, MIT) from IndyDevDan (disler) is a proactive news agent built on pi-durable. Every few minutes a cron tick can wake a durable sweep: it checks 28 sources (news feeds, Hacker News, GitHub releases, benchmark blogs), searches the last 7 days for 15 weighted topics, and drops anything older than 14 days. Jev runs at every gate for relevance and worth-attention, same-story dedupe, importance ranking (top 7 per sweep by default, 1 to 30 configurable), claim-support during research, and hfs scores for Hype, Facts, and Signal together because real items mix labels. Up to four news-researcher subagents read the strongest hits. The agent presents cards from a fixed component catalog, then waits. State lives in SQLite with checkpoints; a killed server resumes and pays Jev once per item. Browser (Vue 3), TUI, and CLI are clients over one API with 26 capabilities. Walkthrough: https://youtu.be/OLqP8jxJ0Wc?ref=jev.aitools.fyi. Public counts were 89 stars and 28 forks on 2026-10-21.",
+    creator: {
+      name: "IndyDevDan",
+      handle: "disler",
+      githubUrl: "https://github.com/disler",
+      company: "IndyDevDan",
+      companyUrl: "https://www.youtube.com/@indydevdan?ref=jev.aitools.fyi",
+    },
+    creatorQuote: {
+      text:
+        "This agent does not wait for you to work. It works for you, then waits, then keeps working.",
+      attributedTo: "pi-durable-news-agent README",
+      sourceUrl: "https://github.com/disler/pi-durable-news-agent/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Cheap judge at every sweep gate: relevance, worth-attention, same-story dedupe, importance rank, claim-support, and hfs Hype/Facts/Signal scoring on excerpts plus page text",
+      primitives: ["Score", "Noul"],
+      stateIn:
+        "Feed items, scraped page text, story cards, and command-specific rubrics in apps/dna-server-api/prompt_engineering/jev/*/command.json (relevance, worth-attention, importance, hfs, same-story, claim-support).",
+      decisionOut:
+        "Filtered and ranked stories, merged coverage on duplicate narratives, top N cards per sweep, per-card Hype/Facts/Signal scores, and research findings from subagents.",
+      flowSteps: [
+        "dna-server-cron POST /v1/workflows/news-sweep on schedule (default every 5 minutes, 1 to 60 or off)",
+        "dna.news-sweep durable task gathers due sources, weighted topic search over 7 days, nothing older than 14 days",
+        "Jev relevance and worth-attention on each new item; same-story dedupe; importance picks top 7 (1 to 30 configurable)",
+        "Up to four news-researcher subagents with claim-support; jev hfs scores excerpt plus page text",
+        "present_news and present_timeline pick UI components; feedback labels become few-shot examples for the next sweep",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README sweep table: 28 sources; 15 topics by weight over the last 7 days; nothing older than 14 days; default top 7 cards per sweep (1 to 30); up to 4 research subagents.",
+          source: "github.com/disler/pi-durable-news-agent README How a sweep works",
+        },
+        {
+          claim:
+            "README cost table (OpenRouter Claude Haiku 5.5, free web search): first sweep about $0.32 and 7 minutes with about 3,000 jev reads; later sweeps with news about $0.0065; empty sweeps about $0.003; jev about $0.00004 per call.",
+          source: "github.com/disler/pi-durable-news-agent README What a sweep costs",
+        },
+        {
+          claim:
+            "README durability: recovery.test.ts SIGKILLs the server mid jev gate; restart resumes at the last chunk, pays jev once per item, presents each card once.",
+          source: "github.com/disler/pi-durable-news-agent README Durability",
+        },
+        {
+          claim:
+            "README clients: dna-sdk lists 26 capabilities; browser Vue 3 on port 4851, API on 4850; tests fail if any client misses a capability.",
+          source: "github.com/disler/pi-durable-news-agent README Three clients, one API",
+        },
+        {
+          claim:
+            "Public GitHub repo disler/pi-durable-news-agent had 89 stars and 28 forks on 2026-10-21. MIT license. Created 2026-10-18.",
+          source: "GitHub API, 2026-10-21",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is a near-the-loop news desk, not a search MCP and not a weekday arXiv Actions job. eliot5566-jev-paper-radar scores papers you fork into radar.toml and publishes digests; pi-durable-news-agent runs continuously on hardware you control with cron, SQLite checkpoints, and generative UI cards. superagents-lab-jev-search plans Search1API queries inside a Cloudflare Worker. hyperspaceai-jevcache caches Jev decisions for agent tool loops. disler-ten-levels-of-jev teaches Jev calls in a Vue lab; this repo is production-shaped agentic engineering with durable tasks, subagents, and taste feedback (Show me more or less, Hype, Facts, Signal labels). Jev commands live as JSON under prompt_engineering/jev/. Free search chains can rate limit; README says the first sweep is expensive and the model can still choose badly. Cite github.com/disler/pi-durable-news-agent README and https://youtu.be/OLqP8jxJ0Wc?ref=jev.aitools.fyi.",
+    keyFeatures: [
+      "Cron-driven proactive sweeps with pi-durable checkpointed phases",
+      "28 sources plus weighted topic search; default 7 cards per sweep",
+      "Jev hfs scores Hype, Facts, and Signal on excerpt plus page text",
+      "Vue browser, pi-tui, and dna CLI over 26 shared API capabilities",
+      "Deploy local Mac, ssh Mac mini, Linux systemd, or exe.dev VM",
+      "Show me more or less and H/F/S labels feed few-shot examples",
+      "recovery.test.ts SIGKILL mid gate; live restart.mjs mid sweep",
+    ],
+    stack: [
+      "TypeScript",
+      "Node 24",
+      "pi-durable and durable-agent package",
+      "Vue 3 and Vite UI",
+      "SQLite agent.sqlite and dna.sqlite",
+      "OpenRouter (README cost measurements)",
+      "MIT",
+    ],
+    links: {
+      repo: "https://github.com/disler/pi-durable-news-agent",
+      docs: "https://github.com/disler/pi-durable-news-agent/blob/main/README.md",
+      website: "https://youtu.be/OLqP8jxJ0Wc",
+    },
+    pricingNote:
+      "MIT code. README measured costs use OpenRouter with Claude Haiku 5.5: about $0.32 for the first sweep, about $0.0065 when news arrives later, about $0.003 on empty sweeps, jev about $0.00004 per call. Optional OpenAI images about $0.005 each. Search is free by default (Bing News, Google News, Hacker News, feeds).",
+    firstSeen: "2026-10-21",
+    relatedSlugs: [
+      "disler-ten-levels-of-jev",
+      "eliot5566-jev-paper-radar",
+      "hyperspaceai-jevcache",
+      "superagents-lab-jev-search",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-typesafe"],
+    faq: [
+      {
+        question: "How is this different from JEV Paper Radar?",
+        answer:
+          "Paper Radar is a forkable weekday arXiv and RSS digest with GitHub Actions. Pi Durable News Agent is an always-on pi-durable server with cron sweeps, SQLite checkpoints, browser and TUI clients, and continuous Hype, Facts, and Signal scoring on a mixed source list.",
+      },
+      {
+        question: "What does hfs mean on each card?",
+        answer:
+          "README Hype, Facts and Signal table: Hype is attention without substance, Facts are objectively true statements, Signal is information you can act on. The hfs command scores all three because items can mix labels; it uses Jev's score type, not choice.",
+      },
+      {
+        question: "What schedule does the agent use?",
+        answer:
+          "README default is every 5 minutes (1 to 60 or off) from the top bar, CLI, or agent. dna-server-cron fires a one minute tick; the schedule decides which ticks start a sweep.",
+      },
+      {
+        question: "What happens if the server crashes mid sweep?",
+        answer:
+          "README Durability: state is in SQLite; recovery.test.ts SIGKILLs during the jev gate and the restarted server resumes at the last chunk, pays jev once per item, and presents each card once.",
+      },
+      {
+        question: "What are the honest limits?",
+        answer:
+          "README Where it can still fail: free search is rate limited, the first sweep reads thousands of items and costs more, and component rules plus taste questions do not make the model infallible.",
+      },
+    ],
+    metaTitle: "Pi Durable News Agent: proactive Jev filter",
+    metaDescription:
+      "disler/pi-durable-news-agent cron sweeps 28 sources, Jev hfs scores Hype Facts Signal, SQLite checkpoints. Vue TUI CLI. README ~$0.32 first sweep. 89 stars.",
+  },
 };

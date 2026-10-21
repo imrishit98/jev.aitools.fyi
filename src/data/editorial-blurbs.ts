@@ -289,6 +289,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Jeva is the paper-backed answer when you want System One structure baked in: options encoded once, nulls explicit, sets can grow, and LIQIIIII/Jeva-4B runs the whole Choice, Noul, and Score menu locally.",
   "feder-cr-jevos":
     "Download one CPU binary, unzip the int8 model, curl POST /v1/systemone. jevos keeps the Jev wire shape while README tables brag about millisecond-class latency next to cloud Jev on a laptop chip.",
+  "disler-pi-durable-news-agent":
+    "Stop refreshing feeds yourself. This agent wakes on cron, reads thousands of headlines so you do not have to, and lets Jev throw out hype before a card ever hits your browser. Crash mid gate and it picks up from SQLite like nothing happened.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {

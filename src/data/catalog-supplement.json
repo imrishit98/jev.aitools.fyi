@@ -2356,6 +2356,24 @@
     "updatedAt": "2026-10-15"
   },
   {
+    "slug": "disler-pi-durable-news-agent",
+    "title": "Pi Durable News Agent",
+    "oneLiner": "Proactive pi-durable news desk: cron sweeps 28 sources, Jev gates relevance and Hype/Facts/Signal, Vue browser plus TUI and CLI over one API.",
+    "description": "Pi Durable News Agent (github.com/disler/pi-durable-news-agent, MIT) from IndyDevDan is a proactive news agent on pi-durable. A cron tick wakes a durable sweep that reads 28 sources, weighted topics over the last 7 days, and Jev at every gate: relevance, dedupe, importance (top 7 cards by default), claim checks, and hfs scoring. State checkpoints in SQLite; browser, TUI, and CLI share 26 API capabilities. Distinct from eliot5566-jev-paper-radar weekday arXiv digests and superagents-lab-jev-search query planning.",
+    "category": "agent-tooling",
+    "tags": ["agent-tooling", "proactive-agent", "news", "pi-durable", "typescript"],
+    "language": "TypeScript",
+    "stars": 89,
+    "url": "https://github.com/disler/pi-durable-news-agent",
+    "repoUrl": "https://github.com/disler/pi-durable-news-agent",
+    "demoUrl": "https://youtu.be/OLqP8jxJ0Wc",
+    "creatorHandle": "disler",
+    "creatorName": "IndyDevDan",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-10-21"
+  },
+  {
     "slug": "nandhakishorm-laya",
     "title": "Laya (upstream)",
     "oneLiner": "Convai Innovations open decision stack: Apache-2.0 ModernBERT checkpoints, Router mode, and the upstream Python SDK.",
