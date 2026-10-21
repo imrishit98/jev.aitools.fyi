@@ -13119,4 +13119,359 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "feder-cr/jev jevos-v4 binary serves POST /v1/systemone on CPU, 28 to 130 ms on README laptop table. HF weights, wiki, Loris Salsi co-maintainer.",
   },
+
+  "mcg-nju-videojev": {
+    slug: "mcg-nju-videojev",
+    status: "published",
+    problem:
+      "Video agents need when something happened and which option is right without paying for long autoregressive answers on every query over the same footage.",
+    targetUser:
+      "Researchers and engineers with NVIDIA GPUs who will run ZhuYuhan/VideoJev-4B or VideoJev-35B-A3B locally, read arXiv 2610.18615, and fine-tune on custom JSONL via XTuner.",
+    overview:
+      "VideoJev (github.com/MCG-NJU/VideoJev, Apache 2.0, arXiv:2610.18615) from Yuhan Zhu, Xiangyu Zeng, and colleagues at MCG, Nanjing University, is a System One family for video. It adapts Qwen3.5-4B and Qwen3.6-35B-A3B multimodal backbones by replacing answer decoding with a shared head that scores temporal interval candidates and multiple-choice options against the same video evidence, with no text generation on the task outputs. Hugging Face ships BF16 VideoJev-4B and VideoJev-35B-A3B; the project page is mcg-nju.github.io/VideoJev and ModelScope hosts a VideoJev-4B studio demo. predict_video returns per-second sigmoid probabilities plus a contiguous interval for grounding (default threshold 0.25) and softmax probabilities with answer_index for QA. Training is two stages (head warmup, then joint) with vision frozen per README tables.",
+    creator: {
+      name: "Yuhan Zhu",
+      handle: "MCG-NJU",
+      githubUrl: "https://github.com/MCG-NJU",
+      company: "MCG, Nanjing University",
+    },
+    jevUsage: {
+      flowRole:
+        "Direct candidate scoring over video state: sigmoid membership on timestamp intervals for grounding and softmax Choice over answer strings for QA, with cached or joint multi-query inference",
+      primitives: ["Choice", "Score"],
+      stateIn:
+        "Video tensor or path plus task questions: grounding query strings or choice tasks with explicit options list per README predict_video example.",
+      decisionOut:
+        "Grounding: probabilities array and interval in seconds; QA: probabilities, zero-based answer_index, and answer text. Joint inference batches queries on one forward pass.",
+      flowSteps: [
+        "Install Python 3.12, PyTorch 2.8, CUDA 12.8, FlashAttention 2 per requirements.txt and scripts/env.sh",
+        "Load ZhuYuhan/VideoJev-4B or VideoJev-35B-A3B with AutoModel and AutoProcessor, trust_remote_code",
+        "model.prepare_for_inference() then predict_video with fps, max_frames, and context limits",
+        "Optional XTuner two-stage train: head_only then joint with init-head checkpoint",
+        "Evaluate with scripts/evaluate_hf.py on official benchmarks under data/benchmarks",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README Overview: temporal grounding and multiple-choice video QA through direct candidate scoring, without text generation.",
+          source: "github.com/MCG-NJU/VideoJev README",
+        },
+        {
+          claim:
+            "README Results section labels leaderboard tables as of 2026-10-17 for temporal grounding and video question answering benchmarks.",
+          source: "github.com/MCG-NJU/VideoJev README Results",
+        },
+        {
+          claim:
+            "arXiv 2610.18615 Table 1 narrative: VideoJev-4B reaches 65.3 mean grounding mIoU; VideoJev-35B-A3B reaches 67.7 mean mIoU and both sizes lead reported open-source grounding metrics in the paper tables with about 2.8 to 3.1x measured speedups versus generative Qwen backbones on Charades.",
+          source: "arXiv:2610.18615",
+        },
+        {
+          claim:
+            "Public GitHub repo MCG-NJU/VideoJev had 165 stars and 7 forks as of October 18, 2026; created 2026-10-08.",
+          source: "GitHub API, 2026-10-18",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "VideoJev is an open research video decision stack, not the hosted api.typesafe.ai product. liqiiiii-jeva and yinsongxu-llm2jev document text-first System One training and HTTP serve paths; VideoJev is the MCG paper line for long-video grounding and multiple-choice QA with public VLM checkpoints. liuziyu77-valen trains another multimodal decision head; VideoJev publishes TimeLens-trained weights and evaluation scripts instead. deepaleph-jevreel spends TypeSafe Jev on contact-sheet screening for agent search; VideoJev scores intervals inside the model. This directory does not claim TypeSafe affiliation for VideoJev. Cite github.com/MCG-NJU/VideoJev README, docs/DATA.md, docs/EVALUATION.md, and arXiv:2610.18615 only.",
+    keyFeatures: [
+      "VideoJev-4B on Qwen3.5-4B and VideoJev-35B-A3B on Qwen3.6-35B-A3B BF16 checkpoints",
+      "predict_video grounding with configurable threshold and QA softmax over listed options",
+      "Cached and joint multi-query inference documented in paper Figure 1 and README architecture figure",
+      "XTuner training pipeline with head warmup then joint stage; vision encoder frozen",
+      "ModelScope studio demo and Hugging Face ZhuYuhan/VideoJev-Demo sample video",
+      "pytest suite under tests with VIDEOJEV_TEST_MODEL optional tokenizer checks",
+    ],
+    stack: [
+      "Python 3.12",
+      "PyTorch 2.8",
+      "CUDA 12.8",
+      "FlashAttention 2",
+      "XTuner for training",
+      "Hugging Face Hub",
+    ],
+    links: {
+      repo: "https://github.com/MCG-NJU/VideoJev",
+      docs: "https://github.com/MCG-NJU/VideoJev/blob/main/docs/EVALUATION.md",
+      website: "https://mcg-nju.github.io/VideoJev",
+    },
+    pricingNote:
+      "Apache 2.0 code and public weights; you pay for GPUs, electricity, and Hugging Face bandwidth. No TypeSafe API required for local inference.",
+    firstSeen: "2026-10-18",
+    relatedSlugs: [
+      "liqiiiii-jeva",
+      "yinsongxu-llm2jev",
+      "liuziyu77-valen",
+      "deepaleph-jevreel",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is VideoJev affiliated with TypeSafe?",
+        answer:
+          "No. VideoJev is an independent MCG research release with its own GitHub repo, Hugging Face weights, and arXiv paper. It uses a System One style decision head on Qwen VLMs; it is not the hosted TypeSafe Jev API.",
+      },
+      {
+        question: "Which checkpoint should I start with?",
+        answer:
+          "README quick start uses ZhuYuhan/VideoJev-4B with predict_video at fps 2.0, max_frames 2048, context 8192. Swap the repo id to ZhuYuhan/VideoJev-35B-A3B for the larger MoE model.",
+      },
+      {
+        question: "How does grounding output work?",
+        answer:
+          "README inference output: per-second sigmoid probabilities, an interval in seconds, default threshold 0.25 on predict_video. QA uses softmax over provided options with answer_index zero-based.",
+      },
+      {
+        question: "What hardware does training need?",
+        answer:
+          "README training launch examples use torchrun with eight GPUs; 35B-A3B needs scripts/train_qwen36.py and grouped-GEMM extensions per environment notes. Evaluation QA uses up to 256K context per docs/EVALUATION.md.",
+      },
+      {
+        question: "Where is the paper?",
+        answer:
+          "README citation lists arXiv:2610.18615, VideoJev: System One Model for Video Understanding and Interaction, Zhu et al., 2026.",
+      },
+    ],
+    metaTitle: "VideoJev: System One video grounding and QA (MCG-NJU)",
+    metaDescription:
+      "MCG-NJU VideoJev 4B and 35B-A3B score time intervals and MCQ options on video without generation. arXiv 2610.18615, HF weights, ModelScope demo.",
+  },
+
+  "openlayer-ai-jevals": {
+    slug: "openlayer-ai-jevals",
+    status: "published",
+    problem:
+      "Teams sample agent and RAG evals because LLM judges need many slow, pricey completions per trace, so production gates drift from offline metrics.",
+    targetUser:
+      "Python engineers shipping agents or RAG who want one calibrated Jev request per trace, optional YAML gates in the request path, and Ragas-named quality metrics without six to eleven LLM round trips per row.",
+    overview:
+      "jevals (github.com/openlayer-ai/jevals, PyPI jevals, MIT) from Openlayer is an eval and guardrail library that packs many checks into one System One request per trace. You pass OpenAI-style messages plus tool schemas; each eval class builds a state blob and typed Noul, Choice, or Score questions, then reduce() turns probabilities into pass scores. evaluate() is synchronous; aevaluate(), Gate.check(), and host integrations cover async loops. Backends resolve from TYPESAFE_API_KEY, AI_GATEWAY_API_KEY, KEV_BASE_URL, EIKOS_BASE_URL, JEVALS_BACKEND=laya, or OpenRouter decision models. README quickstart on examples/quickstart.py reports 1 request, 1,388 tokens, $0.00006, and 0.33s for eight evals on a weather trace.",
+    creator: {
+      name: "Openlayer",
+      handle: "openlayer-ai",
+      githubUrl: "https://github.com/openlayer-ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Merge eval states and question maps from many eval classes into one backend request; plain code handles splits, tool matching, and Presidio or regex entity passes before Jev questions",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Trace dict with messages and optional tools; per-eval state() extracts evidence, claims, tool_call, or retrieved chunks.",
+      decisionOut:
+        "Per-eval Result with scores, pass flags, and evidence strings; Gate policies map to allow, escalate, or block with Decision reasons.",
+      flowSteps: [
+        "pip install jevals plus optional [pii], [mcp], [laya], or framework extras",
+        "evaluate(sample, [ToolChoice(), Grounded(), AnswerRelevancy(), ...])",
+        "Backend packs parallel questions; retries on 429 and 5xx with backoff",
+        "jevals run traces.jsonl for dataset means and --show-failures",
+        "jevals calibrate fits thresholds to your labels; jevals bench --ragas compares Ragas",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README top example: 1 request, 1,388 tokens, $0.00006, 0.33s for eight evals on the quickstart trace.",
+          source: "github.com/openlayer-ai/jevals README",
+        },
+        {
+          claim:
+            "README jevals bench --ragas table September 2026, jevals 0.1.4, 20 rows: Ragas gpt-4.1-mini about 6.0 LLM calls plus embeddings per sample, $2.60 per 1k samples, 22 to 35s wall; jevals with Jev 1.0 request, $0.03 per 1k samples, 0.8s; measured verdict agreement across rows.",
+          source: "github.com/openlayer-ai/jevals README Numbers",
+        },
+        {
+          claim:
+            "README: Jev measured p50 244ms and p95 371ms per request through Vercel AI Gateway; pricing cited at $0.042 per million input tokens with no output billing.",
+          source: "github.com/openlayer-ai/jevals README What changed",
+        },
+        {
+          claim:
+            "README accuracy section: JevBench puts Jev around smallest LLM accuracy on Banking77 and CLINC150 (83 to 87%) with task-dependent calibration; jevals calibrate fits deploy thresholds.",
+          source: "github.com/openlayer-ai/jevals README On accuracy",
+        },
+        {
+          claim:
+            "Public GitHub repo openlayer-ai/jevals had 105 stars and 11 forks as of October 18, 2026.",
+          source: "GitHub API, 2026-10-18",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevals is the library layer for trace scoring and gates, not a demo courtroom or a single-host hook. kylejeong-jev-as-judge is a legal what-if web app; leepokai-jev-guard risk-scores every coding-agent tool call and scans results for injection. jevals reuses the same eval class offline, in monitoring, and inside Gate.check() before refunds or SQL run. jaredpalmer-kev and receptron-laya are backends you point at with KEV_BASE_URL or JEVALS_BACKEND=laya; jkudish-jev-mcp exposes generic MCP judgment tools without packaged Ragas metrics. README is explicit that decision models trail frontier LLMs on some classification sets, so calibrate and route hard rows to llm: backends when docstrings say so.",
+    keyFeatures: [
+      "Agent evals: ToolChoice, UsedToolResult, Grounded, StayedInScope, LoopDetection, ToolCallRisk, and more",
+      "Quality: Faithfulness, AnswerRelevancy, ContextPrecision, ContextRecall, Hallucination, Correctness, Completeness",
+      "Security: IndirectInjection, PHI with Presidio optional, PromptInjection, SecretsExposure, and related gates",
+      "YAML Gate definitions with allow_if, block_if, escalate policies and framework hooks",
+      "jevals bench --ragas, jevals run, jevals calibrate, and optional MCP server extra",
+      "Backend matrix: TypeSafe, Vercel gateway, OpenRouter decision models, Kev, Laya, Eikos, emulated chat LLM",
+    ],
+    stack: [
+      "Python 3.10+",
+      "PyPI jevals",
+      "TypeSafe or Vercel AI Gateway Jev",
+      "Optional Presidio for PII and PHI",
+    ],
+    links: {
+      repo: "https://github.com/openlayer-ai/jevals",
+      docs: "https://github.com/openlayer-ai/jevals#readme",
+      website: "https://github.com/openlayer-ai/jevals",
+    },
+    pricingNote:
+      "MIT library; Jev bills per README gateway or api.typesafe.ai input pricing. Local Kev, Laya, or Eikos rows in the bench table show $0 token cost with your own hardware.",
+    firstSeen: "2026-10-18",
+    relatedSlugs: [
+      "leepokai-jev-guard",
+      "kylejeong-jev-as-judge",
+      "jaredpalmer-kev",
+      "receptron-laya",
+      "jkudish-jev-mcp",
+    ],
+    relatedLearnSlugs: ["jev-vs-llm-classification", "system-one"],
+    faq: [
+      {
+        question: "How is jevals different from Ragas?",
+        answer:
+          "README Numbers table: Ragas faithfulness and relevancy metrics need multiple gpt-4.1-mini calls plus embeddings per sample; jevals rebuilds the same metric names with typed Jev questions in one request per trace.",
+      },
+      {
+        question: "Can I run evals without a TypeSafe account?",
+        answer:
+          "README backends table: AI_GATEWAY_API_KEY routes Jev through Vercel AI Gateway; KEV_BASE_URL, EIKOS_BASE_URL, JEVALS_BACKEND=laya, or OpenRouter decision models are supported. Chat LLM emulation works but README warns probabilities collapse toward 0 or 1.",
+      },
+      {
+        question: "Does jevals replace jev-guard?",
+        answer:
+          "No. jev-guard hooks coding agents at tool boundaries. jevals defines metrics and optional Gate policies you can call yourself or wire into OpenAI Agents, LangGraph, or your loop.",
+      },
+      {
+        question: "What about accuracy versus an LLM judge?",
+        answer:
+          "README cites JevBench Banking77 and CLINC150 ranges and recommends jevals calibrate on your labels. It also notes LangChain agent eval agreement on five traces; treat broad classification as a known limitation.",
+      },
+      {
+        question: "Where do I start?",
+        answer:
+          "pip install jevals, set AI_GATEWAY_API_KEY or TYPESAFE_API_KEY, then run examples/quickstart.py or the README weather agent block with evaluate().",
+      },
+    ],
+    metaTitle: "jevals: one-request Jev agent and RAG evals (Openlayer)",
+    metaDescription:
+      "openlayer-ai/jevals PyPI library packs agent, RAG, and security evals into one Jev call per trace. README bench vs Ragas; gates and calibrate CLI.",
+  },
+
+  "deepaleph-jevreel": {
+    slug: "deepaleph-jevreel",
+    status: "published",
+    problem:
+      "Agents asked to find a second in a long video either build embedding indexes or burn vision tokens on every frame, with weak probabilities for gating.",
+    targetUser:
+      "Claude Code, Codex, Cursor, or other MCP clients that need searchable video libraries on disk with timestamps, probabilities, zoom frames, and honest cost tables using a TypeSafe API key.",
+    overview:
+      "jevreel (github.com/DeepAleph/jevreel, MIT, Python 3.11+) from DeepAleph is a video intelligence MCP server and CLI with zero stored embeddings. ffmpeg samples at 1 fps, tiles up to sixty labelled frames per 1568 px contact sheet (one minute per sheet), and sends one Jev request per sheet combining a Noul for whether the moment appears in that minute and a Choice over tile IDs for which second. Top-ranked windows are verified on full-resolution frames every 0.5 s; hits return time, probability, nearby speech, and optional zoom or Box locate tools. README documents ten MCP tools, lens TOML for per-minute typed columns, and five unedited Claude Code sessions on Blender Tears of Steel, including a juice box at 2:28.5 with p 0.95 for 19 requests and $0.0054. README states embeddings win for repeated library-wide search; jevreel targets ad hoc questions at about $0.02 to $0.03 per hour of video screened.",
+    creator: {
+      name: "DeepAleph",
+      handle: "DeepAleph",
+      githubUrl: "https://github.com/DeepAleph",
+    },
+    jevUsage: {
+      flowRole:
+        "Parallel per-sheet screening with Noul plus Choice on labelled tiles, then ranked-window verification with per-frame Noul on full frames; optional Box locate and whole-video storyboard Choice",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Contact sheet images with T01 style labels, transcript or caption text, reference photos for find_in_video, and user question strings; lenses add typed question maps per minute.",
+      decisionOut:
+        "Hits with seconds, probabilities, and frames; timeline rows filterable via query without extra requests; locate returns cropped boxes when edges pass Noul checks.",
+      flowSteps: [
+        "uv tool install jevreel[all] with FFmpeg and TYPESAFE_API_KEY",
+        "jevreel index on file or URL builds sheets, transcript, and default timeline questions",
+        "ask_video screens sheets in parallel, verifies top JEVREEL_VERIFY_TOP windows (default 6)",
+        "zoom_video, locate_in_frame, ask_whole_video, and lens tools for follow-up",
+        "MCP server via jevreel mcp or Claude/Codex plugins documented in README",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README demo table on Tears of Steel: juice box question found 2:28.5 at p 0.95 with 19 Jev requests and $0.0054; newspaper headline read at 1:20.5 for 8 requests and $0.0024.",
+          source: "github.com/DeepAleph/jevreel README See it work",
+        },
+        {
+          claim:
+            "README cost section measured 2026-10-15 on jev-1.14.0 at $0.042 per million input tokens: one ask screened and verified about 13 to 15 requests and $0.004 to $0.005 on a 10-minute 1080p clip; about $0.02 to $0.03 per hour of video for one question.",
+          source: "github.com/DeepAleph/jevreel README What it costs",
+        },
+        {
+          claim:
+            "README configuration: default JEVREEL_MODEL jev-1.14.0, JEVREEL_FPS 1, JEVREEL_TILES_PER_SHEET 60, verification every 0.5 s in top-ranked windows.",
+          source: "github.com/DeepAleph/jevreel README How it works",
+        },
+        {
+          claim:
+            "Public GitHub repo DeepAleph/jevreel had 31 stars and 3 forks as of October 18, 2026; created 2026-10-15 with CI workflow badge.",
+          source: "GitHub API, 2026-10-18",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevreel spends hosted TypeSafe Jev on sheet screening and verification, not on open weights. mcg-nju-videojev trains VideoJev checkpoints that score intervals inside the model; jevreel is an agent tool that keeps vectors out entirely. rayenmlayeh-jevcrawl walks HTML sites with passage scoring; jevreel is for local or URL video files. trungdq88-youtube-sponsor-detection is a Chrome extension that gates sponsor segments in the player; jevreel returns timestamps to your agent for arbitrary questions. jkudish-jev-mcp offers generic rerank and verify tools without ffmpeg indexing. README notes suhailkhalid/framefinder as a community fork only. jevreel is independent of TypeSafe AI; Jev is used through the public API under TypeSafe terms per LICENSE.",
+    keyFeatures: [
+      "Ten MCP tools: index_video, ask_video, find_in_video, locate_in_frame, zoom_video, and more",
+      "Lens TOML for noul, choice, and score columns queryable without extra Jev calls",
+      "Agent skill via npx skills add DeepAleph/jevreel; Claude and Codex plugin install paths",
+      "Answer cache so repeated questions on the same sheets cost zero",
+      "Optional yt-dlp URL indexing and faster-whisper ASR with jevreel[all]",
+      "jevreel measure reports per-sheet token cost on your account",
+    ],
+    stack: [
+      "Python 3.11+",
+      "FFmpeg",
+      "TypeSafe Jev API (jev-1.14.0 default)",
+      "uvx or uv tool install",
+      "Optional faster-whisper and yt-dlp",
+    ],
+    links: {
+      repo: "https://github.com/DeepAleph/jevreel",
+      docs: "https://github.com/DeepAleph/jevreel/blob/main/README.md",
+      website: "https://github.com/DeepAleph/jevreel",
+    },
+    pricingNote:
+      "MIT code; Jev input tokens bill per README measured $0.042 per million on jev-1.14.0. Indexing and lens questions can ride in the same sheet request to keep marginal cost low.",
+    firstSeen: "2026-10-18",
+    relatedSlugs: [
+      "mcg-nju-videojev",
+      "trungdq88-youtube-sponsor-detection",
+      "rayenmlayeh-jevcrawl",
+      "jkudish-jev-mcp",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is jevreel affiliated with TypeSafe?",
+        answer:
+          "No. README LICENSE states jevreel is an independent project. It calls TypeSafe Jev through TYPESAFE_API_KEY; it does not ship TypeSafe weights.",
+      },
+      {
+        question: "When are embeddings a better fit?",
+        answer:
+          "README Why a decision model instead of embeddings: vector indexes win for querying a large library repeatedly; jevreel pays per minute screened and suits ad hoc questions with explicit probabilities.",
+      },
+      {
+        question: "What model version does jevreel pin?",
+        answer:
+          "README configuration table sets JEVREEL_MODEL to jev-1.14.0 on purpose because Box and image tiles need 1.14; aliases may move.",
+      },
+      {
+        question: "Can brief events be missed?",
+        answer:
+          "README Limits: verification only walks top-ranked windows (default 6) every 0.5 s; raise JEVREEL_VERIFY_TOP or lower JEVREEL_TILES_PER_SHEET for larger tiles if screening ranks the window low.",
+      },
+      {
+        question: "How does jevreel differ from VideoJev?",
+        answer:
+          "VideoJev is an open MCG research model that scores intervals inside the network. jevreel is a Python agent tool that calls hosted Jev on contact sheets and full frames without training checkpoints.",
+      },
+    ],
+    metaTitle: "jevreel: Jev MCP video search without embeddings",
+    metaDescription:
+      "DeepAleph/jevreel screens 1 fps contact sheets with TypeSafe Jev, verifies hits on full frames, MCP plus skill. README Tears of Steel demos and cost tables.",
+  },
 };
