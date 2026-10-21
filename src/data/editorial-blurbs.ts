@@ -295,6 +295,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Pack every agent and RAG check into one Jev request per trace. jevals mirrors Ragas metric names, adds tool and injection gates, and documents bench rows where Jev beats gpt-4.1-mini judges on cost and wall time.",
   "deepaleph-jevreel":
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
+  "disler-pi-durable-news-agent":
+    "Stop refreshing feeds yourself. This agent wakes on cron, reads thousands of headlines so you do not have to, and lets Jev throw out hype before a card ever hits your browser. Crash mid gate and it picks up from SQLite like nothing happened.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
