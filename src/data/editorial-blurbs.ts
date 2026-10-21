@@ -289,6 +289,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Jeva is the paper-backed answer when you want System One structure baked in: options encoded once, nulls explicit, sets can grow, and LIQIIIII/Jeva-4B runs the whole Choice, Noul, and Score menu locally.",
   "feder-cr-jevos":
     "Download one CPU binary, unzip the int8 model, curl POST /v1/systemone. jevos keeps the Jev wire shape while README tables brag about millisecond-class latency next to cloud Jev on a laptop chip.",
+  "mcg-nju-videojev":
+    "VideoJev swaps autoregressive answers for scored time intervals and multiple-choice options over the same video prefix. MCG-NJU ships 4B and 35B-A3B weights, a paper, and a ModelScope demo when you need moments, not paragraphs.",
+  "openlayer-ai-jevals":
+    "Pack every agent and RAG check into one Jev request per trace. jevals mirrors Ragas metric names, adds tool and injection gates, and documents bench rows where Jev beats gpt-4.1-mini judges on cost and wall time.",
+  "deepaleph-jevreel":
+    "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":
     "Stop refreshing feeds yourself. This agent wakes on cron, reads thousands of headlines so you do not have to, and lets Jev throw out hype before a card ever hits your browser. Crash mid gate and it picks up from SQLite like nothing happened.",
 };
