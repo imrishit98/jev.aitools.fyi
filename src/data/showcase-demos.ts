@@ -318,6 +318,8 @@ export const showcaseDemos: ShowcaseDemo[] = [
       "json-render plus Jev turns your design system into a slot machine that always pays out components.",
     homepage: true,
     categoryTags: ["generative-ui", "json-render", "demo"],
+    projectUrl:
+      "https://jev.aitools.fyi/tools/workday-sana-jev-generative-ui",
   }),
   demo({
     id: "spreadsheets-intent-dabit3",

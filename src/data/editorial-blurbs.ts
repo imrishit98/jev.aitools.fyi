@@ -149,6 +149,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "A typing racer where Jev scores semantic distance, not WPM. Type elephant versus jet and watch the car move when you mean it, not when you mash keys.",
   "box-jev-incident-triage":
     "Box plus Jev for grown-up content workflows: customer-facing, severity, folder routing, metadata. Aaron Levie's clip is the enterprise gate pattern in under a minute.",
+  "workday-sana-jev-generative-ui":
+    "Workday put Jev on the UI path: Sana picks design-system pieces as you type so paychecks and PTO finish in structured cards, not essay answers. The production counterpoint to json-render demos.",
   "lahfir-agent-desktop":
     "Rust desktop hands for your agent: accessibility snapshots with stable refs, skeleton mode for Slack-scale UIs, and Jev picking the next click instead of coordinate roulette.",
   "kerpopule-hermes-jev-skills":

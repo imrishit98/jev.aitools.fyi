@@ -376,7 +376,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       demo: "https://eve.dev",
     },
     firstSeen: "2026-09-17",
-    relatedSlugs: ["tanstack-ai-decide", "browser-use-jev-ultrafast"],
+    relatedSlugs: [
+      "workday-sana-jev-generative-ui",
+      "tanstack-ai-decide",
+      "browser-use-jev-ultrafast",
+    ],
     relatedLearnSlugs: ["vercel-ai-gateway", "system-one"],
     faq: [
       {
@@ -644,7 +648,11 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     firstSeen: "2026-09-19",
     demoIds: ["ploy-jev-websites-bryantchou"],
-    relatedSlugs: ["classifier-dev", "tanstack-ai-decide"],
+    relatedSlugs: [
+      "workday-sana-jev-generative-ui",
+      "classifier-dev",
+      "tanstack-ai-decide",
+    ],
     relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
     faq: [
       {
@@ -2373,7 +2381,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     firstSeen: "2026-09-19",
     demoIds: ["box-incident-triage-levie"],
-    relatedSlugs: ["tsale-jevline", "classifier-dev", "vercel-eve"],
+    relatedSlugs: [
+      "workday-sana-jev-generative-ui",
+      "tsale-jevline",
+      "classifier-dev",
+      "vercel-eve",
+    ],
     relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
     faq: [
       {
@@ -13605,5 +13618,120 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "Pi Durable News Agent: proactive Jev filter",
     metaDescription:
       "disler/pi-durable-news-agent cron sweeps 28 sources, Jev hfs scores Hype Facts Signal, SQLite checkpoints. Vue TUI CLI. README ~$0.32 first sweep. 89 stars.",
+  },
+
+  "workday-sana-jev-generative-ui": {
+    slug: "workday-sana-jev-generative-ui",
+    status: "published",
+    problem:
+      "Enterprise HR and finance agents need interfaces that finish work, not chat transcripts that still leave employees clicking through legacy screens.",
+    targetUser:
+      "Workday customers rolling out Sana as Workday Home, and platform engineers comparing production generative UI to developer demos.",
+    overview:
+      "Sana is the new Workday Home, announced October 13, 2026 at Workday Rising and described in Workday's press release as powered by Jev from TypeSafe AI. Sana is built to finish work: it can generate forms, calendars, approval cards, and visualizations in real time. Workday's examples include a paycheck question that shows amount and date, and a time-off request that surfaces a live calendar or date picker and completes after the employee confirms. Workday administrators choose when to enable Sana and whether to make it the default home experience.",
+    creator: {
+      name: "Joel Hellermark",
+      handle: "joelhellermark",
+      company: "Workday",
+      companyUrl: "https://www.workday.com",
+    },
+    creatorQuote: {
+      text: "AI is the new UI.",
+      attributedTo: "Joel Hellermark, Workday chief AI officer",
+      sourceUrl:
+        "https://www.prnewswire.com/news-releases/sana-is-the-new-workday-home-a-dynamic-agentic-experience-built-to-finish-the-work-not-just-answer-questions-302906713.html",
+    },
+    jevUsage: {
+      flowRole:
+        "Real-time generative UI: a decision model selects Workday design-system components with every keystroke so Sana can render structured UI instead of text-only answers",
+      primitives: ["Choice"],
+      stateIn:
+        "Employee utterance and keystrokes in Sana, plus Workday's catalog of atomic design-system components. The New Stack reports Workday gave Jev every atomic component with no hard-coded selection logic and that data preloading also mattered for instant UI.",
+      decisionOut:
+        "Chosen components and layouts (forms, calendars, approval cards, charts) rendered inline in Workday Home, then confirmed by the employee to complete workflows such as time-off requests.",
+      flowSteps: [
+        "Employee opens Sana in Workday Home and types a request",
+        "Jev decision model selects design-system components on each keystroke",
+        "Sana renders paycheck amount and date, date pickers, approval cards, or charts as the UI stabilizes",
+        "Employee confirms structured inputs to finish the workflow",
+        "Tenant admins control rollout timing and default-home settings",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "TypeSafe claims Jev chooses among up to 255 options with about 70 to 500 ms latency in Workday's deployment.",
+          source: "The New Stack, Oct 13 2026",
+        },
+        {
+          claim:
+            "With every keystroke, a decision model selects UI components in about 300 milliseconds.",
+          source: "iTWire interview with Joel Hellermark, Oct 15 2026",
+        },
+        {
+          claim:
+            "During a keynote demo, a paycheck card appeared before Joel Hellermark finished typing the question.",
+          source: "The New Stack, Oct 13 2026",
+        },
+        {
+          claim:
+            "Workday added TypeSafe as a subprocessor across all Workday product lines for NLP, intent classification, and confidence scoring.",
+          source: "The New Stack, Oct 13 2026",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Sana is the first named enterprise production deployment on this directory where Jev is the UI layer, not just a classifier behind the scenes. Workday exposes Jev to the full atomic component library and lets a decision model pick what to render as the employee types; The New Stack quotes Joel Hellermark saying that if you use a classification model and give it all design components to pick from, you can do it instantly. In iTWire he says Workday is the first company to put this into production in close partnership with TypeSafe and calls it the gold standard implementation. box-jev-incident-triage shows the same typed-gate pattern on governed content, but Box routes files and metadata while Sana morphs the interface itself. ploy-ai uses Jev to pick marketing variants per visitor segment; Sana applies similar Choice semantics inside an HR system of record. vercel-eve documents Jev on agent evaluation paths for builders shipping TypeScript agents. For a developer-side generative UI clip, see the json-render showcase embed on this page. Cite Workday's October 13, 2026 press release, The New Stack's Frederic Lardinois report, and Alex Zaharov-Reutt's iTWire Q&A with Joel Hellermark.",
+    keyFeatures: [
+      "Sana as Workday Home with admin-controlled rollout",
+      "Real-time forms, calendars, approval cards, and charts",
+      "Paycheck and time-off flows with confirm-to-complete UX",
+      "Design-system-wide component Choice without hard-coded routing rules",
+      "TypeSafe listed as a Workday subprocessor across product lines",
+    ],
+    stack: [
+      "Workday platform",
+      "Sana agentic home experience",
+      "TypeSafe Jev (System One)",
+      "Workday design system components",
+    ],
+    links: {
+      website: "https://www.workday.com",
+      post:
+        "https://www.prnewswire.com/news-releases/sana-is-the-new-workday-home-a-dynamic-agentic-experience-built-to-finish-the-work-not-just-answer-questions-302906713.html",
+      docs: "https://thenewstack.io/workday-is-using-typesafes-jev-to-build-user-interfaces-on-the-fly/",
+    },
+    firstSeen: "2026-10-13",
+    demoIds: ["json-render-ctatedev"],
+    relatedSlugs: [
+      "box-jev-incident-triage",
+      "ploy-ai",
+      "vercel-eve",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Sana generally available?",
+        answer:
+          "Workday's October 13, 2026 announcement describes Sana as the new Workday Home with administrators choosing when to turn it on. Confirm availability and entitlements with Workday for your tenant.",
+      },
+      {
+        question: "How is this different from the json-render demo?",
+        answer:
+          "The Chris Tate json-render showcase on this page is a builder clip about picking components from a design system in milliseconds. Workday Sana is a production Workday Home experience that uses the same Jev Choice pattern at enterprise scale inside Workday's own components.",
+      },
+      {
+        question: "How is this different from Box incident triage?",
+        answer:
+          "Box plus Jev classifies incident files and writes folder and metadata outcomes. Sana uses Jev to choose which UI components to render in real time while the employee completes HR and finance tasks.",
+      },
+      {
+        question: "What are the honest limits?",
+        answer:
+          "Workday has not publicly stated how large its design system is or what Sana does when no component fits. The New Stack notes a 255-option cap can require multiple questions for very large libraries. Keynote claims that Sana cut leave-request time by more than 80% describe Sana overall, not Jev latency alone. iTWire notes TypeSafe's speed and cost figures have not been independently verified.",
+      },
+    ],
+    metaTitle: "Workday Sana: Jev generative UI in production",
+    metaDescription:
+      "Sana is Workday Home powered by Jev. Production generative UI picks design-system components per keystroke. Cites Workday, The New Stack, and iTWire, Oct 2026.",
   },
 };
