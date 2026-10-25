@@ -478,6 +478,22 @@
     "updatedAt": "2026-09-21"
   },
   {
+    "slug": "workday-sana-jev-generative-ui",
+    "title": "Workday Sana",
+    "oneLiner": "Production Workday Home: Jev picks design-system components on every keystroke so Sana renders forms, calendars, approval cards, and charts in real time.",
+    "description": "Workday announced Sana as the new Workday Home at Workday Rising on October 13, 2026, describing it as powered by Jev from TypeSafe AI. Public materials say Sana generates forms, calendars, approval cards, and visualizations in real time: a paycheck question can show amount and date, and a time-off request can surface a date picker and complete after the employee confirms. Workday gave Jev every atomic component in its design system with no hard-coded selection logic, per technical press coverage. Joel Hellermark, Workday chief AI officer, calls the rollout a gold standard implementation in partnership with TypeSafe. This directory listing documents the shipped enterprise deployment and cites Workday, The New Stack, and iTWire only.",
+    "category": "integrations",
+    "tags": ["integrations", "enterprise", "generative-ui", "production"],
+    "url": "https://www.workday.com",
+    "postUrl": "https://www.prnewswire.com/news-releases/sana-is-the-new-workday-home-a-dynamic-agentic-experience-built-to-finish-the-work-not-just-answer-questions-302906713.html",
+    "badges": ["has-demo"],
+    "creatorHandle": "joelhellermark",
+    "creatorName": "Joel Hellermark",
+    "sourcePlatform": "web",
+    "detailPage": true,
+    "updatedAt": "2026-10-24"
+  },
+  {
     "slug": "lahfir-agent-desktop",
     "title": "agent-desktop",
     "oneLiner": "Rust macOS desktop automation via OS accessibility trees; agents pair it with Jev Choice over the next safe ref action.",
