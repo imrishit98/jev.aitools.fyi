@@ -744,7 +744,7 @@
   "duckdb-jev-classifier": {
     "indexOnly": true,
     "oneLiner": "September 2026 X teaser for DuckDB row classification; see the MotherDuck prompt_jev listing for the shipped SQL function and benchmarks.",
-    "description": "Hamilton Ulmer's September 17, 2026 X post teased classifying DuckDB table rows with Jev at about 10 seconds per 1,000 rows. MotherDuck later shipped prompt_jev() with full SQL docs and MotherDuck-measured benchmarks. This explore-only row points to the canonical MotherDuck prompt_jev product page so two entries do not compete.",
+    "description": "Hamilton Ulmer's September 17, 2026 X post (https://x.com/hamiltonulmer/status/2100370557405667768) teased classifying DuckDB table rows with Jev at about 10 seconds per 1,000 rows. MotherDuck later shipped prompt_jev() with full SQL docs and MotherDuck-measured benchmarks. This explore-only row points to the canonical MotherDuck prompt_jev product page so two entries do not compete.",
     "url": "https://jev.aitools.fyi/tools/motherduck-prompt-jev"
   },
   "lahfir-agent-desktop": {
