@@ -13734,4 +13734,208 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "Sana is Workday Home powered by Jev. Production generative UI picks design-system components per keystroke. Cites Workday, The New Stack, and iTWire, Oct 2026.",
   },
+
+  "uipath-typesafe-jev-connector": {
+    slug: "uipath-typesafe-jev-connector",
+    status: "published",
+    problem:
+      "RPA and enterprise automation teams need typed Jev gates inside Maestro and Orchestrator workflows without routing every decision through a generative LLM judge.",
+    targetUser:
+      "UiPath developers building Maestro Automate or Maestro Orchestrate flows who want List Models, Choice, Score, Noul, and Evaluate activities against their own TypeSafe API key.",
+    overview:
+      "UiPath announced a preview TypeSafe connector on October 20, 2026. It adds Jev activities to UiPath Integration Service so automations can call List Models, Choice, Score, Noul (yes/no), and Evaluate (System One) on text or JSON state. Search Integration Service for Jev, TypeSafe, or System One to install it on Maestro Automate, Maestro Orchestrate, and other UiPath surfaces that support connectors.",
+    creator: {
+      name: "Sandeep Panda",
+      company: "UiPath",
+      companyUrl: "https://www.uipath.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Typed decision activities inside UiPath workflows: classification, scoring, extraction gates, and multi-question Evaluate on one state blob",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "State as text or JSON plus Instructions, Options or Levels, and an optional Model field (defaults to jev-latest; output shows the versioned id such as jev-1.13.0). State plus the longest question can be up to 32k tokens per UiPath docs.",
+      decisionOut:
+        "Choice labels, Score level with probability-weighted score and per-level probabilities plus confidence, Noul yes/no with confidence, or Evaluate answers for any mix of questions about one state in a single request.",
+      flowSteps: [
+        "Bring your own TypeSafe API key (bearer token, including from an Orchestrator credential asset)",
+        "Configure State, Instructions, and primitive-specific options in a TypeSafe activity",
+        "Read confidence on outputs and branch to human review or a reasoning agent when below threshold",
+        "Optional two-step extraction: one Jev call locates document spans per field, a second Choice picks exact values",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "UiPath early internal experiments on eval datasets reported 94% agreement with an LLM-as-a-judge system.",
+          source: "UiPath blog, Oct 20 2026 (UiPath-measured, not independent)",
+        },
+        {
+          claim:
+            "Those same UiPath internal experiments reported about 7.7x lower cost and 4x to 20x faster than the equivalent LLM judge.",
+          source: "UiPath blog, Oct 20 2026 (UiPath-measured, not independent)",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This is the first RPA platform connector on Jev Directory: Jev runs as Integration Service activities instead of a community n8n node or a one-off script. The UiPath blog includes remarks from Erik Gafni, TypeSafe CTO. Requests use your TypeSafe agreement directly; UiPath's blog states they are not routed through the UiPath AI Trust Layer. That matches box-jev-incident-triage and workday-sana-jev-generative-ui, where governed enterprise systems call Jev for typed gates, but UiPath targets general automation builders on Maestro and Orchestrator. Score accepts 2 to 10 ordered levels and returns probabilities; output tokens are not billed per UiPath Score activity docs. UiPath highlights grading agent output, document field extraction, classification, and re-ranking search results, with a confidence threshold pattern before human review or a reasoning agent (UiPath calls this a two-brain-system). The connector is preview only: UiPath's speed and cost figures are early internal experiments, not independent benchmarks, and there is no named customer deployment in public materials yet. Kognitos announced a TypeSafe partnership on September 22, 2026 (GlobeNewswire) where Quill composes LLMs plus Jev for ticket classification, insurance claims, and AR inbox sorting with thresholds to human review; that is a separate English-as-code platform, not this UiPath connector. dommonte-n8n-nodes-typesafe-ai covers community workflow nodes; openlayer-ai-jevals fits teams comparing Jev gates to LLM judges. Cite UiPath's October 20, 2026 blog and Integration Service / activities documentation.",
+    keyFeatures: [
+      "Preview TypeSafe connector in UiPath Integration Service",
+      "Activities: List Models, Choice, Score, Noul, Evaluate (System One)",
+      "Bring-your-own TypeSafe API key with Orchestrator credential support",
+      "Windows and Cross-platform UiPath projects per activities docs",
+      "Confidence thresholds for human review or downstream reasoning agents",
+    ],
+    stack: [
+      "UiPath Integration Service",
+      "UiPath Maestro Automate and Orchestrate",
+      "TypeSafe Jev (jev-latest default)",
+    ],
+    links: {
+      website: "https://www.uipath.com",
+      post:
+        "https://www.uipath.com/blog/product-and-updates/typesafe-connector-bring-jev-models-to-uipath",
+      docs:
+        "https://docs.uipath.com/integration-service/automation-cloud/latest/user-guide/uipath-typesafe-typesafe",
+    },
+    firstSeen: "2026-10-20",
+    relatedSlugs: [
+      "dommonte-n8n-nodes-typesafe-ai",
+      "box-jev-incident-triage",
+      "workday-sana-jev-generative-ui",
+      "openlayer-ai-jevals",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is the UiPath TypeSafe connector generally available?",
+        answer:
+          "UiPath documents the connector as preview in Integration Service as of October 20, 2026. Confirm status and entitlements in your UiPath tenant before production use.",
+      },
+      {
+        question: "Does UiPath route Jev calls through the AI Trust Layer?",
+        answer:
+          "UiPath's blog states requests fall under your own agreement with TypeSafe and are not routed through the UiPath AI Trust Layer when you bring your own TypeSafe API key.",
+      },
+      {
+        question: "How do UiPath's benchmark numbers compare to independent tests?",
+        answer:
+          "UiPath's blog reports early internal experiments (94% agreement with an LLM judge, lower cost, faster latency). Those are UiPath-measured on their eval datasets, not independent verification, and there is no named customer deployment cited yet.",
+      },
+      {
+        question: "How is this different from the n8n TypeSafe node?",
+        answer:
+          "dommonte-n8n-nodes-typesafe-ai is a community n8n integration for a different hosting model. This listing covers UiPath's first-party Integration Service connector for Maestro and Orchestrator automations.",
+      },
+    ],
+    metaTitle: "UiPath TypeSafe Connector: Jev in UiPath Workflows",
+    metaDescription:
+      "UiPath's preview TypeSafe connector adds Jev Choice, Score, Noul and Evaluate activities to UiPath automations, with confidence thresholds for human review.",
+  },
+
+  "motherduck-prompt-jev": {
+    slug: "motherduck-prompt-jev",
+    status: "published",
+    problem:
+      "Analytics engineers need to classify, score, or gate millions of table rows without shipping text to a chat model for every line.",
+    targetUser:
+      "MotherDuck customers on paid plans who want Jev choice, score, noul, box, and multi-question batches inside SQL over DuckDB tables.",
+    overview:
+      "MotherDuck shipped prompt_jev() in September 2026: a SQL function that runs Jev choice, score, noul, multiple_choice, box, and bundled questions over VARCHAR or image inputs. It is available on all paid MotherDuck plans per the launch blog and PROMPT_JEV reference.",
+    creator: {
+      name: "Hamilton Ulmer",
+      handle: "hamiltonulmer",
+      company: "MotherDuck",
+      companyUrl: "https://motherduck.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-row or batched Jev primitives inside SELECT pipelines: classify columns, score levels, yes/no gates, bounding-box questions, and multi-question bundles",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "SQL VARCHAR input and instructions, or PNG/JPEG images for box mode. Batching defaults to 32 rows per request (batch_size 1 to 64). Context limit 64k tokens for input plus questions; about 250 tokens of overhead per request per docs.",
+      decisionOut:
+        "Structured Jev answers per row (choice label, score level, noul, box coordinates, or question map). Per-row failures return NULL; TypeSafe 422 validation errors fail the whole query.",
+      flowSteps: [
+        "Write prompt_jev(input, instructions[, choice|score|noul|multiple_choice := ...]) in SQL",
+        "Optional: prompt_jev(images, box := ...) or prompt_jev(input, questions := {...}) for bundles",
+        "Tune batch_size and use AS MATERIALIZED CTEs when docs warn about re-calling the model",
+        "Text runs on jev-latest; images use jev-1.14.0 with no model parameter in SQL",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "On 100,000 AG News rows (4 classes), MotherDuck measured Jev at 2,484 rows/s, 89% accuracy, $0.50 per 100k rows, 40 seconds total.",
+          source: "MotherDuck blog, Sep 21 2026 (MotherDuck-measured)",
+        },
+        {
+          claim:
+            "Same AG News test: gpt-4o-mini at 84 rows/s, 80% accuracy, $1.93, 19m45s; gpt-5-nano 94 rows/s, 83%, $1.58, 17m49s; gpt-5.6-luna 61 rows/s, 84%, $3.53, 27m25s; gpt-5.6-terra 52 rows/s, 88%, $37.58, 31m59s.",
+          source: "MotherDuck blog, Sep 21 2026 (MotherDuck-measured)",
+        },
+        {
+          claim:
+            "Tests at 1M and 10M rows gave similar results; reproduction SQL is in the MotherDuck post.",
+          source: "MotherDuck blog, Sep 21 2026",
+        },
+        {
+          claim:
+            "AI Unit throughput (input tokens only): about 345,000 rows per AI Unit for a 50-char noul, about 260,000 for a 50-char choice, about 60,000 for a 1,000-char choice or score, about 25,800 for noul plus box on one 500x334 image.",
+          source: "MotherDuck PROMPT_JEV docs",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "prompt_jev() is MotherDuck's hosted SQL surface for Jev, distinct from catalog-only SQL experiments such as eugeneboondock-jevsql or giuliosmall-pg-typesafe. Hamilton Ulmer teased DuckDB row classification on X on September 17, 2026 (duckdb-jev-classifier in this directory); that post described about 10 seconds per 1,000 rows and has no detail page. This listing is the canonical MotherDuck product page and supersedes that teaser row in explore. Syntax covers prompt_jev(input, instructions[, choice|score|noul|multiple_choice := ...]), image box mode, and questions bundles. choice accepts 2 to 255 labels; score accepts 2 to 10 levels; multiple_choice expands into independent noul questions at threshold 0.5. Images must be PNG or JPEG with each side between 280 and 1,568 px and 8 MiB per request; the API does not resize. Box has no not-found result, so MotherDuck docs advise pairing box with a noul. theoleecj-semif documents open Semif on Databricks Model Serving callable from SQL via ai_query (Databricks blog, Sep 24 2026). Snowflake Decision is Snowflake's own model (not Jev) in private preview via AI_COMPLETE; Snowflake's October 8, 2026 blog reports 57.63 on its subset of Jev Decision Index 0.2.1 with a 32-option cap. dommonte-n8n-nodes-typesafe-ai and datawhalechina-jev-cookbook cover workflow and notebook patterns outside warehouses. openlayer-ai-jevals helps teams benchmark gates. See also /alternatives/semif for Semif comparisons. Cite MotherDuck's September 21, 2026 blog and PROMPT_JEV SQL reference.",
+    keyFeatures: [
+      "prompt_jev() on all paid MotherDuck plans",
+      "choice, score, noul, multiple_choice, box, and questions modes",
+      "Batching with batch_size 1 to 64 (default 32 rows per request)",
+      "MotherDuck-measured AG News benchmark table through 100k rows",
+      "AS MATERIALIZED CTE guidance to avoid duplicate model calls",
+    ],
+    stack: [
+      "MotherDuck cloud DuckDB",
+      "TypeSafe Jev (jev-latest text, jev-1.14.0 images)",
+      "SQL PROMPT_JEV function",
+    ],
+    links: {
+      website: "https://motherduck.com",
+      post: "https://motherduck.com/blog/motherduck-supports-jev/",
+      docs:
+        "https://motherduck.com/docs/sql-reference/motherduck-sql-reference/ai-functions/prompt-jev/",
+    },
+    firstSeen: "2026-09-21",
+    relatedSlugs: [
+      "theoleecj-semif",
+      "dommonte-n8n-nodes-typesafe-ai",
+      "datawhalechina-jev-cookbook",
+      "openlayer-ai-jevals",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "What did MotherDuck measure on AG News?",
+        answer:
+          "On 100,000 AG News rows with four classes, MotherDuck reported Jev at 2,484 rows/s, 89% accuracy, $0.50 per 100k, and 40 seconds. gpt-4o-mini scored 84 rows/s and 80% at $1.93 over 19m45s; gpt-5.6-terra scored 52 rows/s and 88% at $37.58 over 31m59s. These are MotherDuck-measured figures from their September 21, 2026 blog, not independent audits.",
+      },
+      {
+        question: "How is this different from the duckdb-jev-classifier X post?",
+        answer:
+          "The September 17, 2026 X teaser by @hamiltonulmer described early DuckDB row classification speed. prompt_jev() is MotherDuck's shipped SQL function with full docs and benchmarks; the explore row duckdb-jev-classifier now points here so the two listings do not compete.",
+      },
+      {
+        question: "What happens when a row fails?",
+        answer:
+          "Per-row failures return NULL. TypeSafe 422 validation errors fail the entire query. MotherDuck docs recommend AS MATERIALIZED CTEs to avoid re-invoking the model on replans.",
+      },
+      {
+        question: "Is Snowflake Decision the same as Jev?",
+        answer:
+          "No. Snowflake Decision is Snowflake's own decision model in private preview, not TypeSafe Jev. MotherDuck prompt_jev() calls hosted Jev models directly in DuckDB SQL.",
+      },
+    ],
+    metaTitle: "MotherDuck prompt_jev: Jev Decisions in SQL",
+    metaDescription:
+      "MotherDuck prompt_jev() runs Jev choice, score, noul and box questions in SQL. AG News test: 100k rows in 40s for $0.50 vs 32 min and $37 on an LLM.",
+  },
 };

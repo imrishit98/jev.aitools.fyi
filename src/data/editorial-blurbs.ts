@@ -151,6 +151,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Box plus Jev for grown-up content workflows: customer-facing, severity, folder routing, metadata. Aaron Levie's clip is the enterprise gate pattern in under a minute.",
   "workday-sana-jev-generative-ui":
     "Workday put Jev on the UI path: Sana picks design-system pieces as you type so paychecks and PTO finish in structured cards, not essay answers. The production counterpoint to json-render demos.",
+  "uipath-typesafe-jev-connector":
+    "UiPath's preview connector drops Jev activities straight into Maestro flows: your TypeSafe key, confidence thresholds, and no AI Trust Layer middleman. Enterprise RPA finally gets the same typed gates Box and Workday demoed.",
+  "motherduck-prompt-jev":
+    "Classify a million-row table in SQL without a chat model per line. MotherDuck's prompt_jev() batches Jev calls with receipts: AG News numbers, AI Unit math, and the Hamilton Ulmer teaser folded into one canonical page.",
   "lahfir-agent-desktop":
     "Rust desktop hands for your agent: accessibility snapshots with stable refs, skeleton mode for Slack-scale UIs, and Jev picking the next click instead of coordinate roulette.",
   "kerpopule-hermes-jev-skills":
