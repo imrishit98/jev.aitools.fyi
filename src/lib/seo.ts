@@ -105,14 +105,66 @@ export function stripEmDash(text: string): string {
     .trim();
 }
 
+const DANGLING_META_WORDS = new Set(["and", "or", "the", "for", "with"]);
+
+function stripClauseTail(value: string): string {
+  return value.replace(/[\s,;:-]+$/g, "");
+}
+
+function dropDanglingMetaWords(value: string): string {
+  let out = value;
+  for (;;) {
+    const match = out.match(/^(.*)\s+(and|or|the|for|with)$/i);
+    const word = match?.[2]?.toLowerCase();
+    if (!match?.[1] || !word || !DANGLING_META_WORDS.has(word)) return out;
+    out = stripClauseTail(match[1]);
+  }
+}
+
+/** Keep the result inside `max` and never leave a dangling ",." ":." or ";.". */
+function clampMetaDescription(value: string, max: number): string {
+  let out = value.replace(/[,;:]+\.$/, ".");
+  if (out.length <= max && !/[,;:]\.$/.test(out)) return out;
+  const sliced = stripClauseTail(out.slice(0, Math.max(0, max - 1)).replace(/[.!?]+$/g, ""));
+  out = `${dropDanglingMetaWords(sliced)}.`.replace(/[,;:]+\.$/, ".");
+  if (out.length <= max && !/[,;:]\.$/.test(out)) return out;
+  const again = stripClauseTail(out.slice(0, Math.max(0, max - 1)).replace(/[.!?]+$/g, ""));
+  return `${again}.`.replace(/[,;:]+\.$/, ".");
+}
+
+function finishMetaDescription(value: string, max: number): string {
+  let out = dropDanglingMetaWords(stripClauseTail(value));
+  out = out.replace(/[,;:]+\.$/, ".");
+  if (/[,;:]$/.test(out)) out = stripClauseTail(out);
+  if (!out) return "";
+  if (!/[.!?]$/.test(out)) out = `${out}.`;
+  return clampMetaDescription(out, max);
+}
+
 export function trimMetaDescription(text: string, max = 160): string {
   const t = stripEmDash(text);
-  if (t.length <= max) return t;
-  const cut = t.slice(0, max - 1);
+  if (t.length <= max) {
+    const repaired = t.replace(/[,;:]+\.$/, ".");
+    return repaired.replace(/[\s,;:]+$/g, "");
+  }
+
+  const cut = t.slice(0, max);
+  let sentenceAt = -1;
+  for (let i = cut.length - 2; i >= 70; i--) {
+    const ch = cut[i];
+    if ((ch === "." || ch === "!" || ch === "?") && cut[i + 1] === " ") {
+      sentenceAt = i;
+      break;
+    }
+  }
+  if (sentenceAt >= 70) {
+    return finishMetaDescription(cut.slice(0, sentenceAt + 1), max);
+  }
+
   const lastSpace = cut.lastIndexOf(" ");
-  const trimmed =
-    lastSpace > 100 ? cut.slice(0, lastSpace).trimEnd() : cut.trimEnd();
-  return trimmed.endsWith(".") ? trimmed : `${trimmed}.`;
+  const base =
+    lastSpace > 100 ? cut.slice(0, lastSpace) : cut.slice(0, Math.max(0, max - 1));
+  return finishMetaDescription(base, max);
 }
 
 export function absoluteUrl(path: string): string {
