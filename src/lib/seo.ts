@@ -35,7 +35,9 @@ import {
   manifestLastmod,
   parseIsoDay,
 } from "@/lib/content-dates";
-import { siteConfig } from "@/lib/site";
+import { absoluteUrl, siteConfig } from "@/lib/site";
+
+export { absoluteUrl };
 
 export type PageSeo = {
   title: string;
@@ -118,13 +120,6 @@ export function trimMetaDescription(text: string, max = 160): string {
   const trimmed =
     lastSpace > 100 ? cut.slice(0, lastSpace).trimEnd() : cut.trimEnd();
   return trimmed.endsWith(".") ? trimmed : `${trimmed}.`;
-}
-
-export function absoluteUrl(path: string): string {
-  const base = siteConfig.url.replace(/\/$/, "");
-  return path.startsWith("http")
-    ? path
-    : `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function pageSeo({

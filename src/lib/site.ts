@@ -47,3 +47,10 @@ export const siteConfig = {
     "https://vercel.com/docs/ai-gateway/models/jev",
   githubRepo: "https://github.com/imrishit98/jev.aitools.fyi",
 } as const;
+
+export function absoluteUrl(path: string): string {
+  const base = siteConfig.url.replace(/\/$/, "");
+  return path.startsWith("http")
+    ? path
+    : `${base}${path.startsWith("/") ? path : `/${path}`}`;
+}

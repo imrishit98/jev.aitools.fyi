@@ -1,7 +1,8 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import { ButtonLink } from "@/components/button-link";
-import { articleListJsonLd, breadcrumbJsonLd, faqPageJsonLd } from "@/components/json-ld";
+import { articleListJsonLd, breadcrumbJsonLd, faqPageJsonLd, webPageJsonLd } from "@/components/json-ld";
+import { layaHubDate } from "@/lib/content-dates";
 import {
   layaVsJevGuideSlugs,
   layaVsJevGuides,
@@ -24,6 +25,12 @@ const cards = layaVsJevGuideSlugs.map((slug) => layaVsJevGuides[slug]);
   ogImagePath={seo.imagePath}
   markdownAlternate="/learn/laya-vs-jev.md"
   jsonLd={[
+    webPageJsonLd({
+      name: seo.title,
+      description: seo.description,
+      url: seo.canonical,
+      dateModified: layaHubDate,
+    }),
     breadcrumbJsonLd([
       { name: "Home", path: "/" },
       { name: "Learn", path: "/learn" },
