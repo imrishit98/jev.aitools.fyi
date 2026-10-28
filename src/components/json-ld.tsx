@@ -2,7 +2,7 @@ import type { ShowcaseDemo } from "@/data/showcase-demos";
 import type { DirectoryItem } from "@/data/types";
 import type { FaqEntry } from "@/data/faq";
 import { siteConfig } from "@/lib/site";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl, itemLastmodDay } from "@/lib/seo";
 import { getItemPath } from "@/lib/item-paths";
 import { itemHasDetailPage } from "@/lib/content-policy";
 
@@ -124,9 +124,7 @@ export function softwareApplicationJsonLd(
       url: siteConfig.url,
     },
     ...(item.repoUrl ? { codeRepository: item.repoUrl } : {}),
-    ...(item.updatedAt && /^\d{4}-\d{2}-\d{2}/.test(item.updatedAt)
-      ? { dateModified: item.updatedAt.slice(0, 10) }
-      : {}),
+    dateModified: itemLastmodDay(item),
     author: item.creatorName
       ? { "@type": "Person", name: item.creatorName }
       : undefined,
@@ -141,6 +139,7 @@ export function creativeWorkJsonLd(item: DirectoryItem) {
     description: item.description,
     url: absoluteUrl(getItemPath(item)),
     mainEntityOfPage: absoluteUrl(getItemPath(item)),
+    dateModified: itemLastmodDay(item),
   };
 }
 

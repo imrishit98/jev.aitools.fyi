@@ -1,0 +1,1394 @@
+{
+  "/": {
+    "hash": "1b99dc35254a45704b656fa9f6b1272ad78e3148df1c0558b7497de87bcde296",
+    "lastmod": "2026-10-17"
+  },
+  "/about": {
+    "hash": "d747349346a56e92654bf529e61c06da5f072abc170641f4b79dea7a0f753752",
+    "lastmod": "2026-09-24"
+  },
+  "/alternatives": {
+    "hash": "b023447f531c4499379a0b4aad9dd236818244fc05812535a9eb5abee7c81fe7",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/clm-8b": {
+    "hash": "e0bf16a7fe6b78347b970a2960039e010b6d3d4268f2d2a6f81693fbc7514c84",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/cloudflare-clef": {
+    "hash": "56d1916032a4c62d697e41414c15544d735b654ebc86239ed4ae18af5059b54b",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/fastino-gliner-decide": {
+    "hash": "c36f503813e3e2cc63ca8364ddd05d151a940fbd66fead6320ee080562f888f7",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/kev": {
+    "hash": "8673483bd3e411d416d314d26d2635f3dfcfcc7912e6966b33beef1cc8223579",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/liquid-d1": {
+    "hash": "5b0f145d653c43bebe3ed80ba9657560e6ceaf9df72a350cdc1f43a7f1032a32",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/mapika-decider": {
+    "hash": "354ef142b715666fb73ec6d380ef6568375d7f38bc002a926ef85753bb00080d",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/openai-decisions-api": {
+    "hash": "34707a39ddd8d6e2db7875a2bd53f671fef97b113027f2438e8a2d428acd0006",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/perplexity-pplx-decider": {
+    "hash": "dd50986085315eef25452fb21558dc4fefba28d8c022ec184fc2dc2c35fed523",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/semif": {
+    "hash": "556fb26ffa54463636911246b3e97070d0a606dbaa10ec21a445edd6289512e1",
+    "lastmod": "2026-10-12"
+  },
+  "/alternatives/von": {
+    "hash": "3b1e875c823a9dc78f6c027ceef739e2f802f86f0c6b78f9b1484f3bf88cd39b",
+    "lastmod": "2026-10-12"
+  },
+  "/apps/0xarx-jevegis": {
+    "hash": "2a9b0266858833bc935b4afbd3561072e5b74c1fe4ba3a89286984ec6819372c",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/abovecolin-ha-jev": {
+    "hash": "d895c36253199716a77cf7156ce80faf261cc47ac60f0be1726217ced34fc551",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/agricidaniel-jev-seo": {
+    "hash": "b58917012fb36aedf61eb65998bceb48203ed39fc714c263317d225b409a9e33",
+    "lastmod": "2026-09-29"
+  },
+  "/apps/anishfn-shapeshift": {
+    "hash": "2851de231500459cd64f1ec67430477b91218d08015f3e19638c128d27007a5a",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/arielweinberger-jev-autopilot": {
+    "hash": "0b41128b0ddde5c435831ef00085db1b62cbd50e887b71acd7eccd4c07959473",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/asfarsadewa-human-compiler": {
+    "hash": "b75f6b6b7572cbccd1f403d0a25609f1405c9411b215bbb972c8d98c37e8e1a9",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/avec-ai": {
+    "hash": "f145d136509edadc24e16a60d15979ab157cf7eae1e40e8a4af5c17cbf71251c",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/awlevin-typesafe-computer-use": {
+    "hash": "c5d8ddd71859a9d1cefb1c112fccbb8bbef7c0ab8a69ce5f6ed718dec32a852d",
+    "lastmod": "2026-10-09"
+  },
+  "/apps/brainstormity-jev-moderation-bot": {
+    "hash": "213da1383f22a9a8b0afa3e6bd1468e89cf03b80cb6b7e9c6303f62163a364f6",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/browser-use-jev-ultrafast": {
+    "hash": "f48033c47ec382d7b5a44a13394090c9cf20015345c8e7bbfb1fd85454eedc83",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/budecosystem-bud-decision-studio": {
+    "hash": "b57cd3b33165e91693affa5af729e7090deffeef96374d218436090fa17cb202",
+    "lastmod": "2026-10-09"
+  },
+  "/apps/bunsdev-clarity-judge": {
+    "hash": "b6dc4903b9e67d50a4aef1862ee42e14794d447762a90b2114bc76f2eb7f8893",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/bunsdev-typesafe-ai-playground": {
+    "hash": "aea5c8cc649b9230e39d7a1c5da4197e7e1db8672a5bded1eedb18f6b3d74726",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/carolmonroe-jevrls": {
+    "hash": "a024c42e784c1813fe2a97073b33f1e55f485d56d5dca59a3aa33c65af7974a2",
+    "lastmod": "2026-09-21"
+  },
+  "/apps/cbetz-extremely-specific-council": {
+    "hash": "e83087aea12c5bfca89e0c26d07af9231411de64c4a11dd0253e3a86efa6c8aa",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/charlyhno-eng-jev-document-classification": {
+    "hash": "c61025e3422b4e3fbba0e88301777f0d5a1cd8b87b1684a4851f43c159895d72",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/chetaslua-jevmeter": {
+    "hash": "53ecc4ce8932f989d6da0908354f042f2f38f06f913254b66ff7938061321720",
+    "lastmod": "2026-09-22"
+  },
+  "/apps/classifier-dev": {
+    "hash": "61d36b5c8de1cdce90d3fd014a4f0acd844678ce13e44eeae5848e51ba63dc1d",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/coriew-jevtest": {
+    "hash": "43be9fa7a9e53d499467a9ed1b1921c31c55d0a0a68bb70c70a2759caf64fd50",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/cpaczek-s1s": {
+    "hash": "8f0f9b63f1084288058298723506b9eb2ef4a3ffdb35219713dff2090af5ac75",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/dmx-to": {
+    "hash": "5a403a6f42bc6bd00a8344422ff77648c80e0d7a0e930e3a8439b2c8013b2239",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/docjev": {
+    "hash": "137541949d06782b9bcb42a399a02e34b4f4791fd8ef7eb8a49a9381a05d735d",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/droidrun-mobile-jev": {
+    "hash": "0ae96ca6a77ae9433be732b1d2def7ebb879a67a2fd4518d99a5b28de6c56112",
+    "lastmod": "2026-09-26"
+  },
+  "/apps/dub-co": {
+    "hash": "c2e6fe94e7c29481dedb84770055390f2573e7443ee8ab7ce3489eba0590194d",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/egghead-smart-procurement": {
+    "hash": "bdebaf54aba60bcc63eb9130f58eaa6a649968d1bea5433316f383f52254cc12",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/eliot5566-jev-paper-radar": {
+    "hash": "ba5792ae7a228184ea4c4cab835d957dafe68301efe2fb679661e32d435d317e",
+    "lastmod": "2026-10-05"
+  },
+  "/apps/ellipsis-dev-blink": {
+    "hash": "479810d303609e8f2bccc63f6cdaf2bb07eec7eb4db5e9e9db5ef22d5b8bb57f",
+    "lastmod": "2026-09-24"
+  },
+  "/apps/eriestra-browser-use-olympics": {
+    "hash": "ef0d8772340b86882d15c831800c7728eaf00f621497dbee1e4e9fbcf9c23243",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/extend-hq-jevbox": {
+    "hash": "1b4d483059eb0fc28b97db961eb1add64dbe9ba6ed12a28d93efbaea584c3e4d",
+    "lastmod": "2026-10-05"
+  },
+  "/apps/hellogumbo-should-ai-kill-us-all": {
+    "hash": "18d2e0ee29fed1622f7a06ffe24cc4a8e5c02a6e3674d3f0611444a83e24291e",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/hemanth-pkg-gate": {
+    "hash": "4229c5e1c7eae69ef27151b48cf90286286ad67aa818bdc68ebf8ad0d93613e9",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/hypit-ai": {
+    "hash": "39a01e9731ba6f828b60d5ee964f66d5d2576c6e359057b5e9ec2d3e3d356345",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/iannuttall-internal-links": {
+    "hash": "d867007fa8499d10e3b7627b2650e749f002e8b79940429f04afc0eaba51de91",
+    "lastmod": "2026-09-23"
+  },
+  "/apps/jackalope-dev-jackalope": {
+    "hash": "97002227fa74cb1a7ff2c270dde78920811fcdccb7630d894997e9907acbd99b",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/jarrodwatts-jev-trader": {
+    "hash": "223b2e9995f47edc7a338a56811fd77d7a94ebe981657f2efe381ba93d627e92",
+    "lastmod": "2026-09-22"
+  },
+  "/apps/jev-chat-jev-chat-jarvis": {
+    "hash": "31b7d4d4ec5a657359e468caac4f23085bb2d2381a2d0e488bdd849ffa4f4324",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/jev-chat-jev-chat-windows": {
+    "hash": "7b8227b32fd32faae057d208725b5d4fddaee08535d06e1611fecb353a7dda75",
+    "lastmod": "2026-09-24"
+  },
+  "/apps/jev-classifier": {
+    "hash": "12b86cd99d1d1e0269082afe81bbd6d7af9801f0a69af53e38db661e973dbce3",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/jkudish-jev-browser": {
+    "hash": "59b42cba98929a3f6b2fd2c6a67572fc869f4bad903f35792cba134ab03a0a17",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/joevidev-ui-generator-instinct-jev": {
+    "hash": "9b9aacd5944dc3c2821dc9152edf700dbdcd333c931d345186c51a79134ec1ad",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/jordiparracrespo-typesafe-ai-trading-showcase": {
+    "hash": "4c2abf0f831062a388c87ce2deea3ad2f3c4eb79ca4035b61d4a5d4635dd561f",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/kitze-unclutter": {
+    "hash": "d6984792c99021cdae0333cfd879e1d7e66c62870484e3d8f2d799ca08a316de",
+    "lastmod": "2026-09-27"
+  },
+  "/apps/kraayenjon-ai-slop-detector": {
+    "hash": "f49671f7f1731628514b904debd92b92aa460103c52c8b2ce812aceda77761e9",
+    "lastmod": "2026-09-22"
+  },
+  "/apps/krw82-jev-playwright-mcp": {
+    "hash": "8d5e6742300a531fc98a75379b64754092b098b5aa9689154c999e6c2df3b79b",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/kylejeong-jev-as-judge": {
+    "hash": "e90538a12ffa6369474ab0af37dc8c970b35561284481c0d89c0133eb564e731",
+    "lastmod": "2026-09-21"
+  },
+  "/apps/lahfir-agent-desktop": {
+    "hash": "e4377e0fc40aa7ff2b23bda18e282088ce5f1a8085012be73a4f2513fedec40b",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/little-planet-labs-jev-playground": {
+    "hash": "f1b7729ebd860228d50689881ef243988e6d86ad008141fd1c1b2aebae3f9db7",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/marissafamularo-citation-verifier": {
+    "hash": "ef41dc4da8222da62cfed8dcb3a49ca643dac738dd44172ff39910ce6db7e8d1",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/mfm-jev-search": {
+    "hash": "22a41dad4b1614bd781c2554fccd5f6c7ff656783d9b46c6c4e36d154e69cbba",
+    "lastmod": "2026-10-07"
+  },
+  "/apps/milind-soni-tiptour-macos": {
+    "hash": "dc4b8f5e0480e0bdc892781aa88a9f1e5bfdb20dcace6af6160e618b7b89912d",
+    "lastmod": "2026-09-24"
+  },
+  "/apps/monteduro-killmyidea": {
+    "hash": "ab6cca48ab6fe5aef47f11b349168de57e6b7b8169bfd9dd2c9f06e44d02599b",
+    "lastmod": "2026-09-24"
+  },
+  "/apps/moritzkremb-jev-voice-browser": {
+    "hash": "c13828a41bfeaa909432afafef770a8c7dfc1d34c6d76f6437d63d7ff01b8efb",
+    "lastmod": "2026-09-23"
+  },
+  "/apps/nailthy62-drape-virtual-try-on": {
+    "hash": "2b5b5cc00e485a045cbe7d6e80833e783d0f8c4de585844f7119ea180c419165",
+    "lastmod": "2026-09-23"
+  },
+  "/apps/narulaskaran-jev-data-questions": {
+    "hash": "1dddd75af3422bae116381f05c493619ab9c5e6a89bb26ad7142840f9a8561c2",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/ndolinschi-jevplay": {
+    "hash": "46be8ac82925bcced0e9d07acf43d72a667c3cfcd570df89245208d4e5238b8f",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/nickthompson480-typesafe-ai-playground": {
+    "hash": "1512b8a83d3d04947d215967d7a5dd9506295e5123e254fcfa0e20740882d8af",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/nutlope-1kpapers": {
+    "hash": "ea8c06c26a9fb8552cddbfbcb4d6e187f3924edc7af321bfaa8fd02e2ac00d4d",
+    "lastmod": "2026-10-05"
+  },
+  "/apps/openbyteinc-quantdinger": {
+    "hash": "dd37049658179fa818578f1702f2357d8ba0e11138be4924ce8d538942de5661",
+    "lastmod": "2026-09-28"
+  },
+  "/apps/pixelml-com": {
+    "hash": "ebd7cb152abe0106bd962fb2b5f13f62853a884a208b181e6a0775ac416e12fe",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/ploy-ai": {
+    "hash": "7a4238d664e0e176d15c738f810e2afda59abfd6b35a14c52152de200ef33ad8",
+    "lastmod": "2026-10-24"
+  },
+  "/apps/ranjan2829-askjev": {
+    "hash": "4977c8687009db9f97e6675bbd9562e4e170159e13af6aa96495f5ddde38610e",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/reachjalil-jev-tree": {
+    "hash": "82147907ee99c1dbeebb2ba26cfa976cbc4f40091114f64756be592522a91bd2",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/realzachi-typesafe-adblock": {
+    "hash": "f1c1893e40e68cd68aa5415bd2b1a7ad65fb09a0f694ae069cd26c87f4ae53b0",
+    "lastmod": "2026-09-18"
+  },
+  "/apps/robj3d3-superx-post-scoring": {
+    "hash": "f3b7f4d9f0da604ca6ea802e67e267a53060ae60654bc70787af582145276858",
+    "lastmod": "2026-09-22"
+  },
+  "/apps/sac-y-jev-cu": {
+    "hash": "9ee89df0234089ee055c9e15e37b1218122bc78df46fcf0250008171f57df9c5",
+    "lastmod": "2026-10-09"
+  },
+  "/apps/sdras-jev-webmcp-extension": {
+    "hash": "71204e189fd45d66ad2d0e14490b3906b7ee1925d9f94120f27a11ab142767f0",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/shhivv-arc-cua": {
+    "hash": "b34a64cf53f7018f2ac419089d6645ab24a29e0d31bc2ce3fbe2177731cc25e7",
+    "lastmod": "2026-10-12"
+  },
+  "/apps/shifros-search-function-test": {
+    "hash": "cbcd8c13b1acca5f30543276ced0e7aed1bcfcdd26f1e387322e5411fe5fad89",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/socai-io-jev-social": {
+    "hash": "1613985f689ff740c6d4a4c050a2f9fce711668cca8c4ef9f6cb38746e20fd7c",
+    "lastmod": "2026-09-28"
+  },
+  "/apps/stealads-ai": {
+    "hash": "31869e40727a3d2c0bc4d3084a12b816813a17ee369dac55f1178909a2f05a69",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/sufianetaouil-every": {
+    "hash": "f767495d2f82e5f89c05680e2a867cca30d07f22781131cb86488b907be7aed8",
+    "lastmod": "2026-09-20"
+  },
+  "/apps/tanaypadar-gpt-vs-jev": {
+    "hash": "d9708b7ed14a083f2e8158dc1b4643d6fe778a3bd1482fa687627f5489bcbc69",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/trungdq88-youtube-sponsor-detection": {
+    "hash": "c2e263a392cfe8a5273475610485ba6ec49fab0aed35fea796aaa389ae60f9f5",
+    "lastmod": "2026-09-23"
+  },
+  "/apps/usenotra-notra": {
+    "hash": "edebf57cab10e8f478dca0d8e632d1ddcd469925e28092072397b3cb217021a5",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/virlo-ai": {
+    "hash": "219465f97826355dda7a32d1982e6b9ada260bdce2ebf70ba45cb6798d592cba",
+    "lastmod": "2026-09-30"
+  },
+  "/apps/wesecureyou-jev-test": {
+    "hash": "daf5efcbcb9dc86e702061784b01172172f6e82fbb60f6f73760febda2e13d8c",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/wustep-jev-playground": {
+    "hash": "1e72faf5972f44b0d784a74a2795968564f34d41696b89240ecaa06647b422aa",
+    "lastmod": "2026-09-17"
+  },
+  "/apps/wy-coliney-jev-browser-use": {
+    "hash": "0622780d629284235d1652272c2c79a508fac39763b392482de997bbd2515e5c",
+    "lastmod": "2026-09-26"
+  },
+  "/apps/yes-no": {
+    "hash": "87acbd5e33b9c3c6b219b7e0c7aa3ccae3b747dd9edd8653756f180620bc8a6e",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/aabolfazl-typesafe-local": {
+    "hash": "d72df1c35010639e377b6d941e7002ee8c61d28063a4538577d7eec527874b90",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/akash-kamat-system-one-gemma": {
+    "hash": "ff61a7c485644bf3ed5fc3499b77f03f83f9dd246cb9bbd41846912f6ccf3b2f",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/akashpriyadarshii-jev-curate": {
+    "hash": "e5b5f2e01ea96ff6184e0f8290489b260837260adcdcbb5e97b16ed08af56b28",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/aliceroselia-typesafe-chess-eval": {
+    "hash": "6bf35cfd8bf9423421e4cee1ca23d2783395abaeb0f2d37a51688a9340cf6f1c",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/altryne-jevify": {
+    "hash": "9a63314f6931e0a665ebf8fc0c9380ed9570e1147576c91d1199ee5ec2473368",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/anessbelbati-jev-rerank-bench": {
+    "hash": "1f0ba47ca85438cd2f407e3503a2e54fb415dfc4426b961171dad0e7043e0243",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/antoniocoppe-jev-harness": {
+    "hash": "9c36fced5a224bc92dafe381eecde26c1bfa7df8acff763789ed3737cd01fbe0",
+    "lastmod": "2026-09-30"
+  },
+  "/benchmarks/apolinario-decision-index": {
+    "hash": "39312abcbd9c75964bca6e2fdd81cf128dac77222a768a3e8eba8b3971544f87",
+    "lastmod": "2026-10-07"
+  },
+  "/benchmarks/bespokelabsai-nimble": {
+    "hash": "74987c2970668f4118eb006c35e8e0e0cbb1c3e442c4fd4b435f679699959c22",
+    "lastmod": "2026-09-23"
+  },
+  "/benchmarks/contrastive-lm-clm-8b": {
+    "hash": "93ce5b95f84c5536bde7abfaa9ba62845f4ff31fb2484c7c8f665c061fb1724f",
+    "lastmod": "2026-10-12"
+  },
+  "/benchmarks/dnakhoa-jev-deferred-crispification": {
+    "hash": "681e7fba038ed6933e66a250bd3f8979325f77da4221851012c233062707fc74",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/docxology-daf-jev": {
+    "hash": "f45506d33a85782031fbaa1b12d329d8be378c127b9f38324c8b56d15753a382",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/fastino-gliner-decide": {
+    "hash": "ce85a1027cbcf016a9c4a3876b1aca79eead021b89982738ea7c7b4efc7c6452",
+    "lastmod": "2026-10-12"
+  },
+  "/benchmarks/foadsf-jev-for-engineers": {
+    "hash": "1e693360fba357a718a864139c1406fb8e740b2cdaf0a717a9d46af8d5be4deb",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/goodrahstar-jev-column-race": {
+    "hash": "8ba96bf6ef4e28733e032f69bae81183e77e729eb29853b3eab87da160d3c6a0",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/heman10x-ngu-verdict-open-jev": {
+    "hash": "1bf188fbcc9f82527ec0aeafce1acc12ff609f5e6e5199bca8f84bc460fa07aa",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/iammrduncan-typesafe-ai-benchmark": {
+    "hash": "cd5d7512cf13a6bc975b9a358831dcc95df7ed1d427e4fc16a308e7e90c04ca7",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/kikoncuo-jevfire": {
+    "hash": "2db2e228682b60f8cf9c44e983717ea5f455a5336cc2cb0616336aade76d0521",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/lab-dados-jev-anotacao-sentencas": {
+    "hash": "027f2fd5922b4f14ab4e3bc6f83d25d6a561a7e7eb648a0cdea2ad17d6719fb2",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/mahlernim-jev-korean-benchmark": {
+    "hash": "e90d406a6b3e1cefcc009d7fa46fe37b5096b8dd42048e76f2cd839f0148c4eb",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/monglong0214-jev-gate": {
+    "hash": "cb8549ffb9fd0ac2999d502cb651890e01044b6ed30de8da982f03e0841fcc6d",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/myokoym-misereru-slide-jev": {
+    "hash": "a1c2328bb18314f5781ad3e9636a0b93ac2fc09021159eac7c5546606995f091",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/olanotolu-jevbetter": {
+    "hash": "7bb0984bd6c96fe1517faeed32df3dc2b21302ad997726f7743b88dd52c6c413",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/parallel-constrained-decoding-qwen2-5-1b-rlcd": {
+    "hash": "db2c65e3ca05edf3f17e5d3b5e7b665a03e05c3fd3c6323c0b2f23db7b16a527",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/r-ms-mini-jev": {
+    "hash": "6126d3a1be99f044a353a7c7952a6a0e7b9c5893e42be388393186f2c85c46c0",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/rorshopping-jev-on-a-laptop": {
+    "hash": "d4b49e9908f04bfd0a8270a0697d65316e2fe406af1606df4b80497e526a5928",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/sypherin-jev-trace-classifier": {
+    "hash": "3a12cd81fa07ca499c48a6929cfca2fe661c1cd1b78de49d92f0a33f8314f3a4",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/theoleecj-semif": {
+    "hash": "7aa776c4be6f6285bb6f354a9840459b696ee7c5d9602118994aa54b0acfbd80",
+    "lastmod": "2026-10-12"
+  },
+  "/benchmarks/tianyucodings-nanojev": {
+    "hash": "6ae543203743771a74dc93ebb24fd45f325aa1540442891088e784b8d1845cc7",
+    "lastmod": "2026-09-23"
+  },
+  "/benchmarks/vinnylarouge-jevlike": {
+    "hash": "7298eaff9b215c0ba4daafd9c52a026db4bdcb4a8ee07ed2dc3e3d93ff33e800",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/zefir1990-openjev-experiments": {
+    "hash": "01b2ffbdcbc7e78098190a41f06b04ad9681f7eb06c3f80ffeea74a9e9e81ab6",
+    "lastmod": "2026-09-17"
+  },
+  "/benchmarks/zhengxuyu-litjev": {
+    "hash": "97d1ed08fe87ebc9e22dc6f0bf2f7a2c9af9cd1133dcca4c4cea65d1cd6221a8",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/zhuyansen-jev-search-rerank-eval": {
+    "hash": "7f990c78f033ed5bffb692909b7a1b0f9b99a8526bbb13d32dccc6d3e61ec8b1",
+    "lastmod": "2026-09-18"
+  },
+  "/benchmarks/zsavage8-padflow-jev-evals": {
+    "hash": "18fc8e2f51696d8e4891c9984259501dfe59985af58fe4c54f8c324b4c48d2f9",
+    "lastmod": "2026-09-17"
+  },
+  "/categories/agent-tooling": {
+    "hash": "489df3908daf8a92294dd397cc6be1a106744b1296155a7c96e5ba1aba0b5ce5",
+    "lastmod": "2026-10-21"
+  },
+  "/categories/applications": {
+    "hash": "6b69a151df251e8770aa9b8ff6f8819b7c3a11a1806316755a1f208db364b321",
+    "lastmod": "2026-10-07"
+  },
+  "/categories/benchmarks": {
+    "hash": "391d320120e7774249546bab0e2a4c231fe6e65fef1c111fa4eb55522ed88924",
+    "lastmod": "2026-10-17"
+  },
+  "/categories/browser-computer-use": {
+    "hash": "85ac774eb0f5336b8ccccad434c5b399bf47b493036166d320f07ead8742859e",
+    "lastmod": "2026-10-09"
+  },
+  "/categories/games": {
+    "hash": "740745725fd2fba5484a2857fc1438b06ff06a52ed51c1b1d73cf6dc14d041b9",
+    "lastmod": "2026-10-08"
+  },
+  "/categories/guides": {
+    "hash": "a2b403c22001fc0ea41fef4c939fb7ca1a26cdcb6c8757f5ddc229977e4ce676",
+    "lastmod": "2026-10-12"
+  },
+  "/categories/integrations": {
+    "hash": "5a24ddef2f64116755e01a5644c76545963c622c33bf36c99755e68a250c6991",
+    "lastmod": "2026-10-27"
+  },
+  "/categories/official": {
+    "hash": "495b76200f0b6422a247ad39269fd3ab3e35fa51a8a0996d23694a128d569094",
+    "lastmod": "2026-09-23"
+  },
+  "/categories/playgrounds": {
+    "hash": "335282d4ec2baf48997954670c92b9ebe25bb202c1d7366820b3c183a4ad9b9e",
+    "lastmod": "2026-09-30"
+  },
+  "/categories/sdks": {
+    "hash": "6181f8a9ca7925836d3d12d998b0f59c2c4eb7e9275c57635c6ede6aeaa27e90",
+    "lastmod": "2026-10-03"
+  },
+  "/contact": {
+    "hash": "b423ffe9e0a943d39bd60fc759c45d2dd91f8e7bf5a6e034ee9bc5b9d2273104",
+    "lastmod": "2026-09-23"
+  },
+  "/demos/my-first-million": {
+    "hash": "1c6926c65d56673aa7f1e87f10bc115d85d0eb60039d59782212eda8725d2fd1",
+    "lastmod": "2026-10-07"
+  },
+  "/developers": {
+    "hash": "4dc2ca1140f2cce670b3c7865a03cb892664e301083ab0f470e1f998af1da5f3",
+    "lastmod": "2026-09-23"
+  },
+  "/explore": {
+    "hash": "34eff570592d5faff34b14ea91dbbbf1f90c97210247cdd7082bbebad78c1d11",
+    "lastmod": "2026-10-13"
+  },
+  "/for-agents": {
+    "hash": "2c9608e0ddfe21e9bef7a9061f402cfeb72bca3b1d0ff5f801598a8788ba333d",
+    "lastmod": "2026-09-23"
+  },
+  "/games/0x963d-last-exit": {
+    "hash": "73136d4795716b483556c40b54e516f26877d04086156a2d9dae0c003455f61c",
+    "lastmod": "2026-09-17"
+  },
+  "/games/christianmat-jev-pokemon": {
+    "hash": "85674de8551fe255b4a73b7a63fb8a36ebbecf8b58ffba64bc8e2add472b40d8",
+    "lastmod": "2026-10-08"
+  },
+  "/games/enoyola-jev-grand-prix": {
+    "hash": "21d7d8f8528346ef06e75721ad53e20c04853508488730101d81e6ce183de077",
+    "lastmod": "2026-09-21"
+  },
+  "/games/fhshaik-typesafe-mario": {
+    "hash": "0519f1aa90bdb1dc1f57508243254a85ba14044ce29dd6691b121696a41cbc19",
+    "lastmod": "2026-10-08"
+  },
+  "/games/hollow-creek": {
+    "hash": "a97ba2208673795fbdd8728b6a3f557bf35688774a71f5842d01bdfc57f403eb",
+    "lastmod": "2026-09-17"
+  },
+  "/games/iammusham-jev-snake": {
+    "hash": "1cc80d1e50297cc9388a9d600f0e0b3131e7e1ec7e8dac8e40c24cfddd3040cc",
+    "lastmod": "2026-09-17"
+  },
+  "/games/icohen007-jev-play-ping-pong": {
+    "hash": "dd493166e42a78ab8cc7e394e6be7a3c25668c43844b8a25905bcbf7b2393db4",
+    "lastmod": "2026-09-17"
+  },
+  "/games/jev-arcade": {
+    "hash": "9d03afe9a7be6c7890816de1ea64abc5bbe863e1c1a55a789adaba168f35c4b9",
+    "lastmod": "2026-09-17"
+  },
+  "/games/jevdoom-jev-arcade": {
+    "hash": "fe96530faefb354abed11aa03d316cbb3f74310ce6bcdc18801bd4f3cf2fbdc0",
+    "lastmod": "2026-09-26"
+  },
+  "/games/lukaske-jev-doom-agent": {
+    "hash": "da92b3c8d6f8ac45c63c5b16126c0e2905a1ec500996425df7563aba0a6870e7",
+    "lastmod": "2026-09-17"
+  },
+  "/games/marcelpociot-wordshift": {
+    "hash": "72b01463b1c71b2589c7b824aba6a80e3079fdae5ee1fe75e0dbf7e6689fa9ba",
+    "lastmod": "2026-09-21"
+  },
+  "/games/muhammadaq1-before-the-fall-jev": {
+    "hash": "31e9f44cb12397a624602751d4bbf3bff573c06d4e68083254ddad16dbd3a4e4",
+    "lastmod": "2026-09-21"
+  },
+  "/games/muratcanberber-jev-the-fish-game": {
+    "hash": "f5e818ec21fb5a4739497b665d93e8a4c7ae7c8d5a4be6343453ceb0fcc40a6a",
+    "lastmod": "2026-09-21"
+  },
+  "/games/romanslack-jev-drone": {
+    "hash": "0905d01d9d1369033a0567f8cdab8757bfd2899758ea0b290191d768fb588b53",
+    "lastmod": "2026-09-23"
+  },
+  "/games/shubhankar-jev-fifa": {
+    "hash": "83b08be720f1c82f0f9e55e486c68ec690b9cd66955c27e93a6d1b54d2ccc977",
+    "lastmod": "2026-09-21"
+  },
+  "/games/standardagents-jevpilot": {
+    "hash": "7c3be03a66db023d95422add5d86d42c3540aa6e7c2c34fec017a74483d123a6",
+    "lastmod": "2026-09-23"
+  },
+  "/games/thisiskp-jevarcade": {
+    "hash": "6df1736560e7455d7820373c332dd144c9f283fe045934136c0b99e2026d0dc5",
+    "lastmod": "2026-09-21"
+  },
+  "/games/thumay9700-jev-plays": {
+    "hash": "ccb89446d7fcca3057c61f5bece5a56d869eb7ff04b4ce56c2afe1857d6fbda3",
+    "lastmod": "2026-10-08"
+  },
+  "/games/vnmoorthy-siege": {
+    "hash": "20fb694b8fb3f8ef05efc7dc923ef0244e0e2215a1d16687ecdbafa1617ad669",
+    "lastmod": "2026-09-21"
+  },
+  "/guides": {
+    "hash": "145a20a663b2fc50e45a2f66011a349e2f0c6f276e11788c48fb5a768c6ea68d",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/abdelstark-awesome-typesafe": {
+    "hash": "aa566a81820f523f2286151b6115d4866a67e73040946e99d16de93cb877db76",
+    "lastmod": "2026-09-17"
+  },
+  "/guides/ainews-jev-a-system-one-model-that-only-decides": {
+    "hash": "a8993641942dc52004f157e3bac42b5921c1b8f0c05e43d2895e506acb9602c2",
+    "lastmod": "2026-09-17"
+  },
+  "/guides/datawhalechina-jev-cookbook": {
+    "hash": "fd1aa1f1fe7bdc6785adc33d845ec2bf710c746886a8b9affe9e313dc49c47b3",
+    "lastmod": "2026-10-07"
+  },
+  "/guides/jev-plays-minecraft-r-accelerate": {
+    "hash": "6cd41964d826fd49b21502083e04ce989599f9f071e124b57fcdd06f0ce33923",
+    "lastmod": "2026-09-17"
+  },
+  "/guides/jev-system-one-models-explained-datacamp": {
+    "hash": "522e36a2f639e7a32daf954c256bd5b1ac616e02e42f7cee6199dc6dbea049b5",
+    "lastmod": "2026-09-17"
+  },
+  "/guides/jev-with-ai-agents": {
+    "hash": "9d5e11aef08b86a5462536c5810b1f599f0ca0e781f7be409cbbeb3ed3efa58d",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/jev-with-ai-agents/browser-computer-use": {
+    "hash": "b009645d6bea8fed708701d3929881a1d56c14aae0db10852d1fd04b06899e19",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/jev-with-ai-agents/claude-code-desktop-cowork": {
+    "hash": "d4badd54aa69b2b84697ef66f0852216b380d163c20cd5d6eac90bb9a4aec599",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/jev-with-ai-agents/cline-and-roo": {
+    "hash": "6ab5578d2f1626fe849034e5f9474fa272b142c039de823e12ab1726f03a477d",
+    "lastmod": "2026-09-26"
+  },
+  "/guides/jev-with-ai-agents/codex-and-opencode": {
+    "hash": "6a385e1a33d8f197719f66fa49429c535e9065eb64e69420c0e991c14002a6fd",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/jev-with-ai-agents/cursor-mcp-and-skills": {
+    "hash": "9846fca5c6fafd0a298a87c7b6948a5a5ff7eef49564dd3e1dca0ad25c06577e",
+    "lastmod": "2026-09-26"
+  },
+  "/guides/jev-with-ai-agents/devin-desktop": {
+    "hash": "2b02501497e771c37caa7543ad08acd9d08dc76d3dd7520ea2503d7d6f23952e",
+    "lastmod": "2026-09-26"
+  },
+  "/guides/jev-with-ai-agents/github-copilot-agent": {
+    "hash": "1936b2ddbc346f8ad342b35c4c46269b8ef141697eff4aa38a57741da012789e",
+    "lastmod": "2026-10-17"
+  },
+  "/guides/jev-with-ai-agents/hermes": {
+    "hash": "9e80c3fff05dc7c1c409c65a1dcec7db7c88872a5c9c01dc957e36a953ae00de",
+    "lastmod": "2026-10-17"
+  },
+  "/guides/jev-with-ai-agents/langchain-langgraph": {
+    "hash": "7b761be6363c757d6dc796ebdd9fa1f2d8201f6c2347e1bb9247560c4851bcab",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/jev-with-ai-agents/openclaw": {
+    "hash": "2da1726b05a6799816b109727e607618a959a032613359a00a1e8d0ffac8e1fb",
+    "lastmod": "2026-09-26"
+  },
+  "/guides/logicrw-awesome-jev-projects": {
+    "hash": "cce7609ea8afc474504d54f008d1dceedc012686c2ff9aa3317d09e8c09f20e7",
+    "lastmod": "2026-09-18"
+  },
+  "/guides/omnijev-awesome-jev": {
+    "hash": "2d4467a245a059e2cfb934cb610012d21e25986edefc3036b0f5ff7162406b6a",
+    "lastmod": "2026-09-18"
+  },
+  "/guides/one-judge-call-vs-twelve-dimension-scores": {
+    "hash": "076b7f269bef7fac75eca8b35fbf1fcfc9982277d65f0a190c43ae8519423945",
+    "lastmod": "2026-09-18"
+  },
+  "/guides/openai-decisions-api": {
+    "hash": "e7998729c4ca4dd35418bc1b3ca7d06c4c4f3b4878f499a26e4bf5734b2f2fed",
+    "lastmod": "2026-10-12"
+  },
+  "/guides/socialwithaayan-ten-jev-repos": {
+    "hash": "ec5012d14db3db8e10094c607416c03e68d7ca6be37b1499e5b18b76b3d0f0c4",
+    "lastmod": "2026-09-30"
+  },
+  "/guides/typed-decisions-not-chat": {
+    "hash": "9d698428970023f7605ac0fe18d35b27355e3dd941195cdfd978a284a5b06370",
+    "lastmod": "2026-09-17"
+  },
+  "/guides/yibie-awesome-jev": {
+    "hash": "8dc7b457d50a9e656429ffb66557130986ffed3db1ae9fd9a32366a75b3d328c",
+    "lastmod": "2026-09-17"
+  },
+  "/learn": {
+    "hash": "57a4aa1a7a77505d13c8c8f677ba46715ee60d0a45e184ff88a13cfc2134384c",
+    "lastmod": "2026-10-12"
+  },
+  "/learn/jev-typesafe": {
+    "hash": "c7cdfd11f801287fbe743cf870ec1cfdf605b099c9379210de7b647f0f06cdad",
+    "lastmod": "2026-10-17"
+  },
+  "/learn/jev-vs-llm-classification": {
+    "hash": "9edce182c4bd34fdc9ad4b94b3eaa9ac5c1e01a9fed3a3afba55e8dc838bfbc9",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/laya-vs-jev": {
+    "hash": "ac2a012db9e95721bdf0dd634f597bfc5b68ddbfed75c8033f05764a661c3200",
+    "lastmod": "2026-10-17"
+  },
+  "/learn/laya-vs-jev/benchmarks-and-fairness": {
+    "hash": "6f04dae5f7e427662421c05f7d36b1947dff947c95e04b52f88d1444e132382c",
+    "lastmod": "2026-09-26"
+  },
+  "/learn/laya-vs-jev/compare": {
+    "hash": "bc2a0c3f1e3275607e22b7f0ed2da2bbcd20aee12d4519d69a28627b36815fb4",
+    "lastmod": "2026-10-12"
+  },
+  "/learn/laya-vs-jev/laya-mlx-apple-silicon": {
+    "hash": "7c1f0967bbbf7b32e318d3178777ee9d92d8b8dd655d3eb05c50f1e37f6f8ce0",
+    "lastmod": "2026-09-26"
+  },
+  "/learn/laya-vs-jev/migration-and-coexistence": {
+    "hash": "682218cb572e1f3869f661672ae065bb32abb2c6be65c159a6bbaea8651be1b3",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/laya-vs-jev/privacy-and-agents": {
+    "hash": "14f1224689acaeb3cf2a242fbfd8b80ba6bb3dd7e387e3760dee75a6d7b5d399",
+    "lastmod": "2026-09-26"
+  },
+  "/learn/laya-vs-jev/what-is-laya": {
+    "hash": "905892e8229ecfb08f16578631f90b43d2786fd71f212607197828489364aa3e",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/system-one": {
+    "hash": "412da9cbae86d8c5e88722e1acb6e907818aeb6648572e0c670572327e5ce399",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/use-cases": {
+    "hash": "e3db137bba682f34fd403c317feb99c2697c9ede28327a467b7a20604166ebf1",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/vercel-ai-gateway": {
+    "hash": "bc9d825b4a0007d96512bccae50416d736388537acc82a269f0c69b77c798b37",
+    "lastmod": "2026-09-30"
+  },
+  "/learn/where-to-run-jev": {
+    "hash": "1b3eb4dccded0b442f8bdceb574295da4b706dd97368528f4a19326d841590e3",
+    "lastmod": "2026-10-17"
+  },
+  "/privacy": {
+    "hash": "ea22c5ab89bdd273ca5a5b873963fd664b83a53bb1c7522161c4d55488bd3362",
+    "lastmod": "2026-10-10"
+  },
+  "/privacy/archive": {
+    "hash": "e38183c09c58ef7c0769aef1bf71501c818b4b75f24340a622da7f6d00e0e461",
+    "lastmod": "2026-10-05"
+  },
+  "/sdks/abovecolin-jevclient": {
+    "hash": "590ecde857818584a40ef0bfc2fd1322a8fc91bc7076a73d42c22068b922ac96",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/classifier-dev-cli": {
+    "hash": "43b35ff5c0fe30a51a8f9dca9eca2c883adf6930893edc1a81520df1ab067d63",
+    "lastmod": "2026-09-19"
+  },
+  "/sdks/cookbooks": {
+    "hash": "db6f2f5b437b2978adc66bc1ceaabe9525b4407298f8c22287a5f53c5299484e",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/documentation": {
+    "hash": "7ed2ce71bb2cb2df1b4d30da976e310ae511c6d0ca4ab3cccbdf872342b39fb6",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/gaurav-gosain-jev-go": {
+    "hash": "95e99542cc05f49787b788eba96aca360a291e76b99afde7fc9a7bc357221759",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/http-api-reference": {
+    "hash": "e376debe175352687c66e62f975d55f1eaec6b0aea22e4849ef35b94df383b83",
+    "lastmod": "2026-09-19"
+  },
+  "/sdks/inanna-malick-jev-dsl": {
+    "hash": "6f7f90f91e71fc8020ba8ea112c6a059a3b177f5077ca9651f8d3c01bae02bd9",
+    "lastmod": "2026-09-18"
+  },
+  "/sdks/introducing-system-one-models-and-jev": {
+    "hash": "82386bc0884169f5b44c9787a1b29c171c419cc32769fdcf144fe9007e66cc95",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/jomatsu-zod-jev": {
+    "hash": "a272c8a04627b6617ae3ffca7604afb5e6905dafa71cb7381d5aeb7daf74addf",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/langchain-ai-langchain-typesafe": {
+    "hash": "36736b9bc634e3cd7e7b8d2d250a5ea02aaf767070aaa9a9ae9ca3bfc8dca82f",
+    "lastmod": "2026-10-17"
+  },
+  "/sdks/mateonunez-jod": {
+    "hash": "af19d07b2d878f1062fe2b1319cbf9e2246be3872277ef80485704bcbfeeae17",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/nshkrdotcom-typesafe-sdk": {
+    "hash": "dd64efe0702a0c2f8219d154804da5d53ff889cc552915151b6f3307b5dbbec8",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/patterns": {
+    "hash": "b029461e174eef89b4fda873985de546e7a3e608a258675322e852dc94a26e8b",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/peterfriese-system-one-foundation-models": {
+    "hash": "a2a3cda6b546119a7c7b4651b25cb8566974c56daa78c693d1ca58ede5eef1fa",
+    "lastmod": "2026-10-03"
+  },
+  "/sdks/playground": {
+    "hash": "b77089ae2573dc374fbc3d769d76130dce804b43752f2bb2a1b2f86679cec05e",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/primitives": {
+    "hash": "0500ef30e2da15b454034f3620ab796a9235f955000f9e0be4cfd67b030bc91d",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/pypi-jev-cli": {
+    "hash": "33a3cc21bfdbe2dbff3d14e4893913b9556ec6fb581a3148daf8f9631f79998e",
+    "lastmod": "2026-09-19"
+  },
+  "/sdks/quick-start": {
+    "hash": "d2a6ad68cdf80d09008ea42e5a513e488a98e8b06d51b18e838f31fa6beed492",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/saibimajdi-typesafeai-dotnet-sdk": {
+    "hash": "7342914a35ec5c11fd7687902b48ac44bc7f1e4cb6727d8ea1b256c332d06ca5",
+    "lastmod": "2026-09-30"
+  },
+  "/sdks/smart-home-demo": {
+    "hash": "2340602720ab8f49389f1f06dadf206a4c907be5bb22a2a6affe860469bb2277",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/typesafe-ai-skills": {
+    "hash": "c12bfb1fa6b25cc378c4b88cfc35e4445752ea722aaf6ab8c720d4d7b8c9362b",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/typesafe-ai-system-one-adapter-python": {
+    "hash": "dc73576643501a2c3e9be48d8857fc1f94fb354d62ce91c41faed0ff2e4b641d",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/typesafe-ai-typesafe-sdk-js": {
+    "hash": "750aa68fefce985de7adaab900501fae5a8fb33fe6ef76fe0af4b1dc73944045",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/typesafe-ai-typesafe-sdk-python": {
+    "hash": "a8ae688a16b0e3a4406152a4ec1227bcd3d7dda16e096752b40df25e2bb423c8",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/valksor-typesafe-sdk-go": {
+    "hash": "951520bd3a57ac83e04cdb5c1304e08ef3980598116f5d029afa0743dd1b19da",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/valksor-typesafe-sdk-php": {
+    "hash": "90c6ddc8cd7f8d430ade09dd2aa7bed62df2bfc1a8762edcbc4b8039c7cc5b9a",
+    "lastmod": "2026-09-17"
+  },
+  "/sdks/workflow-evals": {
+    "hash": "29c721dfdd25b697a030e14592a4a68ad0f59af94462b2d8ec087416f322c94a",
+    "lastmod": "2026-09-17"
+  },
+  "/showcase": {
+    "hash": "c74e62d6ce2e87dee8f757b9665825f9de79f62388eef491fcb613a716666f4a",
+    "lastmod": "2026-09-30"
+  },
+  "/submit": {
+    "hash": "21d8a2d8a0e03b47d3c8cd126b3d4256af60d102739d151a20d2fa5ca00754b0",
+    "lastmod": "2026-09-23"
+  },
+  "/terms": {
+    "hash": "03daa29469e7a9f62748a3c70b1fa003dadd7a51fe8ec8f790691ca2325da956",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/0814wdwd-solo-jev": {
+    "hash": "a21e086be299366354e600735b1f1544f488aaf1e8fa653856509cf06f98a6eb",
+    "lastmod": "2026-10-08"
+  },
+  "/tools/0xnatoshi-jev-codex-router": {
+    "hash": "fc86b0e0ab96c4c419d69fcb17cf4aee4c688c9f196e8ff4dba110c8ca73233d",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/alex314618-create-jevrev": {
+    "hash": "6f0241a551cab7e216b680c43099d0d56d440558daa181417f75577d5a59fc77",
+    "lastmod": "2026-09-29"
+  },
+  "/tools/aniruddh-krovvidi-switchboard": {
+    "hash": "363c00fa36284fa66af9d7505c47dd7ca10a11244d2c6288b35bebcc782f2780",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/anpicasso-hermes-jev-approvals": {
+    "hash": "182964a05dc8171ce4ddc953912511b94b09a90037535a4c2f4e2ab0f0bee716",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/arunav25-jev-mcp": {
+    "hash": "07fc2b24f0cad073dea0b69fb7cc55b0592ff4de15cb6140c660abccfa9f2465",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/aurorainfra-grev": {
+    "hash": "d0bbc65ef202fc7237667fca829cf277946ac30edc0960377f6bc3b876e75094",
+    "lastmod": "2026-10-03"
+  },
+  "/tools/avinash-jetwani-jevmem": {
+    "hash": "c36f0472a23f173b7e8608286afceb258f13b225d157bae1e26dd33918f87824",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/belazy167-typesafe-mod": {
+    "hash": "53bd9754dc27782a55e418ea448cde729da30c5321632ccb78d9f95b4870c1ec",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/bestagentkits-jev-skillful": {
+    "hash": "9b75d34b03d65dcfd85d0131f2a8766f3685b49639a314043c6839e405c91a01",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/blakestone-x-jev-mcp": {
+    "hash": "eaf64674e868b245149ea6a4e9583e69947756b08919adc8b9a935d57db5392f",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/box-jev-incident-triage": {
+    "hash": "3805f74fa6d03c36ed02b704baf64aac74b762364217fc86e26db77ce40ac1ad",
+    "lastmod": "2026-10-24"
+  },
+  "/tools/brainwires-jevwire": {
+    "hash": "b5f02fd7ece60b9a17f4dd401358bef66ed1edc44bc436a5615bf95886ffdab7",
+    "lastmod": "2026-09-19"
+  },
+  "/tools/caiovicentino-jev-shield": {
+    "hash": "873090cbda41d94f55b45ed14fa18a3ce69ff864cddeb94898926666d6459b07",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/charlesfeng0314-jev-sees": {
+    "hash": "305b9b85df027b2112fcad63576f4fe3d20f55bf9cf9b4070f96cb3e727980f6",
+    "lastmod": "2026-10-02"
+  },
+  "/tools/classifier-dev-mcp": {
+    "hash": "2432e2595e02978335b64cc61d0d274e68c388292d1717893215611db6fca73c",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/cloudflare-clef": {
+    "hash": "06615df181e174a2e74e22c554a9a92f78a22cb03adc78a8ede5bb9149b1f497",
+    "lastmod": "2026-10-12"
+  },
+  "/tools/cloudflare-workers-ai-typesafe-jev": {
+    "hash": "9b976b06fc5dd284c160f379122080627cbebd8f0cdedc8feb7769e47c7cbee8",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/codegirl-007-jevlint": {
+    "hash": "dacf0038d4713ad740020afee612640ddb7b9234c1f539dca885368ad9ca06f5",
+    "lastmod": "2026-10-04"
+  },
+  "/tools/coldteadotai-abide": {
+    "hash": "420ff5cfed8370b24f8ebfff63295e7c39d315798ea89b938b4897fe90620188",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/compozy-yoshi": {
+    "hash": "ed1f3ba2479231144ee9d761c000f325a2c5761c721074dfc714f8ce6119dbcf",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/danrwilloughby-snifftest": {
+    "hash": "1177e589ad212fe310b852d5233cd1ce27dbb38047ba0efe019b987b2bb4a0d4",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/dbreunig-building-with-jev-skill": {
+    "hash": "dc105b6d8c1fcb3dd23acab701e689c2977159c684ca798b151197fcc24b6767",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/decrux9812-typesafe-skill-router": {
+    "hash": "cf17f23de7ee0ccdd9297e2ffb1bd7be248e413c1f8665236d7b3ba4102474e9",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/deepaleph-jevreel": {
+    "hash": "b2f5095b95c327fe2007e42f91fc059040d803bc7918d1e61597c10352430476",
+    "lastmod": "2026-10-21"
+  },
+  "/tools/deepopen-com-deepopen": {
+    "hash": "4f300dd8068dbb0fc89144a79b49f0cd81d7c3975ec31e78e2ed14c6298d7f23",
+    "lastmod": "2026-10-01"
+  },
+  "/tools/devagrawal09-jev-review": {
+    "hash": "038f91cb16bc68acb3807bf9f0377c41f6513ae0f774e6c662a54813b1a1f39e",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/devmortimer-pi-warden": {
+    "hash": "a1da41e00cbcb7ab2b9f296bc3cb64bfbe3b0716c29b3491dc111b4f096fe3d2",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/dicklesworthstone-skillranker": {
+    "hash": "0dfe1e970be17509596b8143206ab40eed0a54f4d4f16c794d160d92cc959240",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/disler-pi-durable-news-agent": {
+    "hash": "a0c3683662da47c7d3da65d7d6f967513a7442d65e8f083e1fe91d86eda257ba",
+    "lastmod": "2026-10-24"
+  },
+  "/tools/disler-ten-levels-of-jev": {
+    "hash": "dfb338ae712f15233c1d77716c0e763fdea147e6b0c0be20bb36efb56b6f7f51",
+    "lastmod": "2026-10-02"
+  },
+  "/tools/dommonte-n8n-nodes-typesafe-ai": {
+    "hash": "d0b3ce88f760b6838193c81f6f15ce230b240c212a28679616fa756f7b526d3e",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/dorkitude-webctl": {
+    "hash": "55fce09bfe652854e60abc0cd3c5221e54bee2b817e6b9b8b745ade0ec12d510",
+    "lastmod": "2026-10-12"
+  },
+  "/tools/dzhng-jevgrep": {
+    "hash": "26fe5dbc9364a969d69c06ba4fc39e6cbeb697452087a21a4625d8b84cd7f45f",
+    "lastmod": "2026-10-17"
+  },
+  "/tools/featherless-simple-jev": {
+    "hash": "ba277706abac05920538ab8d98a3f9a3f6725246bc34b022efa6aa3f5872f230",
+    "lastmod": "2026-10-09"
+  },
+  "/tools/feder-cr-jevos": {
+    "hash": "ec46c5c8ccec0bffd823b98b68a962f9021467b8736858500d965b9397a8c550",
+    "lastmod": "2026-10-21"
+  },
+  "/tools/frostney-clean-code-review": {
+    "hash": "0603c473968cbe4c14dfb47f01a35687d9f5f186de0a80e90d6b701f01a02bd7",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/gargpratyush-jev-router": {
+    "hash": "9d50273ec1a4f966530118581150abd367ae055ab9f2b9038b435fd4a0c89101",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/githubnext-localjev": {
+    "hash": "5612f18cc9aa8fd574078bc8db3cca2fdfff783e0ea24fe5e0af693ed2730b3e",
+    "lastmod": "2026-09-25"
+  },
+  "/tools/hitsz-tmg-jevembed": {
+    "hash": "ecf7fc7fbe2ce201c59b5a832d5e98dc4d3093dc7099e15ee7f9c8f16c866cc5",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/hyperspaceai-jevcache": {
+    "hash": "8659c658d91489ccc4dd1b2950a9376c6173ff173e9ad5bf73a5931c229769dc",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/iamvatsalpatel-tiershift": {
+    "hash": "9664fedc1c32927ddedf880acd1b91cbae69bb3392c822afb6a93f1edf9adea0",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/itsmostafa-typesafe-mcp": {
+    "hash": "d521d4abcac8389c340c0520932ae16d359051a99b247e356df3699245113905",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/iurysza-logview-jev": {
+    "hash": "17d4e94e370fb6ab0d208fcf8bb2ae5870907a1099c223f373cbf69b45d939db",
+    "lastmod": "2026-09-21"
+  },
+  "/tools/jaredpalmer-kev": {
+    "hash": "1d236bd1d33abf22519d5fa831d07a0c081a27b555bf6fbe9741f7d78f55478b",
+    "lastmod": "2026-10-17"
+  },
+  "/tools/jev-on-vercel-ai-gateway": {
+    "hash": "69eb8f41991618b31e3ebeaeeb8412a6c2c5cb01877ef1ed43dbb90c8a418284",
+    "lastmod": "2026-09-19"
+  },
+  "/tools/jexp-neo4jev": {
+    "hash": "2302b7a315172ef5ba2e310fcbc187a9ba765f036c5d5a155b42fd8b40083e4b",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/jkudish-jev-mcp": {
+    "hash": "2015dc541d37e7933b1fbfc2f9b23fefa52f8dc7fa58562eec64becb6fb2391a",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/jomatsu-pi-jev-auto-mode": {
+    "hash": "e518a82715eaa65610f0ff1209cf7a3cfeab8a57d670c5eee612aa9cbfa23529",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/junma11-medjev": {
+    "hash": "3551013981b0eaf266da89c439b26e721253c46882633dd09d1942a7c7e3a5c5",
+    "lastmod": "2026-10-04"
+  },
+  "/tools/juspay-neurolink": {
+    "hash": "97114c33d384ec7e7d1cb3bd8d8b781e2bc3a1ac6fd22ca0da9dcdd99ede0fa7",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/keeltrace-hermes-jev": {
+    "hash": "33af4cbb4604d6e11cfb76df5df22a2ed464b6adb5cac1ea07369efb8dcbdba6",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/kerpopule-hermes-jev-skills": {
+    "hash": "edb1a66b860806b3f4bf44e1f802a9b8e37a99634d6fa7a042bed458539ac942",
+    "lastmod": "2026-09-30"
+  },
+  "/tools/kitfunso-hippo-memory": {
+    "hash": "ee630b692973c0537c33ef2a8b1c40293de537a5595be95c78a2cca2b34cc86c",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/kushwho-jev-codes": {
+    "hash": "35a121b8e09aaca75b0eee42c9b0cad52c6b24d2dfe690e4e4abb70d80fbda78",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/leepokai-jev-guard": {
+    "hash": "9dc352a6b86b93eec4564a791c7508c1e31737ce354cce2afc46088c49455604",
+    "lastmod": "2026-09-24"
+  },
+  "/tools/legacybridge-tech-pi-typesafe-jev": {
+    "hash": "0477863bff27e2dd7824f23160ca93624cbbadd2a9eb1682d0018a70ad89998a",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/liqiiiii-jeva": {
+    "hash": "6a15f90bea9b0c684ef2fd37e68f6b80d026ea4468b93ee263dbe06f7525c18d",
+    "lastmod": "2026-10-15"
+  },
+  "/tools/liquidai-d1-3b": {
+    "hash": "22f617d4e2e6cff9f25f1ec6aab87f06477a844b18033cd9df5e106a419ef15e",
+    "lastmod": "2026-10-12"
+  },
+  "/tools/liuziyu77-valen": {
+    "hash": "117ac6b2b786f4a6632d5c6fda4b97b1334747426ec2ff5c714f4de2247adc04",
+    "lastmod": "2026-10-09"
+  },
+  "/tools/logan-markewich-jeff": {
+    "hash": "1dc9c10af4559586d510100e001cbc96e2dbf9dca5161d99b82860df2194b3a3",
+    "lastmod": "2026-09-28"
+  },
+  "/tools/luobosibing2-dsh-jev-plugin": {
+    "hash": "affe8ba98290fd8587f051d432ff331b052cf8828467a42575d97391dd3a44c1",
+    "lastmod": "2026-10-10"
+  },
+  "/tools/mapika-decider": {
+    "hash": "564514bcfe20a134a7a8b5e318afa69af6dc389be4354c7369e9779de1ba8f40",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/mcg-nju-videojev": {
+    "hash": "798fb44252c00076bd16a247ea393a346edd0a3c0bf99894bf431332e31dbd4d",
+    "lastmod": "2026-10-21"
+  },
+  "/tools/miuuyy-astra-ares": {
+    "hash": "5875a012aead90c1d33c5f54757395758bf9c6aa15b97c5a0f4f82679136f942",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/mizorewww-laya-coreml": {
+    "hash": "059a616533b593770232f0e58502385eb2ff0b7da2e075789dce9d8eb4422462",
+    "lastmod": "2026-09-29"
+  },
+  "/tools/mode-io-vllm-jev": {
+    "hash": "e55e19fe21fc4e21bab994ee906b61f12e4b53525b6d63626c13c1cf59c0741c",
+    "lastmod": "2026-10-02"
+  },
+  "/tools/molis-ai-jev-workbench": {
+    "hash": "a5dbb619a77cf642009fbed04b8eeec3794fd5f0c497d2a908479860c2a4d501",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/mordavid-nucleisniper": {
+    "hash": "8c3ef0e8cf57fea8ead5b85e54f45c3f819aa12f291715f75257c5dde1bdc3ec",
+    "lastmod": "2026-10-15"
+  },
+  "/tools/motherduck-prompt-jev": {
+    "hash": "60edd7cf56fbb7793f2f154bcc078d9ab897256be636e758ddbb60e7e24ebf51",
+    "lastmod": "2026-10-27"
+  },
+  "/tools/mrnugget-jev-shell-history": {
+    "hash": "ccdc8d28680b60adfb0c8e1210e54ce4fe87b1d8df0ec51984e10bdcadd13b76",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/nandhakishorm-laya": {
+    "hash": "8010b104f98d2d8730ff008bfbd13d31946ef43982587189746565430a904a0b",
+    "lastmod": "2026-10-12"
+  },
+  "/tools/niazmorshed2007-jev-review": {
+    "hash": "6a89eead1f13ae2aae2d42d1bbacd2a596033a1d932285203475d6f4119026dc",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/nidhi-singh02-agent-router": {
+    "hash": "0cdfec6fe0f92ca38398944df6c13db34d88a9f60e7375fb85cbb69fe74df4a5",
+    "lastmod": "2026-09-26"
+  },
+  "/tools/nokia-applied-research-anyjev": {
+    "hash": "b0846799b2127dfd2a9267007e03f87479c7685d80012d7f3b77777f71102935",
+    "lastmod": "2026-10-09"
+  },
+  "/tools/ollaya-dev-ollaya": {
+    "hash": "8be14d3e8966e5b193a6bec11e4a5cfe168d7715e7d4b721d5bb43e014a8a7ac",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/openlayer-ai-jevals": {
+    "hash": "6c50a2a7ba423997b9d5f87cf89a1fe96b94a933fd1f83920edc64ce8b553cb8",
+    "lastmod": "2026-10-21"
+  },
+  "/tools/openrouter-typesafe-jev-1-13": {
+    "hash": "4c4a76f7a521c9f0e6ec5edc39abbd8b68f6fb18906bb953ecc77facbd1abc4f",
+    "lastmod": "2026-09-19"
+  },
+  "/tools/perplexity-pplx-decider": {
+    "hash": "a2db0c99fc2f3cda3dba93090c68a83ec6339b501ee5c27725bc48ddd0362b11",
+    "lastmod": "2026-10-12"
+  },
+  "/tools/posthog-jeeves": {
+    "hash": "17d632648e6e471350513323b843c29f5b2bbbd056ce2d850b25149242571c49",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/qkal-canny": {
+    "hash": "fd0a2db122a975e49569418d177af24bff80ecd701551ba7935c133d4d9678ad",
+    "lastmod": "2026-09-24"
+  },
+  "/tools/qybaihe-mu": {
+    "hash": "72d6ef7811b66614f87278288750f7809b2474c07d6015a02cb4b723dbc8bcc0",
+    "lastmod": "2026-10-01"
+  },
+  "/tools/raphaelmansuy-edgextract": {
+    "hash": "346861612a92c7eb0c28684d5471bef9f22e1744f3cb2f002d400d4232d107ea",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/rashedint32-jev-mcp": {
+    "hash": "d79d0d104af4e05e4c4d288d25a433a30013e91e83da5959213e7e59c49ce665",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/rayenmlayeh-jevcrawl": {
+    "hash": "a525951ee64b1c473a0112f7fe52d669a1b08ba92154790521b0ea7b3574dde2",
+    "lastmod": "2026-10-15"
+  },
+  "/tools/realzachi-pg-jev": {
+    "hash": "b943f98e9c0a31d476febe9d1bcd15aada2ca729fcdadc61aff498e0480fa658",
+    "lastmod": "2026-10-17"
+  },
+  "/tools/receptron-laya": {
+    "hash": "2e7b5e9ee834b8bde1cf5021f5af23ed2606c2724a531ee5a12327a04eb18068",
+    "lastmod": "2026-10-06"
+  },
+  "/tools/rizzo-ai-academy-rizzo-flow": {
+    "hash": "d9020b1a92ba4d327a9c9ef33b386f5f2c2f13d76ec5c4d3eb0601bb0c706a3f",
+    "lastmod": "2026-09-25"
+  },
+  "/tools/samuelfaj-distill": {
+    "hash": "789c2fe79f06e4b5baab222809d73fee4057bb10996c27e61624e5ea9aa72493",
+    "lastmod": "2026-09-24"
+  },
+  "/tools/sheltercosmo-jev4pg": {
+    "hash": "de59cc58624dd1c5a2fa7f161173259eef48eb71c50d6cd10119ac99ef74eed4",
+    "lastmod": "2026-10-08"
+  },
+  "/tools/shivampansuriya-jev-skill-gate": {
+    "hash": "63f49058e78d49cc883f5f7799519d2b8c8ef3004e41b27b7efb505ae284d282",
+    "lastmod": "2026-09-18"
+  },
+  "/tools/statelyai-jevspresso": {
+    "hash": "cf8ce3ec042427e55f6ae5cd1902ca6c407053d1d4fa7d92c88b5a7f7e7aa4e1",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/superagents-lab-jev-search": {
+    "hash": "2eb801690eeddf1d2d38300750a33a1be6ce66ee1c52ca41b2dd85f4d89a1d6e",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/sutro-sh-jev-align": {
+    "hash": "8c075f0c89b554d99887903cdba46d5c7c359309ed0d77033c93585f9a66a194",
+    "lastmod": "2026-09-25"
+  },
+  "/tools/tamaratran-fast-jev-compaction": {
+    "hash": "3e5d3ae2a2c2c0d26ed1e7f2324824f53322acd562ecc5d73fb578dbdc37ff39",
+    "lastmod": "2026-09-20"
+  },
+  "/tools/tamaratran-jev-pruner": {
+    "hash": "41c7556a80f6f785c71e187d2472a63e9eadcc73d6186751f43b43177eaa274b",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/tanstack-ai-decide": {
+    "hash": "1622f94fdcfa75de265f4de73a30f9ca634f9effddccee96ff9eaec19c51fe0c",
+    "lastmod": "2026-09-23"
+  },
+  "/tools/thruwire-foreman": {
+    "hash": "fe4e8bc4e4ee62980d3d37e390d25a869592ed93a1822e2a2ac37d8a027e18a2",
+    "lastmod": "2026-10-08"
+  },
+  "/tools/tianyucodings-jevharness": {
+    "hash": "782652501ab567da3275cec5940311f139e502c7e98ce70c864bae47ba7395ef",
+    "lastmod": "2026-09-25"
+  },
+  "/tools/togethercomputer-tev1": {
+    "hash": "5cd82df32decce85685f4f1f80e5189b0780ed6d831d5ed3bdf767bd2ed77c55",
+    "lastmod": "2026-09-24"
+  },
+  "/tools/tomerglick57-jevstiller": {
+    "hash": "eb52142ec98e10f009bef975c68b40a443ffd58ae7fa5e0fc8c7788d80e51fac",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/tsale-jevline": {
+    "hash": "21f979a8319680fe94d432dffa9c07697437791016758606fae78d865c15ecaf",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/tylerjharden-ailerix": {
+    "hash": "dd0c8b39341d554a6300f9322488cae64f30891d6a557637d1602b10c46e44b1",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/typellm-typellm": {
+    "hash": "bdea6abe182de89cb57457d0277b7df9139a546558e6b5baf3131a39cfd9e894",
+    "lastmod": "2026-09-25"
+  },
+  "/tools/uditakhourii-quicksilver": {
+    "hash": "dfcb3048478eccf3c404db9b448f3f6ecbfed893f883c14fed68a1ecfa266adc",
+    "lastmod": "2026-10-03"
+  },
+  "/tools/uehaj-jev-semgrep": {
+    "hash": "cf152c2ecf43d0da32b6f8538913f5bc6575e1288997ed002786dbdca3cd086a",
+    "lastmod": "2026-09-22"
+  },
+  "/tools/uipath-typesafe-jev-connector": {
+    "hash": "cc736ba2b535ce49f46ee97bc5697491a80b96262644feb529c775887019024b",
+    "lastmod": "2026-10-27"
+  },
+  "/tools/vectifyai-jev-doc-search": {
+    "hash": "add819d4362f98c72e38c7c74eb6823f7af03fee8186e0cc98cf13132dc6aa87",
+    "lastmod": "2026-10-05"
+  },
+  "/tools/vercel-ai-sdk-provider": {
+    "hash": "a9b0b30d090aa61dfa55f40a19114f0a450bd7a6a4f2dd2167aa1ecad3f59f8d",
+    "lastmod": "2026-09-19"
+  },
+  "/tools/vercel-eve": {
+    "hash": "aeee48e9982acfbf726f833ad3967265a337612d7f8f2ee44966335f5ee9b6da",
+    "lastmod": "2026-10-24"
+  },
+  "/tools/vercel-labs-ai-cli": {
+    "hash": "5766bdfe03d2f9323c41ed2c162b3064f2f7a6eccf6341c67c915b765df21f5f",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/vinilana-jev-gateway": {
+    "hash": "8fc45629c695cbfe47b008a555a943659db8c221e21660a1f3fccb560bff558e",
+    "lastmod": "2026-10-07"
+  },
+  "/tools/wfzyx-von": {
+    "hash": "a27f32431f87a6273f50564eafe1aaf7edb8b32f69a2a163c9c322a8ff26bb9d",
+    "lastmod": "2026-09-24"
+  },
+  "/tools/workday-sana-jev-generative-ui": {
+    "hash": "ce9ae2e6ab37c80c02aecbe906d48875dcca6bc8645a68389a509f1df548c561",
+    "lastmod": "2026-10-27"
+  },
+  "/tools/wundercorp-loki": {
+    "hash": "bfe51da74d6a7fe7e0a5c60cec9cf3b5eb6e9acced3d2a54309a9ce41a5dca44",
+    "lastmod": "2026-09-17"
+  },
+  "/tools/y0usaf-pi-jev": {
+    "hash": "c89d6e93cb24717fca38bb8d8f8c37682dc2cf13dcf83114076b7f1161b06e8a",
+    "lastmod": "2026-10-06"
+  },
+  "/tools/yinsongxu-llm2jev": {
+    "hash": "81d24f7c46b552059fee5b6b7b2e8ca8b5ea5ff46a9bdc4101f255a5cc7b2d88",
+    "lastmod": "2026-10-10"
+  },
+  "/your-privacy-choices": {
+    "hash": "a724b199c4ce44d212aa03a1a3e0668fbd43368c7289e7bf5b4a25d42452d2ee",
+    "lastmod": "2026-10-05"
+  }
+}

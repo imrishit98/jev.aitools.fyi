@@ -14,6 +14,10 @@ The fastest path is the site form: [jev.aitools.fyi/submit](https://jev.aitools.
 4. Run `pnpm build` before opening a pull request.
 5. Showcase videos are **never** committed. Add the demo in `src/data/showcase-demos.ts`, then run `pnpm sync:showcase-media` to refresh `src/data/showcase-demo-media.json` (posters + `video.twimg.com` MP4s via fxtwitter). Build fails if any `.mp4`/`.webm`/`.mov` appears under `public/` or `dist/`.
 
+## Sitemap lastmod
+
+Sitemap dates live in `src/data/lastmod-manifest.json`. Each URL stores a content hash and a `YYYY-MM-DD` lastmod. `pnpm build` checks those hashes first and fails if they drifted. When you change page copy, run `pnpm lastmod:update` and commit the manifest with the copy. A listing `updatedAt` that is a valid day later than the manifest date is used instead, so a listing can move forward without a manifest edit. The date is the day the content changed. It is not the build time.
+
 ## Catalog data
 
 Most listings come from `src/data/catalog.json`, regenerated via maintainer scripts documented in [README.md](./README.md). Hand edits should go through marketing overrides when possible.

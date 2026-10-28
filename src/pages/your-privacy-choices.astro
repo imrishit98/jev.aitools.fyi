@@ -4,10 +4,10 @@ import { PrivacyChoicesPanel } from "@/components/privacy-choices-panel";
 import { privacyChoicesPageSeo } from "@/lib/seo";
 import {
   LEGAL_LAST_UPDATED_DISPLAY,
-  LEGAL_LAST_UPDATED_ISO,
   privacyContactEmail,
 } from "@/lib/legal";
 import { webPageJsonLd } from "@/components/json-ld";
+import { staticPageDate } from "@/lib/content-dates";
 
 const seo = privacyChoicesPageSeo();
 const contactEmail = privacyContactEmail();
@@ -15,7 +15,7 @@ const jsonLd = webPageJsonLd({
   name: "Your Privacy Choices",
   description: seo.description,
   url: seo.canonical,
-  dateModified: LEGAL_LAST_UPDATED_ISO,
+  dateModified: staticPageDate("/your-privacy-choices"),
 });
 ---
 

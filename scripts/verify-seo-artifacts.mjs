@@ -94,6 +94,49 @@ if (locs.length !== expectedFromLib.length) {
 
 const errors = [];
 
+if (childSitemaps.length !== 4) {
+  errors.push(
+    `sitemap index must list exactly 4 child sitemaps, got ${childSitemaps.length}`,
+  );
+}
+
+function utcToday() {
+  return new Date().toISOString().slice(0, 10);
+}
+const todayUtc = utcToday();
+const indexEntries = [
+  ...indexXml.matchAll(
+    /<sitemap>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<\/sitemap>/g,
+  ),
+].map((m) => ({ loc: m[1], lastmod: m[2] }));
+if (indexEntries.length !== 4) {
+  errors.push(`sitemap index parsed ${indexEntries.length} entries, expected 4`);
+}
+for (const entry of indexEntries) {
+  const file = entry.loc.replace("https://jev.aitools.fyi/", "");
+  const xml = readFileSync(join(distRoot, file), "utf8");
+  const days = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  if (days.length === 0) {
+    errors.push(`${file} has no lastmod values`);
+    continue;
+  }
+  const maxChild = days.reduce((max, day) => (day > max ? day : max));
+  if (entry.lastmod !== maxChild) {
+    errors.push(
+      `${file} index lastmod ${entry.lastmod} must equal max child lastmod ${maxChild}`,
+    );
+  }
+  if (entry.lastmod > todayUtc) {
+    errors.push(`sitemap index lastmod ${entry.lastmod} for ${file} is after ${todayUtc}`);
+  }
+  for (const day of days) {
+    if (day > todayUtc) {
+      errors.push(`${file} lastmod ${day} is after today ${todayUtc}`);
+      break;
+    }
+  }
+}
+
 if (locs.some((l) => l.includes("/items"))) {
   errors.push("sitemap contains /items/ URLs");
 }

@@ -8,15 +8,15 @@ import { alternativeHubDate, alternativeGuideDate } from "@/lib/content-dates";
 import {
   agentGuideDate,
   agentHubDate,
-  categoryEditorialDate,
+  categoryPageDate,
   formatIsoDay,
   layaGuideDate,
   layaHubDate,
   learnGuideDate,
   parseIsoDay,
-  staticRouteDates,
+  staticPageDate,
 } from "@/lib/content-dates";
-import { getItemsByCategory, getItemsWithDetailPages } from "@/lib/items";
+import { getItemsWithDetailPages } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { absoluteUrl, parseItemLastModified } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
@@ -41,18 +41,11 @@ function formatLastmod(date: Date): string {
 }
 
 function categoryLastModified(slug: CategorySlug): Date {
-  const items = getItemsByCategory(slug);
-  let max = parseIsoDay(categoryEditorialDate(slug));
-  for (const item of items) {
-    const d = parseItemLastModified(item.updatedAt);
-    if (d.getTime() > max.getTime()) max = d;
-  }
-  return max;
+  return parseIsoDay(categoryPageDate(slug));
 }
 
 function staticRouteDate(path: string): Date {
-  const key = path === "" ? "/" : path;
-  return parseIsoDay(staticRouteDates[key] ?? "2026-09-23");
+  return parseIsoDay(staticPageDate(path));
 }
 
 function renderUrlset(entries: SitemapUrl[]): string {
@@ -194,7 +187,7 @@ export function generateSitemapGuidesXml(): string {
 export function generateSitemapListingsXml(): string {
   const entries: SitemapUrl[] = getItemsWithDetailPages().map((item) => ({
     loc: absoluteUrl(getItemPath(item)),
-    lastmod: parseItemLastModified(item.updatedAt),
+    lastmod: parseItemLastModified(item.updatedAt, getItemPath(item)),
     priority: item.featured ? 0.65 : 0.55,
     changefreq: "monthly",
   }));
@@ -222,14 +215,17 @@ export function generateSitemapIndexXml(): string {
   ];
 
   const sitemaps = parts.map((p) => {
-    const lastmods = [...p.xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map(
-      (m) => new Date(m[1]!),
-    );
-    const lastmod = lastmods.reduce(
-      (max, d) => (d.getTime() > max.getTime() ? d : max),
-      new Date(0),
-    );
-    return { loc: absoluteUrl(p.path), lastmod };
+    const days = [...p.xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]!);
+    if (days.length === 0) {
+      throw new Error(`sitemap ${p.path} has no lastmod values`);
+    }
+    for (const day of days) {
+      if (!/^\d{4}-\d{2}-\d{2}$/.test(day)) {
+        throw new Error(`sitemap ${p.path} lastmod is not YYYY-MM-DD: ${day}`);
+      }
+    }
+    const maxDay = days.reduce((max, day) => (day > max ? day : max));
+    return { loc: absoluteUrl(p.path), lastmod: parseIsoDay(maxDay) };
   });
 
   return renderSitemapIndex(sitemaps);
