@@ -739,6 +739,25 @@ const copilotHtml = readFileSync(
 if (!copilotHtml.includes("GitHub Copilot Agent + Jev: MCP in VS Code")) {
   errors.push("Copilot guide title must stay unchanged");
 }
+const copilotH1Count = (copilotHtml.match(/<h1/g) ?? []).length;
+if (copilotH1Count !== 1) {
+  errors.push(`Copilot guide h1 count is ${copilotH1Count}, expected 1`);
+}
+if (!/<h2[^>]*>\s*Jev in VS Code\s*<\/h2>/.test(copilotHtml)) {
+  errors.push("Copilot guide missing Jev in VS Code section heading");
+}
+if (!copilotHtml.includes('id="faq"')) {
+  errors.push("Copilot guide missing FAQ section id");
+}
+if (!copilotHtml.includes("How do I use Jev in VS Code?")) {
+  errors.push("Copilot guide missing VS Code FAQ question");
+}
+const copilotFaqPages = copilotHtml.match(/"@type":"FAQPage"/g) ?? [];
+if (copilotFaqPages.length !== 1) {
+  errors.push(
+    `Copilot guide FAQPage JSON-LD count is ${copilotFaqPages.length}, expected 1`,
+  );
+}
 
 const hermesH1 = (hermesHtml.match(/<h1[^>]*>([^<]*)<\/h1>/)?.[1] ?? "").trim();
 if (hermesH1 !== "Jev with Hermes Agent") {
