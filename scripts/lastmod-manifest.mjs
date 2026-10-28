@@ -2,11 +2,14 @@
  * Content-hash manifest for sitemap lastmod.
  *
  * --check  Compare current source hashes to src/data/lastmod-manifest.json.
- *          Exit 1 on drift. Does not call git and does not read the clock.
+ *          Exit 1 on drift. Also exit 1 when a raw item updatedAt is later
+ *          than the UTC day. Does not call git. Does not use the clock as a lastmod.
  * --write  Update hashes. A changed or new URL gets the UTC day of this run.
  *          Unchanged URLs keep their stored date. Removed URLs are pruned.
+ *          /privacy, /terms, and /your-privacy-choices keep the legal.ts ISO date.
  * --seed   Full clone only. Write hashes plus historical dates. Aborts when
  *          `git rev-parse --is-shallow-repository` is true. Never called by build.
+ *          Refuses the UTC day of the run.
  */
 import { createHash } from "node:crypto";
 import { execFileSync } from "node:child_process";
@@ -20,21 +23,52 @@ const require = createRequire(import.meta.url);
 const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
 const VOLATILE_KEYS = new Set(["updatedAt"]);
 
+const CARD_CHROME = [
+  "src/components/item-card.tsx",
+  "src/components/item-badges.tsx",
+  "src/components/creator-credit.tsx",
+];
+const DEMO_CHROME = [
+  "src/components/demo-card.tsx",
+  "src/components/demo-lightbox.tsx",
+  "src/components/share-menu.tsx",
+];
+
+/** Page file, local copy components, and data files. Records are added in staticRecords. */
 const STATIC_TEMPLATES = {
-  "/": ["src/pages/index.astro"],
-  "/explore": ["src/pages/explore/index.astro"],
-  "/showcase": ["src/pages/showcase/index.astro"],
+  "/": [
+    "src/pages/index.astro",
+    "src/components/home-sections.tsx",
+    "src/components/home-faq.tsx",
+    "src/components/featured-rail.tsx",
+    "src/components/sponsors.tsx",
+    "src/components/audience-switch.tsx",
+    "src/data/faq.ts",
+    "src/data/sponsors.ts",
+    ...DEMO_CHROME,
+    ...CARD_CHROME,
+  ],
+  "/explore": [
+    "src/pages/explore/index.astro",
+    "src/components/explore-app.tsx",
+    ...CARD_CHROME,
+  ],
+  "/showcase": ["src/pages/showcase/index.astro", ...DEMO_CHROME],
   "/learn": ["src/pages/learn/index.astro"],
   "/guides": ["src/pages/guides/index.astro"],
-  "/submit": ["src/pages/submit.astro"],
+  "/submit": ["src/pages/submit.astro", "src/components/submit-form.tsx"],
   "/about": ["src/pages/about.astro"],
   "/contact": ["src/pages/contact.astro"],
-  "/privacy": ["src/pages/privacy.astro"],
+  "/privacy": ["src/pages/privacy.astro", "src/lib/legal.ts"],
   "/privacy/archive": ["src/pages/privacy/archive.astro"],
-  "/terms": ["src/pages/terms.astro"],
-  "/your-privacy-choices": ["src/pages/your-privacy-choices.astro"],
+  "/terms": ["src/pages/terms.astro", "src/lib/legal.ts"],
+  "/your-privacy-choices": [
+    "src/pages/your-privacy-choices.astro",
+    "src/lib/legal.ts",
+    "src/components/privacy-choices-panel.tsx",
+  ],
   "/developers": ["src/pages/developers.astro"],
-  "/for-agents": ["src/pages/for-agents.astro"],
+  "/for-agents": ["src/pages/for-agents.astro", "src/components/audience-switch.tsx"],
   "/demos/my-first-million": ["public/demos/mfm-jev-search-shell.html"],
 };
 
@@ -162,6 +196,9 @@ async function loadSources() {
     const profiles = await vite.ssrLoadModule("/src/data/product-profiles.ts");
     const enrichment = await vite.ssrLoadModule("/src/lib/listing-enrichment.ts");
     const dates = await vite.ssrLoadModule("/src/lib/content-dates.ts");
+    const showcase = await vite.ssrLoadModule("/src/data/showcase-demos.ts");
+    const site = await vite.ssrLoadModule("/src/lib/site.ts");
+    const legal = await vite.ssrLoadModule("/src/lib/legal.ts");
     const locs = sitemap.collectAllSitemapLocs();
     const paths = [];
     const seen = new Set();
@@ -180,6 +217,7 @@ async function loadSources() {
       paths,
       itemsByPath,
       itemsMod,
+      itemPaths,
       learn,
       laya,
       agents,
@@ -189,10 +227,142 @@ async function loadSources() {
       profiles,
       enrichment,
       dates,
+      showcase,
+      site,
+      legal,
     };
   } finally {
     await vite.close();
   }
+}
+
+function cardRecord(item) {
+  return {
+    slug: item.slug,
+    title: item.title,
+    oneLiner: item.oneLiner,
+    category: item.category,
+    language: item.language ?? null,
+    stars: typeof item.stars === "number" ? item.stars : null,
+    badges: item.badges ?? [],
+    tags: Array.isArray(item.tags) ? item.tags.slice(0, 3) : [],
+    featured: Boolean(item.featured),
+    url: item.url ?? null,
+    repoUrl: item.repoUrl ?? null,
+    demoUrl: item.demoUrl ?? null,
+    creatorHandle: item.creatorHandle ?? null,
+    creatorName: item.creatorName ?? null,
+    indexOnly: Boolean(item.indexOnly),
+  };
+}
+
+function categoryTitles(src) {
+  return src.categories.categories.map((category) => ({
+    slug: category.slug,
+    title: category.title,
+  }));
+}
+
+/** Data the route renders. siteConfig.url is env-derived, so it stays out of the hash. */
+function staticRecords(src, path) {
+  const site = src.site.siteConfig;
+  if (path === "/") {
+    return {
+      homepageDemos: src.showcase.getHomepageDemos(),
+      featured: src.itemsMod.getFeaturedItems(4).map(cardRecord),
+    };
+  }
+  if (path === "/explore") {
+    return {
+      items: src.itemsMod.getAllItems().map(cardRecord),
+      categories: categoryTitles(src),
+    };
+  }
+  if (path === "/showcase") {
+    return { demos: src.showcase.showcaseDemos };
+  }
+  if (path === "/learn") {
+    return {
+      topics: src.learn.learnGuideSlugs.map((slug) => {
+        const guide = src.learn.learnGuides[slug];
+        return { slug, title: guide.title, description: guide.description };
+      }),
+      layaHub: {
+        title: src.laya.layaVsJevHub.title,
+        tagline: src.laya.layaVsJevHub.tagline,
+      },
+      layaCards: src.laya.layaVsJevGuideSlugs.slice(0, 4).map((slug) => {
+        const guide = src.laya.layaVsJevGuides[slug];
+        return { slug, title: guide.title, tagline: guide.tagline };
+      }),
+      docs: site.typesafe.docs,
+      playground: site.typesafe.playground,
+      gateway: site.vercelGateway,
+    };
+  }
+  if (path === "/guides") {
+    const community = src.itemsMod
+      .getItemsWithDetailPages()
+      .filter((item) => src.itemPaths.itemBelongsOnSegment(item, "guides"))
+      .sort(
+        (a, b) =>
+          (b.updatedAt ?? "").localeCompare(a.updatedAt ?? "") ||
+          a.title.localeCompare(b.title),
+      )
+      .map((item) => ({ slug: item.slug, title: item.title, oneLiner: item.oneLiner }));
+    return {
+      hub: {
+        title: src.agents.agentGuidesHub.title,
+        tagline: src.agents.agentGuidesHub.tagline,
+      },
+      agents: src.agents.agentGuideSlugs.map((slug) => {
+        const guide = src.agents.agentGuides[slug];
+        return { slug, title: guide.title, tagline: guide.tagline };
+      }),
+      community,
+      docs: site.typesafe.docs,
+    };
+  }
+  if (path === "/submit") return { categories: categoryTitles(src) };
+  if (path === "/about") {
+    return {
+      hostnameBrand: site.hostnameBrand,
+      name: site.name,
+      parentBrand: site.parentBrand,
+      legalName: site.publisherContact.legalName,
+    };
+  }
+  if (path === "/contact") {
+    return {
+      hostnameBrand: site.hostnameBrand,
+      parentName: site.parentBrand.name,
+      publisherContact: site.publisherContact,
+    };
+  }
+  if (path === "/developers") {
+    return {
+      hostnameBrand: site.hostnameBrand,
+      name: site.name,
+      api: site.typesafe.api,
+    };
+  }
+  if (path === "/for-agents") return { api: site.typesafe.api };
+  if (path === "/privacy" || path === "/terms") {
+    return {
+      email: src.legal.privacyContactEmail(),
+      address: src.legal.legalMailingAddress(),
+    };
+  }
+  if (path === "/your-privacy-choices") {
+    return { email: src.legal.privacyContactEmail() };
+  }
+  if (path === "/privacy/archive") {
+    return {
+      legalName: site.publisherContact.legalName,
+      hostnameBrand: site.hostnameBrand,
+    };
+  }
+  return null;
 }
 
 function sourceRecord(src, path) {
@@ -200,7 +370,8 @@ function sourceRecord(src, path) {
   if (templates) {
     const files = {};
     for (const rel of [...templates].sort()) files[rel] = readRepoFile(rel);
-    return { kind: "static", files };
+    const records = staticRecords(src, path);
+    return records ? { kind: "static", files, records } : { kind: "static", files };
   }
   if (path.startsWith("/categories/")) {
     const slug = path.slice("/categories/".length);
@@ -272,7 +443,7 @@ function hashPaths(src) {
   return hashes;
 }
 
-function driftList(hashes, previous) {
+function driftList(hashes, previous, legalLocked) {
   const drifted = [];
   for (const [path, hash] of hashes) {
     const prev = previous[path];
@@ -280,6 +451,10 @@ function driftList(hashes, previous) {
     else if (prev.hash !== hash) drifted.push(`${path} content hash changed`);
     else if (typeof prev.lastmod !== "string" || !ISO_DAY.test(prev.lastmod)) {
       drifted.push(`${path} lastmod is not YYYY-MM-DD`);
+    } else if (legalLocked[path] && prev.lastmod !== legalLocked[path]) {
+      drifted.push(
+        `${path} lastmod ${prev.lastmod} must equal legal date ${legalLocked[path]}`,
+      );
     }
   }
   for (const path of Object.keys(previous)) {
@@ -392,6 +567,270 @@ function categoryMetaDate(slug) {
   return null;
 }
 
+function gitHistoryDay(relPath) {
+  const today = new Date().toISOString().slice(0, 10);
+  const days = git(["log", "--format=%cs", "--", relPath])
+    .split("\n")
+    .map((line) => line.trim())
+    .filter(Boolean);
+  for (const day of days) {
+    if (!ISO_DAY.test(day)) throw new Error(`unexpected git date for ${relPath}: ${day}`);
+    if (day !== today) return day;
+  }
+  return null;
+}
+
+function objectStart(relPath, slug) {
+  const lines = fileLines(relPath);
+  const plain = `  ${slug}: {`;
+  const quoted = `  "${slug}": {`;
+  for (let i = 0; i < lines.length; i += 1) {
+    const line = lines[i].trimEnd();
+    if (line !== plain && line !== quoted) continue;
+    const window = lines.slice(i, i + 8).join("\n");
+    if (
+      window.includes(`slug: "${slug}"`) ||
+      window.includes(`slug: '${slug}'`) ||
+      window.includes(`"slug": "${slug}"`)
+    ) {
+      return i + 1;
+    }
+  }
+  return -1;
+}
+
+function blameUntil(relPath, start, stopPattern) {
+  if (start < 1) return null;
+  const lines = fileLines(relPath);
+  const dates = blameDates(relPath);
+  let max = null;
+  const limit = Math.min(lines.length, start + 40);
+  for (let line = start; line <= limit; line += 1) {
+    if (line > start && stopPattern.test(lines[line - 1])) break;
+    max = later(max, dates.get(line) ?? null);
+  }
+  return max;
+}
+
+function cardFieldDay(relPath, slug) {
+  return blameUntil(relPath, objectStart(relPath, slug), /^\s+seoTitle:/);
+}
+
+function constCardDay(relPath, exportName) {
+  const lines = fileLines(relPath);
+  const header = `export const ${exportName} = {`;
+  let start = -1;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i].startsWith(header)) {
+      start = i + 1;
+      break;
+    }
+  }
+  return blameUntil(relPath, start, /^\s+seoTitle:/);
+}
+
+function supplementSpan(slug) {
+  const relPath = "src/data/catalog-supplement.json";
+  const lines = fileLines(relPath);
+  const marker = `    "slug": "${slug}",`;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i] !== marker) continue;
+    let start = i;
+    while (start > 0 && lines[start] !== "  {") start -= 1;
+    let end = i;
+    while (end < lines.length && lines[end] !== "  }," && lines[end] !== "  }") end += 1;
+    return { relPath, start: start + 1, end: end + 1 };
+  }
+  return null;
+}
+
+function overrideSpan(slug) {
+  const relPath = "src/data/catalog-marketing-overrides.json";
+  const lines = fileLines(relPath);
+  const marker = `  "${slug}": {`;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i] !== marker) continue;
+    let end = i;
+    while (end < lines.length && lines[end] !== "  }," && lines[end] !== "  }") end += 1;
+    return { relPath, start: i + 1, end: end + 1 };
+  }
+  return null;
+}
+
+function blameSpanLines(span, pattern) {
+  if (!span) return null;
+  const lines = fileLines(span.relPath);
+  const dates = blameDates(span.relPath);
+  let max = null;
+  for (let line = span.start; line <= span.end; line += 1) {
+    if (pattern && !pattern.test(lines[line - 1])) continue;
+    max = later(max, dates.get(line) ?? null);
+  }
+  return max;
+}
+
+const CARD_LINE =
+  /^\s+"(?:slug|title|oneLiner|category|tags|language|stars|url|repoUrl|demoUrl|postUrl|featured|badges|creatorHandle|creatorName|indexOnly|detailPage|sourcePlatform)"/;
+const GUIDE_LINE = /^\s+"(?:title|oneLiner)"/;
+
+let catalogHistoryDay;
+
+function itemCardHistory(slug, linePattern) {
+  const supplement = supplementSpan(slug);
+  let day;
+  if (supplement) day = blameSpanLines(supplement, linePattern);
+  else {
+    if (catalogHistoryDay === undefined) {
+      catalogHistoryDay = gitHistoryDay("src/data/catalog.json");
+    }
+    day = catalogHistoryDay;
+  }
+  const override = overrideSpan(slug);
+  if (override) day = later(day, blameSpanLines(override, linePattern));
+  return day;
+}
+
+function demoSpans() {
+  const relPath = "src/data/showcase-demos.ts";
+  const lines = fileLines(relPath);
+  const spans = [];
+  for (let i = 0; i < lines.length; i += 1) {
+    const match = lines[i].match(/^\s+id:\s*"([^"]+)"\s*,?\s*$/);
+    if (!match) continue;
+    let start = i;
+    while (start > 0 && !lines[start].includes("demo({")) start -= 1;
+    let end = i;
+    while (end < lines.length - 1 && !lines[end].includes("}),")) end += 1;
+    spans.push({ id: match[1], start: start + 1, end: end + 1 });
+  }
+  return spans;
+}
+
+function mediaSpan(id) {
+  const relPath = "src/data/showcase-demo-media.json";
+  const lines = fileLines(relPath);
+  const marker = `  "${id}": {`;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (lines[i] !== marker) continue;
+    let end = i;
+    while (end < lines.length && lines[end] !== "  }," && lines[end] !== "  }") end += 1;
+    return { relPath, start: i + 1, end: end + 1 };
+  }
+  return null;
+}
+
+function demoHistory(ids) {
+  const dates = blameDates("src/data/showcase-demos.ts");
+  const wanted = ids ? new Set(ids) : null;
+  let max = null;
+  for (const span of demoSpans()) {
+    if (wanted && !wanted.has(span.id)) continue;
+    max = later(max, maxInRange(dates, span.start, span.end));
+    max = later(max, blameSpanLines(mediaSpan(span.id), null));
+  }
+  return max;
+}
+
+function categoryTitleHistory() {
+  const relPath = "src/data/categories-data.ts";
+  const lines = fileLines(relPath);
+  const dates = blameDates(relPath);
+  let max = null;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (!/^\s+title: /.test(lines[i])) continue;
+    max = later(max, dates.get(i + 1) ?? null);
+  }
+  return max;
+}
+
+function siteLiteralHistory() {
+  const relPath = "src/lib/site.ts";
+  const lines = fileLines(relPath);
+  const dates = blameDates(relPath);
+  let max = null;
+  for (let i = 0; i < lines.length; i += 1) {
+    if (/^\s+(hostnameBrand|name|legalName|email|streetAddress|docs|playground|api|vercelGateway):/.test(lines[i])) {
+      max = later(max, dates.get(i + 1) ?? null);
+    }
+  }
+  return max;
+}
+
+function staticRecordHistory(src, path) {
+  if (path === "/") {
+    const ids = src.showcase.getHomepageDemos().map((demo) => demo.id);
+    let day = demoHistory(ids);
+    for (const item of src.itemsMod.getFeaturedItems(4)) {
+      day = later(day, itemCardHistory(item.slug, CARD_LINE));
+    }
+    return day;
+  }
+  if (path === "/showcase") return demoHistory(null);
+  if (path === "/explore") {
+    let day = categoryTitleHistory();
+    day = later(day, gitHistoryDay("src/lib/content-policy.ts"));
+    for (const item of src.itemsMod.getAllItems()) {
+      day = later(day, itemCardHistory(item.slug, CARD_LINE));
+    }
+    return day;
+  }
+  if (path === "/learn") {
+    let day = constCardDay("src/data/laya-vs-jev-guides.ts", "layaVsJevHub");
+    for (const slug of src.learn.learnGuideSlugs) {
+      day = later(day, cardFieldDay("src/data/learn-guides.ts", slug));
+    }
+    for (const slug of src.laya.layaVsJevGuideSlugs.slice(0, 4)) {
+      day = later(day, cardFieldDay("src/data/laya-vs-jev-guides.ts", slug));
+    }
+    day = later(day, siteLiteralHistory());
+    return day;
+  }
+  if (path === "/guides") {
+    let day = constCardDay("src/data/agent-guides.ts", "agentGuidesHub");
+    for (const slug of src.agents.agentGuideSlugs) {
+      day = later(
+        day,
+        cardFieldDay("src/data/agent-guides.ts", slug) ??
+          cardFieldDay("src/data/agent-guides-batch-2.ts", slug),
+      );
+    }
+    const community = src.itemsMod
+      .getItemsWithDetailPages()
+      .filter((item) => src.itemPaths.itemBelongsOnSegment(item, "guides"));
+    for (const item of community) day = later(day, itemCardHistory(item.slug, GUIDE_LINE));
+    day = later(day, siteLiteralHistory());
+    return day;
+  }
+  if (path === "/submit") return categoryTitleHistory();
+  if (
+    path === "/about" ||
+    path === "/contact" ||
+    path === "/developers" ||
+    path === "/for-agents" ||
+    path === "/privacy/archive"
+  ) {
+    return siteLiteralHistory();
+  }
+  return null;
+}
+
+function staticHistoryDay(src, path) {
+  let day = null;
+  for (const rel of STATIC_TEMPLATES[path] ?? []) day = later(day, gitHistoryDay(rel));
+  return later(day, staticRecordHistory(src, path));
+}
+
+function futureUpdatedAt(src) {
+  const today = new Date().toISOString().slice(0, 10);
+  const bad = [];
+  for (const item of src.itemsMod.getAllItems()) {
+    const raw = typeof item.updatedAt === "string" ? item.updatedAt.slice(0, 10) : "";
+    if (ISO_DAY.test(raw) && raw > today) bad.push(`${item.slug} updatedAt ${raw}`);
+  }
+  bad.sort();
+  return { today, bad };
+}
+
 function listingHand(datesMod, item) {
   const day = typeof item.updatedAt === "string" ? item.updatedAt.slice(0, 10) : "";
   if (ISO_DAY.test(day)) return day;
@@ -447,9 +886,7 @@ function seedDates(src, hashes) {
 
     let day = hand;
     const templates = STATIC_TEMPLATES[path];
-    if (templates) {
-      for (const rel of templates) day = later(day, gitFileDay(rel));
-    }
+    if (templates) day = later(day, staticHistoryDay(src, path));
     if (src.itemsByPath.has(path)) {
       const slug = src.itemsByPath.get(path).slug;
       day = later(day, profileDates.get(slug) ?? null);
@@ -473,6 +910,8 @@ function seedDates(src, hashes) {
     }
     if (ISSUE_LASTMOD[path]) day = later(day, ISSUE_LASTMOD[path]);
     if (metricsLocked.has(path)) day = metricsLocked.get(path);
+    const legalLocked = src.dates.legalLockedLastmod ?? {};
+    if (legalLocked[path]) day = legalLocked[path];
 
     if (!day || !ISO_DAY.test(day)) throw new Error(`no historical lastmod for ${path}`);
     if (day === today) {
@@ -492,13 +931,6 @@ function seedDates(src, hashes) {
   return entries;
 }
 
-function gitFileDay(relPath) {
-  const out = git(["log", "-1", "--format=%cs", "--", relPath]).trim();
-  if (!out) return null;
-  if (!ISO_DAY.test(out)) throw new Error(`unexpected git date for ${relPath}: ${out}`);
-  return out;
-}
-
 function usage() {
   console.error("usage: node scripts/lastmod-manifest.mjs --check|--write|--seed");
   process.exit(1);
@@ -516,9 +948,17 @@ if (!mode) usage();
 const src = await loadSources();
 const hashes = hashPaths(src);
 const previous = loadPrevious();
+const legalLocked = src.dates.legalLockedLastmod ?? {};
+const future = futureUpdatedAt(src);
+if (future.bad.length) {
+  console.error(`raw updatedAt is after today ${future.today}.`);
+  for (const line of future.bad.slice(0, 30)) console.error(`  ${line}`);
+  if (future.bad.length > 30) console.error(`  ... ${future.bad.length - 30} more`);
+  process.exit(1);
+}
 
 if (mode === "check") {
-  const drifted = driftList(hashes, previous);
+  const drifted = driftList(hashes, previous, legalLocked);
   if (drifted.length) {
     console.error("lastmod manifest drift.");
     console.error("Run pnpm lastmod:update and commit src/data/lastmod-manifest.json.");
@@ -535,7 +975,23 @@ if (mode === "check") {
   let kept = 0;
   for (const [path, hash] of hashes) {
     const prev = previous[path];
-    if (prev && prev.hash === hash && typeof prev.lastmod === "string" && ISO_DAY.test(prev.lastmod)) {
+    const lockedDay = legalLocked[path];
+    if (lockedDay) {
+      entries[path] = { hash, lastmod: lockedDay };
+      if (
+        prev &&
+        prev.hash === hash &&
+        prev.lastmod === lockedDay
+      ) {
+        kept += 1;
+      } else if (prev) {
+        bumped += 1;
+        console.log(`lock ${path} -> ${lockedDay}`);
+      } else {
+        added += 1;
+        console.log(`lock ${path} -> ${lockedDay}`);
+      }
+    } else if (prev && prev.hash === hash && typeof prev.lastmod === "string" && ISO_DAY.test(prev.lastmod)) {
       entries[path] = { hash, lastmod: prev.lastmod };
       kept += 1;
     } else if (prev) {

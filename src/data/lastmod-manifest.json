@@ -1,10 +1,10 @@
 {
   "/": {
-    "hash": "931c8ae3850d029ebb0fd803e85ee32b290f8179ccfd350b65e26e37306c74e2",
+    "hash": "135b84a812ba1b68ca0a6ed99e45056545fa8286a177fefacc077655ffde158e",
     "lastmod": "2026-10-17"
   },
   "/about": {
-    "hash": "d747349346a56e92654bf529e61c06da5f072abc170641f4b79dea7a0f753752",
+    "hash": "7c29dacca37d4da081cf04df9ac01370d6377fb7de7f39e22033ca2bd65c17dd",
     "lastmod": "2026-09-24"
   },
   "/alternatives": {
@@ -544,7 +544,7 @@
     "lastmod": "2026-10-03"
   },
   "/contact": {
-    "hash": "b423ffe9e0a943d39bd60fc759c45d2dd91f8e7bf5a6e034ee9bc5b9d2273104",
+    "hash": "9954175a9521b78d73fcaaa0e6f913a29af46fd9ca493669445e34beea1cbb6f",
     "lastmod": "2026-09-23"
   },
   "/demos/my-first-million": {
@@ -552,15 +552,15 @@
     "lastmod": "2026-10-07"
   },
   "/developers": {
-    "hash": "4dc2ca1140f2cce670b3c7865a03cb892664e301083ab0f470e1f998af1da5f3",
+    "hash": "dc7263bfa54627c4554037546c35c704272fce8f0de26c0552566a7e16406deb",
     "lastmod": "2026-09-23"
   },
   "/explore": {
-    "hash": "34eff570592d5faff34b14ea91dbbbf1f90c97210247cdd7082bbebad78c1d11",
-    "lastmod": "2026-10-13"
+    "hash": "4e6e48eeeeff05865d655d325425a6b65c17b6bc027ad356152ef15aba656534",
+    "lastmod": "2026-10-27"
   },
   "/for-agents": {
-    "hash": "2c9608e0ddfe21e9bef7a9061f402cfeb72bca3b1d0ff5f801598a8788ba333d",
+    "hash": "674b023d1341030485d3339651d28c9cbfba43e377904d3a9b77614be0abd828",
     "lastmod": "2026-09-23"
   },
   "/games/0x963d-last-exit": {
@@ -640,8 +640,8 @@
     "lastmod": "2026-09-21"
   },
   "/guides": {
-    "hash": "145a20a663b2fc50e45a2f66011a349e2f0c6f276e11788c48fb5a768c6ea68d",
-    "lastmod": "2026-09-30"
+    "hash": "8631eca8f5066a04bea7d3bd38d7fa6399b35f9c65c7307561eed3de96e8b14f",
+    "lastmod": "2026-10-17"
   },
   "/guides/abdelstark-awesome-typesafe": {
     "hash": "aa566a81820f523f2286151b6115d4866a67e73040946e99d16de93cb877db76",
@@ -736,8 +736,8 @@
     "lastmod": "2026-09-17"
   },
   "/learn": {
-    "hash": "57a4aa1a7a77505d13c8c8f677ba46715ee60d0a45e184ff88a13cfc2134384c",
-    "lastmod": "2026-10-12"
+    "hash": "e8a0865a25c2768702f720e18f52738cc4a8341f701022f315c58b82abcdf1d7",
+    "lastmod": "2026-10-17"
   },
   "/learn/jev-typesafe": {
     "hash": "c7cdfd11f801287fbe743cf870ec1cfdf605b099c9379210de7b647f0f06cdad",
@@ -792,11 +792,11 @@
     "lastmod": "2026-10-17"
   },
   "/privacy": {
-    "hash": "ea22c5ab89bdd273ca5a5b873963fd664b83a53bb1c7522161c4d55488bd3362",
+    "hash": "7d93b0b2aec8004b2d5d9d3c3d1e9047ac367adf921de123ae158b34d273d85d",
     "lastmod": "2026-10-10"
   },
   "/privacy/archive": {
-    "hash": "e38183c09c58ef7c0769aef1bf71501c818b4b75f24340a622da7f6d00e0e461",
+    "hash": "bba576da3f1926726ce783d1fa8b058db61b2ea3fb17eefdddcc60fc78afb70f",
     "lastmod": "2026-10-05"
   },
   "/sdks/abovecolin-jevclient": {
@@ -908,15 +908,15 @@
     "lastmod": "2026-09-17"
   },
   "/showcase": {
-    "hash": "c74e62d6ce2e87dee8f757b9665825f9de79f62388eef491fcb613a716666f4a",
-    "lastmod": "2026-09-30"
+    "hash": "43878a20f4f47f2bef0d051242a7348bbf0e76dee32915772b080ceb4237b4a9",
+    "lastmod": "2026-10-24"
   },
   "/submit": {
-    "hash": "21d8a2d8a0e03b47d3c8cd126b3d4256af60d102739d151a20d2fa5ca00754b0",
-    "lastmod": "2026-09-23"
+    "hash": "0820978114537a892458ad1a5d8ab454f295fbec3c355e3a1dac83ab73032159",
+    "lastmod": "2026-10-05"
   },
   "/terms": {
-    "hash": "03daa29469e7a9f62748a3c70b1fa003dadd7a51fe8ec8f790691ca2325da956",
+    "hash": "98d1dddd8734a7d57ac3dee463c3bf5e378772ceb565eaa48ed7a2bb9a522534",
     "lastmod": "2026-10-05"
   },
   "/tools/0814wdwd-solo-jev": {
@@ -1388,7 +1388,7 @@
     "lastmod": "2026-10-10"
   },
   "/your-privacy-choices": {
-    "hash": "a724b199c4ce44d212aa03a1a3e0668fbd43368c7289e7bf5b4a25d42452d2ee",
+    "hash": "96ba29ba135fe2894bae3d967db2d94839d2fa4f68b3def4168811b5938de014",
     "lastmod": "2026-10-05"
   }
 }

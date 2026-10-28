@@ -3,6 +3,10 @@
 import metrics from "@/data/alternatives-metrics.json";
 import manifestJson from "@/data/lastmod-manifest.json";
 import type { AlternativeSlug } from "@/data/alternatives-slugs";
+import {
+  LEGAL_LAST_UPDATED_ISO,
+  PRIVACY_POLICY_LAST_UPDATED_ISO,
+} from "@/lib/legal";
 
 export const LISTING_LASTMOD_FALLBACK = "2026-09-19";
 export const CONTENT_CHECKED = "2026-09-30";
@@ -17,6 +21,17 @@ type ManifestEntry = { hash: string; lastmod: string };
 
 const manifest = manifestJson as Record<string, ManifestEntry>;
 const pageLastVerified = metrics.pageLastVerified as Record<string, string>;
+
+/**
+ * Sitemap and JSON-LD dates for the policy pages. The manifest still stores
+ * the content hash. The served lastmod is the same ISO constant as the
+ * visible "Last updated" line.
+ */
+export const legalLockedLastmod: Record<string, string> = {
+  "/privacy": PRIVACY_POLICY_LAST_UPDATED_ISO,
+  "/terms": LEGAL_LAST_UPDATED_ISO,
+  "/your-privacy-choices": LEGAL_LAST_UPDATED_ISO,
+};
 
 export const staticRouteDates: Record<string, string> = {
   "/": TOUCHED,
@@ -103,7 +118,10 @@ export function fallbackLastmod(path: string): string {
 }
 
 function dated(path: string): string {
-  return manifestLastmod(path) ?? fallbackLastmod(path);
+  const normalized = path === "" ? "/" : path;
+  const locked = legalLockedLastmod[normalized];
+  if (locked) return locked;
+  return manifestLastmod(normalized) ?? fallbackLastmod(normalized);
 }
 
 export function staticPageDate(path: string): string {

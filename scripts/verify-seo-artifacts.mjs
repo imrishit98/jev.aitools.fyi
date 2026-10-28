@@ -30,6 +30,7 @@ const alternativesSharedMod = await vite.ssrLoadModule("/src/data/alternatives-s
 const factSourcesMod = await vite.ssrLoadModule("/src/data/alternative-fact-sources.ts");
 const textStatsMod = await vite.ssrLoadModule("/src/lib/alternative-text-stats.ts");
 const contentDatesMod = await vite.ssrLoadModule("/src/lib/content-dates.ts");
+const legalMod = await vite.ssrLoadModule("/src/lib/legal.ts");
 const metricsJson = JSON.parse(
   readFileSync(join(root, "src/data/alternatives-metrics.json"), "utf8"),
 );
@@ -134,6 +135,13 @@ for (const entry of indexEntries) {
       errors.push(`${file} lastmod ${day} is after today ${todayUtc}`);
       break;
     }
+  }
+}
+
+for (const item of itemsMod.getAllItems()) {
+  const raw = typeof item.updatedAt === "string" ? item.updatedAt.slice(0, 10) : "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw) && raw > todayUtc) {
+    errors.push(`${item.slug} updatedAt ${raw} is after today ${todayUtc}`);
   }
 }
 
@@ -539,6 +547,52 @@ function assertPageDates(label, canonicalUrl, lastVerified, html, slugForGuideDa
     }
   }
 }
+const staticSitemapXml = readFileSync(join(distRoot, "sitemap-static.xml"), "utf8");
+const legalPages = [
+  {
+    path: "/privacy",
+    iso: legalMod.PRIVACY_POLICY_LAST_UPDATED_ISO,
+    display: legalMod.PRIVACY_POLICY_LAST_UPDATED_DISPLAY,
+  },
+  {
+    path: "/terms",
+    iso: legalMod.LEGAL_LAST_UPDATED_ISO,
+    display: legalMod.LEGAL_LAST_UPDATED_DISPLAY,
+  },
+  {
+    path: "/your-privacy-choices",
+    iso: legalMod.LEGAL_LAST_UPDATED_ISO,
+    display: legalMod.LEGAL_LAST_UPDATED_DISPLAY,
+  },
+];
+for (const page of legalPages) {
+  const htmlPath = join(distRoot, page.path.slice(1), "index.html");
+  const html = existsSync(htmlPath)
+    ? readFileSync(htmlPath, "utf8")
+    : readFileSync(join(distRoot, `${page.path.slice(1)}.html`), "utf8");
+  const visible = `Last updated: ${page.display}`;
+  if (!html.includes(visible)) {
+    errors.push(`${page.path} visible Last updated must be ${page.display}`);
+  }
+  if (
+    !html.includes(`"dateModified":"${page.iso}"`) &&
+    !html.includes(`"dateModified": "${page.iso}"`)
+  ) {
+    errors.push(`${page.path} JSON-LD dateModified must equal ${page.iso}`);
+  }
+  const canonical = `https://jev.aitools.fyi${page.path}`;
+  const lastmod = lastmodFromSitemapXml(staticSitemapXml, canonical);
+  if (lastmod !== page.iso) {
+    errors.push(`${page.path} sitemap lastmod ${lastmod} must equal ${page.iso}`);
+  }
+  if (contentDatesMod.staticPageDate(page.path) !== page.iso) {
+    errors.push(`${page.path} staticPageDate must equal ${page.iso}`);
+  }
+  if (contentDatesMod.legalLockedLastmod[page.path] !== page.iso) {
+    errors.push(`${page.path} legalLockedLastmod must equal ${page.iso}`);
+  }
+}
+
 function distFileForInternalHref(href) {
   const pathOnly = href.split("#")[0].split("?")[0];
   if (!pathOnly || pathOnly === "/") return join(distRoot, "index.html");

@@ -562,7 +562,9 @@ const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
 
 /**
  * UTC day used only as a ceiling when updatedAt is in the future.
- * Missing dates fall back to the manifest or LISTING_LASTMOD_FALLBACK.
+ * lastmod --check and verify-seo-artifacts fail when a raw item updatedAt
+ * is later than this day. Missing dates fall back to the manifest or
+ * LISTING_LASTMOD_FALLBACK.
  */
 function utcCeilingDay(): string {
   return new Date().toISOString().slice(0, 10);
