@@ -1,5 +1,7 @@
 /**
- * Post-build guard: every indexable HTML page must have a unique <title> and meta description.
+ * Post-build guard: every indexable HTML page must have a unique <title> and
+ * meta description. Descriptions must be <= 160 characters and must not end
+ * in a dangling comma, semicolon, or colon before the period (",." ":." ";.").
  */
 import { readdirSync, readFileSync, statSync } from "node:fs";
 import { join } from "node:path";
@@ -25,6 +27,7 @@ const files = walkHtmlFiles(distRoot);
 const byTitle = new Map();
 const byDescription = new Map();
 const rows = [];
+const descriptionErrors = [];
 
 for (const file of files) {
   const html = readFileSync(file, "utf8");
@@ -36,6 +39,17 @@ for (const file of files) {
   const description = $('meta[name="description"]').attr("content")?.trim() ?? "";
   const path = relPath(file);
   rows.push({ path, title, description });
+
+  if (/[,;:]\.\s*$/.test(description)) {
+    descriptionErrors.push(
+      `Dangling description punctuation: ${path}\n  ${description}`,
+    );
+  }
+  if (description.length > 160) {
+    descriptionErrors.push(
+      `Description over 160 characters (${description.length}): ${path}\n  ${description}`,
+    );
+  }
 
   const titleBucket = byTitle.get(title) ?? [];
   titleBucket.push(path);
@@ -51,7 +65,7 @@ const dupDescriptions = [...byDescription.entries()].filter(
   ([, paths]) => paths.length > 1,
 );
 
-if (dupTitles.length || dupDescriptions.length) {
+if (dupTitles.length || dupDescriptions.length || descriptionErrors.length) {
   console.error("Meta uniqueness check failed.\n");
   for (const [title, paths] of dupTitles) {
     console.error(`Duplicate title (${paths.length}): ${title}`);
@@ -61,9 +75,10 @@ if (dupTitles.length || dupDescriptions.length) {
     console.error(`Duplicate description (${paths.length}): ${desc.slice(0, 80)}…`);
     for (const p of paths) console.error(`  ${p}`);
   }
+  for (const error of descriptionErrors) console.error(error);
   process.exit(1);
 }
 
 console.log(
-  `Meta uniqueness OK across ${rows.length} indexable HTML files (${files.length} total HTML).`,
+  `Meta uniqueness OK across ${rows.length} indexable HTML files (${files.length} total HTML). Descriptions are <= 160 characters and do not end in ",." ":." or ";.".`,
 );
