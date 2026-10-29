@@ -5,7 +5,6 @@ import { siteConfig } from "@/lib/site";
 import {
   LEGAL_PATHS,
   PRIVACY_POLICY_LAST_UPDATED_DISPLAY,
-  PRIVACY_POLICY_LAST_UPDATED_ISO,
   MIN_COHORT,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
   PRIVACY_OFFICER,
@@ -13,6 +12,7 @@ import {
   privacyContactEmail,
 } from "@/lib/legal";
 import { webPageJsonLd } from "@/components/json-ld";
+import { staticPageDate } from "@/lib/content-dates";
 
 const seo = privacyPageSeo();
 const siteName = siteConfig.hostnameBrand;
@@ -25,7 +25,7 @@ const jsonLd = webPageJsonLd({
   name: "Privacy Policy",
   description: seo.description,
   url: seo.canonical,
-  dateModified: PRIVACY_POLICY_LAST_UPDATED_ISO,
+  dateModified: staticPageDate("/privacy"),
 });
 ---
 

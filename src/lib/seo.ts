@@ -29,8 +29,15 @@ import {
   productProfileSeoTitle,
 } from "@/lib/product-profiles";
 import { getListingEnrichment } from "@/lib/listing-enrichment";
-import { LISTING_LASTMOD_FALLBACK, parseIsoDay } from "@/lib/content-dates";
-import { siteConfig } from "@/lib/site";
+import {
+  LISTING_LASTMOD_FALLBACK,
+  formatIsoDay,
+  manifestLastmod,
+  parseIsoDay,
+} from "@/lib/content-dates";
+import { absoluteUrl, siteConfig } from "@/lib/site";
+
+export { absoluteUrl };
 
 export type PageSeo = {
   title: string;
@@ -165,13 +172,6 @@ export function trimMetaDescription(text: string, max = 160): string {
   const base =
     lastSpace > 100 ? cut.slice(0, lastSpace) : cut.slice(0, Math.max(0, max - 1));
   return finishMetaDescription(base, max);
-}
-
-export function absoluteUrl(path: string): string {
-  const base = siteConfig.url.replace(/\/$/, "");
-  return path.startsWith("http")
-    ? path
-    : `${base}${path.startsWith("/") ? path : `/${path}`}`;
 }
 
 export function pageSeo({
@@ -610,13 +610,40 @@ export function alternativePageSeo(alt: Alternative) {
   });
 }
 
-export function parseItemLastModified(updatedAt?: string): Date {
-  const day = updatedAt?.slice(0, 10) ?? "";
-  if (/^\d{4}-\d{2}-\d{2}$/.test(day)) {
-    const parsed = parseIsoDay(day);
-    if (!Number.isNaN(parsed.getTime())) return parsed;
+const ISO_DAY = /^\d{4}-\d{2}-\d{2}$/;
+
+/**
+ * UTC day used only as a ceiling when updatedAt is in the future.
+ * lastmod --check and verify-seo-artifacts fail when a raw item updatedAt
+ * is later than this day. Missing dates fall back to the manifest or
+ * LISTING_LASTMOD_FALLBACK.
+ */
+function utcCeilingDay(): string {
+  return new Date().toISOString().slice(0, 10);
+}
+
+function clampIsoDay(day: string): string {
+  const ceiling = utcCeilingDay();
+  return day > ceiling ? ceiling : day;
+}
+
+export function parseItemLastModified(updatedAt?: string, path?: string): Date {
+  const manifestDay = path ? manifestLastmod(path) : undefined;
+  const updatedDay = updatedAt?.slice(0, 10) ?? "";
+  let updatedValid: string | undefined;
+  if (ISO_DAY.test(updatedDay)) {
+    const parsed = parseIsoDay(updatedDay);
+    if (!Number.isNaN(parsed.getTime())) updatedValid = clampIsoDay(updatedDay);
   }
-  return parseIsoDay(LISTING_LASTMOD_FALLBACK);
+  let day = manifestDay ?? LISTING_LASTMOD_FALLBACK;
+  if (updatedValid && updatedValid > day) day = updatedValid;
+  return parseIsoDay(day);
+}
+
+export function itemLastmodDay(
+  item: Pick<DirectoryItem, "slug" | "category" | "updatedAt">,
+): string {
+  return formatIsoDay(parseItemLastModified(item.updatedAt, getItemPath(item)));
 }
 
 /** All indexable routes for uniqueness checks (build script). */

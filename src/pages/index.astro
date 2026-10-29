@@ -5,7 +5,8 @@ import { FeaturedRail } from "@/components/featured-rail";
 import { HomeFaq } from "@/components/home-faq";
 import { HomeSponsors } from "@/components/sponsors";
 import { HomeHero, HomeWhatIsJev } from "@/components/home-sections";
-import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd } from "@/components/json-ld";
+import { faqPageJsonLd, itemListJsonLd, demoVideoJsonLd, webPageJsonLd } from "@/components/json-ld";
+import { staticPageDate } from "@/lib/content-dates";
 import { homeFaq } from "@/data/faq";
 import { getHomepageDemos } from "@/data/showcase-demos";
 import { getAllItems } from "@/lib/items";
@@ -25,7 +26,17 @@ const videoJsonLd = homepageDemos.map((d) => demoVideoJsonLd(d));
   ogImagePath={seo.imagePath}
   remoteShowcaseVideos
   showSponsors={false}
-  jsonLd={[itemListJsonLd(items.slice(0, 100)), faqPageJsonLd(homeFaq), ...videoJsonLd]}
+  jsonLd={[
+    webPageJsonLd({
+      name: seo.title,
+      description: seo.description,
+      url: seo.canonical,
+      dateModified: staticPageDate("/"),
+    }),
+    itemListJsonLd(items.slice(0, 100)),
+    faqPageJsonLd(homeFaq),
+    ...videoJsonLd,
+  ]}
 >
   <HomeHero client:load />
   <div class="mx-auto flex max-w-6xl flex-col gap-20 px-4 py-16 sm:px-6 sm:py-20">

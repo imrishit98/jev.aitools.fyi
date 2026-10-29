@@ -30,6 +30,7 @@ const alternativesSharedMod = await vite.ssrLoadModule("/src/data/alternatives-s
 const factSourcesMod = await vite.ssrLoadModule("/src/data/alternative-fact-sources.ts");
 const textStatsMod = await vite.ssrLoadModule("/src/lib/alternative-text-stats.ts");
 const contentDatesMod = await vite.ssrLoadModule("/src/lib/content-dates.ts");
+const legalMod = await vite.ssrLoadModule("/src/lib/legal.ts");
 const metricsJson = JSON.parse(
   readFileSync(join(root, "src/data/alternatives-metrics.json"), "utf8"),
 );
@@ -93,6 +94,56 @@ if (locs.length !== expectedFromLib.length) {
 }
 
 const errors = [];
+
+if (childSitemaps.length !== 4) {
+  errors.push(
+    `sitemap index must list exactly 4 child sitemaps, got ${childSitemaps.length}`,
+  );
+}
+
+function utcToday() {
+  return new Date().toISOString().slice(0, 10);
+}
+const todayUtc = utcToday();
+const indexEntries = [
+  ...indexXml.matchAll(
+    /<sitemap>\s*<loc>([^<]+)<\/loc>\s*<lastmod>([^<]+)<\/lastmod>\s*<\/sitemap>/g,
+  ),
+].map((m) => ({ loc: m[1], lastmod: m[2] }));
+if (indexEntries.length !== 4) {
+  errors.push(`sitemap index parsed ${indexEntries.length} entries, expected 4`);
+}
+for (const entry of indexEntries) {
+  const file = entry.loc.replace("https://jev.aitools.fyi/", "");
+  const xml = readFileSync(join(distRoot, file), "utf8");
+  const days = [...xml.matchAll(/<lastmod>([^<]+)<\/lastmod>/g)].map((m) => m[1]);
+  if (days.length === 0) {
+    errors.push(`${file} has no lastmod values`);
+    continue;
+  }
+  const maxChild = days.reduce((max, day) => (day > max ? day : max));
+  if (entry.lastmod !== maxChild) {
+    errors.push(
+      `${file} index lastmod ${entry.lastmod} must equal max child lastmod ${maxChild}`,
+    );
+  }
+  if (entry.lastmod > todayUtc) {
+    errors.push(`sitemap index lastmod ${entry.lastmod} for ${file} is after ${todayUtc}`);
+  }
+  for (const day of days) {
+    if (day > todayUtc) {
+      errors.push(`${file} lastmod ${day} is after today ${todayUtc}`);
+      break;
+    }
+  }
+}
+
+for (const item of itemsMod.getAllItems()) {
+  const raw = typeof item.updatedAt === "string" ? item.updatedAt.slice(0, 10) : "";
+  if (/^\d{4}-\d{2}-\d{2}$/.test(raw) && raw > todayUtc) {
+    errors.push(`${item.slug} updatedAt ${raw} is after today ${todayUtc}`);
+  }
+}
 
 if (locs.some((l) => l.includes("/items"))) {
   errors.push("sitemap contains /items/ URLs");
@@ -496,6 +547,52 @@ function assertPageDates(label, canonicalUrl, lastVerified, html, slugForGuideDa
     }
   }
 }
+const staticSitemapXml = readFileSync(join(distRoot, "sitemap-static.xml"), "utf8");
+const legalPages = [
+  {
+    path: "/privacy",
+    iso: legalMod.PRIVACY_POLICY_LAST_UPDATED_ISO,
+    display: legalMod.PRIVACY_POLICY_LAST_UPDATED_DISPLAY,
+  },
+  {
+    path: "/terms",
+    iso: legalMod.LEGAL_LAST_UPDATED_ISO,
+    display: legalMod.LEGAL_LAST_UPDATED_DISPLAY,
+  },
+  {
+    path: "/your-privacy-choices",
+    iso: legalMod.LEGAL_LAST_UPDATED_ISO,
+    display: legalMod.LEGAL_LAST_UPDATED_DISPLAY,
+  },
+];
+for (const page of legalPages) {
+  const htmlPath = join(distRoot, page.path.slice(1), "index.html");
+  const html = existsSync(htmlPath)
+    ? readFileSync(htmlPath, "utf8")
+    : readFileSync(join(distRoot, `${page.path.slice(1)}.html`), "utf8");
+  const visible = `Last updated: ${page.display}`;
+  if (!html.includes(visible)) {
+    errors.push(`${page.path} visible Last updated must be ${page.display}`);
+  }
+  if (
+    !html.includes(`"dateModified":"${page.iso}"`) &&
+    !html.includes(`"dateModified": "${page.iso}"`)
+  ) {
+    errors.push(`${page.path} JSON-LD dateModified must equal ${page.iso}`);
+  }
+  const canonical = `https://jev.aitools.fyi${page.path}`;
+  const lastmod = lastmodFromSitemapXml(staticSitemapXml, canonical);
+  if (lastmod !== page.iso) {
+    errors.push(`${page.path} sitemap lastmod ${lastmod} must equal ${page.iso}`);
+  }
+  if (contentDatesMod.staticPageDate(page.path) !== page.iso) {
+    errors.push(`${page.path} staticPageDate must equal ${page.iso}`);
+  }
+  if (contentDatesMod.legalLockedLastmod[page.path] !== page.iso) {
+    errors.push(`${page.path} legalLockedLastmod must equal ${page.iso}`);
+  }
+}
+
 function distFileForInternalHref(href) {
   const pathOnly = href.split("#")[0].split("?")[0];
   if (!pathOnly || pathOnly === "/") return join(distRoot, "index.html");

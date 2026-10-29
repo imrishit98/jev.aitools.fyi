@@ -4,7 +4,6 @@ import { termsPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
 import {
   LEGAL_LAST_UPDATED_DISPLAY,
-  LEGAL_LAST_UPDATED_ISO,
   LEGAL_PATHS,
   PARTNER_SHARING_EFFECTIVE_DISPLAY,
   PRIVACY_OFFICER,
@@ -12,6 +11,7 @@ import {
   privacyContactEmail,
 } from "@/lib/legal";
 import { webPageJsonLd } from "@/components/json-ld";
+import { staticPageDate } from "@/lib/content-dates";
 
 const seo = termsPageSeo();
 const siteName = siteConfig.hostnameBrand;
@@ -23,7 +23,7 @@ const jsonLd = webPageJsonLd({
   name: "Terms of Service",
   description: seo.description,
   url: seo.canonical,
-  dateModified: LEGAL_LAST_UPDATED_ISO,
+  dateModified: staticPageDate("/terms"),
 });
 ---
 

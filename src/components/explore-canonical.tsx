@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { categoryCanonicalFromExploreParams } from "@/lib/explore-canonical";
-import { absoluteUrl } from "@/lib/seo";
+import { absoluteUrl } from "@/lib/site";
 
 type Props = {
   params: URLSearchParams;

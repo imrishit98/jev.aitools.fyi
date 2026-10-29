@@ -157,9 +157,9 @@ Still open: learn primers have no FAQ block, so they cannot emit `FAQPage` witho
 
 ### Sitemap lastmod
 
-`lastmod` used to be the source file's modification time, or `new Date()` when a listing had no `updatedAt`. A checkout or an unrelated edit stamped every guide in a shared file as "changed today." Google treats that as noise.
+`lastmod` is a `YYYY-MM-DD` date stored in `src/data/lastmod-manifest.json`. `scripts/lastmod-manifest.mjs` hashes each sitemap URL's source record with sha256 of stable key-sorted JSON. When that hash changes, `pnpm lastmod:update` sets the URL's date to the UTC day the manifest is updated and keeps the stored date on every other URL. A shared data file updates only the URLs whose own records changed. Static pages hash the page file, the local components with that page's copy, and the data records the page shows, so a home headline or a showcase demo edit fails the check. `/privacy`, `/terms`, and `/your-privacy-choices` keep the ISO date from `src/lib/legal.ts` that renders "Last updated". Seeding from git history runs on a full clone and aborts when the clone is shallow. Build and runtime lastmod paths do not call git.
 
-Lastmod is now a `YYYY-MM-DD` date. Listings use `updatedAt`, or 2026-09-19 when that field is missing. Guides, learn pages, and category hubs use editorial dates in `src/lib/content-dates.ts`. Hermes, the Laya compare page, and the other pages whose meta copy changed in this pass are 2026-09-30. Untouched agent guides stay 2026-09-26. The build checks that every lastmod matches that date shape, and that `.md` and `llms-full.txt` are not in the sitemap.
+Listings use a valid `updatedAt` when that day is later than the manifest date. A future `updatedAt` is still clamped so the sitemap cannot emit a day after the UTC day, and the build fails when any raw item `updatedAt` is later than that day. When a path is missing from the manifest, `src/lib/content-dates.ts` uses the editorial constants already in that file. The sitemap index sets each child file's lastmod to the newest lastmod among that file's URLs. `pnpm build` runs `node scripts/lastmod-manifest.mjs --check` first and fails when the manifest has drifted. The build still checks that every lastmod is `YYYY-MM-DD`, and that `.md` and `llms-full.txt` are not in the sitemap.
 
 ### Thin and duplicate pages
 
