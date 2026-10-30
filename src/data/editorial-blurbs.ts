@@ -155,6 +155,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "UiPath's preview connector drops Jev activities straight into Maestro flows: your TypeSafe key, confidence thresholds, and no AI Trust Layer middleman. Enterprise RPA finally gets the same typed gates Box and Workday demoed.",
   "motherduck-prompt-jev":
     "Classify a million-row table in SQL without a chat model per line. MotherDuck's prompt_jev() batches Jev calls with receipts: AG News numbers, AI Unit math, and the Hamilton Ulmer teaser folded into one canonical page.",
+  "openbmb-minicpm-ocr-jev":
+    "OpenBMB squeezed a 93.6 AUROC OCR gate into 2B parameters: score each table or formula region, pick the best parser, and only trust the number when verdict says scored. Vendor benchmarks, honest threshold homework.",
+  "networkchuck-jev-guide":
+    "NetworkChuck's MIT walkthrough mirrors his October video: spam nouls in the Playground, curl your first System One call, then a Bun router that spends fractions of a cent per tier pick. Third party, not TypeSafe, so pair it with our learn hub.",
   "lahfir-agent-desktop":
     "Rust desktop hands for your agent: accessibility snapshots with stable refs, skeleton mode for Slack-scale UIs, and Jev picking the next click instead of coordinate roulette.",
   "kerpopule-hermes-jev-skills":
