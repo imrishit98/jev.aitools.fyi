@@ -14036,9 +14036,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "On 200 JevOCRBench samples scored by MiniCPM-OCR Jev, OpenBMB reports AUROC (times 100) from 91.9 to 93.4 across MiniCPM-OCR 1.0, GLM-OCR, PaddleOCR-VL-1.6, and Xiaomi-OCR-0 parsers. Those are OpenBMB-measured on that experiment, not independent audits.",
       },
     ],
-    metaTitle: "MiniCPM-OCR Jev: 2B OCR Quality Scoring Model",
+    metaTitle: "MiniCPM-OCR Jev: 2B OCR quality scoring model",
     metaDescription:
-      "OpenBMB's MiniCPM-OCR Jev scores OCR output 0 to 1 per region. 2B params, AUROC 93.6 on JevOCRBench vs 90.1 for JEV-35B-A3B. Apache 2.0.",
+      "OpenBMB's MiniCPM-OCR Jev scores OCR 0 to 1 per region. 2B params, AUROC 93.6 (OpenBMB-reported) on JevOCRBench vs 90.1 JEV-35B. Apache 2.0.",
   },
 
   "networkchuck-jev-guide": {
@@ -14090,7 +14090,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "This listing is a third-party video course, not TypeSafe documentation. For authoritative primitives and API contracts, use this site's learn guides at https://jev.aitools.fyi/learn/jev-typesafe and https://jev.aitools.fyi/learn/system-one alongside docs.typesafe.ai. The repo complements those pages with NetworkChuck's spam comment narrative, bundled questions.json, and a Bun router that thresholds Jev confidence (demo SURE_ENOUGH 0.6, not a TypeSafe constant). datawhalechina-jev-cookbook is a longer Chinese Jupyter course; disler-ten-levels-of-jev is a TypeScript lab; gargpratyush-jev-router is a different production routing story. Cite https://github.com/theNetworkChuck/jev-guide?ref=jev.aitools.fyi and https://www.youtube.com/watch?v=Ck7wB7pdebQ?ref=jev.aitools.fyi. Requires curl 7.76+, jq, Bun for chapter 4; optional OpenRouter key for full router answers.",
+      "This listing is a third-party video course, not TypeSafe documentation. For authoritative primitives and API contracts, use this site's learn guides at https://jev.aitools.fyi/learn/jev-typesafe and https://jev.aitools.fyi/learn/system-one alongside docs.typesafe.ai. The repo complements those pages with NetworkChuck's spam comment narrative, bundled questions.json, and a Bun router that thresholds Jev confidence (demo SURE_ENOUGH 0.6, not a TypeSafe constant). datawhalechina-jev-cookbook is a longer Chinese Jupyter course; disler-ten-levels-of-jev is a TypeScript lab; gargpratyush-jev-router is a different production routing story. Cite https://github.com/theNetworkChuck/jev-guide?ref=jev.aitools.fyi and https://www.youtube.com/watch?v=Ck7wB7pdebQ&ref=jev.aitools.fyi. Requires curl 7.76+, jq, Bun for chapter 4; optional OpenRouter key for full router answers.",
     keyFeatures: [
       "Five ordered chapters from Playground to community projects",
       "examples/spam-check.sh and questions.json from the video",
@@ -14142,7 +14142,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "Chapter 4 cites about 110 to 170 ms and about $0.0000159 per routing decision on sample requests, plus separate OpenRouter spend when you run full answers. --decide-only skips downstream model cost.",
       },
     ],
-    metaTitle: "NetworkChuck Jev Guide: Learn Jev Step by Step",
+    metaTitle: "NetworkChuck Jev guide: learn Jev step by step",
     metaDescription:
       "NetworkChuck's companion guide to his Jev video: Playground spam test, first API call, coding agent skill and a Jev model router. Tested on jev-1.14.0.",
   },
