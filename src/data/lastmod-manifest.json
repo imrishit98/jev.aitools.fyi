@@ -524,12 +524,12 @@
     "lastmod": "2026-10-08"
   },
   "/categories/guides": {
-    "hash": "a2b403c22001fc0ea41fef4c939fb7ca1a26cdcb6c8757f5ddc229977e4ce676",
-    "lastmod": "2026-10-12"
+    "hash": "c831f8ba22cf0aa9e7cf1e6c39280016390e9874a19d5fa6615e8a58930c8018",
+    "lastmod": "2026-10-30"
   },
   "/categories/integrations": {
-    "hash": "5a24ddef2f64116755e01a5644c76545963c622c33bf36c99755e68a250c6991",
-    "lastmod": "2026-10-27"
+    "hash": "260b0e8fd18adc06b26ec48c19458c5f18e95ec7e49ea9f863fb8ab1bc34448e",
+    "lastmod": "2026-10-30"
   },
   "/categories/official": {
     "hash": "495b76200f0b6422a247ad39269fd3ab3e35fa51a8a0996d23694a128d569094",
@@ -556,8 +556,8 @@
     "lastmod": "2026-09-23"
   },
   "/explore": {
-    "hash": "4e6e48eeeeff05865d655d325425a6b65c17b6bc027ad356152ef15aba656534",
-    "lastmod": "2026-10-27"
+    "hash": "3a1ff0d0ea72abab8340859d6228cfaac0ba40e927c0699d876caae8adecbdea",
+    "lastmod": "2026-10-30"
   },
   "/for-agents": {
     "hash": "674b023d1341030485d3339651d28c9cbfba43e377904d3a9b77614be0abd828",
@@ -640,8 +640,8 @@
     "lastmod": "2026-09-21"
   },
   "/guides": {
-    "hash": "8631eca8f5066a04bea7d3bd38d7fa6399b35f9c65c7307561eed3de96e8b14f",
-    "lastmod": "2026-10-17"
+    "hash": "2ce9601e8d830a81d6c5db7e034568de694c7491ebf803b3b24b35c31e09a5b2",
+    "lastmod": "2026-10-30"
   },
   "/guides/abdelstark-awesome-typesafe": {
     "hash": "aa566a81820f523f2286151b6115d4866a67e73040946e99d16de93cb877db76",
@@ -710,6 +710,10 @@
   "/guides/logicrw-awesome-jev-projects": {
     "hash": "cce7609ea8afc474504d54f008d1dceedc012686c2ff9aa3317d09e8c09f20e7",
     "lastmod": "2026-09-18"
+  },
+  "/guides/networkchuck-jev-guide": {
+    "hash": "3da6681833f5cd5b957cf35eca510b52b0ae149df94d27783ea9810c2f798d0a",
+    "lastmod": "2026-10-30"
   },
   "/guides/omnijev-awesome-jev": {
     "hash": "2d4467a245a059e2cfb934cb610012d21e25986edefc3036b0f5ff7162406b6a",
@@ -1222,6 +1226,10 @@
   "/tools/ollaya-dev-ollaya": {
     "hash": "8be14d3e8966e5b193a6bec11e4a5cfe168d7715e7d4b721d5bb43e014a8a7ac",
     "lastmod": "2026-10-07"
+  },
+  "/tools/openbmb-minicpm-ocr-jev": {
+    "hash": "defdba12f27d45aab669a7d4c577ae9f911aa51ab81d079796301ee72159baaa",
+    "lastmod": "2026-10-30"
   },
   "/tools/openlayer-ai-jevals": {
     "hash": "6c50a2a7ba423997b9d5f87cf89a1fe96b94a933fd1f83920edc64ce8b553cb8",

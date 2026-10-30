@@ -13938,4 +13938,212 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "MotherDuck prompt_jev() runs Jev choice, score, noul and box questions in SQL. AG News test: 100k rows in 40s for $0.50 vs 32 min and $37.58 on gpt-5.6-terra.",
   },
+
+  "openbmb-minicpm-ocr-jev": {
+    slug: "openbmb-minicpm-ocr-jev",
+    status: "published",
+    problem:
+      "Document pipelines need a thresholdable signal for whether each OCR region is trustworthy before auto-accepting or sending work to human review.",
+    targetUser:
+      "Teams parsing scans, photos, or PDFs who want a small open model to score OCR candidates per text, formula, or table region.",
+    overview:
+      "MiniCPM-OCR Jev (github.com/OpenBMB/MiniCPM-OCR, Apache-2.0) is OpenBMB's 2B OCR correctness decision model. Given a region crop, candidate OCR text, and category (text, formula, or table), it returns a quality score from 0 to 1. The repo and Hugging Face weights (openbmb/MiniCPM-OCR-Jev) shipped with MiniCPM-OCR 1.0 in October 2026. It is trained from Qwen3.5-2B with the lm_head replaced by a binary classification head.",
+    creator: {
+      name: "OpenBMB",
+      handle: "OpenBMB",
+      githubUrl: "https://github.com/OpenBMB",
+      company: "OpenBMB",
+      companyUrl: "https://www.openbmb.org",
+    },
+    jevUsage: {
+      flowRole:
+        "Region-level OCR quality gate: score one candidate, pick best-of-N across parsers, or batch best-of-N across blocks",
+      primitives: ["Score"],
+      stateIn:
+        "Original region image plus candidate OCR text and category (text, formula, or table). Cloud API, Docker, or SDK paths with a built-in renderer accept image, text, and category; callers without a renderer supply a rendered image of the candidate text.",
+      decisionOut:
+        "A 0 to 1 quality score when verdict is scored. Precheck, rendering, or forward failures return fixed codes that must not be treated as low model scores.",
+      flowSteps: [
+        "Parse documents and preserve region ids, crops, categories, and candidate text",
+        "Call score, score_best, or score_best_batch on the API or local vLLM, SGLang, llama.cpp, Ollama, or FlagOS deployment",
+        "Check verdict equals scored before thresholding",
+        "Route above-threshold regions to downstream storage; send the rest to human review or another parser",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "On JevOCRBench, OpenBMB reports AUROC (times 100) of 93.6 for MiniCPM-OCR Jev versus 90.1 for JEV-35B-A3B and 93.8 for Qwen3.5-397B-A17B.",
+          source: "github.com/OpenBMB/MiniCPM-OCR README and docs/minicpm_ocr_jev_en.md (OpenBMB-measured, vendor benchmark)",
+        },
+        {
+          claim:
+            "Cross-parser experiment on 200 JevOCRBench samples: AUROC (times 100) 92.7 (MiniCPM-OCR 1.0), 91.9 (GLM-OCR), 93.4 (PaddleOCR-VL-1.6), 93.1 (Xiaomi-OCR-0).",
+          source: "docs/minicpm_ocr_jev_en.md (OpenBMB-measured on stated sample and parsers)",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "MiniCPM-OCR Jev is a Jev-shaped OCR scorer, not hosted TypeSafe System One. It pairs with MiniCPM-OCR 1.0 or third-party parsers when you need calibrated-style gates on extraction quality. Use cases in OpenBMB docs include automatic screening (pick a threshold on your own labeled samples) and best-of-N selection across OCR models on the same layout segmentation. AUROC measures discrimination between correct and incorrect candidates; OpenBMB explicitly warns it does not set a universal default threshold. docjev and uipath-typesafe-jev-connector show TypeSafe Jev on document workflows; this listing covers OpenBMB's open 2B weights and JevOCRBench. theoleecj-semif and motherduck-prompt-jev are other decision surfaces in this directory. Cite https://github.com/OpenBMB/MiniCPM-OCR?ref=jev.aitools.fyi, https://huggingface.co/openbmb/MiniCPM-OCR-Jev?ref=jev.aitools.fyi, https://huggingface.co/datasets/openbmb/JevOCRBench?ref=jev.aitools.fyi, and https://platform.modelbest.ai/console/docs/api/ocr-jev?ref=jev.aitools.fyi.",
+    keyFeatures: [
+      "2B parameters, Apache-2.0 weights and code",
+      "Scores text, formula, and table regions from 0 to 1",
+      "Free cloud API plus Docker, SDK, vLLM, SGLang, llama.cpp, Ollama, FlagOS",
+      "BF16, GGUF, AWQ, and GPTQ weight formats",
+      "ms-swift fine-tuning guide for domain-specific parsers",
+      "JevOCRBench dataset on Hugging Face for evaluation",
+    ],
+    stack: [
+      "Qwen3.5-2B derived architecture",
+      "MiniCPM-OCR parsing family",
+      "ModelBest cloud API",
+      "Self-hosted inference (vLLM, SGLang, llama.cpp, Ollama)",
+    ],
+    links: {
+      website: "https://github.com/OpenBMB/MiniCPM-OCR",
+      repo: "https://github.com/OpenBMB/MiniCPM-OCR",
+      docs: "https://github.com/OpenBMB/MiniCPM-OCR/blob/main/docs/minicpm_ocr_jev_en.md",
+      demo: "https://huggingface.co/openbmb/MiniCPM-OCR-Jev",
+    },
+    pricingNote:
+      "Apache-2.0 open weights; ModelBest documents a free cloud OCR-Jev API tier. You pay for GPUs or cloud inference you self-host.",
+    firstSeen: "2026-10-27",
+    relatedSlugs: [
+      "theoleecj-semif",
+      "motherduck-prompt-jev",
+      "uipath-typesafe-jev-connector",
+      "docjev",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "What does AUROC 93.6 on JevOCRBench mean in practice?",
+        answer:
+          "OpenBMB reports AUROC (times 100) of 93.6 on JevOCRBench, meaning the 2B model ranks correct OCR candidates above incorrect ones better than JEV-35B-A3B (90.1) on that vendor benchmark. AUROC does not pick a production threshold; OpenBMB docs say to tune thresholds on your own labeled regions.",
+      },
+      {
+        question: "When is a score safe to use?",
+        answer:
+          "Only when the API or service returns verdict scored. Rendering failures and forward errors return fixed values that must not be read as low confidence from the model.",
+      },
+      {
+        question: "Is MiniCPM-OCR Jev the same as TypeSafe Jev?",
+        answer:
+          "No. It is OpenBMB's independent 2B OCR quality model with Jev in the name and benchmark, not api.typesafe.ai System One. Use TypeSafe Jev listings for hosted choice, score, and noul on general text state.",
+      },
+      {
+        question: "How do OpenBMB's cross-parser numbers compare?",
+        answer:
+          "On 200 JevOCRBench samples scored by MiniCPM-OCR Jev, OpenBMB reports AUROC (times 100) from 91.9 to 93.4 across MiniCPM-OCR 1.0, GLM-OCR, PaddleOCR-VL-1.6, and Xiaomi-OCR-0 parsers. Those are OpenBMB-measured on that experiment, not independent audits.",
+      },
+    ],
+    metaTitle: "MiniCPM-OCR Jev: 2B OCR quality scoring model",
+    metaDescription:
+      "OpenBMB's MiniCPM-OCR Jev scores OCR 0 to 1 per region. 2B params, AUROC 93.6 (OpenBMB-reported) on JevOCRBench vs 90.1 JEV-35B. Apache 2.0.",
+  },
+
+  "networkchuck-jev-guide": {
+    slug: "networkchuck-jev-guide",
+    status: "published",
+    problem:
+      "Newcomers want a guided path from the TypeSafe Playground to their own API calls and routing patterns without reading only official docs.",
+    targetUser:
+      "Developers following NetworkChuck's October 2026 Jev video who want a five-chapter MIT repo with copy-paste steps, spam-check scripts, and a Bun model router.",
+    overview:
+      "jev-guide (github.com/theNetworkChuck/jev-guide, MIT) is NetworkChuck's companion to his YouTube video (https://www.youtube.com/watch?v=Ck7wB7pdebQ, published October 28, 2026). The README states it is not affiliated with TypeSafe. Five markdown chapters walk from Playground spam detection through terminal API calls, TypeSafe's official coding-agent skill, a Jev model router, and a survey of community projects. Examples were tested on jev-1.14.0.",
+    creator: {
+      name: "NetworkChuck",
+      handle: "theNetworkChuck",
+      githubUrl: "https://github.com/theNetworkChuck",
+      companyUrl: "https://www.youtube.com/@NetworkChuck",
+    },
+    jevUsage: {
+      flowRole:
+        "Teaching path: noul spam gates, multi-question batches, choice routing to small, medium, or large chat models via OpenRouter",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Plain-text state (for example a YouTube comment) plus JSON questions in Playground or POST /v1/systemone from curl and Bun scripts.",
+      decisionOut:
+        "Structured probabilities and picks (noul 0 to 1, choice label with probabilities, score levels) without generated prose.",
+      flowSteps: [
+        "Chapter 1: paste spam comment state and run noul, choice, and score questions in console.typesafe.ai/playground",
+        "Chapter 2: export TYPESAFE_API_KEY and run examples/spam-check.sh with six bundled questions",
+        "Chapter 3: install TypeSafe's official agent skill and ask where Jev fits your repo",
+        "Chapter 4: run examples/router/router.ts so Jev choice picks small, medium, or large OpenRouter models",
+        "Chapter 5: browse projects from the video and open-source Jev-shaped models",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Playground multi-question run on the sample spam comment: spam noul about 96%, contact about 92%, money about 12%, link about 94%.",
+          source: "github.com/theNetworkChuck/jev-guide guide/01-playground.md (jev-1.14.0 run, may vary)",
+        },
+        {
+          claim:
+            "Guide cites TypeSafe pricing on jev-1.14.0 at $0.042 per million input tokens with output free; spam-check usage example uses 529 input tokens.",
+          source: "guide/02-first-api-call.md referencing docs.typesafe.ai/models",
+        },
+        {
+          claim:
+            "Model router demo: Jev choice decisions in about 110 to 170 ms at about $0.0000159 per decision on sample requests.",
+          source: "guide/04-model-router.md (jev-1.14.0 run, may vary)",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This listing is a third-party video course, not TypeSafe documentation. For authoritative primitives and API contracts, use this site's learn guides at https://jev.aitools.fyi/learn/jev-typesafe and https://jev.aitools.fyi/learn/system-one alongside docs.typesafe.ai. The repo complements those pages with NetworkChuck's spam comment narrative, bundled questions.json, and a Bun router that thresholds Jev confidence (demo SURE_ENOUGH 0.6, not a TypeSafe constant). datawhalechina-jev-cookbook is a longer Chinese Jupyter course; disler-ten-levels-of-jev is a TypeScript lab; gargpratyush-jev-router is a different production routing story. Cite https://github.com/theNetworkChuck/jev-guide?ref=jev.aitools.fyi and https://www.youtube.com/watch?v=Ck7wB7pdebQ&ref=jev.aitools.fyi. Requires curl 7.76+, jq, Bun for chapter 4; optional OpenRouter key for full router answers.",
+    keyFeatures: [
+      "Five ordered chapters from Playground to community projects",
+      "examples/spam-check.sh and questions.json from the video",
+      "examples/router/router.ts with --decide-only mode",
+      "Tested on jev-1.14.0 per README badge",
+      "MIT license; explicit not affiliated with TypeSafe disclaimer",
+    ],
+    stack: [
+      "TypeSafe Playground and api.typesafe.ai",
+      "curl and jq",
+      "Bun for router.ts",
+      "Optional OpenRouter for downstream chat models",
+    ],
+    links: {
+      website: "https://github.com/theNetworkChuck/jev-guide",
+      repo: "https://github.com/theNetworkChuck/jev-guide",
+      docs: "https://github.com/theNetworkChuck/jev-guide#the-path",
+      demo: "https://www.youtube.com/watch?v=Ck7wB7pdebQ",
+    },
+    pricingNote:
+      "Guide repo is MIT. Live Jev calls spend your TypeSafe account; chapter 4 optionally spends OpenRouter credit when not using --decide-only.",
+    firstSeen: "2026-10-27",
+    relatedSlugs: [
+      "disler-ten-levels-of-jev",
+      "datawhalechina-jev-cookbook",
+      "gargpratyush-jev-router",
+      "typesafe-ai-skills",
+    ],
+    relatedLearnSlugs: ["jev-typesafe", "system-one"],
+    faq: [
+      {
+        question: "Is this guide official TypeSafe material?",
+        answer:
+          "No. The README states the guide is not affiliated with TypeSafe. TypeSafe and Jev are trademarks of TypeSafe AI. Use jev.aitools.fyi learn pages and docs.typesafe.ai for authoritative docs.",
+      },
+      {
+        question: "Where should I start if I already read TypeSafe docs?",
+        answer:
+          "Use chapter 1 if you want the Playground spam walkthrough from the video, or jump to chapter 2 for terminal API shape. Pair with /learn/jev-typesafe on this site for concepts the video assumes.",
+      },
+      {
+        question: "Do the spam percentages match every run?",
+        answer:
+          "The guide warns numbers move slightly between runs and Jev versions. Documented spam, contact, money, and link nouls are from real jev-1.14.0 runs in the repo, meant as about this much, not exact targets.",
+      },
+      {
+        question: "What does the router cost?",
+        answer:
+          "Chapter 4 cites about 110 to 170 ms and about $0.0000159 per routing decision on sample requests, plus separate OpenRouter spend when you run full answers. --decide-only skips downstream model cost.",
+      },
+    ],
+    metaTitle: "NetworkChuck Jev guide: learn Jev step by step",
+    metaDescription:
+      "NetworkChuck's companion guide to his Jev video: Playground spam test, first API call, coding agent skill and a Jev model router. Tested on jev-1.14.0.",
+  },
 };

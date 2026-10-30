@@ -741,6 +741,14 @@
     "oneLiner": "MotherDuck prompt_jev() runs Jev choice, score, noul, and box questions in SQL on paid plans with published AG News benchmarks.",
     "description": "MotherDuck's September 2026 launch adds prompt_jev() to SQL on all paid plans: choice, score, noul, multiple_choice, box, and bundled questions with batch_size tuning and PROMPT_JEV reference limits. The blog's AG News table (100k rows) is MotherDuck-measured. This listing is canonical for the earlier duckdb-jev-classifier X teaser. Glue code for gateways, agents, and platforms that should stay typed instead of chatty. Tags in the wild: integrations, sql, data. Follow MotherDuck docs for plan entitlements."
   },
+  "openbmb-minicpm-ocr-jev": {
+    "oneLiner": "OpenBMB MiniCPM-OCR Jev: 2B Apache-2.0 scores OCR regions 0 to 1 for human review gates and best-of-N parser selection.",
+    "description": "MiniCPM-OCR Jev from OpenBMB (October 2026) is an open OCR correctness decision model with vendor-measured AUROC (times 100) 93.6 on JevOCRBench. Use score, score_best, and score_best_batch APIs locally or on ModelBest cloud; tune thresholds on your data because AUROC does not set a universal cutoff. Glue code for document pipelines that should stay typed instead of chatty. Tags in the wild: integrations, ocr, open-source. Follow OpenBMB docs for verdict scored handling."
+  },
+  "networkchuck-jev-guide": {
+    "oneLiner": "NetworkChuck's MIT Jev guide: five chapters from Playground spam checks to a Bun model router, tested on jev-1.14.0.",
+    "description": "Third-party companion to NetworkChuck's October 28, 2026 YouTube Jev video (github.com/theNetworkChuck/jev-guide). Not TypeSafe official; complements jev.aitools.fyi learn guides with copy-paste Playground, API, skill, and router chapters. Glue code for learners who want video-aligned steps before diving into docs. Tags in the wild: guides, tutorial, routing. Follow the repo for chapter updates."
+  },
   "duckdb-jev-classifier": {
     "indexOnly": true,
     "oneLiner": "September 2026 X teaser for DuckDB row classification; see the MotherDuck prompt_jev listing for the shipped SQL function and benchmarks.",
