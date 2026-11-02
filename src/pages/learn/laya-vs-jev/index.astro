@@ -8,6 +8,7 @@ import {
   layaVsJevGuides,
   layaVsJevHub,
   layaVsJevGuidePath,
+  layaVsJevAlsoSearchedAs,
 } from "@/data/laya-vs-jev-guides";
 import { layaVsJevHubSeo } from "@/lib/seo";
 import { splitIntoParagraphs } from "@/lib/prose";
@@ -56,6 +57,7 @@ const cards = layaVsJevGuideSlugs.map((slug) => layaVsJevGuides[slug]);
     <header class="max-w-3xl">
       <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{layaVsJevHub.title}</h1>
       <p class="mt-3 text-lg text-muted-foreground">{layaVsJevHub.tagline}</p>
+      <p class="mt-2 text-sm text-muted-foreground">{layaVsJevAlsoSearchedAs}</p>
       <div class="mt-4 space-y-3 text-muted-foreground">
         {introParagraphs.map((para) => <p class="leading-relaxed">{para}</p>)}
       </div>

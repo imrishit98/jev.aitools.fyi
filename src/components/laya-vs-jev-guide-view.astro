@@ -1,7 +1,7 @@
 ---
 import { ButtonLink } from "@/components/button-link";
 import type { LayaVsJevGuide } from "@/data/laya-vs-jev-guides";
-import { layaVsJevGuides, layaVsJevGuidePath } from "@/data/laya-vs-jev-guides";
+import { layaVsJevGuides, layaVsJevGuidePath, layaVsJevAlsoSearchedAs } from "@/data/laya-vs-jev-guides";
 import { learnGuides } from "@/data/learn-guides";
 import type { LearnGuideSlug } from "@/data/learn-guides";
 import { splitIntoParagraphs } from "@/lib/prose";
@@ -26,6 +26,9 @@ const directoryLinks = linksForLayaGuide(guide.slug);
 
 <article>
   <p class="text-sm font-medium text-primary">{guide.tagline}</p>
+  {guide.slug === "compare" && (
+    <p class="mt-2 text-sm text-muted-foreground">{layaVsJevAlsoSearchedAs}</p>
+  )}
   <aside class="mt-6 rounded-md border border-primary/25 bg-primary/5 p-5">
     <p class="text-[11px] font-medium uppercase tracking-widest text-primary">Key point</p>
     <div class="mt-2 space-y-3 text-base leading-relaxed text-foreground">

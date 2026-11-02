@@ -407,14 +407,14 @@ const compareTitle = compareHtml.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
 if (compareTitle.includes("TypeSafe")) {
   errors.push("Laya compare title must not say TypeSafe");
 }
-if (!compareTitle.includes("Laya vs Jev: open weights or a hosted API")) {
+if (!compareTitle.includes("Laya vs Jev compare: open weights vs hosted API")) {
   errors.push(`Laya compare title mismatch: ${compareTitle}`);
 }
 if (!compareHtml.includes('aria-label="In the directory"')) {
   errors.push("Laya compare missing directory link module");
 }
 const compareH1 = (compareHtml.match(/<h1[^>]*>([^<]*)<\/h1>/)?.[1] ?? "").trim();
-if (compareH1 !== "Laya vs Jev: open weights or a hosted API") {
+if (compareH1 !== "Laya vs Jev compared: open weights or hosted API") {
   errors.push(`Laya compare H1 mismatch: ${compareH1}`);
 }
 if (compareHtml.includes("TypeSafe's hosted release cycle")) {

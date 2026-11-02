@@ -7,6 +7,7 @@ import {
 import { getLearnGuide, learnGuideSlugs } from "@/data/learn-guides";
 import {
   getLayaVsJevGuide,
+  layaVsJevAlsoSearchedAs,
   layaVsJevGuideSlugs,
   layaVsJevGuides,
   layaVsJevHub,
@@ -203,6 +204,8 @@ export function layaHubMarkdown(): string {
     `> ${plain(layaVsJevHub.seoDescription)}`,
     "",
     plain(layaVsJevHub.tagline),
+    "",
+    plain(layaVsJevAlsoSearchedAs),
     "",
     plain(layaVsJevHub.intro),
     "",

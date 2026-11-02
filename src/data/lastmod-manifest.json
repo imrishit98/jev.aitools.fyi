@@ -524,16 +524,16 @@
     "lastmod": "2026-10-08"
   },
   "/categories/guides": {
-    "hash": "c831f8ba22cf0aa9e7cf1e6c39280016390e9874a19d5fa6615e8a58930c8018",
-    "lastmod": "2026-10-30"
+    "hash": "6e6282de3f9a1a5462be0695d411dbb58c86507dd231a806ff80fe7abfbd4481",
+    "lastmod": "2026-11-02"
   },
   "/categories/integrations": {
     "hash": "260b0e8fd18adc06b26ec48c19458c5f18e95ec7e49ea9f863fb8ab1bc34448e",
     "lastmod": "2026-10-30"
   },
   "/categories/official": {
-    "hash": "495b76200f0b6422a247ad39269fd3ab3e35fa51a8a0996d23694a128d569094",
-    "lastmod": "2026-09-23"
+    "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
+    "lastmod": "2026-11-02"
   },
   "/categories/playgrounds": {
     "hash": "335282d4ec2baf48997954670c92b9ebe25bb202c1d7366820b3c183a4ad9b9e",
@@ -556,8 +556,8 @@
     "lastmod": "2026-09-23"
   },
   "/explore": {
-    "hash": "3a1ff0d0ea72abab8340859d6228cfaac0ba40e927c0699d876caae8adecbdea",
-    "lastmod": "2026-10-30"
+    "hash": "52beedd0901fcfb0d1393dfc1b5c5a5ac41775cb58cb175ceb38becf2cfa8176",
+    "lastmod": "2026-11-02"
   },
   "/for-agents": {
     "hash": "674b023d1341030485d3339651d28c9cbfba43e377904d3a9b77614be0abd828",
@@ -640,8 +640,8 @@
     "lastmod": "2026-09-21"
   },
   "/guides": {
-    "hash": "2ce9601e8d830a81d6c5db7e034568de694c7491ebf803b3b24b35c31e09a5b2",
-    "lastmod": "2026-10-30"
+    "hash": "1cad5896e69389a69d488debecb80ed4a784adbc356db4e2ed18e826d3bdd96b",
+    "lastmod": "2026-11-02"
   },
   "/guides/abdelstark-awesome-typesafe": {
     "hash": "aa566a81820f523f2286151b6115d4866a67e73040946e99d16de93cb877db76",
@@ -652,8 +652,8 @@
     "lastmod": "2026-09-17"
   },
   "/guides/datawhalechina-jev-cookbook": {
-    "hash": "fd1aa1f1fe7bdc6785adc33d845ec2bf710c746886a8b9affe9e313dc49c47b3",
-    "lastmod": "2026-10-07"
+    "hash": "cebf6b825104aeaeda2af8fbd427b34d30737b84a7a6e94f7b36c862cfb550d2",
+    "lastmod": "2026-11-02"
   },
   "/guides/jev-plays-minecraft-r-accelerate": {
     "hash": "6cd41964d826fd49b21502083e04ce989599f9f071e124b57fcdd06f0ce33923",
@@ -740,8 +740,8 @@
     "lastmod": "2026-09-17"
   },
   "/learn": {
-    "hash": "e8a0865a25c2768702f720e18f52738cc4a8341f701022f315c58b82abcdf1d7",
-    "lastmod": "2026-10-17"
+    "hash": "48619b288795bfdf0c416e0b18a45cde53abd05da037ee9e7fced738f543be47",
+    "lastmod": "2026-11-02"
   },
   "/learn/jev-typesafe": {
     "hash": "c7cdfd11f801287fbe743cf870ec1cfdf605b099c9379210de7b647f0f06cdad",
@@ -752,16 +752,16 @@
     "lastmod": "2026-09-30"
   },
   "/learn/laya-vs-jev": {
-    "hash": "ac2a012db9e95721bdf0dd634f597bfc5b68ddbfed75c8033f05764a661c3200",
-    "lastmod": "2026-10-17"
+    "hash": "7b1f98baebeef3ecfd6a35c87e95dfce58774af6c358c491768a1915bb012612",
+    "lastmod": "2026-11-02"
   },
   "/learn/laya-vs-jev/benchmarks-and-fairness": {
     "hash": "6f04dae5f7e427662421c05f7d36b1947dff947c95e04b52f88d1444e132382c",
     "lastmod": "2026-09-26"
   },
   "/learn/laya-vs-jev/compare": {
-    "hash": "bc2a0c3f1e3275607e22b7f0ed2da2bbcd20aee12d4519d69a28627b36815fb4",
-    "lastmod": "2026-10-12"
+    "hash": "0718809a111f5bc3157de061d76c412a5dd7eaf86a844458941c0e0cd1cd16eb",
+    "lastmod": "2026-11-02"
   },
   "/learn/laya-vs-jev/laya-mlx-apple-silicon": {
     "hash": "7c1f0967bbbf7b32e318d3178777ee9d92d8b8dd655d3eb05c50f1e37f6f8ce0",
@@ -812,8 +812,8 @@
     "lastmod": "2026-09-19"
   },
   "/sdks/cookbooks": {
-    "hash": "db6f2f5b437b2978adc66bc1ceaabe9525b4407298f8c22287a5f53c5299484e",
-    "lastmod": "2026-09-17"
+    "hash": "b0c1a3f3cebc1f5b1e6a9c4f5a9ac7ba446e2778ecb7f09500c6a2d8555cf5a2",
+    "lastmod": "2026-11-02"
   },
   "/sdks/documentation": {
     "hash": "7ed2ce71bb2cb2df1b4d30da976e310ae511c6d0ca4ab3cccbdf872342b39fb6",

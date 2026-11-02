@@ -742,4 +742,32 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
       "realzachi-pg-jev",
     ],
   },
+  cookbooks: {
+    slug: "cookbooks",
+    jevUsageSummary:
+      "TypeSafe publishes runnable cookbook notebooks on docs.typesafe.ai for parallel questions, reranking, guardrails, citation checks, field extraction, and hierarchical classification.",
+    leadCallout: {
+      beforeLink:
+        "Want the unofficial Chinese Jupyter course that replays 18 of these recipes? See the ",
+      linkLabel: "Datawhale Jev Cookbook guide",
+      linkHref: "/guides/datawhalechina-jev-cookbook",
+      afterLink: ".",
+    },
+    sections: [
+      {
+        heading: "What the Jev cookbook covers",
+        paragraphs: [
+          "This listing is the English official recipe index on docs.typesafe.ai, not a community fork. Recipes stay typed end to end: parallel evaluations, reranking, guardrails, citation checks, field extraction, and hierarchical classification with thresholds you set in code.",
+        ],
+      },
+    ],
+    faq: [
+      {
+        question: "Is this the same as the Datawhale Jev Cookbook?",
+        answer:
+          "No. This page indexes the English official recipes on docs.typesafe.ai. The Datawhale repo is an unofficial Chinese Jupyter course summarized at /guides/datawhalechina-jev-cookbook.",
+      },
+    ],
+    relatedSlugs: ["datawhalechina-jev-cookbook", "patterns", "disler-ten-levels-of-jev"],
+  },
 };
