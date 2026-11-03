@@ -27,7 +27,7 @@ import { itemListingSeo } from "@/lib/seo";
 import FaqAnswer from "@/components/faq-answer.astro";
 import { splitIntoParagraphs } from "@/lib/prose";
 import { ItemListingShare } from "@/components/share-menu";
-import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
+import { externalLinkRel, isOutboundHttpUrl, withOutboundRef } from "@/lib/outbound-attribution";
 import SponsorSidebar from "@/components/sponsor-sidebar.astro";
 import {
   alternativeComparisonHref,
@@ -134,8 +134,14 @@ const alternativeLabel = alternativeComparisonLabel(slug);
             <p class="mt-4 text-base leading-relaxed text-foreground/90">
               {listingEnrichment.leadCallout.beforeLink}
               <a
-                href={listingEnrichment.leadCallout.linkHref}
+                href={withOutboundRef(listingEnrichment.leadCallout.linkHref)}
                 class="font-medium text-primary hover:underline"
+                rel={
+                  isOutboundHttpUrl(listingEnrichment.leadCallout.linkHref)
+                    ? externalLinkRel(listingEnrichment.leadCallout.linkHref)
+                    : undefined
+                }
+                target={isOutboundHttpUrl(listingEnrichment.leadCallout.linkHref) ? "_blank" : undefined}
               >
                 {listingEnrichment.leadCallout.linkLabel}
               </a>

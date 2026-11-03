@@ -770,4 +770,16 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
     ],
     relatedSlugs: ["datawhalechina-jev-cookbook", "patterns", "disler-ten-levels-of-jev"],
   },
+  "apolinario-decision-index": {
+    slug: "apolinario-decision-index",
+    leadCallout: {
+      beforeLink:
+        "Decision Index is a public benchmark for typed decision engines: state plus Choice or Noul questions in, one probability per option out. The live board is edition 0.4; this listing is for apolinario's reproduction kit, which still defaults to edition 0.3 and runs the public index (37 benchmarks in five areas, chance-corrected). Jev's published 0.2.1 public index score is 57.89 in the ",
+      linkLabel: "README parity tests",
+      linkHref: "https://github.com/apolinario/decision-index",
+      afterLink:
+        "; the kit's tests check its scoring against 11 published entrants, Jev included.",
+    },
+    sections: [],
+  },
 };
