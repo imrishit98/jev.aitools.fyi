@@ -388,7 +388,7 @@ export TYPESAFE_MODEL="jev-latest"`,
       {
         h: "Open models beside hosted Jev",
         body:
-          "Copilot Agent mode calls hosted Jev through MCP today. When you compare self-hosted System One compatible servers for other gates, our dated pages cover migration and benchmarks. Start from the ranked hub when you want the full list.",
+          "Copilot Agent mode calls hosted Jev through MCP today. When you compare self-hosted System One compatible servers for other checks in your workflow, our dated pages cover migration and benchmarks. Start from the ranked hub when you want the full list.",
         links: [
           { href: "/alternatives", label: "Jev alternatives compared" },
           { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
