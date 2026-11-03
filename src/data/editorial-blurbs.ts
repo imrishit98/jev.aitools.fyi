@@ -159,6 +159,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "OpenBMB-reported 93.6 AUROC in a 2B OCR gate: score each table or formula region, pick the best parser, and only trust the number when verdict says scored. Vendor benchmarks, honest threshold homework.",
   "networkchuck-jev-guide":
     "NetworkChuck's MIT walkthrough mirrors his October video: spam nouls in the Playground, curl your first System One call, then a Bun router that spends fractions of a cent per tier pick. Third party, not TypeSafe, so pair it with our learn hub.",
+  "mbzuai-oryx-eo-jev":
+    "Fresh MBZUAI ORYX research: LoRA on d3-flash so satellite imagery choice questions get option probabilities in one pass, with honest defer paths when counting or change math still stumps the model. Author-reported EO benchmark tables, tiny star count, full reproduction repo.",
   "lahfir-agent-desktop":
     "Rust desktop hands for your agent: accessibility snapshots with stable refs, skeleton mode for Slack-scale UIs, and Jev picking the next click instead of coordinate roulette.",
   "kerpopule-hermes-jev-skills":

@@ -749,6 +749,10 @@
     "oneLiner": "NetworkChuck's MIT Jev guide: five chapters from Playground spam checks to a Bun model router, tested on jev-1.14.0.",
     "description": "Third-party companion to NetworkChuck's October 28, 2026 YouTube Jev video (github.com/theNetworkChuck/jev-guide). Not TypeSafe official; complements jev.aitools.fyi learn guides with copy-paste Playground, API, skill, and router chapters. Glue code for learners who want video-aligned steps before diving into docs. Tags in the wild: guides, tutorial, routing. Follow the repo for chapter updates."
   },
+  "mbzuai-oryx-eo-jev": {
+    "oneLiner": "EO-Jev: MBZUAI ORYX LoRA on d3-flash for satellite imagery choice questions, author-reported EO benchmark gains, MIT repo and Hugging Face weights.",
+    "description": "EO-Jev from MBZUAI ORYX (November 2026) specializes the open d3-flash decision stack for Earth observation with LoRA and merged adapters. Author-reported tables cover 30 settings from 23 public EO benchmarks; counting and far OOD calibration stay hard. Glue code for geospatial pipelines that need typed accept or defer gates instead of free-form captions. Tags in the wild: integrations, open-source, earth-observation. Follow the repo for dataset download and Slurm reproduction steps."
+  },
   "duckdb-jev-classifier": {
     "indexOnly": true,
     "oneLiner": "September 2026 X teaser for DuckDB row classification; see the MotherDuck prompt_jev listing for the shipped SQL function and benchmarks.",
