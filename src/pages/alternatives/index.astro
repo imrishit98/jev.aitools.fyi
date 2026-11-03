@@ -62,8 +62,8 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
     <header class="max-w-3xl">
       <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{alternativesHub.h1}</h1>
       <p class="mt-3 text-sm text-muted-foreground">
-        Last verified: <time datetime={alternativesHub.lastVerified}>{alternativesHub.lastVerified}</time>.
-        <a href="#how-we-ranked" class="ml-1 font-medium text-primary hover:underline">How we rank</a>
+        Last verified: <time datetime={alternativesHub.lastVerified}>{alternativesHub.lastVerified}</time>.{" "}
+        <a href="#how-we-ranked" class="font-medium text-primary hover:underline">How we rank</a>
       </p>
       <div class="mt-4 space-y-3 text-muted-foreground">
         {summaryParagraphs.map((para) => <p class="leading-relaxed">{para}</p>)}
@@ -76,8 +76,8 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
         {
           alternativesHub.quickPicks.map((pick) => (
             <li>
-              <span class="font-medium text-foreground">{pick.need}:</span> {pick.pick}
-              <a href={pick.href} class="ml-1 text-primary hover:underline">Compare</a>
+              <span class="font-medium text-foreground">{pick.need}:</span> {pick.pick}{" "}
+              <a href={pick.href} class="text-primary hover:underline">Compare</a>
             </li>
           ))
         }
@@ -176,8 +176,8 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
         <a href="/explore?q=open+source+decision" class="text-primary hover:underline">open models on Explore</a>.
       </p>
       <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
-        For small or self-hosted checkpoints, see
-        <a href="/alternatives/liquid-d1" class="text-primary hover:underline">Liquid d1 vs Jev</a> and
+        For small or self-hosted checkpoints, see{" "}
+        <a href="/alternatives/liquid-d1" class="text-primary hover:underline">Liquid d1 vs Jev</a> and{" "}
         <a href="/alternatives/kev" class="text-primary hover:underline">Kev vs Jev</a>.
       </p>
     </section>
