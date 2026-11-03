@@ -11466,7 +11466,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Developers and students who can use Python and Jupyter, want a Chinese Jev course, and do not need a machine-learning background.",
     overview:
-      "Jev Cookbook (github.com/datawhalechina/jev-cookbook) is Datawhale's 11-chapter Jupyter tutorial for Jev, written in Chinese. The README calls the course Jev 入门教程. The official English recipe index on this directory is /sdks/cookbooks (docs.typesafe.ai). You learn Choice, Score, and Noul, and the rule that one question asks one thing so code can combine the answers. Chapter 3 covers speculative fan-out, confidence gating, composite scoring, and intent routing. Chapter 4 replays 18 recipes from the official cookbook, including reranking, row-by-row semantic search, structure recovery, function calls, citation checks, and guardrails. Chapter 5 is a voice-driven 3D smart home. Chapter 6 sets up a Laya versus Jev run on 231 public questions and scores accuracy, a majority-class floor, Brier, and ECE, with no retries and no fallback. Chapter 7 has 12 runnable games and apps. Chapter 9 puts a judgment in front of the Pi agent and in front of DeepSeek Harness. Chapter 10 fine-tunes the open model Laya on your own machine with RLCD. Offline examples run without an API key. The site is an unofficial community translation of the TypeSafe docs. The README says the English original at docs.typesafe.ai is the authority. Original tutorial text is CC BY-NC-SA 4.0. The README names project lead 王熠明 (Bald0Wang). On 6 October 2026 the repo had 184 stars and 23 forks. It was created on 20 September 2026.",
+      "Jev Cookbook (github.com/datawhalechina/jev-cookbook) is Datawhale's 11-chapter Jupyter tutorial for Jev, written in Chinese. The README calls the course Jev 入门教程. The official English recipe index on this directory is the Jev cookbook listing (docs.typesafe.ai). You learn Choice, Score, and Noul, and the rule that one question asks one thing so code can combine the answers. Chapter 3 covers speculative fan-out, confidence gating, composite scoring, and intent routing. Chapter 4 replays 18 recipes from the official cookbook, including reranking, row-by-row semantic search, structure recovery, function calls, citation checks, and guardrails. Chapter 5 is a voice-driven 3D smart home. Chapter 6 sets up a Laya versus Jev run on 231 public questions and scores accuracy, a majority-class floor, Brier, and ECE, with no retries and no fallback. Chapter 7 has 12 runnable games and apps. Chapter 9 puts a judgment in front of the Pi agent and in front of DeepSeek Harness. Chapter 10 fine-tunes the open model Laya on your own machine with RLCD. Offline examples run without an API key. The site is an unofficial community translation of the TypeSafe docs. The README says the English original at docs.typesafe.ai is the authority. Original tutorial text is CC BY-NC-SA 4.0. The README names project lead 王熠明 (Bald0Wang). On 6 October 2026 the repo had 184 stars and 23 forks. It was created on 20 September 2026.",
     creator: {
       name: "Datawhale",
       handle: "datawhalechina",
@@ -11518,7 +11518,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "This repo teaches the call. It does not replace the English docs. The official cookbook hub on this directory is /sdks/cookbooks, which points at docs.typesafe.ai and which the Datawhale README says is the authority. Ten levels of Jev (disler-ten-levels-of-jev) is a different course: 30 TypeScript examples and a Vue lab, in English. receptron-laya is the Node library that runs Laya weights, not a tutorial. y0usaf-pi-jev is a Pi extension you install. Chapter 9 here is a notebook about a Pi gate, plus a DeepSeek Harness plugin whose own README says the offline demo does not call TypeSafe. Chapter 6's notebook is built to score Laya and Jev on the same 231 public questions. The compare.md stored in the repo does not finish that job: Laya-local has no scorable rows. A separate note in the chapter 6 README, dated 26 September 2026, covers 5 other providers on the same question file. That note says none of them returned 231 valid answers, and it says not to treat the composite scores as a final ranking. This page does not repeat that table. Cite the Datawhale README, the chapter guides, and docs.typesafe.ai.",
+      "This repo teaches the call. It does not replace the English docs. The official cookbook hub on this directory points at docs.typesafe.ai, which the Datawhale README says is the authority. Ten levels of Jev (disler-ten-levels-of-jev) is a different course: 30 TypeScript examples and a Vue lab, in English. receptron-laya is the Node library that runs Laya weights, not a tutorial. y0usaf-pi-jev is a Pi extension you install. Chapter 9 here is a notebook about a Pi gate, plus a DeepSeek Harness plugin whose own README says the offline demo does not call TypeSafe. Chapter 6's notebook is built to score Laya and Jev on the same 231 public questions. The compare.md stored in the repo does not finish that job: Laya-local has no scorable rows. A separate note in the chapter 6 README, dated 26 September 2026, covers 5 other providers on the same question file. That note says none of them returned 231 valid answers, and it says not to treat the composite scores as a final ranking. This page does not repeat that table. Cite the Datawhale README, the chapter guides, and docs.typesafe.ai.",
     keyFeatures: [
       "11 chapters in Jupyter, from a first multi-question call to a local fine-tune",
       "5 core booklets: System One, state, primitives, confidence, and building with TypeSafe",
@@ -11558,7 +11558,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Is this the official TypeSafe cookbook?",
         answer:
-          "No. Datawhale says the site is an unofficial community translation. The README says the English original at docs.typesafe.ai is the authority. The official English recipes are indexed at /sdks/cookbooks on this directory. This page is the Datawhale Chinese tutorial repo.",
+          "No. Datawhale says the site is an unofficial community translation. The README says the English original at docs.typesafe.ai is the authority. The official English recipes are indexed on our Jev cookbook listing. This page is the Datawhale Chinese tutorial repo.",
       },
       {
         question: "Can I run the Jev Cookbook without an API key?",
@@ -11578,7 +11578,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     ],
     metaTitle: "Datawhale Jev Cookbook: Chinese Jupyter course",
     metaDescription:
-      "Datawhale unofficial Jev Cookbook: 11 Chinese Jupyter chapters, 18 official recipes, smart home lab, Laya fine-tune. English recipes at /sdks/cookbooks.",
+      "Datawhale unofficial Jev Cookbook: 11 Chinese Jupyter chapters, 18 official recipes, smart home lab, Laya fine-tune. English recipes on our cookbook hub.",
   },
 
   "posthog-jeeves": {

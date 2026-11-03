@@ -407,7 +407,7 @@ const compareTitle = compareHtml.match(/<title>([^<]*)<\/title>/)?.[1] ?? "";
 if (compareTitle.includes("TypeSafe")) {
   errors.push("Laya compare title must not say TypeSafe");
 }
-if (!compareTitle.includes("Laya vs Jev compare: open weights vs hosted API")) {
+if (!compareTitle.includes("Laya vs Jev compared: open weights vs hosted API")) {
   errors.push(`Laya compare title mismatch: ${compareTitle}`);
 }
 if (!compareHtml.includes('aria-label="In the directory"')) {
@@ -503,15 +503,19 @@ for (const [k, v] of Object.entries(metricsJson.huggingface)) {
 
 const ALT_MIN_WORDS = 600;
 const ALT_MIN_UNIQUE_SENTENCES = 20;
+function articlePlainText(html) {
+  const blockBoundary =
+    /<\/(p|li|td|th|dd|dt|h[1-6]|div|section|tr|blockquote|pre|ul|ol|table|thead|tbody)>\s*<(?!\/)/gi;
+  const spaced = html.replace(blockBoundary, (match) => match.replace(">", "> "));
+  const $ = cheerio.load(spaced);
+  return $("article").text().replace(/\s+/g, " ").trim();
+}
 function countWords(html) {
-  const $ = cheerio.load(html);
-  const text = $("article").text().replace(/\s+/g, " ").trim();
+  const text = articlePlainText(html);
   return text ? text.split(" ").length : 0;
 }
 function countUniqueSentencesInArticle(html) {
-  const $ = cheerio.load(html);
-  const text = $("article").text().replace(/\s+/g, " ").trim();
-  return textStatsMod.countUniqueSentences(text);
+  return textStatsMod.countUniqueSentences(articlePlainText(html));
 }
 
 function lastmodFromSitemapXml(xml, locUrl) {

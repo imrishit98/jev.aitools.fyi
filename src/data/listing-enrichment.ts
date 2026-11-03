@@ -745,7 +745,7 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
   cookbooks: {
     slug: "cookbooks",
     jevUsageSummary:
-      "TypeSafe publishes runnable cookbook notebooks on docs.typesafe.ai for parallel questions, reranking, guardrails, citation checks, field extraction, and hierarchical classification.",
+      "TypeSafe publishes runnable cookbook recipes on docs.typesafe.ai for parallel questions, reranking, guardrails, citation checks, field extraction, and hierarchical classification.",
     leadCallout: {
       beforeLink:
         "Want the unofficial Chinese Jupyter course that replays 18 of these recipes? See the ",

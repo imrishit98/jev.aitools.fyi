@@ -22,9 +22,29 @@ export function splitIntoParagraphs(text: string, maxChars = 280): string[] {
   return out;
 }
 
+/** Split on sentence punctuation only when followed by whitespace or end of string (keeps "2.0", "v1.2"). */
+function splitIntoSentences(block: string): string[] {
+  const sentences: string[] = [];
+  let start = 0;
+  for (let i = 0; i < block.length; i++) {
+    const ch = block[i];
+    if (ch !== "." && ch !== "!" && ch !== "?") continue;
+    const next = block[i + 1];
+    if (next !== undefined && !/\s/.test(next)) continue;
+    const piece = block.slice(start, i + 1).trim();
+    if (piece) sentences.push(piece);
+    start = i + 1;
+    while (start < block.length && /\s/.test(block[start]!)) start++;
+    i = start - 1;
+  }
+  const rest = block.slice(start).trim();
+  if (rest) sentences.push(rest);
+  return sentences;
+}
+
 function splitLongBlock(block: string, maxChars: number): string[] {
-  const sentences = block.match(/[^.!?]+[.!?]+(?:\s+|$)|[^.!?]+$/g);
-  if (!sentences || sentences.length <= 1) {
+  const sentences = splitIntoSentences(block);
+  if (sentences.length <= 1) {
     return chunkByWords(block, maxChars);
   }
 

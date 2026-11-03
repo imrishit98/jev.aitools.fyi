@@ -2514,7 +2514,7 @@
     "slug": "nandhakishorm-laya",
     "title": "Laya (upstream)",
     "oneLiner": "Convai Innovations open decision stack: Apache-2.0 ModernBERT checkpoints, Router mode, and the upstream Python SDK.",
-    "description": "NandhaKishorM/laya is the upstream open-source SDK and training repo for Convai Laya decision models on Hugging Face (convaiinnovations/laya). It implements Choice, Score, and Noul in one forward pass with Router routing between English and multilingual checkpoints. This listing points at the authoritative GitHub repo, not community ports such as receptron-laya or laya-mlx. Compare with hosted TypeSafe Jev on /learn/laya-vs-jev/compare.",
+    "description": "NandhaKishorM/laya is the upstream open-source SDK and training repo for Convai Laya decision models on Hugging Face (convaiinnovations/laya). It implements Choice, Score, and Noul in one forward pass with Router routing between English and multilingual checkpoints. This listing points at the authoritative GitHub repo, not community ports such as receptron-laya or laya-mlx. Compare with hosted TypeSafe Jev in the Laya vs Jev comparison guide.",
     "category": "integrations",
     "tags": ["integrations","open-source","decision-model","laya"],
     "language": "Python",

@@ -268,7 +268,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "sheltercosmo-jev4pg":
     "Ask Postgres in English or Chinese and keep the SQL you can read. jev4pg then runs 41 Jev operators for the judgments SQL cannot make. On the project's own BIRD table, Jev alone got fewer answers right than the LLM, for much less estimated cost.",
   "datawhalechina-jev-cookbook":
-    "Datawhale's unofficial Jev Cookbook repo in Chinese Jupyter notebooks. Official English recipes live at /sdks/cookbooks on this directory. Offline examples run before you need an API key; later chapters replay 18 official recipes, a 3D smart home, and local Laya fine-tuning.",
+    "Datawhale's unofficial Jev Cookbook repo in Chinese Jupyter notebooks. Official English recipes live on our Jev cookbook listing. Offline examples run before you need an API key; later chapters replay 18 official recipes, a 3D smart home, and local Laya fine-tuning.",
   "posthog-jeeves":
     "PostHog's open 9B model writes a short reasoning chain, then scores every option in one Jev-shaped request. Turn thinking off when you need about 0.3 s answers. Weights, training code, and a Python SDK ship in the repo.",
   "vinilana-jev-gateway":
