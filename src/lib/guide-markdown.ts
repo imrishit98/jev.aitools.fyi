@@ -79,7 +79,11 @@ export function agentGuideMarkdown(slug: string): string | null {
       const code = section.code
         ? `\n\n\`\`\`${section.code.lang}\n${section.code.content}\n\`\`\``
         : "";
-      return `## ${plain(section.h)}\n\n${plain(section.body)}${code}`;
+      const links = (section.links ?? [])
+        .map((link) => `- [${plain(link.label)}](${absoluteUrl(link.href)})`)
+        .join("\n");
+      const linked = links ? `\n\n${links}` : "";
+      return `## ${plain(section.h)}\n\n${plain(section.body)}${linked}${code}`;
     })
     .join("\n\n");
   const faq = guide.faq

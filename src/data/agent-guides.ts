@@ -180,6 +180,16 @@ export TYPESAFE_MODEL="jev-latest"`,
         },
       },
       {
+        h: "Open models beside hosted Jev",
+        body:
+          "Smart approvals use hosted Jev today. When you evaluate self-hosted System One compatible servers for other gates, our dated comparison pages track migration notes and public benchmarks. Start from the ranked hub when you want the full list.",
+        links: [
+          { href: "/alternatives", label: "Jev alternatives compared" },
+          { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
+          { href: "/alternatives/kev", label: "Kev vs Jev" },
+        ],
+      },
+      {
         h: "Pitfalls",
         body:
           "Without smart_policy, benchmarks on the approvals plugin showed routine kills and git pushes escalated or denied.\n\nFor OpenRouter, use the plugin README pattern: model ~typesafe/jev-latest with base_url.\n\nDo not put api_key under auxiliary.approval or Hermes bypasses the plugin.\n\nPlugins are profile-scoped. Repeat the install for each HERMES_HOME.\n\nMalformed Jev answers escalate to the user by design.",

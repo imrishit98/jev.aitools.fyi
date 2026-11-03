@@ -50,6 +50,8 @@ export function linksForAgentGuide(guide: AgentGuide): DirectoryLink[] {
       ? [
           { href: "/alternatives", label: "Jev alternatives compared" },
           { href: alternativePath("liquid-d1"), label: "Liquid d1 vs Jev" },
+          { href: alternativePath("kev"), label: "Kev vs Jev" },
+          { href: alternativePath("cloudflare-clef"), label: "Cloudflare clef vs Jev" },
         ]
       : [];
   return dedupe([
@@ -92,9 +94,38 @@ export function linksForLayaGuide(slug: string): DirectoryLink[] {
     { href: "/learn/laya-vs-jev", label: "Laya vs Jev hub" },
     { href: "/alternatives", label: "Jev alternatives compared" },
     { href: "/learn/laya-vs-jev/compare", label: "Laya vs Jev compared" },
+    { href: alternativePath("kev"), label: "Kev vs Jev" },
+    { href: alternativePath("cloudflare-clef"), label: "Cloudflare clef vs Jev" },
+    { href: alternativePath("liquid-d1"), label: "Liquid d1 vs Jev" },
     { href: "/learn/system-one", label: "System One primer" },
     { href: "/learn/jev-typesafe", label: "What Jev is" },
     ...categoryLinks(["benchmarks", "sdks"]),
     ...listingLinks(LAYA_LISTINGS),
   ]).filter((link) => link.href !== self);
+}
+
+/** Contextual alternatives links on category hub pages. */
+export function linksForCategory(categorySlug: string): DirectoryLink[] {
+  const sets: Record<string, DirectoryLink[]> = {
+    "agent-tooling": [
+      { href: "/alternatives", label: "Jev alternatives compared" },
+      { href: alternativePath("kev"), label: "Kev vs Jev" },
+      { href: alternativePath("mapika-decider"), label: "Mapika Decider vs Jev" },
+    ],
+    benchmarks: [
+      { href: "/alternatives", label: "Jev alternatives compared" },
+      { href: alternativePath("liquid-d1"), label: "Liquid d1 vs Jev" },
+      { href: alternativePath("semif"), label: "SemIf vs Jev" },
+    ],
+    integrations: [
+      { href: "/alternatives", label: "Jev alternatives compared" },
+      { href: alternativePath("cloudflare-clef"), label: "Cloudflare clef vs Jev" },
+      { href: alternativePath("openai-decisions-api"), label: "OpenAI Decisions API vs Jev" },
+    ],
+    sdks: [
+      { href: "/alternatives", label: "Jev alternatives compared" },
+      { href: alternativePath("kev"), label: "Kev vs Jev" },
+    ],
+  };
+  return sets[categorySlug] ?? [];
 }

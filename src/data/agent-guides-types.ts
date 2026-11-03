@@ -5,6 +5,7 @@ export type AgentGuideSource = { label: string; url: string };
 export type AgentGuideSection = {
   h: string;
   body: string;
+  links?: { href: string; label: string }[];
   code?: { lang: string; content: string };
 };
 

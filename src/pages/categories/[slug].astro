@@ -6,6 +6,7 @@ import { breadcrumbJsonLd, faqPageJsonLd, itemListJsonLd } from "@/components/js
 import { getCategory } from "@/data/categories";
 import { CATEGORY_SLUGS } from "@/data/types";
 import { getCategoryEnrichment } from "@/lib/category-enrichment";
+import { linksForCategory } from "@/lib/directory-links";
 import { getItemBySlug, getItemsByCategory } from "@/lib/items";
 import { getItemPath } from "@/lib/item-paths";
 import { categoryPageSeo } from "@/lib/seo";
@@ -45,16 +46,7 @@ const jsonLdExtra = enrichment?.faq?.length
   ? [faqPageJsonLd(enrichment.faq)]
   : [];
 
-const alternativeLinkSets: Record<string, { href: string; label: string }[]> = {
-  "agent-tooling": [{ href: "/alternatives", label: "Jev alternatives compared" }],
-  benchmarks: [
-    { href: "/alternatives", label: "Jev alternatives compared" },
-    { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
-  ],
-  integrations: [{ href: "/alternatives", label: "Jev alternatives compared" }],
-  sdks: [{ href: "/alternatives", label: "Jev alternatives compared" }],
-};
-const alternativeLinks = items.length > 0 ? (alternativeLinkSets[cat.slug] ?? []) : [];
+const alternativeLinks = items.length > 0 ? linksForCategory(cat.slug) : [];
 ---
 
 <BaseLayout
