@@ -53,8 +53,12 @@ export function HomeWhatIsJev() {
         Open models such as Laya sit beside the hosted API. Read{" "}
         <AppLink href="/alternatives" className="font-medium text-primary hover:underline">
           Jev alternatives compared
-        </AppLink>
-        .
+        </AppLink>{" "}
+        for the ranked list, or{" "}
+        <AppLink href="/alternatives/liquid-d1" className="font-medium text-primary hover:underline">
+          Liquid d1 vs Jev
+        </AppLink>{" "}
+        for the small multimodal checkpoint.
       </p>
       <div className="mt-6 flex flex-wrap gap-2">
         {[

@@ -392,7 +392,11 @@ if (!hermesHtml.includes('aria-label="In the directory"')) {
 if (!hermesHtml.includes("/guides/jev-with-ai-agents/hermes.md")) {
   errors.push("Hermes guide missing markdown alternate");
 }
-if (!hermesHtml.includes('"dateModified":"2026-10-17"')) {
+const hermesGuideLastmod = contentDatesMod.agentGuideDate("hermes");
+if (
+  !hermesHtml.includes(`"dateModified":"${hermesGuideLastmod}"`) &&
+  !hermesHtml.includes(`"dateModified": "${hermesGuideLastmod}"`)
+) {
   errors.push("Hermes Article JSON-LD missing dateModified");
 }
 if (!hermesHtml.includes("Hermes Agent + Jev: quick setup and approvals")) {

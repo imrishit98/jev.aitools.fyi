@@ -386,6 +386,16 @@ export TYPESAFE_MODEL="jev-latest"`,
         },
       },
       {
+        h: "Open models beside hosted Jev",
+        body:
+          "Copilot Agent mode calls hosted Jev through MCP today. When you compare self-hosted System One compatible servers for other checks in your workflow, our dated pages cover migration and benchmarks. Start from the ranked hub when you want the full list.",
+        links: [
+          { href: "/alternatives", label: "Jev alternatives compared" },
+          { href: "/alternatives/liquid-d1", label: "Liquid d1 vs Jev" },
+          { href: "/alternatives/kev", label: "Kev vs Jev" },
+        ],
+      },
+      {
         h: "Pitfalls",
         body:
           "Do not commit live API keys.\n\nIn .vscode/mcp.json, use inputs so Start prompts for the key.\n\nCopilot harness sessions do not receive servers that use input variables.\n\nCopilot CLI does not read .vscode/mcp.json.\n\nAfter edits, click Start or run MCP: List Servers.\n\nA server that never started has no tools in Agent mode.\n\nThe system1-mcp README says registration alone does not force a call to fast_guard.\n\nIt suggests an AGENTS.md line that calls fast_guard before shell commands.",

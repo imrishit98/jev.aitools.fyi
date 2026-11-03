@@ -1,7 +1,7 @@
 {
   "/": {
-    "hash": "135b84a812ba1b68ca0a6ed99e45056545fa8286a177fefacc077655ffde158e",
-    "lastmod": "2026-10-17"
+    "hash": "41e5f02f6e9bf8512fc53d0154920ba46063d08c8f922c831da631cfd3749d94",
+    "lastmod": "2026-11-03"
   },
   "/about": {
     "hash": "7c29dacca37d4da081cf04df9ac01370d6377fb7de7f39e22033ca2bd65c17dd",
@@ -692,12 +692,12 @@
     "lastmod": "2026-09-26"
   },
   "/guides/jev-with-ai-agents/github-copilot-agent": {
-    "hash": "1936b2ddbc346f8ad342b35c4c46269b8ef141697eff4aa38a57741da012789e",
-    "lastmod": "2026-10-17"
+    "hash": "7eddc55446b8da77dacd05eb5d5ba6a21ea02f48476e34ae55cbafcb1533dd90",
+    "lastmod": "2026-11-03"
   },
   "/guides/jev-with-ai-agents/hermes": {
-    "hash": "9e80c3fff05dc7c1c409c65a1dcec7db7c88872a5c9c01dc957e36a953ae00de",
-    "lastmod": "2026-10-17"
+    "hash": "c27cc5569519d514b395919e1ac0d6a109deb69f37c86c587a2e1f8245ddcf85",
+    "lastmod": "2026-11-03"
   },
   "/guides/jev-with-ai-agents/langchain-langgraph": {
     "hash": "7b761be6363c757d6dc796ebdd9fa1f2d8201f6c2347e1bb9247560c4851bcab",

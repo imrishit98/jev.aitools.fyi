@@ -44,6 +44,18 @@ const directoryLinks = linksForAgentGuide(guide);
             <h2 class="font-heading text-xl font-semibold text-foreground">{section.h}</h2>
             <div class="mt-2 space-y-3 leading-relaxed text-muted-foreground">
               {bodyParagraphs.map((para) => <p>{para}</p>)}
+              {section.links && section.links.length > 0 && (
+                <p>
+                  See{" "}
+                  {section.links.map((link, index) => (
+                    <span>
+                      {index > 0 ? (index === section.links!.length - 1 ? " and " : ", ") : ""}
+                      <a href={link.href} class="text-primary hover:underline">{link.label}</a>
+                    </span>
+                  ))}
+                  .
+                </p>
+              )}
             </div>
             {section.code && (
               <pre
