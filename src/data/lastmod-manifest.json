@@ -552,16 +552,16 @@
     "lastmod": "2026-10-07"
   },
   "/developers": {
-    "hash": "dc7263bfa54627c4554037546c35c704272fce8f0de26c0552566a7e16406deb",
-    "lastmod": "2026-09-23"
+    "hash": "da0ba814f5c62d42a507db35b325d5b54a892a032aa75c6b6ee3e27d70bd69d2",
+    "lastmod": "2026-11-03"
   },
   "/explore": {
     "hash": "52beedd0901fcfb0d1393dfc1b5c5a5ac41775cb58cb175ceb38becf2cfa8176",
     "lastmod": "2026-11-02"
   },
   "/for-agents": {
-    "hash": "674b023d1341030485d3339651d28c9cbfba43e377904d3a9b77614be0abd828",
-    "lastmod": "2026-09-23"
+    "hash": "40951e74635af91972ff40eca23146bf14484a0faa3da67c14f26a2c347a458f",
+    "lastmod": "2026-11-03"
   },
   "/games/0x963d-last-exit": {
     "hash": "73136d4795716b483556c40b54e516f26877d04086156a2d9dae0c003455f61c",
@@ -640,8 +640,8 @@
     "lastmod": "2026-09-21"
   },
   "/guides": {
-    "hash": "1cad5896e69389a69d488debecb80ed4a784adbc356db4e2ed18e826d3bdd96b",
-    "lastmod": "2026-11-02"
+    "hash": "9587888ffa5cc2a5223318a72ab28abafae38e0a439abd47b10dda92acb408c4",
+    "lastmod": "2026-11-03"
   },
   "/guides/abdelstark-awesome-typesafe": {
     "hash": "aa566a81820f523f2286151b6115d4866a67e73040946e99d16de93cb877db76",
@@ -740,8 +740,8 @@
     "lastmod": "2026-09-17"
   },
   "/learn": {
-    "hash": "48619b288795bfdf0c416e0b18a45cde53abd05da037ee9e7fced738f543be47",
-    "lastmod": "2026-11-02"
+    "hash": "cd6d04fb4fb6744bad4064a969c74bb0adeeae46ee73f729fef159dd850d8cd6",
+    "lastmod": "2026-11-03"
   },
   "/learn/jev-typesafe": {
     "hash": "c7cdfd11f801287fbe743cf870ec1cfdf605b099c9379210de7b647f0f06cdad",

@@ -108,8 +108,7 @@ const alternativeLinks = items.length > 0 ? linksForCategory(cat.slug) : [];
             See{" "}
             {alternativeLinks.map((link, index) => (
               <span>
-                {index > 0 ? (index === alternativeLinks.length - 1 ? " and " : ", ") : ""}
-                <a href={link.href} class="text-primary hover:underline">{link.label}</a>
+                {index > 0 ? (index === alternativeLinks.length - 1 ? " and " : ", ") : ""}<a href={link.href} class="text-primary hover:underline">{link.label}</a>
               </span>
             ))}
             .
@@ -194,8 +193,7 @@ const alternativeLinks = items.length > 0 ? linksForCategory(cat.slug) : [];
                     : ", ";
               return (
                 <>
-                  {sep}
-                  <a href={getItemPath(entry!.item)} class="text-primary hover:underline">
+                  {sep}<a href={getItemPath(entry!.item)} class="text-primary hover:underline">
                     {entry!.label}
                   </a>
                   {entry!.suffix}
