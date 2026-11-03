@@ -11792,7 +11792,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Benchmark authors and open decision model maintainers who need resumable runs, chance-corrected area scores, and parity checks against edition 0.3 public index rules.",
     overview:
-      "decision-index (github.com/apolinario/decision-index, MIT, PyPI decision-index 0.3) is apolinario's reproduction kit for the Decision Index leaderboard for typed decision engines. Inputs are state plus Choice or Noul questions with explicit criteria; outputs are one probability per option. The live board edition described in the README is 0.3: Full score is 20% public benchmarks from this kit, 50% private same-skill tests, and 30% private new-domain tasks run only by maintainers. This repository rebuilds and runs the public index: 37 benchmarks in five areas, chance-corrected and coverage-adjusted, with about 7 GB of pinned downloads and no redistributed row files. README states not affiliated with TypeSafe AI. The project's own sources describe the board but do not publish a separate live board URL, so this listing links the GitHub repo only.",
+      "decision-index (github.com/apolinario/decision-index, MIT, PyPI decision-index 0.3) is apolinario's reproduction kit for the Decision Index leaderboard for typed decision engines. Inputs are state plus Choice or Noul questions with explicit criteria; outputs are one probability per option. The README describes the live board as Decision Index 0.4 (Full score: 60% private same-skill tests and 40% private new-domain tasks; the public index no longer counts toward Full). This repository still defaults to edition 0.3 and rebuilds the public index only: 37 benchmarks in five areas, chance-corrected and coverage-adjusted, with about 7 GB of pinned downloads and no redistributed row files. README states not affiliated with TypeSafe AI. The project's own sources describe the board but do not publish a separate live board URL, so this listing links the GitHub repo only.",
     creator: {
       name: "apolinario",
       handle: "apolinario",
@@ -11876,9 +11876,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "README parity tests cite Jev at 57.89 on the 0.2.1 public index. For 0.3, the README says lab rescoring reproduces Cloudflare clef at 61.71 public index, not a single Jev headline number in the intro.",
       },
     ],
-    metaTitle: "Decision Index kit: reproduce public Jev benchmarks",
+    metaTitle: "Decision Index: public benchmark 0.3 kit",
     metaDescription:
-      "apolinario/decision-index rebuilds Decision Index 0.3 public suite, scores POST /v1/systemone engines, and documents Jev parity at 57.89 on 0.2.1.",
+      "Decision Index ranks typed decision engines on Choice and Noul tasks. Live board 0.4; this kit reproduces the public 0.3 suite locally.",
   },
 
   "tsale-jevline": {
