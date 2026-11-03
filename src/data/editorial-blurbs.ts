@@ -54,7 +54,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "patterns":
     "Fan-out, routing, and composite scoring patterns from TypeSafe that save you from reinventing agent architecture every sprint.",
   "cookbooks":
-    "Runnable recipes for reranking, guardrails, parallel evals, and extraction. The unsexy pages that keep prod boring in a good way.",
+    "Official Jev cookbook recipes on docs.typesafe.ai for reranking, guardrails, parallel evals, and extraction. For the unofficial Chinese Jupyter course that replays 18 of these recipes, see /guides/datawhalechina-jev-cookbook on this directory.",
   "workflow-evals":
     "Official workflow eval write-ups and numbers when you need to compare models on something more structured than vibes.",
   "niazmorshed2007-jev-review":
@@ -268,7 +268,7 @@ export const editorialBlurbsBySlug: Record<string, string> = {
   "sheltercosmo-jev4pg":
     "Ask Postgres in English or Chinese and keep the SQL you can read. jev4pg then runs 41 Jev operators for the judgments SQL cannot make. On the project's own BIRD table, Jev alone got fewer answers right than the LLM, for much less estimated cost.",
   "datawhalechina-jev-cookbook":
-    "A Chinese Jupyter course that starts with one question at a time. 18 official recipes, a voice-controlled 3D room, and a local Laya fine-tune come later. You can run the offline examples before you create an API key.",
+    "Datawhale's unofficial Jev Cookbook repo in Chinese Jupyter notebooks. Official English recipes live on our Jev cookbook listing. Offline examples run before you need an API key; later chapters replay 18 official recipes, a 3D smart home, and local Laya fine-tuning.",
   "posthog-jeeves":
     "PostHog's open 9B model writes a short reasoning chain, then scores every option in one Jev-shaped request. Turn thinking off when you need about 0.3 s answers. Weights, training code, and a Python SDK ship in the repo.",
   "vinilana-jev-gateway":

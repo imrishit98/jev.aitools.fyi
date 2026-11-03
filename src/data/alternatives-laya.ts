@@ -13,20 +13,20 @@ import {
 /** Laya positioned as a Jev alternative for the compare guide upgrade path. */
 export function layaCompareAsAlternative(): Alternative {
   const slug = "laya";
-  const compareSeoTitle = "Laya vs Jev: open weights or a hosted API compared";
+  const compareSeoTitle = "Laya vs Jev compared: open weights vs hosted API";
   const compareSeoDescription =
-    "Laya, also searched as Leya or Lyla, is open weights you run. Jev is the hosted decision API. Compare latency, privacy, and when both belong in one stack.";
+    "Laya vs Jev side by side. Also searched as Leya or Lyla. Open Convai weights vs hosted System One: latency, privacy, one accuracy table, hybrid stacks.";
 
   return {
     slug,
     displayName: "Laya",
     seoTitle: compareSeoTitle,
     seoDescription: compareSeoDescription,
-    h1: "Laya vs Jev: open weights or a hosted API",
+    h1: "Laya vs Jev compared: open weights or hosted API",
     keyPoint:
       "Neither is better at every job: pick Laya when you need open weights on your own machines, and hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
     summary:
-      "Convai Laya is an Apache 2.0 decision model family you download and run locally with the laya Python Router. TypeSafe Jev is the hosted System One API many agents already call through gateways. Both answer Choice, Score, and Noul style questions in one forward pass instead of generating chat prose. Laya wins evaluations driven by privacy, fine-tuning, and local latency when you own GPUs. Jev wins when you want supported HTTP, predictable billing, and large option sets without tuning head budgets yourself. Laya is also searched as Leya or Lyla.",
+      "Also searched as: Leya vs Jev, Lyla vs Jev. Convai Laya is an Apache 2.0 decision model family you download and run locally with the laya Python Router. TypeSafe Jev is the hosted System One API many agents already call through gateways. Both answer Choice, Score, and Noul style questions in one forward pass instead of generating chat prose. Laya wins evaluations driven by privacy, fine-tuning, and local latency when you own GPUs. Jev wins when you want supported HTTP, predictable billing, and large option sets without tuning head budgets yourself.",
     lastVerified: alternativesLastVerified,
     listingSlug: undefined,
     ecosystemSlugs: ["receptron-laya", "mizorewww-laya-mlx"],
@@ -133,7 +133,7 @@ export function layaCompareAsAlternative(): Alternative {
       {
         h: "Accuracy and benchmarks",
         body:
-          "Convai's Hugging Face card publishes vendor-reported accuracy comparisons against hosted Jev on selected public slices. Those tables are useful directionally but are not independent audits. Jev can lead on high-cardinality choice sets while Laya typed-decisions checkpoints lead on Convai workflow evals after fine-tuning. Argmax accuracy and calibrated probabilities are different KPIs. Read /learn/laya-vs-jev/benchmarks-and-fairness before you paste numbers into an SLA. Independent Decision Index scores in our metrics file cover hosted Jev; Laya comparisons belong in the Laya vs Jev hub where we separate vendor-reported from third-party harnesses.",
+          "Convai's Hugging Face card publishes vendor-reported accuracy comparisons against hosted Jev on selected public slices. Those tables are useful directionally but are not independent audits. Jev can lead on high-cardinality choice sets while Laya typed-decisions checkpoints lead on Convai workflow evals after fine-tuning. Argmax accuracy and calibrated probabilities are different KPIs. Read the benchmarks and fairness guide in this hub before you paste numbers into an SLA. Independent Decision Index scores in our metrics file cover hosted Jev; Laya comparisons belong in the Laya vs Jev hub where we separate vendor-reported from third-party harnesses.",
       },
       {
         h: "Fit and tradeoffs",
@@ -163,7 +163,7 @@ result = router.decide(state, questions=laya_questions)`,
       {
         h: "Ecosystem links",
         body:
-          "Upstream SDK and weights live on GitHub and Hugging Face. Community ports include Laya-MLX on Apple Silicon and ONNX/Core ML tooling in the directory catalog. Compare Cloudflare clef if you want hosted inference on Workers AI, Jared Palmer Kev if you need POST /v1/systemone parity, and Von if you need a tiny fast encoder. Return to /learn/laya-vs-jev/compare for the full side-by-side narrative.",
+          "Upstream SDK and weights live on GitHub and Hugging Face. Community ports include Laya-MLX on Apple Silicon and ONNX/Core ML tooling in the directory catalog. Compare Cloudflare clef if you want hosted inference on Workers AI, Jared Palmer Kev if you need POST /v1/systemone parity, and Von if you need a tiny fast encoder. This page is the full side-by-side narrative for Laya and hosted Jev.",
       },
       {
         h: "Product-specific notes",
@@ -185,7 +185,13 @@ result = router.decide(state, questions=laya_questions)`,
       {
         question: "Is Laya a drop-in replacement for Jev?",
         answer:
-          "No. APIs, context limits, option budgets, and calibration differ. Many teams run both. See /learn/laya-vs-jev/migration-and-coexistence.",
+          "No. APIs, context limits, option budgets, and calibration differ. Many teams run both. See the migration and coexistence guide in this hub.",
+        links: [
+          {
+            match: "migration and coexistence guide",
+            href: "/learn/laya-vs-jev/migration-and-coexistence",
+          },
+        ],
       },
       {
         question: "Is Laya faster than Jev?",
@@ -195,12 +201,18 @@ result = router.decide(state, questions=laya_questions)`,
       {
         question: "Which has better accuracy?",
         answer:
-          "It depends on task, language, option count, and fine-tuning. Public tables mix benchmarks; read benchmarks-and-fairness in the Laya vs Jev hub.",
+          "It depends on task, language, option count, and fine-tuning. Public tables mix benchmarks; read the benchmarks and fairness guide in the Laya vs Jev hub.",
+        links: [
+          {
+            match: "benchmarks and fairness guide",
+            href: "/learn/laya-vs-jev/benchmarks-and-fairness",
+          },
+        ],
       },
       {
         question: "Does this page replace the Laya vs Jev compare guide?",
         answer:
-          "No. This Alternative object powers structured compare upgrades. The long-form guide remains at /learn/laya-vs-jev/compare.",
+          "No. This page is the structured comparison. The hub still links deeper guides on MLX, benchmarks, migration, and privacy.",
       },
       {
         question: "Is Leya or Lyla the same as Laya?",
@@ -210,12 +222,29 @@ result = router.decide(state, questions=laya_questions)`,
       {
         question: "Laya vs Jev: which is better?",
         answer:
-          "Neither wins every job. Choose Laya when you need open weights on machines you run. Choose hosted Jev when you want a managed POST /v1/systemone API and gateway routing. Read benchmarks-and-fairness before you treat one public table as the winner.",
+          "Neither wins every job. Choose Laya when you need open weights on machines you run. Choose hosted Jev when you want a managed POST /v1/systemone API and gateway routing. Read the benchmarks and fairness guide before you treat one public table as the winner.",
+        links: [
+          {
+            match: "benchmarks and fairness guide",
+            href: "/learn/laya-vs-jev/benchmarks-and-fairness",
+          },
+        ],
       },
       {
         question: "Can I use both?",
         answer:
-          "Yes. Teams often keep local Laya on high-volume filters and hosted Jev for escalation, audit-heavy workflows, or option sets they do not want to maintain weights for. The migration-and-coexistence guide in this hub walks through that split.",
+          "Yes. Teams often keep local Laya on high-volume filters and hosted Jev for escalation, audit-heavy workflows, or option sets they do not want to maintain weights for. The migration and coexistence guide walks through that split.",
+        links: [
+          {
+            match: "migration and coexistence guide",
+            href: "/learn/laya-vs-jev/migration-and-coexistence",
+          },
+        ],
+      },
+      {
+        question: "Leya vs Jev: where do I start?",
+        answer:
+          "You are on it. Leya is a misspelling of Laya. This page compares Convai open checkpoints with hosted TypeSafe Jev on latency, privacy, and hybrid stacks.",
       },
     ],
     sources: [

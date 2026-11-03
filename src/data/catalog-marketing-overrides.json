@@ -24,8 +24,8 @@
     "description": "TypeSafe's pattern catalog for production-shaped Jev workflows: parallel questions, composite scoring, intent routing, and the guardrail moves that keep agents from free-texting their way into incidents. Use it as a checklist when you review agent PRs, not as inspiration for another bespoke router."
   },
   "cookbooks": {
-    "oneLiner": "Copy-paste recipes for parallel questions, reranking, guardrails, and other unglamorous prod survival skills.",
-    "description": "Reproducible cookbooks for the boring parts that matter: reranking candidates, running parallel evaluations, tightening guardrails, checking citations, extracting fields, and hierarchical classification with typed thresholds. Less hero debugging, more repeatable pipelines."
+    "oneLiner": "Official Jev cookbook: reranking, guardrails, parallel evals, and typed recipes on docs.typesafe.ai.",
+    "description": "The official Jev cookbook on docs.typesafe.ai: reranking candidates, parallel evaluations, guardrails, citation checks, field extraction, and hierarchical classification with typed thresholds. Runnable recipes for production gates, not one-off prompt hacks."
   },
   "workflow-evals": {
     "oneLiner": "How TypeSafe benchmarks System One on real workflows, with numbers you can argue about in standup.",

@@ -31,8 +31,9 @@ export const listingSeoCopy: Record<
       "Idiomatic, type-safe Elixir port of the official TypeScript AI SDK, with streaming text, structured outputs, tool calling, and agentic workflows.",
   },
   "cookbooks": {
+    metaTitle: "Jev cookbook: official TypeSafe recipes",
     metaDescription:
-      "Reproducible cookbooks for reranking, parallel evaluations, guardrails, citation checks, field extraction, and hierarchical classification.",
+      "Official Jev cookbook on docs.typesafe.ai: reranking, parallel evals, guardrails, citations, field extraction, and hierarchical classification recipes.",
   },
   "kikoncuo-jevfire": {
     metaDescription:
