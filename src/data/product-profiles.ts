@@ -11863,12 +11863,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       {
         question: "Where is the live leaderboard URL?",
         answer:
-          "This listing checked the README and repository homepage fields on 2026-10-07. They describe Decision Index 0.3 and Full score rules but do not name a standalone board URL, so only the GitHub repo is linked here.",
+          "This listing checked the README and repository homepage fields on 2026-11-03. They describe the Decision Index 0.4 board but do not name a standalone board URL, so only the GitHub repo is linked here.",
       },
       {
         question: "Does this compute the Full score?",
         answer:
-          "No. The kit runs and scores the public 20% portion. Private halves are run by maintainers after you submit complete public runs per submissions/README.md.",
+          "No. The kit runs and scores the public index. Under Decision Index 0.4 the public run is required but does not count toward the Full score, which is 60% private same-skill tests and 40% private new-domain tasks run by the maintainers.",
       },
       {
         question: "What Jev score should I expect on 0.2.1 vs 0.3?",

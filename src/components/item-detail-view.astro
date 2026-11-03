@@ -136,7 +136,11 @@ const alternativeLabel = alternativeComparisonLabel(slug);
               <a
                 href={withOutboundRef(listingEnrichment.leadCallout.linkHref)}
                 class="font-medium text-primary hover:underline"
-                rel={externalLinkRel(listingEnrichment.leadCallout.linkHref)}
+                rel={
+                  isOutboundHttpUrl(listingEnrichment.leadCallout.linkHref)
+                    ? externalLinkRel(listingEnrichment.leadCallout.linkHref)
+                    : undefined
+                }
                 target={isOutboundHttpUrl(listingEnrichment.leadCallout.linkHref) ? "_blank" : undefined}
               >
                 {listingEnrichment.leadCallout.linkLabel}
