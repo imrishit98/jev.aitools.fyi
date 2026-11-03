@@ -62,8 +62,8 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
     <header class="max-w-3xl">
       <h1 class="font-heading text-3xl font-semibold sm:text-4xl">{alternativesHub.h1}</h1>
       <p class="mt-3 text-sm text-muted-foreground">
-        Last verified: <time datetime={alternativesHub.lastVerified}>{alternativesHub.lastVerified}</time>.
-        <a href="#how-we-ranked" class="ml-1 font-medium text-primary hover:underline">How we rank</a>
+        Last verified: <time datetime={alternativesHub.lastVerified}>{alternativesHub.lastVerified}</time>.{" "}
+        <a href="#how-we-ranked" class="font-medium text-primary hover:underline">How we rank</a>
       </p>
       <div class="mt-4 space-y-3 text-muted-foreground">
         {summaryParagraphs.map((para) => <p class="leading-relaxed">{para}</p>)}
@@ -76,8 +76,8 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
         {
           alternativesHub.quickPicks.map((pick) => (
             <li>
-              <span class="font-medium text-foreground">{pick.need}:</span> {pick.pick}
-              <a href={pick.href} class="ml-1 text-primary hover:underline">Compare</a>
+              <span class="font-medium text-foreground">{pick.need}:</span> {pick.pick}{" "}
+              <a href={pick.href} class="text-primary hover:underline">Compare</a>
             </li>
           ))
         }
@@ -149,7 +149,7 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
       <p>
         Pick hosted Jev or a vendor API when you want keys, billing, and gateway integrations without running GPUs.
         Pick open weights when data must stay in your VPC, when you fine-tune checkpoints, or when unit economics favor
-        amortized hardware. See <a href="/learn/where-to-run-jev" class="text-primary hover:underline">where to run Jev</a>
+        amortized hardware. See <a href="/learn/where-to-run-jev" class="text-primary hover:underline">where to run Jev</a>{" "}
         and the <a href="/learn/system-one" class="text-primary hover:underline">System One primer</a>.
       </p>
     </section>
@@ -159,7 +159,7 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
       <p>
         Compatible servers keep the Choice, Score, and Noul request shape: shared state, typed questions, explicit
         options. What changes is calibration, option limits, context windows, and thresholds. Many teams shadow-run a
-        candidate model before cutover. See
+        candidate model before cutover. See{" "}
         <a href="/learn/laya-vs-jev/migration-and-coexistence" class="text-primary hover:underline"
           >migration and coexistence</a
         > for patterns.
@@ -169,15 +169,15 @@ const anyjevPath = getItemPath(getItemBySlug("nokia-applied-research-anyjev")!);
     <section class="mt-10">
       <h2 class="font-heading text-xl font-semibold text-foreground">More open alternatives</h2>
       <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
-        Runners-up with strong download counts include
-        <a href="/alternatives/von" class="text-primary hover:underline">Von</a>,
-        <a href={nanojevPath} class="text-primary hover:underline">NanoJev</a>, and
-        <a href={anyjevPath} class="text-primary hover:underline">AnyJev</a>. Browse
+        Runners-up with strong download counts include{" "}
+        <a href="/alternatives/von" class="text-primary hover:underline">Von</a>,{" "}
+        <a href={nanojevPath} class="text-primary hover:underline">NanoJev</a>, and{" "}
+        <a href={anyjevPath} class="text-primary hover:underline">AnyJev</a>. Browse{" "}
         <a href="/explore?q=open+source+decision" class="text-primary hover:underline">open models on Explore</a>.
       </p>
       <p class="mt-2 max-w-3xl text-sm text-muted-foreground">
-        For small or self-hosted checkpoints, see
-        <a href="/alternatives/liquid-d1" class="text-primary hover:underline">Liquid d1 vs Jev</a> and
+        For small or self-hosted checkpoints, see{" "}
+        <a href="/alternatives/liquid-d1" class="text-primary hover:underline">Liquid d1 vs Jev</a> and{" "}
         <a href="/alternatives/kev" class="text-primary hover:underline">Kev vs Jev</a>.
       </p>
     </section>
