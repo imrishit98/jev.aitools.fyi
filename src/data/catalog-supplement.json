@@ -563,6 +563,26 @@
     "updatedAt": "2026-10-30"
   },
   {
+    "slug": "mbzuai-oryx-eo-jev",
+    "title": "EO-Jev",
+    "oneLiner": "MBZUAI ORYX LoRA adaptation of d3-flash (8.4B): typed choice questions on satellite and aerial imagery in one forward pass, with defer-to-analyst thresholds.",
+    "description": "EO-Jev (github.com/mbzuai-oryx/EO-Jev, arXiv 2611.03371) adapts the d3-flash decision model to Earth observation with LoRA on public training splits. Authors report 26 of 30 benchmark settings improved significantly over d3-flash (about +23.8 in-domain, about +8.0 on 12 held-out settings), 20 of 28 settings at or above the best open EO specialist, and about 6.4x median specialist throughput at best batch size (author-reported). Counting, change quantification, and far out-of-distribution calibration remain hard; about -1.8 points on general decisions. MIT code, Hugging Face mx297/EO-Jev, project page demo. Fresh November 2026 release with low GitHub stars. Primary sources: EO-Jev README, paper, model card, and bench scripts.",
+    "category": "integrations",
+    "tags": ["integrations", "open-source", "decision-model", "multimodal", "earth-observation"],
+    "language": "Python",
+    "stars": 7,
+    "url": "https://github.com/mbzuai-oryx/EO-Jev",
+    "repoUrl": "https://github.com/mbzuai-oryx/EO-Jev",
+    "postUrl": "https://huggingface.co/mx297/EO-Jev",
+    "demoUrl": "https://mbzuai-oryx.github.io/EO-Jev/#demo",
+    "badges": [],
+    "creatorHandle": "mbzuai-oryx",
+    "creatorName": "MBZUAI ORYX",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-03"
+  },
+  {
     "slug": "lahfir-agent-desktop",
     "title": "agent-desktop",
     "oneLiner": "Rust macOS desktop automation via OS accessibility trees; agents pair it with Jev Choice over the next safe ref action.",

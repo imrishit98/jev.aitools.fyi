@@ -528,7 +528,7 @@
     "lastmod": "2026-11-02"
   },
   "/categories/integrations": {
-    "hash": "6b22b07a703804e98b6b99a5417c0c98d3fb891d9a5908865aa72a33817ba6b5",
+    "hash": "8640b464003a79ebc54e0018594276cca8c8669e70c02c012c6de6456b2690bb",
     "lastmod": "2026-11-03"
   },
   "/categories/official": {
@@ -556,8 +556,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "52beedd0901fcfb0d1393dfc1b5c5a5ac41775cb58cb175ceb38becf2cfa8176",
-    "lastmod": "2026-11-02"
+    "hash": "72610e33e35ee6a3c7ec6418fba24a563d944c1936415a8824ead6f432bf1900",
+    "lastmod": "2026-11-03"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -1174,6 +1174,10 @@
   "/tools/mapika-decider": {
     "hash": "564514bcfe20a134a7a8b5e318afa69af6dc389be4354c7369e9779de1ba8f40",
     "lastmod": "2026-10-07"
+  },
+  "/tools/mbzuai-oryx-eo-jev": {
+    "hash": "5308fc2bb3887e9c694d0c197e8f29309c0f82f306d78ad28725ce17ee4d9c6b",
+    "lastmod": "2026-11-03"
   },
   "/tools/mcg-nju-videojev": {
     "hash": "798fb44252c00076bd16a247ea393a346edd0a3c0bf99894bf431332e31dbd4d",

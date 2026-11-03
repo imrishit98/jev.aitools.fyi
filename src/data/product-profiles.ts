@@ -14146,4 +14146,135 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "NetworkChuck's companion guide to his Jev video: Playground spam test, first API call, coding agent skill and a Jev model router. Tested on jev-1.14.0.",
   },
+
+  "mbzuai-oryx-eo-jev": {
+    slug: "mbzuai-oryx-eo-jev",
+    status: "published",
+    problem:
+      "Earth observation workflows need fast, thresholdable answers on satellite and aerial imagery without open-ended captioning for every analyst gate.",
+    targetUser:
+      "Remote sensing and geospatial teams who want open weights that answer typed multiple-choice questions on EO imagery in one forward pass, with defer-to-analyst thresholds.",
+    overview:
+      "EO-Jev (github.com/mbzuai-oryx/EO-Jev, MIT code) from MBZUAI ORYX adapts the d3-flash decision model (8.4B parameters; Qwen3.5-9B backbone with a 255-code linear readout on the last prompt token, vLLM Semantic Router) to Earth observation with LoRA on public training splits. Authors Mohamed Atef Abouelhadid, Diaa Addeen Abuhani (equal contribution), Muhammad Akhtar Munir, Fahad Shahbaz Khan, and Salman Khan (corresponding) report results on 30 settings from 23 public EO benchmarks. The GitHub repository was created November 2, 2026; Hugging Face weights mx297/EO-Jev appeared November 3, 2026. This is a fresh research release with a small GitHub star count as of early November 2026.",
+    creator: {
+      name: "MBZUAI ORYX",
+      handle: "mbzuai-oryx",
+      githubUrl: "https://github.com/mbzuai-oryx",
+      company: "Mohamed bin Zayed University of Artificial Intelligence",
+      companyUrl: "https://mbzuai.ac.ae",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-question EO analyst gate: one forward pass returns a probability for every choice option; a per-question threshold accepts the answer or defers to a human analyst",
+      primitives: ["Choice"],
+      stateIn:
+        "EO images (including multi-image change pairs where the benchmark requires them) plus a text state string and typed choice questions in six families: scene and land use, VQA, counting, multi-temporal change, building damage and disaster type, and geo-localisation. About 20% general decision data is replayed during training per the README.",
+      decisionOut:
+        "Option probabilities from the frozen linear readout without text generation. Inference uses merged LoRA weights so EO-Jev matches d3-flash architecture and inference cost after adapter merge.",
+      flowSteps: [
+        "Load mx297/EO-Jev from Hugging Face with trust_remote_code (Transformers AutoModel pattern in the model card)",
+        "Call system_one with state, images, and choice questions keyed by your workflow ids",
+        "Read probabilities per option from the returned answers map",
+        "Compare each question's top probability to its calibrated threshold to auto-accept or route to analyst review",
+        "Optional: reproduce paper benchmarks via bench runners, converters, and slurm scripts in the repository",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Authors report 26 of 30 settings improved significantly over d3-flash, including about +23.8 points in-domain and about +8.0 on 12 held-out settings.",
+          source:
+            "github.com/mbzuai-oryx/EO-Jev README and arXiv:2611.03371 (author-reported)",
+        },
+        {
+          claim:
+            "Authors report 20 of 28 settings at or above the best open EO specialist and 21 of 28 settings with lower expected calibration error than the specialist baseline.",
+          source: "github.com/mbzuai-oryx/EO-Jev README (author-reported)",
+        },
+        {
+          claim:
+            "Authors report about 6.4x median throughput versus the best specialist at each model's best batch size, and about 3.2x with one question per call.",
+          source: "github.com/mbzuai-oryx/EO-Jev README (author-reported)",
+        },
+        {
+          claim:
+            "Authors report about -1.8 points on general (non-EO) decisions after EO adaptation, and a linear probe on d3-flash decision state reaching 96.4 / 94.3 / 87.5 on AID / EuroSAT / NWPU-RESISC45.",
+          source: "github.com/mbzuai-oryx/EO-Jev README (author-reported)",
+        },
+        {
+          claim:
+            "Training defaults in train/train.py match the paper EO-Jev run: LoRA rank 32 on the text tower, 64 on the vision merger, 16 on vision blocks at 0.2x text learning rate; 20,000 steps of 16 questions; about 25 hours on four A100 GPUs on one node.",
+          source: "github.com/mbzuai-oryx/EO-Jev README training section",
+        },
+        {
+          claim:
+            "Public GitHub repository mbzuai-oryx/EO-Jev had 7 stars shortly after its November 2, 2026 creation.",
+          source: "GitHub API, 2026-11-03",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "EO-Jev is an open research adaptation of d3-flash, not hosted api.typesafe.ai System One. It targets the same decision-model contract: typed choice questions on shared multimodal state, probabilities in one pass, and explicit defer paths when confidence is below a per-question threshold. openbmb-minicpm-ocr-jev is the closest analogue in this directory (another November-era open specialist head from a research group). yinsongxu-llm2jev and liqiiiii-jeva document other independent open System One style stacks; mapika-decider ships a general Qwen3.5 decision family on POST /v1/systemone. Counting, change quantification, and calibration far from training data remain hard in the README; treat author-reported benchmark tables as paper results until you rerun bench/ on your hardware. Cite https://github.com/mbzuai-oryx/EO-Jev?ref=jev.aitools.fyi, https://arxiv.org/abs/2611.03371?ref=jev.aitools.fyi, https://mbzuai-oryx.github.io/EO-Jev/?ref=jev.aitools.fyi, and https://huggingface.co/mx297/EO-Jev?ref=jev.aitools.fyi.",
+    keyFeatures: [
+      "8.4B d3-flash base with merged LoRA adapters (same inference cost as d3-flash after merge)",
+      "Hugging Face mx297/EO-Jev with Transformers trust_remote_code and system_one API",
+      "Full benchmark harness: converters, d3 and specialist runners, metrics, and analysis scripts",
+      "Six EO question families plus general decision replay and perceptual-hash leak checks",
+      "KL plus ranked probability score loss for ordinal questions",
+      "Project page with results explorer, calibration charts, example player, and one-minute demo video",
+    ],
+    stack: [
+      "Python",
+      "PyTorch",
+      "Transformers",
+      "d3-flash and Qwen3.5-9B backbone",
+      "LoRA training and adapter merge export",
+      "Slurm job scripts (A100 partition in repo defaults)",
+    ],
+    links: {
+      website: "https://mbzuai-oryx.github.io/EO-Jev/",
+      repo: "https://github.com/mbzuai-oryx/EO-Jev",
+      docs: "https://arxiv.org/abs/2611.03371",
+      demo: "https://mbzuai-oryx.github.io/EO-Jev/#demo",
+    },
+    pricingNote:
+      "MIT licensed code in the repository; Hugging Face weights and EO datasets keep their own licenses. You pay for GPUs, storage, and download bandwidth. Some dataset scripts require a Hugging Face login; fMoW is gated per the README.",
+    firstSeen: "2026-11-03",
+    relatedSlugs: [
+      "openbmb-minicpm-ocr-jev",
+      "yinsongxu-llm2jev",
+      "liqiiiii-jeva",
+      "mapika-decider",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is EO-Jev affiliated with TypeSafe Jev?",
+        answer:
+          "No. EO-Jev is an independent MBZUAI ORYX research release built on the open d3-flash decision model. It uses a Jev-style typed choice interface in the Hugging Face example, but it is not the hosted TypeSafe api.typesafe.ai product.",
+      },
+      {
+        question: "Which tasks do the authors still call hard?",
+        answer:
+          "The README and paper summary highlight counting, change quantification, and calibration far from the training distribution as remaining weak spots, even after EO LoRA adaptation.",
+      },
+      {
+        question: "What did EO specialization cost on general decisions?",
+        answer:
+          "Authors report about -1.8 points on general (non-EO) decisions compared with the base d3-flash model, framed as the tradeoff for EO gains.",
+      },
+      {
+        question: "How should I use the benchmark numbers?",
+        answer:
+          "Tables in the README and on the project page are author-reported on their stated public EO benchmarks and open specialist baselines. The repository ships scripts to reproduce runs; treat production thresholds as your own calibration problem, especially near out-of-distribution geography or sensors.",
+      },
+      {
+        question: "How do I run inference locally?",
+        answer:
+          "The Hugging Face model card shows AutoModel.from_pretrained('mx297/EO-Jev', trust_remote_code=True) and model.system_one(state, images, questions) returning per-option probabilities. See the repository env.local.sh setup for full benchmark reproduction.",
+      },
+    ],
+    metaTitle: "EO-Jev: Jev-Style Decision Model for Satellite Images",
+    metaDescription:
+      "EO-Jev: LoRA-adapted d3-flash for satellite choice questions. Authors report 26/30 EO settings beat base; counting stays hard. MIT repo, HF weights. Nov 2026.",
+  },
 };
