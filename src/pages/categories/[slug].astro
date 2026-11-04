@@ -8,9 +8,22 @@ import { CATEGORY_SLUGS } from "@/data/types";
 import { getCategoryEnrichment } from "@/lib/category-enrichment";
 import { linksForCategory } from "@/lib/directory-links";
 import { getItemBySlug, getItemsByCategory } from "@/lib/items";
-import { getItemPath } from "@/lib/item-paths";
+import { itemHasDetailPage, type EnrichedDirectoryItem } from "@/lib/content-policy";
+import { hrefForListing } from "@/lib/item-paths";
+import { externalLinkRel, withOutboundRef } from "@/lib/outbound-attribution";
 import { categoryPageSeo } from "@/lib/seo";
 import { siteConfig } from "@/lib/site";
+
+function listingLinkProps(item: EnrichedDirectoryItem) {
+  const rawHref = hrefForListing(item);
+  const external = !itemHasDetailPage(item);
+  return {
+    href: external ? withOutboundRef(rawHref) : rawHref,
+    ...(external
+      ? { target: "_blank" as const, rel: externalLinkRel(rawHref) }
+      : {}),
+  };
+}
 
 export function getStaticPaths() {
   return CATEGORY_SLUGS.map((slug) => ({ params: { slug } }));
@@ -142,7 +155,7 @@ const alternativeLinks = items.length > 0 ? linksForCategory(cat.slug) : [];
             {highlightItems.map((entry) => (
               <li class="surface-card p-5">
                 <a
-                  href={getItemPath(entry!.item)}
+                  {...listingLinkProps(entry!.item)}
                   class="font-medium text-primary hover:underline"
                 >
                   {entry!.item.title}
@@ -193,7 +206,7 @@ const alternativeLinks = items.length > 0 ? linksForCategory(cat.slug) : [];
                     : ", ";
               return (
                 <>
-                  {sep}<a href={getItemPath(entry!.item)} class="text-primary hover:underline">
+                  {sep}<a {...listingLinkProps(entry!.item)} class="text-primary hover:underline">
                     {entry!.label}
                   </a>
                   {entry!.suffix}
