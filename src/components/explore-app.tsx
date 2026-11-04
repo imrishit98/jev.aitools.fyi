@@ -264,6 +264,11 @@ export default function ExploreApp() {
             </AppLink>
           </li>
           <li>
+            <AppLink href="/categories/playgrounds" className="hover:text-primary">
+              Jev playground
+            </AppLink>
+          </li>
+          <li>
             <AppLink href="/explore?mcp=1" className="hover:text-primary">
               Jev MCP
             </AppLink>

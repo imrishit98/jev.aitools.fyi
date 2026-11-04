@@ -130,6 +130,11 @@ const alternativeLabel = alternativeComparisonLabel(slug);
               </a>
             </p>
           )}
+          {(item.category === "playgrounds" || item.slug === "playground") && (
+            <p class="mt-3 text-sm leading-relaxed text-muted-foreground">
+              <a href="/categories/playgrounds" class="font-medium text-primary hover:underline">Compare every Jev playground</a>
+            </p>
+          )}
           {listingEnrichment?.leadCallout && (
             <p class="mt-4 text-base leading-relaxed text-foreground/90">
               {listingEnrichment.leadCallout.beforeLink}
