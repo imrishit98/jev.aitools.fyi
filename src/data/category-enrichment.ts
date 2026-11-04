@@ -465,4 +465,88 @@ export const categoryEnrichmentBySlug: Partial<
       },
     ],
   },
+
+  playgrounds: {
+    slug: "playgrounds",
+    whoItsFor:
+      "Builders who want to see Jev answers on real state before they spend on integration.",
+    howToChoose:
+      "Start with the official Playground. Pick a community demo only when it shows a pattern you need. Prefer listings with a hosted demo when you just want to click.",
+    sections: [
+      {
+        heading: "Hosted demos or repos",
+        body:
+          "Listings with a live demo link run in the browser, and repo-only listings have no hosted demo listed.",
+      },
+    ],
+    highlights: [
+      {
+        slug: "playground",
+        blurb:
+          "Official browser sandbox for System One: paste state, tune Choice, Score, and Noul questions against real state, inspect the vectors, and sanity-check thresholds before you embed calls. Hosted.",
+      },
+      {
+        slug: "ndolinschi-jevplay",
+        blurb:
+          "Custom Choice, Score, and Noul builder with live distributions. Hosted demo plus repo.",
+      },
+      {
+        slug: "bunsdev-typesafe-ai-playground",
+        blurb:
+          "Community TypeSafe AI playground with 110 use cases, games, dilemmas, and model challenges, plus editable prompts, A/B comparisons, and a mobile-friendly UI. Hosted demo plus repo.",
+      },
+      {
+        slug: "little-planet-labs-jev-playground",
+        blurb:
+          "A small Next.js app for experimenting with TypeSafe AI's Jev model (System One). Hosted demo plus repo.",
+      },
+      {
+        slug: "typesafe-typewriter",
+        blurb:
+          "Val Town demo where 16 typed judgments update live as you type. Hosted.",
+      },
+      {
+        slug: "yes-no",
+        blurb:
+          "Free, no-signup Noul demo: ask a question and get yes, no, or maybe, with web search when needed. Hosted.",
+      },
+      {
+        slug: "markjaquith-typesafe-ai-playground",
+        blurb:
+          "A playground for experiments around Jev, TypeSafe's System One model. Repo only, no hosted demo listed.",
+      },
+    ],
+    faq: [
+      {
+        question: "What is the Jev playground?",
+        answer:
+          "It is TypeSafe's official browser sandbox for Jev, listed here as Playground. Paste state, ask Choice, Score, or Noul questions, and inspect the probabilities before you wire Jev into code.",
+        links: [
+          {
+            match: "Playground",
+            href: "/sdks/playground",
+          },
+        ],
+      },
+      {
+        question: "Where can I try the Jev playground?",
+        answer:
+          "Open it in the TypeSafe console at console.typesafe.ai/playground. For community builds with hosted demos, start with jevplay or typesafe-ai-playground (BunsDev) below.",
+        links: [
+          {
+            match: "console.typesafe.ai/playground",
+            href: "https://console.typesafe.ai/playground",
+          },
+          {
+            match: "jevplay",
+            href: "/apps/ndolinschi-jevplay",
+          },
+          {
+            match: "typesafe-ai-playground (BunsDev)",
+            href: "/apps/bunsdev-typesafe-ai-playground",
+          },
+        ],
+      },
+    ],
+  },
 };

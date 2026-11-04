@@ -69,6 +69,7 @@ export function HomeWhatIsJev() {
           { href: "/learn/system-one", label: "System One" },
           { href: "/learn/vercel-ai-gateway", label: "AI Gateway" },
           { href: "/learn/use-cases", label: "Use cases" },
+          { href: "/categories/playgrounds", label: "Jev playground" },
         ].map((link) => (
           <AppLink
             key={link.href}

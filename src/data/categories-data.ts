@@ -82,11 +82,11 @@ export const categories: CategoryMeta[] = [
     title: "Playgrounds",
     description:
       "Interactive demos and sandboxes for Choice, Score, and Noul in the browser.",
-    seoTitle: "Jev playgrounds: live Choice, Score, and Noul demos",
+    seoTitle: "Jev playground: official sandbox and community demos",
     seoDescription:
-      "Interactive sandboxes to paste state, run typed questions, and watch probabilities move. Handy before you trust a primitive in production.",
+      "Try the Jev playground: the official TypeSafe console sandbox, plus community demos for Choice, Score, and Noul. Compare hosted demos and repo-only builds.",
     intro:
-      "Paste state, mash buttons, watch probabilities move. Demos for skeptics and screenshot collectors. Playgrounds help you validate primitive combos before Jev touches billing or safety code. Many entries are static sites or sandboxes: still valuable for learning even when they are not production services. Submit yours if it teaches a pattern we have not filed.",
+      "The Jev playground is TypeSafe's official browser sandbox for System One, in the TypeSafe console. Paste state, tune Choice, Score, and Noul questions, and sanity-check thresholds before you write code. Below it you will find community playgrounds: some run as hosted demos, others are repos with no hosted demo listed.",
   },
   {
     slug: "benchmarks",
