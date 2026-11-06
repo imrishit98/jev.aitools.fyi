@@ -15,7 +15,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "Cloudflare Clef vs Jev",
     "keyPoint": "clef is Cloudflare's hosted decision model on Workers AI. It fits teams that already run Workers and want metered inference beside their fetch handlers.",
     "summary": "Cloudflare clef answers typed decision questions through Workers AI while publishing weights on Hugging Face for inspection. You pay Cloudflare meters instead of TypeSafe Jev tokens, which helps when Workers, R2, and D1 already anchor your stack. clef-flash is a lower priced SKU with a different public Decision Index score. clef is not a drop-in for every Jev gateway integration, but it competes in the same category: parallel decisions over explicit options, not open-ended chat.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "kev",
       "openai-decisions-api",
@@ -233,7 +233,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "Kev as a Jev alternative",
     "keyPoint": "Kev ships Apache 2.0 decision checkpoints with a TypeSafe-compatible HTTP server, so many teams only change baseURL while keeping parallel Choice, Score, and Noul questions.",
     "summary": "Kev is Jared Palmer's open-weight family trained on Qwen 3.5 and Qwen 3.8 bases. kev.serve exposes POST /v1/systemone so the TypeSafe Python SDK can target localhost. README publishes vendor-reported accuracy and Brier tables against hosted Jev on frozen suites. Independent Decision Index scores Kev-27B slightly below Jev in our snapshot, but self-host economics and fine-tuning freedom drive most evaluations.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "openai-decisions-api",
@@ -433,7 +433,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "OpenAI Decisions API as a Jev alternative",
     "keyPoint": "Decisions API is OpenAI's beta surface for structured decisions rather than chat completions. Evaluate it when OpenAI enterprise contracts already cover your AI spend.",
     "summary": "OpenAI announced Decisions API in public beta with a Luna-class decision model priced per million input tokens in community posts. It targets the same engineering pain as Jev: software needs scored options, not essays. Beta terms, model names, and regional availability can change quickly. Our snapshot does not list OpenAI on the public Decision Index board, so treat accuracy claims as vendor-beta until you run your own eval harness.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -624,7 +624,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "Perplexity pplx-decider as a Jev alternative",
     "keyPoint": "pplx-decider v1.1 is a 27B open-weight multimodal decider with one of the highest public Decision Index scores among alternatives in our snapshot.",
     "summary": "Perplexity publishes pplx-decider checkpoints on Hugging Face under Apache 2.0 and discusses hosted pricing in community threads. The model targets parallel decision questions with vendor-reported multimodal inputs. Independent Decision Index scores place Perplexity Decider v1.1 slightly above hosted Jev in edition 0.3.1, but that is still a public benchmark slice, not your production labels. Plan calibration and serving GPUs before you promise SLA parity with api.typesafe.ai.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -824,7 +824,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "Mapika decider as a Jev alternative",
     "keyPoint": "decider is Mapika's independent System One class family with transparent mixture notes and HTTP compatible with TypeSafe clients.",
     "summary": "Mapika/decider ships Apache 2.0 code and multiple Hugging Face checkpoints from 2B dense to 35B-A3b MoE. README states no affiliation with TypeSafe and no distillation from hosted Jev. decider.serve and decider.serve_vllm expose POST /v1/systemone. Standing sections quote JevBench and Decision Index rows as vendor-read leaderboard snapshots. Independent Decision Index scores for decider-2B are lower than Jev in our import, so evaluate on your data before you replace production gates.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -1247,7 +1247,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "GLiNER2.5 Decide as a Jev alternative",
     "keyPoint": "GLiNER2.5-Decide extends the GLiNER line with decision heads for criteria over text spans, useful when your state is document-centric rather than a single chat blob.",
     "summary": "Fastino publishes GLiNER2.5-Decide on Hugging Face under Apache 2.0 with strong download adoption relative to niche decision stacks. It is not a full System One server out of the box: you integrate Decide outputs into application gates rather than assuming POST /v1/systemone parity. Independent Decision Index scores are lower than Jev in edition 0.3.1, which is expected when the harness stresses broad decision suites. Decide can still win when entity-span workflows dominate and you want a smaller specialized model instead of a 27B decider.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -1443,7 +1443,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "SemIf as a Jev alternative",
     "keyPoint": "SemIf is Theo Lee CJ's independent decision server with openjev.com demos. It mimics System One interfaces with open weights, not TypeSafe's closed hosted model.",
     "summary": "SemIf packages Choice, Score, and Noul style batches over shared state with probabilities read from logits instead of chat decoding. README stresses independence from TypeSafe. GitHub stars are high for a research server, but Decision Index does not list SemIf in our snapshot, so treat benchmarks as DIY. WebGPU browser demos help you explain the category to stakeholders before you rack GPUs.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -1635,7 +1635,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "CLM 8B as a Jev alternative",
     "keyPoint": "CLM ships Qwen3-8B decision heads from Contrastive LM for teams experimenting with contrastive training recipes instead of full vendor stacks.",
     "summary": "Contrastive-LM/CLM publishes Apache 2.0 weights and training code for decision heads on Qwen3-8B. Adoption on GitHub and Hugging Face is meaningful for a research repo, but independent Decision Index scores are far below Jev in edition 0.3.1. CLM is best viewed as a laboratory checkpoint: useful when your team already fine-tunes Qwen and wants published head architectures, not when you need a turnkey hosted API tomorrow.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
@@ -1831,7 +1831,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "Liquid d1 as a Jev alternative",
     "keyPoint": "Liquid d1-3B is a decision-tuned Liquid Foundation Model for teams that want compact weights with published Decision Index scores above many niche decoders.",
     "summary": "LiquidAI ships d1-3B on Hugging Face under the LFM 1.0 license with decision-oriented tuning. Independent Decision Index scores land near 40 in edition 0.3.1, below Jev but above several specialist checkpoints. d1 targets efficient inference on edge GPUs. You still need to wrap inference in your System One compatible server if you want drop-in SDK parity with api.typesafe.ai.",
-    "lastVerified": "2026-11-06",
+    "lastVerified": "2026-10-12",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
