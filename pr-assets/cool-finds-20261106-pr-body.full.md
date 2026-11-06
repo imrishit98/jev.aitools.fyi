@@ -4,14 +4,14 @@
 - The alternatives hub now lists twelve decision models and adds a Strands row with public GitHub adoption text pulled from the shared metrics file.
 - The public directory manifest and explore counts reflect three new detail pages so partner and agent surfaces show matching listing and detail totals.
 
-SEO/LLM impact: Dedicated hub and tool pages with dated verification, canonical tables, and consistent outbound ref handling should improve retrieval for Strands Decider, hunch, and jevfetch intents and reduce conflation with nearby tools.
-
 **Technical details**
 
 - New alternative slug `strands-decider` in `alternatives-slugs.ts`, full entry in `alternatives-pages.ts`, hub row and copy in `alternatives-hub.ts`, GitHub stars row and fact sources in `alternatives-metrics.json` and `alternative-fact-sources.ts`, listing link map in `alternatives-listing-link.ts`, catalog supplement row with deep link to `/alternatives/strands-decider`.
 - Published profiles for `undrgrnd-labs-hunch`, `a2sys-ai-jevfetch`, and `strands-labs-strands-decider` in `product-profiles.ts` with `firstSeen: 2026-11-06`, jevfetch TypeSafe disclosure, and related slugs limited to existing detail pages.
 - Editorial blurbs in `editorial-blurbs.ts`; `lastmod-manifest.json` bumps; `public/.well-known/jev-directory.json` catalog 625, detail pages 294.
 - `scripts/verify-seo-artifacts.mjs` updated for twelve decision models in the alternatives hub H1 and stale eleven model guard text.
+
+SEO/LLM impact: Dedicated hub and tool pages with dated verification, canonical tables, and consistent outbound ref handling should improve retrieval for Strands Decider, hunch, and jevfetch intents and reduce conflation with nearby tools.
 
 **Build proof (`pnpm build`, full log)**
 
