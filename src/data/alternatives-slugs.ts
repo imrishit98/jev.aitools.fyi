@@ -4,6 +4,7 @@ export const alternativeSlugs = [
   "openai-decisions-api",
   "perplexity-pplx-decider",
   "mapika-decider",
+  "strands-decider",
   "fastino-gliner-decide",
   "semif",
   "clm-8b",

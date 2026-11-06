@@ -1,7 +1,7 @@
 import type { Alternative } from "@/data/alternatives-types";
 import { alternativeSlugs } from "@/data/alternatives-slugs";
 import {
-  alternativesLastVerified,
+  alternativePageLastVerified,
   decisionIndexSource,
   githubAdoption,
   hfAdoption,
@@ -27,7 +27,7 @@ export function layaCompareAsAlternative(): Alternative {
       "Neither is better at every job: pick Laya when you need open weights on your own machines, and hosted Jev when you want a managed decision API and gateway routing. Using both is normal.",
     summary:
       "Also searched as: Leya vs Jev, Lyla vs Jev. Convai Laya is an Apache 2.0 decision model family you download and run locally with the laya Python Router. TypeSafe Jev is the hosted System One API many agents already call through gateways. Both answer Choice, Score, and Noul style questions in one forward pass instead of generating chat prose. Laya wins evaluations driven by privacy, fine-tuning, and local latency when you own GPUs. Jev wins when you want supported HTTP, predictable billing, and large option sets without tuning head budgets yourself.",
-    lastVerified: alternativesLastVerified,
+    lastVerified: alternativePageLastVerified("laya-compare"),
     listingSlug: undefined,
     ecosystemSlugs: ["receptron-laya", "mizorewww-laya-mlx"],
     siblingSlugs: [...alternativeSlugs],
