@@ -14277,4 +14277,281 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "EO-Jev: LoRA-adapted d3-flash for satellite choice questions. Authors report 26/30 EO settings beat base; counting stays hard. MIT repo, HF weights. Nov 2026.",
   },
+
+  "undrgrnd-labs-hunch": {
+    slug: "undrgrnd-labs-hunch",
+    status: "published",
+    problem:
+      "Hosted decision models stay accurate for agent traces, but calling them on every row or stream chunk is slow, expensive, and hard to colocate with CPUs at the edge.",
+    targetUser:
+      "Teams who already use Jev, Clef, LLM-as-a-judge, or other teachers for System One style gates and want a CPU local proxy that learns to mimic the teacher safely.",
+    overview:
+      "hunch (github.com/undrgrnd-labs/hunch?ref=jev.aitools.fyi, dual MIT or Apache-2.0) from undrgrnd-labs is a CPU System One style server. README frames it as fast intuition: structured noul, choice, and score questions over state while a slower teacher answers until cross-validation shows the student agrees often enough, then hunch graduates and keeps auditing against the teacher. The student reads EmbeddingGemma 2 embeddings through an optimized Rust engine (eg2cpu). README performance lines cite 22 ms p50 text decisions on Apple M5 Pro for about 190 token tool results, 86 requests per second at 32 concurrent callers with p99 466 ms, and about 0.6 ms per text batch encode to layer 8 on a 24 core Sapphire Rapids server with AMX for eg2cpu. hunch.live builds dynamic choice questions on text and images with webcam demos; README notes multimodal proxy support coming soon. Related mention only: Endgame-Labs understudy explores graduate and audit ideas in Rust with fewer public signals and has no separate page here.",
+    creator: {
+      name: "undrgrnd-labs",
+      handle: "undrgrnd-labs",
+      githubUrl: "https://github.com/undrgrnd-labs",
+    },
+    jevUsage: {
+      flowRole:
+        "Optional teacher stage and ongoing audits: Jev, Clef, LLM-as-judge, or other judges label training and audit samples while the EmbeddingGemma 2 student learns and then serves fast CPU decisions per README",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Agent traces, tool calls, logs, transcripts, or webcam frames passed through structured questions; teacher payloads depend on which teacher you configure (README lists Jev among teachers).",
+      decisionOut:
+        "Graduated student answers on CPU with continued audit sampling to the teacher; if the student never graduates, traffic stays on the teacher path per README caveats.",
+      flowSteps: [
+        "Teacher answers labels for training batches",
+        "Train EmbeddingGemma 2 student classifiers per question",
+        "Cross-validation gates graduation against teacher agreement",
+        "Run live traffic on CPU student with periodic audits back to the teacher",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README performance: text decisions in 22 ms p50 on Apple M5 Pro for a tool result of about 190 tokens; under load, 86 requests per second at 32 concurrent callers, p99 466 ms.",
+          source: "github.com/undrgrnd-labs/hunch README Performance section",
+        },
+        {
+          claim:
+            "README performance: eg2cpu encode of 32 token text to layer 8 in batches about 0.6 ms per text on a 24 core Sapphire Rapids server with AMX.",
+          source: "github.com/undrgrnd-labs/hunch README Performance and docs/performance.md reference",
+        },
+        {
+          claim: "Public GitHub repository undrgrnd-labs/hunch had 478 stars and 43 forks with pushes through 2026-11-04.",
+          source: "GitHub API, 2026-11-06",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "hunch is a teacher distillation proxy, not a new hosted System One billable API. When you pick Jev as the teacher, you spend hosted Jev tokens on labels until graduation and on audit samples afterward. cloudflare-clef still serves Workers AI clef and jaredpalmer-kev still exposes POST /v1/systemone with open weights; hunch sits in front of whichever teacher you configure. dorkitude-webctl and rayenmlayeh-jevcrawl spend Jev on search ranking or crawl steering, not on training a CPU student. README question design doc warns indirect reasoning questions still belong on the heavy judge. Cite github.com/undrgrnd-labs/hunch README, docs/performance.md, and tryhunch.dev only.",
+    keyFeatures: [
+      "CPU fast path with EmbeddingGemma 2 embeddings via eg2cpu Rust engine",
+      "Graduation after cross-validation agreement with the teacher plus ongoing audits",
+      "hunch.live for dynamic choice on text and images with webcam examples",
+      "Examples on coding agent traces, InjecAgent, SST-5, and PII per README",
+      "Dual MIT or Apache-2.0 license choice in repository",
+    ],
+    stack: [
+      "Python and Rust (eg2cpu)",
+      "EmbeddingGemma 2 checkpoints (Apache-2.0, not vendored)",
+      "Optional teachers including Jev, Clef, or LLM judges per README",
+      "uv and maturin build path in README",
+    ],
+    links: {
+      repo: "https://github.com/undrgrnd-labs/hunch",
+      website: "https://tryhunch.dev",
+      docs: "https://github.com/undrgrnd-labs/hunch#readme",
+    },
+    pricingNote:
+      "Open source; you pay your teacher API when Jev or Clef backs training and audits. README frames EmbeddingGemma 2 as Apache-2.0 checkpoint users download separately.",
+    firstSeen: "2026-11-06",
+    relatedSlugs: ["cloudflare-clef", "jaredpalmer-kev"],
+    relatedLearnSlugs: ["system-one", "jev-typesafe", "use-cases"],
+    faq: [
+      {
+        question: "Does hunch replace hosted Jev calls entirely?",
+        answer:
+          "Not always. README says the student only graduates when cross-validation agrees with the teacher; audits continue after graduation. Until graduation, traffic keeps escalating to the teacher.",
+      },
+      {
+        question: "How does hunch relate to understudy?",
+        answer:
+          "README does not document understudy. Endgame-Labs understudy shares the graduate and audit idea in Rust per public README signals but is only a one-line related note here with no separate directory page.",
+      },
+      {
+        question: "Which latency numbers should I trust first?",
+        answer:
+          "Start with the README Performance bullets on M5 Pro p50 and concurrent throughput, then open docs/performance.md for hardware specifics before you promise SLA.",
+      },
+    ],
+    metaTitle: "hunch: CPU proxy that distills Jev teachers",
+    metaDescription:
+      "undrgrnd-labs/hunch: CPU System One proxy with EmbeddingGemma students that learn from Jev teachers, graduate, then audit. README cites 22 ms p50 on M5 Pro.",
+  },
+
+  "a2sys-ai-jevfetch": {
+    slug: "a2sys-ai-jevfetch",
+    status: "published",
+    problem:
+      "Coding agents that fetch whole documentation pages burn context on boilerplate, and built-in WebFetch style tools often return paraphrases that are hard to quote without re-fetching.",
+    targetUser:
+      "Claude Code, Codex, or other coding agent users who want a CLI or skill that returns verbatim passages with heading paths from a single URL and question, with TypeSafe Jev gating every block.",
+    overview:
+      "jevfetch (github.com/a2sys-ai/jevfetch?ref=jev.aitools.fyi, MIT, PyPI jevfetch) from a2sys-ai splits HTML into blocks with heading paths, runs a windowed Jev Noul pass at threshold 0.6 or higher, then a solo pass at 0.8 or higher on candidates, and returns filtered blocks plus the first block quoted from the page per README How it works. README states jevfetch is not affiliated with TypeSafe and received no TypeSafe funding. It requires a TypeSafe API key for Jev calls (TYPESAFE_API_KEY), caches responses under ~/.cache/jevfetch, and optional Chrome renders JavaScript pages. README benchmark table dated 2026-10-23 on 30 documentation questions with Claude Code 2.1.309 and Sonnet 5.5 reports 47 percent less agent time than WebFetch in Korean and English, 7 percent lower cost in Korean and 3 percent lower in English, with a 95 percent interval on the cost ratio including no difference in either language. Fact checks in that run count 116 checks per language; WebFetch passed all 116 in both languages and jevfetch passed 115 in Korean and 116 in English. Tool-level verbatim table dated 2026-10-09 reports jevfetch returned the reference sentence verbatim in 81 of 81 outputs versus 25 of 81 for a single WebFetch call and 32 of 81 when WebFetch read further windows. Exa WebCode Highlights subset of 137 coding questions in README reports jevfetch answered all 137 correctly versus 132 for WebFetch with mean time 0.69 times WebFetch and mean cost 1.20 times across runs a day apart. Privacy section states jevfetch sends page text and questions to the TypeSafe API.",
+    creator: {
+      name: "a2sys-ai",
+      handle: "a2sys-ai",
+      githubUrl: "https://github.com/a2sys-ai",
+    },
+    jevUsage: {
+      flowRole:
+        "Two-pass TypeSafe Jev Noul scoring over block windows then per-block confirmation before returning verbatim passages to the agent per README How it works",
+      primitives: ["Noul"],
+      stateIn:
+        "Fetched page text split into blocks with heading paths, optional aside notes, grouped windows around 3000 tokens per README, and the user question string.",
+      decisionOut:
+        "Filtered, passthrough, no_match, empty, or fetch_error statuses with quoted blocks and heading paths; exit code 2 when Jev fails for missing key or credits per README status table.",
+      flowSteps: [
+        "Fetch static HTML or render with headless Chrome when text is thin",
+        "Split page into blocks with heading paths and strip chrome while keeping note asides when configured",
+        "First Jev pass scores each block in grouped windows with concurrent requests",
+        "Second Jev pass re-scores candidates at a higher threshold with neighbor context",
+        "Always keep the first block and optional top-ups when results stay short per README",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README WebFetch comparison on 2026-10-23 with 30 documentation questions, each run twice in Korean and twice in English (jevfetch 488ed63, Claude Code 2.1.309, Sonnet 5.5): agent time 47 percent less in both languages; cost 7 percent less Korean and 3 percent less English; 95 percent CI of cost ratio includes no difference; WebFetch passed 116 of 116 fact checks in both languages, jevfetch 115 Korean and 116 English.",
+          source: "github.com/a2sys-ai/jevfetch README Why jevfetch table",
+        },
+        {
+          claim:
+            "README tool-level verbatim table on 2026-10-09 with 27 English questions and three runs each: jevfetch 81 of 81 reference sentences verbatim versus WebFetch 25 of 81 single-call and 32 of 81 with further windows.",
+          source: "github.com/a2sys-ai/jevfetch README and bench/RESULTS.md reference",
+        },
+        {
+          claim:
+            "README Exa WebCode Highlights subset of 137 questions with Claude Code 2.1.310 (WebFetch 2026-10-25, jevfetch 2026-10-26): jevfetch 137 of 137 correct versus WebFetch 132 of 137; mean time 0.69 times WebFetch; mean cost 1.20 times; runs one day apart.",
+          source: "github.com/a2sys-ai/jevfetch README Why jevfetch paragraph",
+        },
+        {
+          claim: "Public GitHub repository a2sys-ai/jevfetch had 53 stars and 6 forks with pushes through 2026-11-06.",
+          source: "GitHub API, 2026-11-06",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jevfetch spends hosted Jev on block selection for one URL, not on crawling multiple pages or ranking SERP hits. dorkitude-webctl fuses search providers and scores SERP rows and optional scrape chunks with Jev as a noise gate (see github.com/dorkitude/webctl?ref=jev.aitools.fyi). rayenmlayeh-jevcrawl is an MCP crawl that batches every passage and link on fetched pages to steer a multi-page walk toward a goal. jevfetch keeps you on a single page and optimizes for verbatim quotation and heading paths for documentation lookups. dzhng-jevgrep walks repositories for code excerpts, not live HTML reader replacement. README Disclosure repeats non-affiliation with TypeSafe. Cite README, bench/RESULTS.md, and skills/jevfetch/SKILL.md only.",
+    keyFeatures: [
+      "Two-pass Jev Noul gates with 0.6 window and 0.8 solo thresholds per README",
+      "Heading path prefixes on every quoted block for navigation context",
+      "JSON output mode with token counts and optional --no-render and model pins",
+      "Skills installer for Claude Code and Codex via npx skills per README Quick start",
+      "Caches Jev responses under ~/.cache/jevfetch with tunable directory",
+    ],
+    stack: [
+      "Python 3.12 plus uv tool install path",
+      "TypeSafe Jev API via TYPESAFE_API_KEY (README requirement)",
+      "Optional Chrome or Chromium for render fallback",
+      "PyPI jevfetch package",
+    ],
+    links: {
+      repo: "https://github.com/a2sys-ai/jevfetch",
+      website: "https://pypi.org/project/jevfetch/",
+      docs: "https://github.com/a2sys-ai/jevfetch#readme",
+    },
+    pricingNote:
+      "Open source CLI; every non-cached Jev call bills to your TypeSafe account. README example cites about 0.0015 dollars for one functools documentation call with an empty cache.",
+    firstSeen: "2026-11-06",
+    relatedSlugs: ["dorkitude-webctl", "rayenmlayeh-jevcrawl", "dzhng-jevgrep"],
+    relatedLearnSlugs: ["system-one", "use-cases"],
+    faq: [
+      {
+        question: "Is a2sys-ai affiliated with TypeSafe?",
+        answer:
+          "No. README Disclosure states jevfetch is not affiliated with TypeSafe and that a2sys received no funding, credits, or early access from TypeSafe.",
+      },
+      {
+        question: "Why pick jevfetch over WebFetch inside Claude Code?",
+        answer:
+          "README tables show lower wall time and competitive cost on published documentation question sets, with higher verbatim reference sentence coverage at the tool level. Always rerun on your pages because block splits and site chrome differ.",
+      },
+      {
+        question: "How is this different from jevcrawl or webctl?",
+        answer:
+          "jevfetch answers from one URL you provide. rayenmlayeh-jevcrawl walks a site with multi-page Jev steering. dorkitude-webctl ranks fused search hits and optional chunks from queried SERPs, not single-page documentation blocks.",
+      },
+    ],
+    metaTitle: "jevfetch: verbatim WebFetch skill with TypeSafe Jev",
+    metaDescription:
+      "a2sys-ai/jevfetch returns verbatim doc blocks via two-pass Jev gates. README benches WebFetch. Requires TYPESAFE_API_KEY; not affiliated with TypeSafe.",
+  },
+
+  "strands-labs-strands-decider": {
+    slug: "strands-labs-strands-decider",
+    status: "published",
+    problem:
+      "Teams that want open System One checkpoints still need a full comparison page against hosted Jev with dated adoption and API shape notes.",
+    targetUser:
+      "Readers evaluating Strands Decider weights beside Mapika decider, Kev, or hosted TypeSafe Jev.",
+    overview:
+      "This catalog row mirrors Strands Decider (github.com/strands-labs/strands-decider?ref=jev.aitools.fyi) from AWS Strands Agents Labs. The deep comparison hub with facts tables, migration snippet, and FAQ lives on /alternatives/strands-decider. README documents strands-decider CLI, strands-decider serve on POST /v1/systemone, Apache 2.0 license, Hugging Face StrandsAgents weights plus amazon mirrors, JevBench rows for strands-decider-2B-qwen3.5-v1-2610, hobson-v19, hobson-v21, and Gemma 4 Decision Index numbers 29.78 to 48.69 in the README Gemma table. PyPI package strands-decider. Not affiliated with TypeSafe Jev beyond sharing the System One wire idea.",
+    creator: {
+      name: "Strands Labs",
+      handle: "strands-labs",
+      githubUrl: "https://github.com/strands-labs",
+    },
+    jevUsage: {
+      flowRole:
+        "Self-hosted Apache 2.0 decision checkpoints with parallel Noul, choice, and score questions on StrandsAgents Hugging Face ids; independent of hosted TypeSafe billing",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "JSON state strings and optional base64 images on Qwen3.5 vision checkpoints per README Images section",
+      decisionOut:
+        "Probability masses per question in one forward pass via pointer head without autoregressive decode per README architecture section",
+      flowSteps: [
+        "pip install strands-decider or install Gemma support from git per README",
+        "strands-decider serve with a pinned Hugging Face model id",
+        "POST /v1/systemone from curl or TypeSafe SDK pointed at localhost",
+        "Read JevBench and Gemma README tables before production thresholds",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README performance table: strands-decider-2B-qwen3.5-v1-2610 reaches JevBench public 231 task accuracy 0.779 (180 of 231) with Brier 0.280 and ECE 0.072; held-out code task accuracy 0.836 on 1,996 items.",
+          source: "github.com/strands-labs/strands-decider README Performance table and evaluation/results.md link",
+        },
+        {
+          claim:
+            "README Gemma 4 table lists Decision Index values 29.78 through 48.69 across four published checkpoints with median H100 latency 102 ms to 245 ms per row.",
+          source: "github.com/strands-labs/strands-decider README Gemma 4 models table",
+        },
+        {
+          claim: "Public GitHub repository strands-labs/strands-decider had 765 stars and 109 forks with pushes through 2026-11-06.",
+          source: "GitHub API, 2026-11-06",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Strands Decider is an open competitor stack, not a thin wrapper around hosted Jev. Use /alternatives/strands-decider for the hub-grade table beside Mapika decider and Perplexity pplx-decider. README cites JevBench methodology but does not imply distillation from hosted Jev weights. jaredpalmer-kev and Mapika decider remain separate open POST /v1/systemone servers tracked on their own pages. Cite github.com/strands-labs/strands-decider README and evaluation/results.md.",
+    keyFeatures: [
+      "Pointer head about one million parameters on frozen Qwen3.5 torso with rank 16 LoRA per README",
+      "strands-decider ask CLI and strands-decider serve with POST /v1/systemone",
+      "Published hobson-v19, hobson-v21, and strands-decider-2B-qwen3.5-v1-2610 checkpoints on Hugging Face StrandsAgents",
+      "Gemma 4 family checkpoints with README Decision Index table rows",
+      "Optional vision serving for Qwen3.5 with --vision and transformers 5.18 or newer per README",
+    ],
+    stack: [
+      "Python",
+      "PyPI strands-decider with optional mlx or vision extras per README",
+      "Hugging Face StrandsAgents and mirrored amazon org weights per README",
+      "CUDA, MPS, MLX, or CPU backends per docs/inference.md references in README",
+    ],
+    links: {
+      repo: "https://github.com/strands-labs/strands-decider",
+      website: "https://strandsagents.com/docs/labs/",
+      docs: "https://github.com/strands-labs/strands-decider#readme",
+    },
+    pricingNote:
+      "Open source under Apache 2.0; you run inference on your GPUs or CPUs without a TypeSafe meter, but you still carry hardware and power cost per README training time notes.",
+    firstSeen: "2026-11-06",
+    relatedSlugs: ["mapika-decider", "perplexity-pplx-decider", "jaredpalmer-kev"],
+    relatedLearnSlugs: ["system-one", "jev-typesafe"],
+    faq: [
+      {
+        question: "Where is the full Strands Decider versus Jev write up?",
+        answer:
+          "Open /alternatives/strands-decider for the comparison table, FAQ, and sources. This tools profile summarizes adoption and points readers to that hub page.",
+      },
+      {
+        question: "Are hobson-v19 and hobson-v21 separate products?",
+        answer:
+          "No. README lists them as earlier checkpoint names on the same Qwen3.5 line kept for history beside strands-decider-2B-qwen3.5-v1-2610 in the performance table.",
+      },
+    ],
+    metaTitle: "Strands Decider: open pointer-head System One checkpoints",
+    metaDescription:
+      "strands-labs/strands-decider: Apache 2.0 CLI and POST /v1/systemone. README tables cite JevBench and Gemma checkpoints. See /alternatives/strands-decider.",
+  },
 };

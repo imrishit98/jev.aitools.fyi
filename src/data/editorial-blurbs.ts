@@ -305,6 +305,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "VideoJev swaps autoregressive answers for scored time intervals and multiple-choice options over the same video prefix. MCG-NJU ships 4B and 35B-A3B weights, a paper, and a ModelScope demo when you need moments, not paragraphs.",
   "openlayer-ai-jevals":
     "Pack every agent and RAG check into one Jev request per trace. jevals mirrors Ragas metric names, adds tool and injection gates, and documents bench rows where Jev beats gpt-4.1-mini judges on cost and wall time.",
+  "undrgrnd-labs-hunch":
+    "Let EmbeddingGemma 2 build tiny classifiers on CPUs while Jev or another teacher labels until cross-validation says go. hunch.live adds webcam choice demos; multimodal proxy in repo still says coming soon.",
+  "a2sys-ai-jevfetch":
+    "Paste one URL and a question: jevfetch splits the page, runs Jev in two passes, and hands your agent quoted blocks with heading paths. README benches against WebFetch with dated Claude Code builds and TypeSafe disclosure up front.",
+  "strands-labs-strands-decider":
+    "Swap the LM head for a pointer head on frozen Qwen3.5 or Gemma 4 torsos, then drive Choice, Noul, and score from strands-decider serve. README publishes hobson-v19 and v21 lines next to v1 so you see the full checkpoint story on one hub page.",
   "deepaleph-jevreel":
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":

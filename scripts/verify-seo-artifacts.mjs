@@ -435,7 +435,7 @@ if (!compareHtml.toLowerCase().includes("at a glance")) {
 }
 
 const altHubHtml = readFileSync(join(distRoot, "alternatives.html"), "utf8");
-if (!altHubHtml.includes("Jev alternatives: 11 decision models compared")) {
+if (!altHubHtml.includes("Jev alternatives: 12 decision models compared")) {
   errors.push("Alternatives hub H1 mismatch");
 }
 const hubRanked = alternativesHubMod.alternativesHub.ranked;
@@ -452,8 +452,8 @@ const itemListCount = itemListBlocks.length
 if (itemListCount !== expectedHubRows) {
   errors.push(`alternatives hub ItemList count: expected ${expectedHubRows}, got ${itemListCount}`);
 }
-if (/\b10 decision models\b|\bten models\b|\btop 10\b/i.test(altHubHtml) && !/eleven|11 decision/i.test(altHubHtml)) {
-  errors.push("alternatives hub still claims 10 models in body copy");
+if (/\b11 decision models\b|\beleven models\b|\btop 11\b/i.test(altHubHtml) && !/twelve|12 decision/i.test(altHubHtml)) {
+  errors.push("alternatives hub still claims 11 models in body copy");
 }
 if (alternativesHubMod.alternativesHub.seoTitle.length > 54) {
   errors.push("alternatives hub seoTitle too long for branding");
