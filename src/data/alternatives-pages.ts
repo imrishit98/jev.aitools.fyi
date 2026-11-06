@@ -830,6 +830,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "kev",
       "openai-decisions-api",
       "perplexity-pplx-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -1253,6 +1254,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "semif",
       "clm-8b",
       "liquid-d1",
@@ -2158,11 +2160,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row eleven as a speed pick, not a full migration default."
+        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row twelve as a speed pick, not a full migration default."
       },
       {
         "h": "Product-specific notes",
-        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 11 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
+        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 12 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
       }
     ],
     "whenChooseThem": [

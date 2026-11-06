@@ -455,6 +455,9 @@ if (itemListCount !== expectedHubRows) {
 if (/\b11 decision models\b|\beleven models\b|\btop 11\b/i.test(altHubHtml) && !/twelve|12 decision/i.test(altHubHtml)) {
   errors.push("alternatives hub still claims 11 models in body copy");
 }
+if (/\beleven comparison pages\b|\brow eleven\b/i.test(altHubHtml)) {
+  errors.push("alternatives hub still uses stale eleven comparison / row eleven copy");
+}
 if (alternativesHubMod.alternativesHub.seoTitle.length > 54) {
   errors.push("alternatives hub seoTitle too long for branding");
 }
