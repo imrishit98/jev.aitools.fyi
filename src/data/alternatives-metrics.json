@@ -1,7 +1,7 @@
 {
-  "snapshotDate": "2026-10-12",
+  "snapshotDate": "2026-11-06",
   "pageLastVerified": {
-    "hub": "2026-10-12",
+    "hub": "2026-11-06",
     "laya-compare": "2026-11-03",
     "cloudflare-clef": "2026-10-12",
     "kev": "2026-10-12",
@@ -12,7 +12,8 @@
     "semif": "2026-10-12",
     "clm-8b": "2026-10-12",
     "liquid-d1": "2026-10-12",
-    "von": "2026-10-12"
+    "von": "2026-11-06",
+    "strands-decider": "2026-11-06"
   },
   "decisionIndex": {
     "edition": "0.3.1",
@@ -26,7 +27,8 @@
     "Mapika/decider": { "stars": 1127, "forks": 48, "checkedAt": "2026-10-12" },
     "Contrastive-LM/CLM": { "stars": 2981, "forks": 260, "checkedAt": "2026-10-12" },
     "wfzyx/von": { "stars": 883, "forks": 69, "checkedAt": "2026-10-12" },
-    "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" }
+    "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" },
+    "strands-labs/strands-decider": { "stars": 765, "forks": 109, "checkedAt": "2026-11-06" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },

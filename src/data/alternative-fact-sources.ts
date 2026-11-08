@@ -43,6 +43,10 @@ const FIRST_RELEASE_SOURCE: Partial<Record<AlternativeSlug, { url: string; label
     label: "Cloudflare clef model page",
   },
   semif: { url: "https://github.com/TheoLeeCJ/SemIf-OpenJev", label: "GitHub: SemIf-OpenJev README" },
+  "strands-decider": {
+    url: "https://github.com/strands-labs/strands-decider",
+    label: "GitHub: strands-labs/strands-decider README",
+  },
   "openai-decisions-api": {
     url: "https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877",
     label: "OpenAI Decisions API beta announcement",
@@ -91,6 +95,15 @@ const BY_SLUG: Record<AlternativeSlug, ProductSources> = {
     api: { url: "https://docs.perplexity.ai/api-reference/decisions-post", label: "Perplexity Decisions API reference" },
     weights: { url: "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b", label: "HF model card" },
     adoption: { url: "https://huggingface.co/perplexity-ai/pplx-decider-v1.1-27b", label: "HF model card stats" },
+  },
+  "strands-decider": {
+    vendorHome: "https://github.com/strands-labs/strands-decider",
+    vendorLabel: "GitHub: strands-labs/strands-decider",
+    license: { url: "https://github.com/strands-labs/strands-decider/blob/main/LICENSE", label: "Apache 2.0 LICENSE file" },
+    api: { url: "https://github.com/strands-labs/strands-decider#running-as-a-server", label: "README: strands-decider serve and POST /v1/systemone" },
+    weights: { url: "https://huggingface.co/StrandsAgents/strands-decider-2B-qwen3.5-v1-2610", label: "Hugging Face: strands-decider-2B-qwen3.5-v1-2610" },
+    github: { url: "https://github.com/strands-labs/strands-decider", label: "GitHub: strands-labs/strands-decider" },
+    adoption: { url: "https://huggingface.co/StrandsAgents/strands-decider-2B-qwen3.5-v1-2610", label: "Hugging Face model card" },
   },
   "mapika-decider": {
     vendorHome: "https://github.com/Mapika/decider",
@@ -263,7 +276,7 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
       sourceUrl = "https://openai.com/policies/privacy-policy";
       sourceLabel = "OpenAI privacy policy";
     } else if (
-      ["kev", "mapika-decider", "semif", "clm-8b", "von", "fastino-gliner-decide", "liquid-d1"].includes(slug)
+      ["kev", "mapika-decider", "strands-decider", "semif", "clm-8b", "von", "fastino-gliner-decide", "liquid-d1"].includes(slug)
     ) {
       them = NOT_PUBLISHED_LABEL;
       sourceUrl = src.github?.url ?? src.vendorHome;
@@ -299,6 +312,10 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
       them = hfAdoption("LiquidAI/d1-3B");
       sourceUrl = "https://huggingface.co/LiquidAI/d1-3B";
       sourceLabel = "Hugging Face model card";
+    } else if (slug === "strands-decider") {
+      them = githubAdoption("strands-labs/strands-decider");
+      sourceUrl = "https://github.com/strands-labs/strands-decider";
+      sourceLabel = "GitHub: strands-labs/strands-decider (stars)";
     } else if (slug === "semif") {
       them = githubAdoption("TheoLeeCJ/SemIf-OpenJev");
       sourceUrl = "https://github.com/TheoLeeCJ/SemIf-OpenJev";

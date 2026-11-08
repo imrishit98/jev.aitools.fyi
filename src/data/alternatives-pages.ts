@@ -21,6 +21,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -238,6 +239,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -437,6 +439,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "kev",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -627,6 +630,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "kev",
       "openai-decisions-api",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -826,6 +830,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "kev",
       "openai-decisions-api",
       "perplexity-pplx-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -1010,6 +1015,229 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       }
     ]
   },
+  "strands-decider": {
+    "slug": "strands-decider",
+    "displayName": "Strands Decider",
+    "listingSlug": "strands-labs-strands-decider",
+    "ecosystemSlugs": [],
+    "seoTitle": "Strands Decider vs Jev: open 2B System One stack",
+    "seoDescription": "Strands Decider is Apache 2.0 pointer-head checkpoints with strands-decider CLI and POST /v1/systemone. README cites JevBench and Gemma 4 Decision Index rows.",
+    "h1": "Strands Decider as a Jev alternative",
+    "keyPoint": "Strands Decider is Strands Labs open checkpoints with a small pointer head on a frozen LLM torso, strands-decider ask and serve, and POST /v1/systemone compatible requests in the README.",
+    "summary": "Strands Decider ships Apache 2.0 code and Hugging Face weights under StrandsAgents with optional amazon mirror names. README documents a pointer head on Qwen3.5 2B, parallel Noul, choice, and score questions, and strands-decider serve on POST /v1/systemone. Evaluation tables in the repository cite JevBench public accuracy 0.779 on 231 tasks for strands-decider-2B-qwen3.5-v1-2610 and rank calibrated scores against hobson-v19 and hobson-v21 checkpoints that stay published. README also publishes Gemma 4 family rows with Decision Index 29.78 to 48.69 and median H100 latency 102 ms to 245 ms per model card. Strands Decider is not listed on the independent Decision Index snapshot this site imports, so treat repository tables as the primary evidence until you run your own harness.",
+    "lastVerified": "2026-11-06",
+    "siblingSlugs": [
+      "cloudflare-clef",
+      "kev",
+      "openai-decisions-api",
+      "perplexity-pplx-decider",
+      "mapika-decider",
+      "fastino-gliner-decide",
+      "semif",
+      "clm-8b",
+      "liquid-d1",
+      "von"
+    ],
+    "facts": [
+      {
+        "row": "Maker",
+        "them": "AWS Strands Agents Labs (strands-labs)",
+        "jev": "TypeSafe AI",
+        "sourceLabel": "GitHub repository",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider"
+      },
+      {
+        "row": "First public release",
+        "them": "Repository created 2026-09-29 (GitHub API metadata in README timeline)",
+        "jev": "Hosted System One (ongoing)",
+        "sourceLabel": "GitHub: strands-labs/strands-decider",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider"
+      },
+      {
+        "row": "License / access",
+        "them": "Apache 2.0",
+        "jev": "Hosted API (weights not downloadable)",
+        "sourceLabel": "LICENSE in repository",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider/blob/main/LICENSE"
+      },
+      {
+        "row": "Hosted price (input)",
+        "them": "Self-host only (no vendor meter in README)",
+        "jev": "$0.042 per M input tokens (vendor, TypeSafe docs)",
+        "sourceLabel": "TypeSafe models price table (Jev column)",
+        "sourceUrl": "https://docs.typesafe.ai/models.md"
+      },
+      {
+        "row": "API shape",
+        "them": "strands-decider serve with POST /v1/systemone JSON (README examples)",
+        "jev": "POST /v1/systemone",
+        "sourceLabel": "README: Running as a server",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider#running-as-a-server"
+      },
+      {
+        "row": "Question types",
+        "them": "Noul, choice, score in one forward pass (README)",
+        "jev": "Choice, Score, Noul",
+        "sourceLabel": "README overview",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider"
+      },
+      {
+        "row": "Inputs",
+        "them": "JSON state string, optional base64 images when --vision is enabled on Qwen3.5 checkpoints (README)",
+        "jev": "Structured state string",
+        "sourceLabel": "README: Images",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider#images"
+      },
+      {
+        "row": "Model sizes",
+        "them": "2B Qwen3.5 family plus Gemma 4 E2B through 26B-A4B checkpoints on Hugging Face (README tables)",
+        "jev": "Hosted Jev (closed)",
+        "sourceLabel": "README: Gemma 4 models",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider#gemma-4-models"
+      },
+      {
+        "row": "README latency (JevBench, RTX 3090)",
+        "them": "Median 115 ms and 95th percentile 299 ms per JevBench question for v19 family architecture (same size as v1 in README performance table)",
+        "jev": "Network plus vendor batching (measure yours)",
+        "sourceLabel": "evaluation/results.md summary table (linked from README)",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider/blob/main/evaluation/results.md"
+      },
+      {
+        "row": "JevBench public (231 tasks, README)",
+        "them": "strands-decider-2B-qwen3.5-v1-2610 accuracy 0.779 (180 of 231); Brier 0.280; ECE 0.072; held-out code tasks 0.836 on 1,996 rows",
+        "jev": "Compare to your hosted Jev harness on the same split",
+        "sourceLabel": "evaluation/results.md (README Performance table)",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider/blob/main/evaluation/results.md"
+      },
+      {
+        "row": "Gemma 4 README scores (vendor table)",
+        "them": "E2B 29.78, E4B 39.42, 12B 47.14, 26B-A4B 48.69 with median H100 latency 102 ms to 245 ms per README row",
+        "jev": "60.11 (Decision Index 0.3.1, snapshot 2026-10-10; independent harness, not vendor-only)",
+        "sourceLabel": "README Gemma 4 table",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider#gemma-4-models"
+      },
+      {
+        "row": "Decision Index (public, independent snapshot)",
+        "them": "Not listed on Decision Index public board for this edition",
+        "jev": "60.11 (Decision Index 0.3.1, snapshot 2026-10-10; independent harness, not vendor-only)",
+        "sourceLabel": "Decision Index snapshot",
+        "sourceUrl": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json"
+      },
+      {
+        "row": "Data handling",
+        "them": "Self-hosted; state stays on hardware you control",
+        "jev": "Processed under TypeSafe terms",
+        "sourceLabel": "TypeSafe privacy policy (Jev column)",
+        "sourceUrl": "https://docs.typesafe.ai/privacy"
+      },
+      {
+        "row": "SDKs",
+        "them": "PyPI strands-decider CLI; TypeSafe SDK can target localhost base URL with model id from Hugging Face per migration pattern on other open servers",
+        "jev": "typesafe_sdk, gateways, MCP ecosystem",
+        "sourceLabel": "README install and Quickstart",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider#how-to-start-using-strands-decider"
+      },
+      {
+        "row": "Adoption signal",
+        "them": "765 GitHub stars (2026-11-06); Hugging Face card downloads on strands-decider-2B-qwen3.5-v1-2610",
+        "jev": "Vendor hosted (no public GitHub stars)",
+        "sourceLabel": "GitHub repository",
+        "sourceUrl": "https://github.com/strands-labs/strands-decider"
+      }
+    ],
+    "sections": [
+      {
+        "h": "What Strands Decider is",
+        "body": "Strands Decider is Strands Labs open decision checkpoints paired with a strands-decider Python CLI. README frames the family as fast System One routing without autoregressive text generation: one forward pass with parallel Noul, choice, and score questions over structured state. Weights live primarily on Hugging Face under StrandsAgents with mirrored names under amazon per the README. Strands Decider is independent of TypeSafe Jev, but README cites JevBench and published Decision Index style figures on Gemma 4 checkpoints."
+      },
+      {
+        "h": "Architecture and checkpoints",
+        "body": "README describes a frozen Qwen3.5 2B torso with the language modeling head removed, a roughly one million parameter pointer head, rank 16 LoRA on the torso, and three question types read from one masked softmax. Earlier hobson-v19 and hobson-v21 checkpoints stay published alongside strands-decider-2B-qwen3.5-v1-2610; README performance tables compare v1 against v19 and v21 on the same public JevBench slice. Gemma 4 instruction tuned models add four sizes with Decision Index numbers 29.78 through 48.69 and separate training mix notes in the README."
+      },
+      {
+        "h": "Accuracy and benchmarks",
+        "body": "README points to evaluation/results.md for JevBench public 231 task rows, Brier score, expected calibration error, tier splits, and held-out code task accuracy 0.836 on 1,996 items for v1. Independent Decision Index edition 0.3.1 does not list Strands Decider in the JSON snapshot this site imports, so use the repository tables when you compare to hosted Jev headlines."
+      },
+      {
+        "h": "Vision and latency claims",
+        "body": "README documents optional --vision serving on Qwen3.5 checkpoints with base64 images in JSON and compares published hobson revisions on image and calibration suites. Latency rows cite RTX 3090 medians and Apple silicon warm medians in evaluation/results.md; treat them as vendor hardware until you benchmark your fleet."
+      },
+      {
+        "h": "Fit and tradeoffs",
+        "body": "Choose Strands Decider when you want open Apache 2.0 weights with a documented POST /v1/systemone serve path and CLI ergonomics close to other self-hosted stacks. Expect to size GPUs from the HF card for Gemma 4 variants and to install Gemma support from git until PyPI catches README. Keep hosted Jev when you need vendor SLAs and the highest public Decision Index score among options this hub snapshots."
+      },
+      {
+        "h": "Migrating from hosted Jev",
+        "body": "Keep your question map and threshold logic stable. Point the TypeSafe Python SDK at your strands-decider serve base URL, pin the Hugging Face model id you evaluated, and run shadow traffic until disagreement and calibration match your risk budget.",
+        "code": {
+          "lang": "typescript",
+          "content": "// Before: hosted Jev\nconst client = new TypeSafe({ apiKey: process.env.TYPESAFE_API_KEY });\nawait client.systemone({ model: \"jev-latest\", state, questions });\n\n// After: strands-decider on localhost\nconst client = new TypeSafe({ baseURL: \"http://localhost:8000\" });\nawait client.systemone({\n  model: \"StrandsAgents/strands-decider-2B-qwen3.5-v1-2610\",\n  state,\n  questions,\n});"
+        }
+      },
+      {
+        "h": "Product-specific notes",
+        "body": "README states training landed at about eleven hours on one RTX 3090 or about one hour ten minutes on eight H100 GPUs with FAST=1 for recipe runs, which matters for finetune experiments, not for inference pricing alone. hobson-v19 and hobson-v21 names remain valid HF identifiers in the README naming section and are history on the same product line, not separate directory pages. Gemma 4 rows document a different data mix than Qwen3.5 v1 and text-only service unless you stay on Qwen3.5 for vision."
+      }
+    ],
+    "whenChooseThem": [
+      "You want Apache 2.0 checkpoints with CLI serve and POST /v1/systemone examples in README",
+      "You need parallel Noul, choice, and score scoring without an autoregressive decode loop",
+      "You can self-host and own calibration on repository cited JevBench and Gemma tables"
+    ],
+    "whenChooseJev": [
+      "You want hosted System One with vendor support and billing on api.typesafe.ai",
+      "You optimize for the independent Decision Index snapshot scores this hub imports",
+      "You cannot afford GPU ops for multi-billion checkpoints or vision enabled stacks"
+    ],
+    "faq": [
+      {
+        "question": "Is Strands Decider the same product as TypeSafe Jev?",
+        "answer": "No. Jev is TypeSafe hosted System One. Strands Decider is an independent Apache 2.0 open repository with its own weights and evaluation write ups."
+      },
+      {
+        "question": "Where do hobson-v19 and hobson-v21 fit?",
+        "answer": "README keeps those checkpoint names as earlier releases on the Qwen3.5 line and compares them to strands-decider-2B-qwen3.5-v1-2610 in the performance table. They are naming history on one product line, not separate listings here."
+      },
+      {
+        "question": "Does Strands Decider appear on the independent Decision Index board this site imports?",
+        "answer": "Not in Decision Index edition 0.3.1 JSON snapshot dated 2026-10-10. README still publishes Gemma 4 Decision Index numbers in its own table; compare those rows to hosted Jev using the same cautions you use for any vendor table."
+      },
+      {
+        "question": "Can I use the TypeSafe SDK with strands-decider serve?",
+        "answer": "README shows curl against POST /v1/systemone. Teams already repoint TypeSafe clients to other open servers by changing baseURL and model id. Verify response metadata and calibration in shadow before you cut traffic."
+      }
+    ],
+    "sources": [
+      {
+        "label": "GitHub: strands-labs/strands-decider",
+        "url": "https://github.com/strands-labs/strands-decider"
+      },
+      {
+        "label": "Strands Agents docs (labs)",
+        "url": "https://strandsagents.com/docs/labs/"
+      },
+      {
+        "label": "Hugging Face org: StrandsAgents",
+        "url": "https://huggingface.co/StrandsAgents"
+      },
+      {
+        "label": "PyPI: strands-decider",
+        "url": "https://pypi.org/project/strands-decider/"
+      },
+      {
+        "label": "evaluation/results.md (JevBench and calibration tables)",
+        "url": "https://github.com/strands-labs/strands-decider/blob/main/evaluation/results.md"
+      },
+      {
+        "label": "TypeSafe docs: System One / Jev API",
+        "url": "https://docs.typesafe.ai/api"
+      },
+      {
+        "label": "Decision Index public snapshot (edition 0.3.1)",
+        "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json"
+      }
+    ]
+  },
   "fastino-gliner-decide": {
     "slug": "fastino-gliner-decide",
     "displayName": "GLiNER2.5 Decide",
@@ -1026,6 +1254,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "semif",
       "clm-8b",
       "liquid-d1",
@@ -1221,6 +1450,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "clm-8b",
       "liquid-d1",
@@ -1412,6 +1642,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "liquid-d1",
@@ -1607,6 +1838,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -1795,13 +2027,14 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
     "h1": "von vs Jev",
     "keyPoint": "Von is a compact non-autoregressive encoder for fast Choice, Noul, and Score style routing when you can trade some benchmark breadth for milliseconds.",
     "summary": "Von publishes Apache 2.0 weights with Python and TypeScript clients. README emphasizes order-invariant option scoring and sub-25 ms inference on author hardware, with gameplay demos comparing kills and latency to hosted Jev API calls. Von is a runner-up pick on the hub ranked table because teams often pair it with larger decoders, but Hugging Face downloads are high for its size class. Decision Index does not list Von in our snapshot, so run your own harness before you promise accuracy parity.",
-    "lastVerified": "2026-10-12",
+    "lastVerified": "2026-11-06",
     "siblingSlugs": [
       "cloudflare-clef",
       "kev",
       "openai-decisions-api",
       "perplexity-pplx-decider",
       "mapika-decider",
+      "strands-decider",
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
@@ -1927,11 +2160,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row eleven as a speed pick, not a full migration default."
+        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row twelve as a speed pick, not a full migration default."
       },
       {
         "h": "Product-specific notes",
-        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 11 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
+        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 12 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
       }
     ],
     "whenChooseThem": [
