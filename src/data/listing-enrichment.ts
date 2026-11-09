@@ -742,6 +742,19 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
       "realzachi-pg-jev",
     ],
   },
+  "datawhalechina-jev-cookbook": {
+    slug: "datawhalechina-jev-cookbook",
+    leadCallout: {
+      beforeLink:
+        "This guide covers Datawhale's unofficial Chinese Jupyter course. Official English recipes on docs.typesafe.ai are on the ",
+      linkLabel: "Jev cookbook listing",
+      linkHref: "/sdks/cookbooks",
+      afterLink: ".",
+    },
+    jevUsageSummary:
+      "Chinese Jupyter notebooks teach Choice, Score, and Noul, then replay 18 official TypeSafe cookbook recipes.",
+    sections: [],
+  },
   cookbooks: {
     slug: "cookbooks",
     jevUsageSummary:

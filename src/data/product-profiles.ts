@@ -11466,7 +11466,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     targetUser:
       "Developers and students who can use Python and Jupyter, want a Chinese Jev course, and do not need a machine-learning background.",
     overview:
-      "Jev Cookbook (github.com/datawhalechina/jev-cookbook) is Datawhale's 11-chapter Jupyter tutorial for Jev, written in Chinese. The README calls the course Jev 入门教程. The official English recipe index on this directory is the Jev cookbook listing (docs.typesafe.ai). You learn Choice, Score, and Noul, and the rule that one question asks one thing so code can combine the answers. Chapter 3 covers speculative fan-out, confidence gating, composite scoring, and intent routing. Chapter 4 replays 18 recipes from the official cookbook, including reranking, row-by-row semantic search, structure recovery, function calls, citation checks, and guardrails. Chapter 5 is a voice-driven 3D smart home. Chapter 6 sets up a Laya versus Jev run on 231 public questions and scores accuracy, a majority-class floor, Brier, and ECE, with no retries and no fallback. Chapter 7 has 12 runnable games and apps. Chapter 9 puts a judgment in front of the Pi agent and in front of DeepSeek Harness. Chapter 10 fine-tunes the open model Laya on your own machine with RLCD. Offline examples run without an API key. The site is an unofficial community translation of the TypeSafe docs. The README says the English original at docs.typesafe.ai is the authority. Original tutorial text is CC BY-NC-SA 4.0. The README names project lead 王熠明 (Bald0Wang). On 6 October 2026 the repo had 184 stars and 23 forks. It was created on 20 September 2026.",
+      "The Jev Cookbook at github.com/datawhalechina/jev-cookbook is Datawhale's unofficial 11-chapter Chinese Jupyter course for Jev (README title: Jev 入门教程). It is not the official English recipe index on docs.typesafe.ai; that hub is summarized on our Jev cookbook listing at /sdks/cookbooks. Built for developers and students with Python who want a Chinese walkthrough, not a machine-learning background.\n\nYou learn Choice, Score, and Noul, and the rule that one question asks one thing so code can combine the answers. Chapter 3 covers speculative fan-out, confidence gating, composite scoring, and intent routing. Chapter 4 replays 18 recipes from the official cookbook, including reranking, row-by-row semantic search, structure recovery, function calls, citation checks, and guardrails. Chapter 5 is a voice-driven 3D smart home. Chapter 6 sets up a Laya versus Jev run on 231 public questions and scores accuracy, a majority-class floor, Brier, and ECE, with no retries and no fallback. Chapter 7 has 12 runnable games and apps. Chapter 9 puts a judgment in front of the Pi agent and in front of DeepSeek Harness. Chapter 10 fine-tunes the open model Laya on your own machine with RLCD. Offline examples run without an API key. The site is an unofficial community translation of the TypeSafe docs. The README says the English original at docs.typesafe.ai is the authority. Original tutorial text is CC BY-NC-SA 4.0. The README names project lead 王熠明 (Bald0Wang). On 6 October 2026 the repo had 184 stars and 23 forks. It was created on 20 September 2026.",
     creator: {
       name: "Datawhale",
       handle: "datawhalechina",
@@ -11556,9 +11556,14 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     relatedLearnSlugs: ["system-one", "jev-typesafe"],
     faq: [
       {
-        question: "Is this the official TypeSafe cookbook?",
+        question: "Is this the official Jev cookbook?",
         answer:
-          "No. Datawhale says the site is an unofficial community translation. The README says the English original at docs.typesafe.ai is the authority. The official English recipes are indexed on our Jev cookbook listing. This page is the Datawhale Chinese tutorial repo.",
+          "No. Datawhale's repo is an unofficial Chinese Jupyter course. The README says docs.typesafe.ai is the authority for the English original. Official English recipes are indexed on our Jev cookbook listing at /sdks/cookbooks. This guide describes the Datawhale Chinese tutorial only.",
+      },
+      {
+        question: "Where should I start with the Datawhale Jev Cookbook?",
+        answer:
+          "Open the course site or clone the repo and run main/setup_env.sh (Python 3.10+ and Jupyter). Work chapters 1 to 3 for primitives and architecture patterns, with JEV_RUN_MODE=offline so you need no API key. Chapter 4 is where 18 official cookbook recipes replay in notebooks.",
       },
       {
         question: "Can I run the Jev Cookbook without an API key?",
@@ -11576,9 +11581,9 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
           "The plugin README in apps/dsh-jev-decision says DSH is DeepSeek Harness. The plugin lets that harness call Jev for a structured judgment before it acts. Its offline demo runs without an API key. The chapter 9 README says a live run sends at most 4 requests.",
       },
     ],
-    metaTitle: "Datawhale Jev Cookbook: Chinese Jupyter course",
+    metaTitle: "Jev Cookbook: Datawhale Chinese Jupyter course",
     metaDescription:
-      "Datawhale unofficial Jev Cookbook: 11 Chinese Jupyter chapters, 18 official recipes, smart home lab, Laya fine-tune. English recipes on our cookbook hub.",
+      "Jev cookbook: Datawhale unofficial Chinese Jupyter course, 11 chapters. Replays 18 official recipes; start offline. English recipes on our Jev cookbook listing.",
   },
 
   "posthog-jeeves": {
