@@ -26,6 +26,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -244,6 +245,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -444,6 +446,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -635,6 +638,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -835,6 +839,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -1036,6 +1041,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -1238,6 +1244,237 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       }
     ]
   },
+  "vev": {
+    "slug": "vev",
+    "displayName": "Vev",
+    "listingSlug": "xiaooolong-vev",
+    "ecosystemSlugs": [
+      "mattt-anydecisionmodel",
+      "jaredpalmer-kev",
+      "apolinario-decision-index"
+    ],
+    "seoTitle": "Vev vs Jev: open vision System One model",
+    "seoDescription": "Vev fine-tunes Qwen3.5 for POST /v1/systemone with image inputs. README cites Decision Index vision and text scores plus calibration and license caveats.",
+    "h1": "Vev as a Jev alternative",
+    "keyPoint": "Vev is an open Qwen3.5 decision stack that serves POST /v1/systemone, accepts images in state, and targets the same TypeSafe SDK base URL pattern as Kev, but README warns compatible does not mean behaves like Jev.",
+    "summary": "Vev (github.com/Xiaooolong/vev) fine-tunes Qwen3.5 into a 4B research preview that implements /v1/systemone so typesafe_sdk can point at vev serve with a different base URL. README publishes Decision Index vision suite score 72.90 on vev-4b-v2, text edition 0.3 score 60.32 on v2 versus 38.91 on vev-4b, and latency medians near 101 ms on H800 for public vision items. Weights use CC BY-NC 4.0 while code is Apache 2.0, so commercial redistribution of weights is restricted. README also documents expected calibration error from 0.01 to 0.24 across eighteen sets, option order flips of three to eleven percent, and lower nimble accuracy than hosted Jev on cited tables. Cross-read /alternatives/kev for text-first open weights, /alternatives/strands-decider for another Qwen3.5 pointer stack, and the Decision Index listing for independent snapshots.",
+    "lastVerified": "2026-11-09",
+    "siblingSlugs": [
+      "cloudflare-clef",
+      "kev",
+      "openai-decisions-api",
+      "perplexity-pplx-decider",
+      "mapika-decider",
+      "strands-decider",
+      "fastino-gliner-decide",
+      "semif",
+      "clm-8b",
+      "liquid-d1",
+      "von"
+    ],
+    "facts": [
+      {
+        "row": "Maker",
+        "them": "Xiaooolong (CountingSheep on Hugging Face)",
+        "jev": "TypeSafe AI",
+        "sourceLabel": "GitHub: Xiaooolong/vev",
+        "sourceUrl": "https://github.com/Xiaooolong/vev"
+      },
+      {
+        "row": "First public release",
+        "them": "Repository created 2026-09-30 (GitHub metadata)",
+        "jev": "Hosted System One (ongoing)",
+        "sourceLabel": "GitHub: Xiaooolong/vev",
+        "sourceUrl": "https://github.com/Xiaooolong/vev"
+      },
+      {
+        "row": "License / access",
+        "them": "Apache 2.0 code; model weights CC BY-NC 4.0 (non-commercial)",
+        "jev": "Hosted API (weights not downloadable)",
+        "sourceLabel": "README and Hugging Face model card",
+        "sourceUrl": "https://huggingface.co/CountingSheep/vev-4b-v2"
+      },
+      {
+        "row": "Hosted price (input)",
+        "them": "Self-host only (no vendor meter in README)",
+        "jev": "$0.042 per M input tokens (vendor, TypeSafe docs)",
+        "sourceLabel": "TypeSafe models price table (Jev column)",
+        "sourceUrl": "https://docs.typesafe.ai/models.md"
+      },
+      {
+        "row": "API shape",
+        "them": "vev serve implements POST /v1/systemone; typesafe_sdk works with a different base_url (README)",
+        "jev": "POST /v1/systemone",
+        "sourceLabel": "README quickstart",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Question types",
+        "them": "Choice, Noul, and Score style parallel questions over structured state and images (README)",
+        "jev": "Choice, Score, Noul",
+        "sourceLabel": "README",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Inputs",
+        "them": "Text or JSON state plus image tensors for vision suites (README and HF Space)",
+        "jev": "Structured state string",
+        "sourceLabel": "Hugging Face Space: CountingSheep/vev",
+        "sourceUrl": "https://huggingface.co/spaces/CountingSheep/vev"
+      },
+      {
+        "row": "Model sizes",
+        "them": "vev-4b-v2 featured checkpoint on Hugging Face CountingSheep org (README)",
+        "jev": "Hosted Jev (closed)",
+        "sourceLabel": "Hugging Face: CountingSheep/vev-4b-v2",
+        "sourceUrl": "https://huggingface.co/CountingSheep/vev-4b-v2"
+      },
+      {
+        "row": "README latency (Decision Index vision, public items)",
+        "them": "H800 median 101 ms (mean 151 ms, p80 225 ms); RTX PRO 6000 Blackwell median 120 ms",
+        "jev": "Network plus vendor batching (measure yours)",
+        "sourceLabel": "README performance table",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Decision Index (README, vendor tables)",
+        "them": "Vision public suites 72.90 on vev-4b-v2; text edition 0.3 score 60.32 on v2 versus 38.91 on vev-4b",
+        "jev": "60.11 (Decision Index 0.3.1 text snapshot 2026-10-10; independent harness)",
+        "sourceLabel": "README benchmark tables",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Text accuracy table (README, selected rows)",
+        "them": "nimble 324 tasks: vev-4b-v2 0.806 versus Jev column 0.923; JevBench public 231: 0.835 versus Jev 0.861",
+        "jev": "Compare on the same split in README",
+        "sourceLabel": "README accuracy table",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Image judgment lifts (README examples)",
+        "them": "game_clip 0.561 to 0.810; policy_mod 0.686 to 0.760; MMStar 0.544 to 0.694 on cited rows",
+        "jev": "Hosted Jev vision routing (measure yours)",
+        "sourceLabel": "README image suite table",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Calibration and stability caveats",
+        "them": "ECE 0.01 to 0.24 across 18 sets; option order flips 3 to 11 percent; research preview disclaimer",
+        "jev": "Vendor hosted calibration (contractual)",
+        "sourceLabel": "README limitations",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Data handling",
+        "them": "Self-hosted; state and images stay on hardware you control when you run vev serve locally",
+        "jev": "Processed under TypeSafe terms",
+        "sourceLabel": "TypeSafe privacy policy (Jev column)",
+        "sourceUrl": "https://docs.typesafe.ai/privacy"
+      },
+      {
+        "row": "SDKs",
+        "them": "typesafe_sdk with custom base_url; vev serve --model CountingSheep/vev-4b-v2 on 127.0.0.1:8009 per README",
+        "jev": "typesafe_sdk, gateways, MCP ecosystem",
+        "sourceLabel": "README install and serve",
+        "sourceUrl": "https://github.com/Xiaooolong/vev#readme"
+      },
+      {
+        "row": "Adoption signal",
+        "them": "29 GitHub stars and 5 forks (2026-11-09); Hugging Face collection and Space demos",
+        "jev": "Vendor hosted (no public GitHub stars)",
+        "sourceLabel": "GitHub: Xiaooolong/vev",
+        "sourceUrl": "https://github.com/Xiaooolong/vev"
+      }
+    ],
+    "sections": [
+      {
+        "h": "What Vev is",
+        "body": "Vev is an open decision model built on Qwen3.5 that exposes the System One wire shape in README examples. The project ships vev serve for local POST /v1/systemone traffic, a Hugging Face model card for vev-4b-v2, and a public Space demo for vision prompts. README positions Vev as Jev API compatible for SDK clients, then repeats that compatible does not mean behaves like Jev. That honesty matters when you migrate gates that assume hosted calibration. For text-only open weights with a longer track record, start with /alternatives/kev. For another Qwen3.5 open server with pointer head weights, read /alternatives/strands-decider."
+      },
+      {
+        "h": "Vision and multimodal routing",
+        "body": "Unlike most text-only open servers on this hub, Vev cites image judgment benchmarks and publishes vision Decision Index suite numbers on vev-4b-v2. README includes a Doom real-time demo that slices frames into eight yes or no decisions per slice. Perplexity pplx-decider on /alternatives/perplexity-pplx-decider remains the large multimodal open checkpoint with hosted API options, while Vev targets self-hosters who want Qwen3.5 scale at 4B with NVIDIA GPU serve. Requirements in README call for NVIDIA GPU, Python 3.11+, and pinned dependencies."
+      },
+      {
+        "h": "Accuracy and benchmarks",
+        "body": "README tables compare Qwen3.5-4B, kev-4B, vev-4b-v2, and a Jev column across judgekit, JevBench public 231, nimble 324, and kev transfer-v4 1528 splits. Vev often lands between open baselines and Jev on those rows, but still trails Jev on nimble in the published table. Independent Decision Index edition 0.3.1 JSON from the public board (see /benchmarks/apolinario-decision-index) remains the cross-vendor headline this site imports for hosted Jev; treat README vision and text edition 0.3 rows as vendor evidence until you replay the same harness locally."
+      },
+      {
+        "h": "Latency claims",
+        "body": "README cites Decision Index vision public item latency on H800 and RTX PRO 6000 Blackwell hardware. Medians near 101 ms and 120 ms are not guarantees on your fleet. Profile warm caches, batching, and image decode before you promise agent tick rates. For Apple Silicon MLX paths without CUDA, the /learn/laya-vs-jev/laya-mlx-apple-silicon guide covers a different local stack that is not API identical to vev serve."
+      },
+      {
+        "h": "License, calibration, and fit",
+        "body": "Weights ship under CC BY-NC 4.0 while code is Apache 2.0, so commercial products that need unrestricted weight redistribution should involve counsel. README lists research preview status, wide expected calibration error bands, and option order sensitivity up to eleven percent on some sets. Choose Vev when you need open vision plus System One wire compatibility on your GPUs. Keep hosted Jev when you want the highest cited nimble accuracy in README and vendor support on api.typesafe.ai. Cloudflare clef on /alternatives/cloudflare-clef fits teams that prefer Workers AI metering instead of running NVIDIA serve."
+      },
+      {
+        "h": "Migrating from hosted Jev",
+        "body": "Keep your question map stable. Point the TypeSafe Python SDK at vev serve, pin CountingSheep/vev-4b-v2, and run shadow traffic until calibration and option order tests match your risk budget.",
+        "code": {
+          "lang": "typescript",
+          "content": "// Before: hosted Jev\nconst client = new TypeSafe({ apiKey: process.env.TYPESAFE_API_KEY });\nawait client.systemone({ model: \"jev-latest\", state, questions });\n\n// After: vev on localhost\nconst client = new TypeSafe({ baseURL: \"http://127.0.0.1:8009\" });\nawait client.systemone({\n  model: \"CountingSheep/vev-4b-v2\",\n  state,\n  questions,\n});"
+        }
+      }
+    ],
+    "whenChooseThem": [
+      "You need open weights that read images with POST /v1/systemone serve on your NVIDIA stack",
+      "You can accept CC BY-NC 4.0 weight terms and README research preview caveats",
+      "You want to repoint typesafe_sdk with base_url while you benchmark vision gates"
+    ],
+    "whenChooseJev": [
+      "You need higher nimble accuracy in README tables and hosted vendor support",
+      "You cannot run NVIDIA GPU serve or accept non-commercial weight licensing",
+      "You want the independent Decision Index snapshot headline without replaying vendor vision suites"
+    ],
+    "faq": [
+      {
+        "question": "Is Vev the same product as TypeSafe Jev?",
+        "answer": "No. Jev is TypeSafe hosted System One. Vev is an independent open repository with its own Qwen3.5 fine-tunes and README disclaimers."
+      },
+      {
+        "question": "Does API compatibility mean identical probabilities?",
+        "answer": "README explicitly says compatible does not mean behaves like Jev. Replay your labelled data and watch calibration error and option order flips before you cut traffic."
+      },
+      {
+        "question": "Can I use Vev weights in a commercial SaaS?",
+        "answer": "Weights are CC BY-NC 4.0 per README and the Hugging Face card. Confirm non-commercial terms with counsel before you ship customer facing inference."
+      },
+      {
+        "question": "How does Vev compare to Kev and Strands Decider?",
+        "answer": "Kev on /alternatives/kev is the mature text-first open POST /v1/systemone stack. Strands Decider on /alternatives/strands-decider uses pointer head checkpoints from Strands Labs. Vev adds vision emphasis and cites image judgment lifts in README."
+      },
+      {
+        "question": "Where do Decision Index numbers come from?",
+        "answer": "README publishes vision 72.90 and text edition 0.3 rows for vev-4b-v2. The independent board this site imports lives on /benchmarks/apolinario-decision-index with edition 0.3.1 snapshot metadata."
+      }
+    ],
+    "sources": [
+      {
+        "label": "GitHub: Xiaooolong/vev",
+        "url": "https://github.com/Xiaooolong/vev"
+      },
+      {
+        "label": "Hugging Face model card: vev-4b-v2",
+        "url": "https://huggingface.co/CountingSheep/vev-4b-v2"
+      },
+      {
+        "label": "Hugging Face collection: vev",
+        "url": "https://huggingface.co/collections/CountingSheep/vev-6abd3e17303828e10c49dc65"
+      },
+      {
+        "label": "Hugging Face Space: vev demo",
+        "url": "https://huggingface.co/spaces/CountingSheep/vev"
+      },
+      {
+        "label": "TypeSafe docs: System One API",
+        "url": "https://docs.typesafe.ai/api"
+      },
+      {
+        "label": "Decision Index public snapshot (edition 0.3.1)",
+        "url": "https://huggingface.co/spaces/multimodalart/jev-decision-index/resolve/main/data/v03.json"
+      }
+    ]
+  },
   "fastino-gliner-decide": {
     "slug": "fastino-gliner-decide",
     "displayName": "GLiNER2.5 Decide",
@@ -1258,6 +1495,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "semif",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -1454,6 +1692,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "fastino-gliner-decide",
       "clm-8b",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -1646,6 +1885,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "fastino-gliner-decide",
       "semif",
       "liquid-d1",
+      "vev",
       "von"
     ],
     "facts": [
@@ -1842,6 +2082,7 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
+      "vev",
       "von"
     ],
     "facts": [
@@ -2038,7 +2279,8 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       "fastino-gliner-decide",
       "semif",
       "clm-8b",
-      "liquid-d1"
+      "liquid-d1",
+      "vev"
     ],
     "facts": [
       {
@@ -2160,11 +2402,11 @@ export const alternatives: Record<(typeof alternativeSlugs)[number], Alternative
       },
       {
         "h": "Ecosystem links",
-        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row twelve as a speed pick, not a full migration default."
+        "body": "wfzyx/von GitHub and HF card cover clients and weights; treat hub row thirteen as a speed pick, not a full migration default."
       },
       {
         "h": "Product-specific notes",
-        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 12 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
+        "body": "Von optimizes for order-invariant option scoring on small encoders; README gameplay demos are vendor hardware, not your SLA. Von is not listed on the public Decision Index board we import; run a private harness before accuracy promises. Hub row 13 is an editorial speed pick, not proof Von outranks larger decoders on every adoption signal. Python and TypeScript clients exist, but you still operate the server process and secure the listen port. Teams often pair Von with a larger decoder on escalation when raw speed matters on hot paths. Gameplay comparisons in the README are vendor-reported; reproduce on your CPUs or GPUs before finops sign-off. Order-invariant scoring helps game loops with shuffled options but still needs calibration on your real option sets."
       }
     ],
     "whenChooseThem": [

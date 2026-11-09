@@ -32,6 +32,7 @@ const ADOPTION_REPOS: Partial<
   Record<AlternativeSlug, { github: keyof typeof alternativesMetrics.github; hf: keyof typeof alternativesMetrics.huggingface }>
 > = {
   kev: { github: "jaredpalmer/kev", hf: "jaredpalmer/kev-4b" },
+  vev: { github: "Xiaooolong/vev", hf: "CountingSheep/vev-4b-v2" },
   "mapika-decider": { github: "Mapika/decider", hf: "Mapika/decider-2b" },
   "clm-8b": { github: "Contrastive-LM/CLM", hf: "Contrastive-LM/CLM-v0.1-8B" },
   von: { github: "wfzyx/von", hf: "wfzyx/von" },
@@ -46,6 +47,10 @@ const FIRST_RELEASE_SOURCE: Partial<Record<AlternativeSlug, { url: string; label
   "strands-decider": {
     url: "https://github.com/strands-labs/strands-decider",
     label: "GitHub: strands-labs/strands-decider README",
+  },
+  vev: {
+    url: "https://github.com/Xiaooolong/vev",
+    label: "GitHub: Xiaooolong/vev README",
   },
   "openai-decisions-api": {
     url: "https://community.openai.com/t/decisions-api-is-now-available-in-public-beta/1403877",
@@ -104,6 +109,15 @@ const BY_SLUG: Record<AlternativeSlug, ProductSources> = {
     weights: { url: "https://huggingface.co/StrandsAgents/strands-decider-2B-qwen3.5-v1-2610", label: "Hugging Face: strands-decider-2B-qwen3.5-v1-2610" },
     github: { url: "https://github.com/strands-labs/strands-decider", label: "GitHub: strands-labs/strands-decider" },
     adoption: { url: "https://huggingface.co/StrandsAgents/strands-decider-2B-qwen3.5-v1-2610", label: "Hugging Face model card" },
+  },
+  vev: {
+    vendorHome: "https://github.com/Xiaooolong/vev",
+    vendorLabel: "GitHub: Xiaooolong/vev",
+    license: { url: "https://huggingface.co/CountingSheep/vev-4b-v2", label: "HF model card license (CC BY-NC 4.0 weights)" },
+    api: { url: "https://github.com/Xiaooolong/vev#readme", label: "README: vev serve and POST /v1/systemone" },
+    weights: { url: "https://huggingface.co/CountingSheep/vev-4b-v2", label: "Hugging Face: vev-4b-v2" },
+    github: { url: "https://github.com/Xiaooolong/vev", label: "GitHub: Xiaooolong/vev" },
+    adoption: { url: "https://huggingface.co/CountingSheep/vev-4b-v2", label: "Hugging Face model card" },
   },
   "mapika-decider": {
     vendorHome: "https://github.com/Mapika/decider",
@@ -276,7 +290,7 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
       sourceUrl = "https://openai.com/policies/privacy-policy";
       sourceLabel = "OpenAI privacy policy";
     } else if (
-      ["kev", "mapika-decider", "strands-decider", "semif", "clm-8b", "von", "fastino-gliner-decide", "liquid-d1"].includes(slug)
+      ["kev", "mapika-decider", "strands-decider", "vev", "semif", "clm-8b", "von", "fastino-gliner-decide", "liquid-d1"].includes(slug)
     ) {
       them = NOT_PUBLISHED_LABEL;
       sourceUrl = src.github?.url ?? src.vendorHome;
@@ -316,6 +330,12 @@ function resolveRow(slug: AlternativeSlug, fact: AlternativeFact): AlternativeFa
       them = githubAdoption("strands-labs/strands-decider");
       sourceUrl = "https://github.com/strands-labs/strands-decider";
       sourceLabel = "GitHub: strands-labs/strands-decider (stars)";
+    } else if (slug === "vev") {
+      them = githubAndHfAdoption("Xiaooolong/vev", "CountingSheep/vev-4b-v2");
+      sourceUrl = "https://github.com/Xiaooolong/vev";
+      sourceLabel = "GitHub: Xiaooolong/vev (stars)";
+      secondarySourceUrl = "https://huggingface.co/CountingSheep/vev-4b-v2";
+      secondarySourceLabel = "Hugging Face model card";
     } else if (slug === "semif") {
       them = githubAdoption("TheoLeeCJ/SemIf-OpenJev");
       sourceUrl = "https://github.com/TheoLeeCJ/SemIf-OpenJev";

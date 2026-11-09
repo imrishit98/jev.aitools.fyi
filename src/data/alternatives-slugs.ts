@@ -5,6 +5,7 @@ export const alternativeSlugs = [
   "perplexity-pplx-decider",
   "mapika-decider",
   "strands-decider",
+  "vev",
   "fastino-gliner-decide",
   "semif",
   "clm-8b",

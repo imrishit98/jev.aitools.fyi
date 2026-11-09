@@ -1,7 +1,7 @@
 {
-  "snapshotDate": "2026-11-06",
+  "snapshotDate": "2026-11-09",
   "pageLastVerified": {
-    "hub": "2026-11-06",
+    "hub": "2026-11-09",
     "laya-compare": "2026-11-03",
     "cloudflare-clef": "2026-10-12",
     "kev": "2026-10-12",
@@ -13,7 +13,8 @@
     "clm-8b": "2026-10-12",
     "liquid-d1": "2026-10-12",
     "von": "2026-11-06",
-    "strands-decider": "2026-11-06"
+    "strands-decider": "2026-11-06",
+    "vev": "2026-11-09"
   },
   "decisionIndex": {
     "edition": "0.3.1",
@@ -28,7 +29,9 @@
     "Contrastive-LM/CLM": { "stars": 2981, "forks": 260, "checkedAt": "2026-10-12" },
     "wfzyx/von": { "stars": 883, "forks": 69, "checkedAt": "2026-10-12" },
     "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" },
-    "strands-labs/strands-decider": { "stars": 765, "forks": 109, "checkedAt": "2026-11-06" }
+    "strands-labs/strands-decider": { "stars": 765, "forks": 109, "checkedAt": "2026-11-06" },
+    "Xiaooolong/vev": { "stars": 29, "forks": 5, "checkedAt": "2026-11-09" },
+    "mattt/AnyDecisionModel": { "stars": 56, "forks": 4, "checkedAt": "2026-11-09" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },
@@ -40,7 +43,8 @@
     "perplexity-ai/pplx-decider-v1.1-27b": { "downloads": 2221, "likes": 122, "license": "apache-2.0", "checkedAt": "2026-10-12" },
     "Contrastive-LM/CLM-v0.1-8B": { "downloads": 4367, "likes": 764, "license": "apache-2.0", "checkedAt": "2026-10-12" },
     "LiquidAI/d1-3B": { "downloads": 10843, "likes": 300, "license": "lfm-1.0", "checkedAt": "2026-10-12" },
-    "wfzyx/von": { "downloads": 106915, "likes": 57, "license": "apache-2.0", "checkedAt": "2026-10-12" }
+    "wfzyx/von": { "downloads": 106915, "likes": 57, "license": "apache-2.0", "checkedAt": "2026-10-12" },
+    "CountingSheep/vev-4b-v2": { "downloads": 48, "likes": 0, "license": "cc-by-nc-4.0", "checkedAt": "2026-11-09" }
   },
   "hostedPricingPerMInputUsd": {
     "typesafe-jev": { "value": 0.042, "label": "TypeSafe Jev list price", "sourceUrl": "https://docs.typesafe.ai/models.md", "checkedAt": "2026-10-12" },

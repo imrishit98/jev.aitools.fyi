@@ -435,7 +435,7 @@ if (!compareHtml.toLowerCase().includes("at a glance")) {
 }
 
 const altHubHtml = readFileSync(join(distRoot, "alternatives.html"), "utf8");
-if (!altHubHtml.includes("Jev alternatives: 12 decision models compared")) {
+if (!altHubHtml.includes("Jev alternatives: 13 decision models compared")) {
   errors.push("Alternatives hub H1 mismatch");
 }
 const hubRanked = alternativesHubMod.alternativesHub.ranked;
@@ -452,11 +452,14 @@ const itemListCount = itemListBlocks.length
 if (itemListCount !== expectedHubRows) {
   errors.push(`alternatives hub ItemList count: expected ${expectedHubRows}, got ${itemListCount}`);
 }
-if (/\b11 decision models\b|\beleven models\b|\btop 11\b/i.test(altHubHtml) && !/twelve|12 decision/i.test(altHubHtml)) {
+if (/\b11 decision models\b|\beleven models\b|\btop 11\b/i.test(altHubHtml) && !/thirteen|13 decision/i.test(altHubHtml)) {
   errors.push("alternatives hub still claims 11 models in body copy");
 }
 if (/\beleven comparison pages\b|\brow eleven\b/i.test(altHubHtml)) {
   errors.push("alternatives hub still uses stale eleven comparison / row eleven copy");
+}
+if (/\btwelve comparison pages\b|\brow twelve\b/i.test(altHubHtml) && !/thirteen|row thirteen/i.test(altHubHtml)) {
+  errors.push("alternatives hub still uses stale twelve comparison / row twelve copy");
 }
 if (alternativesHubMod.alternativesHub.seoTitle.length > 54) {
   errors.push("alternatives hub seoTitle too long for branding");

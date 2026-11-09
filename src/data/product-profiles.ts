@@ -10458,6 +10458,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Apache-2.0 code. On-device Laya needs no API key. Hosted Jev calls spend a TypeSafe key that the README says must stay off the mobile binary. laya-serve cost is the machine you run. The README does not publish a price table.",
     firstSeen: "2026-10-03",
     relatedSlugs: [
+      "mattt-anydecisionmodel",
       "mizorewww-laya-coreml",
       "receptron-laya",
       "typesafe-ai-typesafe-sdk-js",
@@ -14558,5 +14559,113 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "Strands Decider: open pointer-head System One checkpoints",
     metaDescription:
       "strands-labs/strands-decider: Apache 2.0 CLI and POST /v1/systemone. README tables cite JevBench and Gemma checkpoints. See /alternatives/strands-decider.",
+  },
+
+  "mattt-anydecisionmodel": {
+    slug: "mattt-anydecisionmodel",
+    status: "published",
+    problem:
+      "Swift apps need one session type for probability, choice, and score decisions, but teams split across Apple Core AI, local MLX, llama.cpp GGUF, hosted Jev, and Ollama daemons with different HTTP shapes.",
+    targetUser:
+      "Swift 6 developers building macOS 26, iOS 26, or Linux server tools who want DecisionSession ergonomics like AnyLanguageModel, with optional MLX and Core AI traits.",
+    overview:
+      "AnyDecisionModel (github.com/mattt/AnyDecisionModel?ref=jev.aitools.fyi, Apache-2.0) is mattt's Swift package that unifies typed decisions behind DecisionSession. README documents probability draws, choice over Choosable enums, score with ordered levels, batch decide(_:) with usage and diagnostics, and prewarm(). Six backends ship behind Swift package traits: MLX next-token probabilities in one forward pass, MLX decision heads such as mlx-community/clef-flash-4bit for Cloudflare Clef style text or JSON only, Core AI on macOS 27 and iOS 27, llama.cpp GGUF, Jev through any System One compatible server, and Ollama local or cloud at v0.35.0 plus with cloud at v0.40.5 plus. Requirements list Swift 6.2 plus, macOS 26 plus, iOS 26 plus, and Linux for core with Jev and Ollama backends only. SPM depends on from 0.7.0 with MLX, CoreAI, and Llama traits and no third-party dependencies unless a trait is enabled. mattt also maintains AnyLanguageModel on Hugging Face. This package is independent of TypeSafe beyond optional Jev backend calls.",
+    creator: {
+      name: "mattt",
+      handle: "mattt",
+      githubUrl: "https://github.com/mattt",
+    },
+    creatorQuote: {
+      text: "A unified Swift interface for decision models across MLX, Core AI, llama.cpp, Jev, and Ollama backends.",
+      attributedTo: "AnyDecisionModel README",
+      sourceUrl: "https://github.com/mattt/AnyDecisionModel/blob/main/README.md",
+    },
+    jevUsage: {
+      flowRole:
+        "Jev backend: DecisionSession forwards text or JSON state to a System One compatible HTTP server and maps probabilities back into Swift types",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Text prompts or JSON encoded application state passed into DecisionSession, matching README DecisionSession examples",
+      decisionOut:
+        "Typed probability, discrete choice with Choosable enums, or score levels with diagnostics and batch usage structs from decide(_:)",
+      flowSteps: [
+        "Add package dependency from 0.7.0 and enable traits for the backends you need",
+        "Configure Jev backend with your System One base URL and model id",
+        "Open DecisionSession with the selected model implementation",
+        "Call decide for single questions or batch decide(_:) for parallel scoring",
+        "Optionally prewarm() before latency sensitive UI paths",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README backend table: MLX uses next-token probabilities in one forward pass; MLX decision heads load checkpoints such as mlx-community/clef-flash-4bit for text and JSON; Core AI targets macOS 27 and iOS 27; llama.cpp serves GGUF; Jev speaks POST /v1/systemone; Ollama needs v0.35.0 plus locally and v0.40.5 plus for cloud.",
+          source: "github.com/mattt/AnyDecisionModel README backends section",
+        },
+        {
+          claim:
+            "README requirements: Swift 6.2 plus, macOS 26 plus, iOS 26 plus, Linux supported for core with Jev and Ollama backends only. SPM uses traits MLX, CoreAI, and Llama without third-party deps unless traits are on.",
+          source: "github.com/mattt/AnyDecisionModel README requirements",
+        },
+        {
+          claim:
+            "Public GitHub repository mattt/AnyDecisionModel had 56 stars and 4 forks on 2026-11-09. Created 2026-09-21. Last push 2026-11-05. Apache-2.0. Topics include jev and mlx-lm.",
+          source: "GitHub API, 2026-11-09",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "AnyDecisionModel is the Swift multi-backend cousin of peterfriese-system-one-foundation-models: both wrap System One shaped calls for Apple platform developers, but AnyDecisionModel also ships MLX, llama.cpp, and Ollama paths in one package. Point the Jev trait at api.typesafe.ai or at self-hosted POST /v1/systemone servers such as jaredpalmer-kev, strands-labs-strands-decider serve, or vev on localhost (see /alternatives/vev). Clef MLX heads align with /alternatives/cloudflare-clef weights philosophy but run on device through MLX, not Workers AI meters. For MLX on Mac without this package, see /learn/laya-vs-jev/laya-mlx-apple-silicon. Cite github.com/mattt/AnyDecisionModel README only.",
+    keyFeatures: [
+      "DecisionSession with probability, choice, and score entry points",
+      "Choosable enum driven choice API plus batch decide(_:)",
+      "Six backends behind SPM traits including Jev and Ollama",
+      "MLX Clef style decision head path for clef-flash-4bit weights",
+      "prewarm() and usage plus diagnostics on batch calls",
+      "Swift 6.2 plus with macOS 26, iOS 26, and partial Linux support",
+    ],
+    stack: [
+      "Swift 6.2",
+      "Swift Package Manager",
+      "MLX",
+      "Apple Core AI",
+      "llama.cpp GGUF",
+      "TypeSafe System One HTTP",
+      "Ollama",
+    ],
+    links: {
+      repo: "https://github.com/mattt/AnyDecisionModel",
+      docs: "https://github.com/mattt/AnyDecisionModel#readme",
+    },
+    pricingNote:
+      "Apache-2.0 code. Hosted Jev spends TypeSafe API usage. Ollama cloud and local costs depend on your Ollama account and hardware. MLX and Core AI use on-device compute.",
+    firstSeen: "2026-11-09",
+    relatedSlugs: [
+      "peterfriese-system-one-foundation-models",
+      "cloudflare-clef",
+      "jaredpalmer-kev",
+      "strands-labs-strands-decider",
+      "typesafe-ai-typesafe-sdk-js",
+    ],
+    relatedLearnSlugs: ["laya-mlx-apple-silicon", "system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "How is this different from System One for Apple Foundation Models?",
+        answer:
+          "Peter Friese's package targets LanguageModelSession and @Generable types on Foundation Models OS versions. AnyDecisionModel centers DecisionSession with six explicit backends including Ollama and llama.cpp.",
+      },
+      {
+        question: "Can I point the Jev backend at a local open server?",
+        answer:
+          "README describes Jev through any System One compatible server. Configure your base URL and model id the same way you would for Kev or Vev self-host guides on /alternatives/kev and /alternatives/vev.",
+      },
+      {
+        question: "Does Clef MLX require Cloudflare Workers?",
+        answer:
+          "The MLX decision head path loads weights such as mlx-community/clef-flash-4bit locally. Workers AI clef pricing on /alternatives/cloudflare-clef is separate from on-device MLX inference.",
+      },
+    ],
+    metaTitle: "AnyDecisionModel: Swift System One backends",
+    metaDescription:
+      "mattt/AnyDecisionModel Swift 6.2 package with six backends including Jev and Ollama. DecisionSession over text or JSON with MLX, Core AI, and llama.cpp.",
   },
 };

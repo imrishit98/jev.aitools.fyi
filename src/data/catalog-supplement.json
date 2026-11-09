@@ -2712,5 +2712,41 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-06"
+  },
+  {
+    "slug": "xiaooolong-vev",
+    "title": "Vev",
+    "oneLiner": "Qwen3.5 open decision stack with POST /v1/systemone, image inputs, vev serve, and README Decision Index vision and text tables.",
+    "description": "Vev (github.com/Xiaooolong/vev) fine-tunes Qwen3.5 into vev-4b-v2 with Apache 2.0 code and CC BY-NC 4.0 weights. README documents typesafe_sdk base_url compatibility, NVIDIA serve, and calibration caveats. Full comparison with hosted Jev on /alternatives/vev. Distinct from jaredpalmer-kev text stacks and strands-labs-strands-decider pointer checkpoints.",
+    "category": "integrations",
+    "tags": ["integrations","open-source","decision-model","system-one","vision"],
+    "language": "Python",
+    "stars": 29,
+    "url": "https://github.com/Xiaooolong/vev",
+    "repoUrl": "https://github.com/Xiaooolong/vev",
+    "demoUrl": "https://huggingface.co/spaces/CountingSheep/vev",
+    "creatorHandle": "Xiaooolong",
+    "creatorName": "Xiaooolong",
+    "sourcePlatform": "github",
+    "indexOnly": true,
+    "updatedAt": "2026-11-09"
+  },
+  {
+    "slug": "mattt-anydecisionmodel",
+    "title": "AnyDecisionModel",
+    "oneLiner": "Swift 6.2 package: DecisionSession over six backends including hosted Jev, Ollama, MLX, Core AI, and llama.cpp.",
+    "description": "AnyDecisionModel (github.com/mattt/AnyDecisionModel, Apache-2.0) by mattt follows the Apple Foundation Models model-and-session pattern for typed probability, choice, and score decisions. SPM from 0.7.0 with optional MLX, Core AI, and Llama traits. README wires Jev through the System One API, mlx-community clef heads, and Ollama 0.35 plus cloud 0.40.5. Cross-link /alternatives/cloudflare-clef and /alternatives/vev for self-hosted servers.",
+    "category": "integrations",
+    "tags": ["integrations","swift","ios","system-one","jev","mlx"],
+    "language": "Swift",
+    "stars": 56,
+    "url": "https://github.com/mattt/AnyDecisionModel",
+    "repoUrl": "https://github.com/mattt/AnyDecisionModel",
+    "badges": ["sdk"],
+    "creatorHandle": "mattt",
+    "creatorName": "mattt",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-09"
   }
 ]
