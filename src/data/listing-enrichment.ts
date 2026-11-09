@@ -785,6 +785,8 @@ export const listingEnrichmentBySlug: Record<string, ListingEnrichment> = {
   },
   "apolinario-decision-index": {
     slug: "apolinario-decision-index",
+    jevUsageSummary:
+      "Batch evaluation harness calling engines via transformers or HTTP POST /v1/systemone with frozen prompts.",
     leadCallout: {
       beforeLink:
         "Decision Index is a public benchmark for typed decision engines: state plus Choice or Noul questions in, one probability per option out. The live board is edition 0.4; this listing is for apolinario's reproduction kit, which still defaults to edition 0.3 and runs the public index (37 benchmarks in five areas, chance-corrected). Jev's published 0.2.1 public index score is 57.89 in the ",
