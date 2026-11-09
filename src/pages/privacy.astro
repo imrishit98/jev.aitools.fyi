@@ -49,18 +49,7 @@ const jsonLd = webPageJsonLd({
           <li>Southern East Inc., a Canadian company in Ontario, runs {siteName}.</li>
           <li>We use your information to run and improve {siteName}, keep it secure, and talk with you.</li>
           <li>We don't sell your personal information. We don't share it for targeted advertising.</li>
-          {partnerCopy.effective ? (
-            <li>
-              We may share statistics that don't identify anyone with business and research partners under the limits in{" "}
-              <a href="#future-partner-sharing" class="text-accent hover:underline">Business and research partners</a>.
-            </li>
-          ) : (
-            <li>
-              We may publish statistics that don't identify anyone. Sharing them with business and research partners starts{" "}
-              {PARTNER_SHARING_EFFECTIVE_DISPLAY} (see{" "}
-              <a href="#future-partner-sharing" class="text-accent hover:underline">the dated section below</a>).
-            </li>
-          )}
+          <li>We may publish statistics that don't identify anyone. Sharing them with business and research partners starts {PARTNER_SHARING_EFFECTIVE_DISPLAY} (see <a href="#future-partner-sharing" class="text-accent hover:underline">the dated section below</a>).</li>
           <li>We'll ask you first before we give a partner anything that identifies you for the partner's own use, including training AI.</li>
           <li>If we change how we use your information, we'll tell you at least 30 days ahead. We won't apply a new use to information we already have unless you say yes.</li>
           <li>
@@ -123,7 +112,7 @@ const jsonLd = webPageJsonLd({
           <strong class="text-foreground">How we use it.</strong> We use it to run, secure and improve {siteName}, and to publish research, reports and benchmarks.
         </p>
         <p class="mt-3">
-          <strong class="text-foreground">De-identified information is different.</strong> Some information we have only "de-identified". For example, we may replace your name with a code. That information can still be linked back to you, so we treat it as personal information. We use it only for our own internal research, analysis and product development. We don't give it to partners unless you've agreed {partnerCopy.programsRefBelow}.
+          <strong class="text-foreground">De-identified information is different.</strong> Some information we have only "de-identified". For example, we may replace your name with a code. That information can still be linked back to you, so we treat it as personal information. We use it only for our own internal research, analysis and product development. We don't give it to partners unless you've agreed (see "Programs you choose to join" below, when that section takes effect).
         </p>
       </section>
 
@@ -175,7 +164,7 @@ const jsonLd = webPageJsonLd({
         <h2 class="font-heading text-xl font-semibold text-foreground">Do we use personal information to train AI?</h2>
         <ul class="mt-3 list-disc space-y-2 pl-5">
           <li>We do not sell personal information to train AI models, including large language models.</li>
-          <li>We do not let partners train AI models on information that identifies you unless you opt in {partnerCopy.programsRef}.</li>
+          <li>We do not let partners train AI models on information that identifies you unless you opt in (see "Programs you choose to join" when that section takes effect).</li>
           <li>We do not use your personal information to train AI models.</li>
           <li>Search text you type into the My First Million demo is sent to an AI model to rank results (see "What we collect and publish today"). That provider's own terms decide what it keeps, so don't type personal information into the demo.</li>
           <li>
@@ -367,7 +356,11 @@ const jsonLd = webPageJsonLd({
           {partnerCopy.partnerSectionTitle}
         </h2>
         <p class="mt-3">
-          {partnerCopy.partnerSectionIntroPrefix} {PARTNER_SHARING_EFFECTIVE_DISPLAY}, the following sections also apply. They do not apply to information we already hold unless you agree after that date.
+          {partnerCopy.effective ? (
+            <>The following sections also apply. They do not apply to information we already hold unless you agree after that date.</>
+          ) : (
+            <>Starting {PARTNER_SHARING_EFFECTIVE_DISPLAY}, the following sections also apply. They do not apply to information we already hold unless you agree after that date.</>
+          )}
         </p>
 
         <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="statistics-partners">
@@ -386,7 +379,7 @@ const jsonLd = webPageJsonLd({
         <ul class="mt-3 list-disc space-y-2 pl-5">
           <li>We will not give a partner information that identifies you for the partner's own use, including training its AI models, unless you have opted in (see "Programs you choose to join").</li>
           <li>Every partner signs a written agreement. It limits use to the stated purpose, bans re-identification and onward sale, requires security and deletion, and lets us check compliance.</li>
-          <li>{partnerCopy.partnerListPreamble} <strong class="text-foreground">As of {PARTNER_SHARING_EFFECTIVE_DISPLAY}, we don't share personal information with any business or research partner.</strong></li>
+          <li>Before any sharing starts, we will list here the types of partners we actually work with and what they receive. <strong class="text-foreground">As of {PARTNER_SHARING_EFFECTIVE_DISPLAY}, we don't share personal information with any business or research partner.</strong></li>
         </ul>
 
         <h3 class="mt-6 font-heading text-lg font-semibold text-foreground" id="optional-programs">

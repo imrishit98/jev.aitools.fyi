@@ -69,26 +69,13 @@ export function partnerSharingDatedBoxLabel(now = new Date()): string {
 /** Phrase-level copy for static legal pages (evaluated at SSG build time). */
 export function getPartnerSharingLegalCopy(now = new Date()) {
   const effective = isPartnerSharingEffective(now);
-  const date = PARTNER_SHARING_EFFECTIVE_DISPLAY;
-  const programsRefBelow = effective
-    ? '(see "Programs you choose to join" below)'
-    : '(see "Programs you choose to join" below, when that section takes effect)';
-  const programsRef = effective
-    ? '(see "Programs you choose to join")'
-    : '(see "Programs you choose to join" when that section takes effect)';
 
   return {
     effective,
     datedBoxLabel: partnerSharingDatedBoxLabel(now),
-    programsRefBelow,
-    programsRef,
     partnerSectionTitle: effective
       ? "Business and research partners"
       : "Business and research partners (future)",
-    partnerSectionIntroPrefix: effective ? "Since" : "Starting",
-    partnerListPreamble: effective
-      ? "When we share with partners, we list here the types of partners we actually work with and what they receive."
-      : "Before any sharing starts, we will list here the types of partners we actually work with and what they receive.",
     termsServiceDataPrefix: effective ? "Since" : "Starting",
   };
 }

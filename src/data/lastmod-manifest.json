@@ -800,11 +800,11 @@
     "lastmod": "2026-10-17"
   },
   "/privacy": {
-    "hash": "4be3c5b6509cd2c102c109229fd0fd0b8a0906399bf177bb2ce28d216bca2c12",
+    "hash": "278779e09a94a3259534b399a5b7f0ea7762b431f6cd6cf0a4916fe8492f1316",
     "lastmod": "2026-10-10"
   },
   "/privacy/archive": {
-    "hash": "b1757b44eb848ea4b191959188fde93cf95bd069cfa4b945b154fe13460d66ab",
+    "hash": "9582d8f5863a7a9c0b726691c5072d32d6ca306230041c3d8569f37a339bbebc",
     "lastmod": "2026-11-09"
   },
   "/sdks/abovecolin-jevclient": {
@@ -924,7 +924,7 @@
     "lastmod": "2026-10-05"
   },
   "/terms": {
-    "hash": "15a46a787dc5d96f716835486adc7786fc00b17eac95ad612108997b29e8c28d",
+    "hash": "e3e1f3cb9bfb223e5da823086f99270025edcd58e771cdf53243149c07c9af8f",
     "lastmod": "2026-10-05"
   },
   "/tools/0814wdwd-solo-jev": {
@@ -1416,7 +1416,7 @@
     "lastmod": "2026-10-10"
   },
   "/your-privacy-choices": {
-    "hash": "3b0caf4f54ac791315098e5278041382174edaf139ebd57b307e7ff6bff794db",
+    "hash": "aa1fc4154c4fdd2be1b80f799098e6893d4dfd202fd48616fd86aa598f8095ca",
     "lastmod": "2026-10-05"
   }
 }
