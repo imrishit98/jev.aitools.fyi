@@ -10,17 +10,17 @@ import {
 import { alternativePath } from "@/data/alternatives-slugs";
 
 const hubSeoDescription =
-  "Twelve Jev alternatives: Laya, Cloudflare Clef, Kev, Strands Decider, OpenAI Decisions API, Von, and more. Adoption, licenses, prices, benchmarks.";
+  "Thirteen Jev alternatives: Laya, Cloudflare Clef, Kev, Vev, Strands Decider, OpenAI Decisions API, Von, and more. Adoption, licenses, prices, benchmarks.";
 
 export const alternativesHub: AlternativesHub = {
-  seoTitle: "Jev alternatives: 12 decision models compared",
+  seoTitle: "Jev alternatives: 13 decision models compared",
   seoDescription: hubSeoDescription,
-  h1: "Jev alternatives: 12 decision models compared",
+  h1: "Jev alternatives: 13 decision models compared",
   lastVerified: alternativeHubLastVerified(),
   summary:
-    "Hosted TypeSafe Jev is the default System One API for many agent stacks, but it is not the only way to score Choice, Score, and Noul questions in one forward pass. This hub lists twelve comparison pages we maintain in 2026: Laya on the existing learn hub plus eleven dedicated /alternatives guides. The table order is editorial as of " +
+    "Hosted TypeSafe Jev is the default System One API for many agent stacks, but it is not the only way to score Choice, Score, and Noul questions in one forward pass. This hub lists thirteen comparison pages we maintain in 2026: Laya on the existing learn hub plus twelve dedicated /alternatives guides. The table order is editorial as of " +
     alternativeHubLastVerified() +
-    ", informed by GitHub stars, Hugging Face downloads, and on-site interest, but not a single-metric sort. Row twelve (Von) is an explicit editorial speed pick. We label vendor-reported benchmarks separately from independent Decision Index Full scores from the public snapshot regenerated on " +
+    ", informed by GitHub stars, Hugging Face downloads, and on-site interest, but not a single-metric sort. Row thirteen (Von) is an explicit editorial speed pick. We label vendor-reported benchmarks separately from independent Decision Index Full scores from the public snapshot regenerated on " +
     m.decisionIndex.generatedUtc.slice(0, 10) +
     ".",
   quickPicks: [
@@ -40,8 +40,13 @@ export const alternativesHub: AlternativesHub = {
       href: alternativePath("perplexity-pplx-decider"),
     },
     {
+      need: "Open self-host that reads images with System One wire",
+      pick: "Vev (vev-4b-v2, research preview)",
+      href: alternativePath("vev"),
+    },
+    {
       need: "Editorial speed pick for local routing",
-      pick: "wfzyx Von (row 12, adoption plus curator pick)",
+      pick: "wfzyx Von (row 13, adoption plus curator pick)",
       href: alternativePath("von"),
     },
     {
@@ -76,7 +81,7 @@ export const alternativesHub: AlternativesHub = {
     {
       question: "Why is Von in the table as a runner-up?",
       answer:
-        "Von sits at row twelve as an editorial speed pick with strong Hugging Face downloads, not because it outranked Liquid d1 on every signal we watch. Read the Von vs Jev page before you treat it as a full migration target.",
+        "Von sits at row thirteen as an editorial speed pick with strong Hugging Face downloads, not because it outranked Liquid d1 on every signal we watch. Read the Von vs Jev page before you treat it as a full migration target.",
       links: [{ match: "Von vs Jev page", href: alternativePath("von") }],
     },
     {
@@ -143,6 +148,10 @@ export const alternativesHub: AlternativesHub = {
     {
       label: "GitHub: strands-labs/strands-decider",
       url: "https://github.com/strands-labs/strands-decider",
+    },
+    {
+      label: "GitHub: Xiaooolong/vev",
+      url: "https://github.com/Xiaooolong/vev",
     },
     {
       label: "GitHub: wfzyx/von",
@@ -248,6 +257,20 @@ function buildRanked(): AlternativesHubRankRow[] {
       decisionIndex: "Not on public Decision Index board in our snapshot; README Gemma 4 table lists Decision Index 29.78 to 48.69",
       adoption: githubAdoption("strands-labs/strands-decider"),
       pagePath: alternativePath("strands-decider"),
+      group: "open",
+      orderingBasis: "editorial",
+    },
+    {
+      name: "Vev",
+      maker: "Xiaooolong",
+      openWeights: "Apache 2.0 code; CC BY-NC 4.0 weights",
+      hostedApi: "Self-host (vev serve)",
+      jevCompatible: "POST /v1/systemone compatible (README)",
+      sizes: "4B vev-4b-v2 (Qwen3.5 family)",
+      inputs: "Text / JSON state and images",
+      decisionIndex: "README: vision 72.90; text ed. 0.3 score 60.32 (v2)",
+      adoption: githubAdoption("Xiaooolong/vev"),
+      pagePath: alternativePath("vev"),
       group: "open",
       orderingBasis: "editorial",
     },

@@ -8,51 +8,55 @@
     "lastmod": "2026-09-24"
   },
   "/alternatives": {
-    "hash": "0e3c43f51279fd5240d8134e7132abf8c0154f579548774cb26a0254d9acbfb8",
-    "lastmod": "2026-11-06"
+    "hash": "fdd5c24c978fb5ddd8fda4010fc8c9eade32b117d027dfc9cabb62b1074b0547",
+    "lastmod": "2026-11-09"
   },
   "/alternatives/clm-8b": {
-    "hash": "3d017591203d882375b0b46f95a37816392248c25d5d639b12cfc2222a88c173",
+    "hash": "6df821787d295a65868f840c7615d5ac9d208b08eb1384a13548268ce8d3f221",
     "lastmod": "2026-10-12"
   },
   "/alternatives/cloudflare-clef": {
-    "hash": "d1dec2e394ec790f0e1376a6d1ab71d450e64f181f9a11acbf4d055b0f0af514",
+    "hash": "f5122bdf468bd32e56fbcf7b9205c6c7972328eb551971b55042d9adb665af8f",
     "lastmod": "2026-10-12"
   },
   "/alternatives/fastino-gliner-decide": {
-    "hash": "d7a470fe318ee291503702ad2ca02ff3e400810c8209e8bf1a78fb27c0117716",
+    "hash": "bcc8900033537834f7a5dc57c410dafa3d1c943cf2f028aa8448b98b4e24e534",
     "lastmod": "2026-10-12"
   },
   "/alternatives/kev": {
-    "hash": "3612ea5a08e759ed509359974b4c16b34545d6ec7c8faaca173794a6809348da",
+    "hash": "06b84071b75b62eda849c3ae395bdfe2165d86f8cf895bd5ae67aea2dad1dc61",
     "lastmod": "2026-10-12"
   },
   "/alternatives/liquid-d1": {
-    "hash": "e7729dac62460b7a92f24d5992a370ce57c7489d947e76e70b57870f0c97b322",
+    "hash": "8c5d1207d66b017e889ff7df50585ecf8cd74e34f44c3b93f60910189853d323",
     "lastmod": "2026-10-12"
   },
   "/alternatives/mapika-decider": {
-    "hash": "33fa9d5dcfae5a51bd5591a7729a9e78a6b1445fb1123d4d87fdf292cdcd0f39",
+    "hash": "345207c10094d2fea45c202afb56827a72efb555fa6b8502715062fed0e2af9e",
     "lastmod": "2026-10-12"
   },
   "/alternatives/openai-decisions-api": {
-    "hash": "d7bb633b3cc405e965d2801c62848c077415d019699a7a235f98981ae4e5dff4",
+    "hash": "05998559439e2ce7bbabd2d141b3eacdc6a7833c9fc1abff18f2369e9f9dd599",
     "lastmod": "2026-10-12"
   },
   "/alternatives/perplexity-pplx-decider": {
-    "hash": "c4116f9d4aa767d7b7b974730e05207cfad8b24a8cfa68ed87baf02264e11b7e",
+    "hash": "8931757b8ed9bdec53e4a07d4266b4c27f7294ded49b4fcb041e7cc5754a2550",
     "lastmod": "2026-10-12"
   },
   "/alternatives/semif": {
-    "hash": "da9c03edb4cac1ccd7cdfec7864a1a58a7c3629f45215ee601941da178b1462d",
+    "hash": "c7bc276ed3685d7c401eacfe28c5f823f8c3c3ad77eb6c1fa49337bc3bbf22b7",
     "lastmod": "2026-10-12"
   },
   "/alternatives/strands-decider": {
-    "hash": "24cdc9dff1e37f02f66cd2ebb72e4de8dc9a5e68749131064d6bf0320f54494f",
+    "hash": "3419c877882ab2f162fb8c3587fb798236294f0212fdb8756e045db3b1ccbd43",
     "lastmod": "2026-11-06"
   },
+  "/alternatives/vev": {
+    "hash": "75862aa919357e50be269a0ca7081998efa506cc9787bcab0a9d2f260d52cdbb",
+    "lastmod": "2026-11-09"
+  },
   "/alternatives/von": {
-    "hash": "38322e2c9c5d7218c55c1f2f00dbe1d1f6ae35eb05a3ac69e923163cb248e27d",
+    "hash": "76545882b1392fd02ac947d35866c5279a8f186ceffa04668f8674d7b9eec67e",
     "lastmod": "2026-11-06"
   },
   "/apps/0xarx-jevegis": {
@@ -532,8 +536,8 @@
     "lastmod": "2026-11-09"
   },
   "/categories/integrations": {
-    "hash": "06236b07708406ab975724b6f76235fed4a1c8ba972e0433a2a3b245e1fe0cb8",
-    "lastmod": "2026-11-06"
+    "hash": "2ea00d1a20b90edc4ad5e338b63b74cbc8778c2f9f5a4a8d62c5472371b2d272",
+    "lastmod": "2026-11-09"
   },
   "/categories/official": {
     "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
@@ -560,7 +564,7 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "68f8f4e0140367184df7f9c3b73167d60b1cd3f694a971d4a3fbba1f7e81a5ee",
+    "hash": "d467e8a2831f7ea9c7729119382a448963a6b30c0dcdf21ba10c675a019ad98b",
     "lastmod": "2026-11-09"
   },
   "/for-agents": {
@@ -764,7 +768,7 @@
     "lastmod": "2026-09-26"
   },
   "/learn/laya-vs-jev/compare": {
-    "hash": "b629bb9175ee245466d9a4a55f1efa162a73d70b2743f5f8f461c7a3473b6fbb",
+    "hash": "ec9442d98cf89e246a8caedf7b927352f3f6b63ecc09735b3031b900cb7621d3",
     "lastmod": "2026-11-03"
   },
   "/learn/laya-vs-jev/laya-mlx-apple-silicon": {
@@ -860,8 +864,8 @@
     "lastmod": "2026-09-17"
   },
   "/sdks/peterfriese-system-one-foundation-models": {
-    "hash": "a2a3cda6b546119a7c7b4651b25cb8566974c56daa78c693d1ca58ede5eef1fa",
-    "lastmod": "2026-10-03"
+    "hash": "1b2b74af7eb66db7df61dfdcb4e137bc870d275402135054e24ee8f15c22a1aa",
+    "lastmod": "2026-11-09"
   },
   "/sdks/playground": {
     "hash": "b77089ae2573dc374fbc3d769d76130dce804b43752f2bb2a1b2f86679cec05e",
@@ -1182,6 +1186,10 @@
   "/tools/mapika-decider": {
     "hash": "564514bcfe20a134a7a8b5e318afa69af6dc389be4354c7369e9779de1ba8f40",
     "lastmod": "2026-10-07"
+  },
+  "/tools/mattt-anydecisionmodel": {
+    "hash": "ef5114a919d30dd8bf9ce9e2785886263950f35706ba48812851a34719397a32",
+    "lastmod": "2026-11-09"
   },
   "/tools/mbzuai-oryx-eo-jev": {
     "hash": "d3843c160618007e86bd61933b9ac9e07cb1c0f370471d040bebd7f39d01eae9",
