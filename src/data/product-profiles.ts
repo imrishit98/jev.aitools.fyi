@@ -14691,7 +14691,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     jevUsage: {
       flowRole:
         "Self-hosted /v1/systemone server with exact state forking over Hugging Face decision checkpoints, LoRA adapters served as-is, and flide verify for parity checks",
-      primitives: ["Choice", "Noul", "Score"],
+      primitives: ["Choice", "Noul"],
       stateIn:
         "JSON state plus a questions map; Choice supports up to 256 options per question; multimodal families accept text, images, or video per README model table",
       decisionOut:
@@ -14711,12 +14711,12 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Email triage demo on one H200 with OneJev1.6-0.8B: 10,000 emails times 8 questions each in 28 seconds total (10.0 ms per email), 3.5x faster than the fastest other engine for one email and 4.1x for all 10,000 versus three other engines in the published chart.",
+            "Email triage demo on one H200 with OneJev1.6-0.8B: 10,000 emails times 8 questions each in 28 seconds, and 10.0 ms for a single email, 3.5x faster than the fastest other engine for one email and 4.1x for all 10,000 versus three other engines in the published chart.",
           source: "github.com/OmniJev/Flide README Example and demos/email_triage",
         },
         {
           claim:
-            "README model table on one H200 (median single request vs the engine each release ships): OneJev ~6.8x DI / 7.3x MultiRC / 4.7x QuALITY; Kev ~7.9x DI; Senova 28.1x MultiRC; Clef ~1.7x DI; ~37 decision model families listed including OneJev, Open-Jev, Kev, Clef, pplx-decider, d1 (LiquidAI), GLiDE, Gemma 4, Qwen3.5.",
+            "README model table on one H200 (median single request vs the engine each release ships): OneJev ~6.8x DI / 7.3x MultiRC / 4.7x QuALITY; Kev ~7.9x DI; Senova 28.1x MultiRC; Clef ~1.7x DI; about 37 models in the README table, including chat models, among OneJev, Open-Jev, Kev, Clef, pplx-decider, d1 (LiquidAI), GLiDE, Gemma 4, Qwen3.5.",
           source: "github.com/OmniJev/Flide README Models table",
         },
         {
@@ -14732,15 +14732,15 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         {
           claim:
             "Public GitHub repository OmniJev/Flide had 468 stars and 30 forks on 2026-11-12. Created 2026-10-24. Apache-2.0. PyPI https://pypi.org/project/flide/.",
-          source: "GitHub API and PASS-PACK verification 2026-11-12",
+          source: "github.com/OmniJev/Flide repository and PyPI, checked 2026-11-12",
         },
       ],
     },
     howJevIsUsed:
-      "Flide is runtime packaging, not a new weight family. Point TypeSafe SDK, mattt-anydecisionmodel Jev trait, or any /v1/systemone client at localhost:8000 after flide serve. It competes on latency with mode-io-vllm-jev for operators who already standardize on vLLM, but README positions Flide as a decision-native fork engine with parity guarantees general runtimes do not advertise. Serve checkpoints you already track on jaredpalmer-kev (/alternatives/kev), Cloudflare Clef weights such as clef-flash (/alternatives/cloudflare-clef), mapika-decider, strands-labs-strands-decider, perplexity pplx-decider, and vision stacks on xiaooolong-vev (/alternatives/vev). Score your setup with apolinario-decision-index when you need the public Decision Index 0.3 harness beside raw wall clock. https://arxiv.org/abs/2610.42148?ref=jev.aitools.fyi cites the exact state forking method. Cite github.com/OmniJev/Flide README, docs.flide.org, and the email triage demo only.",
+      "Flide is runtime packaging, not a new weight family. Point TypeSafe SDK, mattt-anydecisionmodel Jev trait, or any /v1/systemone client at localhost:8000 after flide serve. It competes on latency with mode-io-vllm-jev for operators who already standardize on vLLM, but README positions Flide as a decision-native fork engine with parity guarantees general runtimes do not advertise. Serve checkpoints you already track on jaredpalmer-kev (/alternatives/kev), Cloudflare Clef weights such as clef-flash (/alternatives/cloudflare-clef), mapika-decider, strands-labs-strands-decider, perplexity pplx-decider, and vision stacks on xiaooolong-vev (/alternatives/vev). Score your setup with apolinario-decision-index when you need the public Decision Index 0.3 harness beside raw wall clock. https://arxiv.org/abs/2610.42148?ref=jev.aitools.fyi cites the exact state forking method.",
     keyFeatures: [
       "Exact state forking with per-question parity vs single-question baselines",
-      "flide serve for ~37 Hugging Face decision families plus chat models in the README table",
+      "flide serve for about 37 models in the README table, including chat models",
       "POST /v1/systemone including multi-request bodies since 0.1.9",
       "Email triage demo: 10,000 emails x 8 questions in 28 s on one H200",
       "flide verify, LoRA adapters served as-is, Choice up to 256 options",
