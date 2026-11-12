@@ -53,3 +53,29 @@ export function getLegalBannerPhase(now = new Date()): LegalBannerPhase {
 export function showPolicyUpdateBanner(now = new Date()): boolean {
   return getLegalBannerPhase(now) === "upcoming";
 }
+
+/** Whether partner-sharing sections are in effect (build-time and runtime). */
+export function isPartnerSharingEffective(now = new Date()): boolean {
+  return now.getTime() >= PARTNER_SHARING_EFFECTIVE_EPOCH_MS;
+}
+
+/** Dated box label on Privacy Policy and Terms (Takes effect vs in effect since). */
+export function partnerSharingDatedBoxLabel(now = new Date()): string {
+  return isPartnerSharingEffective(now)
+    ? `In effect since ${PARTNER_SHARING_EFFECTIVE_DISPLAY}`
+    : `Takes effect ${PARTNER_SHARING_EFFECTIVE_DISPLAY}`;
+}
+
+/** Phrase-level copy for static legal pages (evaluated at SSG build time). */
+export function getPartnerSharingLegalCopy(now = new Date()) {
+  const effective = isPartnerSharingEffective(now);
+
+  return {
+    effective,
+    datedBoxLabel: partnerSharingDatedBoxLabel(now),
+    partnerSectionTitle: effective
+      ? "Business and research partners"
+      : "Business and research partners (future)",
+    termsServiceDataPrefix: effective ? "Since" : "Starting",
+  };
+}
