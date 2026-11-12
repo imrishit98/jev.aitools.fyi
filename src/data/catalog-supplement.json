@@ -2748,5 +2748,23 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-09"
+  },
+  {
+    "slug": "omnijev-flide",
+    "title": "Flide",
+    "oneLiner": "Exact state forking inference for Jev-style decision models: flide serve on POST /v1/systemone, up to 9.5x vs vLLM and SGLang in README.",
+    "description": "Flide (github.com/OmniJev/Flide, Apache-2.0) by OmniJev serves about 37 models in the README table, including chat models, on NVIDIA GPUs with exact state forking and the Jev /v1/systemone API. README email triage demo: 10,000 emails x 8 questions in 28 s on one H200. Related site pages cover Kev, Cloudflare Clef, VEV, and the public Decision Index benchmark kit.",
+    "category": "integrations",
+    "tags": ["integrations", "serving", "system-one", "inference", "open-weight"],
+    "language": "Python",
+    "stars": 468,
+    "url": "https://github.com/OmniJev/Flide",
+    "repoUrl": "https://github.com/OmniJev/Flide",
+    "badges": ["sdk"],
+    "creatorHandle": "OmniJev",
+    "creatorName": "OmniJev",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-12"
   }
 ]

@@ -31,7 +31,8 @@
     "TheoLeeCJ/SemIf-OpenJev": { "stars": 4785, "forks": 348, "checkedAt": "2026-10-12" },
     "strands-labs/strands-decider": { "stars": 765, "forks": 109, "checkedAt": "2026-11-06" },
     "Xiaooolong/vev": { "stars": 29, "forks": 5, "checkedAt": "2026-11-09" },
-    "mattt/AnyDecisionModel": { "stars": 56, "forks": 4, "checkedAt": "2026-11-09" }
+    "mattt/AnyDecisionModel": { "stars": 56, "forks": 4, "checkedAt": "2026-11-09" },
+    "OmniJev/Flide": { "stars": 468, "forks": 30, "checkedAt": "2026-11-12" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },
