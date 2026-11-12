@@ -14668,4 +14668,134 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "mattt/AnyDecisionModel Swift 6.2 package with six backends including Jev and Ollama. DecisionSession over text or JSON with MLX, Core AI, and llama.cpp.",
   },
+
+  "omnijev-flide": {
+    slug: "omnijev-flide",
+    status: "published",
+    problem:
+      "Teams serving decision checkpoints through general LLM runtimes pay vLLM or SGLang overhead and still risk batching drift, but they need answers that match asking each question alone on shared state.",
+    targetUser:
+      "Linux or WSL2 operators with an NVIDIA GPU and Python 3.10 plus who want localhost POST /v1/systemone for dozens of open decision model families without rewriting clients.",
+    overview:
+      "Flide (github.com/OmniJev/Flide?ref=jev.aitools.fyi, Apache-2.0) is OmniJev's open inference engine for Jev-style decision models. README states exact state forking: one shared state fans out into parallel questions, each answered as if it were the only question, with up to 9.5x higher throughput than vLLM and SGLang on comparable workloads. It serves the Jev /v1/systemone API, including several requests in one body since release 0.1.9. Install with uv pip install flide torchvision, then flide serve --model OmniJev/OneJev1.6-0.8B on http://localhost:8000. Requirements: NVIDIA GPU, Linux or Windows WSL2, Python 3.10 plus, PyTorch 2.12 plus. Site https://flide.org and docs https://docs.flide.org. PyPI package flide. Paper: Flide: Accelerating Decision Inference with Exact State Forking (arXiv:2610.42148, Li, Song, Fei, Hsu, Lee 2026). Public GitHub repository OmniJev/Flide had 468 stars and 30 forks on 2026-11-12, created 2026-10-24, latest release 0.1.15 on 2026-11-12.",
+    creator: {
+      name: "OmniJev",
+      handle: "OmniJev",
+      githubUrl: "https://github.com/OmniJev",
+    },
+    creatorQuote: {
+      text: "Fast inference infrastructure for Jev-style decision models with exact state forking, up to 9.5 times faster than vLLM and SGLang, with answers identical to asking each question alone.",
+      attributedTo: "Flide README",
+      sourceUrl: "https://github.com/OmniJev/Flide/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Self-hosted /v1/systemone server with exact state forking over Hugging Face decision checkpoints, LoRA adapters served as-is, and flide verify for parity checks",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "JSON state plus a questions map; Choice supports up to 256 options per question; multimodal families accept text, images, or video per README model table",
+      decisionOut:
+        "Per-question typed answers with probabilities in one forward pass; batching preserves per-question parity with the single-question baseline per README exact forking claims",
+      flowSteps: [
+        "uv venv -p 3.12 && source .venv/bin/activate",
+        "uv pip install flide torchvision",
+        "flide serve --model OmniJev/OneJev1.6-0.8B or any id from the README model table",
+        "curl http://localhost:8000/v1/systemone with state and parallel questions",
+        "Optional: flide verify on your own model and requests; tune --session-cache-gb, --batch-invariant, --quantize fp8, --frontends",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README headline: exact state forking delivers up to 9.5x faster inference than vLLM and SGLang with answers identical to the model answering each question alone.",
+          source: "github.com/OmniJev/Flide README introduction",
+        },
+        {
+          claim:
+            "Email triage demo on one H200 with OneJev1.6-0.8B: 10,000 emails times 8 questions each in 28 seconds total (10.0 ms per email), 3.5x faster than the fastest other engine for one email and 4.1x for all 10,000 versus three other engines in the published chart.",
+          source: "github.com/OmniJev/Flide README Example and demos/email_triage",
+        },
+        {
+          claim:
+            "README model table on one H200 (median single request vs the engine each release ships): OneJev ~6.8x DI / 7.3x MultiRC / 4.7x QuALITY; Kev ~7.9x DI; Senova 28.1x MultiRC; Clef ~1.7x DI; ~37 decision model families listed including OneJev, Open-Jev, Kev, Clef, pplx-decider, d1 (LiquidAI), GLiDE, Gemma 4, Qwen3.5.",
+          source: "github.com/OmniJev/Flide README Models table",
+        },
+        {
+          claim:
+            "Options table: --session-cache-gb keeps prior request states for agent loops; --batch-invariant fixes bits across batch mates at some speed cost; --quantize fp8 runs Qwen3.5 FP8 on Ada, Hopper, and Blackwell; --frontends 2 splits HTTP, rendering, and tokenizing into separate processes.",
+          source: "github.com/OmniJev/Flide README Options",
+        },
+        {
+          claim:
+            "Release cadence from 0.1.0 (2026-10-24) through 0.1.15 (2026-11-12) added batched /v1/systemone bodies in 0.1.9, email triage demo in 0.1.11, clef-flash and GLiDE families, RTX 40/50 precompiled kernels, and LiquidAI d1-3B in 0.1.15.",
+          source: "github.com/OmniJev/Flide README News",
+        },
+        {
+          claim:
+            "Public GitHub repository OmniJev/Flide had 468 stars and 30 forks on 2026-11-12. Created 2026-10-24. Apache-2.0. PyPI https://pypi.org/project/flide/.",
+          source: "GitHub API and PASS-PACK verification 2026-11-12",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Flide is runtime packaging, not a new weight family. Point TypeSafe SDK, mattt-anydecisionmodel Jev trait, or any /v1/systemone client at localhost:8000 after flide serve. It competes on latency with mode-io-vllm-jev for operators who already standardize on vLLM, but README positions Flide as a decision-native fork engine with parity guarantees general runtimes do not advertise. Serve checkpoints you already track on jaredpalmer-kev (/alternatives/kev), Cloudflare Clef weights such as clef-flash (/alternatives/cloudflare-clef), mapika-decider, strands-labs-strands-decider, perplexity pplx-decider, and vision stacks on xiaooolong-vev (/alternatives/vev). Score your setup with apolinario-decision-index when you need the public Decision Index 0.3 harness beside raw wall clock. https://arxiv.org/abs/2610.42148?ref=jev.aitools.fyi cites the exact state forking method. Cite github.com/OmniJev/Flide README, docs.flide.org, and the email triage demo only.",
+    keyFeatures: [
+      "Exact state forking with per-question parity vs single-question baselines",
+      "flide serve for ~37 Hugging Face decision families plus chat models in the README table",
+      "POST /v1/systemone including multi-request bodies since 0.1.9",
+      "Email triage demo: 10,000 emails x 8 questions in 28 s on one H200",
+      "flide verify, LoRA adapters served as-is, Choice up to 256 options",
+      "--session-cache-gb, --batch-invariant, --quantize fp8, --frontends 2",
+    ],
+    stack: [
+      "Python 3.10 plus",
+      "PyTorch 2.12 plus",
+      "NVIDIA GPU",
+      "Linux or WSL2",
+      "PyPI flide",
+      "Hugging Face decision checkpoints",
+    ],
+    links: {
+      repo: "https://github.com/OmniJev/Flide",
+      website: "https://flide.org",
+      docs: "https://docs.flide.org",
+      demo: "https://github.com/OmniJev/Flide/tree/main/demos/email_triage",
+    },
+    pricingNote:
+      "Apache-2.0 code. You pay for NVIDIA GPU time, power, and Hugging Face bandwidth. No TypeSafe meter unless clients also call api.typesafe.ai.",
+    firstSeen: "2026-11-12",
+    relatedSlugs: [
+      "jaredpalmer-kev",
+      "mode-io-vllm-jev",
+      "mapika-decider",
+      "apolinario-decision-index",
+      "xiaooolong-vev",
+      "mattt-anydecisionmodel",
+    ],
+    relatedLearnSlugs: ["system-one", "where-to-run-jev"],
+    faq: [
+      {
+        question: "How is Flide different from vLLM Jev or plain vLLM?",
+        answer:
+          "mode-io-vllm-jev wraps open checkpoints in native vLLM on Linux NVIDIA. Flide README claims a decision-specific exact forking path up to 9.5x faster than vLLM and SGLang on published workloads while keeping answers identical to isolated questions.",
+      },
+      {
+        question: "Which hardware does Flide require?",
+        answer:
+          "README Quick start: NVIDIA GPU, Linux or Windows WSL2, Python 3.10 plus, PyTorch 2.12 plus. Install with uv pip install flide torchvision.",
+      },
+      {
+        question: "Can I benchmark Flide against other servers?",
+        answer:
+          "Yes. Run apolinario-decision-index against your POST /v1/systemone endpoint for public Decision Index math, and use the email triage demo README for the 10,000 email throughput scenario on one H200.",
+      },
+      {
+        question: "What should I cite if I use Flide in research?",
+        answer:
+          "README bibtex cites Li, Bobo and Song, Jiajia and Fei, Hao and Hsu, Wynne and Lee, Mong Li, Flide: Accelerating Decision Inference with Exact State Forking, arXiv preprint arXiv:2610.42148, 2026, linked at https://arxiv.org/abs/2610.42148?ref=jev.aitools.fyi.",
+      },
+    ],
+    metaTitle: "Flide: fast System One inference with state forking",
+    metaDescription:
+      "OmniJev/Flide serves Jev /v1/systemone on NVIDIA GPUs with exact state forking; README cites up to 9.5x vs vLLM and SGLang and an email triage demo on one H200.",
+  },
 };

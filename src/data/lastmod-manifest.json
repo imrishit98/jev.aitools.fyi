@@ -536,8 +536,8 @@
     "lastmod": "2026-11-09"
   },
   "/categories/integrations": {
-    "hash": "2ea00d1a20b90edc4ad5e338b63b74cbc8778c2f9f5a4a8d62c5472371b2d272",
-    "lastmod": "2026-11-09"
+    "hash": "fe9c80c1c598c8823f1fb1482b1f5c7900e391efb85c50e9935e5b6822c1bb74",
+    "lastmod": "2026-11-12"
   },
   "/categories/official": {
     "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
@@ -564,8 +564,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "d467e8a2831f7ea9c7729119382a448963a6b30c0dcdf21ba10c675a019ad98b",
-    "lastmod": "2026-11-09"
+    "hash": "ccaeef95916f1951bb8357892aae6a378cab0949ba0f82cedb27c5f9ed68a28a",
+    "lastmod": "2026-11-12"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -1246,6 +1246,10 @@
   "/tools/ollaya-dev-ollaya": {
     "hash": "8be14d3e8966e5b193a6bec11e4a5cfe168d7715e7d4b721d5bb43e014a8a7ac",
     "lastmod": "2026-10-07"
+  },
+  "/tools/omnijev-flide": {
+    "hash": "8678dc29e7f5cc2b11eae6bd6616c66ff5f2c507bc9f6505bac5d72ba8c9fbdd",
+    "lastmod": "2026-11-12"
   },
   "/tools/openbmb-minicpm-ocr-jev": {
     "hash": "defdba12f27d45aab669a7d4c577ae9f911aa51ab81d079796301ee72159baaa",

@@ -315,6 +315,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Point typesafe_sdk at vev serve when you need frames in state: README cites vision Decision Index rows, image judgment lifts, and the honest line that Jev-compatible wire does not clone hosted calibration.",
   "mattt-anydecisionmodel":
     "Pick a Swift trait and keep one DecisionSession API across MLX logits, Clef decision heads, Core AI, llama.cpp GGUF, Jev over System One, or Ollama local and cloud without bolting third-party deps unless you opt in.",
+  "omnijev-flide":
+    "Fork one shared state into parallel Choice, Noul, and Score questions on NVIDIA hardware, keep answers identical to solo runs, and let README tables show up to 9.5x against vLLM and SGLang while flide serve keeps the Jev wire you already use.",
   "deepaleph-jevreel":
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":
