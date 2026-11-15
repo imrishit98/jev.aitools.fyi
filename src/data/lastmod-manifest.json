@@ -512,8 +512,8 @@
     "lastmod": "2026-09-17"
   },
   "/categories/agent-tooling": {
-    "hash": "55bd2a692db0964111efa3f3b02496472327b35c64a588cfbe2a514e9272afb8",
-    "lastmod": "2026-11-06"
+    "hash": "ad7d27288da596262c4366a0d979fa85694315a8d5ca896ff2785932682e2764",
+    "lastmod": "2026-11-15"
   },
   "/categories/applications": {
     "hash": "6b69a151df251e8770aa9b8ff6f8819b7c3a11a1806316755a1f208db364b321",
@@ -564,8 +564,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "ccaeef95916f1951bb8357892aae6a378cab0949ba0f82cedb27c5f9ed68a28a",
-    "lastmod": "2026-11-12"
+    "hash": "6e32f8ed365c0b8f0d3e55bdd6c3ae797d28fd988ab0e612b28321f11d139b8e",
+    "lastmod": "2026-11-15"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -942,6 +942,10 @@
   "/tools/a2sys-ai-jevfetch": {
     "hash": "e19143d27b9a3937ffb466cdb451aabf2d57384330519c2e62aee9013689ab4b",
     "lastmod": "2026-11-06"
+  },
+  "/tools/agent-labs-dev-fastbrowse": {
+    "hash": "6fe15d786ee3a9d0eda412877753573c056b1a4ce1e8741a614779fc39387d51",
+    "lastmod": "2026-11-15"
   },
   "/tools/alex314618-create-jevrev": {
     "hash": "6f0241a551cab7e216b680c43099d0d56d440558daa181417f75577d5a59fc77",
