@@ -2766,5 +2766,24 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-12"
+  },
+  {
+    "slug": "agent-labs-dev-fastbrowse",
+    "title": "fastbrowse",
+    "oneLiner": "Browser agent where Jev picks one real control per step; answers cite verbatim page quotes. LLM plans and writes; code gates pay, send, and secrets.",
+    "description": "fastbrowse (github.com/agent-labs-dev/fastbrowse, MIT, PyPI 0.10.0 Nov 2026) by Agent Labs indexes each page into its controls so Jev cannot act off-page; an LLM proposes start URLs and composes cited answers only. Rust core, Chrome extension CLI default, MCP, Python, Node, and Go SDKs. Vendor benchmark on fastbrowse.ai/benchmarks (not directory measurement).",
+    "category": "agent-tooling",
+    "tags": ["agent-tooling", "browser-use", "mcp", "rust", "agents"],
+    "language": "Rust",
+    "stars": 230,
+    "url": "https://github.com/agent-labs-dev/fastbrowse",
+    "repoUrl": "https://github.com/agent-labs-dev/fastbrowse",
+    "demoUrl": "https://fastbrowse.ai",
+    "badges": ["sdk", "mcp"],
+    "creatorHandle": "agent-labs-dev",
+    "creatorName": "Agent Labs",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-15"
   }
 ]

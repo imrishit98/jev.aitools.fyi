@@ -14798,4 +14798,136 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "OmniJev/Flide serves Jev /v1/systemone on NVIDIA GPUs with exact state forking; README cites up to 9.5x vs vLLM and SGLang and an email triage demo on one H200.",
   },
+
+  "agent-labs-dev-fastbrowse": {
+    slug: "agent-labs-dev-fastbrowse",
+    status: "published",
+    problem:
+      "LLM browser agents hallucinate clicks, invent fields, and quote pages without evidence, while sensitive actions stay too easy to trigger.",
+    targetUser:
+      "Operators who want a cited browser agent on signed-in Chrome or Browser Use Cloud, with Jev on real controls and deterministic gates on pay, send, delete, and secrets.",
+    overview:
+      "fastbrowse (github.com/agent-labs-dev/fastbrowse?ref=jev.aitools.fyi, MIT) is Agent Labs' browser agent where each page is indexed into its real controls and Jev picks one action, so it cannot click something that is not on the page. An LLM only proposes a start page, writes field values, and composes answers; every claim cites a verbatim quote from the page with a scroll-to-text link, and you can pass a schema for validated data. Code holds the gates: submit, pay, delete, and send stop until you pass --authorize; secrets type only on their declared origin with models seeing names only; step, time, and dollar limits enforce in code. Quick start: uvx fastbrowse \"...\" --start https://news.ycombinator.com/ with OPENROUTER_API_KEY (Jev and the LLM via OpenRouter; Vercel AI Gateway fallback; TYPESAFE_API_KEY supported). PyPI fastbrowse 0.10.0 as of Nov 2026. Public GitHub repository agent-labs-dev/fastbrowse had 230 stars and 29 forks when checked 2026-11-15; created 2026-09-17; latest release v0.10.0 on 2026-11-10.",
+    creator: {
+      name: "Agent Labs",
+      handle: "agent-labs-dev",
+      githubUrl: "https://github.com/agent-labs-dev",
+      companyUrl: "https://fastbrowse.ai",
+    },
+    creatorQuote: {
+      text:
+        "Jev picks every action from controls actually on the page; the LLM plans and writes answers that must cite quotes from the page.",
+      attributedTo: "fastbrowse README",
+      sourceUrl:
+        "https://github.com/agent-labs-dev/fastbrowse/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-step Choice over indexed page controls; LLM handles start URL, literal field text, and answer composition with cited quotes",
+      primitives: ["Choice", "Noul"],
+      stateIn:
+        "Indexed control list from the live page (no CSS selectors); optional schema for structured extraction; models see secret names only, not values.",
+      decisionOut:
+        "One control action per step from Jev; answers bundle verbatim page quotes with scroll-to-text links; validated JSON when a schema is supplied.",
+      flowSteps: [
+        "Install Chrome extension or pass --cloud for Browser Use Cloud; optional --desktop for Linux Hyprland deskpilot apps",
+        "uvx fastbrowse \"your task\" --start https://example.com/ with OPENROUTER_API_KEY or TYPESAFE_API_KEY",
+        "Jev picks the next control each step until done or limits hit",
+        "Pass --authorize before submit, pay, delete, or send; scope origins with allowed_origins",
+        "Save recipes to replay actions; optional MP4 recording per README",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Rust core vs the old Python core on 36 fixture tasks: same outcomes with 18x less agent CPU, 54x faster startup, and 5.4x less peak memory per README.",
+          source: "github.com/agent-labs-dev/fastbrowse README",
+        },
+        {
+          claim:
+            "Sauce Demo checkout on v0.10.0: 16.4 s, 12 steps, $0.0149 in model calls per README.",
+          source: "github.com/agent-labs-dev/fastbrowse README",
+        },
+        {
+          claim:
+            "Vendor benchmark (release-0.10.0 campaign, 53 live tasks x3, run 2026-11-09, judged by Claude Opus 5.5 via OpenRouter, published on fastbrowse.ai/benchmarks, not measured by jev.aitools.fyi): fastbrowse passed 89.9% of 159 attempts vs hosted Browser Use agent 94.1%, Browser Harness 88.2%, Jev Ultrafast 4.6%; about $0.0150 per run vs hosted agent $0.5508 (36.6x less); fastest on 35 of 50 tasks where two or more agents passed (hosted agent 11). Hosted agent passed more overall; fastbrowse leads on cost and speed in that campaign.",
+          source: "fastbrowse.ai/benchmarks and github.com/agent-labs-dev/fastbrowse docs/benchmarks.md",
+        },
+        {
+          claim:
+            "Jev Ultrafast's low score in that campaign is because it returns no answer and cannot take login credentials per fastbrowse README.",
+          source: "github.com/agent-labs-dev/fastbrowse docs/benchmarks.md",
+        },
+        {
+          claim:
+            "Public GitHub repository agent-labs-dev/fastbrowse had 230 stars and 29 forks on 2026-11-15. MIT. PyPI 0.10.0. npm package fastbrowse. Site https://fastbrowse.ai.",
+          source: "GitHub, PyPI, and fastbrowse.ai, checked 2026-11-15",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "fastbrowse is the control-picker and citation layer for web tasks, not an open-ended chat loop. Compare browser-use-jev-ultrafast (/apps/browser-use-jev-ultrafast) for Browser Use's DOM table hybrid where a tiny LLM only runs on TYPE_TEXT. wy-coliney-jev-browser-use routes Codex Computer Use clicks through Jev on accessibility text. jkudish-jev-browser (/apps/jkudish-jev-browser) is an npm MCP loop over Playwright with similar ultrafast splits. mahmoudadelbghany-jev-browser is another Jev browser repo in the catalog for operators comparing harnesses. fastbrowse adds indexed controls without selectors, scroll-to-text citations, recipe replay, Chrome extension default against your signed-in session, plus CLI, Python, Node, Go SDKs, MCP server, and a coding-agent skill. Interfaces are documented in README; docs/jev.md covers Jev wiring.",
+    keyFeatures: [
+      "Jev Choice on indexed controls only; no selector DSL",
+      "Cited answers with verbatim quotes and schema validation",
+      "--authorize gates for submit, pay, delete, send",
+      "Secrets typed on declared origin; models see names only",
+      "Chrome extension CLI default, --cloud, --desktop deskpilot",
+      "CLI, Python, Node, Go SDKs, MCP, skill, recipes, MP4 recording",
+    ],
+    stack: [
+      "Rust core",
+      "Chrome extension",
+      "OpenRouter or Vercel AI Gateway for Jev and LLM",
+      "TypeSafe TYPESAFE_API_KEY optional",
+      "Browser Use Cloud with --cloud",
+      "PyPI, npm fastbrowse",
+    ],
+    links: {
+      repo: "https://github.com/agent-labs-dev/fastbrowse",
+      website: "https://fastbrowse.ai",
+      docs: "https://github.com/agent-labs-dev/fastbrowse/blob/main/docs/jev.md",
+      demo: "https://fastbrowse.ai/benchmarks",
+      post: "https://chromewebstore.google.com/detail/fastbrowse/ghodfgfhbfaghhfdabopagbfopdjgpop",
+    },
+    pricingNote:
+      "MIT open source; model spend is bring-your-own via OpenRouter, Vercel AI Gateway, or TypeSafe. README Sauce Demo cites about $0.015 per run class; vendor benchmark cites about $0.0150 median vs $0.5508 hosted Browser Use agent in their Nov 2026 campaign.",
+    firstSeen: "2026-11-15",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "wy-coliney-jev-browser-use",
+      "jkudish-jev-browser",
+      "mahmoudadelbghany-jev-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "patterns"],
+    faq: [
+      {
+        question: "How is fastbrowse different from Browser Use Jev Ultrafast?",
+        answer:
+          "browser-use-jev-ultrafast is Browser Use's Python hybrid with a numbered DOM table and an LLM only on TYPE_TEXT. fastbrowse indexes real controls for Jev Choice, requires cited quotes in answers, and documents --authorize gates plus origin-scoped secrets. Compare both READMEs before you pick a harness.",
+      },
+      {
+        question: "Do I need the Chrome extension?",
+        answer:
+          "README defaults to your signed-in Chrome via the extension for CLI runs. Pass --cloud for Browser Use Cloud or --desktop for Linux Hyprland desktop apps via deskpilot.",
+      },
+      {
+        question: "Which API keys does fastbrowse expect?",
+        answer:
+          "README quick start uses OPENROUTER_API_KEY for Jev and the LLM through OpenRouter, with Vercel AI Gateway fallback. TYPESAFE_API_KEY is also supported for TypeSafe-hosted Jev.",
+      },
+      {
+        question: "Should I trust the pass-rate table on fastbrowse.ai?",
+        answer:
+          "That table is fastbrowse's own release-0.10.0 campaign judged by Claude Opus 5.5, not a jev.aitools.fyi measurement. README is honest that the hosted Browser Use agent passed more attempts (94.1% vs 89.9%) while fastbrowse led on cost and speed in the same published run.",
+      },
+      {
+        question: "What interfaces can agents use?",
+        answer:
+          "README lists CLI, Python library, Node and Go SDKs without requiring Python, an MCP server, and a coding-agent skill. Pick one entry point; recipes let you save and replay control sequences.",
+      },
+    ],
+    metaTitle: "fastbrowse: Jev picks real controls, cites pages",
+    metaDescription:
+      "agent-labs-dev/fastbrowse: Jev on indexed controls, cited quotes in answers, code gates on pay and secrets. v0.10.0 Nov 2026; vendor bench on fastbrowse.ai.",
+  },
 };
