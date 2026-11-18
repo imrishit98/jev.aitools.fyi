@@ -14930,4 +14930,247 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "agent-labs-dev/fastbrowse: Jev on indexed controls, cited quotes in answers, code gates on pay and secrets. v0.10.0 Nov 2026; vendor bench on fastbrowse.ai.",
   },
+
+  "qbeka-jev-job-search": {
+    slug: "qbeka-jev-job-search",
+    status: "published",
+    problem:
+      "Students and new grads burn hours retyping the same profile into ATS forms while generic browser agents invent answers, skip read-back checks, or submit without consent.",
+    targetUser:
+      "Software job seekers in Canada, the US, or remote who already run Claude Code, Codex, Cursor, or Gemini CLI and want agent-driven discover, apply, and report flows with human approval on every send.",
+    overview:
+      "jev-job-search (github.com/qbeka/jev-job-search?ref=jev.aitools.fyi, MIT, beta) is an independent open-source job application tool for students and new graduates applying to software roles in Canada, the United States, or remotely. You drive it from a coding agent (Claude Code by default; Codex, Cursor, or Gemini CLI via AGENTS.md). Commands: /setup (about 20 minutes, reads your resume PDF, asks only what it does not say, rehearses three forms without sending), /discover (reads public job lists such as SimplifyJobs and company boards and ranks what fits), /apply (fills each form in its own Chrome window, reads every value back from the page before Submit, sends only what you approve), and /report (dashboard on your own machine). Jev makes every decision with a fixed set of answers (which of your details goes in a box, which option, how good a fit a job is) in about half a second; a separate writer model writes sentences (Claude by default, or Codex CLI, the Claude API, or any OpenAI-compatible endpoint including Ollama; only Claude has been run on real forms). Boards: Greenhouse, Lever, and Ashby by link; Workable, Rippling, BambooHR, Jobvite, and JazzHR from the queue; Workday and Gmail support are in progress and off by default. README states it will not change your facts, send an unchecked form, solve captchas or emailed robot codes, sign for you, pick interview slots, invent references, or show a password to a model (passwords go to the OS secret store). Forms it cannot finish truthfully are listed in a manual file with the reason. It learns per job site and shares notes through the repo. Runs on macOS, Linux, and Windows (Linux and Windows are CI tested but the maintainer has not done full desktop runs). Needs Node 22+, Chrome, and a Jev key from TypeSafe or OpenRouter (model page https://openrouter.ai/typesafe/jev-1.13?ref=jev.aitools.fyi). Public GitHub repository qbeka/jev-job-search had 374 stars and 68 forks when checked 2026-11-18; created 2026-10-02; releases from v1.4.0 (2026-10-04) through v1.7.0 (2026-11-11); contributors qbeka, Meirzhan05, and deepmehta11. Not affiliated with TypeSafe.",
+    creator: {
+      name: "qbeka",
+      handle: "qbeka",
+      githubUrl: "https://github.com/qbeka",
+    },
+    creatorQuote: {
+      text:
+        "JEV makes every decision that has a fixed set of answers for a fraction of a cent; the writer only writes the sentences.",
+      attributedTo: "jev-job-search README",
+      sourceUrl:
+        "https://github.com/qbeka/jev-job-search/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Field mapping Choice, fit ranking Score, and option picks on each form; writer model only when open text is required",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Parsed form controls from live Chrome, your git-ignored profile and documents, and ranked job rows from /discover",
+      decisionOut:
+        "Per-field mappings and fit scores in about half a second; writer handles prose; code read-backs every value before Submit",
+      flowSteps: [
+        "claude or AGENTS.md agent runs /setup to build profile and rehearse three forms",
+        "/discover ranks public lists and company boards with Jev fit scoring",
+        "/apply opens one Chrome window per job, maps fields with one Jev call, fills with real input events",
+        "Read every value from the page before Submit; send only after your yes",
+        "/report local dashboard for sent applications and manual.csv holds",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Maintainer reported (README, not measured by jev.aitools.fyi): 100 applications in under 10 minutes for about $1 of Jev across Ashby, Lever, Workable, Rippling, BambooHR, Jobvite, and JazzHR; every answer read back from the page before send.",
+          source: "github.com/qbeka/jev-job-search README Does it actually work",
+        },
+        {
+          claim:
+            "Maintainer reported cost notes: Jev cost 1 to 1.5 cents per 10 forms and 6 to 9 cents to rate a few hundred postings; about $5 covers about 60 searches and 3,000 applications.",
+          source: "github.com/qbeka/jev-job-search README Cost",
+        },
+        {
+          claim:
+            "README workflow split: Jev returns probabilities for fixed-answer decisions in about half a second; a form with no open question never calls the writer.",
+          source: "github.com/qbeka/jev-job-search README Why it is different",
+        },
+        {
+          claim:
+            "Public GitHub repository qbeka/jev-job-search had 374 stars and 68 forks on 2026-11-18. MIT. Beta. Created 2026-10-02. Latest release v1.7.0 on 2026-11-11.",
+          source: "GitHub qbeka/jev-job-search, checked 2026-11-18",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-job-search is the intake and autofill loop for new-grad software hiring, not resume scoring. Compare awun8191-jev-resume-analyzer on the explore catalog for scoring a resume with a different intent. For browser control patterns, see agent-labs-dev-fastbrowse for cited indexed controls, browser-use-jev-ultrafast for DOM table hybrids, and mahmoudadelbghany-jev-browser when you compare Playwright MCP loops. Jev owns which profile field maps to which box, which dropdown option is true, and how strong a posting fit is; the coding agent owns slash commands and your approvals; Chrome owns faithful read-back before Submit. README is explicit that passwords never reach models and unsupported boards land in manual.csv with reasons.",
+    keyFeatures: [
+      "/setup, /discover, /apply, /report agent commands",
+      "Jev field map in ~0.5 s; writer only for open text",
+      "Read-back every value before Submit; approve each send",
+      "Greenhouse, Lever, Ashby, Workable, Rippling, BambooHR, Jobvite, JazzHR",
+      "Git-ignored profile; OS secret store for passwords",
+      "Per-site notes shared through the repo; manual.csv for blocked forms",
+    ],
+    stack: [
+      "Node.js 22+",
+      "Google Chrome dedicated profile",
+      "Claude Code, Codex, Cursor, or Gemini CLI via AGENTS.md",
+      "TypeSafe or OpenRouter Jev key",
+      "Writer: Claude default, Codex, API, or Ollama-compatible",
+    ],
+    links: {
+      repo: "https://github.com/qbeka/jev-job-search",
+      docs: "https://github.com/qbeka/jev-job-search/blob/main/docs/SETUP.md",
+      demo: "https://openrouter.ai/typesafe/jev-1.13",
+    },
+    pricingNote:
+      "MIT, no paid tier. You bring Jev and writer spend. Maintainer reported about $1 for 100 applications and 1 to 1.5 cents per 10 forms for Jev decisions (not verified by this directory).",
+    firstSeen: "2026-11-18",
+    relatedSlugs: [
+      "awun8191-jev-resume-analyzer",
+      "agent-labs-dev-fastbrowse",
+      "browser-use-jev-ultrafast",
+      "mahmoudadelbghany-jev-browser",
+    ],
+    relatedLearnSlugs: ["use-cases", "patterns"],
+    faq: [
+      {
+        question: "Is jev-job-search affiliated with TypeSafe or Anthropic?",
+        answer:
+          "README states it is an independent open-source project, not affiliated with Anthropic, OpenAI, TypeSafe, OpenRouter, or job boards.",
+      },
+      {
+        question: "Which job boards does /apply support today?",
+        answer:
+          "README lists Greenhouse, Lever, and Ashby by link or queue, plus Workable, Rippling, BambooHR, Jobvite, and JazzHR from the queue. Workday and Gmail are in progress and off by default.",
+      },
+      {
+        question: "What happens when a form needs a signature or captcha?",
+        answer:
+          "README says it will not sign, solve captchas, or handle emailed robot codes. Those forms stay open or land in manual.csv with the reason.",
+      },
+      {
+        question: "Which writer has been tested on real forms?",
+        answer:
+          "README says only Claude has been run on real forms, though you can point .env at Codex, the Claude API, or OpenAI-compatible hosts including Ollama.",
+      },
+    ],
+    metaTitle: "jev-job-search: Jev maps fields, you approve send",
+    metaDescription:
+      "qbeka/jev-job-search MIT beta: Jev maps job forms in ~0.5s with read-back before send. v1.7.0 Nov 2026; maintainer cites ~100 apps for ~$1 Jev.",
+  },
+
+  "native-bond-lab-jev-interaction": {
+    slug: "native-bond-lab-jev-interaction",
+    status: "published",
+    problem:
+      "Full-duplex voice products either hide turn-taking inside one end-to-end speech model or bolt a trained end-of-turn detector onto a cascade with little visibility into why a pause became an answer.",
+    targetUser:
+      "Python 3.10+ builders who want speech recognition, any LLM, and any TTS with explicit Jev multiple-choice decisions for listen, floor, pause, and pace on calls of any length.",
+    overview:
+      "Jev-Interaction (github.com/native-bond-lab/Jev-Interaction?ref=jev.aitools.fyi, Apache-2.0, alpha) is Native Bond Lab's full-duplex voice stack: speech recognition, then Jev decisions, then any language model, then any speech synthesis. Every turn-taking moment is a plain-language multiple-choice question; Jev returns a probability for each choice in tens of milliseconds; a policy turns probabilities into an action. The agent listens while it talks, says mm-hm while you talk, lets a pause stand, carries on through a backchannel, yields or finishes its sentence when you cut in, and picks the call back up after silence. Pace is routed per turn (normal, listening, narrating, eager). Personas change how it takes turns, not only the words. Zero-shot: nothing trained on benchmarks or your data; a task profile is a page of text. Every decision is logged with the state and probabilities and can be replayed. No provider session held open, so calls can be any length. Install with pip install \"jev-interaction[server] @ git+https://github.com/native-bond-lab/Jev-Interaction\" or ./scripts/setup.sh. Live demo on Hugging Face at https://huggingface.co/spaces/pupunpu/Jev-Interaction?ref=jev.aitools.fyi. TypeSafe Build of the Week. Public GitHub repository native-bond-lab/Jev-Interaction had 57 stars when checked 2026-11-18; created 2026-11-10; last push 2026-11-18; Apache-2.0; contributors yj972 and tuzhong77.",
+    creator: {
+      name: "Native Bond Lab",
+      handle: "native-bond-lab",
+      githubUrl: "https://github.com/native-bond-lab",
+    },
+    creatorQuote: {
+      text:
+        "We wrote every gap down as a question, and gave the questions to Jev.",
+      attributedTo: "Jev-Interaction README",
+      sourceUrl:
+        "https://github.com/native-bond-lab/Jev-Interaction/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Fast turn-taking Choice across turn, listen, floor, cut_in, quiet, and who; policies map persona and task profile to sampled actions",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Recent transcript timing, call pace, persona text profile, and plain-language multiple-choice questions per moment",
+      decisionOut:
+        "Per-choice probabilities in tens of milliseconds; policy picks listen, yield, continue, check in, or language-model reply trigger",
+      flowSteps: [
+        "Speech recognition streams words into session state",
+        "Jev answers batched turn-taking questions with probabilities",
+        "Policy applies persona thresholds (companion, support, tutor, etc.)",
+        "Language model writes reply text; TTS speaks; loop without vendor session cap",
+        "Log state and probabilities for replay and benchmark harnesses",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Authors' runs (README, not measured by jev.aitools.fyi): about $0.002 of language model per reply and about $2 per 400-sample benchmark round.",
+          source: "github.com/native-bond-lab/Jev-Interaction README What you get",
+        },
+        {
+          claim:
+            "Vendor published benchmarks, zero-shot (not directory measurement): Full-Duplex-Bench v1.0 (50 samples): interruptions answered 0.96 vs GPT-Realtime 0.97; latency after an interruption 1.79 s mean vs GPT-Realtime 1.50 s and Gemini 3.1 Flash Live 0.65 s (high) / 0.34 s (minimal); answer relevance 4.35 of 5 (judged by grok) vs 3.85 and 4.12.",
+          source: "github.com/native-bond-lab/Jev-Interaction README Benchmarks",
+        },
+        {
+          claim:
+            "Vendor published Full-Duplex-Bench real-conversation pauses taken as turns: 0.18 baseline, 0.08 after two knobs tested in the benchmark harness but not yet in the engine, vs GPT-Realtime 0.12 and Gemini 0.10/0.15.",
+          source: "github.com/native-bond-lab/Jev-Interaction README Benchmarks",
+        },
+        {
+          claim:
+            "Vendor published LiveKit eot-bench (400 real turns, 11,191 scoring points, text only): 12.5% false cutoffs at 600 ms and 924 ms wait for 5% false cutoffs, vs LiveKit Turn Detector v1 4.5% / 543 ms, Deepgram Flux 9.9% / 1151 ms, SmartTurn v3.2 14.8% / 1051 ms (eot-bench repo https://github.com/livekit/eot-bench?ref=jev.aitools.fyi).",
+          source: "github.com/livekit/eot-bench and Jev-Interaction README",
+        },
+        {
+          claim:
+            "README summary on four public benchmarks and 16 metrics: first on 3 and top three on 8; trails on pure audio timing and speed after an interruption; leads on relevance and on not treating real pauses as turns.",
+          source: "github.com/native-bond-lab/Jev-Interaction README Benchmarks at a glance",
+        },
+        {
+          claim:
+            "Public GitHub repository native-bond-lab/Jev-Interaction had 57 stars on 2026-11-18. Apache-2.0. Alpha. Created 2026-11-10. Hugging Face demo live.",
+          source: "GitHub and Hugging Face, checked 2026-11-18",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jev-Interaction is the decision layer between ASR and any LLM, not a single vendor realtime socket. Compare moritzkremb-jev-voice-browser (/apps/moritzkremb-jev-voice-browser) for batched Jev gates on partial transcripts driving Playwright, and santos-sanz-jev-audio-beeper on the catalog for audio timing experiments beside conversation control. Jev answers turn, listen, floor, cut_in, quiet, and who questions; policies encode persona manners; the language model only writes when the policy asks. README is honest that it trails end-to-end models on interruption latency (1.79 s mean in Full-Duplex-Bench v1.0) while leading on answer relevance (4.35 of 5) and on distinguishing real pauses from end of turn in vendor-published tables.",
+    keyFeatures: [
+      "Cascade: ASR, Jev decisions, any LLM, any TTS",
+      "Plain-language multiple-choice per turn-taking moment",
+      "Personas and pace routes (normal, listening, narrating, eager)",
+      "Zero-shot task profiles; full decision logs and replay",
+      "No held provider session; calls of any length",
+      "Hugging Face live demo; TypeSafe Build of the Week",
+    ],
+    stack: [
+      "Python 3.10+",
+      "pip install jev-interaction[server] from GitHub",
+      "Any speech recognition, LLM, and synthesis adapters",
+      "Jev for tens-of-ms turn decisions",
+    ],
+    links: {
+      repo: "https://github.com/native-bond-lab/Jev-Interaction",
+      docs: "https://github.com/native-bond-lab/Jev-Interaction/tree/main/cookbook",
+      demo: "https://huggingface.co/spaces/pupunpu/Jev-Interaction",
+    },
+    pricingNote:
+      "Apache-2.0. Authors cite about $0.002 language model per reply and about $2 per 400-sample benchmark round in their runs, plus Jev token cost per decision (not verified by this directory).",
+    firstSeen: "2026-11-18",
+    relatedSlugs: [
+      "moritzkremb-jev-voice-browser",
+      "santos-sanz-jev-audio-beeper",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "How is Jev-Interaction different from GPT-4o Realtime or Gemini Live?",
+        answer:
+          "README contrasts end-to-end duplex models with this cascade where every gap is an explicit Jev question you can read, change, and replay. Vendor tables show faster interruption replies on some realtime models but higher relevance scores on Jev-Interaction in their published Full-Duplex-Bench v1.0 row.",
+      },
+      {
+        question: "Where does it trail published benchmarks?",
+        answer:
+          "README and vendor-published tables say it trails on pure audio timing (eot-bench placement) and on speed after an interruption versus GPT-Realtime and Gemini Live, while leading on answer relevance and on not treating real pauses as turns.",
+      },
+      {
+        question: "How do I install and try the demo?",
+        answer:
+          "README: pip install jev-interaction[server] from GitHub or run ./scripts/setup.sh. Live demo at the Hugging Face space pupunpu/Jev-Interaction.",
+      },
+      {
+        question: "Can I change turn-taking without retraining?",
+        answer:
+          "README says task profiles are pages of text and behavior changes are reworded questions plus replay on recorded calls, not benchmark fine-tuning.",
+      },
+    ],
+    metaTitle: "Jev-Interaction: full-duplex voice via Jev turns",
+    metaDescription:
+      "native-bond-lab/Jev-Interaction Apache-2.0 alpha: ASR, Jev turn decisions, any LLM and TTS. HF demo; vendor benches on relevance and pauses.",
+  },
 };

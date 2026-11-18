@@ -319,6 +319,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Fork one shared state into parallel Choice and Noul questions on NVIDIA hardware, keep answers identical to solo runs, and let README tables show up to 9.5x against vLLM and SGLang while flide serve keeps the Jev wire you already use.",
   "agent-labs-dev-fastbrowse":
     "Index what is actually on the page, let Jev pick one control per step with no selectors, and ship answers that quote the DOM. Your code still owns authorize gates, secrets on their origin, and the dollar caps the README documents.",
+  "qbeka-jev-job-search":
+    "Point your coding agent at /discover and /apply, let Jev map every dropdown in half a second, and keep the writer for sentences only. Chrome read-back and your yes on send are the guardrails; manual.csv is where captchas and signatures stay yours.",
+  "native-bond-lab-jev-interaction":
+    "Stack speech recognition, Jev probabilities on plain-language turn questions, any LLM, and any voice. Personas change how it yields and listens, every moment is logged for replay, and README tables are honest about where realtime models are still faster.",
   "deepaleph-jevreel":
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":
