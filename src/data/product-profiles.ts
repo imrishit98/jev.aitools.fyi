@@ -14947,7 +14947,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     },
     creatorQuote: {
       text:
-        "JEV makes every decision that has a fixed set of answers for a fraction of a cent; the writer only writes the sentences.",
+        "JEV makes every decision that has a fixed set of answers (which of your details goes in this box, which option, how good a fit this job is) for a fraction of a cent.",
       attributedTo: "jev-job-search README",
       sourceUrl:
         "https://github.com/qbeka/jev-job-search/blob/main/README.md?ref=jev.aitools.fyi",
@@ -15010,7 +15010,6 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     links: {
       repo: "https://github.com/qbeka/jev-job-search",
       docs: "https://github.com/qbeka/jev-job-search/blob/main/docs/SETUP.md",
-      demo: "https://openrouter.ai/typesafe/jev-1.13",
     },
     pricingNote:
       "MIT, no paid tier. You bring Jev and writer spend. Maintainer reported about $1 for 100 applications and 1 to 1.5 cents per 10 forms for Jev decisions (not verified by this directory).",
@@ -15093,7 +15092,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "Vendor published benchmarks, zero-shot (not directory measurement): Full-Duplex-Bench v1.0 (50 samples): interruptions answered 0.96 vs GPT-Realtime 0.97; latency after an interruption 1.79 s mean vs GPT-Realtime 1.50 s and Gemini 3.1 Flash Live 0.65 s (high) / 0.34 s (minimal); answer relevance 4.35 of 5 (judged by grok) vs 3.85 and 4.12.",
+            "Vendor published benchmarks, zero-shot (not directory measurement): Full-Duplex-Bench v1.0 (50 samples): interruptions answered 0.96 vs GPT-Realtime 0.97; latency after an interruption 1.79 s mean vs GPT-Realtime 1.50 s and Gemini 3.1 Flash Live 0.65 s (high) / 0.34 s (minimal); answer relevance 4.35 of 5 baseline row (judged by grok) vs 3.85 and 4.12.",
           source: "github.com/native-bond-lab/Jev-Interaction README Benchmarks",
         },
         {
@@ -15108,7 +15107,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
         },
         {
           claim:
-            "README summary on four public benchmarks and 16 metrics: first on 3 and top three on 8; trails on pure audio timing and speed after an interruption; leads on relevance and on not treating real pauses as turns.",
+            "README summary on four public benchmarks and 16 metrics: first on 3 and top three on 8 with untested-in-engine knobs; trails on pure audio timing and speed after an interruption; leads on relevance and on not treating real pauses as turns.",
           source: "github.com/native-bond-lab/Jev-Interaction README Benchmarks at a glance",
         },
         {
@@ -15119,7 +15118,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Jev-Interaction is the decision layer between ASR and any LLM, not a single vendor realtime socket. Compare moritzkremb-jev-voice-browser (/apps/moritzkremb-jev-voice-browser) for batched Jev gates on partial transcripts driving Playwright, and santos-sanz-jev-audio-beeper on the catalog for audio timing experiments beside conversation control. Jev answers turn, listen, floor, cut_in, quiet, and who questions; policies encode persona manners; the language model only writes when the policy asks. README is honest that it trails end-to-end models on interruption latency (1.79 s mean in Full-Duplex-Bench v1.0) while leading on answer relevance (4.35 of 5) and on distinguishing real pauses from end of turn in vendor-published tables.",
+      "Jev-Interaction is the decision layer between ASR and any LLM, not a single vendor realtime socket. Compare moritzkremb-jev-voice-browser (/apps/moritzkremb-jev-voice-browser) for batched Jev gates on partial transcripts driving Playwright, and santos-sanz-jev-audio-beeper on the catalog for audio timing experiments beside conversation control. Jev answers turn, listen, floor, cut_in, quiet, and who questions; policies encode persona manners; the language model only writes when the policy asks. README is honest that it trails end-to-end models on interruption latency (1.79 s mean in Full-Duplex-Bench v1.0) while leading on answer relevance (4.35 of 5 baseline row) and on distinguishing real pauses from end of turn in vendor-published tables.",
     keyFeatures: [
       "Cascade: ASR, Jev decisions, any LLM, any TTS",
       "Plain-language multiple-choice per turn-taking moment",
