@@ -28,10 +28,10 @@ export const learnGuides: Record<LearnGuideSlug, LearnGuide> = {
     slug: "jev-typesafe",
     title: "Jev & TypeSafe",
     description:
-      "A primer for builders who need to know what Jev is, who it is for, and when TypeSafe docs should take over from this directory.",
-    seoTitle: "TypeSafe Jev explained: what it is and how to use it",
+      "An independent primer for builders who need to know what Jev is, who it is for, and when TypeSafe docs should take over from this directory.",
+    seoTitle: "TypeSafe Jev explained: an independent primer for builders",
     seoDescription:
-      "For builders new to System One. Jev takes structured state and typed questions, then returns probabilities your code can threshold before you browse SDKs.",
+      "What TypeSafe Jev is: System One takes structured state and typed questions, returns probabilities. Independent directory, not official TypeSafe docs.",
     definition:
       "Jev is TypeSafe's System One decision model for software teams who need a label, a score, or a yes-or-no gate: send structured state and typed questions, and the API returns probabilities your code can threshold.",
     exploreHref: "/explore?category=official",

@@ -104,10 +104,10 @@ export const categories: CategoryMeta[] = [
     title: "Articles and lists",
     description:
       "Directory taxonomy for launch posts, essays, and awesome-list listings. Not the agent how-to hub.",
-    seoTitle: "Jev articles and lists: community write-ups in the catalog",
+    seoTitle: "Jev articles and lists: launch posts, essays, awesome lists",
     seoDescription:
-      "Community essays, launch posts, and awesome lists indexed as listings. Agent setup lives on /guides. System One primers live on /learn.",
+      "Community essays, launch posts, and awesome lists about Jev, filed as directory listings. Agent setup is on /guides. Primers are on /learn.",
     intro:
-      "This is a catalog category, not an editorial hub. Entries are single-link announcements, threads, and essays we index as listings. Many stay explore-only when the overview is too thin for a detail page. For LangChain, Cursor, and Copilot setup guides, open /guides. For Choice, Score, and Noul primers, open /learn.",
+      "This is a catalog category, not an editorial hub. Entries are single-link announcements, threads, and essays we index as listings. Many stay explore-only when the overview is too thin for a detail page. Agent setup is on /guides. For Choice, Score, and Noul primers, open /learn.",
   },
 ];

@@ -516,9 +516,9 @@ export function categoryPageSeo(
 
 export function guidesIndexPageSeo() {
   return pageSeo({
-    title: "Guides: Jev with AI agents (LangChain, Cursor, Copilot)",
+    title: "Jev agent setup guides: Cursor, Copilot, LangChain",
     description:
-      "Guides for wiring Jev into coding agents: Hermes, Copilot, Cursor, LangChain, and more. Primers are on /learn. Catalog articles are on /categories/guides.",
+      "How to set up Jev in Cursor, Copilot, Hermes, and LangChain agents. Independent directory guides. Primers are on /learn, articles on /categories/guides.",
     path: "/guides",
     imagePath: ogImagePaths.learnHub,
   });
