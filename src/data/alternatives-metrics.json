@@ -33,7 +33,9 @@
     "Xiaooolong/vev": { "stars": 29, "forks": 5, "checkedAt": "2026-11-09" },
     "mattt/AnyDecisionModel": { "stars": 56, "forks": 4, "checkedAt": "2026-11-09" },
     "OmniJev/Flide": { "stars": 468, "forks": 30, "checkedAt": "2026-11-12" },
-    "agent-labs-dev/fastbrowse": { "stars": 230, "forks": 29, "checkedAt": "2026-11-15" }
+    "agent-labs-dev/fastbrowse": { "stars": 230, "forks": 29, "checkedAt": "2026-11-15" },
+    "qbeka/jev-job-search": { "stars": 374, "forks": 68, "checkedAt": "2026-11-18" },
+    "native-bond-lab/Jev-Interaction": { "stars": 57, "forks": 1, "checkedAt": "2026-11-18" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },

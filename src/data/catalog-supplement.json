@@ -2785,5 +2785,42 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-15"
+  },
+  {
+    "slug": "qbeka-jev-job-search",
+    "title": "jev-job-search",
+    "oneLiner": "Agent-driven /discover and /apply for new-grad software roles: Jev maps every box in ~0.5 s, Chrome read-back, you approve each send.",
+    "description": "jev-job-search (github.com/qbeka/jev-job-search, MIT, beta, v1.7.0 Nov 2026) is an independent open-source job tool for Canada, US, and remote software roles. Claude Code or AGENTS.md agents run /setup, /discover, /apply, and /report; Jev picks fields and fit; a writer only for open text. Greenhouse, Lever, Ashby, Workable, Rippling, BambooHR, Jobvite, JazzHR. Maintainer-reported cost notes in README (not directory measurement).",
+    "category": "agent-tooling",
+    "tags": ["agent-tooling", "browser-use", "agents", "job-search"],
+    "language": "TypeScript",
+    "stars": 374,
+    "url": "https://github.com/qbeka/jev-job-search",
+    "repoUrl": "https://github.com/qbeka/jev-job-search",
+    "badges": ["sdk"],
+    "creatorHandle": "qbeka",
+    "creatorName": "qbeka",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-18"
+  },
+  {
+    "slug": "native-bond-lab-jev-interaction",
+    "title": "Jev-Interaction",
+    "oneLiner": "Full-duplex voice cascade: ASR, Jev multiple-choice turn decisions in tens of ms, any LLM and TTS, logged and replayable.",
+    "description": "Jev-Interaction (github.com/native-bond-lab/Jev-Interaction, Apache-2.0, alpha Nov 2026) from Native Bond Lab wires speech recognition to Jev turn, listen, floor, and pace decisions, then any language model and synthesizer. Zero-shot task profiles; Hugging Face demo; vendor-published Full-Duplex-Bench and eot-bench tables (not directory measurement). TypeSafe Build of the Week.",
+    "category": "integrations",
+    "tags": ["integrations", "voice", "agents", "system-one"],
+    "language": "Python",
+    "stars": 57,
+    "url": "https://github.com/native-bond-lab/Jev-Interaction",
+    "repoUrl": "https://github.com/native-bond-lab/Jev-Interaction",
+    "demoUrl": "https://huggingface.co/spaces/pupunpu/Jev-Interaction",
+    "badges": ["has-demo", "sdk"],
+    "creatorHandle": "native-bond-lab",
+    "creatorName": "Native Bond Lab",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-18"
   }
 ]
