@@ -15233,7 +15233,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "AutoCraft is maintainer backlog automation with explicit duplicate?, merge?, and label approvals, not a generic coding agent. Compare eliot5566-jev-paper-radar for Jev-scored intake on a different domain, ellipsis-dev-blink for repo-local ranking with TypeSafe scoring, and kylejeong-jev-as-judge for judge-style gates. Jev owns early triage choices where the option set is fixed; Opus and Sonnet own review, fix, and merge-queue adversarial passes; operators own every GitHub write approval. The research pack names cephalization-jev-triage and shiftynick-jev-axi as nearest issue-sync listings not yet on this catalog.",
+      "AutoCraft is maintainer backlog automation with explicit duplicate?, merge?, and label approvals, not a generic coding agent. Compare eliot5566-jev-paper-radar for Jev-scored intake on a different domain, ellipsis-dev-blink for repo-local ranking with TypeSafe scoring, and kylejeong-jev-as-judge for judge-style gates. Jev owns early triage choices where the option set is fixed; Opus and Sonnet own review, fix, and merge-queue adversarial passes; operators own every GitHub write approval. Also see catalog listings cephalization-jev-triage and shiftynick-jev-axi for GitHub issue sync and shell-side triage.",
     keyFeatures: [
       "SQLite mirror of issues, PRs, and comments each minute",
       "Jev duplicate, classify, and P0 to P4 priority stages",
@@ -15317,7 +15317,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       stateIn:
         "Eligible voice_command, voice_followup, voice, web_chat, and mqtt_chat events with shared classification rules in state.rules",
       decisionOut:
-        "Validated local command execution in tens to thousands of ms; 3,000 ms default budget; uncertain or contextual requests defer to main agent or realtime path",
+        "Local rule matches on the ~50 ms path in docs; Jev fallback uses a 3,000 ms default budget; uncertain or contextual requests defer to main agent or realtime path",
       flowSteps: [
         "Local intent rules try first on eligible voice and text-only chat (~50 ms path in docs)",
         "Unmatched requests call BFF Decisions with typesafe/jev-1.13 when jev_intent is enabled",
