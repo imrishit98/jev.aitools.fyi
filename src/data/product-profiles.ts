@@ -15172,4 +15172,236 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "native-bond-lab/Jev-Interaction Apache-2.0 alpha: ASR, Jev turn decisions, any LLM and TTS. HF demo; vendor benches on relevance and pauses.",
   },
+
+  "storytold-autocraft": {
+    slug: "storytold-autocraft",
+    status: "published",
+    problem:
+      "Open source maintainers with large GitHub backlogs spend scarce judgment time reclassifying issues, hunting duplicates, and shepherding PRs while models drift without audit trails or sandboxed fixes.",
+    targetUser:
+      "Node 24+ operators who already use gh, Claude Code, and optional Jev, and want a dashboard pipeline that mirrors repos into SQLite, stages model work, and keeps every GitHub write behind per-repo human approval.",
+    overview:
+      "AutoCraft (github.com/storytold/autocraft?ref=jev.aitools.fyi, Apache-2.0) is storytold's model harness for maintaining GitHub repositories with large backlogs. It mirrors every issue, PR, and comment of tracked repos into a local SQLite database each minute, reads default-branch CI every two minutes, and embeds title and body text for similar-item search. Stages, in order: Sync, Duplicates (Jev, Haiku, Opus, Sonnet; stops for a duplicate? decision), Classify (one type label plus security and needs-decision flags; Jev first, Haiku second opinion, referee settles), Priority (P0 through P4 via Jev and Haiku, then work rank), Decide (operator scope calls with drafted answers), Label (never changes a label a person set; per-repo approval), Review (Opus on every wanted PR at current head), Fix (Sonnet, Opus, or Haiku patch plus sandbox test and PR), Fix-up, Verify (upstream CI or model-planned build; optional screenshot comparison for UI PRs), Merge queue (batches up to 50 PRs with safe-merge-style checks and adversarial Opus re-review before merge), Act (fixed templates), Post-merge review (Opus second pass and follow-up issues). Untrusted code runs only in a separate build environment (another OS user, rootless Podman); tool-using model calls use bubblewrap on read-only checkouts; only one write module touches GitHub. Setup: pnpm, gh with read access (write only in operator-approved repos), dashboard sign-in via GitHub OAuth App or GitHub App, Claude Code accounts (`claude auth login`), `autocraft-server accounts jev 4` for parallel Jev calls, `accounts jev off` lets Haiku do Jev's work, `autocraft-server repos track owner/name` for other orgs. Originally built for storytold craft apps. Public GitHub repository storytold/autocraft had 233 stars and 56 forks when checked 2026-11-21; created 2026-11-05; last push 2026-11-21. Not affiliated with TypeSafe or storytold beyond this independent directory listing.",
+    creator: {
+      name: "storytold",
+      handle: "storytold",
+      githubUrl: "https://github.com/storytold",
+    },
+    creatorQuote: {
+      text:
+        "AutoCraft is a model harness for maintaining GitHub repositories with a large backlog. Jev classifiers and Claude Haiku, Sonnet and Opus classify, prioritise, find duplicates, ask maintainers for decisions, review, write fixes, verify and merge.",
+      attributedTo: "AutoCraft README",
+      sourceUrl:
+        "https://github.com/storytold/autocraft/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Jev classifies duplicate groups, assigns type labels and flags, and sets P0 to P4 priority before Haiku, Sonnet, and Opus stages; Haiku covers Jev work when Jev is off or unavailable",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Mirrored issue and PR rows in SQLite, embeddings for similar-item search, CI state polls, and operator scope rules",
+      decisionOut:
+        "Duplicate?, classify, and priority decisions via `jev --compact ask`; disagreements escalate to Decide and maintainer conversations",
+      flowSteps: [
+        "Sync mirrors GitHub into SQLite each minute with local embeddings",
+        "Duplicates stage uses Jev with Haiku, Opus, and Sonnet; stops for duplicate? decisions",
+        "Classify and Priority stages run Jev then Haiku with referee on scope disagreements",
+        "Later stages are Claude-heavy; GitHub writes need per-repo operator approval",
+        "Merge queue batches up to 50 PRs with Opus adversarial re-review at head",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README pipeline table: Duplicates, Classify, and Priority stages list Jev among the models; Classify runs Jev first with Haiku as second opinion.",
+          source: "github.com/storytold/autocraft README How it works",
+        },
+        {
+          claim:
+            "README: without Jev (`autocraft-server accounts jev off`), out-of-credit keys, or missing CLI, Haiku does Jev's classify, priority, and duplicate work through Claude accounts.",
+          source: "github.com/storytold/autocraft README Requirements and Claude accounts",
+        },
+        {
+          claim:
+            "README trust boundary: tool-using calls run in bubblewrap with read-only checkouts; only `src/github/write.ts` writes to GitHub.",
+          source: "github.com/storytold/autocraft README Trust boundaries",
+        },
+        {
+          claim:
+            "Public GitHub repository storytold/autocraft had 233 stars and 56 forks on 2026-11-21. Apache-2.0. Created 2026-11-05.",
+          source: "GitHub storytold/autocraft, checked 2026-11-21",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "AutoCraft is maintainer backlog automation with explicit duplicate?, merge?, and label approvals, not a generic coding agent. Compare eliot5566-jev-paper-radar for Jev-scored intake on a different domain, ellipsis-dev-blink for repo-local ranking with TypeSafe scoring, and kylejeong-jev-as-judge for judge-style gates. Jev owns early triage choices where the option set is fixed; Opus and Sonnet own review, fix, and merge-queue adversarial passes; operators own every GitHub write approval. Also see catalog listings cephalization-jev-triage and shiftynick-jev-axi for GitHub issue sync and shell-side triage.",
+    keyFeatures: [
+      "SQLite mirror of issues, PRs, and comments each minute",
+      "Jev duplicate, classify, and P0 to P4 priority stages",
+      "Dashboard pipeline with per-repo write approval",
+      "Bubblewrap sandbox and rootless Podman build environments",
+      "Merge queue batches up to 50 PRs with safe-merge checks",
+      "Track foreign org repos via `repos track owner/name`",
+    ],
+    stack: [
+      "Node 24+, pnpm, node:sqlite",
+      "gh CLI, git, Claude Code accounts",
+      "Optional Jev CLI (`jev --compact ask`)",
+      "bubblewrap, optional Podman plus second OS user",
+      "Dashboard OAuth App or GitHub App sign-in",
+    ],
+    links: {
+      repo: "https://github.com/storytold/autocraft",
+      docs: "https://github.com/storytold/autocraft/blob/main/docs/pipeline.md",
+    },
+    pricingNote:
+      "Apache-2.0. You bring Claude Code, optional Jev, and GitHub access. README does not quote a hosted price; token and Jev spend are operator-managed (not verified by this directory).",
+    firstSeen: "2026-11-21",
+    relatedSlugs: [
+      "eliot5566-jev-paper-radar",
+      "ellipsis-dev-blink",
+      "kylejeong-jev-as-judge",
+    ],
+    relatedLearnSlugs: ["use-cases", "patterns"],
+    faq: [
+      {
+        question: "Is AutoCraft affiliated with TypeSafe or storytold?",
+        answer:
+          "This directory page is independent, not affiliated with TypeSafe or the AutoCraft authors. The project is Apache-2.0 open source from the storytold GitHub org.",
+      },
+      {
+        question: "What happens when Jev is disabled?",
+        answer:
+          "README says `autocraft-server accounts jev off`, missing Jev, or rejected keys route classify, priority, and duplicate work to Haiku through Claude accounts with more Claude usage.",
+      },
+      {
+        question: "Can models merge without a person?",
+        answer:
+          "README states every GitHub write needs operator approval per repo on the dashboard. Merge queue batches only PRs that pass rules; PRs outside rules stop for Merge? decisions.",
+      },
+      {
+        question: "Does it change labels a human already set?",
+        answer:
+          "README Label stage: a label a person set is never changed, and labeling needs per-repo approval.",
+      },
+    ],
+    metaTitle: "AutoCraft: Jev triage for GitHub backlogs",
+    metaDescription:
+      "storytold/autocraft Apache-2.0: mirror issues to SQLite, Jev classify and P0-P4 priority, Opus review and merge queue. 233 stars Nov 2026.",
+  },
+
+  "autonomous-ai-lamp-os": {
+    slug: "autonomous-ai-lamp-os",
+    status: "published",
+    problem:
+      "Physical robots need fast, validated routing for everyday light and volume commands without sending every utterance through a full agent, while still deferring contextual follow-ups to the main runtime.",
+    targetUser:
+      "Builders running Physical AI Operating System on Autonomous Lamp, Intern, Reachy Mini, or a custom body who want local rules plus optional Jev intent classification before the main agent handles harder tasks.",
+    overview:
+      "Physical AI Operating System (lampOS, github.com/autonomous-ai/lampOS?ref=jev.aitools.fyi, Apache-2.0) is Autonomous's open stack pitched in README as \"Android for physical AI agents.\" It wires Hermes, Claude Code, Codex, OpenClaw, OpenCode, or PicoClaw to cameras, microphones, speakers, motors, lights, and sensors on tested bodies including Autonomous Lamp, Autonomous Intern, and Hugging Face Reachy Mini (one-command install over SSH without reflashing). Physical skills cover servo tracking, touch gestures, and sensor-to-light or speech actions; Skill Store and SOUL.md personalities ship per robot. Realtime voice defaults to Gemini Live, with OpenAI Realtime, GPT-Live, and Pipecat v1 also documented. For voice and text-only Web or MQTT chat, local rules run first, then the Jev intent fallback (on by default) calls a Decisions endpoint with typesafe/jev-1.13; the OS validates command, parameters, confidence, and device capabilities before execution; uncertain requests go to the main agent; context-dependent follow-ups bypass intent handling. Config example in docs: `{\"jev_intent\": {\"enabled\": true, \"timeout_ms\": 3000}}` with a 3,000 ms budget matching the Hermes Jev plugin; `enabled: false` removes the extra latency. README example intents include turning off lights, halving brightness or volume, setting violet light, and activating a reading scene. Jev skill preloading across runtimes and experimental Buddy UI-action suggestions are also documented. Homepage https://www.autonomous.ai/lamp?ref=jev.aitools.fyi. Public GitHub repository autonomous-ai/lampOS had 579 stars and 86 forks when checked 2026-11-21; created 2026-06-04; last push 2026-11-21. Not affiliated with TypeSafe or Autonomous beyond this independent directory listing.",
+    creator: {
+      name: "Autonomous",
+      handle: "autonomous-ai",
+      githubUrl: "https://github.com/autonomous-ai",
+    },
+    creatorQuote: {
+      text:
+        "We're building the \"Android\" for physical AI agents.",
+      attributedTo: "lampOS README",
+      sourceUrl:
+        "https://github.com/autonomous-ai/lampOS/blob/main/README.md?ref=jev.aitools.fyi",
+    },
+    jevUsage: {
+      flowRole:
+        "Intent fallback after local rules on eligible voice and text-only Web or MQTT chat: Jev picks device commands when confidence and capabilities match",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "Eligible voice_command, voice_followup, voice, web_chat, and mqtt_chat events with shared classification rules in state.rules",
+      decisionOut:
+        "Local rule matches on the ~50 ms path in docs; Jev fallback uses a 3,000 ms default budget; uncertain or contextual requests defer to main agent or realtime path",
+      flowSteps: [
+        "Local intent rules try first on eligible voice and text-only chat (~50 ms path in docs)",
+        "Unmatched requests call BFF Decisions with typesafe/jev-1.13 when jev_intent is enabled",
+        "OS validates command, parameters, confidence, and device capabilities",
+        "Attachments, Harness-only voice, and realtime agent paths keep separate routes",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "docs/os-server.md Jev intent fallback: default `jev_intent.enabled` true, `timeout_ms` 3000, same budget as Hermes Jev plugin; explicit `enabled: false` skips the HTTP call.",
+          source: "github.com/autonomous-ai/lampOS docs/os-server.md",
+        },
+        {
+          claim:
+            "README Try saying table: examples include Turn off the lights, halve brightness or speaker volume, make the lamp violet, and reading-scene lighting; context-dependent phrases like Make it brighter during image work go to the main agent.",
+          source: "github.com/autonomous-ai/lampOS README Try saying",
+        },
+        {
+          claim:
+            "README realtime voice: Gemini Live default, plus OpenAI Realtime, GPT-Live, and Pipecat v1 documented under hal/realtime.",
+          source: "github.com/autonomous-ai/lampOS README Platform architecture",
+        },
+        {
+          claim:
+            "Public GitHub repository autonomous-ai/lampOS had 579 stars and 86 forks on 2026-11-21. Apache-2.0. Created 2026-06-04.",
+          source: "GitHub autonomous-ai/lampOS, checked 2026-11-21",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "lampOS uses Jev as a bounded intent router on the Go os-server, not as the conversational brain. Compare native-bond-lab-jev-interaction for full-duplex turn-taking between ASR and any LLM, moritzkremb-jev-voice-browser for Jev gates on partial transcripts, and kerpopule-hermes-jev-skills for routing and skill suggestion in text agents. Local rules win when they match; Jev fills the gap for explicit hardware phrasing; realtime Gemini Live and the main AgentGateway still own open-ended dialogue and Harness delegation.",
+    keyFeatures: [
+      "Lamp, Intern, Reachy Mini, or bring-your-own robot",
+      "Local rules then Jev intent fallback (default on)",
+      "Six agent runtimes behind one AgentGateway",
+      "Physical skills and Skill Store; SOUL.md personalities",
+      "Realtime: Gemini Live, OpenAI, GPT-Live, Pipecat v1",
+      "Harness and Buddy paths for computer tasks",
+    ],
+    stack: [
+      "Go os-server on :5000",
+      "HAL drivers for voice, motors, lights, sensors",
+      "typesafe/jev-1.13 via BFF Decisions endpoint",
+      "Hermes, Claude Code, Codex, OpenClaw, OpenCode, PicoClaw",
+      "Autonomous mobile app for Wi-Fi and skill install",
+    ],
+    links: {
+      repo: "https://github.com/autonomous-ai/lampOS",
+      docs: "https://github.com/autonomous-ai/lampOS/blob/main/docs/os-server.md",
+      demo: "https://www.autonomous.ai/lamp",
+    },
+    pricingNote:
+      "Apache-2.0 software; Autonomous sells Lamp and Intern hardware separately. Jev calls use your configured LLM API key toward the documented Decisions path (not verified by this directory).",
+    firstSeen: "2026-11-21",
+    relatedSlugs: [
+      "native-bond-lab-jev-interaction",
+      "moritzkremb-jev-voice-browser",
+      "kerpopule-hermes-jev-skills",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Is lampOS affiliated with TypeSafe or Autonomous?",
+        answer:
+          "This directory page is independent, not affiliated with TypeSafe or Autonomous. The OS is Apache-2.0 on GitHub; hardware is sold by Autonomous.",
+      },
+      {
+        question: "How do I turn off Jev intent latency?",
+        answer:
+          "docs/os-server.md: set `jev_intent.enabled` to false in configuration. That skips the Jev HTTP call and keeps the main-runtime fallback.",
+      },
+      {
+        question: "Which utterances use Jev versus the main agent?",
+        answer:
+          "README and docs: explicit hardware commands like Turn off the lights are intent examples; context-dependent follow-ups during image or render work defer to the main agent before Jev runs.",
+      },
+      {
+        question: "Which robots are documented out of the box?",
+        answer:
+          "README quick start covers Autonomous Lamp, Reachy Mini via SSH install script, and Autonomous Intern, plus bring-your-own-robot with ROBOT.md, SOUL.md, SAFETY.md, and SKILL.md.",
+      },
+    ],
+    metaTitle: "Physical AI OS: Jev routes lamp voice intents",
+    metaDescription:
+      "autonomous-ai/lampOS Apache-2.0: local rules, Jev intent fallback, Lamp and Reachy Mini. 579 stars Nov 2026; 3s decision budget in docs.",
+  },
 };

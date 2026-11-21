@@ -512,8 +512,8 @@
     "lastmod": "2026-09-17"
   },
   "/categories/agent-tooling": {
-    "hash": "350184c227c88cf7f4db6f599379d9d6290fd30e3c5835ba714182d5247c5f48",
-    "lastmod": "2026-11-18"
+    "hash": "638c137bf0c2a2f9dc9909fba5f219384d6642a63f8388a474b0f4e30ffc0138",
+    "lastmod": "2026-11-21"
   },
   "/categories/applications": {
     "hash": "6b69a151df251e8770aa9b8ff6f8819b7c3a11a1806316755a1f208db364b321",
@@ -536,8 +536,8 @@
     "lastmod": "2026-11-18"
   },
   "/categories/integrations": {
-    "hash": "32ea408a18e8214e7ff20d0131a4d7fe26190b1531c5604d8a5f29d5966f37d8",
-    "lastmod": "2026-11-18"
+    "hash": "d757bf9cfbca1c032bd79132ab876f4c8fd9c27e13531427770e9caa91fb3adb",
+    "lastmod": "2026-11-21"
   },
   "/categories/official": {
     "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
@@ -564,8 +564,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "be543b53a2b28dc96f42ae41039e11d63fa3afaeb38e45c23a6064f6460fa50d",
-    "lastmod": "2026-11-18"
+    "hash": "58898eda9401f1089070c88e29f70f1ce12c101535221a1b4b9a2dc52d01c5ab",
+    "lastmod": "2026-11-21"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -967,6 +967,10 @@
     "hash": "d0bbc65ef202fc7237667fca829cf277946ac30edc0960377f6bc3b876e75094",
     "lastmod": "2026-10-03"
   },
+  "/tools/autonomous-ai-lamp-os": {
+    "hash": "d2cb1e677dac1633826140a6560d82af065eea47de319a2293775367fc4fec63",
+    "lastmod": "2026-11-21"
+  },
   "/tools/avinash-jetwani-jevmem": {
     "hash": "c36f0472a23f173b7e8608286afceb258f13b225d157bae1e26dd33918f87824",
     "lastmod": "2026-09-30"
@@ -1330,6 +1334,10 @@
   "/tools/statelyai-jevspresso": {
     "hash": "cf8ce3ec042427e55f6ae5cd1902ca6c407053d1d4fa7d92c88b5a7f7e7aa4e1",
     "lastmod": "2026-10-05"
+  },
+  "/tools/storytold-autocraft": {
+    "hash": "e23cb5d00c0a4b32ab7e098b22e1ba2c205d1cf228c531023752d13ad573ff5b",
+    "lastmod": "2026-11-21"
   },
   "/tools/strands-labs-strands-decider": {
     "hash": "ca5fe15cfc7047ffda977994897066a007637a26fc57f1aacf72c7e0c5bf68aa",

@@ -2822,5 +2822,42 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-18"
+  },
+  {
+    "slug": "storytold-autocraft",
+    "title": "AutoCraft",
+    "oneLiner": "GitHub backlog harness: SQLite mirror each minute, Jev duplicate classify and P0-P4 priority, Opus review, sandboxed fix and merge queue.",
+    "description": "AutoCraft (github.com/storytold/autocraft, Apache-2.0, Nov 2026) mirrors tracked repos into SQLite and runs a staged pipeline: Jev plus Claude on duplicates, classify, and priority, operator approvals on every GitHub write, Opus review, verify, and batches up to 50 PRs. Independent listing; features are as described in the README.",
+    "category": "agent-tooling",
+    "tags": ["agent-tooling", "agents", "github", "devtools"],
+    "language": "TypeScript",
+    "stars": 233,
+    "url": "https://github.com/storytold/autocraft",
+    "repoUrl": "https://github.com/storytold/autocraft",
+    "badges": [],
+    "creatorHandle": "storytold",
+    "creatorName": "storytold",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-21"
+  },
+  {
+    "slug": "autonomous-ai-lamp-os",
+    "title": "Physical AI Operating System",
+    "oneLiner": "Robot OS for Lamp, Intern, and Reachy Mini: local intent rules, Jev fallback on voice and chat, six agent runtimes, Skill Store.",
+    "description": "lampOS (github.com/autonomous-ai/lampOS, Apache-2.0) routes cameras, mics, motors, and lights for physical agents. README pitches Android for physical AI; Jev intent fallback (default on, 3,000 ms in docs) after local rules; Gemini Live default voice. 579 stars Nov 2026.",
+    "category": "integrations",
+    "tags": ["integrations", "voice", "agents", "robotics"],
+    "language": "Go",
+    "stars": 579,
+    "url": "https://github.com/autonomous-ai/lampOS",
+    "repoUrl": "https://github.com/autonomous-ai/lampOS",
+    "demoUrl": "https://www.autonomous.ai/lamp",
+    "badges": ["has-demo"],
+    "creatorHandle": "autonomous-ai",
+    "creatorName": "Autonomous",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-21"
   }
 ]
