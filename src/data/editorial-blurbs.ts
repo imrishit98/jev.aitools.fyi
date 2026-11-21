@@ -323,6 +323,10 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Point your coding agent at /discover and /apply, let Jev map every dropdown in half a second, and keep the writer for sentences only. Chrome read-back and your yes on send are the guardrails; manual.csv is where captchas and signatures stay yours.",
   "native-bond-lab-jev-interaction":
     "Stack speech recognition, Jev probabilities on plain-language turn questions, any LLM, and any voice. Personas change how it yields and listens, every moment is logged for replay, and README tables are honest about where realtime models are still faster.",
+  "storytold-autocraft":
+    "Mirror the whole GitHub backlog locally, let Jev settle duplicates, labels, and P0 through P4, then keep Opus on review and merge while bubblewrap and Podman hold untrusted code. Every write still waits on your dashboard approval.",
+  "autonomous-ai-lamp-os":
+    "Give a lamp or desk robot ears and motors, try local rules first on plain hardware phrases, and let Jev fill the gap before the big agent speaks. Turn Jev off when you want zero extra milliseconds on chat.",
   "deepaleph-jevreel":
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":
