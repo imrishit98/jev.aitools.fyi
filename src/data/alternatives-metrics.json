@@ -37,7 +37,10 @@
     "qbeka/jev-job-search": { "stars": 374, "forks": 68, "checkedAt": "2026-11-18" },
     "native-bond-lab/Jev-Interaction": { "stars": 57, "forks": 1, "checkedAt": "2026-11-18" },
     "storytold/autocraft": { "stars": 233, "forks": 56, "checkedAt": "2026-11-21" },
-    "autonomous-ai/lampOS": { "stars": 579, "forks": 86, "checkedAt": "2026-11-21" }
+    "autonomous-ai/lampOS": { "stars": 579, "forks": 86, "checkedAt": "2026-11-21" },
+    "Carol-lyh/Jeveration": { "stars": 157, "forks": 13, "checkedAt": "2026-11-24" },
+    "backmeupplz/jev_antispam_bot": { "stars": 22, "forks": 4, "checkedAt": "2026-11-24" },
+    "buer2233/jev-ui-test": { "stars": 74, "forks": 14, "checkedAt": "2026-11-24" }
   },
   "huggingface": {
     "convaiinnovations/laya": { "downloads": 44088, "likes": 5493, "license": "apache-2.0", "checkedAt": "2026-10-12" },

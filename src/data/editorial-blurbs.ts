@@ -331,6 +331,12 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "jevreel tiles a video into labelled contact sheets, asks Jev once per minute whether your moment is there, then verifies winners on full frames. MCP plus skill for agents that need timestamps and probabilities, not embedding indexes.",
   "disler-pi-durable-news-agent":
     "Stop refreshing feeds yourself. This agent wakes on cron, reads thousands of headlines so you do not have to, and lets Jev throw out hype before a card ever hits your browser. Crash mid gate and it picks up from SQLite like nothing happened.",
+  "carol-lyh-jeveration":
+    "Fresh NUS research: a frozen Qwen3.5-4B backbone emits 128 image tokens in parallel so a full 512px frame is one System One draw, not a diffusion loop. Author tables claim sub-100 ms on H200 and real GenEval scores; grab weights and the Gradio space before you quote speed on your GPU.",
+  "backmeupplz-jev-antispam-bot":
+    "Add one Telegram admin bot with delete permission and skip captchas entirely: every member line runs through pinned jev-1.13.0 spam questions, split pitches get linked in memory, and the group keeps talking when Jev or Telegram blinks out.",
+  "buer2233-jev-ui-test":
+    "Write UI regressions like READMEs in YAML, let Jev pick indexed controls without selectors, and ship Allure rows that show probabilities and click coordinates. Forked from Browser Use ultrafast, tuned for pytest verdicts instead of the model declaring done.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
