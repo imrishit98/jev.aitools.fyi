@@ -15404,4 +15404,364 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaDescription:
       "autonomous-ai/lampOS Apache-2.0: local rules, Jev intent fallback, Lamp and Reachy Mini. 579 stars Nov 2026; 3s decision budget in docs.",
   },
+
+  "carol-lyh-jeveration": {
+    slug: "carol-lyh-jeveration",
+    status: "published",
+    problem:
+      "Diffusion and autoregressive image stacks spend many serial steps per frame, while System One research still lacked open weights that emit a full RGB image as one joint discrete decision.",
+    targetUser:
+      "Researchers and builders who want Apache-2.0 inference code, Hugging Face weights, and author-reported GenEval and dense-prediction tables for single-pass System One image generation on a CUDA GPU.",
+    overview:
+      "Jeveration (github.com/Carol-lyh/Jeveration?ref=jev.aitools.fyi, Apache-2.0) is a frozen Qwen3.5-4B vision-language backbone with shared LoRA adapters that returns a whole 512 by 512 image as one joint decision in a single forward pass. Authors Yuhe Liu, Qi Li, Shihua Zhang, and Xinchao Wang (National University of Singapore) describe the method in arXiv:2611.24738 (November 18, 2026). All 128 image codes are chosen in parallel, conditioned on one shared random state so each draw differs but stays coherent. Training has two phases (a masked image-code model, then learning to decide; the first-phase model is training-only). One checkpoint covers text-to-image, image-to-image (edge map, depth map, colorize, anime, ghibli, watercolor), and dense prediction (segmentation, depth, surface normals trained on NYUv2). Python 3.12, CUDA GPU, about 6.5 GB downloaded weights, optional Gradio demo; the README says the same seed gives the same image on the same hardware and software. Public GitHub repository Carol-lyh/Jeveration was created November 18, 2026 and had 157 stars and 13 forks when checked November 24, 2026. Not affiliated with TypeSafe beyond this independent directory listing.",
+    creator: {
+      name: "Yuhe Liu et al.",
+      handle: "Carol-lyh",
+      githubUrl: "https://github.com/Carol-lyh",
+      company: "National University of Singapore",
+      companyUrl: "https://nus.edu.sg",
+    },
+    jevUsage: {
+      flowRole:
+        "Single-pass image synthesis and dense maps: one forward pass jointly selects all discrete image codes (and task heads) instead of autoregressive token decoding loops",
+      primitives: ["Choice"],
+      stateIn:
+        "Text prompts, structure maps (edge, depth), greyscale or RGB inputs for colorize and style tasks, or RGB indoor scenes for NYUv2 dense heads per README and paper",
+      decisionOut:
+        "A full 512 px RGB image, stylized output, or per-pixel segmentation, depth, and normals from the shared System One readout; no separate diffusion scheduler in the inference scripts",
+      flowSteps: [
+        "Download linlinlinlinsdada/Jeveration weights (about 6.5 GB) plus decoder checkpoints from Hugging Face",
+        "Run generate.py, image_to_image.py, dense_predict.py, or JeverationPipeline in Python",
+        "Optional Gradio app.py for browser demos on text-to-image, image-to-image, and dense tasks",
+        "Reproduce author tables on your own GPU; README documents seed determinism on fixed hardware",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Authors report 77.8 ms per 512 px text-to-image image on one NVIDIA H200 at batch 1 with decoding included, GenEval 0.74, about 98x faster than Janus-Pro-1B and about 122x faster than Janus-Pro-7B, and about +0.11 GenEval over four-step Show-o Turbo-512.",
+          source: "arxiv.org/abs/2611.24738 and Carol-lyh/Jeveration README (author-reported)",
+        },
+        {
+          claim:
+            "Authors report image-to-image about 91.7 ms with edge agreement 0.880, depth 0.802, colorize 0.937, and style PSNR 15.40 on 341 held-out examples per task.",
+          source: "arxiv.org/abs/2611.24738 (author-reported)",
+        },
+        {
+          claim:
+            "Authors report NYUv2 dense prediction about 78 ms with 67.7 mIoU, depth absolute error 0.267 m, delta1 0.898, and normal mean error 24.2 degrees.",
+          source: "arxiv.org/abs/2611.24738 (author-reported)",
+        },
+        {
+          claim:
+            "README quick timing cites 78 ms for a text-to-image request on one NVIDIA H200; hf download lists about 6.5 GB for jeveration.pt weights.",
+          source: "github.com/Carol-lyh/Jeveration README",
+        },
+        {
+          claim:
+            "Public GitHub repository Carol-lyh/Jeveration had 157 stars and 13 forks on 2026-11-24.",
+          source: "GitHub API, 2026-11-24",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "Jeveration is an open research generator built on System One image-code decisions, not the hosted api.typesafe.ai product. wizhill05-typesafe-image-diffusion explores TypeSafe Jev on diffusion-style image choice tasks; liuziyu77-valen trains multimodal Valen heads that score candidates rather than emitting a full raster in one parallel code draw. yinsongxu-llm2jev and mapika-decider document general open decision HTTP stacks; Jeveration publishes PyTorch inference, TA-TiTok tokenization, and NYUv2 dense heads. Cite the repository (https://github.com/Carol-lyh/Jeveration?ref=jev.aitools.fyi), paper (https://arxiv.org/abs/2611.24738?ref=jev.aitools.fyi), project page (https://carol-lyh.github.io/Jeveration/?ref=jev.aitools.fyi), weights (https://huggingface.co/linlinlinlinsdada/Jeveration?ref=jev.aitools.fyi), and Space demo (https://huggingface.co/spaces/linlinlinlinsdada/Jeveration?ref=jev.aitools.fyi).",
+    keyFeatures: [
+      "One checkpoint for text-to-image, image-to-image, and NYUv2 dense prediction",
+      "128 parallel image codes with shared random state per draw",
+      "Apache-2.0 code plus Hugging Face linlinlinlinsdada/Jeveration weights",
+      "generate.py, image_to_image.py, dense_predict.py, and JeverationPipeline API",
+      "Gradio app.py demo with pinned dependency versions",
+      "Two-phase training story with masked image-code pretraining (training-only first model)",
+    ],
+    stack: [
+      "Python 3.12",
+      "PyTorch",
+      "CUDA GPU",
+      "Qwen3.5-4B vision-language backbone with LoRA",
+      "TA-TiTok tokenizer and CLIP text tower (Hub downloads)",
+      "Gradio optional demo",
+    ],
+    links: {
+      repo: "https://github.com/Carol-lyh/Jeveration",
+      docs: "https://arxiv.org/abs/2611.24738",
+      demo: "https://huggingface.co/spaces/linlinlinlinsdada/Jeveration",
+      website: "https://carol-lyh.github.io/Jeveration/",
+    },
+    pricingNote:
+      "Apache-2.0 code and released weights; third-party Hub models keep their own licenses. You pay for GPU time, storage, and downloads. No hosted bill from this directory.",
+    firstSeen: "2026-11-24",
+    relatedSlugs: [
+      "wizhill05-typesafe-image-diffusion",
+      "liuziyu77-valen",
+      "yinsongxu-llm2jev",
+      "mapika-decider",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "Is Jeveration affiliated with TypeSafe Jev?",
+        answer:
+          "No. Jeveration is an independent NUS research release that implements System One style parallel image-code decisions. It is not the hosted TypeSafe api.typesafe.ai SKU.",
+      },
+      {
+        question: "How is this different from Valen or typesafe-image-diffusion?",
+        answer:
+          "Valen scores supplied multimodal candidates for agents; typesafe-image-diffusion listings focus on Jev choice tasks around diffusion workflows. Jeveration generates full 512 px images by jointly picking 128 image codes in one pass.",
+      },
+      {
+        question: "What hardware do the speed numbers need?",
+        answer:
+          "Author-reported GenEval and millisecond tables use NVIDIA H200 at batch 1 with decoding included. README also cites 78 ms text-to-image on H200 in setup docs. Re-measure on your GPU before production SLAs.",
+      },
+      {
+        question: "Which image-to-image tasks ship in one checkpoint?",
+        answer:
+          "README documents edge (hed), depth, colorize from grey photos, and anime, ghibli, or watercolor style transfer from photos, plus NYUv2 segmentation, depth, and normals.",
+      },
+      {
+        question: "Are outputs seed-deterministic?",
+        answer:
+          "README states a seed gives the same image in every run on the same hardware and software.",
+      },
+    ],
+    metaTitle: "Jeveration: System One image gen in one pass",
+    metaDescription:
+      "Carol-lyh/Jeveration Apache-2.0: Qwen3.5-4B emits 512px RGB in one forward pass. Authors report 77.8 ms on H200, GenEval 0.74. Weights and Gradio Nov 2026.",
+  },
+
+  "backmeupplz-jev-antispam-bot": {
+    slug: "backmeupplz-jev-antispam-bot",
+    status: "published",
+    problem:
+      "Telegram groups suffer crypto shilling, phishing, and DM funnels, yet captcha bots interrupt every member and full admin suites add analytics operators do not want.",
+    targetUser:
+      "Group owners who want a free MIT bot from the Shieldy author: add @jev_antispam_bot as admin with Delete messages, no captcha, and hosted or self-hosted Jev (or distilled Laya) scoring.",
+    overview:
+      "Jev Anti-Spam Bot (github.com/backmeupplz/jev_antispam_bot?ref=jev.aitools.fyi, MIT) is backmeupplz's grammY plus Bun Telegram bot at https://t.me/jev_antispam_bot and https://jev.borodutch.com?ref=jev.aitools.fyi. Add it as a group administrator with Delete messages permission and send /status to confirm. There is no captcha and no settings UI: every new or edited message from non-admins is checked in one Jev request with twenty-two spam questions plus a linkage question per recent message, deletes at score gate 0.81 by default, and pins the model to jev-1.13.0. README targets token and casino shilling, phishing, fake airdrops, wallet drainers, fake support, check-my-bio funnels, mass mentions, and unsolicited promos. It keeps up to ten messages per chat and sender for about ten minutes so split pitches are caught, and escalates repeat sends across groups via a content-free hash in PostgreSQL. Admins, bots, anonymous admins, and the group's linked channel are exempt. It fails open (if Jev or Telegram is down the message stays), only deletes (never bans), and logs no message text or identities per README. Optional shadow classifiers (Laya, Clef-flash) over /v1/systemone; production can run distilled borodutchlabs/laya-telegram-spam. README compares Combot and Shieldy. Tested on English, Russian, and Chinese spam. Public GitHub repository backmeupplz/jev_antispam_bot had 22 stars and 4 forks when checked November 24, 2026; created September 18, 2026. Same GitHub owner as Shieldy captcha bot. Not affiliated with TypeSafe beyond this independent listing.",
+    creator: {
+      name: "backmeupplz",
+      handle: "backmeupplz",
+      githubUrl: "https://github.com/backmeupplz",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-message Telegram moderation gate: one Jev /v1/systemone request scores spam signals and linkage across recent same-sender history before optional delete",
+      primitives: ["Score", "Noul", "Choice"],
+      stateIn:
+        "Current message text or caption, recent same-sender lines (up to ten per chat for about ten minutes), reply previews, and optional bio or personal-channel metadata when Telegram exposes it",
+      decisionOut:
+        "Keep or delete at SPAM_THRESHOLD (default 0.81); repeat-send escalation can delete earlier copies across groups; fail-open keep when classifier or Telegram errors",
+      flowSteps: [
+        "Operator disables BotFather privacy and sets TELEGRAM_BOT_TOKEN plus TYPESAFE_API_KEY",
+        "Bot added as admin with Delete messages; /status verifies permission",
+        "Each eligible message routed to Jev with twenty-two spam questions plus linkage",
+        "Deletes current and linked suffix when effective score crosses gate; optional PostgreSQL stats",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "README policy: twenty-two spam questions plus one linkage question per recent message in a single Jev request; default SPAM_THRESHOLD 0.81; model pinned to jev-1.13.0.",
+          source: "github.com/backmeupplz/jev_antispam_bot README Policy section",
+        },
+        {
+          claim:
+            "README: up to ten messages per chat and sender retained about ten minutes; repeat-send escalation halves distance to score 1 for copies within 24 hours when base score is at least 0.5 and text has at least 30 normalized characters.",
+          source: "github.com/backmeupplz/jev_antispam_bot README and docs/repeat-sends.md",
+        },
+        {
+          claim:
+            "README FAQ: tested on English, Russian, and Chinese spam; fails open when Jev or Telegram is unavailable.",
+          source: "github.com/backmeupplz/jev_antispam_bot README FAQ",
+        },
+        {
+          claim:
+            "Production distilled weights documented as borodutchlabs/laya-telegram-spam on Hugging Face (Apache-2.0).",
+          source: "github.com/backmeupplz/jev_antispam_bot README Shadow classifier section",
+        },
+        {
+          claim:
+            "Public GitHub repository backmeupplz/jev_antispam_bot had 22 stars and 4 forks on 2026-11-24.",
+          source: "GitHub API, 2026-11-24",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "This bot spends hosted or self-hosted Jev tokens on every eligible group line, not on member-facing chat. brainstormity-jev-moderation-bot is another Telegram moderation experiment in the explore catalog; bitnovus-jev-spam-eval benchmarks spam scoring; lambertsj-beatjev gamifies beating Jev latency. receptron-laya and cloudflare-clef ship open /v1/systemone heads you can shadow or substitute via JEV_URL per README. Shieldy (same author) still handles join captchas; this bot only deletes high-confidence spam post-join. Cite jev.borodutch.com and the repository README for operational policy.",
+    keyFeatures: [
+      "No captcha; add admin with Delete messages only",
+      "Twenty-two spam questions plus linkage in one Jev call",
+      "Split-message memory and cross-group repeat-send escalation",
+      "Fail-open keep on outages; no bans; privacy-safe logs",
+      "Optional PostgreSQL chat stats and shadow classifier comparison",
+      "Distilled Laya production model on Hugging Face",
+    ],
+    stack: [
+      "TypeScript",
+      "grammY",
+      "Bun runtime",
+      "TypeSafe Jev jev-1.13.0 default",
+      "Optional PostgreSQL",
+      "Docker deploy",
+    ],
+    links: {
+      repo: "https://github.com/backmeupplz/jev_antispam_bot",
+      website: "https://jev.borodutch.com",
+      demo: "https://t.me/jev_antispam_bot",
+    },
+    pricingNote:
+      "MIT bot software is free; you bring Telegram BotFather token and TypeSafe (or self-hosted) Jev spend. README does not quote per-message API price.",
+    firstSeen: "2026-11-24",
+    relatedSlugs: [
+      "brainstormity-jev-moderation-bot",
+      "bitnovus-jev-spam-eval",
+      "lambertsj-beatjev",
+      "receptron-laya",
+    ],
+    relatedLearnSlugs: ["use-cases", "system-one"],
+    faq: [
+      {
+        question: "Does it ban spammers?",
+        answer:
+          "README states the bot only deletes messages. Banning stays with human admins.",
+      },
+      {
+        question: "What happens when Jev is down?",
+        answer:
+          "README fail-open policy: if Jev or Telegram is unavailable, the message is left in the chat.",
+      },
+      {
+        question: "Can I run without TypeSafe?",
+        answer:
+          "README documents JEV_URL, JEV_MODEL, and SHADOW_URL for self-hosted /v1/systemone servers such as distilled Laya.",
+      },
+      {
+        question: "How does it differ from Shieldy?",
+        answer:
+          "Shieldy captcha runs at join time from the same author. Jev Anti-Spam scores posts after members are already in the group, with no member friction.",
+      },
+      {
+        question: "Does it read admin messages?",
+        answer:
+          "README exempts group administrators, bot senders, genuine anonymous admins, and the official linked channel.",
+      },
+    ],
+    metaTitle: "Jev Anti-Spam: Telegram bot without captcha",
+    metaDescription:
+      "backmeupplz/jev_antispam_bot MIT: one Jev request per member message, 0.81 delete gate, jev-1.13.0 pinned. Fails open. Laya distill option. 22 stars Nov 2026.",
+  },
+
+  "buer2233-jev-ui-test": {
+    slug: "buer2233-jev-ui-test",
+    status: "published",
+    problem:
+      "End-to-end UI suites rot when selectors break, and LLM-driven agents declare success without deterministic assertions or auditable per-step probabilities.",
+    targetUser:
+      "Python 3.12+ teams who want YAML natural-language cases (Chinese works), pytest pass or fail gates, Allure reports with Jev probabilities, and Browser Harness Chrome control.",
+    overview:
+      "jev-ui-test (github.com/buer2233/jev-ui-test?ref=jev.aitools.fyi, MIT) is a fork of browser-use/jev-ultrafast that wraps the browser-agent kernel in a regression framework instead of rewriting it. Test cases are plain language in YAML, run by pytest, reported in Allure with probabilities, request and response bodies, click coordinates, recording, and step timelines. Each step Jev scores candidate elements on the page and returns operation plus target with calibrated probabilities in one request; validate_choice in model.py requires the choice to be one of the candidate ids or the response is rejected and re-sent, so it cannot click a missing element. No selectors, per-site scripts, or preset values: pass or fail is decided by deterministic pytest assertions, and semantic checks use probability as evidence with thresholds kept in code. Decision model via OpenRouter (recommended), TypeSafe direct, or local deployment per docs/jev-model.md. Maintainer measured on the shipped demo report (one run 2026-09-25, three workflow admin cases, all passed): 32 action decisions, median 458 ms, p90 919 ms, fastest 341 ms, slowest 1,743 ms, 30 of 32 under one second (docs/performance.md). README notes 4 to 5 seconds per step before the rewrite as maintainer experience without machine-readable evidence. Public GitHub repository buer2233/jev-ui-test had 74 stars and 14 forks when checked November 24, 2026. Live report at https://buer2233.github.io/jev-ui-test/?ref=jev.aitools.fyi. Not affiliated with TypeSafe beyond this independent listing.",
+    creator: {
+      name: "buer2233",
+      handle: "buer2233",
+      githubUrl: "https://github.com/buer2233",
+    },
+    jevUsage: {
+      flowRole:
+        "Per-step browser test action: Jev scores indexed candidate elements and returns operation plus target probabilities; pytest owns the verdict",
+      primitives: ["Choice", "Noul", "Score"],
+      stateIn:
+        "Structured element table from Browser Harness snapshots (roles, names, values, numeric ids); goal text from YAML cases",
+      decisionOut:
+        "Operation and target indices with calibrated probabilities; invalid choices trigger resend; TYPE_TEXT may call a separate text model",
+      flowSteps: [
+        "Author YAML cases under cases/ with goals and expect blocks",
+        "pytest drives nl cases with Browser Harness attached Chrome",
+        "Each step: snapshot candidates, one Jev decision, execute click or type",
+        "Allure captures timings, probabilities, and recording plugin timeline",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "docs/performance.md maintainer run 2026-09-25 on three E9 workflow cases: 32 action decisions, median 458 ms, p90 919 ms, 30 of 32 under 1 second; wall-clock and candidate-count context in the same doc.",
+          source: "github.com/buer2233/jev-ui-test docs/performance.md",
+        },
+        {
+          claim:
+            "README.en.md states fork parent browser-use/jev-ultrafast (MIT) and cites 458 ms median with 30 of 32 action decisions under one second from the shipped examples/allure-report.",
+          source: "github.com/buer2233/jev-ui-test README.en.md",
+        },
+        {
+          claim:
+            "README.en.md: 4 to 5 seconds per operation decision before the rewrite is maintainer experience without machine-readable evidence in the repository.",
+          source: "github.com/buer2233/jev-ui-test README.en.md",
+        },
+        {
+          claim:
+            "Public GitHub repository buer2233/jev-ui-test had 74 stars and 14 forks on 2026-11-24.",
+          source: "GitHub API, 2026-11-24",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "jev-ui-test keeps Jev on the hot path for clicks and navigation while pytest asserts outcomes, unlike agents that let the LLM declare done. browser-use-jev-ultrafast is the upstream MIT kernel this repo forks for agent demos, not structured CI gates. agent-labs-dev-fastbrowse indexes controls for cited agent browsing without the pytest plus Allure regression shell documented here. wy-coliney-jev-browser-use routes Codex Computer Use through Jev skills. Cite docs/performance.md and the published Allure report before you quote latency on your own cases.",
+    keyFeatures: [
+      "YAML natural-language cases with pytest and Allure",
+      "validate_choice rejects off-menu target ids",
+      "Fork of browser-use/jev-ultrafast kernel with test layer",
+      "Semantic expect: type ai uses Noul probability thresholds in code",
+      "Shipped examples/allure-report and GitHub Pages report",
+      "OpenRouter, TypeSafe, or local Jev configuration",
+    ],
+    stack: [
+      "Python 3.12+",
+      "pytest",
+      "Allure",
+      "Browser Harness",
+      "uv sync workspace",
+      "Optional OpenRouter or TypeSafe keys",
+    ],
+    links: {
+      repo: "https://github.com/buer2233/jev-ui-test",
+      docs: "https://github.com/buer2233/jev-ui-test/blob/main/docs/performance.md",
+      demo: "https://buer2233.github.io/jev-ui-test/",
+    },
+    pricingNote:
+      "MIT framework; natural-language case runs call paid Jev (and occasional text model) APIs per your .env. Offline pytest suite passes without --nl per README.",
+    firstSeen: "2026-11-24",
+    relatedSlugs: [
+      "browser-use-jev-ultrafast",
+      "agent-labs-dev-fastbrowse",
+      "wy-coliney-jev-browser-use",
+    ],
+    relatedLearnSlugs: ["use-cases", "jev-vs-llm-classification"],
+    faq: [
+      {
+        question: "How is this different from jev-ultrafast?",
+        answer:
+          "Upstream jev-ultrafast is Browser Use's agent kernel. This fork adds pytest cases, deterministic expects, Allure evidence, and validate_choice enforcement for CI-style regressions.",
+      },
+      {
+        question: "Who decides pass or fail?",
+        answer:
+          "README and AGENTS.md: pytest assertions decide. Jev probabilities are evidence for semantic expects; thresholds live in code, not model prose.",
+      },
+      {
+        question: "Can Jev click a nonexistent element?",
+        answer:
+          "README.en.md documents validate_choice: the choice must be a candidate id with normalized probabilities or the response is rejected and re-sent.",
+      },
+      {
+        question: "What latency should I expect?",
+        answer:
+          "docs/performance.md documents median 458 ms on the maintainer's 2026-09-25 E9 run. Re-measure on your site; large candidate tables had 1.14 s and 1.74 s tails in that report.",
+      },
+      {
+        question: "Do I need selectors?",
+        answer:
+          "No. Cases are natural language; each run rebuilds the indexed element table from the live DOM.",
+      },
+    ],
+    metaTitle: "jev-ui-test: plain-language UI tests with Jev",
+    metaDescription:
+      "buer2233/jev-ui-test MIT: YAML cases, pytest, Allure, Jev picks indexed controls. Maintainer reports 458 ms median per step on demo run. Fork of ultrafast.",
+  },
 };

@@ -753,6 +753,10 @@
     "oneLiner": "EO-Jev: MBZUAI ORYX LoRA on d3-flash for satellite imagery choice questions, author-reported EO benchmark gains, MIT repo and Hugging Face weights.",
     "description": "EO-Jev from MBZUAI ORYX (November 2026) specializes the open d3-flash decision stack for Earth observation with LoRA and merged adapters. Author-reported tables cover 30 settings from 23 public EO benchmarks; counting and far OOD calibration stay hard. Glue code for geospatial pipelines that need typed accept or defer gates instead of free-form captions. Tags in the wild: integrations, open-source, earth-observation. Follow the repo for dataset download and Slurm reproduction steps."
   },
+  "carol-lyh-jeveration": {
+    "oneLiner": "Jeveration: Qwen3.5-4B System One emits a 512px image in one pass; author-reported GenEval 0.74 and sub-100 ms on H200.",
+    "description": "Jeveration (November 2026, National University of Singapore) shares LoRA on a frozen Qwen3.5-4B vision-language backbone so 128 image codes are chosen in parallel with one coherent random state. Apache-2.0 repo, Hugging Face weights, and Gradio space. Compare wizhill05-typesafe-image-diffusion and liuziyu77-valen when you need decision models that pick pixels or art styles instead of synthesizing full RGB frames in one joint draw."
+  },
   "duckdb-jev-classifier": {
     "indexOnly": true,
     "oneLiner": "September 2026 X teaser for DuckDB row classification; see the MotherDuck prompt_jev listing for the shipped SQL function and benchmarks.",

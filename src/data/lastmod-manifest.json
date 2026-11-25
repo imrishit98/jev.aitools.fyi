@@ -91,6 +91,10 @@
     "hash": "c5d8ddd71859a9d1cefb1c112fccbb8bbef7c0ab8a69ce5f6ed718dec32a852d",
     "lastmod": "2026-10-09"
   },
+  "/apps/backmeupplz-jev-antispam-bot": {
+    "hash": "1f2754489ac6f39b913bb20e465bcfafecfc5571b6c1e8c5ef50f28b40098dc5",
+    "lastmod": "2026-11-24"
+  },
   "/apps/brainstormity-jev-moderation-bot": {
     "hash": "213da1383f22a9a8b0afa3e6bd1468e89cf03b80cb6b7e9c6303f62163a364f6",
     "lastmod": "2026-09-17"
@@ -102,6 +106,10 @@
   "/apps/budecosystem-bud-decision-studio": {
     "hash": "b57cd3b33165e91693affa5af729e7090deffeef96374d218436090fa17cb202",
     "lastmod": "2026-10-09"
+  },
+  "/apps/buer2233-jev-ui-test": {
+    "hash": "c7fbd4b905746558d6e2f4dc019b7734db2a2c58e6ba992fb731ab34c48a6ade",
+    "lastmod": "2026-11-24"
   },
   "/apps/bunsdev-clarity-judge": {
     "hash": "b6dc4903b9e67d50a4aef1862ee42e14794d447762a90b2114bc76f2eb7f8893",
@@ -516,16 +524,16 @@
     "lastmod": "2026-11-21"
   },
   "/categories/applications": {
-    "hash": "6b69a151df251e8770aa9b8ff6f8819b7c3a11a1806316755a1f208db364b321",
-    "lastmod": "2026-10-07"
+    "hash": "6a0856314a00eea1608e9320a1e9866ebad92ebc597ac3905e77fb2608da0390",
+    "lastmod": "2026-11-24"
   },
   "/categories/benchmarks": {
     "hash": "391d320120e7774249546bab0e2a4c231fe6e65fef1c111fa4eb55522ed88924",
     "lastmod": "2026-10-17"
   },
   "/categories/browser-computer-use": {
-    "hash": "85ac774eb0f5336b8ccccad434c5b399bf47b493036166d320f07ead8742859e",
-    "lastmod": "2026-10-09"
+    "hash": "c5595693b299d6d2d87184d8e5e56d3c09067a39164f9224baf41b28e8f1456d",
+    "lastmod": "2026-11-24"
   },
   "/categories/games": {
     "hash": "740745725fd2fba5484a2857fc1438b06ff06a52ed51c1b1d73cf6dc14d041b9",
@@ -536,8 +544,8 @@
     "lastmod": "2026-11-18"
   },
   "/categories/integrations": {
-    "hash": "d757bf9cfbca1c032bd79132ab876f4c8fd9c27e13531427770e9caa91fb3adb",
-    "lastmod": "2026-11-21"
+    "hash": "6420a90326042d5967a007601af683876a1ba069368c6ae013b421b25d0cf232",
+    "lastmod": "2026-11-24"
   },
   "/categories/official": {
     "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
@@ -564,8 +572,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "58898eda9401f1089070c88e29f70f1ce12c101535221a1b4b9a2dc52d01c5ab",
-    "lastmod": "2026-11-21"
+    "hash": "ea78def72517707a29b4ff3a477eae214897e274113d7d25db50efdaa140a31b",
+    "lastmod": "2026-11-24"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -998,6 +1006,10 @@
   "/tools/caiovicentino-jev-shield": {
     "hash": "873090cbda41d94f55b45ed14fa18a3ce69ff864cddeb94898926666d6459b07",
     "lastmod": "2026-09-20"
+  },
+  "/tools/carol-lyh-jeveration": {
+    "hash": "3f3c1f6c7291cae429827e6679be3eb1fcd2ce25677cf194f0561f6a41524148",
+    "lastmod": "2026-11-24"
   },
   "/tools/charlesfeng0314-jev-sees": {
     "hash": "305b9b85df027b2112fcad63576f4fe3d20f55bf9cf9b4070f96cb3e727980f6",
