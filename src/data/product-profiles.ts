@@ -7635,7 +7635,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       ],
     },
     howJevIsUsed:
-      "Valen extends the open decision model lane into vision: same candidate scoring story as jaredpalmer-kev and togethercomputer-tev1, but tensors include frames. tianyucodings-nanojev benchmarks tiny parallel heads on games; Valen targets general multimodal VQA plus Sokoban eval sets with published datasets. wfzyx-von remains text encoder speed king; Valen trades modality breadth for training complexity. Use the HF Space before you commit GPUs to a custom SFT run.",
+      "Valen extends the open decision model lane into vision: same candidate scoring story as jaredpalmer-kev and togethercomputer-tev1, but tensors include frames. tencent-wepocketmodel packs embeddings, generation, and typed decisions into one resident local backbone; Valen stays a decision-only Qwen3.5 head you train or serve separately. tianyucodings-nanojev benchmarks tiny parallel heads on games; Valen targets general multimodal VQA plus Sokoban eval sets with published datasets. wfzyx-von remains text encoder speed king; Valen trades modality breadth for training complexity. Use the HF Space before you commit GPUs to a custom SFT run.",
     keyFeatures: [
       "Valen-Preview-0923 weights and Qwen3.5 base pairing documented on HF",
       "Hugging Face Space demo and General 100k plus game dataset cards",
@@ -7659,6 +7659,7 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
       "Apache-2.0 code; inference and training spend your own GPU hours and HF bandwidth.",
     firstSeen: "2026-09-25",
     relatedSlugs: [
+      "tencent-wepocketmodel",
       "tianyucodings-nanojev",
       "jaredpalmer-kev",
       "togethercomputer-tev1",
@@ -15763,5 +15764,129 @@ export const productProfilesBySlug: Record<string, ProductProfile> = {
     metaTitle: "jev-ui-test: plain-language UI tests with Jev",
     metaDescription:
       "buer2233/jev-ui-test MIT: YAML cases, pytest, Allure, Jev picks indexed controls. Maintainer reports 458 ms median per step on demo run. Fork of ultrafast.",
+  },
+
+  "tencent-wepocketmodel": {
+    slug: "tencent-wepocketmodel",
+    status: "published",
+    problem:
+      "On-device assistants need retrieval, captioning, and typed routing in one session, but stacking separate embedding, generation, and decision models duplicates vision-language weights under tight RAM.",
+    targetUser:
+      "Engineers shipping local multimodal apps on NVIDIA GPU, CPU, GGUF, or Apple silicon who want one Apache-2.0 WePM checkpoint for embeddings, generation, and System One style decisions.",
+    overview:
+      "WePocketModel (WePM) is Tencent WeChat AI's unified 2B and 4B pocket multimodal family (github.com/Tencent/WePocketModel, Apache-2.0 code open-sourced 2026-11-23) where one shared vision-language backbone does L2-normalized embeddings, autoregressive generation (OCR, captioning, VQA, summaries, assistant replies), and typed decisions (choice, score, noul) via learned E and J slots and direct heads. Decision requests follow the SystemOne shape (state plus typed questions); the repo ships example request JSON. Training components named in the README are Multi-Granularity Visual Budgeting (MGVB), Unified Listwise Knowledge Distillation (ULKD), and Stable and Efficient Multitask Optimization (SEMO). Inference runs on Transformers (BF16 on NVIDIA, about 8.5 GiB weights, 16 GiB VRAM recommended; FP32 CPU about 17 GiB weights), GGUF CPU (4B Q4_K_M about 3.19 GiB on disk per README), and MLX on Apple silicon (added 2026-11-25). Python 3.10 to 3.13. README demos cover a personal agent and an on-device game assistant without publishing latency numbers for them. Technical report arXiv:2611.27365 (submitted 20 Nov 2026; first author Zhiqiang Yuan). Weights Apache-2.0 on Hugging Face tencent/WePocketModel1.0-4B and tencent/WePocketModel1.0-2B. This directory is not affiliated with Tencent or TypeSafe.",
+    creator: {
+      name: "WeChat AI, Tencent",
+      handle: "Tencent",
+      githubUrl: "https://github.com/Tencent",
+      company: "Tencent",
+      companyUrl: "https://weixin.qq.com",
+    },
+    jevUsage: {
+      flowRole:
+        "Typed decision slot: one multimodal prefill maps the J slot hidden state to candidate logits for choice, ordinal score, or noul without answer-token decoding",
+      primitives: ["Choice", "Score", "Noul"],
+      stateIn:
+        "SystemOne JSON with multimodal state (text and images) and typed questions; examples under examples/gpu/demo_data/decision/request.json and MLX model cards document choice, score, and noul variants.",
+      decisionOut:
+        "Per-question logits over listed options or criteria from the decision head; embeddings use a separate E slot with L2 normalization; generation uses standard decoding.",
+      flowSteps: [
+        "Install inference/requirements.txt and fetch tencent/WePocketModel1.0-4B or 2B weights",
+        "Run generation, embedding, or decision examples from examples/README per backend (GPU, CPU, GGUF, or MLX Hub runtime)",
+        "Pass decision-json shaped like the shipped SystemOne template for structured judgments",
+        "Compose retrieval, generation, and routing in one resident model for personal agent or game assistant demos on device",
+      ],
+      sourcedMetrics: [
+        {
+          claim:
+            "Authors report WePM-4B averages 61.11 across seven typed-decision benchmarks (S1MB, JevBench, Open-Jev, JevAny (MM), Valen-VDB (Image), Valen-General5k, DecisionBench) versus 22 models, just ahead of d3-mini-4.5B at 61.06; WePM-2B averages 55.81 (fourth).",
+          source: "arxiv.org/abs/2611.27365 Table 3 (author-reported)",
+        },
+        {
+          claim:
+            "Authors report WePM-4B is best on JevAny (MM) and Valen-General5k (82.99, 8.88 points above the best external model in that column) and second on Open-Jev (95.74); Clef-Flash averages 53.08 and OmniJev-4B 44.27 in the same table.",
+          source: "arxiv.org/abs/2611.27365 Table 3 (author-reported)",
+        },
+        {
+          claim:
+            "Authors report embedding average 72.86 over 30 benchmarks and generation 62.41 over 39 for WePM-4B.",
+          source: "arxiv.org/abs/2611.27365 abstract and Section 4.2 (author-reported)",
+        },
+        {
+          claim:
+            "Authors report about 65.1% harmonic performance at about 8 GB BF16 weights versus separate three-model stacks, with 61.9% less resident weight memory and 2.64 times the heterogeneous capability density of the best separate stack (weights only).",
+          source: "arxiv.org/abs/2611.27365 and Tencent/WePocketModel README (author-reported)",
+        },
+        {
+          claim:
+            "Public GitHub repository Tencent/WePocketModel had 318 stars and 9 forks when checked 2026-11-27.",
+          source: "GitHub API, 2026-11-27",
+        },
+      ],
+    },
+    howJevIsUsed:
+      "WePM is an independent Tencent open release, not hosted api.typesafe.ai System One. liuziyu77-valen trains multimodal decision heads only; carol-lyh-jeveration generates full images via parallel image codes; cloudflare-clef is Cloudflare's hosted Workers AI clef family with open weights but cloud metering. WePM keeps embeddings, generation, and typed decisions in one local Qwen3.5 backbone you download. The technical report's JEV-9B row is a third-party open model, not TypeSafe's hosted Jev SKU. Cite github.com/Tencent/WePocketModel?ref=jev.aitools.fyi, arxiv.org/abs/2611.27365?ref=jev.aitools.fyi, and Hugging Face tencent/WePocketModel1.0-4B?ref=jev.aitools.fyi.",
+    keyFeatures: [
+      "2B and 4B weights on Hugging Face with Transformers, GGUF, and MLX runtimes",
+      "One backbone for embeddings, generation, and SystemOne-shaped decisions",
+      "MGVB, ULKD, and SEMO training recipe documented in README and paper",
+      "Runnable GPU, CPU, GGUF, and Apple silicon MLX examples plus decision JSON template",
+      "On-device personal agent and game assistant README demos (no published latency tables)",
+      "Apache-2.0 inference code; weight license per each Hugging Face model card",
+    ],
+    stack: [
+      "Python 3.10 to 3.13",
+      "PyTorch 2.10 and Transformers inference",
+      "Qwen3.5 vision-language backbone",
+      "GGUF native runtime and MLX Apple silicon paths",
+      "SystemOne decision JSON protocol",
+    ],
+    links: {
+      repo: "https://github.com/Tencent/WePocketModel",
+      docs: "https://arxiv.org/abs/2611.27365",
+      demo: "https://github.com/Tencent/WePocketModel#applications",
+      website: "https://huggingface.co/tencent/WePocketModel1.0-4B",
+    },
+    pricingNote:
+      "Apache-2.0 public code; Hugging Face weights are Apache-2.0 per model cards. You pay for devices, download bandwidth, and your own GPU or Apple silicon time. No Tencent or TypeSafe bill from this listing.",
+    firstSeen: "2026-11-27",
+    relatedSlugs: [
+      "liuziyu77-valen",
+      "carol-lyh-jeveration",
+      "cloudflare-clef",
+      "yinsongxu-llm2jev",
+      "mapika-decider",
+    ],
+    relatedLearnSlugs: ["system-one", "jev-vs-llm-classification", "where-to-run-jev"],
+    faq: [
+      {
+        question: "Is WePM the same as hosted TypeSafe Jev?",
+        answer:
+          "No. WePM is Tencent's local multimodal pocket model with a native decision path. It is not api.typesafe.ai. Benchmark tables compare other open models; JEV-9B in the paper is third-party open weights, not TypeSafe's product.",
+      },
+      {
+        question: "How is WePM different from Valen, Jeveration, or Clef?",
+        answer:
+          "Valen (liuziyu77-valen) focuses on multimodal decision training without bundling retrieval or chat generation. Jeveration (carol-lyh-jeveration) emits images in one parallel code draw. Clef (cloudflare-clef) is served on Cloudflare Workers AI. WePM unifies embeddings, generation, and decisions in one on-device checkpoint.",
+      },
+      {
+        question: "What hardware does the README recommend for 4B?",
+        answer:
+          "README cites about 8.5 GiB BF16 weights on NVIDIA GPU with 16 GiB VRAM recommended, about 17 GiB FP32 weights on CPU with 24 GiB RAM recommended, and about 3.19 GiB on disk for 4B Q4_K_M GGUF language weights plus vision and task modules at runtime.",
+      },
+      {
+        question: "Which decision protocol does inference expect?",
+        answer:
+          "README and MLX cards document SystemOne-shaped JSON (state plus choice, score, or noul questions). Start from examples/gpu/demo_data/decision/request.json in the repository.",
+      },
+      {
+        question: "Did the authors publish demo latencies?",
+        answer:
+          "README includes personal agent and game assistant screen recordings but does not publish latency numbers for those demos. Re-measure on your device before production SLAs.",
+      },
+    ],
+    metaTitle: "WePM: Tencent on-device multimodal pocket model",
+    metaDescription:
+      "Tencent WePocketModel Apache-2.0: 2B/4B local embeddings, generation, SystemOne decisions. Authors report 61.11 decision avg, 72.86 embedding. Nov 2026.",
   },
 };

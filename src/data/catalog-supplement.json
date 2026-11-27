@@ -2917,5 +2917,25 @@
     "sourcePlatform": "github",
     "detailPage": true,
     "updatedAt": "2026-11-24"
+  },
+  {
+    "slug": "tencent-wepocketmodel",
+    "title": "WePocketModel (WePM): Tencent on-device decision",
+    "oneLiner": "Tencent WePM 2B/4B: one on-device backbone for multimodal embeddings, generation, and SystemOne typed decisions (choice, score, noul).",
+    "description": "WePocketModel (github.com/Tencent/WePocketModel, Apache-2.0, open-sourced 2026-11-23, arXiv 2611.27365) unifies retrieval embeddings, OCR or VQA generation, and schema-constrained decisions in one Qwen3.5 pocket model. Authors report WePM-4B leads decision benchmark averages (61.11) plus strong embedding and generation means; README covers Transformers, GGUF, and MLX. Compare liuziyu77-valen, carol-lyh-jeveration, and cloudflare-clef. Independent listing.",
+    "category": "integrations",
+    "tags": ["integrations", "open-source", "decision-model", "multimodal", "on-device"],
+    "language": "Python",
+    "stars": 318,
+    "url": "https://github.com/Tencent/WePocketModel",
+    "repoUrl": "https://github.com/Tencent/WePocketModel",
+    "postUrl": "https://arxiv.org/abs/2611.27365",
+    "demoUrl": "https://github.com/Tencent/WePocketModel#applications",
+    "badges": ["has-demo"],
+    "creatorHandle": "Tencent",
+    "creatorName": "WeChat AI, Tencent",
+    "sourcePlatform": "github",
+    "detailPage": true,
+    "updatedAt": "2026-11-27"
   }
 ]
