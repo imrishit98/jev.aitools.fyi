@@ -757,6 +757,10 @@
     "oneLiner": "Jeveration: Qwen3.5-4B System One emits a 512px image in one pass; author-reported GenEval 0.74 and sub-100 ms on H200.",
     "description": "Jeveration (November 2026, National University of Singapore) shares LoRA on a frozen Qwen3.5-4B vision-language backbone so 128 image codes are chosen in parallel with one coherent random state. Apache-2.0 repo, Hugging Face weights, and Gradio space. Compare wizhill05-typesafe-image-diffusion and liuziyu77-valen when you need decision models that pick pixels or art styles instead of synthesizing full RGB frames in one joint draw."
   },
+  "tencent-wepocketmodel": {
+    "oneLiner": "WePM: Tencent 2B/4B pocket model unifies on-device embeddings, generation, and SystemOne decisions in one Apache-2.0 stack.",
+    "description": "WePocketModel (November 2026, WeChat AI) packs retrieval, OCR or VQA generation, and typed choice or noul heads into one Qwen3.5 backbone with Transformers, GGUF, and MLX paths. Author-reported benchmark tables cover 30 embedding, 39 generation, and seven decision suites. Compare liuziyu77-valen, carol-lyh-jeveration, and cloudflare-clef when you need one local model instead of separate specialist stacks."
+  },
   "duckdb-jev-classifier": {
     "indexOnly": true,
     "oneLiner": "September 2026 X teaser for DuckDB row classification; see the MotherDuck prompt_jev listing for the shipped SQL function and benchmarks.",

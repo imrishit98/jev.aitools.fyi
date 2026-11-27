@@ -544,8 +544,8 @@
     "lastmod": "2026-11-18"
   },
   "/categories/integrations": {
-    "hash": "6420a90326042d5967a007601af683876a1ba069368c6ae013b421b25d0cf232",
-    "lastmod": "2026-11-24"
+    "hash": "02b9b4eaa453e4b37d5d0b6f5e920a25b8fd3d6491d4c607698127bc68672eea",
+    "lastmod": "2026-11-27"
   },
   "/categories/official": {
     "hash": "e741b8977e6836d0c76debb59360c03a847e48967cc79e31ea8cf720561c018e",
@@ -572,8 +572,8 @@
     "lastmod": "2026-11-03"
   },
   "/explore": {
-    "hash": "ea78def72517707a29b4ff3a477eae214897e274113d7d25db50efdaa140a31b",
-    "lastmod": "2026-11-24"
+    "hash": "fe2ec4812ecf682ff2f7316c36e5f494e387d60f1feb6d1ccae9af22f7aec4d4",
+    "lastmod": "2026-11-27"
   },
   "/for-agents": {
     "hash": "0c64922b780a4166e91fee1b32b7cf4294ddb657cc73245846f8f95d9287da28",
@@ -1192,8 +1192,8 @@
     "lastmod": "2026-10-12"
   },
   "/tools/liuziyu77-valen": {
-    "hash": "117ac6b2b786f4a6632d5c6fda4b97b1334747426ec2ff5c714f4de2247adc04",
-    "lastmod": "2026-10-09"
+    "hash": "2cae401f97c8e1caa8e17b7e5dccc2597e82b2dbf386e8bd3decf9a93b491a80",
+    "lastmod": "2026-11-27"
   },
   "/tools/logan-markewich-jeff": {
     "hash": "1dc9c10af4559586d510100e001cbc96e2dbf9dca5161d99b82860df2194b3a3",
@@ -1374,6 +1374,10 @@
   "/tools/tanstack-ai-decide": {
     "hash": "1622f94fdcfa75de265f4de73a30f9ca634f9effddccee96ff9eaec19c51fe0c",
     "lastmod": "2026-09-23"
+  },
+  "/tools/tencent-wepocketmodel": {
+    "hash": "3741441b24398c0672c99756df33af775739a53b33206ae8d005b22fed2b405a",
+    "lastmod": "2026-11-27"
   },
   "/tools/thruwire-foreman": {
     "hash": "fe4e8bc4e4ee62980d3d37e390d25a869592ed93a1822e2a2ac37d8a027e18a2",

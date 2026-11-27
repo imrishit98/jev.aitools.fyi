@@ -337,6 +337,8 @@ export const editorialBlurbsBySlug: Record<string, string> = {
     "Add one Telegram admin bot with delete permission and skip captchas entirely: every member line runs through pinned jev-1.13.0 spam questions, split pitches get linked in memory, and the group keeps talking when Jev or Telegram blinks out.",
   "buer2233-jev-ui-test":
     "Write UI regressions like READMEs in YAML, let Jev pick indexed controls without selectors, and ship Allure rows that show probabilities and click coordinates. Forked from Browser Use ultrafast, tuned for pytest verdicts instead of the model declaring done.",
+  "tencent-wepocketmodel":
+    "Tencent's fresh WePM drop keeps embeddings, chatty generation, and SystemOne decisions in one resident 4B backbone so your phone or laptop is not juggling three vision stacks. Author tables lead decision averages and HCD math; grab MLX or GGUF paths before you quote Valen-only or Clef-hosted comparisons.",
 };
 
 export function getHandwrittenEditorialBlurb(slug: string): string | undefined {
